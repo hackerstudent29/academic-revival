@@ -33,59 +33,6 @@ const heroLinks = [
   { label: "Speak to an Advisor", to: "/contact" },
 ] as const;
 
-const stats = [
-  { n: "25+", l: "Years of Excellence" },
-  { n: "5000+", l: "Successful Alumni" },
-  { n: "95%", l: "Placement Record" },
-  { n: "50+", l: "Industry Recruiters" },
-];
-
-const departments = [
-  {
-    code: "CSE",
-    name: "Computer Science & Engineering",
-    desc: "Advanced software development, AI, machine learning, systems architecture and cyber security.",
-    tone: "plain",
-  },
-  {
-    code: "IT",
-    name: "Information Technology",
-    desc: "Cloud architecture, network infrastructure, database administration and web engineering.",
-    tone: "blue",
-  },
-  {
-    code: "ECE",
-    name: "Electronics & Communication",
-    desc: "Microelectronics, wireless networks, IoT systems, signal processing and telecom technologies.",
-    tone: "invert",
-  },
-  {
-    code: "AIDS",
-    name: "AI & Data Science",
-    desc: "Big data analysis, data warehousing, deep learning and predictive computational modelling.",
-    tone: "muted",
-  },
-  {
-    code: "MECH",
-    name: "Mechanical Engineering",
-    desc: "Computer-aided design, robotics, fluid dynamics, thermodynamic systems and smart automation.",
-    tone: "plain",
-  },
-  {
-    code: "EEE",
-    name: "Electrical & Electronics",
-    desc: "Clean energy grids, power electronics, electric vehicle technologies and electrical controls.",
-    tone: "blue",
-  },
-] as const;
-
-const toneClass: Record<string, string> = {
-  plain: "bg-background text-foreground",
-  blue: "bg-primary text-primary-foreground",
-  invert: "bg-foreground text-background",
-  muted: "bg-foreground/8 text-foreground",
-};
-
 function Index() {
   return (
     <main className="bg-background">
