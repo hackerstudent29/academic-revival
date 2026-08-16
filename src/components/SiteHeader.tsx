@@ -18,7 +18,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-foreground/12 bg-background/80 backdrop-blur-xl">
+    <header className="msajce-header-glass sticky top-0 z-50 w-full border-b border-foreground/12">
       <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 py-4 md:px-12">
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <Logo className="h-9" />
