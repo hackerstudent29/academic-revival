@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PageHero } from "@/components/PageHero";
 import { AcademicProgrammesSection } from "@/components/AcademicProgrammesSection";
 
@@ -40,19 +41,22 @@ function Academics() {
       <AcademicProgrammesSection />
       <section className="border-t border-foreground/12 px-6 py-24 md:px-12">
         <div className="mx-auto max-w-[1440px]">
-          <h2 className="text-3xl font-black uppercase tracking-tight text-foreground sm:text-4xl">Departments</h2>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Reveal variant="mask">
+            <h2 className="text-3xl font-black uppercase tracking-tight text-foreground sm:text-4xl">Departments</h2>
+          </Reveal>
+          <Stagger gap={0.07} className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {departments.map((d) => (
-              <div
+              <StaggerItem
                 key={d.code}
+                variant="tilt"
                 className="group rounded-3xl border border-foreground/12 bg-foreground/5 p-8 transition-colors hover:bg-foreground/10"
               >
                 <span className="text-xs font-bold uppercase tracking-[0.22em] text-foreground/50">{d.code}</span>
                 <h3 className="mt-3 text-xl font-bold leading-snug text-foreground">{d.name}</h3>
                 <p className="mt-4 text-sm text-foreground/55">{d.seats}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
     </main>

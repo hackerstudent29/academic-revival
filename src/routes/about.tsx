@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Parallax, Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PageHero } from "@/components/PageHero";
 
 const title = "About MSAJCE — 25 Years of Engineering Education";
@@ -42,33 +43,39 @@ function About() {
       />
 
       <section className="mx-auto max-w-[1440px] px-6 py-24 md:px-12">
-        <div className="grid gap-8 md:grid-cols-3">
+        <Stagger gap={0.1} className="grid gap-8 md:grid-cols-3">
           {values.map((v) => (
-            <div key={v.title} className="rounded-3xl border border-foreground/12 bg-foreground/5 p-9">
+            <StaggerItem key={v.title} variant="tilt" className="rounded-3xl border border-foreground/12 bg-foreground/5 p-9">
               <h2 className="text-xs font-bold uppercase tracking-[0.22em] text-foreground/70">{v.title}</h2>
               <p className="mt-4 text-lg leading-relaxed text-foreground">{v.body}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
 
       <section className="border-y border-foreground/12 bg-foreground/[0.03] px-6 py-24 md:px-12">
         <div className="mx-auto max-w-[1440px] grid gap-14 lg:grid-cols-2 lg:items-center">
-          <img
-            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80"
-            alt="MSAJCE academic block"
-            className="w-full rounded-3xl border border-foreground/12 object-cover grayscale"
-          />
+          <Reveal variant="clip" className="overflow-hidden rounded-3xl border border-foreground/12">
+            <Parallax distance={24}>
+              <img
+                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80"
+                alt="MSAJCE academic block"
+                className="w-full scale-110 object-cover grayscale"
+              />
+            </Parallax>
+          </Reveal>
           <div>
-            <h2 className="text-3xl font-black uppercase tracking-tight text-foreground sm:text-4xl">Milestones</h2>
-            <ul className="mt-10 space-y-8">
+            <Reveal variant="mask">
+              <h2 className="text-3xl font-black uppercase tracking-tight text-foreground sm:text-4xl">Milestones</h2>
+            </Reveal>
+            <Stagger gap={0.1} className="mt-10 space-y-8">
               {milestones.map((m) => (
-                <li key={m.year} className="flex gap-6 border-b border-foreground/10 pb-8 last:border-0">
+                <StaggerItem key={m.year} variant="slide-left" className="flex gap-6 border-b border-foreground/10 pb-8 last:border-0">
                   <span className="w-16 shrink-0 text-lg font-black text-foreground">{m.year}</span>
                   <p className="text-sm leading-relaxed text-foreground/65">{m.text}</p>
-                </li>
+                </StaggerItem>
               ))}
-            </ul>
+            </Stagger>
           </div>
         </div>
       </section>
