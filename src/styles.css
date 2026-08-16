@@ -169,3 +169,35 @@
     font-family: var(--font-display);
   }
 }
+
+/* Editorial motion utilities */
+@keyframes msajce-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.msajce-marquee {
+  animation-name: msajce-marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes msajce-reel {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+.msajce-reel {
+  animation: msajce-reel 45s linear infinite;
+}
+
+.msajce-reel:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .msajce-reel,
+  .msajce-marquee {
+    animation: none;
+  }
+}
