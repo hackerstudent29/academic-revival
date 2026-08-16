@@ -37,11 +37,14 @@ const heroLinks = [
 function Index() {
   return (
     <main className="bg-background">
-      <section className="relative border-b border-foreground/12" id="hero">
-        <div className="grid min-h-[calc(100vh-4rem)] items-stretch md:grid-cols-2">
-          <div className="flex flex-col justify-start px-6 pb-6 pt-4 md:px-6 md:pb-8 md:pt-5 lg:px-8">
+      <section
+        className="relative border-b border-foreground/12 md:h-[calc(100svh-4rem)] md:overflow-hidden"
+        id="hero"
+      >
+        <div className="grid h-full items-stretch md:grid-cols-2">
+          <div className="flex h-full flex-col justify-center px-6 py-8 md:px-8 md:py-10 lg:px-12">
             <DynamicText />
-            <h1 className="mt-1 flex flex-col text-[7vw] font-black uppercase leading-[0.95] tracking-tighter text-foreground sm:text-4xl md:text-[3.2vw] lg:text-[3.8vw] xl:text-[4vw]">
+            <h1 className="mt-2 flex flex-col text-[8vw] font-black uppercase leading-[0.95] tracking-tighter text-foreground sm:text-5xl md:text-[3.4vw] lg:text-[3.9vw] xl:text-[4.1vw]">
               <span className="whitespace-nowrap">Mohamed Sathak</span>
               <span className="whitespace-nowrap">A.J. College of</span>
               <span className="mt-0.5 flex flex-nowrap items-baseline gap-x-2 sm:gap-x-3 whitespace-nowrap text-[3.5vw] sm:text-2xl md:text-[1.7vw] lg:text-[1.8vw] xl:text-[1.9vw]">
@@ -57,17 +60,20 @@ function Index() {
               </span>
             </h1>
 
-            <Stagger gap={0.07} delay={0.2} className="mt-5 border-t border-foreground/12">
+            <Stagger gap={0.07} delay={0.25} className="mt-8 border-t border-foreground/12 md:mt-10">
               {heroLinks.map((item) => (
                 <StaggerItem key={item.to} variant="mask">
                 <Link
                   to={item.to}
-                  className="group flex items-center justify-between border-b border-foreground/12 py-2.5 text-[12px] font-semibold uppercase tracking-[0.1em] text-foreground/70 transition-colors hover:text-foreground"
+                  className="group flex items-center justify-between border-b border-foreground/12 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-foreground/70 transition-colors hover:text-foreground md:py-[1.05vh] lg:py-3.5"
                 >
-                  <span className="transition-transform duration-300 group-hover:translate-x-2">
+                  <span className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2">
                     {item.label}
                   </span>
-                  <span aria-hidden className="text-primary transition-transform duration-300 group-hover:translate-x-1">
+                  <span
+                    aria-hidden
+                    className="text-primary transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1.5"
+                  >
                     →
                   </span>
                 </Link>
@@ -76,8 +82,10 @@ function Index() {
             </Stagger>
           </div>
 
-          <div className="relative h-full min-h-0 border-l border-foreground/12">
-            <HeroReel />
+          <div className="relative min-h-0 border-foreground/12 md:h-full md:border-l">
+            <div className="absolute inset-0 hidden md:block">
+              <HeroReel />
+            </div>
             {/* Mobile: horizontal snap strip */}
             <div className="flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 pb-3 md:hidden">
               {[
