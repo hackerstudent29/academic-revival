@@ -49,7 +49,7 @@ export function RotatingWord({
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           className="inline-block"
           style={
-            img
+            (img
               ? {
                   backgroundImage: `url("${img}")`,
                   backgroundSize: "cover",
@@ -59,7 +59,7 @@ export function RotatingWord({
                   WebkitTextFillColor: "transparent",
                   color: "transparent",
                 }
-              : undefined
+              : {}) as React.CSSProperties
           }
         >
           {word}
