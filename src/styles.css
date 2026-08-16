@@ -63,6 +63,12 @@
 
 :root {
   --radius: 0.625rem;
+  /* MSAJCE design tokens */
+  --primary-blue: #005da6;
+  --bg-color: #000000;
+  --text-color: #d8d8d8;
+  --card-bg: #0a0a0a;
+  --border-color: rgba(255, 255, 255, 0.15);
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
