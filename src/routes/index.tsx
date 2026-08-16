@@ -37,20 +37,19 @@ const heroLinks = [
 function Index() {
   return (
     <main className="bg-background">
-      {/* ── Hero: editorial split grid ── */}
-      <section className="border-b border-foreground/12" id="hero">
-        <div className="grid items-stretch md:grid-cols-2">
-          <div className="flex flex-col justify-start px-6 pb-12 pt-8 md:px-12 md:pb-16 md:pt-10">
+      <section className="relative border-b border-foreground/12" id="hero">
+        <div className="grid min-h-[calc(100vh-4rem)] items-stretch md:grid-cols-2">
+          <div className="flex flex-col justify-start px-6 pb-6 pt-4 md:px-10 md:pb-8 md:pt-5">
             <DynamicText />
-            <h1 className="flex flex-col gap-1 text-[11vw] font-black uppercase leading-[0.92] tracking-tighter text-foreground sm:text-5xl lg:text-6xl">
-              <span>Mohamed Sathak</span>
-              <span>A.J. College of</span>
-              <span className="mt-1 flex flex-wrap items-baseline gap-x-4">
+            <h1 className="mt-1 flex flex-col text-[6.5vw] font-black uppercase leading-[0.95] tracking-tighter text-foreground sm:text-4xl md:text-[32px] lg:text-4xl xl:text-5xl">
+              <span className="whitespace-nowrap">Mohamed Sathak</span>
+              <span className="whitespace-nowrap">A.J. College of</span>
+              <span className="mt-0.5 flex flex-nowrap items-baseline gap-x-2 sm:gap-x-3 whitespace-nowrap">
                 <RotatingWord
                   homeWord="Engineering"
                   words={["Innovation", "Technology", "Excellence"]}
                 />
-                <span>&amp;</span>
+                <span className="text-foreground/70">&amp;</span>
                 <RotatingWord
                   homeWord="Architecture"
                   words={["Design", "Creativity", "Craftsmanship"]}
@@ -58,12 +57,12 @@ function Index() {
               </span>
             </h1>
 
-            <Stagger gap={0.07} delay={0.2} className="mt-8 border-t border-foreground/12">
+            <Stagger gap={0.07} delay={0.2} className="mt-5 border-t border-foreground/12">
               {heroLinks.map((item) => (
                 <StaggerItem key={item.to} variant="mask">
                 <Link
                   to={item.to}
-                  className="group flex items-center justify-between border-b border-foreground/12 py-3 text-[13px] font-semibold uppercase tracking-[0.1em] text-foreground/70 transition-colors hover:text-foreground"
+                  className="group flex items-center justify-between border-b border-foreground/12 py-2.5 text-[12px] font-semibold uppercase tracking-[0.1em] text-foreground/70 transition-colors hover:text-foreground"
                 >
                   <span className="transition-transform duration-300 group-hover:translate-x-2">
                     {item.label}
@@ -77,10 +76,10 @@ function Index() {
             </Stagger>
           </div>
 
-          <div className="relative border-l border-foreground/12 md:min-h-full">
+          <div className="relative h-full min-h-0 border-l border-foreground/12">
             <HeroReel />
             {/* Mobile: horizontal snap strip */}
-            <div className="flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 pb-4 md:hidden">
+            <div className="flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 pb-3 md:hidden">
               {[
                 { src: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=400&h=300&q=80", label: "Research" },
                 { src: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=400&h=300&q=80", label: "Heritage" },
@@ -90,7 +89,7 @@ function Index() {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="relative h-[204px] w-[72vw] max-w-[280px] shrink-0 snap-start overflow-hidden rounded-md"
+                  className="relative h-[180px] w-[72vw] max-w-[260px] shrink-0 snap-start overflow-hidden rounded-md"
                 >
                   <img src={item.src} alt={item.label} loading="lazy" className="h-full w-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
