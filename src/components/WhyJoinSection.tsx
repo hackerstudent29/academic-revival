@@ -39,7 +39,7 @@ export function WhyJoinSection() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-tight">
-              Why <span className="text-[var(--primary-blue)]">Join</span> MSAJCE?
+              Why <span className="text-primary">Join</span> MSAJCE?
             </h2>
           </motion.div>
 
@@ -71,7 +71,7 @@ export function WhyJoinSection() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="relative bg-foreground/5 backdrop-blur-xl border border-foreground/10 p-10 rounded-[2rem] shadow-2xl transition-transform"
             >
-              <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-white to-white/30 transition-all duration-700 ease-out" />
+              <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-foreground to-foreground/30 transition-all duration-700 ease-out" />
               <h3 className="text-3xl font-bold mb-4">{item.title}</h3>
               <p className="text-lg text-foreground/70 leading-relaxed">{item.desc}</p>
             </motion.div>

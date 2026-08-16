@@ -58,7 +58,7 @@ function Admissions() {
       <section className="border-y border-foreground/12 bg-foreground/[0.03] px-6 py-24 md:px-12">
         <div className="mx-auto max-w-[1440px]">
           <h2 className="text-3xl font-black uppercase tracking-tight text-foreground sm:text-4xl">Eligibility</h2>
-          <div className="mt-12 divide-y divide-white/10 border-y border-foreground/10">
+          <div className="mt-12 divide-y divide-foreground/10 border-y border-foreground/10">
             {eligibility.map((e) => (
               <div key={e.level} className="grid gap-4 py-8 md:grid-cols-4">
                 <h3 className="text-lg font-bold text-foreground">{e.level}</h3>
