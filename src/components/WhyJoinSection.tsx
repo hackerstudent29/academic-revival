@@ -26,6 +26,7 @@ const reasons = [
 
 export function WhyJoinSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const active = reasons[activeIndex] ?? reasons[0]!;
 
   return (
     <section className="w-full relative py-32 bg-black text-white" id="why-msajce">
@@ -46,8 +47,8 @@ export function WhyJoinSection() {
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeIndex}
-                src={reasons[activeIndex].img}
-                alt={reasons[activeIndex].title}
+                src={active.img}
+                alt={active.title}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
