@@ -54,7 +54,7 @@ export function RotatingWord({
           }}
           className="inline-block whitespace-nowrap"
           style={
-            img
+            (img
               ? {
                   backgroundImage: `url("${img}")`,
                   backgroundSize: "cover",
@@ -64,7 +64,7 @@ export function RotatingWord({
                   WebkitTextFillColor: "transparent",
                   color: "transparent",
                 }
-              : undefined
+              : {}) as React.CSSProperties
           }
         >
           {letters.map((ch, i) => (
