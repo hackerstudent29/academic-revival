@@ -48,21 +48,25 @@ export function RotatingWord({
           exit={{ y: "-0.35em", opacity: 0 }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           className="inline-block"
-          style={
-            (img
-              ? {
-                  backgroundImage: `url("${img}")`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  color: "transparent",
-                }
-              : {}) as React.CSSProperties
-          }
         >
-          {word}
+          {img ? (
+            <span
+              className="inline-block"
+              style={{
+                backgroundImage: `url("${img}")`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                color: "transparent",
+              }}
+            >
+              {word}
+            </span>
+          ) : (
+            word
+          )}
         </motion.span>
       </AnimatePresence>
     </span>
