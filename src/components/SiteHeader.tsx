@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Logo } from "@/components/Logo";
+import { MoreHorizontal, X, ChevronDown } from "lucide-react";
 
 type RoutePath = "/" | "/about" | "/academics" | "/admissions" | "/placements" | "/campus-life" | "/contact";
 
@@ -63,7 +64,7 @@ const nav: NavItem[] = [
 
 function PaneLink({ link, onClick }: { link: Col["links"][number]; onClick: () => void }) {
   const cls =
-    "inline-block text-[15px] font-semibold leading-tight text-foreground/65 transition-colors duration-200 hover:text-primary";
+    "inline-block text-[15px] font-bold leading-tight text-foreground transition-colors duration-200 hover:text-primary";
   if (link.href) {
     return (
       <a href={link.href} target="_blank" rel="noopener noreferrer" onClick={onClick} className={cls}>
@@ -78,29 +79,61 @@ function PaneLink({ link, onClick }: { link: Col["links"][number]; onClick: () =
   );
 }
 
+const moreMenuData = [
+  {
+    title: "Discover MSAJCE",
+    links: [
+      { label: "About the Institution", to: "/about" as RoutePath },
+      { label: "Campus Life & Facilities", to: "/campus-life" as RoutePath },
+      { label: "Our Heritage & Trust", to: "/about" as RoutePath }
+    ]
+  },
+  {
+    title: "Academics & Admissions",
+    links: [
+      { label: "Education & Programs", to: "/academics" as RoutePath },
+      { label: "Admissions & Applications", to: "/admissions" as RoutePath },
+      { label: "Placements & Careers", to: "/placements" as RoutePath },
+      { label: "Examinations & Results", to: "/academics" as RoutePath }
+    ]
+  },
+  {
+    title: "Quick Links",
+    links: [
+      { label: "Alumni Network", to: "/campus-life" as RoutePath },
+      { label: "Contact & Location", to: "/contact" as RoutePath },
+      { label: "Faculty Login", href: "#" },
+      { label: "Student Portal", href: "#" }
+    ]
+  }
+];
+
 export function SiteHeader() {
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
   const [mobileSub, setMobileSub] = useState<string | null>(null);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   const activeItem = nav.find((n) => n.id === active && n.cols);
 
   useEffect(() => {
     const cls = "dropdown-open";
-    if (active || mobileOpen) document.body.classList.add(cls);
+    if (active || moreOpen) document.body.classList.add(cls);
     else document.body.classList.remove(cls);
     return () => document.body.classList.remove(cls);
-  }, [active, mobileOpen]);
+  }, [active, moreOpen]);
 
   const closeAll = () => {
     setActive(null);
-    setMobileOpen(false);
     setMobileSub(null);
+    setMoreOpen(false);
   };
 
   return (
     <header
-      className="msajce-header-glass sticky top-0 z-50 w-full border-b border-foreground/10"
+      className={`msajce-header-glass sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
+        active || moreOpen ? "border-transparent" : "border-foreground/10"
+      }`}
       onMouseLeave={() => setActive(null)}
     >
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-2.5 md:px-12 md:py-3">
@@ -117,8 +150,8 @@ export function SiteHeader() {
                 onMouseEnter={() => setActive(item.id)}
                 onClick={() => setActive((c) => (c === item.id ? null : item.id))}
                 aria-expanded={active === item.id}
-                className={`relative py-2 text-[13px] font-bold tracking-[0.01em] transition-colors duration-200 ${
-                  active === item.id ? "text-foreground" : "text-foreground/60 hover:text-foreground"
+                className={`relative py-2 text-[13px] font-bold uppercase tracking-[0.04em] transition-colors duration-200 ${
+                  active === item.id ? "text-primary" : "text-foreground hover:text-primary"
                 }`}
               >
                 {item.label}
@@ -133,8 +166,8 @@ export function SiteHeader() {
                 key={item.id}
                 to={item.to}
                 onMouseEnter={() => setActive(null)}
-                className="py-2 text-[13px] font-bold tracking-[0.01em] text-foreground/60 transition-colors duration-200 hover:text-foreground"
-                activeProps={{ className: "text-foreground" }}
+                className="py-2 text-[13px] font-bold uppercase tracking-[0.04em] text-foreground transition-colors duration-200 hover:text-primary"
+                activeProps={{ className: "text-primary" }}
               >
                 {item.label}
               </Link>
@@ -147,23 +180,24 @@ export function SiteHeader() {
           <Link
             to="/admissions"
             onClick={closeAll}
-            className="hidden rounded-full bg-primary px-5 py-2.5 text-[13px] font-bold text-primary-foreground transition-transform duration-300 hover:scale-[1.03] active:scale-[0.97] sm:inline-flex"
+            className="group relative hidden overflow-hidden rounded-none bg-primary px-5 py-2.5 text-[13px] font-bold text-primary-foreground shadow transition-colors hover:text-background sm:inline-flex after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
           >
-            Apply 2026-27
+            <span className="relative z-10 flex items-center gap-2">Apply 2026-27</span>
           </Link>
           <button
             type="button"
-            aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
-            aria-expanded={mobileOpen}
+            aria-label={moreOpen ? "Close menu" : "Open menu"}
             onClick={() => {
-              setMobileOpen((o) => !o);
+              setMoreOpen(!moreOpen);
               setActive(null);
             }}
-            className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-full border border-foreground/15 lg:hidden"
+            className="group relative h-10 w-10 flex flex-col items-center justify-center gap-[5px] rounded-full border border-foreground/15 bg-transparent transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
           >
-            <span className={`block h-[1.5px] w-4 bg-foreground transition-transform duration-300 ${mobileOpen ? "translate-y-[6.5px] rotate-45" : ""}`} />
-            <span className={`block h-[1.5px] w-4 bg-foreground transition-opacity duration-200 ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`block h-[1.5px] w-4 bg-foreground transition-transform duration-300 ${mobileOpen ? "-translate-y-[6.5px] -rotate-45" : ""}`} />
+            <span className="relative z-10 flex flex-col items-center justify-center gap-[5px]">
+              <span className={`block h-[1.5px] w-4 bg-foreground transition-all duration-300 group-hover:bg-background ${moreOpen ? "translate-y-[6.5px] rotate-45" : ""}`} />
+              <span className={`block h-[1.5px] w-4 bg-foreground transition-all duration-200 group-hover:bg-background ${moreOpen ? "opacity-0" : ""}`} />
+              <span className={`block h-[1.5px] w-4 bg-foreground transition-all duration-300 group-hover:bg-background ${moreOpen ? "-translate-y-[6.5px] -rotate-45" : ""}`} />
+            </span>
           </button>
         </div>
       </div>
@@ -178,7 +212,7 @@ export function SiteHeader() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.42, ease: APPLE_EASE }}
-              className="msajce-dropdown-glass overflow-hidden border-b border-foreground/10"
+              className="msajce-dropdown-glass overflow-hidden border-b border-foreground/10 w-full"
             >
               <motion.div
                 key={activeItem.id}
@@ -191,7 +225,7 @@ export function SiteHeader() {
                   variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: APPLE_EASE } } }}
                 >
                   <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Explore</p>
-                  <Link to={activeItem.to} onClick={closeAll} className="text-3xl font-black leading-[0.95] text-foreground transition-colors hover:text-primary">
+                  <Link to={activeItem.to} onClick={closeAll} className="text-3xl font-black leading-[0.95] text-primary transition-colors hover:text-primary/80">
                     {activeItem.label}
                   </Link>
                 </motion.div>
@@ -201,7 +235,7 @@ export function SiteHeader() {
                       key={col.title}
                       variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: APPLE_EASE } } }}
                     >
-                      <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{col.title}</h3>
+                      <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-primary">{col.title}</h3>
                       <ul className="space-y-3">
                         {col.links.map((link) => (
                           <li key={link.label}>
@@ -218,74 +252,142 @@ export function SiteHeader() {
         </AnimatePresence>
       </div>
 
-      {/* Mobile menu */}
-      <AnimatePresence initial={false}>
-        {mobileOpen && (
-          <motion.nav
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: APPLE_EASE }}
-            className="msajce-dropdown-glass overflow-hidden border-t border-foreground/10 lg:hidden"
-            aria-label="Mobile navigation"
-          >
-            <div className="max-h-[calc(100dvh-73px)] overflow-y-auto px-6 py-2">
-              {nav.map((item) => (
-                <div key={item.id} className="border-b border-foreground/10 last:border-b-0">
-                  {item.cols ? (
-                    <>
-                      <button
-                        type="button"
-                        onClick={() => setMobileSub((c) => (c === item.id ? null : item.id))}
-                        aria-expanded={mobileSub === item.id}
-                        className="flex w-full items-center justify-between py-4 text-[15px] font-bold text-foreground/80"
+      {/* Sidebar unified menu overlay */}
+      <AnimatePresence>
+        {moreOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setMoreOpen(false)}
+              className="absolute left-0 top-full z-[50] w-full h-[100vh] bg-black/40"
+            />
+            <motion.div
+              initial={{ opacity: 0, x: "100%" }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: "100%" }}
+              transition={{ duration: 0.5, ease: APPLE_EASE }}
+              className="absolute right-0 top-full z-[60] flex flex-col w-full max-w-[360px] h-[100vh] pb-32 msajce-dropdown-glass px-6 py-8 overflow-y-auto border-l border-foreground/10 shadow-2xl"
+            >
+              <div className="w-full">
+                
+                {/* Main Navigation Links */}
+                <div className="mb-8">
+                  {nav.map((item) => (
+                    <div key={item.id} className="border-b border-foreground/10 last:border-b-0">
+                      {item.cols ? (
+                        <>
+                          <button
+                            type="button"
+                            onClick={() => setMobileSub((c) => (c === item.id ? null : item.id))}
+                            aria-expanded={mobileSub === item.id}
+                            className="flex w-full items-center justify-between py-4 text-[15px] font-bold uppercase tracking-widest text-foreground/80 hover:text-primary"
+                          >
+                            {item.label}
+                            <span className={`text-lg transition-transform duration-300 ${mobileSub === item.id ? "rotate-45" : ""}`}>+</span>
+                          </button>
+                          <AnimatePresence initial={false}>
+                            {mobileSub === item.id && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.35, ease: APPLE_EASE }}
+                                className="overflow-hidden"
+                              >
+                                <div className="space-y-5 pb-5">
+                                  {item.cols.map((col) => (
+                                    <div key={col.title}>
+                                      <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-primary">{col.title}</p>
+                                      <ul className="space-y-2">
+                                        {col.links.map((link) => (
+                                          <li key={link.label}>
+                                            <PaneLink link={link} onClick={closeAll} />
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                  ))}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </>
+                      ) : (
+                        <Link to={item.to} onClick={closeAll} className="block py-4 text-[15px] font-bold uppercase tracking-widest text-foreground/80 hover:text-primary">
+                          {item.label}
+                        </Link>
+                      )}
+                    </div>
+                  ))}
+                  <Link
+                    to="/admissions"
+                    onClick={closeAll}
+                    className="my-5 inline-flex w-full items-center justify-center rounded-none bg-primary px-5 py-3 text-[13px] font-bold text-primary-foreground sm:hidden"
+                  >
+                    Apply 2026-27
+                  </Link>
+                </div>
+
+                <div className="w-full h-px bg-foreground/10 mb-8" />
+                
+                {/* Explore Additional Links */}
+                <h2 className="mb-6 text-xl font-bold uppercase tracking-widest text-foreground/50">Explore MSAJCE</h2>
+                <div className="flex flex-col gap-4">
+                  {moreMenuData.map((section) => (
+                    <div key={section.title} className="flex flex-col border-t border-foreground/10 pt-4">
+                      <button 
+                        onClick={() => setExpandedSection(expandedSection === section.title ? null : section.title)}
+                        className="group flex w-full items-center justify-between text-left text-lg font-bold uppercase tracking-tight hover:text-primary"
                       >
-                        {item.label}
-                        <span className={`text-lg transition-transform duration-300 ${mobileSub === item.id ? "rotate-45" : ""}`}>+</span>
+                        {section.title}
+                        <ChevronDown className={`transition-transform duration-300 ${expandedSection === section.title ? "rotate-180" : ""}`} size={20} />
                       </button>
-                      <AnimatePresence initial={false}>
-                        {mobileSub === item.id && (
+                      
+                      <AnimatePresence>
+                        {expandedSection === section.title && (
                           <motion.div
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.35, ease: APPLE_EASE }}
                             className="overflow-hidden"
                           >
-                            <div className="space-y-5 pb-5">
-                              {item.cols.map((col) => (
-                                <div key={col.title}>
-                                  <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-primary">{col.title}</p>
-                                  <ul className="space-y-2">
-                                    {col.links.map((link) => (
-                                      <li key={link.label}>
-                                        <PaneLink link={link} onClick={closeAll} />
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              ))}
-                            </div>
+                             <ul className="flex flex-col gap-3 pb-2 pt-4">
+                               {section.links.map((link) => (
+                                 <li key={link.label}>
+                                   {link.to ? (
+                                     <Link
+                                       to={link.to}
+                                       onClick={() => closeAll()}
+                                       className="group flex items-center justify-between text-sm font-semibold uppercase tracking-tight text-foreground/70 hover:text-primary"
+                                     >
+                                       {link.label}
+                                       <span className="text-primary opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">→</span>
+                                     </Link>
+                                   ) : (
+                                     <a
+                                       href={link.href}
+                                       onClick={() => closeAll()}
+                                       className="group flex items-center justify-between text-sm font-semibold uppercase tracking-tight text-foreground/70 hover:text-primary"
+                                     >
+                                       {link.label}
+                                       <span className="text-primary opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">↗</span>
+                                     </a>
+                                   )}
+                                 </li>
+                               ))}
+                             </ul>
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </>
-                  ) : (
-                    <Link to={item.to} onClick={closeAll} className="block py-4 text-[15px] font-bold text-foreground/80">
-                      {item.label}
-                    </Link>
-                  )}
+                    </div>
+                  ))}
                 </div>
-              ))}
-              <Link
-                to="/admissions"
-                onClick={closeAll}
-                className="my-5 inline-flex w-full items-center justify-center rounded-full bg-primary px-5 py-3 text-[13px] font-bold text-primary-foreground sm:hidden"
-              >
-                Apply 2026-27
-              </Link>
-            </div>
-          </motion.nav>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

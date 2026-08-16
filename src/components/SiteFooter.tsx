@@ -28,7 +28,7 @@ const socials = [
 
 export function SiteFooter({ revealed = true }: { revealed?: boolean }) {
   return (
-    <footer className="border-t border-foreground/12 bg-background">
+    <footer className="border-t border-foreground/12 bg-[#f5f5f7] dark:bg-[#111111]">
       <motion.div
         variants={footerContainerVariants}
         initial="hidden"
@@ -36,7 +36,12 @@ export function SiteFooter({ revealed = true }: { revealed?: boolean }) {
         className="mx-auto grid max-w-[1440px] gap-12 px-6 py-16 md:grid-cols-4 md:px-12"
       >
         <motion.div variants={footerItemVariants} className="md:col-span-2">
-          <Logo className="h-40 -ml-4" />
+          <svg className="h-20 w-auto text-foreground -ml-4" viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+            <rect x="30" y="30" width="500" height="1.5" fill="currentColor"/>
+            <text x="30" y="95" fontFamily="Georgia, 'Times New Roman', serif" fontWeight="700" fontSize="52" fill="currentColor" letterSpacing="4">MSAJ<tspan fontSize="66">C</tspan>EA</text>
+            <text x="34" y="130" fontFamily="Georgia, 'Times New Roman', serif" fontWeight="400" fontSize="20" fill="currentColor" letterSpacing="6">MOHAMED SATHAK A.J. COLLEGE</text>
+            <text x="120" y="160" fontFamily="Georgia, 'Times New Roman', serif" fontWeight="400" fontSize="20" fill="currentColor" letterSpacing="6">OF ENGINEERING &amp; ARCHITECTURE</text>
+          </svg>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-foreground/60">
             An autonomous-spirited engineering campus on Chennai's OMR IT corridor, affiliated to Anna
             University and approved by AICTE, New Delhi.
@@ -63,12 +68,11 @@ export function SiteFooter({ revealed = true }: { revealed?: boolean }) {
                 rel="noreferrer noopener"
                 aria-label={label}
                 variants={footerItemVariants}
-                whileHover={{ y: -3, scale: 1.06 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 380, damping: 18 }}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-foreground/15 text-foreground/70 transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                className="group relative inline-flex h-10 w-10 overflow-hidden items-center justify-center rounded-full border border-foreground/15 text-foreground/70 transition-colors hover:border-primary"
               >
-                <Icon size={17} />
+                <span className="absolute inset-0 top-full bg-primary transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:top-0" />
+                <Icon size={17} className="relative z-10 transition-colors duration-300 group-hover:text-primary-foreground" />
               </motion.a>
             ))}
           </div>

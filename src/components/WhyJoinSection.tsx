@@ -108,14 +108,12 @@ export function WhyJoinSection() {
 
         {/* CTA */}
         <Reveal variant="scale">
-          <Magnetic strength={0.18} className="w-full md:w-auto">
             <Link
               to="/admissions"
-              className="inline-flex w-full items-center justify-center bg-primary px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground md:w-auto"
+              className="group relative overflow-hidden inline-flex w-full items-center justify-center bg-primary px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0 md:w-auto"
             >
-              Explore Admissions
+              <span className="relative z-10">Explore Admissions</span>
             </Link>
-          </Magnetic>
         </Reveal>
       </div>
     </section>

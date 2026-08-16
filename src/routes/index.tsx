@@ -6,6 +6,8 @@ import { DynamicText } from "@/components/DynamicText";
 import { HeroReel } from "@/components/HeroReel";
 import { RecruiterMarquee } from "@/components/RecruiterMarquee";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
+import { RotatingWord } from "@/components/RotatingWord";
+import { TestimonialSection } from "@/components/TestimonialSection";
 
 const title = "MSAJCE — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -50,9 +52,19 @@ function Index() {
                 <span className="text-[4.5vw] sm:text-[3.5vw] md:text-[2vw] lg:text-[1.8vw] xl:text-[2vw] text-foreground/50">OF</span>
               </span>
               <span className="flex flex-nowrap items-baseline gap-1.5 whitespace-nowrap md:gap-2">
-                <span className="text-[6vw] sm:text-[4.8vw] md:text-[2.6vw] lg:text-[2.4vw] xl:text-[2.6vw]">ENGINEERING</span>
+                <span className="text-[6vw] sm:text-[4.8vw] md:text-[2.6vw] lg:text-[2.4vw] xl:text-[2.6vw]">
+                  <RotatingWord
+                    homeWord="ENGINEERING"
+                    words={["Innovation", "Technology", "Excellence"]}
+                  />
+                </span>
                 <span className="text-[4vw] sm:text-[3vw] md:text-[1.6vw] lg:text-[1.5vw] xl:text-[1.6vw] text-foreground/50">&amp;</span>
-                <span className="text-[6vw] sm:text-[4.8vw] md:text-[2.6vw] lg:text-[2.4vw] xl:text-[2.6vw]">ARCHITECTURE</span>
+                <span className="text-[6vw] sm:text-[4.8vw] md:text-[2.6vw] lg:text-[2.4vw] xl:text-[2.6vw]">
+                  <RotatingWord
+                    homeWord="ARCHITECTURE"
+                    words={["Creativity", "Design", "Craftsmanship"]}
+                  />
+                </span>
               </span>
             </h1>
 
@@ -61,14 +73,14 @@ function Index() {
                 <StaggerItem key={item.to} variant="mask">
                 <Link
                   to={item.to}
-                  className="group flex items-center justify-between border-b border-foreground/12 py-5 text-[12px] font-semibold uppercase tracking-[0.12em] text-foreground/70 transition-colors hover:text-foreground md:py-4 lg:py-5"
+                  className="group flex items-center justify-between border-b border-foreground/12 py-5 text-[12px] font-semibold uppercase tracking-[0.12em] text-foreground/70 transition-colors hover:text-primary active:text-primary md:py-4 lg:py-5"
                 >
                   <span className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2">
                     {item.label}
                   </span>
                   <span
                     aria-hidden
-                    className="text-primary transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1.5"
+                    className="text-lg text-primary transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1.5"
                   >
                     →
                   </span>
@@ -122,6 +134,8 @@ function Index() {
       <WhyJoinSection />
 
       <AboutBannerSection />
+
+      <TestimonialSection />
     </main>
   );
 }

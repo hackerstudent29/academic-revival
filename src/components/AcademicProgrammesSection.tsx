@@ -138,15 +138,12 @@ export function AcademicProgrammesSection() {
                 <motion.div
                   key={l.label}
                   variants={rise}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: "spring", stiffness: 420, damping: 26 }}
                 >
                   <Link
                     to={l.to}
-                    className="inline-block border border-primary px-5 py-2.5 text-sm font-medium text-primary transition-colors duration-300 hover:bg-primary hover:text-primary-foreground"
+                    className="group relative overflow-hidden inline-flex w-full items-center justify-center border border-primary px-5 py-2.5 text-sm font-medium text-primary transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-primary after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
                   >
-                    {l.label} &raquo;
+                    <span className="relative z-10">{l.label} &raquo;</span>
                   </Link>
                 </motion.div>
               ))}

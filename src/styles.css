@@ -209,30 +209,29 @@
 
 /* Apple-style glass header backdrop */
 .msajce-header-glass {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.7);
   backdrop-filter: saturate(180%) blur(20px);
   transition: background-color 0.3s ease;
 }
 
 .dark .msajce-header-glass {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(10, 10, 10, 0.7);
 }
 
 /* Apple-style dropdown pane glass */
 .msajce-dropdown-glass {
-  background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: saturate(180%) blur(30px);
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: saturate(180%) blur(20px);
 }
 
 .dark .msajce-dropdown-glass {
-  background-color: rgba(10, 10, 10, 0.5);
+  background-color: rgba(10, 10, 10, 0.7);
 }
 
 /* Blur page content behind an open menu */
 body.dropdown-open .msajce-page-blur {
-  filter: blur(9px) saturate(115%);
+  filter: blur(12px) brightness(0.7) saturate(120%);
   transform: scale(1.004);
-  opacity: 0.75;
 }
 
 .msajce-page-blur {

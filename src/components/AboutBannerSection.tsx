@@ -52,14 +52,12 @@ export function AboutBannerSection() {
           </Stagger>
 
           <div className="mt-12">
-            <Magnetic strength={0.2}>
-              <Link
-                to="/about"
-                className="inline-flex items-center bg-primary px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground"
-              >
-                Vision &amp; Mission
-              </Link>
-            </Magnetic>
+            <Link
+              to="/about"
+              className="group relative overflow-hidden inline-flex items-center bg-primary px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
+            >
+              <span className="relative z-10">Vision &amp; Mission</span>
+            </Link>
           </div>
         </Reveal>
 
