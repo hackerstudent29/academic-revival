@@ -31,25 +31,25 @@ const departments = [
 
 function Academics() {
   return (
-    <main className="bg-black">
+    <main className="bg-background">
       <PageHero
         eyebrow="Academics"
         title="Programmes engineered for the next decade"
         description="Curriculum co-designed with industry partners, delivered through project studios, research centres and continuous assessment."
       />
       <AcademicProgrammesSection />
-      <section className="border-t border-white/12 px-6 py-24 md:px-12">
+      <section className="border-t border-foreground/12 px-6 py-24 md:px-12">
         <div className="mx-auto max-w-[1440px]">
-          <h2 className="text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">Departments</h2>
+          <h2 className="text-3xl font-black uppercase tracking-tight text-foreground sm:text-4xl">Departments</h2>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {departments.map((d) => (
               <div
                 key={d.code}
-                className="group rounded-3xl border border-white/12 bg-white/5 p-8 transition-colors hover:bg-white/10"
+                className="group rounded-3xl border border-foreground/12 bg-foreground/5 p-8 transition-colors hover:bg-foreground/10"
               >
-                <span className="text-xs font-bold uppercase tracking-[0.22em] text-white/50">{d.code}</span>
-                <h3 className="mt-3 text-xl font-bold leading-snug text-white">{d.name}</h3>
-                <p className="mt-4 text-sm text-white/55">{d.seats}</p>
+                <span className="text-xs font-bold uppercase tracking-[0.22em] text-foreground/50">{d.code}</span>
+                <h3 className="mt-3 text-xl font-bold leading-snug text-foreground">{d.name}</h3>
+                <p className="mt-4 text-sm text-foreground/55">{d.seats}</p>
               </div>
             ))}
           </div>

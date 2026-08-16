@@ -29,7 +29,7 @@ const facilities = [
 
 function CampusLife() {
   return (
-    <main className="bg-black">
+    <main className="bg-background">
       <PageHero
         eyebrow="Campus Life"
         title="A campus that runs on curiosity"
@@ -39,7 +39,7 @@ function CampusLife() {
       <section className="mx-auto max-w-[1440px] px-6 py-24 md:px-12">
         <div className="grid gap-8 sm:grid-cols-2">
           {facilities.map((f) => (
-            <article key={f.t} className="group overflow-hidden rounded-3xl border border-white/12 bg-white/5">
+            <article key={f.t} className="group overflow-hidden rounded-3xl border border-foreground/12 bg-foreground/5">
               <div className="aspect-[16/10] overflow-hidden">
                 <img
                   src={f.img}
@@ -48,8 +48,8 @@ function CampusLife() {
                 />
               </div>
               <div className="p-8">
-                <h2 className="text-2xl font-bold text-white">{f.t}</h2>
-                <p className="mt-3 text-sm leading-relaxed text-white/60">{f.d}</p>
+                <h2 className="text-2xl font-bold text-foreground">{f.t}</h2>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/60">{f.d}</p>
               </div>
             </article>
           ))}
