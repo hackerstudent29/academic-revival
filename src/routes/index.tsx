@@ -39,8 +39,8 @@ function Index() {
     <main className="bg-background">
       {/* ── Hero: editorial split grid ── */}
       <section className="border-b border-foreground/12" id="hero">
-        <div className="grid md:grid-cols-2">
-          <div className="flex flex-col justify-center px-6 py-20 md:px-12 md:py-24">
+        <div className="grid items-stretch md:grid-cols-2">
+          <div className="flex flex-col justify-start px-6 pb-12 pt-8 md:px-12 md:pb-16 md:pt-10">
             <DynamicText />
             <h1 className="flex flex-col gap-1 text-[13vw] font-black uppercase leading-[0.92] tracking-tighter text-foreground sm:text-6xl lg:text-7xl">
               <span>Mohamed Sathak</span>
@@ -77,7 +77,7 @@ function Index() {
             </Stagger>
           </div>
 
-          <div className="border-l border-foreground/12">
+          <div className="relative min-h-[320px] border-l border-foreground/12 md:min-h-full">
             <HeroReel />
             {/* Mobile: horizontal snap strip */}
             <div className="flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 pb-4 md:hidden">
