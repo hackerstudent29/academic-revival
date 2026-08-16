@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { WhyJoinSection } from "@/components/WhyJoinSection";
+import { AcademicProgrammesSection } from "@/components/AcademicProgrammesSection";
+import { AboutBannerSection } from "@/components/AboutBannerSection";
 import { DynamicText } from "@/components/DynamicText";
 import { RotatingWord } from "@/components/RotatingWord";
 import { HeroReel } from "@/components/HeroReel";
@@ -161,99 +163,11 @@ function Index() {
         <RecruiterMarquee />
       </section>
 
-      {/* ── Stats ── */}
-      <section className="border-b border-foreground/12" id="stats">
-        <div className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-24">
-          <h2 className="text-4xl font-black uppercase leading-[0.95] tracking-tight text-foreground sm:text-6xl">
-            MSAJCE <span className="text-primary">in numbers</span>
-          </h2>
-          <div className="mt-14 grid border-t border-l border-foreground/12 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.l} className="border-b border-r border-foreground/12 px-8 py-12">
-                <span className="block text-5xl font-black tracking-tight text-foreground lg:text-6xl">{s.n}</span>
-                <span className="mt-4 block text-[11px] font-bold uppercase tracking-[0.22em] text-foreground/50">
-                  {s.l}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Departments ── */}
-      <section className="border-b border-foreground/12" id="departments">
-        <div className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-24">
-          <div className="max-w-3xl">
-            <h2 className="text-4xl font-black uppercase leading-[0.95] tracking-tight text-foreground sm:text-6xl">
-              Academic departments
-            </h2>
-            <p className="mt-6 text-base leading-relaxed text-foreground/60">
-              Choose from our specialised engineering domains designed for future innovators.
-            </p>
-          </div>
-          <div className="mt-14 grid border-t border-l border-foreground/12 md:grid-cols-2 lg:grid-cols-3">
-            {departments.map((d) => (
-              <article
-                key={d.code}
-                className={`group border-b border-r border-foreground/12 p-10 transition-colors ${toneClass[d.tone]}`}
-              >
-                <span className="text-[11px] font-black uppercase tracking-[0.28em] opacity-60">{d.code}</span>
-                <h3 className="mt-6 text-2xl font-black uppercase leading-tight tracking-tight">{d.name}</h3>
-                <p className="mt-4 text-sm leading-relaxed opacity-70">{d.desc}</p>
-                <Link
-                  to="/academics"
-                  className="mt-8 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] underline-offset-4 hover:underline"
-                >
-                  Explore {d.code} <span aria-hidden>→</span>
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <AcademicProgrammesSection />
 
       <WhyJoinSection />
 
-      {/* ── Info split ── */}
-      <section className="grid lg:grid-cols-2" id="about">
-        <div className="bg-primary px-8 py-20 text-primary-foreground md:px-14">
-          <h2 className="text-3xl font-black uppercase leading-[0.95] tracking-tight sm:text-4xl">
-            The MSAJCE edge
-          </h2>
-          <ul className="mt-10 space-y-6">
-            {[
-              "Located on the IT Corridor of Chennai (OMR), with rich access to tech hubs.",
-              "Strong industry collaboration, student hackathons and corporate mentorship.",
-              "Modern infrastructure with fully integrated research labs.",
-              "Scholarships for meritorious students and sports achievers.",
-            ].map((t) => (
-              <li key={t} className="flex gap-4 border-b border-primary-foreground/25 pb-6 text-base leading-relaxed">
-                <span aria-hidden className="opacity-70">—</span>
-                {t}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="bg-foreground px-8 py-20 text-background md:px-14">
-          <h2 className="text-3xl font-black uppercase leading-[0.95] tracking-tight sm:text-4xl">
-            Nurturing leaders, shaping innovators
-          </h2>
-          <p className="mt-8 text-base leading-relaxed opacity-75">
-            Established with the objective of providing quality technical education to young minds, M.S.A.J.
-            College of Engineering is dedicated to raising ethical engineers with superior academic capability.
-          </p>
-          <p className="mt-5 text-base leading-relaxed opacity-75">
-            We combine interactive learning systems with intensive industry readiness training from year one,
-            ensuring students hit the ground running upon graduation.
-          </p>
-          <Link
-            to="/admissions"
-            className="mt-10 inline-flex items-center gap-3 bg-primary px-8 py-4 text-xs font-bold uppercase tracking-[0.16em] text-primary-foreground transition-transform hover:-translate-y-0.5"
-          >
-            Join MSAJCE Admissions 2026 <span aria-hidden>→</span>
-          </Link>
-        </div>
-      </section>
+      <AboutBannerSection />
     </main>
   );
 }
