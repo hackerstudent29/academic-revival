@@ -22,17 +22,17 @@ export function DynamicText() {
   }, [index]);
 
   return (
-    <div className="mb-3 flex min-h-[42px] items-center gap-3" aria-label="Greetings">
+    <div className="mb-1 flex min-h-[34px] items-center gap-2" aria-label="Greetings">
       <span aria-hidden className="h-2 w-2 shrink-0 rounded-full bg-primary" />
-      <div className="relative h-8 min-w-[220px] overflow-hidden">
+      <div className="relative h-7 min-w-[180px] overflow-hidden">
         <AnimatePresence mode="popLayout">
           <motion.span
             key={index}
-            initial={{ y: 20, opacity: 0 }}
+            initial={{ y: 18, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -20, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-0 flex items-center whitespace-nowrap text-lg font-semibold tracking-tight text-foreground"
+            exit={{ y: -18, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-0 flex items-center whitespace-nowrap text-base font-semibold tracking-tight text-foreground"
           >
             {greetings[index]}
           </motion.span>
