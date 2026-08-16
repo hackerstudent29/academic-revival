@@ -114,7 +114,7 @@ export function Reveal({
       viewport={{ once, amount }}
       transition={{ delay }}
       className={overlay ? undefined : className}
-      style={overlay ? { display: "block" } : undefined}
+      {...(overlay ? { style: { display: "block" } } : {})}
     >
       {children}
     </MotionTag>
