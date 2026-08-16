@@ -61,6 +61,11 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-sand: var(--sand);
+  --color-sand-foreground: var(--sand-foreground);
+  --color-clay: var(--clay);
+  --color-clay-foreground: var(--clay-foreground);
+  --color-navy: var(--navy);
 }
 
 :root {
@@ -71,6 +76,11 @@
   --text-color: #000000;
   --card-bg: #ffffff;
   --border-color: rgba(0, 0, 0, 0.14);
+  --sand: oklch(0.912 0.019 71.5);
+  --sand-foreground: oklch(0.18 0 0);
+  --clay: oklch(0.565 0.041 66.5);
+  --clay-foreground: oklch(1 0 0);
+  --navy: oklch(0.259 0.093 265.5);
   --background: oklch(1 0 0);
   --foreground: oklch(0 0 0);
   --card: oklch(1 0 0);
@@ -112,6 +122,11 @@
   --text-color: #ffffff;
   --card-bg: #0a0a0a;
   --border-color: rgba(255, 255, 255, 0.16);
+  --sand: oklch(0.19 0.008 71.5);
+  --sand-foreground: oklch(0.96 0.008 71.5);
+  --clay: oklch(0.48 0.038 66.5);
+  --clay-foreground: oklch(1 0 0);
+  --navy: oklch(0.62 0.12 265.5);
   --background: oklch(0 0 0);
   --foreground: oklch(1 0 0);
   --card: oklch(0.14 0 0);
