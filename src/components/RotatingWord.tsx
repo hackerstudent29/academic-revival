@@ -37,36 +37,65 @@ export function RotatingWord({
 
   const word = sequence.current[step]!.word;
   const img = word === homeWord ? undefined : WORD_IMAGES[word];
+  const letters = word.split("");
 
   return (
     <span className="relative inline-block align-baseline">
       <AnimatePresence mode="wait">
         <motion.span
           key={word}
-          initial={{ y: "0.35em", opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: "-0.35em", opacity: 0 }}
-          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-block"
+          initial="hidden"
+          animate="show"
+          exit="out"
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.035 } },
+            out: { transition: { staggerChildren: 0.018, staggerDirection: -1 } },
+          }}
+          className="inline-block whitespace-nowrap"
         >
-          {img ? (
-            <span
+          <span
+            className="inline-block"
+            {...(img
+              ? {
+                  style: {
+                    backgroundImage: `url("${img}")`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    color: "transparent",
+                  } as React.CSSProperties,
+                }
+              : {})}
+          >
+          {letters.map((ch, i) => (
+            <motion.span
+              key={`${ch}-${i}`}
               className="inline-block"
-              style={{
-                backgroundImage: `url("${img}")`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                color: "transparent",
+              variants={{
+                hidden: { y: "0.6em", opacity: 0, rotateX: -70, filter: "blur(6px)" },
+                show: {
+                  y: 0,
+                  opacity: 1,
+                  rotateX: 0,
+                  filter: "blur(0px)",
+                  transition: { type: "spring", stiffness: 380, damping: 26, mass: 0.7 },
+                },
+                out: {
+                  y: "-0.5em",
+                  opacity: 0,
+                  filter: "blur(6px)",
+                  transition: { duration: 0.22, ease: [0.4, 0, 1, 1] },
+                },
               }}
+              style={{ transformPerspective: 800 }}
             >
-              {word}
-            </span>
-          ) : (
-            word
-          )}
+              {ch}
+            </motion.span>
+          ))}
+          </span>
         </motion.span>
       </AnimatePresence>
     </span>
