@@ -42,7 +42,7 @@ export function WhyJoinSection() {
             </h2>
           </motion.div>
 
-          <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-white/10">
+          <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-white/5 border border-white/10">
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeIndex}
@@ -70,7 +70,7 @@ export function WhyJoinSection() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="relative bg-white/5 backdrop-blur-xl border border-white/10 p-10 rounded-[2rem] shadow-2xl transition-transform"
             >
-              <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-blue-400 to-cyan-300 transition-all duration-700 ease-out" />
+              <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-white to-white/30 transition-all duration-700 ease-out" />
               <h3 className="text-3xl font-bold mb-4">{item.title}</h3>
               <p className="text-lg text-white/70 leading-relaxed">{item.desc}</p>
             </motion.div>
