@@ -53,20 +53,23 @@ export function RotatingWord({
             out: { transition: { staggerChildren: 0.018, staggerDirection: -1 } },
           }}
           className="inline-block whitespace-nowrap"
-          style={
-            (img
-              ? {
-                  backgroundImage: `url("${img}")`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  color: "transparent",
-                }
-              : {}) as React.CSSProperties
-          }
         >
+          <span
+            className="inline-block"
+            {...(img
+              ? {
+                  style: {
+                    backgroundImage: `url("${img}")`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    color: "transparent",
+                  } as React.CSSProperties,
+                }
+              : {})}
+          >
           {letters.map((ch, i) => (
             <motion.span
               key={`${ch}-${i}`}
@@ -92,6 +95,7 @@ export function RotatingWord({
               {ch}
             </motion.span>
           ))}
+          </span>
         </motion.span>
       </AnimatePresence>
     </span>
