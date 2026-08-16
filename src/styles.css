@@ -229,6 +229,9 @@
 }
 
 /* Blur page content behind an open menu */
+body.dropdown-open {
+  overflow: hidden;
+}
 body.dropdown-open .msajce-page-blur {
   filter: blur(12px) brightness(0.7) saturate(120%);
   transform: scale(1.004);
@@ -286,7 +289,7 @@ body.dropdown-open .msajce-page-blur {
   justify-content: center;
   height: 2.5rem;
   width: 2.5rem;
-  border-radius: 9999px;
+  border-radius: 0px;
   background: transparent;
   color: hsl(var(--foreground));
   cursor: pointer;

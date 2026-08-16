@@ -191,7 +191,7 @@ export function SiteHeader() {
               setMoreOpen(!moreOpen);
               setActive(null);
             }}
-            className="group relative h-10 w-10 flex flex-col items-center justify-center gap-[5px] rounded-full border border-foreground/15 bg-transparent transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
+            className="group relative h-10 w-10 flex flex-col items-center justify-center gap-[5px] rounded-none border border-foreground/15 bg-transparent transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
           >
             <span className="relative z-10 flex flex-col items-center justify-center gap-[5px]">
               <span className={`block h-[1.5px] w-4 bg-foreground transition-all duration-300 group-hover:bg-background ${moreOpen ? "translate-y-[6.5px] rotate-45" : ""}`} />
@@ -262,14 +262,14 @@ export function SiteHeader() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={() => setMoreOpen(false)}
-              className="absolute left-0 top-full z-[50] w-full h-[100vh] bg-black/40"
+              className="absolute left-0 top-full z-[50] w-full h-[calc(100dvh-100%)] bg-black/40"
             />
             <motion.div
               initial={{ opacity: 0, x: "100%" }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: "100%" }}
               transition={{ duration: 0.5, ease: APPLE_EASE }}
-              className="absolute right-0 top-full z-[60] flex flex-col w-full max-w-[360px] h-[100vh] pb-32 msajce-dropdown-glass px-6 py-8 overflow-y-auto border-l border-foreground/10 shadow-2xl"
+              className="absolute right-0 top-full z-[60] flex flex-col w-full max-w-[360px] h-[calc(100dvh-100%)] pb-12 msajce-dropdown-glass px-6 py-8 overflow-y-auto border-l border-foreground/10 shadow-2xl [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
             >
               <div className="w-full">
                 
