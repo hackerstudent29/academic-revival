@@ -62,7 +62,7 @@ function Card({ item }: { item: (typeof items)[number] }) {
 
 export function HeroReel() {
   return (
-    <div className="relative hidden h-[calc(100vh-88px)] overflow-hidden md:block">
+    <div className="relative hidden h-[min(calc(100vh-88px),820px)] overflow-hidden md:block">
       <div className="msajce-reel flex flex-col">
         {[...items, ...items].map((item, i) => (
           <Card key={i} item={item} />
