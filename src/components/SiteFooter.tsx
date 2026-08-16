@@ -1,17 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone } from "lucide-react";
-import logoAsset from "@/assets/msajce-logo.png.asset.json";
+import { Logo } from "@/components/Logo";
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-foreground/12 bg-background">
       <div className="mx-auto grid max-w-[1440px] gap-12 px-6 py-20 md:grid-cols-4 md:px-12">
         <div className="md:col-span-2">
-          <img
-            src={logoAsset.url}
-            alt="Mohamed Sathak A J College of Engineering and Architecture"
-            className="h-12 w-auto object-contain dark:invert dark:hue-rotate-180"
-          />
+          <Logo className="h-12" />
           <p className="mt-4 max-w-md text-sm leading-relaxed text-foreground/60">
             An autonomous-spirited engineering campus on Chennai's OMR IT corridor, affiliated to Anna
             University and approved by AICTE, New Delhi.

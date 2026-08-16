@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import logoAsset from "@/assets/msajce-logo.png.asset.json";
+import { Logo } from "@/components/Logo";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -21,11 +21,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 w-full border-b border-foreground/12 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 py-4 md:px-12">
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <img
-            src={logoAsset.url}
-            alt="Mohamed Sathak A J College of Engineering and Architecture"
-            className="h-9 w-auto object-contain dark:invert dark:hue-rotate-180"
-          />
+          <Logo className="h-9" />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
