@@ -26,6 +26,7 @@ const reasons = [
 
 export function WhyJoinSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const active = reasons[activeIndex] ?? reasons[0]!;
 
   return (
     <section className="w-full relative py-32 bg-black text-white" id="why-msajce">
@@ -42,17 +43,17 @@ export function WhyJoinSection() {
             </h2>
           </motion.div>
 
-          <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-white/10">
+          <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-white/5 border border-white/10">
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeIndex}
-                src={reasons[activeIndex].img}
-                alt={reasons[activeIndex].title}
+                src={active.img}
+                alt={active.title}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover grayscale"
               />
             </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -70,7 +71,7 @@ export function WhyJoinSection() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="relative bg-white/5 backdrop-blur-xl border border-white/10 p-10 rounded-[2rem] shadow-2xl transition-transform"
             >
-              <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-blue-400 to-cyan-300 transition-all duration-700 ease-out" />
+              <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-white to-white/30 transition-all duration-700 ease-out" />
               <h3 className="text-3xl font-bold mb-4">{item.title}</h3>
               <p className="text-lg text-white/70 leading-relaxed">{item.desc}</p>
             </motion.div>

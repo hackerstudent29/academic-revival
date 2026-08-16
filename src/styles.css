@@ -19,6 +19,8 @@
  */
 
 @theme inline {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-sans: "DM Sans", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -64,13 +66,13 @@
 :root {
   --radius: 0.625rem;
   /* MSAJCE design tokens */
-  --primary-blue: #005da6;
+  --primary-blue: #ffffff;
   --bg-color: #000000;
-  --text-color: #d8d8d8;
-  --card-bg: #0a0a0a;
+  --text-color: #ededed;
+  --card-bg: #0b0b0b;
   --border-color: rgba(255, 255, 255, 0.15);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0 0 0);
+  --foreground: oklch(0.97 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
@@ -139,12 +141,24 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     border-color: var(--color-border);
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer base {
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
   }
 }

@@ -109,12 +109,12 @@ export function AcademicProgrammesSection() {
                     <img
                       src={slide.src}
                       alt={slide.title}
-                      className="w-full h-full object-cover transition-transform duration-[2500ms] ease-out scale-100"
+                      className="w-full h-full object-cover grayscale transition-transform duration-[2500ms] ease-out scale-100"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
                     <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 flex flex-col justify-end text-white z-10">
                       <div
-                        className="inline-flex self-start items-center px-3 py-1 rounded text-xs font-bold uppercase tracking-widest text-white mb-3 shadow-sm"
+                        className="inline-flex self-start items-center px-3 py-1 rounded text-xs font-bold uppercase tracking-widest text-black mb-3 shadow-sm"
                         style={{ backgroundColor: "var(--primary-blue)" }}
                       >
                         {slide.tag}
@@ -140,8 +140,8 @@ export function AcademicProgrammesSection() {
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase border"
                 style={{
                   color: "var(--primary-blue)",
-                  backgroundColor: "rgba(0, 93, 166, 0.1)",
-                  borderColor: "rgba(0, 93, 166, 0.25)",
+                  backgroundColor: "rgba(255, 255, 255, 0.08)",
+                  borderColor: "rgba(255, 255, 255, 0.22)",
                 }}
               >
                 <Sparkles size={13} style={{ color: "var(--primary-blue)" }} />
@@ -184,7 +184,7 @@ export function AcademicProgrammesSection() {
             <div className="flex flex-wrap items-center gap-4 mt-2">
               <a
                 href="#academic-pathways"
-                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-sm font-bold tracking-wider text-white uppercase shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-sm font-bold tracking-wider text-black uppercase shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
                 style={{ backgroundColor: "var(--primary-blue)" }}
               >
                 <span>Find a Programme</span>
@@ -193,7 +193,7 @@ export function AcademicProgrammesSection() {
 
               <a
                 href="#admissions"
-                className="inline-flex items-center gap-2.5 border-2 px-8 py-4 rounded-full text-sm font-bold tracking-wider text-[var(--text-color)] uppercase bg-transparent transition-all duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:-translate-y-0.5 active:translate-y-0"
+                className="inline-flex items-center gap-2.5 border-2 px-8 py-4 rounded-full text-sm font-bold tracking-wider text-[var(--text-color)] uppercase bg-transparent transition-all duration-200 hover:bg-white/10 hover:-translate-y-0.5 active:translate-y-0"
                 style={{ borderColor: "var(--border-color)" }}
               >
                 <span>Admissions Guide</span>
@@ -202,7 +202,7 @@ export function AcademicProgrammesSection() {
 
               <a
                 href="#campus-tours"
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full text-sm font-semibold tracking-wide text-[var(--text-color)] opacity-80 hover:opacity-100 hover:text-[#005DA6] bg-transparent transition-all duration-200"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full text-sm font-semibold tracking-wide text-[var(--text-color)] opacity-80 hover:opacity-100 hover:opacity-100 bg-transparent transition-all duration-200"
               >
                 <Compass size={16} strokeWidth={2} />
                 <span>Campus Tour</span>
@@ -245,7 +245,7 @@ export function AcademicProgrammesSection() {
                     <img
                       src={card.image}
                       alt={card.title}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="w-full h-full object-cover grayscale transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
                     <div className="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-black/60 backdrop-blur-md text-white border border-white/20">
@@ -265,7 +265,7 @@ export function AcademicProgrammesSection() {
                       >
                         {card.level}
                       </span>
-                      <h4 className="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-color)] group-hover:text-[#005DA6] transition-colors duration-300">
+                      <h4 className="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-color)] group-hover:opacity-100 transition-colors duration-300">
                         {card.title}
                       </h4>
                       <p className="text-sm leading-relaxed text-[var(--text-color)] opacity-70 mt-3">
@@ -277,12 +277,12 @@ export function AcademicProgrammesSection() {
                       className="mt-8 pt-5 border-t flex items-center justify-between"
                       style={{ borderColor: "var(--border-color)" }}
                     >
-                      <span className="text-xs font-bold uppercase tracking-wider text-[var(--text-color)] opacity-80 group-hover:text-[#005DA6] group-hover:opacity-100 transition-colors">
+                      <span className="text-xs font-bold uppercase tracking-wider text-[var(--text-color)] opacity-80 group-hover:opacity-100 group-hover:opacity-100 transition-colors">
                         View Curriculum &amp; Eligibility
                       </span>
                       <div
                         className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 group-hover:translate-x-1"
-                        style={{ backgroundColor: "rgba(0, 0, 0, 0.05)", color: "var(--text-color)" }}
+                        style={{ backgroundColor: "rgba(255, 255, 255, 0.08)", color: "var(--text-color)" }}
                       >
                         <ArrowRight size={14} strokeWidth={2.5} />
                       </div>
