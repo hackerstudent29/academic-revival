@@ -75,7 +75,7 @@ export function AcademicProgrammesSection() {
 
               <motion.h2
                 variants={rise}
-                className="mt-4 text-4xl font-medium leading-[1.1] tracking-tight md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem]"
+                className="mt-4 text-4xl font-medium leading-[1.1] tracking-tight text-primary md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem]"
               >
                 Shape Your Future with
                 <br />
@@ -103,7 +103,7 @@ export function AcademicProgrammesSection() {
                   >
                     <Link
                       to={cta.to}
-                      className="inline-block border-2 border-foreground/30 px-6 py-3.5 text-sm font-bold transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-background"
+                      className="inline-block border-2 border-primary bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground transition-colors duration-300 hover:bg-primary/90"
                     >
                       {cta.label} &raquo;
                     </Link>
@@ -144,7 +144,7 @@ export function AcademicProgrammesSection() {
                 >
                   <Link
                     to={l.to}
-                    className="inline-block border border-foreground/30 px-5 py-2.5 text-sm font-medium transition-colors duration-300 hover:bg-foreground hover:text-background"
+                    className="inline-block border border-primary px-5 py-2.5 text-sm font-medium text-primary transition-colors duration-300 hover:bg-primary hover:text-primary-foreground"
                   >
                     {l.label} &raquo;
                   </Link>

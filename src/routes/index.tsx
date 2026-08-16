@@ -3,7 +3,6 @@ import { WhyJoinSection } from "@/components/WhyJoinSection";
 import { AcademicProgrammesSection } from "@/components/AcademicProgrammesSection";
 import { AboutBannerSection } from "@/components/AboutBannerSection";
 import { DynamicText } from "@/components/DynamicText";
-import { RotatingWord } from "@/components/RotatingWord";
 import { HeroReel } from "@/components/HeroReel";
 import { RecruiterMarquee } from "@/components/RecruiterMarquee";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
@@ -38,25 +37,22 @@ function Index() {
   return (
     <main className="bg-background">
       <section
-        className="relative border-b border-foreground/12 md:h-[calc(100svh-4rem)] md:overflow-hidden"
+        className="relative border-b border-foreground/12 md:h-[calc(100svh-72px)] md:overflow-hidden"
         id="hero"
       >
-        <div className="grid h-full items-stretch md:grid-cols-2">
-          <div className="flex h-full flex-col justify-center px-6 py-8 md:px-8 md:py-10 lg:px-12">
+        <div className="grid h-full items-stretch md:grid-cols-[47%_53%]">
+          <div className="flex h-full flex-col justify-start px-6 pt-6 pb-8 md:px-8 md:pt-8 md:pb-10 lg:px-12 lg:pt-10">
             <DynamicText />
-            <h1 className="mt-2 flex flex-col text-[8vw] font-black uppercase leading-[0.95] tracking-tighter text-foreground sm:text-5xl md:text-[3.4vw] lg:text-[3.9vw] xl:text-[4.1vw]">
-              <span className="whitespace-nowrap">Mohamed Sathak</span>
-              <span className="whitespace-nowrap">A.J. College of</span>
-              <span className="mt-0.5 flex flex-nowrap items-baseline gap-x-2 sm:gap-x-3 whitespace-nowrap text-[3.5vw] sm:text-2xl md:text-[1.7vw] lg:text-[1.8vw] xl:text-[1.9vw]">
-                <RotatingWord
-                  homeWord="Engineering"
-                  words={["Innovation", "Technology", "Excellence"]}
-                />
-                <span className="text-foreground/70">&amp;</span>
-                <RotatingWord
-                  homeWord="Architecture"
-                  words={["Design", "Creativity", "Craftsmanship"]}
-                />
+            <h1 className="mt-2 flex flex-col font-black uppercase leading-[0.9] tracking-tighter text-foreground">
+              <span className="whitespace-nowrap text-[8.5vw] sm:text-[7vw] md:text-[4.2vw] lg:text-[3.8vw] xl:text-[4vw]">MOHAMED SATHAK</span>
+              <span className="flex flex-nowrap items-baseline gap-3 whitespace-nowrap md:gap-4">
+                <span className="text-[8.5vw] sm:text-[7vw] md:text-[4.2vw] lg:text-[3.8vw] xl:text-[4vw]">A.J. COLLEGE</span>
+                <span className="text-[4.5vw] sm:text-[3.5vw] md:text-[2vw] lg:text-[1.8vw] xl:text-[2vw] text-foreground/50">OF</span>
+              </span>
+              <span className="flex flex-nowrap items-baseline gap-1.5 whitespace-nowrap md:gap-2">
+                <span className="text-[6vw] sm:text-[4.8vw] md:text-[2.6vw] lg:text-[2.4vw] xl:text-[2.6vw]">ENGINEERING</span>
+                <span className="text-[4vw] sm:text-[3vw] md:text-[1.6vw] lg:text-[1.5vw] xl:text-[1.6vw] text-foreground/50">&amp;</span>
+                <span className="text-[6vw] sm:text-[4.8vw] md:text-[2.6vw] lg:text-[2.4vw] xl:text-[2.6vw]">ARCHITECTURE</span>
               </span>
             </h1>
 
@@ -65,7 +61,7 @@ function Index() {
                 <StaggerItem key={item.to} variant="mask">
                 <Link
                   to={item.to}
-                  className="group flex items-center justify-between border-b border-foreground/12 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-foreground/70 transition-colors hover:text-foreground md:py-[1.05vh] lg:py-3.5"
+                  className="group flex items-center justify-between border-b border-foreground/12 py-5 text-[12px] font-semibold uppercase tracking-[0.12em] text-foreground/70 transition-colors hover:text-foreground md:py-4 lg:py-5"
                 >
                   <span className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2">
                     {item.label}
@@ -83,11 +79,11 @@ function Index() {
           </div>
 
           <div className="relative min-h-0 border-foreground/12 md:h-full md:border-l">
-            <div className="absolute inset-0 hidden md:block">
+            <div className="absolute inset-0 hidden md:block overflow-hidden">
               <HeroReel />
             </div>
             {/* Mobile: horizontal snap strip */}
-            <div className="flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 pb-3 md:hidden">
+            <div className="flex snap-x snap-mandatory gap-2 overflow-x-auto scrollbar-none px-4 pb-3 md:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
               {[
                 { src: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=400&h=300&q=80", label: "Research" },
                 { src: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=400&h=300&q=80", label: "Heritage" },

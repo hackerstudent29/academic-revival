@@ -51,7 +51,7 @@ export function WhyJoinSection() {
       <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-16 md:gap-24">
         {/* Header */}
         <Reveal variant="slide-right" className="flex flex-col gap-4 border-l-2 border-primary pl-6 md:pl-8">
-          <h2 className="text-4xl font-black uppercase leading-none tracking-tighter text-foreground md:text-6xl lg:text-7xl">
+          <h2 className="text-4xl font-black uppercase leading-none tracking-tighter text-primary md:text-6xl lg:text-7xl">
             <SplitText text="Why Join MSAJCE?" />
           </h2>
           <p className="max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">

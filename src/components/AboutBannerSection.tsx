@@ -1,24 +1,16 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
-import { CountUp, Magnetic, Parallax, Reveal, SplitText, Stagger, StaggerItem } from "@/components/motion";
+import { CountUp, Magnetic, Reveal, SplitText, Stagger, StaggerItem } from "@/components/motion";
 
-const images = [
-  "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop",
+const galleryImages = [
+  "https://images.unsplash.com/photo-1719368472026-dc26f70a9b76?q=80&h=800&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1649265825072-f7dd6942baed?q=80&h=800&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1555212697-194d092e3b8f?q=80&h=800&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1729086046027-09979ade13fd?q=80&h=800&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1601568494843-772eb04aca5d?q=80&h=800&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1585687501004-615dfdfde7f1?q=80&h=800&w=800&auto=format&fit=crop",
 ];
 
 export function AboutBannerSection() {
-  const [currentImage, setCurrentImage] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <section id="about" className="w-full bg-background px-6 py-24 md:px-12 md:py-32">
       <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
@@ -40,18 +32,22 @@ export function AboutBannerSection() {
             Be part of an institution that prepares you for tomorrow&rsquo;s challenges, today.
           </p>
 
-          <Stagger gap={0.12} className="mt-12 grid grid-cols-2 gap-px border border-border bg-border">
-            <StaggerItem variant="unfold" className="bg-background p-6">
-              <CountUp value={5} suffix="th" className="block text-3xl font-bold tracking-tighter text-primary" />
-              <span className="mt-2 block text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                In Tamil Nadu — NIRF 2024
-              </span>
+          <Stagger gap={0.12} className="mt-12 grid gap-px border-t border-border bg-border md:grid-cols-2">
+            <StaggerItem variant="unfold">
+              <article className="group border-b border-border bg-background p-8 transition-colors hover:bg-muted/50">
+                <CountUp value={5} suffix="th" className="block text-3xl font-bold tracking-tighter text-primary" />
+                <span className="mt-2 block text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                  In Tamil Nadu — NIRF 2024
+                </span>
+              </article>
             </StaggerItem>
-            <StaggerItem variant="unfold" className="bg-background p-6">
-              <span className="block text-3xl font-bold tracking-tighter text-primary">AICTE</span>
-              <span className="mt-2 block text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                Approved &amp; Anna Univ Affiliated
-              </span>
+            <StaggerItem variant="unfold">
+              <article className="group border-b border-border bg-background p-8 transition-colors hover:bg-muted/50">
+                <span className="block text-3xl font-bold tracking-tighter text-primary">AICTE</span>
+                <span className="mt-2 block text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                  Approved &amp; Anna Univ Affiliated
+                </span>
+              </article>
             </StaggerItem>
           </Stagger>
 
@@ -67,35 +63,20 @@ export function AboutBannerSection() {
           </div>
         </Reveal>
 
-        {/* Right: image slideshow */}
-        <Reveal
-          variant="clip"
-          className="relative h-[360px] w-full overflow-hidden border border-border lg:col-span-6 lg:h-[560px]"
-        >
-          <Parallax distance={28} className="absolute inset-[-8%]">
-          <AnimatePresence mode="popLayout">
-            <motion.img
-              key={currentImage}
-              src={images[currentImage]}
-              alt="MSAJCE campus life"
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.2, ease: "easeInOut" }}
-              className="absolute inset-0 h-full w-full object-cover object-center grayscale"
-            />
-          </AnimatePresence>
-          </Parallax>
-          <div className="absolute bottom-0 left-0 z-10 flex gap-2 bg-background p-4">
-            {images.map((_, i) => (
-              <span
-                key={i}
-                className={`h-1 w-8 transition-colors ${
-                  i === currentImage ? "bg-primary" : "bg-border"
-                }`}
+        {/* Right: hover accordion image gallery */}
+        <Reveal variant="slide-left" className="flex items-stretch gap-2 lg:col-span-6 h-[360px] lg:h-[560px]">
+          {galleryImages.map((src, idx) => (
+            <div
+              key={idx}
+              className="group relative h-full w-12 flex-grow overflow-hidden transition-all duration-500 hover:w-full border border-border"
+            >
+              <img
+                className="h-full w-full object-cover object-center grayscale transition-all duration-500 group-hover:grayscale-0"
+                src={src}
+                alt={`Gallery image ${idx + 1}`}
               />
-            ))}
-          </div>
+            </div>
+          ))}
         </Reveal>
       </div>
     </section>

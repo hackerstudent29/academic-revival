@@ -63,7 +63,7 @@ const nav: NavItem[] = [
 
 function PaneLink({ link, onClick }: { link: Col["links"][number]; onClick: () => void }) {
   const cls =
-    "inline-block text-[15px] leading-tight text-foreground/65 transition-colors duration-200 hover:text-primary";
+    "inline-block text-[15px] font-semibold leading-tight text-foreground/65 transition-colors duration-200 hover:text-primary";
   if (link.href) {
     return (
       <a href={link.href} target="_blank" rel="noopener noreferrer" onClick={onClick} className={cls}>
@@ -103,9 +103,9 @@ export function SiteHeader() {
       className="msajce-header-glass sticky top-0 z-50 w-full border-b border-foreground/10"
       onMouseLeave={() => setActive(null)}
     >
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-4 md:px-12">
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-2.5 md:px-12 md:py-3">
         <Link to="/" className="flex items-center gap-3" onClick={closeAll}>
-          <Logo className="h-9" />
+          <Logo className="h-32 -my-12 sm:h-44 sm:-my-16 origin-left" />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
@@ -117,7 +117,7 @@ export function SiteHeader() {
                 onMouseEnter={() => setActive(item.id)}
                 onClick={() => setActive((c) => (c === item.id ? null : item.id))}
                 aria-expanded={active === item.id}
-                className={`relative py-2 text-[13px] font-semibold tracking-[0.01em] transition-colors duration-200 ${
+                className={`relative py-2 text-[13px] font-bold tracking-[0.01em] transition-colors duration-200 ${
                   active === item.id ? "text-foreground" : "text-foreground/60 hover:text-foreground"
                 }`}
               >
@@ -133,7 +133,7 @@ export function SiteHeader() {
                 key={item.id}
                 to={item.to}
                 onMouseEnter={() => setActive(null)}
-                className="py-2 text-[13px] font-semibold tracking-[0.01em] text-foreground/60 transition-colors duration-200 hover:text-foreground"
+                className="py-2 text-[13px] font-bold tracking-[0.01em] text-foreground/60 transition-colors duration-200 hover:text-foreground"
                 activeProps={{ className: "text-foreground" }}
               >
                 {item.label}
@@ -238,7 +238,7 @@ export function SiteHeader() {
                         type="button"
                         onClick={() => setMobileSub((c) => (c === item.id ? null : item.id))}
                         aria-expanded={mobileSub === item.id}
-                        className="flex w-full items-center justify-between py-4 text-[15px] font-semibold text-foreground/80"
+                        className="flex w-full items-center justify-between py-4 text-[15px] font-bold text-foreground/80"
                       >
                         {item.label}
                         <span className={`text-lg transition-transform duration-300 ${mobileSub === item.id ? "rotate-45" : ""}`}>+</span>
@@ -271,7 +271,7 @@ export function SiteHeader() {
                       </AnimatePresence>
                     </>
                   ) : (
-                    <Link to={item.to} onClick={closeAll} className="block py-4 text-[15px] font-semibold text-foreground/80">
+                    <Link to={item.to} onClick={closeAll} className="block py-4 text-[15px] font-bold text-foreground/80">
                       {item.label}
                     </Link>
                   )}

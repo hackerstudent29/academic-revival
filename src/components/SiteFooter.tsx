@@ -36,7 +36,7 @@ export function SiteFooter({ revealed = true }: { revealed?: boolean }) {
         className="mx-auto grid max-w-[1440px] gap-12 px-6 py-16 md:grid-cols-4 md:px-12"
       >
         <motion.div variants={footerItemVariants} className="md:col-span-2">
-          <Logo className="h-12" />
+          <Logo className="h-40 -ml-4" />
           <p className="mt-4 max-w-md text-sm leading-relaxed text-foreground/60">
             An autonomous-spirited engineering campus on Chennai's OMR IT corridor, affiliated to Anna
             University and approved by AICTE, New Delhi.

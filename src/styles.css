@@ -4,6 +4,22 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/Switzer-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/Switzer-VariableItalic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+}
+
 /*
  * Design system definition.
  *
@@ -117,30 +133,30 @@
 
 .dark {
   /* MSAJCE dark theme */
-  --primary-blue: #ffffff;
+  --primary-blue: #005DA6;
   --bg-color: #000000;
-  --text-color: #ffffff;
+  --text-color: #d4d4d4;
   --card-bg: #0a0a0a;
   --border-color: rgba(255, 255, 255, 0.16);
   --sand: oklch(0.19 0.008 71.5);
   --sand-foreground: oklch(0.96 0.008 71.5);
   --clay: oklch(0.48 0.038 66.5);
-  --clay-foreground: oklch(1 0 0);
+  --clay-foreground: oklch(0.88 0 0);
   --navy: oklch(0.62 0.12 265.5);
   --background: oklch(0 0 0);
-  --foreground: oklch(1 0 0);
+  --foreground: oklch(0.88 0 0);
   --card: oklch(0.14 0 0);
-  --card-foreground: oklch(1 0 0);
+  --card-foreground: oklch(0.88 0 0);
   --popover: oklch(0.14 0 0);
-  --popover-foreground: oklch(1 0 0);
-  --primary: oklch(1 0 0);
-  --primary-foreground: oklch(0 0 0);
+  --popover-foreground: oklch(0.88 0 0);
+  --primary: oklch(0.52 0.14 245.6);
+  --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.2 0 0);
-  --secondary-foreground: oklch(1 0 0);
+  --secondary-foreground: oklch(0.88 0 0);
   --muted: oklch(0.2 0 0);
   --muted-foreground: oklch(0.72 0 0);
   --accent: oklch(0.2 0 0);
-  --accent-foreground: oklch(1 0 0);
+  --accent-foreground: oklch(0.88 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(1 0 0 / 16%);
@@ -164,6 +180,12 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
   }
 
   * {
@@ -220,6 +242,15 @@ body.dropdown-open .msajce-page-blur {
     opacity 0.5s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
+/* Hide scrollbar across browsers */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 /* Editorial motion utilities */
 @keyframes msajce-marquee {
   from { transform: translateX(0); }
@@ -241,9 +272,6 @@ body.dropdown-open .msajce-page-blur {
   animation: msajce-reel 45s linear infinite;
 }
 
-.msajce-reel:hover {
-  animation-play-state: paused;
-}
 
 @media (prefers-reduced-motion: reduce) {
   .msajce-reel,
