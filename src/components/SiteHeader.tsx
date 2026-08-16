@@ -24,7 +24,7 @@ export function SiteHeader() {
           <img
             src={logoAsset.url}
             alt="Mohamed Sathak A J College of Engineering and Architecture"
-            className="h-9 w-auto object-contain dark:brightness-0 dark:invert"
+            className="h-9 w-auto object-contain dark:invert dark:hue-rotate-180"
           />
         </Link>
 
