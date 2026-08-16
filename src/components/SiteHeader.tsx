@@ -130,7 +130,8 @@ export function SiteHeader() {
   };
 
   return (
-    <header
+    <>
+      <header
       className={`msajce-header-glass sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
         active || moreOpen ? "border-transparent" : "border-foreground/10"
       }`}
@@ -251,6 +252,7 @@ export function SiteHeader() {
           )}
         </AnimatePresence>
       </div>
+    </header>
 
       {/* Sidebar unified menu overlay */}
       <AnimatePresence>
@@ -262,14 +264,14 @@ export function SiteHeader() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={() => setMoreOpen(false)}
-              className="absolute left-0 top-full z-[50] w-full h-[calc(100dvh-100%)] bg-black/40"
+              className="fixed inset-0 z-[40] bg-black/40"
             />
             <motion.div
               initial={{ opacity: 0, x: "100%" }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: "100%" }}
               transition={{ duration: 0.5, ease: APPLE_EASE }}
-              className="absolute right-0 top-full z-[60] flex flex-col w-full max-w-[360px] h-[calc(100dvh-100%)] pb-12 msajce-dropdown-glass px-6 py-8 overflow-y-auto border-l border-foreground/10 shadow-2xl [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+              className="fixed right-0 top-0 z-[40] flex flex-col w-full max-w-[360px] h-[100dvh] pt-[90px] md:pt-[100px] pb-12 msajce-dropdown-glass px-6 overflow-y-auto border-l border-foreground/10 shadow-2xl [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
             >
               <div className="w-full">
                 
@@ -390,6 +392,6 @@ export function SiteHeader() {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
