@@ -10,7 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
+import { FooterRevealWrapper } from "@/components/FooterRevealWrapper";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
@@ -144,13 +144,12 @@ function RootComponent() {
       <SmoothScroll />
       <ScrollToTop />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <div className="flex min-h-screen flex-col bg-background text-foreground">
+      <FooterRevealWrapper>
         <SiteHeader />
         <div className="flex-1">
           <Outlet />
         </div>
-        <SiteFooter />
-      </div>
+      </FooterRevealWrapper>
     </QueryClientProvider>
   );
 }
