@@ -14,7 +14,7 @@ export function AcademicProgrammesSection() {
 
       <section
         id="academic-programmes"
-        className="relative w-full bg-sand pt-16 pb-40 text-sand-foreground lg:pt-20 lg:pb-48"
+        className="relative w-full bg-sand pt-16 pb-16 text-sand-foreground lg:pt-20 lg:pb-24"
       >
         <div className="mx-auto w-full max-w-[1440px] px-8 md:px-16">
           <div className="flex w-full flex-col items-center gap-10 lg:flex-row lg:gap-16 xl:gap-20">
@@ -61,9 +61,9 @@ export function AcademicProgrammesSection() {
           </div>
         </div>
 
-        {/* Floating bottom banner */}
-        <div className="absolute bottom-0 left-1/2 mx-auto flex w-full max-w-[1440px] -translate-x-1/2 translate-y-1/2 justify-start px-8 md:px-16">
-          <div className="ml-0 flex w-full flex-col items-start justify-between gap-6 border-t-[6px] border-navy bg-clay p-6 text-clay-foreground shadow-2xl md:p-8 lg:ml-16 lg:w-[85%] lg:p-10 xl:flex-row xl:items-center">
+        {/* Bottom banner */}
+        <div className="mx-auto mt-12 flex w-full max-w-[1440px] justify-start px-8 md:px-16 lg:mt-16">
+          <div className="flex w-full flex-col items-start justify-between gap-6 border-t-[6px] border-navy bg-clay p-6 text-clay-foreground md:p-8 lg:p-10 xl:flex-row xl:items-center">
             <h3 className="max-w-sm text-xl font-bold leading-tight md:text-2xl">
               Explore programmes by academic levels
             </h3>
