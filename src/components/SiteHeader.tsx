@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import logoAsset from "@/assets/msajce-logo.png.asset.json";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -19,10 +21,11 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 w-full border-b border-foreground/12 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 py-4 md:px-12">
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-foreground/25 text-xs font-black tracking-tight text-foreground">
-            MS
-          </span>
-          <span className="text-sm font-black uppercase tracking-[0.22em] text-foreground">MSAJCE</span>
+          <img
+            src={logoAsset.url}
+            alt="Mohamed Sathak A J College of Engineering and Architecture"
+            className="h-10 w-auto object-contain dark:brightness-0 dark:invert"
+          />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
@@ -40,6 +43,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <Link
             to="/admissions"
             className="hidden rounded-full bg-primary px-6 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-primary-foreground transition-transform hover:-translate-y-0.5 sm:inline-flex"
