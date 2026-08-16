@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Stagger, StaggerItem } from "@/components/motion";
 import { PageHero } from "@/components/PageHero";
 import { WhyJoinSection } from "@/components/WhyJoinSection";
 
@@ -37,9 +38,9 @@ function CampusLife() {
       />
 
       <section className="mx-auto max-w-[1440px] px-6 py-24 md:px-12">
-        <div className="grid gap-8 sm:grid-cols-2">
+        <Stagger gap={0.1} className="grid gap-8 sm:grid-cols-2">
           {facilities.map((f) => (
-            <article key={f.t} className="group overflow-hidden rounded-3xl border border-foreground/12 bg-foreground/5">
+            <StaggerItem key={f.t} variant="unfold" className="group overflow-hidden rounded-3xl border border-foreground/12 bg-foreground/5">
               <div className="aspect-[16/10] overflow-hidden">
                 <img
                   src={f.img}
@@ -51,9 +52,9 @@ function CampusLife() {
                 <h2 className="text-2xl font-bold text-foreground">{f.t}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-foreground/60">{f.d}</p>
               </div>
-            </article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
 
       <WhyJoinSection />
