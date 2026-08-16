@@ -140,8 +140,8 @@ export function AcademicProgrammesSection() {
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase border"
                 style={{
                   color: "var(--primary-blue)",
-                  backgroundColor: "rgba(255, 255, 255, 0.08)",
-                  borderColor: "rgba(255, 255, 255, 0.22)",
+                  backgroundColor: "color-mix(in srgb, var(--text-color) 8%, transparent)",
+                  borderColor: "color-mix(in srgb, var(--text-color) 22%, transparent)",
                 }}
               >
                 <Sparkles size={13} style={{ color: "var(--primary-blue)" }} />
@@ -282,7 +282,7 @@ export function AcademicProgrammesSection() {
                       </span>
                       <div
                         className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 group-hover:translate-x-1"
-                        style={{ backgroundColor: "rgba(255, 255, 255, 0.08)", color: "var(--text-color)" }}
+                        style={{ backgroundColor: "color-mix(in srgb, var(--text-color) 8%, transparent)", color: "var(--text-color)" }}
                       >
                         <ArrowRight size={14} strokeWidth={2.5} />
                       </div>

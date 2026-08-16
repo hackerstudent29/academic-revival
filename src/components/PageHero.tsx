@@ -15,7 +15,7 @@ export function PageHero({
         className="pointer-events-none absolute inset-0 opacity-[0.07]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
+            "linear-gradient(to right, var(--text-color) 1px, transparent 1px), linear-gradient(to bottom, var(--text-color) 1px, transparent 1px)",
           backgroundSize: "64px 64px",
         }}
       />
