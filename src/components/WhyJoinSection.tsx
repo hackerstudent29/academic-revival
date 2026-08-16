@@ -53,7 +53,7 @@ export function WhyJoinSection() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover grayscale"
               />
             </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />

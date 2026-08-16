@@ -109,7 +109,7 @@ export function AcademicProgrammesSection() {
                     <img
                       src={slide.src}
                       alt={slide.title}
-                      className="w-full h-full object-cover transition-transform duration-[2500ms] ease-out scale-100"
+                      className="w-full h-full object-cover grayscale transition-transform duration-[2500ms] ease-out scale-100"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
                     <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 flex flex-col justify-end text-white z-10">
@@ -245,7 +245,7 @@ export function AcademicProgrammesSection() {
                     <img
                       src={card.image}
                       alt={card.title}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="w-full h-full object-cover grayscale transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
                     <div className="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-black/60 backdrop-blur-md text-white border border-white/20">
