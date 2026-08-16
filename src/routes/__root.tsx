@@ -146,7 +146,7 @@ function RootComponent() {
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <FooterRevealWrapper>
         <SiteHeader />
-        <div className="flex-1">
+        <div className="msajce-page-blur flex-1">
           <Outlet />
         </div>
       </FooterRevealWrapper>
