@@ -1,0 +1,85 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageHero } from "@/components/PageHero";
+
+const title = "Placements at MSAJCE — 95% Track Record";
+const description =
+  "Placement statistics, recruiter network and training support at M.S.A.J. College of Engineering, Chennai.";
+
+export const Route = createFileRoute("/placements")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Placements,
+});
+
+const stats = [
+  { v: "95%", l: "Placement track" },
+  { v: "100+", l: "Recruiting partners" },
+  { v: "₹18 LPA", l: "Highest package" },
+  { v: "₹5.4 LPA", l: "Average package" },
+];
+
+const recruiters = [
+  "Zoho", "TCS", "Infosys", "Cognizant", "Freshworks", "HCLTech",
+  "Wipro", "Accenture", "L&T Technology", "Ashok Leyland", "Hexaware", "Mr. Cooper",
+];
+
+const support = [
+  { t: "Aptitude & coding drills", d: "Weekly timed rounds from the fifth semester, benchmarked against real recruiter tests." },
+  { t: "Mock interviews", d: "Panel interviews with alumni and hiring managers, followed by written feedback." },
+  { t: "Internship pipeline", d: "Structured summer internships with OMR corridor partners converting to pre-placement offers." },
+];
+
+function Placements() {
+  return (
+    <main className="bg-black">
+      <PageHero
+        eyebrow="Careers"
+        title="From campus to corporate"
+        description="A dedicated training and placement cell that prepares every student for aptitude rounds, technical interviews and long-term careers."
+      />
+
+      <section className="mx-auto max-w-[1440px] px-6 py-24 md:px-12">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.l} className="rounded-3xl border border-white/12 bg-white/5 p-9">
+              <div className="text-4xl font-black text-white">{s.v}</div>
+              <div className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-white/50">{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y border-white/12 bg-white/[0.03] px-6 py-24 md:px-12">
+        <div className="mx-auto max-w-[1440px]">
+          <h2 className="text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">Our recruiters</h2>
+          <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/12 bg-white/10 sm:grid-cols-3 lg:grid-cols-4">
+            {recruiters.map((r) => (
+              <div key={r} className="bg-black px-6 py-10 text-center text-sm font-bold uppercase tracking-[0.14em] text-white/70">
+                {r}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-[1440px] px-6 py-24 md:px-12">
+        <div className="grid gap-8 md:grid-cols-3">
+          {support.map((s) => (
+            <div key={s.t} className="rounded-3xl border border-white/12 p-9">
+              <h3 className="text-xl font-bold text-white">{s.t}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-white/60">{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
