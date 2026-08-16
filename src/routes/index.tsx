@@ -39,12 +39,12 @@ function Index() {
     <main className="bg-background">
       <section className="relative border-b border-foreground/12" id="hero">
         <div className="grid min-h-[calc(100vh-4rem)] items-stretch md:grid-cols-2">
-          <div className="flex flex-col justify-start px-6 pb-6 pt-4 md:px-10 md:pb-8 md:pt-5">
+          <div className="flex flex-col justify-start px-6 pb-6 pt-4 md:px-6 md:pb-8 md:pt-5 lg:px-8">
             <DynamicText />
-            <h1 className="mt-1 flex flex-col text-[6.5vw] font-black uppercase leading-[0.95] tracking-tighter text-foreground sm:text-4xl md:text-[32px] lg:text-4xl xl:text-5xl">
+            <h1 className="mt-1 flex flex-col text-[7vw] font-black uppercase leading-[0.95] tracking-tighter text-foreground sm:text-4xl md:text-[3.2vw] lg:text-[3.8vw] xl:text-[4vw]">
               <span className="whitespace-nowrap">Mohamed Sathak</span>
               <span className="whitespace-nowrap">A.J. College of</span>
-              <span className="mt-0.5 flex flex-nowrap items-baseline gap-x-2 sm:gap-x-3 whitespace-nowrap">
+              <span className="mt-0.5 flex flex-nowrap items-baseline gap-x-2 sm:gap-x-3 whitespace-nowrap text-[3.5vw] sm:text-2xl md:text-[1.7vw] lg:text-[1.8vw] xl:text-[1.9vw]">
                 <RotatingWord
                   homeWord="Engineering"
                   words={["Innovation", "Technology", "Excellence"]}
