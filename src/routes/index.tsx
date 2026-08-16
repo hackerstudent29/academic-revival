@@ -6,6 +6,7 @@ import { DynamicText } from "@/components/DynamicText";
 import { RotatingWord } from "@/components/RotatingWord";
 import { HeroReel } from "@/components/HeroReel";
 import { RecruiterMarquee } from "@/components/RecruiterMarquee";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 
 const title = "MSAJCE — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -57,10 +58,10 @@ function Index() {
               </span>
             </h1>
 
-            <div className="mt-12 border-t border-foreground/12">
+            <Stagger gap={0.07} delay={0.2} className="mt-12 border-t border-foreground/12">
               {heroLinks.map((item) => (
+                <StaggerItem key={item.to} variant="mask">
                 <Link
-                  key={item.to}
                   to={item.to}
                   className="group flex items-center justify-between border-b border-foreground/12 py-4 text-sm font-semibold uppercase tracking-[0.1em] text-foreground/70 transition-colors hover:text-foreground"
                 >
@@ -71,8 +72,9 @@ function Index() {
                     →
                   </span>
                 </Link>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
 
           <div className="border-l border-foreground/12">
@@ -104,9 +106,11 @@ function Index() {
 
       {/* ── Top recruiters marquee ── */}
       <section className="border-b border-foreground/12 py-16" id="top-recruiters">
-        <h2 className="px-6 text-center text-[11px] font-bold uppercase tracking-[0.32em] text-foreground/50 md:px-12">
-          Top Recruiters
-        </h2>
+        <Reveal variant="blur">
+          <h2 className="px-6 text-center text-[11px] font-bold uppercase tracking-[0.32em] text-foreground/50 md:px-12">
+            Top Recruiters
+          </h2>
+        </Reveal>
         <RecruiterMarquee />
       </section>
 
