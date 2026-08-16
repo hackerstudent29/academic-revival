@@ -10,8 +10,9 @@ export function FooterRevealWrapper({ children }: { children: ReactNode }) {
   useEffect(() => {
     const el = footerRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(([entry]) => {
-      setHeight(entry.contentRect.height);
+    const ro = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (entry) setHeight(entry.contentRect.height);
     });
     ro.observe(el);
     setHeight(el.getBoundingClientRect().height);
@@ -22,7 +23,7 @@ export function FooterRevealWrapper({ children }: { children: ReactNode }) {
     const el = spacerRef.current;
     if (!el || height === 0) return;
     const io = new IntersectionObserver(
-      ([entry]) => setRevealed(entry.intersectionRatio > 0.2),
+      (entries) => setRevealed((entries[0]?.intersectionRatio ?? 0) > 0.2),
       { threshold: [0, 0.2, 0.6, 1] },
     );
     io.observe(el);
