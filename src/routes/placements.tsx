@@ -39,7 +39,7 @@ const support = [
 
 function Placements() {
   return (
-    <main className="bg-black">
+    <main className="bg-background">
       <PageHero
         eyebrow="Careers"
         title="From campus to corporate"
@@ -49,20 +49,20 @@ function Placements() {
       <section className="mx-auto max-w-[1440px] px-6 py-24 md:px-12">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.l} className="rounded-3xl border border-white/12 bg-white/5 p-9">
-              <div className="text-4xl font-black text-white">{s.v}</div>
-              <div className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-white/50">{s.l}</div>
+            <div key={s.l} className="rounded-3xl border border-foreground/12 bg-foreground/5 p-9">
+              <div className="text-4xl font-black text-foreground">{s.v}</div>
+              <div className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-foreground/50">{s.l}</div>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="border-y border-white/12 bg-white/[0.03] px-6 py-24 md:px-12">
+      <section className="border-y border-foreground/12 bg-foreground/[0.03] px-6 py-24 md:px-12">
         <div className="mx-auto max-w-[1440px]">
-          <h2 className="text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">Our recruiters</h2>
-          <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/12 bg-white/10 sm:grid-cols-3 lg:grid-cols-4">
+          <h2 className="text-3xl font-black uppercase tracking-tight text-foreground sm:text-4xl">Our recruiters</h2>
+          <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-foreground/12 bg-foreground/10 sm:grid-cols-3 lg:grid-cols-4">
             {recruiters.map((r) => (
-              <div key={r} className="bg-black px-6 py-10 text-center text-sm font-bold uppercase tracking-[0.14em] text-white/70">
+              <div key={r} className="bg-background px-6 py-10 text-center text-sm font-bold uppercase tracking-[0.14em] text-foreground/70">
                 {r}
               </div>
             ))}
@@ -73,9 +73,9 @@ function Placements() {
       <section className="mx-auto max-w-[1440px] px-6 py-24 md:px-12">
         <div className="grid gap-8 md:grid-cols-3">
           {support.map((s) => (
-            <div key={s.t} className="rounded-3xl border border-white/12 p-9">
-              <h3 className="text-xl font-bold text-white">{s.t}</h3>
-              <p className="mt-4 text-sm leading-relaxed text-white/60">{s.d}</p>
+            <div key={s.t} className="rounded-3xl border border-foreground/12 p-9">
+              <h3 className="text-xl font-bold text-foreground">{s.t}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">{s.d}</p>
             </div>
           ))}
         </div>

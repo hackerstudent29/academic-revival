@@ -111,24 +111,24 @@ export function AcademicProgrammesSection() {
                       alt={slide.title}
                       className="w-full h-full object-cover grayscale transition-transform duration-[2500ms] ease-out scale-100"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
-                    <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 flex flex-col justify-end text-white z-10">
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent pointer-events-none" />
+                    <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 flex flex-col justify-end text-foreground z-10">
                       <div
-                        className="inline-flex self-start items-center px-3 py-1 rounded text-xs font-bold uppercase tracking-widest text-black mb-3 shadow-sm"
+                        className="inline-flex self-start items-center px-3 py-1 rounded text-xs font-bold uppercase tracking-widest text-primary-foreground mb-3 shadow-sm"
                         style={{ backgroundColor: "var(--primary-blue)" }}
                       >
                         {slide.tag}
                       </div>
-                      <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white leading-tight">
+                      <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground leading-tight">
                         {slide.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-white/90 mt-2 leading-relaxed">{slide.subtitle}</p>
+                      <p className="text-xs sm:text-sm text-foreground/90 mt-2 leading-relaxed">{slide.subtitle}</p>
                     </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
 
-              <div className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full text-xs font-mono font-medium tracking-widest text-white bg-black/60 backdrop-blur-md border border-white/20">
+              <div className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full text-xs font-mono font-medium tracking-widest text-foreground bg-background/60 backdrop-blur-md border border-foreground/20">
                 0{activeSlideIndex + 1} / 0{campusSlides.length}
               </div>
             </div>
@@ -140,8 +140,8 @@ export function AcademicProgrammesSection() {
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase border"
                 style={{
                   color: "var(--primary-blue)",
-                  backgroundColor: "rgba(255, 255, 255, 0.08)",
-                  borderColor: "rgba(255, 255, 255, 0.22)",
+                  backgroundColor: "color-mix(in srgb, var(--text-color) 8%, transparent)",
+                  borderColor: "color-mix(in srgb, var(--text-color) 22%, transparent)",
                 }}
               >
                 <Sparkles size={13} style={{ color: "var(--primary-blue)" }} />
@@ -184,7 +184,7 @@ export function AcademicProgrammesSection() {
             <div className="flex flex-wrap items-center gap-4 mt-2">
               <a
                 href="#academic-pathways"
-                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-sm font-bold tracking-wider text-black uppercase shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-sm font-bold tracking-wider text-primary-foreground uppercase shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
                 style={{ backgroundColor: "var(--primary-blue)" }}
               >
                 <span>Find a Programme</span>
@@ -193,7 +193,7 @@ export function AcademicProgrammesSection() {
 
               <a
                 href="#admissions"
-                className="inline-flex items-center gap-2.5 border-2 px-8 py-4 rounded-full text-sm font-bold tracking-wider text-[var(--text-color)] uppercase bg-transparent transition-all duration-200 hover:bg-white/10 hover:-translate-y-0.5 active:translate-y-0"
+                className="inline-flex items-center gap-2.5 border-2 px-8 py-4 rounded-full text-sm font-bold tracking-wider text-[var(--text-color)] uppercase bg-transparent transition-all duration-200 hover:bg-foreground/10 hover:-translate-y-0.5 active:translate-y-0"
                 style={{ borderColor: "var(--border-color)" }}
               >
                 <span>Admissions Guide</span>
@@ -247,12 +247,12 @@ export function AcademicProgrammesSection() {
                       alt={card.title}
                       className="w-full h-full object-cover grayscale transition-transform duration-700 ease-out group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-                    <div className="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-black/60 backdrop-blur-md text-white border border-white/20">
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/75 via-background/20 to-transparent" />
+                    <div className="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-background/60 backdrop-blur-md text-foreground border border-foreground/20">
                       <IconComponent size={14} style={{ color: "var(--primary-blue)" }} />
                       <span>{card.degrees}</span>
                     </div>
-                    <div className="absolute bottom-3 right-4 z-10 text-[11px] font-medium tracking-wide text-white/90 drop-shadow">
+                    <div className="absolute bottom-3 right-4 z-10 text-[11px] font-medium tracking-wide text-foreground/90 drop-shadow">
                       {card.duration}
                     </div>
                   </div>
@@ -282,7 +282,7 @@ export function AcademicProgrammesSection() {
                       </span>
                       <div
                         className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 group-hover:translate-x-1"
-                        style={{ backgroundColor: "rgba(255, 255, 255, 0.08)", color: "var(--text-color)" }}
+                        style={{ backgroundColor: "color-mix(in srgb, var(--text-color) 8%, transparent)", color: "var(--text-color)" }}
                       >
                         <ArrowRight size={14} strokeWidth={2.5} />
                       </div>

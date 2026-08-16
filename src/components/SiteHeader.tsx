@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import logoAsset from "@/assets/msajce-logo.png.asset.json";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -16,13 +18,14 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/12 bg-black/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 w-full border-b border-foreground/12 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 py-4 md:px-12">
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-xs font-black tracking-tight text-white">
-            MS
-          </span>
-          <span className="text-sm font-black uppercase tracking-[0.22em] text-white">MSAJCE</span>
+          <img
+            src={logoAsset.url}
+            alt="Mohamed Sathak A J College of Engineering and Architecture"
+            className="h-9 w-auto object-contain dark:brightness-0 dark:invert"
+          />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
@@ -30,8 +33,8 @@ export function SiteHeader() {
             <Link
               key={item.to}
               to={item.to}
-              className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60 transition-colors hover:text-white"
-              activeProps={{ className: "text-white" }}
+              className="text-xs font-semibold uppercase tracking-[0.14em] text-foreground/60 transition-colors hover:text-foreground"
+              activeProps={{ className: "text-foreground" }}
               activeOptions={{ exact: item.to === "/" }}
             >
               {item.label}
@@ -40,9 +43,10 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <Link
             to="/admissions"
-            className="hidden rounded-full bg-white px-6 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-black transition-transform hover:-translate-y-0.5 sm:inline-flex"
+            className="hidden rounded-full bg-primary px-6 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-primary-foreground transition-transform hover:-translate-y-0.5 sm:inline-flex"
           >
             Apply Now
           </Link>
@@ -50,7 +54,7 @@ export function SiteHeader() {
             type="button"
             aria-label="Toggle navigation"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 text-foreground lg:hidden"
           >
             {open ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -58,14 +62,14 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="flex flex-col gap-1 border-t border-white/12 px-6 py-4 lg:hidden">
+        <nav className="flex flex-col gap-1 border-t border-foreground/12 px-6 py-4 lg:hidden">
           {nav.map((item) => (
             <Link
               key={item.to}
               to={item.to}
               onClick={() => setOpen(false)}
-              className="rounded-xl px-3 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white/70 hover:bg-white/8 hover:text-white"
-              activeProps={{ className: "text-white bg-white/8" }}
+              className="rounded-xl px-3 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-foreground/70 hover:bg-foreground/8 hover:text-foreground"
+              activeProps={{ className: "text-foreground bg-foreground/8" }}
               activeOptions={{ exact: item.to === "/" }}
             >
               {item.label}
