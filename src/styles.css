@@ -185,6 +185,27 @@
   }
 }
 
+/* Apple-style glass header backdrop */
+.msajce-header-glass {
+  position: relative;
+  isolation: isolate;
+}
+
+.msajce-header-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: color-mix(in srgb, var(--bg-color) 80%, transparent);
+  backdrop-filter: saturate(180%) blur(20px);
+  z-index: -1;
+  pointer-events: none;
+  transition: background-color 0.3s ease;
+}
+
+.dark .msajce-header-glass::before {
+  background-color: color-mix(in srgb, var(--bg-color) 40%, transparent);
+}
+
 /* Editorial motion utilities */
 @keyframes msajce-marquee {
   from { transform: translateX(0); }
