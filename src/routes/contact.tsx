@@ -22,9 +22,10 @@ export const Route = createFileRoute("/contact")({
 });
 
 const details = [
-  { icon: MapPin, label: "Campus", value: "OMR IT Corridor, Chennai, Tamil Nadu 603103" },
-  { icon: Phone, label: "Phone", value: "+91 44 2747 0000" },
-  { icon: Mail, label: "Email", value: "admissions@msajce.edu.in" },
+  { icon: MapPin, label: "Campus", value: "34, Rajiv Gandhi Salai (OMR), Siruseri IT Park, Chennai - 603103, Tamil Nadu, India." },
+  { icon: Phone, label: "Phone & Helpdesk", value: "+91 99400 04500" },
+  { icon: Mail, label: "General Office Email", value: "msajce.office@gmail.com" },
+  { icon: Mail, label: "Admissions Email", value: "admission@msajce-edu.in" },
 ];
 
 function Contact() {
@@ -35,7 +36,7 @@ function Contact() {
       <PageHero
         eyebrow="Contact"
         title="Talk to the admissions team"
-        description="Weekdays 9am to 5pm. Campus tours can be scheduled on Saturdays with prior notice."
+        description="Monday – Friday: 9:00 AM – 8:00 PM | Saturday: 10:00 AM – 4:00 PM | Sunday: 9:30 AM – 6:00 PM"
       />
 
       <section className="mx-auto grid max-w-[1440px] gap-14 px-6 py-24 md:px-12 lg:grid-cols-2">

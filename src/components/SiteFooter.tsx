@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { motion, type Variants } from "framer-motion";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
 import { Logo } from "@/components/Logo";
+import { useEffect, useRef, useState } from "react";
 
 const footerContainerVariants: Variants = {
   hidden: {},
@@ -26,13 +27,41 @@ const socials = [
   { label: "YouTube", href: "https://youtube.com", Icon: Youtube },
 ];
 
-export function SiteFooter({ revealed = true }: { revealed?: boolean }) {
+export function SiteFooter() {
+  const footerRef = useRef<HTMLElement>(null);
+  const [isRevealed, setIsRevealed] = useState(false);
+
+  useEffect(() => {
+    if (!footerRef.current) return;
+    const observer = new ResizeObserver((entries) => {
+      document.documentElement.style.setProperty('--footer-height', `${entries[0].contentRect.height}px`);
+    });
+    observer.observe(footerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const currentScroll = window.scrollY;
+      
+      if (currentScroll >= maxScroll - 150) {
+        setIsRevealed(true);
+      } else if (currentScroll < maxScroll - 400) {
+        setIsRevealed(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <footer className="border-t border-foreground/12 bg-[#f5f5f7] dark:bg-[#111111]">
+    <footer ref={footerRef} className="border-t border-foreground/12 bg-[#f5f5f7] dark:bg-[#111111]">
       <motion.div
         variants={footerContainerVariants}
         initial="hidden"
-        animate={revealed ? "visible" : "hidden"}
+        animate={isRevealed ? "visible" : "hidden"}
         className="mx-auto grid max-w-[1440px] gap-12 px-6 py-16 md:grid-cols-4 md:px-12"
       >
         <motion.div variants={footerItemVariants} className="md:col-span-2">
@@ -102,7 +131,7 @@ export function SiteFooter({ revealed = true }: { revealed?: boolean }) {
       <motion.div
         variants={footerItemVariants}
         initial="hidden"
-        animate={revealed ? "visible" : "hidden"}
+        animate={isRevealed ? "visible" : "hidden"}
         className="border-t border-foreground/12 px-6 py-6 text-center text-xs uppercase tracking-[0.16em] text-foreground/40 md:px-12"
       >
         &copy; {new Date().getFullYear()} MSAJCE. All rights reserved.

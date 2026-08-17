@@ -69,7 +69,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     <button
       type="button"
       onClick={toggleTheme}
-      className={cn("theme-toggle-btn border border-border", className)}
+      className={cn("theme-toggle-btn", className)}
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       style={{ visibility: mounted ? "visible" : "hidden" }}
     >

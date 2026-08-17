@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Parallax, Reveal, Stagger, StaggerItem } from "@/components/motion";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PageHero } from "@/components/PageHero";
 
-const title = "About MSAJCE — 25 Years of Engineering Education";
+const title = "About MSAJCE — Vision, Mission & Accreditation";
 const description =
-  "The story, vision and accreditations behind M.S.A.J. College of Engineering on Chennai's OMR IT corridor.";
+  "The official vision, mission, heritage, and NAAC/NIRF accreditations of M.S.A.J. College of Engineering.";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -20,17 +20,10 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const milestones = [
-  { year: "2000", text: "Campus founded on the OMR corridor with three engineering branches." },
-  { year: "2008", text: "Anna University recognised research centre established." },
-  { year: "2016", text: "IDEA Lab and innovation incubator opened to all students." },
-  { year: "2024", text: "12 specialisations across UG, PG and doctoral pathways." },
-];
-
 const values = [
-  { title: "Vision", body: "To be a benchmark institution producing engineers who solve real problems with integrity." },
-  { title: "Mission", body: "Deliver rigorous, industry-aligned education backed by research, mentorship and ethics." },
-  { title: "Approach", body: "Small cohorts, project-first teaching and continuous corporate exposure from year one." },
+  { title: "Vision", body: "To be a benchmark institution producing engineers who solve real problems with integrity and contribute to the technological advancement of society." },
+  { title: "Mission", body: "Deliver rigorous, industry-aligned education backed by research, mentorship, and ethics, while providing state-of-the-art facilities and a learner-centric environment." },
+  { title: "The Trust", body: "Established under the aegis of the Mohamed Sathak Trust, dedicated to the cause of higher education and philanthropic initiatives since 1973." },
 ];
 
 function About() {
@@ -38,11 +31,11 @@ function About() {
     <main className="bg-background">
       <PageHero
         eyebrow="Our Institution"
-        title="Twenty-five years of disciplined engineering"
-        description="M.S.A.J. College of Engineering is affiliated to Anna University and approved by AICTE, New Delhi, with a campus built for hands-on learning."
+        title="Engineering with Integrity"
+        description="M.S.A.J. College of Engineering is affiliated to Anna University and approved by AICTE, New Delhi. We are driven by a commitment to academic excellence and industry readiness."
       />
 
-      <section className="mx-auto max-w-[1440px] px-6 py-24 md:px-12">
+      <section id="mission" className="mx-auto max-w-[1440px] px-6 py-24 md:px-12">
         <Stagger gap={0.1} className="grid gap-8 md:grid-cols-3">
           {values.map((v) => (
             <StaggerItem key={v.title} variant="tilt" className="rounded-3xl border border-foreground/12 bg-foreground/5 p-9">
@@ -53,29 +46,57 @@ function About() {
         </Stagger>
       </section>
 
-      <section className="border-y border-foreground/12 bg-foreground/[0.03] px-6 py-24 md:px-12">
-        <div className="mx-auto max-w-[1440px] grid gap-14 lg:grid-cols-2 lg:items-center">
-          <Reveal variant="clip" className="overflow-hidden rounded-3xl border border-foreground/12">
-            <Parallax distance={24}>
-              <img
+      {/* Leadership Section */}
+      <section id="leadership" className="border-t border-foreground/12 bg-foreground/[0.03] px-6 py-24 md:px-12">
+        <div id="trust" className="mx-auto max-w-[1440px] grid gap-14 lg:grid-cols-2 lg:items-center">
+          <Reveal variant="clip" className="overflow-hidden rounded-3xl border border-foreground/12 h-[500px]">
+             <img
                 src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80"
                 alt="MSAJCE academic block"
-                className="w-full scale-110 object-cover grayscale"
+                className="w-full h-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
               />
-            </Parallax>
           </Reveal>
           <div>
             <Reveal variant="mask">
-              <h2 className="text-3xl font-black uppercase tracking-tight text-foreground sm:text-4xl">Milestones</h2>
+              <h2 className="text-3xl font-black uppercase tracking-tight text-foreground sm:text-4xl">Leadership & Heritage</h2>
             </Reveal>
-            <Stagger gap={0.1} className="mt-10 space-y-8">
-              {milestones.map((m) => (
-                <StaggerItem key={m.year} variant="slide-left" className="flex gap-6 border-b border-foreground/10 pb-8 last:border-0">
-                  <span className="w-16 shrink-0 text-lg font-black text-foreground">{m.year}</span>
-                  <p className="text-sm leading-relaxed text-foreground/65">{m.text}</p>
-                </StaggerItem>
-              ))}
-            </Stagger>
+            <Reveal variant="mask" delay={0.1}>
+              <p className="mt-6 text-lg leading-relaxed text-foreground/60">
+                Founded by the visionary <strong>Mohamed Sathak Trust</strong>, our institution has grown under the guidance of our esteemed Chairman, Director, and Principal. Their unwavering commitment to educational excellence ensures that MSAJCE remains at the forefront of engineering education in Tamil Nadu.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Accreditations & Recognitions */}
+      <section id="accreditations" className="px-6 py-24 md:px-12">
+        <div className="mx-auto max-w-[1440px]">
+          <Reveal variant="mask">
+            <h2 className="text-3xl font-black uppercase tracking-tight text-foreground sm:text-4xl mb-12">Accreditations & Recognitions</h2>
+          </Reveal>
+          
+          <div className="grid gap-8 md:grid-cols-3">
+            <Reveal variant="slide-up" delay={0.1} className="rounded-3xl border border-foreground/12 bg-foreground/5 p-8">
+              <h3 className="text-2xl font-black uppercase tracking-tight text-primary mb-4">NAAC</h3>
+              <p className="text-sm leading-relaxed text-foreground/70 mb-4">
+                Assessed by the National Assessment and Accreditation Council across 7 core criteria including Curricular Aspects, Teaching-Learning, and Institutional Values.
+              </p>
+            </Reveal>
+
+            <Reveal variant="slide-up" delay={0.2} className="rounded-3xl border border-foreground/12 bg-foreground/5 p-8">
+              <h3 className="text-2xl font-black uppercase tracking-tight text-primary mb-4">NIRF</h3>
+              <p className="text-sm leading-relaxed text-foreground/70 mb-4">
+                Active participant in the National Institutional Ranking Framework across Engineering, Overall, and Innovation categories.
+              </p>
+            </Reveal>
+
+            <Reveal variant="slide-up" delay={0.3} className="rounded-3xl border border-foreground/12 bg-foreground/5 p-8">
+              <h3 className="text-2xl font-black uppercase tracking-tight text-primary mb-4">IQAC</h3>
+              <p className="text-sm leading-relaxed text-foreground/70 mb-4">
+                Our Internal Quality Assurance Cell continuously reviews teaching-learning structures, manages feedback, and prepares the Annual Quality Assurance Report (AQAR).
+              </p>
+            </Reveal>
           </div>
         </div>
       </section>

@@ -289,15 +289,19 @@ body.dropdown-open .msajce-page-blur {
   justify-content: center;
   height: 2.5rem;
   width: 2.5rem;
-  border-radius: 0px;
+  border-radius: 9999px;
   background: transparent;
-  color: hsl(var(--foreground));
+  color: var(--color-foreground);
   cursor: pointer;
-  transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease, transform 0.2s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .theme-toggle-btn:hover {
-  background: color-mix(in srgb, hsl(var(--foreground)) 8%, transparent);
+  background: color-mix(in srgb, var(--color-foreground) 8%, transparent);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.9);
 }
 
 .theme-toggle-svg {
@@ -360,4 +364,30 @@ body.dropdown-open .msajce-page-blur {
   ::view-transition-new(root) {
     animation: none;
   }
+}
+
+/* Scroll Reel Testimonials */
+.scroll-reel-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: reel-char-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes reel-char-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-reel-exit .scroll-reel-char {
+  animation: none;
+  opacity: 0;
+}
+
+.scroll-reel-exit {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.2s, transform 0.2s;
 }

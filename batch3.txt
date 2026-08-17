@@ -1,0 +1,1787 @@
+MSAJCE_Research_Exams_and_Campus_Facilities_13_Pages_batch3_.docx
+========================================
+
+MSAJCE Website Content Migration — Research, Exams & Campus Facilities (13 Pages)
+Target Domain: https://msajce-edu.inExtraction Date: 2026-08-14Format: Unaltered verbatim text, exact Markdown tables, heading hierarchy, lab facilities, committees, student activities, and link preservation.
+PAGE: Research and Development
+Source URL: https://msajce-edu.in/research.phpStatus: OK
+Breadcrumb
+Home > Research and Development
+Tabs (if applicable)
+Objectives | Research Advisory Committee | List of Supervisors | Publications | Patent Filed / Copy Right | Books / Book Chapter | NISP
+Content
+Research and Development
+Objectives
+The Research and Development Cell aims to nurture research culture in the College by promoting research in newly emerging and challenging areas of Engineering, Technology, Science and Humanities:
+To encourage the students and faculty members to carry out research in the fields of Engineering, Technology, Science and Humanities by providing necessary facilities and infrastructures required for carrying out research.
+To create zeal among the students and faculty towards research and innovation and to encourage them to publish their findings in conferences and journals.
+To assist the students to apply funding for conducting research under student project scheme to various funding agencies like TNSCST, MSME, IEI (I) etc.
+To work closely with the industry to understand their needs that eventually will result in new or improved products, processes, systems or services that can increase the company's productivity and also promote Institute-Industry Collaboration.
+To support the government in serving the society by taking up sponsored projects offered by agencies such as TNSCST, DST, AICTE, UGC, ISRO, DRDO, CSIR, DBT etc.
+To enhance the general research capability of budding engineers by way of participating in conferences, seminars, workshops, project competition, etc.
+To organize various workshops/ seminar/ trainings related to promotion of research.
+To encourage both students and faculty to apply copyrights and patents.
+Research Advisory Committee
+Dr. B. Janarthanan: Head-Research, MSAJCE, Chennai (Convener)
+Dr. Srinivasan: Secretary TNSCST, Chennai (Advisor) - Phone: 044-22301428, Email: ms.tanscst@nic.in
+Dr. Parthiban: Asso.Prof/ Prod. NIT, Trichy (Advisor) - Phone: 9443430246, Email: parthiban@nitt.edu
+Dr. Somashekhar S Hiremath: Associate Professor, MSB 310, Manufacturing Engineering Section, Department of Mechanical Engineering, Indian Institute of Technology Madras, Chennai (Advisor)
+Dr. Sabitha Ramakrishnan: Professor, Dept of Instrumentation MIT, Chennai (Advisor) - Phone: 9789977989, Email: sabitha.ramakrishnan@gmail.com
+All Ph.D qualified faculty: Members
+Tables
+Table Caption: Patent Filed Details
+S.No
+Name
+Title of the Patent
+Patent Number
+1
+Dr. E. Dhiravidachelvi
+Design and implementation of a disaster management system using IoT and cloud computing techniques for a connected building to save lives with early warnings.
+2020101867
+2
+Dr. E. Dhiravidachelvi, Mrs. E. Jayanthi, Mrs. I. Suganthi, Mr. J. Raja, Mr.S. Naveenkumar
+Vehicular Edge Computing Using A Smart Embedded System For Intelligent Transportation
+202041033273
+3
+Mr. K. Vairaperumal
+Battery Swapping Smart Station for Future E-Vehicle Transportation
+202141021897 A
+4
+Mr. Chintala Venkatesh
+A Vehicle Tire Control System at curved roads using intelligent interfaces and support vector machines
+202141025111 A
+5
+Mrs. D. Hema Sumitha
+Real time based IOT Enabled Smart Metering System.
+202141026200 A
+6
+Mrs. G. Premalatha, Dr.E.Dhiravidachelvi
+Fundamentals of Electrical Measuring Instruments
+202141014294 A
+7
+Mr. M. Kamarajan, Mr.M. Ashokkumar
+Wireless sensor network for long- term environmental checking for internet of things application
+202141061248
+8
+Mr. M. Kamarajan
+Deep learning based automatic eye cataract detection algorithm using MATLAB
+202141061583A
+9
+Mr. S.R. Mohan
+Refrigerator with food warming apparatus attachment
+365189001
+10
+Mr.D.Weslin, Mr. V.Vigneshwaran
+A method and a device of Wireless Master Joystick Controller for Robotics
+202241071210
+11
+Dr.K S Srinivasan, Mrs.Jayanthi
+A Smart Device to Monitoring the Optic Cable and Inform the Users in Case of any Discrepancies
+202241071306
+12
+Dr. Someshwaran, Mr. Tharani Kumar
+Machine Learning - based closed-loop mixture of concrete equipment and the method
+202241071309
+13
+Dr.Balakrishnan, Mr.Vinothkumar
+Dedicated drone-based testing of building's strength located in a hazardous environment
+202241071308
+Table Caption: Patent Published Details
+S.No
+Name
+Title of the Patent
+Patent Number
+1
+Dr. E. Dhiravidachelvi
+Design and implementation of a disaster management system using IoT and cloud computing techniques for a connected building to save lives with early warnings.
+2020101867
+2
+Dr. E. Dhiravidachelvi, Mrs. E. Jayanthi, Mrs. I. Suganthi, Mr. J. Raja, Mr.S. Naveenkumar
+Vehicular Edge Computing Using A Smart Embedded System For Intelligent Transportation
+202041033273
+3
+Mr. K. Vairaperumal
+Battery Swapping Smart Station for Future E-Vehicle Transportation
+202141021897 A
+4
+Mr. Chintala Venkatesh
+A Vehicle Tire Control System at curved roads using intelligent interfaces and support vector machines
+202141025111 A
+5
+Mrs. D. Hema Sumitha
+Real time based IOT Enabled Smart Metering System.
+202141026200 A
+6
+Mrs. G. Premalatha, Dr.E.Dhiravidachelvi
+Fundamentals of Electrical Measuring Instruments
+202141014294 A
+7
+Mr. M. Kamarajan, Mr.M. Ashokkumar
+Wireless sensor network for long- term environmental checking for internet of things application
+202141061248
+8
+Mr. M. Kamarajan
+Deep learning based automatic eye cataract detection algorithm using MATLAB
+202141061583A
+9
+Mr. S.R. Mohan
+Refrigerator with food warming apparatus attachment
+365189001
+10
+Mr.D.Weslin, Mr. V.Vigneshwaran
+A method and a device of Wireless Master Joystick Controller for Robotics
+202241071210
+11
+Dr.K S Srinivasan, Mrs.Jayanthi
+A Smart Device to Monitoring the Optic Cable and Inform the Users in Case of any Discrepancies
+202241071306
+12
+Dr. Someshwaran, Mr. Tharani Kumar
+Machine Learning - based closed-loop mixture of concrete equipment and the method
+202241071309
+13
+Dr.Balakrishnan, Mr.Vinothkumar
+Dedicated drone-based testing of building's strength located in a hazardous environment
+202241071308
+14
+Dr. B. Janarthanam
+Unmanned Aerial Vehicle
+202041047806 A
+15
+Mr. S. Senthil Pandi, Sankareswaran
+Computer implemented method of image classification with extreme learning machine
+201941054497 A
+16
+Mr. A. Syed Ismail
+An AI & ML based system for building architecture & map designing
+202141050400
+17
+Mrs. G. Premalatha, Dr.E.Dhiravidachelvi
+Real time crowd analysis using static video surveillance
+202141014294
+18
+Mr. S.R. Mohan, Mr. V. Vigneshwaran, Mr. D. Sakthivel
+Study on Mechanical Characterization of Graphene reinforced Aluminium Metal Matrix Composites
+202141012155
+19
+Dr. S. Prasath
+Friction stir welding of dissimilar aluminium alloys using tapered threaded tool profile
+202141005812
+20
+Dr. B. Muthu Kumar
+Type – 2 Diabetes detection and estimation from glucose levels by feature detection using machine learning algorithm
+202041023885
+21
+Dr.G Ramesh, Mr.S Syed Abudhahir
+Smart Painting Roller with Temperature Sensor to Detect the Temperature of Wall and Paint
+202241071203
+22
+Mrs. I.S.Suganthi, Mrs.Priyadharshini
+Design a Micro Strip Patch for Spectrum Utilization in Cognitive Radio Networks
+202241071307
+23
+Dr.I Manju, Mr.C.Venkatesh
+ML Strategy for Performance Enhancement of Phase Change Material for a Smart Control Solar Application
+202241071305
+Table Caption: Copyright Filed Details
+S.No
+Name
+Title of the Copy Right
+Copy Right Number
+1
+Dr. R. Senthilkumar, G. Ramesh
+Engineering Practices Lab
+L - 78730 / 2018
+2
+Mr.Chintala Venkatesh, Mrs. R. Abirami
+Labview Manual
+7675/2022-CO
+3
+Dr. R. Senthil Kumar, Mr. P. Saravanan, Mr. D. Sakthivel
+Computer Aided Design - Course Manual
+11415/2022-CO
+4
+Dr. G. Ramesh, Mr. S.R. Mohan, Mr. V. Vigneswara
+Computer Aided Design And Manufacturing - Laboratory Manual
+11417/2022-CO
+5
+Dr. S. Prasath, Mr. A. Muhammed Ifran, Mr. J. Rajesh
+Meterology And Measurements - Laboratory Manual
+11418/2022-CO
+6
+Dr. R. Senthil Kumar, Dr. S. Prasath, Mr. J. Rajesh
+Manufacturing Technology - Laboratory Manual
+11420/2022-CO
+7
+Dr. B. Janarthanan, Mr. P. Saravanan, Mr. S.R. Mohan
+Computer Aided Simulation And Analysis - Laboratory Manual
+11412/2022-CO
+8
+Dr.R. Senthil Kumar, Mr. P. Saravanan, Mr. D. Sakthivel
+Computer Aided Machine Drawing - Laboratory Manual
+11409/2022-CO
+9
+Dr. K.S. Srinivasan, Dr. I. Manju, Ms. K. Gayathri
+Revit Architecture Lab Manual
+22218/2021-CO
+10
+Dr. K. S. Srinivasan, Dr. I. Manju, Mr. K. Vairaperumal
+Bot Lab Manual
+22219/2021-CO
+Table Caption: Books and Book Chapters
+S.No
+Name
+Title of the Book / Chapters
+ISBN / ISSN Number
+1
+Dr. K.S. Srinivasan
+Communication Theory
+978-81-89638-43-6
+2
+Dr. K.S. Srinivasan
+Principles of Communication Engineering
+978-81-87721-95-6
+3
+Dr. K.S. Srinivasan
+Electric Circuits and Electronic Devices
+978-81-8472-085-3
+4
+Dr. K.S. Srinivasan
+Basic Electrical and Electronics Engineering
+978-81-8472-086-0
+5
+Dr. K.S. Srinivasan
+Digital Communication
+978-81-89638-19-1
+6
+Dr. K.S. Srinivasan
+Electronic Devices
+978-81-8472-254-3
+7
+Dr. K.S. Srinivasan
+Electronic Devices and Circuits
+978-81-8472-101-0
+8
+Dr. K.S. Srinivasan
+Electronic Circuits I
+978-81-8472-100-3
+9
+Dr. K.S. Srinivasan
+Electronic Circuits II
+978-81-89638-16-0
+10
+Dr. K.S. Srinivasan
+Electronics and Microprocessors
+978-81-89638-19-1
+11
+Dr. K.S. Srinivasan
+Digital Signal Processing
+81-87721-46-4
+12
+Dr. K.S. Srinivasan
+Electronics and Microprocessors
+978-81-89638-19-1
+13
+Dr. K.S. Srinivasan
+Digital Signal Processing
+81-87721-46-4
+14
+Dr. K.S. Srinivasan
+Electric Circuit Theory
+978-81-938894-2-8
+15
+Dr. K.S. Srinivasan
+Electronic Devices and Circuits (As per the JNTU Syllabus)
+978-81-89638-08-5
+16
+Dr. E. Dhiravidachelvi
+Fundamentals of Electrical Measuring Instruments
+1-978-93-83409-35-8
+17
+Dr. E. Dhiravidachelvi
+Data Science for COVID -19 (Elsevier)
+978-0-12-824536-1
+18
+Dr. E. Dhiravidachelvi
+Applications of Big Data in Health Care
+978-0-820203-6
+19
+Dr. E. Dhiravidachelvi
+Monograph on Fundamentals of electrical measuring instruments
+978-93-83409-35-8
+20
+Dr. K.S. Srinivasan, Dr. P. Subramanian, Mr. D. Weslin
+Wireless Sensor Networks
+978-81-954927-4-9
+21
+Mr. C. Daniel
+Impact of Lockdown for Research Scholars
+978-93-90853-50-2
+22
+Mr. S. Senthil Pandi
+Machine Learning
+978-93-91373-85-6
+23
+Mr. S. Senthil Pandi
+Computer Networks
+202041033273
+24
+Dr. I. Manju, Dr. E. Dhiravidachelvi, Mrs. G. Premalatha
+Digital Communication and Computer Networks
+819549276-2
+PDF Links
+Research Publications (2016–2024)
+External Links
+Indian Patent Search Portal
+Copyright Office Status Search
+IIT Madras Faculty Profile
+Contact Details Found
+Address: 34, Rajiv Gandhi Salai (OMR), Siruseri IT Park, Siruseri, Chennai - 603103
+Phone: +91 99400 04500
+Email: msajce.office@gmail.com
+PAGE: COE — End Semester Exam Timetable
+Source URL: https://msajce-edu.in/ESE-Timetable.phpStatus: OK
+Breadcrumb
+Home > COE > ESE Timetable May - June 2026
+Tabs (if applicable)
+Regulations 2021 - UG | Regulations 2024 - UG 1st Year | Regulations 2024 - UG 2nd Year | Regulations 2024 - PG
+Content
+End Semester Exam Timetable (May - June 2026)
+Tables
+Table Caption: Regulations 2021 — UG Programmes
+S.No
+Name of the Department
+1
+Civil Engineering
+2
+Computer Science and Engineering
+3
+Electrical and Electronics Engineering
+4
+Electronics and Communication Engineering
+5
+Mechanical Engineering
+6
+Information Technology
+7
+Artificial Intelligence and Data Science
+8
+Computer Science and Business Systems
+9
+Computer Science and Engineering w/s in Cyber Security
+10
+HONOR / MINOR
+Table Caption: Regulations 2024 — UG 1st Year
+S.No
+Name of the Department
+1
+First Year all Departments
+Table Caption: Regulations 2024 — UG 2nd Year (Batch 2024)
+S.No
+Name of the Department
+1
+Civil Engineering
+2
+Computer Science and Engineering
+3
+Electrical and Electronics Engineering
+4
+Electronics and Communication Engineering
+5
+Mechanical Engineering
+6
+Information Technology
+7
+Artificial Intelligence and Data Science
+8
+Computer Science and Business Systems
+9
+Computer Science and Engineering w/s in Cyber Security
+10
+Artificial Intelligence & Machine Learning
+11
+ECE w/s in Advanced Communication Technology
+12
+Electronics Engg w/s in VLSI Design & Technology
+Table Caption: Regulations 2024 — PG Programmes
+S.No
+Name of the Department
+1
+Computer Science and Engineering
+2
+Structural Engineering
+PDF Links
+Exam Timetable Downloads
+External Links
+COE Result Portal
+Contact Details Found
+Address: 34, Rajiv Gandhi Salai (OMR), Siruseri IT Park, Siruseri, Chennai - 603103
+Phone: +91 99400 04500
+Email: msajce.office@gmail.com
+PAGE: Placement Cell
+Source URL: https://msajce-edu.in/placement.phpStatus: OK
+Breadcrumb
+Home > Placement Cell
+Tabs (if applicable)
+Overview | Training & Placement | Facilities | Industry Institution Interaction Cell | Higher Education Cell | Contact
+Content
+Training and Placement Cell
+Overview
+In competitive job market, employers expect graduates to have a range of skills and right experience of the workplace. While it seems a daunting task, we at MSAJCE provide utmost care, support and provide ample opportunities to help the students to develop the requisite skills and expertise and make them employable graduates:
+To provide Employment Opportunities for the students in reputed companies.
+To organize On and Off Campus Recruitment Drive for the students.
+To Train the students on employability skills such as Aptitude Skills, Communication Skills and Technical Skills.
+To conduct Value Added Certification courses to gain domain specific knowledge.
+To conduct Mock Aptitude, Mock interview, Mock GD to prepare the students to face the interview with confidence.
+To arrange In-plant training, Internship and industrial visits.
+To organize workshops on Recent Technologies by industrial experts.
+Placement Committee
+Mr. S.V. Vinodh: Placement Officer (Assistant Professor - EEE)
+Mr. Ajin Sijo John: Assistant Placement Officer (Assistant Professor - MECH)
+Mrs. N. Kavitha: Member (Assistant Professor - EEE)
+Mr. V.A. Babu Charies Earnest: Member (TEDx Speaker)
+Training & Placement Facilities
+Well-furnished air-conditioned rooms for written tests, group discussions, and personal interviews.
+Well-established Computer labs for online training and assessments.
+Air-conditioned Auditoriums, Seminar Halls, and Meeting Halls.
+Dedicated AC rooms for group discussions and mentorship.
+Tables
+Table Caption: Student Internship Details (2022–2023)
+Sl. No.
+Name of the Industry
+No of Students
+1
+Lenovo
+75
+2
+Zoho Tech's
+51
+3
+Green Valleys Shelters Pvt. Ltd.
+45
+4
+Thermodyn
+39
+5
+Sri KVS Industries
+30
+6
+Ozaro Media Teck
+34
+7
+Openwave, Chennai
+16
+8
+Preethi Engineering, Chennai
+14
+9
+TVS Mobility
+10
+10
+Disenosys
+9
+11
+AG Active Galaxy
+5
+12
+Diamond Engineering, Chennai
+4
+13
+Pantech e learning pvt. Ltd.
+4
+14
+NLC
+4
+15
+Vignesh Engineering Industries
+4
+16
+AIS Glasses
+5
+17
+AWS Steels , Hosur
+2
+18
+Pungai Industries , Trichy
+1
+19
+Builders World, Nagapattinam
+1
+20
+Shiash Info Solutions Private Limited
+4
+21
+Alsha Solutions
+2
+22
+Hasna Technology
+1
+23
+Customer Labs
+6
+24
+National Institute of Wind Energy
+2
+25
+UDS (Updated Service Limited)
+2
+26
+Eat My News
+2
+27
+JFX Media
+1
+28
+JASS Metal Works LLC
+1
+29
+Recode Solution
+1
+30
+Smarther
+1
+31
+Avishkar Tech Solutions
+1
+32
+Uniconverge Technologies Pvt. Ltd.
+1
+33
+Exposys Data Labs
+1
+34
+NoobTron Private Limited
+1
+35
+CodSoft
+1
+36
+NoobTron Private Limited
+1
+37
+InternPe
+1
+38
+RR Electronics
+1
+39
+Broadline Computer Systems
+1
+40
+Codebind Technologies
+1
+41
+NuClass
+1
+42
+Verzo
+1
+Table Caption: Student Internship Details (2021–2022)
+Sl. No.
+Name of the Industry
+No of Students
+1
+TVS Sundaram Fasteners, Chennai
+10
+2
+Gabriel & Co, Chennai
+5
+3
+Preethi Engineering, Chennai
+8
+4
+Caprisio Securities
+10
+5
+Veelog Nanoceramic Private Limited
+15
+Table Caption: Student Internship Details (2020–2021)
+Sl. No.
+Name of the Industry
+No of Students
+1
+Prinston Smart Engineers
+3
+2
+Kinnagam Interiors and Construction
+1
+3
+Ero Design Consultant
+3
+4
+Vegan Creative Engineering Solutions and Contracting
+3
+5
+OSI Digital Inc
+2
+6
+Crime Bharat
+1
+7
+Cyber Crime
+1
+8
+AICL, Chennai
+3
+9
+Gowatr Private Limited
+11
+10
+Precision Instrument & Electronics (Madras) Pvt Ltd
+9
+11
+Velan Motors
+1
+12
+Samundeeswari Construction
+1
+13
+Atalon
+3
+14
+Pantech Solutions
+6
+15
+Thermodynedutech
+31
+Table Caption: Student Higher Education Progression Records
+S.NO.
+Name of the Student
+Program Graduated
+Name of the Institution Joined
+Programme Admitted
+2022-2023
+1
+Anandu Acharry .M.S
+BE - CIVIL
+Anna University
+Environment Management
+2
+Veerakumar .M
+BE - CIVIL
+Mohamed Sathak A.J. College of Engineering
+ME - Structural Engineering
+3
+Shaafia Tasneem .N
+BE - CSE
+St. Joseph College of Engineering
+ME - Computer Science
+4
+Muhammed Shibil .C.V
+BE - CSE
+Amrita Vishwa Vidyapeetham
+Data Science
+5
+Jahangeer Nadhir Khan .P
+BE - ECE
+Loyola College
+MBA
+2021-2022
+1
+Faisal Ahmed Khan
+BE - CSE
+Measi, New College
+MBA
+2
+Sanjith .S
+BE - EEE
+Amet University
+Electrotechnical Officer
+3
+Muhammed Zahan Faaieq
+BE - MECH
+Manchester University
+Master of Science
+4
+Mohamed Shafi .S
+BE - MECH
+Amrita Vishwa Vidyapeetham
+Automobile Engineering
+5
+Safwaan Abdul Razaq
+B.Tech - IT
+SRM University
+ME - Computer Science
+2020-2021
+1
+Hemananthan .M
+BE - CIVIL
+Mohamed Sathak AJ College of Engineering
+ME Structural Engineering
+2
+Musthaq Ameen
+BE - CIVIL
+Mohamed Sathak AJ College of Engineering
+ME Structural Engineering
+3
+Crispin Nancy
+BE - CIVIL
+Mohamed Sathak AJ College of Engineering
+ME Structural Engineering
+4
+Prakash Ravichandran
+B.Tech - IT
+PSB Academy, Singapore
+MS - Cyber Security
+5
+Syed Zaheer Abbas .N
+BE - MECH
+SRM Valliammai Engineering College
+ME Industrial Safety Engineering
+2019-2020
+1
+Yashwanth .R
+BE - Material Science
+IIT Hyderabad
+M.Tech - Material Science & Metallurgical Engg
+2
+Sendhil Sasikala
+BE - Material Science
+Darmstadt University of Technology, Germany
+MS - Material Science
+3
+Sreenidhi Alagesan
+BE - Material Science
+Darmstadt University of Technology, Germany
+MS - Material Science
+4
+Salma Arifa
+BE - ECE
+Crescent Institute of Science & Technology
+M.Tech - VLSI & Embedded System
+5
+Priyanka
+BE - ECE
+PSN Engineering College, Rajapalayam
+ME
+6
+Badhurun Farhana
+BE - ECE
+Crescent Institute of Science & Technology
+M.Tech - VLSI & Embedded System
+2018-2019
+1
+Shahana .S
+BE - CIVIL
+IIT Hyderabad
+M.Tech
+2
+Radhika .T
+BE - CIVIL
+Mohamed Sathak AJ College of Engineering
+ME - Material Science
+3
+Susmitha .R
+BE - CIVIL
+Mohamed Sathak AJ College of Engineering
+ME - Material Science
+4
+Aabith Hussain J
+BE - MECH
+Crescent Institute of Science & Technology
+MBA - Management Studies
+5
+Amira Thasneem
+BE - ECE
+Agni College of Technology
+ME - Communication
+2017-2018
+1
+Merlin Salbia .S
+BE - CIVIL
+Government College of Engineering Tirunelveli
+ME Structural Engineering
+2
+Syed Abrar Ahamed Farooqi .S
+BE - CIVIL
+Hindustan Institute of Technology & Science
+ME Structural Engineering
+2016-2017
+1
+Satheesh Kumar .D
+BE - MECH
+Loyola
+MBA
+2
+Danisha Jothi .M
+BE - ECE
+Sri Sairam Engineering College
+ME - Embedded System Technology
+PDF Links
+Training Program Details (AY 2022–2026)
+External Links
+None
+Contact Details Found
+Placement Officer: Mr. S.V. Vinodh
+Address: 34, Rajiv Gandhi Salai (OMR), Siruseri IT Park, Siruseri, Chennai - 603103
+Phone: +91-99409 02255 / +91-89037 66391
+Email: placement@msajce-edu.in / msajce.office@gmail.com
+PAGE: Learning Centre (Library)
+Source URL: https://msajce-edu.in/library.phpStatus: OK
+Breadcrumb
+Home > Life at MSAJCE > Learning Centre
+Tabs (if applicable)
+Resources | Stack Details | E-Resources | Library Committee | Rules & Regulations
+Content
+Learning Centre (Central Library)
+Overview
+Library is the Heart of every academic Institution. The central library is housed in a spacious area of 8,978 Sq.ft (Ground Floor and 1st Floor), fully computerized using Koha Open Source Library Management System with Barcode technology.
+Working Hours
+Monday to Saturday: 8:00 AM to 7:00 PM
+All Sundays: 10:00 AM to 4:00 PM
+Stack Collection Summary
+Total Book Volumes: 29,853
+Total Titles: 5,628
+Reference Books: 1,885
+National Printed Journals: 35
+Magazines: 20
+E-Books: 3,790
+Daily Newspapers: 05
+Back Volumes: 106
+CD-ROMs: 356
+Project Reports: 260
+DELNET E-Journals: 1,379
+Gale Database International Journals: 1,800
+Library Services & Memberships
+Services: Book Issue & Return, Reference, OPAC, Reservation, Inter-Library Loan (ILL), Reprography, Group Discussion Rooms, Periodical Utilization.
+Institutional Memberships: Developing Library Network (DELNET - https://delnet.in) and J-Gate Database (50,684+ indexed journals - https://jgateplus.com).
+Tables
+Table Caption: Printed Journals by Department
+S.NO
+Name of the Department
+No of Printed Journals
+1
+Mechanical Engineering
+06
+2
+Electronics and Communication Engineering
+06
+3
+Electrical and Electronics Engineering
+06
+4
+Computer Science Engineering / Information Technology
+10
+5
+Civil Engineering
+4
+6
+Science & Humanities
+5
+Total
+37
+Table Caption: Membership Borrowing Eligibility
+Membership Category
+Borrowing Entitlements
+Loan Period
+Teaching Staff
+10 Books
+30 Days
+UG Students
+18 Books
+30 Days
+PG Students
+18 Books
+30 Days
+Supporting and Administrative Staff
+04 Books
+30 Days
+Table Caption: Library Committee Members
+S.No
+Name
+Designation
+Committee Role
+1
+Dr. K.S. Srinivasan
+Principal
+Chairman
+2
+Dr. A. Balakrishnan
+Head - Academics
+Member
+3
+Dr. B. Janarthanan
+Head – Research
+Member
+4
+Dr. I. Manju
+Head - IQAC
+Member
+5
+Dr. Kamalaselvan A
+Library I/C
+Secretary
+6
+Mrs. Anusuya P
+AP / ECE & Library I/C
+Member Secretary
+7
+All HoDs
+HoDs of all Departments
+Members
+8
+Mr. S. Sudhakar
+Chief Librarian
+Member
+9
+Mr. John Anish
+Librarian
+Member
+10
+Mr. Arshad K
+III-Yr EEE Student Rep
+Member
+11
+Ms. Swetha Maria Saustina S
+III-Yr EEE Student Rep
+Member
+12
+Mr. Mohamed Nayeem B
+III-Yr ECE Student Rep
+Member
+13
+Ms. D. Kamali
+III-Yr EEE Student Rep
+Member
+14
+Mr. Vasanthakumar N
+III-Yr MECH Student Rep
+Member
+15
+Mr. Salman S
+III-Yr MECH Student Rep
+Member
+16
+Mr. Musthaq J
+III-Yr CIVIL Student Rep
+Member
+17
+Mr. Shanmugam S
+III-Yr CIVIL Student Rep
+Member
+18
+Ms. Revathi U
+III-Yr IT Student Rep
+Member
+19
+Mr. Imamm Jaffar J
+III-Yr IT Student Rep
+Member
+20
+Mr. Elango V
+III-Yr CSE Student Rep
+Member
+21
+Ms. Vasumathi A
+III-Yr CSE Student Rep
+Member
+PDF Links
+None
+External Links
+DELNET Portal
+J-Gate Database
+National Digital Library of India (NDLI)
+Shodhganga
+NPTEL Video Lectures
+Contact Details Found
+Address: 34, Rajiv Gandhi Salai (OMR), Siruseri IT Park, Siruseri, Chennai - 603103
+Phone: +91 99400 04500
+Email: msajce.office@gmail.com
+PAGE: Hostel Facilities
+Source URL: https://msajce-edu.in/hostel.phpStatus: OK
+Breadcrumb
+Home > Life at MSAJCE > Hostel
+Tabs (if applicable)
+Boys Hostel | Girls Hostel | Rules | Dining Hall & Cafeteria | Canteen Committee
+Content
+Hostel Facilities
+Overview
+A home away from home is provided separately for both boys and girls, accommodating 480 boy students and 210 girl students.
+Boys Hostel: Located inside the college campus. It consists of 3 blocks with 233 Non-AC rooms and 6 AC rooms, accommodating 2 students per room. Equipped with TV hall, Wi-Fi, indoor games, and study facilities open until 7:00 PM.
+Girls Hostel: Located at Sholinganallur (5 km from campus) in a safe and secure residential zone. Consists of 1 block with 71 rooms accommodating 3 students per room, with attached bath/toilet, entertainment hall, Wi-Fi, and library/computer access until 9:00 PM.
+Tables
+Table Caption: Hostel Infrastructure Comparison
+Location
+Boys Hostel (Inside Campus)
+Girls Hostel (at Sholinganallur)
+No. of Blocks
+3
+1
+No. of Rooms (Non-AC)
+233
+71
+No. of Rooms (AC)
+6
+-
+Capacity per Room
+2 persons
+3 persons
+Amenities
+Cot, Chair, Lamp, Fan, Water Heater, Wi-Fi, TV Hall
+Cot, Chair, Lamp, Fan, Water Heater, Wi-Fi, TV Hall
+Table Caption: Mess Dining Timings
+Meal
+Working Days
+Holidays
+Breakfast
+07:00 AM to 08:00 AM
+07:30 AM to 09:00 AM
+Lunch
+01:00 PM to 01:45 PM
+12:30 PM to 02:00 PM
+Dinner
+07:00 PM to 08:30 PM
+07:00 PM to 09:00 PM
+Table Caption: Study Hours and Recreation Timings
+Category
+Working Days
+Holidays
+Morning Study Hours
+05:00 AM to 07:00 AM
+09:00 AM to 12:00 PM
+Evening Study Hours
+09:00 PM to 10:30 PM
+01:00 PM to 06:00 PM
+Games & TV Hours
+04:30 PM to 06:00 PM
+06:00 PM to 07:00 PM
+Table Caption: Canteen Committee
+S.No
+Role
+Name & Title
+1
+President
+Dr. K.S. Srinivasan (Principal)
+2
+Officer In-charge
+Dr. S. Vijayakumar (Chief Organization Officer)
+3
+Manager
+Mr. Arun (Manager)
+4
+Head - Student Affairs
+Dr. K.P. Santhosh Nathan
+5
+Staff Members
+Dr. S. Vijayakumar, Mr. Arun, Mr. A. Abdul Gafoor
+6
+Kitchen Team
+Mr. Abdul Rashid (Cook), Mr. Kannan (Asst Cook), Mr. Shankar (Asst Cook)
+PDF Links
+None
+External Links
+None
+Contact Details Found
+Address: 34, Rajiv Gandhi Salai (OMR), Siruseri IT Park, Siruseri, Chennai - 603103
+Phone: +91 99400 04500
+Email: msajce.office@gmail.com
+PAGE: Transport
+Source URL: https://msajce-edu.in/transport.phpStatus: OK
+Breadcrumb
+Home > Life at MSAJCE > Transport
+Tabs (if applicable)
+College Bus Facility | MTC Routes | Bus Routes
+Content
+Transport Facilities
+Overview
+The college maintains a dedicated fleet of 22 buses, 1 Tata ACE, and 1 Ambulance operating across Chennai, Chengalpattu, Kanchipuram, and Thiruvallur districts. The buses are also utilized for sports, social services, industrial visits, placement drives, and academic excursions.
+Transport Committee
+Dr. K.P. Santhosh Nathan: Transport Convener (Phone: 98408 86992)
+Mr. A. Abdul Gafoor: Assistant Transport Convener (Phone: 99403 19629)
+Tables
+Table Caption: Metropolitan Transport Corporation (MTC) Bus Routes Passing College
+S.No
+MTC Bus Route No
+Starting Point
+Ending Point
+Via
+Frequency
+1
+19
+T. Nagar
+Thiruporur
+OMR, Madhya Kailash, SRP
+Daily
+2
+519
+T. Nagar
+Thiruporur
+Saidapet, Adyar, SRP
+Daily
+3
+221H
+Central
+Thiruporur
+Anna Salai, Saidapet, SRP
+Daily
+4
+102X
+Broadway
+Thiruporur
+Marina, Adyar, OMR
+Daily
+5
+102S
+Broadway
+Sipcot
+Marina, Adyar, OMR
+Daily
+6
+102
+Broadway
+Kelambakkam
+Marina, Adyar, OMR
+Daily
+7
+B19
+Sholinganallur
+Kelambakkam
+Sipcot, OMR
+Daily
+8
+570
+CMBT
+Kelambakkam
+Vadapalani, Velachery, SRP
+Daily
+9
+570S
+CMBT
+Sipcot
+Vadapalani, Velachery, SRP
+Daily
+10
+105
+Tambaram
+Siruseri
+Thalambur
+Daily
+Table Caption: College Bus Route Schedules
+S.No
+Bus Route Code & Destination
+Departure Time
+1
+AR 3 - UTHIRAMERUR
+5:50 AM
+2
+AR 4 - MOOLAKADAI
+6:10 AM
+3
+AR 5 - MMDA SCHOOL
+6:15 AM
+4
+AR 6 - ICF
+6:15 AM
+5
+AR 7 - CHUNAMBEDU
+5:25 AM
+6
+AR 8 - MANJAMBAKKAM
+5:50 AM
+7
+AR 9 - ENNORE
+6:15 AM
+8
+AR 10 - PORUR
+6:25 AM
+9
+R 22 - NEMILICHERY
+6:00 AM
+PDF Links
+Bus Route Detailed Schedules
+External Links
+None
+Contact Details Found
+Dr. K.P. Santhosh Nathan (Transport Convener): 98408 86992
+Mr. A. Abdul Gafoor (Asst. Transport Convener): 99403 19629
+General Office: +91 99400 04500
+PAGE: Department of Physical Education (Sports)
+Source URL: https://msajce-edu.in/sports.phpStatus: OK
+Breadcrumb
+Home > Life at MSAJCE > Department of Physical Education
+Tabs (if applicable)
+Sports Activities | Sports Quota | Fitness Center | Annual Sports Activities
+Content
+Department of Physical Education
+Physical Education Leadership
+Director of Physical Education: Dr. K. P. SANTHOSH NATHAN (B.P.E.S., B.P.Ed., M.P.Ed., M.Phil., Ph.D.) — Email: ped.santhosh@msajce-edu.in
+Assistant Director of Physical Education: Mr. M. Janakiraman (B.Sc., M.P.Ed., NSNIS Cricket)
+Sports Quota Scholarship & Facilities
+Admissions are provided through Sports Quota with scholarships for District, State, and National level participants across disciplines including:
+Basketball, Football, Cricket & Cricket Nets, Yoga, Kabaddi, Volleyball, Table Tennis, Carrom, Chess, Track & Field, Kho Kho.
+Tables
+Table Caption: Fitness Center & Gymnasium Equipment List
+S.No
+Equipment Name
+1
+Multi Gym
+2
+Leg Extension
+3
+Preacher Curl Bench
+4
+Multi Adjustable Bench Press
+5
+Cable Cross Over Machine
+6
+Sitting and Standing Twister
+7
+Leg Press
+8
+Spin Bike
+9
+Round Rubberised Dumbbells
+10
+Rubber Weight Plates
+11
+Olympic Curl Bar
+12
+Olympic Weight Lifting Bar
+13
+Chrome Push-Up Bar
+14
+Triceps Rope
+Table Caption: Annual Sports Calendar Events
+S.No
+Event Description
+1
+Participation in Anna University, South Zone and Invitation Tournaments
+2
+Conducting Anna University Zonal and Inter-Zonal Tournaments
+3
+Conducting Annual Sports Day
+4
+Conducting Mohamed Sathak Trophy (Football) and BSM Trophy (Cricket)
+5
+Conducting Fit India Cyclothon
+PDF Links
+None
+External Links
+None
+Contact Details Found
+Dr. K. P. Santhosh Nathan: ped.santhosh@msajce-edu.in
+Address: 34, Rajiv Gandhi Salai (OMR), Siruseri IT Park, Siruseri, Chennai - 603103
+Phone: +91 99400 04500
+PAGE: Campus Radio
+Source URL: https://msajce-edu.in/campusradio.phpStatus: PAGE NOT FOUND / BROKEN (404 No canonical URL found on web server)
+Breadcrumb
+Home > Life at MSAJCE > Campus Radio
+Content
+Note: This URL returns a server-side 404 / Missing resource status. No active web page exists at this canonical path on the live web server.
+PAGE: Social Services (NSS / YRC / UBA)
+Source URL: https://msajce-edu.in/socialservices.phpStatus: OK
+Breadcrumb
+Home > Life at MSAJCE > NSS / NCC / Unnat Bharat Abhiyan
+Tabs (if applicable)
+NSS | YRC Club | Unnat Bharat Abhiyan (UBA) | Activities
+Content
+Social Services — NSS, YRC & Unnat Bharat Abhiyan
+National Service Scheme (NSS)
+Established at MSAJCE in 2001 with over 100 active student volunteers from 1st and 2nd years.
+Motto & Goal: "Serve the downtrodden in the society" and "Personality Development through Community Service".
+Volunteers Code: Work under nominated group leaders, avoid controversial issues, record daily activities, wear NSS badge on duty.
+Youth Red Cross (YRC)
+Established at MSAJCE in 2014 under Indian Red Cross Society principles (Humanity, Impartiality, Neutrality, Voluntary Service). Offers First Aid training and community health awareness.
+Unnat Bharat Abhiyan (UBA)
+Inspired by Gandhian philosophy of self-sufficient village republics, connecting higher education institutions with rural communities for participatory technology solutions.
+Tables
+Table Caption: NSS & Social Service Events (2022–2023)
+S.No
+Name of the Activity
+Date
+Report
+1
+Tobacco Awareness Rally
+26.06.2023
+View
+2
+Eye Screening Camp
+26.06.2023
+View
+3
+International Yoga Day
+21.06.2023
+View
+4
+Motivational Speech
+09.06.2023
+View
+5
+Cancer Awareness Rally
+31.05.2023
+View
+6
+Blood Donation Camp
+17.05.2023
+View
+7
+Kavalan SOS App Awareness Program
+20.04.2023
+View
+8
+Financial Education Program of NCFE
+16.03.2023
+View
+9
+Drug Awareness Program for School Students
+10.02.2023
+View
+10
+Voters Day Awareness Program
+25.01.2023
+View
+11
+Dental Health Awareness Camp
+11.01.2023
+View
+12
+Driving License Awareness Camp
+12.12.2022 & 13.12.2022
+View
+Table Caption: Community Activities (2021–2022)
+S.No.
+Date
+Name of the Event
+Beneficiary
+1
+13.05.2022
+Blood Donation Camp
+Right Hospitals, Royapettah
+2
+30.05.2022
+Eye Camp
+MSAJCE staff, students, Siruseri & Thalambur villagers
+3
+09.06.2022
+Free Medical & Dental Camp
+MSAJCE staff, students, Siruseri & Thalambur villagers
+4
+10.08.2022
+Mass Cleaning Camp
+MSAJCE Campus
+5
+11.08.2022
+Plastic Free School Campus Cleaning Camp
+Govt. Hr. Sec. School, Thiruporur
+6
+11.08.2022
+Sexual Harassment Awareness Programme
+Govt. Hr. Sec. School students, Thiruporur
+7
+12.08.2022
+Sexual Harassment Awareness Programme
+Govt. Hr. Sec. School students, Kelambakkam
+8
+12.08.2022
+Drug Abuse Awareness Program
+Govt. Hr. Sec. School students, Kelambakkam
+9
+17.08.2022
+Drug Abuse Awareness Program
+Govt. Hr. School students, Kovalam
+10
+26.08.2022
+Blood Donation Camp
+Mohamed Sathak A.J. College of Nursing, Siruseri
+11
+30.08.2022
+Drive against Drug Awareness Rally
+Thalambur and Siruseri villagers
+12
+17.09.2022
+Coastal Cleanup Day 2022
+Besant Nagar
+13
+19.10.2022
+Plastic Free School Campus Cleaning Camp
+Govt. Middle School, Nookampalayam
+14
+31.10.2022
+National Unity Day
+MSAJCE Staff and Students
+15
+10.11.2022
+Fire Safety Awareness Programme
+MSAJCE Staff, students, Siruseri & Thalambur villagers
+PDF Links
+Activity Reports & Approvals
+External Links
+None
+Contact Details Found
+Address: 34, Rajiv Gandhi Salai (OMR), Siruseri IT Park, Siruseri, Chennai - 603103
+Phone: +91 99400 04500
+Email: msajce.office@gmail.com
+PAGE: Clubs and Societies
+Source URL: https://msajce-edu.in/clubssocieties.phpStatus: OK
+Breadcrumb
+Home > Life at MSAJCE > Clubs and Societies
+Tabs (if applicable)
+Sports Club | Fine Arts Club | Science Club | Tamil Mandram | Coding Club | Robotic Club | Energy & Eco Club | Photography Club
+Content
+Clubs and Societies
+1. Sports Club
+Motto: "Teamwork Makes The Dream Work"
+Activities: Outdoor (Cricket, Football, Volleyball, Basketball, Rugby, Badminton, Kho Kho, Throwball) and Indoor (Carrom, Table Tennis, Chess).
+2. Fine Arts Club (Artful Aesthetics / Envista)
+Staff Coordinator: Ms. S. Viswajaa (AP - IT)
+Student President: Kishore P (IV Year Mechanical)
+Student Vice-President: Laksha (III Year CSE)
+Scope: Dance, Music, Singing, Visual Arts, Drama, Painting, and Intercollegiate fest participation.
+3. Science Club
+Divided into Physics, Chemistry, and General sections. Focuses on practical experiments, science exhibitions, biodiesel preparation, invisible ink, and guest lectures.
+4. தமிழ் மன்றம் (Tamil Mandram)
+முன்னுரை: “தித்திக்கும் தேன்தமிழ்மொழி என்றும் வாழ வேண்டும் ! எங்கும் வெல்ல வேண்டும் !”
+நோக்கங்கள்: மாணவர்களிடத்தே தமிழ் ஆர்வத்தையும் அறிவையும் வளர்த்தல், பண்டைய தமிழ் பண்பாடு மற்றும் கலாச்சாரத்தைப் பரப்புதல், தமிழில் தொழில்நுட்ப அறிவை வளர்த்தல்.
+நிகழ்ச்சிகள்: இருமுகம் ஒரு அகம், பேசும் படம், ஆடு புலி, கைவண்ண காவியம், டென்ட்கொட்டாய், விடுகதை விளையாட்டு, பிரசங்கத்தின் தலைவன், தமிழ்க்கோர்வை.
+5. Coding Club
+Organizes college-wide coding competitions, weekly algorithm meetups, open-source projects, and training for ACM-ICPC, Google Code Jam, and Google Summer of Code.
+6. Robotics Club
+Fosters "thinking technologically" through robot design competitions, training modules, and robotics hardware workshops.
+7. Energy & Eco Club
+Promotes renewable energy usage, campus power audits, sustainability, and green environmental practices.
+8. Photography Club
+Platform for photography composition, digital image editing, screenwriting, short filmmaking, and event coverage.
+Tables
+Table Caption: Sports Club Games Overview
+Category
+Sports & Games Included
+Outdoor Games
+Cricket, Football, Volleyball, Basketball, Rugby, Badminton, Kho Kho, Throwball
+Indoor Games
+Carrom, Table Tennis, Chess
+PDF Links
+None
+External Links
+None
+Contact Details Found
+Address: 34, Rajiv Gandhi Salai (OMR), Siruseri IT Park, Siruseri, Chennai - 603103
+Phone: +91 99400 04500
+Email: msajce.office@gmail.com
+PAGE: Professional Societies
+Source URL: https://msajce-edu.in/professionalsocities.phpStatus: OK
+Breadcrumb
+Home > Professional Societies
+Tabs (if applicable)
+CSI | IEEE | IETE | SAE | ISHRAE
+Content
+Professional Societies
+1. Computer Society of India (CSI)
+Awards: Best Supporting College Award (SBC) from CSI Kancheepuram Chapter; Active Participant Award to Mr. D. Weslin.
+Nomination Authority: Dr. K.S. Srinivasan (Principal), Dr. I. Manju (Professor - ECE), Dr. D. Weslin (CSI Student Branch Counsellor, Phone: 9715202533, Email: it.weslin@msajce-edu.in).
+Office Bearers (2022–2026 Batch):
+President: Yogesh R (IT)
+Vice President: Saqlin Mustaq M (AI&DS)
+Secretary: Abu Jabar Mubarak (CS&BS)
+Joint Secretary: Hanuram PR (CSE), Shivam Vishwakarma (CSE)
+Treasurer: Navadharshan (CSE Cyber Security)
+Executive Members: Akram Bilal (AI&DS), Zeenath Nisha (IT)
+2. Institute of Electrical and Electronics Engineers (IEEE)
+Active Student Branch offering technical paper contests, project sponsorships, IEEE digital library access, and international conferences.
+3. Institution of Electronics and Telecommunication Engineers (IETE)
+Established: 16.08.2017 with 100+ active members.
+Branch Counselors: Dr. I. Manju (HOD - ECE) & Mrs. S. Anusuya (AP - ECE).
+4. Society of Automotive Engineers (SAEINDIA)
+Collegiate Club Inauguration: 21.02.2020 (Hosted Southern Section TIER-II Convention).
+Faculty In-charge: Mr. S. Deepakkumar & Mr. R. Prabu.
+Student Bearers: Syed N. Zaheer Abbas (President), Chandrasekar G (Vice President), Muhammed Zahan Faaieq J (Secretary), Shahila P (Joint Secretary), Abdullah B (Treasurer).
+5. Indian Society of Heating, Refrigerating & Air Conditioning Engineers (ISHRAE)
+Provides HVAC&R technical literature, cold chain design certifications, green building conferences, and industry networking.
+Tables
+Table Caption: CSI Chapter Technical Workshops & Events
+S.No
+Name of the Workshop
+Resource Person
+Date
+No. of Participants
+Coordinators
+1
+CSI Inaugural Function
+Dr. Murugan, President CSI Kancheepuram Chapter
+28.02.2023
+200
+Mrs. Viswajaa S, Mr. Pandiyan G
+2
+Guest Lecture — Voice over IP
+Mr. Anbazhagan A.T, Technical Lead, Cognizant
+22.03.2023
+100
+Mrs. Gayathri, Mrs. Aishwarya M.S
+3
+Guest Lecture — Digital Marketing
+Mr. J. Mohammed Afroze, CEO, J Digitals
+17.03.2023
+110
+Mr. Rajasekar R, Mrs. Aysha Surfeen M.A
+4
+Interactive Session — AI Innovation
+Ms. Anisha Udhayakumar, AI Evangelist, Intel
+10.03.2023
+100
+Mr. Vigneshwaran, Mr. Hamer Shield J.M
+5
+Benefits of CSI Membership
+Dr. M. Senthil Kumar, Secretary, CSI
+20.02.2020
+200
+Mrs. S. Kayalvizhi, Mrs. Bapitha Rani
+Table Caption: IETE Student Forum Activities
+S.No
+Event Name
+Resource Person
+Date
+Participants
+1
+Signal and Power Integrity in Semiconductor Industry
+Mr. Zakir Hussain, Microchip India, Bangalore
+27.06.2020
+65
+2
+Cyber Physical Systems & Applications using LabVIEW
+Mr. K. Prakash, Optithought
+24.06.2020
+77
+3
+Art of Thinking Big
+Mr. Aadil Ibrahim A (Alumnus, Founder of CameraMan)
+11.06.2020
+263
+4
+Embedded & IoT Boot Camp
+Dr. A.L. Vallikannu, Dr. Athif Shah, Mr. M. Prabakaran
+27–29.05.2020
+120
+5
+Scope of Electronics Engineers
+Mr. Sankaralingam (Valeo) & Mrs. Suganya (Jasmine Infotech)
+30.01.2019
+70
+6
+Inter-Department Technical Quiz
+Coord: Mr. M.L. Syed Ali; Convener: Dr. E. Dhiravidachelvi
+12.02.2020
+200
+7
+Technical & Non-Technical Connexions
+Coord: Ms. E. Jayanthi; Convener: Dr. E. Dhiravidachelvi
+01.09.2018
+300
+8
+Project Expo
+Coord: Ms. I.S. Suganthi; Convener: Dr. E. Dhiravidachelvi
+23.03.2018
+70
+9
+Seminar on Recent Trends in Optical Fibre Communication
+Dr. A. Sadagopan, AGM (Rtd) BSNL
+16.08.2017
+120
+PDF Links
+None
+External Links
+None
+Contact Details Found
+Dr. D. Weslin (CSI Counselor): 9715202533 / it.weslin@msajce-edu.in
+General Office: +91 99400 04500
+PAGE: Alumni Association
+Source URL: https://msajce-edu.in/alumni.phpStatus: OK
+Breadcrumb
+Home > MSAJCE Alumni Association
+Tabs (if applicable)
+Overview | Office Bearers | Activities | Distinguished Alumni | Alumni Scholarship Contribution | Alumni Feedback | Alumni Meet
+Content
+MSAJCE Alumni Association
+Overview
+The Alumni Association reconnects and fosters intellectual and emotional relationships between alumni and the parent institution. It provides funds, scholarships, guest lectures, mentorship, internships, and placement assistance.
+Total Alumni Scholarship Sponsored: Rs. 40,16,472.
+Office Bearers (2024 – Till Now)
+President: Dr. K.S. Srinivasan (Principal)
+Alumni Secretary: Mr. Ahamed Jameel A.M.T (Technical Consultant, HCL / 4A Technology)
+Treasurer: Administrative Officer (Dr. S. Vijayakumar)
+Vice President: Mr. J. Abdul Rahman (Managing Director, Blue Bell Business Management)
+Joint Secretaries: Mr. M.M. Syed Sultan Allaudeen, Mr. Asim Ali L, Mr. Abdul Majeed Shiblee
+Program Coordinator: Mr. Mikail Ismail (Technical Writer, KLA)
+Executive Members: Mr. Mohamed Yasar, Mr. Noorul Jaman, Mr. N. Naveen, Mr. Mohammed Umar Farook B, Mr. Mano Raja, Mr. N. Abdul Hameed, Mr. Narenthiran, Mr. T.H. Mohamed Jiavur Rahman, Mr. Syed N Zaheer Abbas, Mr. P. Nadir Khan, Srikanth K, Ms. Misbah Khairunissa A, Ms. Akila Rajesh, Mr. Seyed Mohamed Mustafa H, Mr. Ram Kumar C, Mr. Themotheyu S, Mr. Mohammed Khaja Nawaz A, Mr. Mohammed Thaqiuddin N, Mr. Harish N, Mr. Diwakaran K, Mr. Deepak V R, Mr. Vineeth Baba K B, Mr. Firthouse Mohideen J K.
+Tables
+Table Caption: Sample Distinguished Alumni in Industry & Entrepreneurship
+S.No
+Name
+Batch
+Position & Organisation
+1
+Mr. Purushothaman N
+2001–2005
+Assistant Vice President, Standard Chartered Bank
+2
+Ms. Sabana Yasmi S
+2001–2005
+Vice President, DBS Bank
+3
+Mr. Saravanan Perumal
+2001–2005
+Senior Manager, LTI Mindtree
+4
+Mr. Feroz Khan N
+2001–2005
+General Manager, Maersk
+5
+Mr. Ahmad Abdullateef
+2005–2009
+Principal Software Architect, Microsoft
+6
+Mr. Rahul Murali
+2006–2010
+Lead Product Manager, Thoughtworks
+7
+Mr. Mohammed Rizwan Ali
+2001–2005
+MD, Excellence Prices Co. Ltd. (Saudi, Dubai, Bahrain)
+8
+Mr. Asim Ali L
+2005–2009
+Chief Marketing Officer, CustomerLabs
+9
+Mr. Abdur Rahim Salih
+2004–2008
+Director & CEO, V5 Innovations Pvt Ltd
+10
+Mr. Sabarish S R
+2010–2014
+Founder & CEO, Sportasy
+PDF Links
+Alumni Association By-Laws (English & Tamil)
+Alumni Registration Form
+External Links
+None
+Contact Details Found
+Alumni Secretary: Mr. Ahamed Jameel A.M.T
+Address: 34, Rajiv Gandhi Salai (OMR), Siruseri IT Park, Siruseri, Chennai - 603103
+Phone: +91 99400 04500
+Email: msajce.office@gmail.com
+PAGE: Incubation and Startup (SIIF)
+Source URL: https://msajce-edu.in/Incubation&Startup.phpStatus: OK
+Breadcrumb
+Home > Incubation & Startup
+Tabs (if applicable)
+Sathak Innovation & Incubation Foundation | NISP | Entrepreneurship Development Cell | Institution Innovation Council (IIC)
+Content
+Sathak Innovation and Incubation Foundation (SIIF)
+Overview & Infrastructure
+SIIF fosters innovation-driven entrepreneurship across engineering, technology, agriculture, and healthcare.
+Physical Facilities: 5,000 sq.ft. dedicated incubation workspace with prototyping labs, maker spaces, and seminar auditoriums (100, 400, 700 seats).
+Incubation Lead: Ms. Akshita K — Email: info@siif.ventures, Website: www.siif.ventures
+National Innovation and Startup Policy (NISP) Committee
+President: Dr. K.S. Srinivasan (Principal)
+Incubation Coordinators: Mr. Prakadesh Subramanian (Strategic Partner, SIIF) & Mr. Parvez Aalam (CEO, Crescent Innovation Incubation Council)
+Patent Expert: Mr. Thiyagaraja Gupta (Deputy Controller of Patents and Designs)
+Alumni Entrepreneurs: Mr. Ahamed Jameel (4A Technology), Mr. Abdur Rahim Salih (V5 Innovations), Mr. Asim Ali L (CustomerLabs)
+Entrepreneurship Development Cell (EDC) Team
+Head EDC & HEC: Mr. S.V. Vinodh (Assistant Professor - EEE)
+Members: Mrs. N. Kavitha (MBA), Mr. Ajin Sijo John (MECH), Mrs. N. Selvi (Training)
+Institution Innovation Council (IIC - MSAJCE)
+President: Mr. S. Vimalathithan (Associate Professor & NISP Coordinator) — Email: iic.head@msajce-edu.in
+Convenor: Dr. Ramya
+Student Convenor: Mr. Yogesh R (B.Tech IT, 2022–2026 Batch)
+Tables
+Table Caption: SIIF 5-Year Action Plan (Selected Highlights)
+S.No
+Activity
+Frequency
+1
+Workshop on "Entrepreneurship & Innovation as Career Opportunity"
+One per Year
+2
+Ideation / Design Thinking / Campus Hackathon
+One per Year
+3
+Special Talk: "My Story — Entrepreneur's Life & Crossroads"
+Two per Year
+4
+Product Development Phases — Campus Innovator Storytelling
+Two per Year
+5
+Demo Day — Exhibition & Mentorship for PoCs
+Two per Year
+6
+SATHAKATHON — National Level 24-Hour Hackathon
+One per Year
+7
+Short Term Training Course on Start-up & Entrepreneurship
+One per Year
+Table Caption: IIC Innovation & Outreach Events (2022–2023)
+S.No
+Activity Name
+Date
+Beneficiaries
+Department
+Mode
+1
+Poster Presentation Competition
+30.08.2023
+40 Students, 2 Faculty
+EEE
+Offline
+2
+Achieving Value Preposition Fit and Business Fit
+24.08.2023
+60 Students, 4 Faculty
+MECH
+Offline
+3
+Lean Startup & Minimum Viable Product
+23.08.2023
+110 Students, 5 Faculty
+CSE
+Offline
+4
+Angel Investments & VC Funding Opportunities
+09.08.2023
+60 Students, 2 Faculty
+ECE
+Online
+5
+Online Sessions on Startup Acceleration
+02.08.2023
+150 Students & Faculty
+IT
+Online
+6
+Workshop on IPR and IP Management for Startups
+29.05.2023
+38 Students, 17 Faculty
+CIVIL
+Online
+7
+Session on Business Model Canvas (BMC)
+12.04.2023
+60 Students, 5 Faculty
+ECE
+Online
+8
+KAPILA Kalam Program for IP Literacy & Awareness
+04.02.2023
+218 Students, 15 Faculty
+IIC
+Offline
+9
+National Education Policy Workshop
+28.11.2022
+250 Students, 10 Faculty
+S&H
+Offline
+10
+Workshop on Entrepreneurship as Career Opportunity
+28.11.2022
+300 Students, 18 Faculty
+IT
+Offline
+PDF Links
+IIC Activity Reports
+External Links
+SIIF Ventures
+Contact Details Found
+SIIF Incubation Lead: Ms. Akshita K (info@siif.ventures)
+IIC President: Mr. S. Vimalathithan (iic.head@msajce-edu.in)
+Principal: Dr. K.S. Srinivasan (principal@msajce-edu.in)
+Phone: +91 99400 04500
+
+========================================

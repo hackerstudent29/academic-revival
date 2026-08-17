@@ -1,13 +1,37 @@
 import { Link } from "@tanstack/react-router";
 import { CountUp, Magnetic, Reveal, SplitText, Stagger, StaggerItem } from "@/components/motion";
 
-const galleryImages = [
-  "https://images.unsplash.com/photo-1719368472026-dc26f70a9b76?q=80&h=800&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1649265825072-f7dd6942baed?q=80&h=800&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1555212697-194d092e3b8f?q=80&h=800&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1729086046027-09979ade13fd?q=80&h=800&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1601568494843-772eb04aca5d?q=80&h=800&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1585687501004-615dfdfde7f1?q=80&h=800&w=800&auto=format&fit=crop",
+const campusFacilities = [
+  {
+    name: "Library",
+    description: "A vast collection of over 50,000 volumes, digital resources, and quiet study spaces.",
+    src: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    name: "Hostel",
+    description: "Comfortable, secure, and vibrant residential facilities for a home away from home.",
+    src: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    name: "Sports",
+    description: "State-of-the-art indoor and outdoor sports complexes for athletic excellence.",
+    src: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    name: "Labs",
+    description: "Cutting-edge laboratories equipped with the latest technology for practical learning.",
+    src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    name: "Transport",
+    description: "A dedicated fleet of buses ensuring safe and seamless connectivity across the city.",
+    src: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    name: "Auditorium",
+    description: "A 1000-seater modern auditorium hosting global conferences and cultural fests.",
+    src: "https://images.unsplash.com/photo-1510511233900-1982d92bd21f?q=80&w=800&auto=format&fit=crop"
+  }
 ];
 
 export function AboutBannerSection() {
@@ -62,17 +86,35 @@ export function AboutBannerSection() {
         </Reveal>
 
         {/* Right: hover accordion image gallery */}
-        <Reveal variant="slide-left" className="flex items-stretch gap-2 lg:col-span-6 h-[360px] lg:h-[560px]">
-          {galleryImages.map((src, idx) => (
+        <Reveal variant="slide-left" className="flex items-stretch gap-2 lg:col-span-6 h-[480px] lg:h-[560px]">
+          {campusFacilities.map((facility, idx) => (
             <div
               key={idx}
-              className="group relative h-full w-12 flex-grow overflow-hidden transition-all duration-500 hover:w-full border border-border"
+              className="group relative h-full flex-1 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:flex-[6] border border-border cursor-pointer rounded-sm"
             >
               <img
-                className="h-full w-full object-cover object-center grayscale transition-all duration-500 group-hover:grayscale-0"
-                src={src}
-                alt={`Gallery image ${idx + 1}`}
+                className="absolute inset-0 h-full w-full object-cover object-center blur-[3px] transition-all duration-700 group-hover:blur-0 group-hover:scale-105"
+                src={facility.src}
+                alt={facility.name}
               />
+              
+              {/* Hover Dark Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+              
+              {/* Unhovered Vertical Text (No background, massive text) */}
+              <div className="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-8 group-hover:opacity-0 group-hover:pointer-events-none z-10 overflow-hidden">
+                <span className="flex text-primary text-5xl md:text-6xl lg:text-[80px] leading-none font-black uppercase tracking-tighter [writing-mode:vertical-rl] -rotate-180 whitespace-nowrap drop-shadow-xl mix-blend-plus-lighter">
+                  {facility.name}
+                </span>
+              </div>
+
+              {/* Hovered Content (Name + Description) */}
+              <div className="absolute bottom-0 left-0 w-[300px] p-6 translate-y-8 opacity-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:opacity-100 flex flex-col justify-end pointer-events-none">
+                <h3 className="text-xl md:text-3xl font-black text-white uppercase tracking-tighter">{facility.name}</h3>
+                <p className="mt-2 text-xs md:text-sm text-white/90 leading-relaxed">
+                  {facility.description}
+                </p>
+              </div>
             </div>
           ))}
         </Reveal>

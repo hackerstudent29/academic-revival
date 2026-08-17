@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { WhyJoinSection } from "@/components/WhyJoinSection";
 import { AcademicProgrammesSection } from "@/components/AcademicProgrammesSection";
 import { AboutBannerSection } from "@/components/AboutBannerSection";
@@ -8,6 +9,7 @@ import { RecruiterMarquee } from "@/components/RecruiterMarquee";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { RotatingWord } from "@/components/RotatingWord";
 import { TestimonialSection } from "@/components/TestimonialSection";
+import { NewsAndEventsSection } from "@/components/NewsAndEventsSection";
 
 const title = "MSAJCE — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -37,7 +39,12 @@ const heroLinks = [
 
 function Index() {
   return (
-    <main className="bg-background">
+    <motion.main 
+      className="bg-background"
+      initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+    >
       <section
         className="relative border-b border-foreground/12 md:h-[calc(100svh-72px)] md:overflow-hidden"
         id="hero"
@@ -131,11 +138,13 @@ function Index() {
 
       <AcademicProgrammesSection />
 
+      <NewsAndEventsSection />
+
       <WhyJoinSection />
 
       <AboutBannerSection />
 
       <TestimonialSection />
-    </main>
+    </motion.main>
   );
 }

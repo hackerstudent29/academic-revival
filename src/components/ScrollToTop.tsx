@@ -5,20 +5,22 @@ export function ScrollToTop() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-    
-    // Force scroll to top on path change
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
-    
-    // A slight delay ensures it overrides the browser's native scroll restoration 
-    // and Lenis initialization when doing a hard refresh.
-    const t = setTimeout(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
-    }, 50);
+    // Aggressively force scroll to top to combat asynchronous browser logic
+    let attempts = 0;
+    const interval = setInterval(() => {
+      window.scrollTo(0, 0);
+      const lenis = (window as any).lenis;
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true, force: true });
+      }
+      
+      attempts++;
+      if (attempts > 15) {
+        clearInterval(interval); // Stop forcing after 150ms
+      }
+    }, 10);
 
-    return () => clearTimeout(t);
+    return () => clearInterval(interval);
   }, [pathname]);
 
   return null;
