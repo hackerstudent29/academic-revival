@@ -22,6 +22,9 @@ description: Design system rules and guidelines for MSAJCE website, ensuring an 
 *   **Dark Gray 2**: `#595959`
 *   **Black**: `#000000`
 
+### Extended Branding Colors
+*   **Forest Green**: `#059669` (Use for Call-To-Action buttons, success metrics, placements statistics, and sustainability accents).
+
 **Theme Toggle Rule (Light & Dark Theme)**:
 *   **Rule**: Every page, component, or layout added or modified must support both Light and Dark themes.
 *   **Default State**: The website defaults to **light mode**

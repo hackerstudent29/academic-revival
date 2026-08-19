@@ -33,13 +33,10 @@ export function AcademicProgrammesSection() {
 
   return (
     <>
-      {/* Spacer to prevent margin collapse with the recruiter marquee */}
-      <div className="h-16 w-full bg-transparent md:h-24 lg:h-32" />
-
       <section
         ref={sectionRef}
         id="academic-programmes"
-        className="relative w-full bg-muted pt-16 pb-16 text-foreground lg:pt-20 lg:pb-24"
+        className="relative w-full bg-muted min-h-[100svh] flex flex-col justify-center py-16 text-foreground"
       >
         <div className="mx-auto w-full max-w-[1440px] px-8 md:px-16">
           <motion.div
@@ -52,7 +49,7 @@ export function AcademicProgrammesSection() {
             {/* Left image */}
             <motion.div
               variants={rise}
-              className="relative h-[400px] w-full shrink-0 overflow-hidden lg:h-[600px] lg:w-[44%]"
+              className="relative h-[300px] w-full shrink-0 overflow-hidden lg:h-[45vh] lg:max-h-[480px] lg:w-[44%]"
             >
               <motion.img
                 src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"

@@ -1,6 +1,6 @@
-import { useRef } from "react";
+import { useState } from "react";
 import { Quote } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const TESTIMONIALS = [
   {
@@ -125,170 +125,118 @@ const TESTIMONIALS = [
   }
 ];
 
-function TestimonialCard({ t }: { t: typeof TESTIMONIALS[0] }) {
-  return (
-    <motion.div
-      layout
-      initial="initial"
-      whileHover="hover"
-      variants={{
-        initial: { width: 240, height: 160 },
-        hover: { width: 350, height: 480 }
-      }}
-      transition={{ type: "spring", bounce: 0.1, duration: 0.5 }}
-      className="relative overflow-hidden rounded-2xl bg-card shrink-0 border border-foreground/10 shadow-sm cursor-pointer"
-    >
-      <motion.div layout="position" className="absolute inset-0 h-full w-full">
-        <motion.img
-          layout="position"
-          src={t.image}
-          alt={t.alt}
-          className="h-full w-full object-cover"
-          variants={{
-            initial: { filter: "grayscale(20%)", scale: 1 },
-            hover: { filter: "grayscale(0%)", scale: 1.05 }
-          }}
-          transition={{ duration: 0.5 }}
-          loading="lazy"
-        />
-        <motion.div 
-          variants={{
-            initial: { opacity: 0.5 },
-            hover: { opacity: 1 }
-          }}
-          className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" 
-        />
-      </motion.div>
-
-      {/* Mini Name Tag for small thumbnail */}
-      <motion.div 
-        variants={{
-          initial: { opacity: 1, y: 0 },
-          hover: { opacity: 0, y: 10 }
-        }}
-        className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/90 via-black/60 to-transparent flex items-end justify-between gap-2 pointer-events-none"
-      >
-        <div className="flex flex-col">
-          <p className="text-sm font-bold text-white tracking-wide">{t.author}</p>
-          <p className="text-[11px] font-medium text-white/90 uppercase tracking-wider mt-1">{t.position}</p>
-        </div>
-        {t.companyLogo && (
-          <div className="flex h-7 items-center justify-center rounded bg-white/95 px-2 py-1 shrink-0 shadow-sm">
-            <img src={t.companyLogo} alt="Company Logo" className="h-full w-auto object-contain" />
-          </div>
-        )}
-      </motion.div>
-
-      {/* Expanded Content */}
-      <motion.div 
-        variants={{
-          initial: { opacity: 0, y: 20 },
-          hover: { opacity: 1, y: 0 }
-        }}
-        transition={{ delay: 0.05, duration: 0.4 }}
-        className="absolute bottom-0 left-0 w-[350px] p-8 flex flex-col justify-end text-white pointer-events-none"
-      >
-        <Quote className="mb-6 h-8 w-8 text-white/40" aria-hidden="true" />
-        <blockquote className="text-[15px] font-medium leading-relaxed text-white/90">
-          "{t.quote}"
-        </blockquote>
-        <figcaption className="mt-6 flex items-end justify-between gap-4">
-          <div className="flex flex-col">
-            <p className="font-bold text-white/100 text-lg">
-              {t.author}
-            </p>
-            <p className="text-sm text-white/80 font-medium mt-1">
-              {t.position}
-            </p>
-          </div>
-          {t.companyLogo && (
-            <div className="flex h-8 items-center justify-center rounded bg-white/95 px-2.5 py-1.5 shrink-0 shadow-sm">
-              <img src={t.companyLogo} alt="Company Logo" className="h-full w-auto object-contain" />
-            </div>
-          )}
-        </figcaption>
-      </motion.div>
-    </motion.div>
-  );
-}
-
 export function TestimonialSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  // Parallax transform: 
-  // [0, 0.4]: Stays fully visible at the top (-20px slightly higher) while the section enters and centers on screen.
-  // [0.4, 1]: Scrolls down by 380px behind the cards as the user scrolls past the section.
-  // We use fixed pixels because the marquee row has a fixed height (480px) on all screens.
-  const textY = useTransform(scrollYProgress, [0, 0.4, 1], [-20, -20, 380]);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section ref={sectionRef} className="bg-background pt-24 pb-8 md:pt-32 md:pb-12 border-t border-border overflow-hidden" id="alumni">
-      {/* 
-        Custom pixel-based marquee animation.
-        This fixes layout thrashing and jumpy logic because it translates by exact pixels instead of percentages.
-        15 items * (240px width + 24px gap) = 3960px 
-      */}
-      <style>{`
-        @keyframes msajce-pixel-marquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(-3960px); }
-        }
-        .animate-msajce-pixel-marquee {
-          animation: msajce-pixel-marquee 60s linear infinite;
-        }
-      `}</style>
-
-      <div className="mx-auto flex flex-col items-center px-6 md:px-12 max-w-[1440px]">
+    <section className="relative w-full bg-background border-t border-foreground/12 min-h-[100svh] flex flex-col justify-center py-16" id="alumni">
+      
+      {/* Title Elements - Relative so it pushes the content down and is fully visible */}
+      <div className="w-full text-center px-6 mb-12 md:mb-16">
         <p className="text-primary text-[11px] md:text-sm font-bold uppercase tracking-[0.16em] mb-4">
           3940+ Happy Alumni
         </p>
-        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-foreground text-center max-w-2xl z-20">
-          Don't just take our words
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-foreground">
+          Testimonials
         </h2>
       </div>
-      
-      <div className="relative w-full mt-8 md:mt-16">
+
+      <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-[40%_60%] lg:grid-cols-[35%_65%] gap-8 md:gap-12 lg:gap-16 items-start">
         
-        {/* Giant Background Text with Parallax Scroll */}
-        <motion.div 
-          style={{ x: "-50%", y: textY }}
-          className="absolute top-0 left-1/2 w-full flex justify-center pointer-events-none select-none z-0"
-        >
-          <span className="text-[11.5vw] leading-[0.75] font-black text-primary uppercase tracking-tighter whitespace-nowrap">
-            Testimonials
-          </span>
-        </motion.div>
-
-        <div className="relative flex w-full overflow-hidden group z-10">
+        {/* Left Pane: Vertically scrolling list */}
+        <div className="relative h-[400px] md:h-[450px] lg:h-[50vh] lg:min-h-[450px] lg:max-h-[500px] rounded-2xl border border-foreground/10 bg-card overflow-hidden group shadow-sm">
+          {/* Gradient masks */}
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-card to-transparent z-10 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-card to-transparent z-10 pointer-events-none" />
           
-          {/* Soft edge fade masks for premium feel */}
-          <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-20 w-24 bg-gradient-to-r from-background to-transparent md:w-48" />
-          <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-20 w-24 bg-gradient-to-l from-background to-transparent md:w-48" />
-
-          {/* Set 1 */}
-          <div 
-            className="animate-msajce-pixel-marquee flex h-[480px] shrink-0 items-center gap-[24px] pr-[24px] group-hover:[animation-play-state:paused]"
-          >
-            {TESTIMONIALS.map((t, idx) => (
-              <TestimonialCard key={`set1-${idx}`} t={t} />
-            ))}
+          <style>{`
+            @keyframes vertical-marquee {
+              0% { transform: translateY(0); }
+              100% { transform: translateY(-50%); }
+            }
+            .animate-vertical-marquee {
+              animation: vertical-marquee 45s linear infinite;
+            }
+          `}</style>
+          
+          <div className="animate-vertical-marquee flex flex-col group-hover:[animation-play-state:paused] pt-12 pb-12">
+            {[...TESTIMONIALS, ...TESTIMONIALS].map((t, idx) => {
+              const realIndex = idx % TESTIMONIALS.length;
+              const isActive = activeIndex === realIndex;
+              return (
+                <div 
+                  key={idx}
+                  onMouseEnter={() => setActiveIndex(realIndex)}
+                  className={`flex items-center gap-4 p-3 mx-3 my-1.5 rounded-xl cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isActive 
+                      ? 'bg-background shadow-md border border-foreground/10 scale-105 z-10' 
+                      : 'hover:bg-foreground/5 scale-100 z-0'
+                  }`}
+                >
+                  <img 
+                    src={t.image} 
+                    alt={t.author} 
+                    className={`w-8 h-8 md:w-10 md:h-10 rounded-full object-cover shrink-0 transition-all duration-500 ${
+                      isActive ? 'filter-none' : 'grayscale opacity-70'
+                    }`} 
+                    loading="lazy"
+                  />
+                  <div className="flex flex-col flex-grow min-w-0">
+                    <span className={`text-sm font-bold truncate transition-colors ${isActive ? 'text-primary' : 'text-foreground/80'}`}>{t.author}</span>
+                    <span className="text-[11px] font-medium text-foreground/50 uppercase tracking-wider truncate mt-0.5">{t.position}</span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-
-          {/* Set 2 (Duplicate for seamless infinite loop) */}
-          <div 
-            className="animate-msajce-pixel-marquee flex h-[480px] shrink-0 items-center gap-[24px] pr-[24px] group-hover:[animation-play-state:paused]"
-            aria-hidden="true"
-          >
-            {TESTIMONIALS.map((t, idx) => (
-              <TestimonialCard key={`set2-${idx}`} t={t} />
-            ))}
-          </div>
-
         </div>
+
+        {/* Right Pane: Simple Dynamic Showcase */}
+        <div className="relative h-[400px] md:h-[450px] lg:h-[50vh] lg:min-h-[450px] lg:max-h-[500px] flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, scale: 0.98, filter: "blur(10px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, scale: 1.02, filter: "blur(10px)" }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full max-w-2xl bg-card rounded-2xl border border-foreground/10 shadow-lg p-8 md:p-12 flex flex-col items-start text-foreground"
+            >
+              <Quote className="h-8 w-8 md:h-10 md:w-10 text-primary/40 mb-6" aria-hidden="true" />
+              
+              <blockquote className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium leading-[1.6] text-foreground/90">
+                "{TESTIMONIALS[activeIndex].quote}"
+              </blockquote>
+              
+              <div className="mt-8 pt-6 border-t border-foreground/10 flex flex-col sm:flex-row sm:items-center justify-between w-full gap-4">
+                <div className="flex items-center gap-4">
+                  <img 
+                    src={TESTIMONIALS[activeIndex].image} 
+                    alt={TESTIMONIALS[activeIndex].alt}
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border border-foreground/10"
+                  />
+                  <div className="flex flex-col">
+                    <span className="text-lg md:text-xl font-bold">{TESTIMONIALS[activeIndex].author}</span>
+                    <span className="text-[11px] md:text-xs font-medium text-foreground/60 tracking-wider uppercase mt-1">
+                      {TESTIMONIALS[activeIndex].position}
+                    </span>
+                  </div>
+                </div>
+
+                {TESTIMONIALS[activeIndex].companyLogo && (
+                  <div className="h-10 md:h-12 bg-background px-3 py-1.5 rounded-lg flex items-center justify-center border border-foreground/10 shrink-0">
+                    <img 
+                      src={TESTIMONIALS[activeIndex].companyLogo} 
+                      alt="Company Logo" 
+                      className="h-full w-auto max-w-[80px] object-contain" 
+                    />
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
       </div>
     </section>
   );

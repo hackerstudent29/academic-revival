@@ -36,7 +36,7 @@ const campusFacilities = [
 
 export function AboutBannerSection() {
   return (
-    <section id="about" className="w-full bg-background px-6 py-24 md:px-12 md:py-32">
+    <section id="about" className="w-full bg-background min-h-[100svh] flex flex-col justify-center py-16 px-6 md:px-12">
       <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         {/* Left: editorial copy */}
         <Reveal variant="slide-right" className="flex flex-col justify-center lg:col-span-6">
@@ -86,7 +86,7 @@ export function AboutBannerSection() {
         </Reveal>
 
         {/* Right: hover accordion image gallery */}
-        <Reveal variant="slide-left" className="flex items-stretch gap-2 lg:col-span-6 h-[480px] lg:h-[560px]">
+        <Reveal variant="slide-left" className="flex items-stretch gap-2 lg:col-span-6 h-[400px] lg:h-[50vh] lg:min-h-[450px]">
           {campusFacilities.map((facility, idx) => (
             <div
               key={idx}

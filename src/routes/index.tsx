@@ -10,6 +10,7 @@ import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { RotatingWord } from "@/components/RotatingWord";
 import { TestimonialSection } from "@/components/TestimonialSection";
 import { NewsAndEventsSection } from "@/components/NewsAndEventsSection";
+import { ContactSection } from "@/components/ContactSection";
 
 const title = "MSAJCE — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -40,13 +41,13 @@ const heroLinks = [
 function Index() {
   return (
     <motion.main 
-      className="bg-background"
+      className="bg-background relative"
       initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
       <section
-        className="relative border-b border-foreground/12 md:h-[calc(100svh-72px)] md:overflow-hidden"
+        className="relative border-b border-foreground/12 h-[calc(100svh-53px)] sm:h-[calc(100svh-73px)] md:overflow-hidden"
         id="hero"
       >
         <div className="grid h-full items-stretch md:grid-cols-[47%_53%]">
@@ -127,13 +128,15 @@ function Index() {
       </section>
 
       {/* ── Top recruiters marquee ── */}
-      <section className="border-b border-foreground/12 py-16" id="top-recruiters">
+      <section className="border-b border-foreground/12 flex flex-col justify-center py-16" id="top-recruiters">
         <Reveal variant="blur">
           <h2 className="px-6 text-center text-[11px] font-bold uppercase tracking-[0.32em] text-foreground/50 md:px-12">
             Top Recruiters
           </h2>
         </Reveal>
-        <RecruiterMarquee />
+        <div className="mt-12">
+          <RecruiterMarquee />
+        </div>
       </section>
 
       <AcademicProgrammesSection />
@@ -145,6 +148,8 @@ function Index() {
       <AboutBannerSection />
 
       <TestimonialSection />
+
+      <ContactSection />
     </motion.main>
   );
 }

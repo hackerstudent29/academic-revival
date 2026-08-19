@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Logo } from "@/components/Logo";
 import { MoreHorizontal, X, ChevronDown } from "lucide-react";
@@ -112,6 +112,20 @@ export function SiteHeader() {
   const [active, setActive] = useState<string | null>(null);
   const [moreOpen, setMoreOpen] = useState(false);
   const [activePanel, setActivePanel] = useState<string>("main");
+  const [hidden, setHidden] = useState(false);
+
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    if (latest > previous && latest > 150) {
+      if (!moreOpen && !active) {
+        setHidden(true);
+      }
+    } else {
+      setHidden(false);
+    }
+  });
 
   const activeItem = nav.find((n) => n.id === active && n.cols);
 
@@ -147,12 +161,18 @@ export function SiteHeader() {
 
   return (
     <>
-      <header
-      className={`msajce-header-glass sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
-        active || moreOpen ? "border-transparent" : "border-foreground/10"
-      }`}
-      onMouseLeave={() => setActive(null)}
-    >
+      <motion.header
+        variants={{
+          visible: { y: 0 },
+          hidden: { y: "-100%" }
+        }}
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ duration: 0.35, ease: APPLE_EASE }}
+        className={`msajce-header-glass sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
+          active || moreOpen ? "border-transparent" : "border-foreground/10"
+        }`}
+        onMouseLeave={() => setActive(null)}
+      >
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-2.5 md:px-12 md:py-3">
         <Link to="/" className="flex items-center gap-3" onClick={closeAll}>
           <Logo className="h-32 -my-12 sm:h-44 sm:-my-16 origin-left" />
@@ -197,7 +217,7 @@ export function SiteHeader() {
           <Link
             to="/admissions"
             onClick={closeAll}
-            className="group relative hidden overflow-hidden rounded-none bg-primary px-5 py-2.5 text-[13px] font-bold text-primary-foreground shadow transition-colors hover:text-background sm:inline-flex after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
+            className="group relative hidden overflow-hidden rounded-none bg-forest px-5 py-2.5 text-[13px] font-bold text-white shadow transition-colors hover:text-background sm:inline-flex after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
           >
             <span className="relative z-10 flex items-center gap-2">Apply 2026-27</span>
           </Link>
@@ -269,7 +289,7 @@ export function SiteHeader() {
           )}
         </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
 
       {/* Sidebar unified menu overlay */}
       <AnimatePresence>
@@ -326,7 +346,7 @@ export function SiteHeader() {
                         <Link
                           to="/admissions"
                           onClick={closeAll}
-                          className="my-5 inline-flex w-full items-center justify-center rounded-none bg-primary px-5 py-3 text-[13px] font-bold text-primary-foreground sm:hidden"
+                          className="my-5 inline-flex w-full items-center justify-center rounded-none bg-forest px-5 py-3 text-[13px] font-bold text-white sm:hidden"
                         >
                           Apply 2026-27
                         </Link>

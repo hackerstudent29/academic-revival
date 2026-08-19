@@ -33,8 +33,8 @@ const smallNews = [
 
 export function NewsAndEventsSection() {
   return (
-    <section className="bg-background" id="news">
-      <div className="mx-auto max-w-[1440px] px-6 py-24 md:px-12 md:py-32">
+    <section className="bg-background min-h-[100svh] flex flex-col justify-center py-16" id="news">
+      <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12">
         
         {/* Section Header */}
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
@@ -68,7 +68,7 @@ export function NewsAndEventsSection() {
         </div>
 
         {/* Bento Grid Layout */}
-        <div className="mt-12 md:mt-20 grid grid-cols-1 lg:grid-cols-12 gap-6 h-auto lg:h-[720px]">
+        <div className="mt-10 md:mt-12 grid grid-cols-1 lg:grid-cols-12 gap-6 h-auto lg:h-[55vh] lg:max-h-[600px] lg:min-h-[450px]">
           
           {/* Left: Large Featured News */}
           <Reveal variant="slide-up" delay={0.1} className="lg:col-span-7 h-[400px] lg:h-full">
@@ -106,7 +106,7 @@ export function NewsAndEventsSection() {
           </Reveal>
 
           {/* Right: Vertical Scrolling Ticker */}
-          <div className="lg:col-span-5 relative h-[720px] overflow-hidden group rounded-2xl flex flex-col">
+          <div className="lg:col-span-5 relative h-[400px] lg:h-full overflow-hidden group rounded-2xl flex flex-col">
             <style>{`
               @keyframes vertical-marquee {
                 from { transform: translateY(0); }
