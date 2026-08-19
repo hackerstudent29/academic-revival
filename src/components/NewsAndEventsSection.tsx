@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { Reveal, Stagger, StaggerItem } from "./motion";
 import { ArrowRight, CalendarDays, ChevronRight } from "lucide-react";
@@ -32,6 +33,20 @@ const smallNews = [
 ];
 
 export function NewsAndEventsSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % smallNews.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const visibleNews = [
+    smallNews[currentIndex],
+    smallNews[(currentIndex + 1) % smallNews.length]
+  ];
+
   return (
     <section className="bg-background min-h-[100svh] flex flex-col justify-center py-16" id="news">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12">
@@ -105,92 +120,51 @@ export function NewsAndEventsSection() {
             </div>
           </Reveal>
 
-          {/* Right: Vertical Scrolling Ticker */}
-          <div className="lg:col-span-5 relative h-[400px] lg:h-full overflow-hidden group rounded-2xl flex flex-col">
+          {/* Right: 2 Cards Carousel */}
+          <div className="lg:col-span-5 relative h-[400px] lg:h-full flex flex-col gap-6 group">
             <style>{`
-              @keyframes vertical-marquee {
-                from { transform: translateY(0); }
-                to { transform: translateY(-732px); } /* 3 items * (220px height + 24px gap) = 732px */
+              @keyframes fadeInCard {
+                from { opacity: 0.6; transform: translateY(5px); }
+                to { opacity: 1; transform: translateY(0); }
               }
-              .animate-vertical-marquee {
-                animation: vertical-marquee 12s linear infinite;
+              .animate-fade-in-card {
+                animation: fadeInCard 0.4s ease-out forwards;
               }
             `}</style>
-            
-            {/* Top/Bottom Fade Masks for premium scrolling effect */}
-            <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-background to-transparent z-20 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent z-20 pointer-events-none" />
-
-            {/* Scroll Wrapper */}
-            <div className="animate-vertical-marquee flex flex-col gap-[24px] group-hover:[animation-play-state:paused]">
-              
-              {/* Set 1 */}
-              {smallNews.map((news, idx) => (
-                <div key={`set1-${idx}`} className="group/card relative w-full shrink-0 overflow-hidden rounded-2xl flex flex-col justify-end p-6 md:p-8 cursor-pointer" style={{ height: '220px' }}>
-                  <img 
-                    src={news.image} 
-                    alt="News" 
-                    className="absolute inset-0 w-full h-full object-cover grayscale-[40%] transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:grayscale-0"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent pointer-events-none" />
+            {visibleNews.map((news, idx) => (
+              <div 
+                key={`${currentIndex}-${idx}`} 
+                className="group/card animate-fade-in-card relative w-full flex-1 overflow-hidden rounded-2xl flex flex-col justify-end p-6 md:p-8 cursor-pointer" 
+              >
+                <img 
+                  src={news.image} 
+                  alt="News" 
+                  className="absolute inset-0 w-full h-full object-cover grayscale-[40%] transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:grayscale-0"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent pointer-events-none" />
+                
+                <div className="relative z-10 flex flex-col items-start text-white w-full">
+                  <div className="flex items-center justify-between w-full mb-3">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-primary drop-shadow-md">
+                      {news.tag}
+                    </span>
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-white/60 flex items-center gap-1.5">
+                      <CalendarDays size={12} />
+                      {news.date}
+                    </span>
+                  </div>
+                  <h4 className="text-lg md:text-xl font-bold uppercase tracking-tight leading-snug line-clamp-2">
+                    {news.title}
+                  </h4>
                   
-                  <div className="relative z-10 flex flex-col items-start text-white w-full">
-                    <div className="flex items-center justify-between w-full mb-4">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-primary drop-shadow-md">
-                        {news.tag}
-                      </span>
-                      <span className="text-[10px] font-semibold uppercase tracking-widest text-white/60 flex items-center gap-1.5">
-                        <CalendarDays size={12} />
-                        {news.date}
-                      </span>
-                    </div>
-                    <h4 className="text-xl md:text-2xl font-bold uppercase tracking-tight leading-snug line-clamp-2">
-                      {news.title}
-                    </h4>
-                    
-                    <div className="overflow-hidden max-h-0 opacity-0 group-hover/card:max-h-12 group-hover/card:opacity-100 group-hover/card:mt-4 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
-                      <span className="text-primary text-xs font-bold uppercase tracking-widest flex items-center gap-1.5">
-                        Read Article <ChevronRight size={14} />
-                      </span>
-                    </div>
+                  <div className="overflow-hidden max-h-0 opacity-0 group-hover/card:max-h-12 group-hover/card:opacity-100 group-hover/card:mt-3 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
+                    <span className="text-primary text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5">
+                      Read Article <ChevronRight size={14} />
+                    </span>
                   </div>
                 </div>
-              ))}
-
-              {/* Set 2 (Duplicate for seamless infinite scroll) */}
-              {smallNews.map((news, idx) => (
-                <div key={`set2-${idx}`} aria-hidden="true" className="group/card relative w-full shrink-0 overflow-hidden rounded-2xl flex flex-col justify-end p-6 md:p-8 cursor-pointer" style={{ height: '220px' }}>
-                  <img 
-                    src={news.image} 
-                    alt="News" 
-                    className="absolute inset-0 w-full h-full object-cover grayscale-[40%] transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:grayscale-0"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent pointer-events-none" />
-                  
-                  <div className="relative z-10 flex flex-col items-start text-white w-full">
-                    <div className="flex items-center justify-between w-full mb-4">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-primary drop-shadow-md">
-                        {news.tag}
-                      </span>
-                      <span className="text-[10px] font-semibold uppercase tracking-widest text-white/60 flex items-center gap-1.5">
-                        <CalendarDays size={12} />
-                        {news.date}
-                      </span>
-                    </div>
-                    <h4 className="text-xl md:text-2xl font-bold uppercase tracking-tight leading-snug line-clamp-2">
-                      {news.title}
-                    </h4>
-                    
-                    <div className="overflow-hidden max-h-0 opacity-0 group-hover/card:max-h-12 group-hover/card:opacity-100 group-hover/card:mt-4 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
-                      <span className="text-primary text-xs font-bold uppercase tracking-widest flex items-center gap-1.5">
-                        Read Article <ChevronRight size={14} />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-
-            </div>
+              </div>
+            ))}
           </div>
 
         </div>

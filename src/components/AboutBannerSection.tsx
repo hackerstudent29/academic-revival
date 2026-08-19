@@ -86,30 +86,33 @@ export function AboutBannerSection() {
         </Reveal>
 
         {/* Right: hover accordion image gallery */}
-        <Reveal variant="slide-left" className="flex items-stretch gap-2 lg:col-span-6 h-[400px] lg:h-[50vh] lg:min-h-[450px]">
+        <Reveal variant="slide-left" className="flex items-stretch gap-2 lg:col-span-6 h-[500px] lg:h-[65vh] lg:min-h-[600px]">
           {campusFacilities.map((facility, idx) => (
             <div
               key={idx}
               className="group relative h-full flex-1 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:flex-[6] border border-border cursor-pointer rounded-sm"
             >
               <img
-                className="absolute inset-0 h-full w-full object-cover object-center blur-[3px] transition-all duration-700 group-hover:blur-0 group-hover:scale-105"
+                className="absolute inset-0 h-full w-full object-cover object-center transition-all duration-700 group-hover:scale-105"
                 src={facility.src}
                 alt={facility.name}
               />
               
               {/* Hover Dark Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100 z-10" />
               
-              {/* Unhovered Vertical Text (No background, massive text) */}
-              <div className="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-8 group-hover:opacity-0 group-hover:pointer-events-none z-10 overflow-hidden">
-                <span className="flex text-primary text-5xl md:text-6xl lg:text-[80px] leading-none font-black uppercase tracking-tighter [writing-mode:vertical-rl] -rotate-180 whitespace-nowrap drop-shadow-xl mix-blend-plus-lighter">
+              {/* Unhovered Black Overlay */}
+              <div className="absolute inset-0 bg-black/60 transition-opacity duration-700 group-hover:opacity-0 z-10" />
+
+              {/* Unhovered Vertical Text */}
+              <div className="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-8 group-hover:opacity-0 group-hover:pointer-events-none z-20 overflow-hidden">
+                <span className="flex text-white text-4xl md:text-5xl lg:text-[60px] leading-none font-black uppercase tracking-tighter [writing-mode:vertical-rl] -rotate-180 whitespace-nowrap">
                   {facility.name}
                 </span>
               </div>
 
               {/* Hovered Content (Name + Description) */}
-              <div className="absolute bottom-0 left-0 w-[300px] p-6 translate-y-8 opacity-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:opacity-100 flex flex-col justify-end pointer-events-none">
+              <div className="absolute bottom-0 left-0 w-[300px] p-6 translate-y-8 opacity-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:opacity-100 flex flex-col justify-end pointer-events-none z-20">
                 <h3 className="text-xl md:text-3xl font-black text-white uppercase tracking-tighter">{facility.name}</h3>
                 <p className="mt-2 text-xs md:text-sm text-white/90 leading-relaxed">
                   {facility.description}

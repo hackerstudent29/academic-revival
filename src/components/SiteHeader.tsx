@@ -28,7 +28,7 @@ const nav: NavItem[] = [
     label: "Admissions",
     to: "/admissions",
     cols: [
-      { title: "Join MSAJCE", links: [{ label: "Courses Offered", to: "/admissions", hash: "programmes" }, { label: "Online Application", to: "/admissions", hash: "process" }, { label: "Fee Portal", to: "/admissions" }, { label: "Financial Aid", to: "/admissions", hash: "scholarships" }] },
+      { title: "Join MSAJCE", links: [{ label: "Courses Offered", to: "/programmes" }, { label: "Online Application", to: "/admissions", hash: "process" }, { label: "Fee Portal", to: "/admissions" }, { label: "Financial Aid", to: "/admissions", hash: "scholarships" }] },
       { title: "Support", links: [{ label: "Eligibility", to: "/admissions", hash: "eligibility" }, { label: "Scholarships", to: "/admissions", hash: "scholarships" }, { label: "Admission Enquiry", to: "/contact" }] },
     ],
   },
@@ -37,8 +37,39 @@ const nav: NavItem[] = [
     label: "Education",
     to: "/academics",
     cols: [
-      { title: "Education", links: [{ label: "Academic Rules", to: "/academics", hash: "curriculum" }, { label: "Course Structure", to: "/academics", hash: "curriculum" }, { label: "Academic Divisions", to: "/academics", hash: "departments" }] },
-      { title: "Innovation", links: [{ label: "IDEA Lab", to: "/academics" }, { label: "R&D Cell", to: "/academics" }, { label: "Industry Learning", to: "/academics" }] },
+      { 
+        title: "Computing & IT", 
+        links: [
+          { label: "Computer Science & Engineering", to: "/programmes/computer-science-and-engineering" },
+          { label: "Information Technology", to: "/programmes/information-technology" },
+          { label: "AI & Data Science", to: "/programmes/artificial-intelligence-and-data-science" },
+          { label: "AI & Machine Learning", to: "/programmes/artificial-intelligence-and-machine-learning" },
+          { label: "Computer Science & Business", to: "/programmes/computer-science-and-business-systems" },
+          { label: "CSE (Cyber Security)", to: "/programmes/computer-science-and-engineering-cyber-security" }
+        ] 
+      },
+      { 
+        title: "Core Engineering", 
+        links: [
+          { label: "Civil Engineering", to: "/programmes/civil-engineering" },
+          { label: "Mechanical Engineering", to: "/programmes/mechanical-engineering" },
+          { label: "Electrical & Electronics", to: "/programmes/electrical-and-electronics-engineering" },
+          { label: "Electronics & Communication", to: "/programmes/electronics-and-communication-engineering" },
+          { label: "ECE (Advanced Comm)", to: "/programmes/ece-advanced-communication" },
+          { label: "Electronics (VLSI)", to: "/programmes/electronics-engg-vlsi-design" }
+        ] 
+      },
+      { 
+        title: "Postgraduate & Ph.D", 
+        links: [
+          { label: "M.E. Structural Engineering", to: "/programmes/pg-structural-engineering" },
+          { label: "M.E. Computer Science", to: "/programmes/pg-computer-science-and-engineering" },
+          { label: "Master of Architecture", to: "/programmes/pg-master-of-architecture" },
+          { label: "Bachelor of Architecture", to: "/programmes/bachelor-of-architecture" },
+          { label: "Bachelor of Design", to: "/programmes/bachelor-of-design" },
+          { label: "Ph.D Mechanical Engg", to: "/programmes/phd-mechanical-engineering" }
+        ] 
+      },
     ],
   },
   { id: "placement", label: "Placements", to: "/placements" },
@@ -113,10 +144,12 @@ export function SiteHeader() {
   const [moreOpen, setMoreOpen] = useState(false);
   const [activePanel, setActivePanel] = useState<string>("main");
   const [hidden, setHidden] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 20);
     const previous = scrollY.getPrevious() ?? 0;
     if (latest > previous && latest > 150) {
       if (!moreOpen && !active) {
@@ -168,8 +201,9 @@ export function SiteHeader() {
         }}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: APPLE_EASE }}
-        className={`msajce-header-glass sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
-          active || moreOpen ? "border-transparent" : "border-foreground/10"
+        className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
+          active || moreOpen ? "border-transparent bg-background" : 
+          isScrolled ? "bg-background border-foreground/10" : "msajce-header-glass border-foreground/10"
         }`}
         onMouseLeave={() => setActive(null)}
       >
