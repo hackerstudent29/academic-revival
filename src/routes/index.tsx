@@ -54,28 +54,13 @@ function Index() {
         <div className="grid h-full items-stretch md:grid-cols-[47%_53%]">
           <div className="flex h-full flex-col justify-start px-6 pt-6 pb-8 md:px-8 md:pt-8 md:pb-10 lg:px-12 lg:pt-10">
             <DynamicText />
-            <h1 className="mt-2 flex flex-col font-black uppercase leading-[0.9] tracking-tighter text-foreground">
-              <span className="whitespace-nowrap text-[8.5vw] sm:text-[7vw] md:text-[4.2vw] lg:text-[3.8vw] xl:text-[4vw]">MOHAMED SATHAK</span>
-              <span className="flex flex-nowrap items-baseline gap-3 whitespace-nowrap md:gap-4">
-                <span className="text-[8.5vw] sm:text-[7vw] md:text-[4.2vw] lg:text-[3.8vw] xl:text-[4vw]">A.J. COLLEGE</span>
-                <span className="text-[4.5vw] sm:text-[3.5vw] md:text-[2vw] lg:text-[1.8vw] xl:text-[2vw] text-foreground/50">OF</span>
-              </span>
-              <span className="flex flex-nowrap items-baseline gap-1.5 whitespace-nowrap md:gap-2">
-                <span className="text-[6vw] sm:text-[4.8vw] md:text-[2.6vw] lg:text-[2.4vw] xl:text-[2.6vw]">
-                  <RotatingWord
-                    homeWord="ENGINEERING"
-                    words={["Innovation", "Technology", "Excellence"]}
-                  />
-                </span>
-                <span className="text-[4vw] sm:text-[3vw] md:text-[1.6vw] lg:text-[1.5vw] xl:text-[1.6vw] text-foreground/50">&amp;</span>
-                <span className="text-[6vw] sm:text-[4.8vw] md:text-[2.6vw] lg:text-[2.4vw] xl:text-[2.6vw]">
-                  <RotatingWord
-                    homeWord="ARCHITECTURE"
-                    words={["Creativity", "Design", "Craftsmanship"]}
-                  />
-                </span>
-              </span>
-            </h1>
+            <div className="mt-6 mb-6 flex items-center justify-start">
+              <img
+                src="/logos/clg-logo.png"
+                alt="Mohamed Sathak A.J. College of Engineering"
+                className="w-full max-w-[920px] h-auto object-contain"
+              />
+            </div>
 
             <Stagger gap={0.07} delay={0.25} className="mt-8 border-t border-foreground/12 md:mt-10">
               {heroLinks.map((item) => (

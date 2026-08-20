@@ -158,7 +158,7 @@ export function ChatbotWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 select-none font-sans">
+    <div className="absolute bottom-6 right-6 z-50 select-none font-sans">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -166,13 +166,13 @@ export function ChatbotWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.96 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-24 right-6 w-[360px] sm:w-[400px] h-[540px] max-h-[calc(100svh-120px)] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 backdrop-blur-xl"
+            className="absolute bottom-20 right-0 w-[360px] sm:w-[400px] h-[540px] max-h-[calc(100svh-120px)] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 backdrop-blur-xl"
           >
             {/* Header */}
             <div className="bg-primary text-primary-foreground px-5 py-4 flex items-center justify-between shadow-sm">
               <div className="flex items-center gap-3">
-                <div className="relative flex items-center justify-center w-9 h-9 rounded-full bg-white/15 backdrop-blur-md border border-white/20">
-                  <Bot className="w-5 h-5 text-white" />
+                <div className="relative flex items-center justify-center w-9 h-9 rounded-full overflow-hidden bg-white/15 backdrop-blur-md border border-white/20">
+                  <img src="/images/bot-mascot.png" alt="AI Mascot" className="w-full h-full object-cover" />
                   <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 border-2 border-primary rounded-full" />
                 </div>
                 <div>
@@ -214,8 +214,8 @@ export function ChatbotWidget() {
                   className={`flex gap-2.5 ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
                 >
                   {msg.sender === "bot" && (
-                    <div className="w-7 h-7 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <Sparkles className="w-3.5 h-3.5 text-primary" />
+                    <div className="w-7 h-7 rounded-full overflow-hidden border border-primary/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <img src="/images/bot-mascot.png" alt="Bot Avatar" className="w-full h-full object-cover" />
                     </div>
                   )}
 
@@ -311,9 +311,9 @@ export function ChatbotWidget() {
       <motion.button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-xl flex items-center justify-center cursor-pointer border-2 border-background focus:outline-none transition-shadow hover:shadow-primary/30 hover:shadow-2xl relative"
+        whileHover={{ scale: 1.08, y: -4 }}
+        whileTap={{ scale: 0.92 }}
+        className="w-16 h-16 rounded-full overflow-hidden shadow-2xl flex items-center justify-center cursor-pointer border-2 border-primary/20 bg-background/80 backdrop-blur-md focus:outline-none transition-shadow hover:shadow-primary/30 hover:border-primary relative"
         aria-label="Toggle AI Assistant"
       >
         <AnimatePresence mode="wait" initial={false}>
@@ -324,8 +324,9 @@ export function ChatbotWidget() {
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.15 }}
+              className="w-full h-full flex items-center justify-center bg-primary"
             >
-              <X className="w-6 h-6 text-white" />
+              <X className="w-7 h-7 text-white" />
             </motion.div>
           ) : (
             <motion.div
@@ -334,10 +335,14 @@ export function ChatbotWidget() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.5, opacity: 0 }}
               transition={{ duration: 0.15 }}
-              className="flex items-center justify-center"
+              className="w-full h-full relative flex items-center justify-center"
             >
-              <MessageSquare className="w-6 h-6 text-white" />
-              <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-400 border-2 border-background rounded-full" />
+              <img
+                src="/images/bot-mascot.png"
+                alt="AI Assistant"
+                className="w-full h-full object-cover rounded-full"
+              />
+              <span className="absolute bottom-1 right-1 w-3.5 h-3.5 bg-emerald-400 border-2 border-background rounded-full animate-pulse" />
             </motion.div>
           )}
         </AnimatePresence>

@@ -208,9 +208,9 @@ export function SiteHeader() {
         onMouseLeave={() => setActive(null)}
       >
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-2.5 md:px-12 md:py-3">
-        <Link to="/" className="flex items-center gap-3" onClick={closeAll}>
-          <Logo className="h-32 -my-12 sm:h-44 sm:-my-16 origin-left" />
-        </Link>
+        <div className="flex-1 lg:flex-none">
+          {/* Logo removed as per user request */}
+        </div>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
           {nav.map((item) =>
