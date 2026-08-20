@@ -11,6 +11,7 @@ import { RotatingWord } from "@/components/RotatingWord";
 import { TestimonialSection } from "@/components/TestimonialSection";
 import { NewsAndEventsSection } from "@/components/NewsAndEventsSection";
 import { ContactSection } from "@/components/ContactSection";
+import { ChatbotWidget } from "@/components/ChatbotWidget";
 
 const title = "MSAJCE — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -128,7 +129,7 @@ function Index() {
       </section>
 
       {/* ── Top recruiters marquee ── */}
-      <section className="border-b border-foreground/12 flex flex-col justify-center py-16" id="top-recruiters">
+      <section className="bg-[#F4F6F8] dark:bg-[#121518] border-b border-foreground/12 flex flex-col justify-center py-16 transition-colors" id="top-recruiters">
         <Reveal variant="blur">
           <h2 className="px-6 text-center text-[11px] font-bold uppercase tracking-[0.32em] text-foreground/50 md:px-12">
             Top Recruiters
@@ -150,6 +151,7 @@ function Index() {
       <TestimonialSection />
 
       <ContactSection />
+      <ChatbotWidget />
     </motion.main>
   );
 }

@@ -36,7 +36,7 @@ const campusFacilities = [
 
 export function AboutBannerSection() {
   return (
-    <section id="about" className="w-full bg-background min-h-[100svh] flex flex-col justify-center py-16 px-6 md:px-12">
+    <section id="about" className="w-full bg-[#F8F6F0] dark:bg-[#171613] min-h-[100svh] flex flex-col justify-center py-16 px-6 md:px-12 transition-colors">
       <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         {/* Left: editorial copy */}
         <Reveal variant="slide-right" className="flex flex-col justify-center lg:col-span-6">

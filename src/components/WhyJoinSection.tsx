@@ -70,7 +70,7 @@ export function WhyJoinSection() {
   }, [isPaused]);
 
   return (
-    <section id="why-msajce" className="relative w-full bg-muted/40 flex flex-col justify-center">
+    <section id="why-msajce" className="relative w-full bg-[#EDF4F9] dark:bg-[#11171d] flex flex-col justify-center transition-colors">
       {/* Static Header & Stats Section */}
       <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-10 md:gap-12 lg:gap-16 px-6 py-16 md:px-12">
         {/* Header */}

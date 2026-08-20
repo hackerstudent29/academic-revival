@@ -36,7 +36,7 @@ export function AcademicProgrammesSection() {
       <section
         ref={sectionRef}
         id="academic-programmes"
-        className="relative w-full bg-muted min-h-[100svh] flex flex-col justify-center py-16 text-foreground"
+        className="relative w-full bg-[#EEF5F2] dark:bg-[#111915] min-h-[100svh] flex flex-col justify-center py-16 text-foreground transition-colors"
       >
         <div className="mx-auto w-full max-w-[1440px] px-8 md:px-16">
           <motion.div

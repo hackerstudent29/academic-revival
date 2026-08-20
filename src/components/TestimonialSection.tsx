@@ -129,7 +129,7 @@ export function TestimonialSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="relative w-full bg-background border-t border-foreground/12 min-h-[100svh] flex flex-col justify-center py-16" id="alumni">
+    <section className="relative w-full bg-[#F3F2F8] dark:bg-[#15141c] border-t border-foreground/12 min-h-[100svh] flex flex-col justify-center py-16 transition-colors" id="alumni">
       
       {/* Title Elements - Relative so it pushes the content down and is fully visible */}
       <div className="w-full text-center px-6 mb-12 md:mb-16">
