@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion";
 
 export function ContactSection() {
   return (
-    <section className="relative min-h-[100svh] w-full flex flex-col justify-center border-t border-foreground/12 bg-background py-16" id="contact">
+    <section className="relative min-h-[100svh] w-full flex flex-col justify-center border-t border-foreground/12 bg-gray-100 dark:bg-[#171613] py-16" id="contact">
       <div className="mx-auto grid max-w-[1440px] w-full gap-12 px-6 md:grid-cols-2 md:gap-8 md:px-12 lg:px-16">
         {/* Left Column: Info */}
         <div className="flex flex-col justify-between">
@@ -25,51 +25,13 @@ export function ContactSection() {
               </p>
             </Reveal>
           </div>
-
           <div className="mt-16 space-y-8 md:mt-0 md:pb-8">
-            <Reveal variant="fadeUp" delay={0.3}>
-              <div className="flex items-start gap-4 group">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-foreground/15 text-foreground/70 transition-colors group-hover:border-primary group-hover:text-primary">
-                  <MapPin size={20} />
-                </div>
-                <div>
-                  <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-foreground/50">Visit Us</h4>
-                  <p className="mt-2 text-sm text-foreground/80">
-                    OMR IT Corridor, Egattur, <br />
-                    Chennai, Tamil Nadu 603103
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal variant="fadeUp" delay={0.4}>
-              <div className="flex items-start gap-4 group">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-foreground/15 text-foreground/70 transition-colors group-hover:border-primary group-hover:text-primary">
-                  <Phone size={20} />
-                </div>
-                <div>
-                  <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-foreground/50">Call Us</h4>
-                  <p className="mt-2 text-sm text-foreground/80">+91 44 2747 0000</p>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal variant="fadeUp" delay={0.5}>
-              <div className="flex items-start gap-4 group">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-foreground/15 text-foreground/70 transition-colors group-hover:border-primary group-hover:text-primary">
-                  <Mail size={20} />
-                </div>
-                <div>
-                  <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-foreground/50">Email Us</h4>
-                  <p className="mt-2 text-sm text-foreground/80">admissions@msajce.edu.in</p>
-                </div>
-              </div>
-            </Reveal>
+            {/* Removed the 3 contact info components here as requested */}
           </div>
         </div>
 
         {/* Right Column: Form */}
-        <div className="flex items-center md:pl-8 lg:pl-16">
+        <div className="flex items-center md:pl-8 lg:pl-16 mt-12 md:mt-0">
           <Reveal variant="fadeUp" delay={0.3} className="w-full">
             <form className="flex w-full flex-col gap-8 lg:gap-10" onSubmit={(e) => e.preventDefault()}>
               <div className="group relative">
@@ -139,11 +101,12 @@ export function ContactSection() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="group mt-4 flex w-full items-center justify-between rounded-md bg-foreground px-6 py-5 text-[11px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-primary hover:text-primary-foreground md:w-auto"
+                className="group relative mt-4 flex w-full overflow-hidden items-center justify-between rounded-md bg-primary px-6 py-5 text-[11px] font-bold uppercase tracking-[0.2em] text-primary-foreground transition-colors md:w-auto shadow-sm"
                 type="submit"
               >
-                Send Message
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                <span className="absolute inset-0 top-full bg-foreground transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:top-0" />
+                <span className="relative z-10 transition-colors duration-300 group-hover:text-background">Send Message</span>
+                <ArrowRight size={16} className="relative z-10 transition-all duration-300 group-hover:translate-x-1 group-hover:text-background" />
               </motion.button>
             </form>
           </Reveal>

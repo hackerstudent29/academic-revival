@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Quote } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -128,8 +128,15 @@ const TESTIMONIALS = [
 export function TestimonialSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative w-full bg-[#F3F2F8] dark:bg-[#15141c] border-t border-foreground/12 min-h-[100svh] flex flex-col justify-center py-16 transition-colors" id="alumni">
+    <section className="relative w-full bg-[#EAEAEA] dark:bg-[#15141c] border-t border-foreground/12 min-h-[100svh] flex flex-col justify-center py-16 transition-colors" id="alumni">
       
       {/* Title Elements - Relative so it pushes the content down and is fully visible */}
       <div className="w-full text-center px-6 mb-12 md:mb-16">
@@ -141,10 +148,10 @@ export function TestimonialSection() {
         </h2>
       </div>
 
-      <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-[40%_60%] lg:grid-cols-[35%_65%] gap-8 md:gap-12 lg:gap-16 items-start">
+      <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-[35%_65%] gap-8 md:gap-12 lg:gap-16 items-start">
         
-        {/* Left Pane: Vertically scrolling list */}
-        <div className="relative h-[400px] md:h-[450px] lg:h-[50vh] lg:min-h-[450px] lg:max-h-[500px] rounded-2xl border border-foreground/10 bg-card overflow-hidden group shadow-sm">
+        {/* Left Pane: Vertically scrolling list (Hidden on mobile/tablet) */}
+        <div className="hidden lg:block relative h-[400px] md:h-[450px] lg:h-[50vh] lg:min-h-[450px] lg:max-h-[500px] rounded-2xl border border-foreground/10 bg-card overflow-hidden group shadow-sm">
           {/* Gradient masks */}
           <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-card to-transparent z-10 pointer-events-none" />
           <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-card to-transparent z-10 pointer-events-none" />
@@ -192,7 +199,7 @@ export function TestimonialSection() {
         </div>
 
         {/* Right Pane: Simple Dynamic Showcase */}
-        <div className="relative h-[400px] md:h-[450px] lg:h-[50vh] lg:min-h-[450px] lg:max-h-[500px] flex items-center justify-center">
+        <div className="relative h-[400px] md:h-[450px] lg:h-[50vh] lg:min-h-[450px] lg:max-h-[500px] flex items-center justify-center w-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}

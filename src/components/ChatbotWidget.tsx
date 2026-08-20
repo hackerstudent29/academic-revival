@@ -66,8 +66,8 @@ export function ChatbotWidget() {
 
   const generateBotReply = async (userQuery: string): Promise<string> => {
     // 1. If an external API URL is configured (FastAPI RAG server), attempt to call it
-    const apiUrl = import.meta.env.VITE_CHATBOT_API_URL;
-    const clientKey = import.meta.env.VITE_CHATBOT_KEY || "msajce-client-key";
+    const apiUrl = import.meta.env["VITE_CHATBOT_API_URL"];
+    const clientKey = import.meta.env["VITE_CHATBOT_KEY"] || "msajce-client-key";
 
     if (apiUrl) {
       try {

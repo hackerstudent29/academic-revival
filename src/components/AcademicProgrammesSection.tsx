@@ -3,9 +3,9 @@ import { Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useSpring, type Variants } from "framer-motion";
 
 const levels = [
-  { label: "Undergraduates", to: "/academics" },
-  { label: "Postgraduates", to: "/academics" },
-  { label: "Professional & Continuing Education", to: "/academics" },
+  { label: "Undergraduates", to: "/programmes" },
+  { label: "Postgraduates", to: "/programmes" },
+  { label: "Professional & Continuing Education", to: "/programmes" },
 ] as const;
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -36,7 +36,7 @@ export function AcademicProgrammesSection() {
       <section
         ref={sectionRef}
         id="academic-programmes"
-        className="relative w-full bg-[#EEF5F2] dark:bg-[#111915] min-h-[100svh] flex flex-col justify-center py-16 text-foreground transition-colors"
+        className="relative w-full bg-[#EAEAEA] dark:bg-[#111915] min-h-[100svh] flex flex-col justify-center py-16 text-foreground transition-colors"
       >
         <div className="mx-auto w-full max-w-[1440px] px-8 md:px-16">
           <motion.div
@@ -44,12 +44,12 @@ export function AcademicProgrammesSection() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
-            className="flex w-full flex-col items-center gap-10 lg:flex-row lg:gap-16 xl:gap-20"
+            className="flex w-full flex-col items-center gap-10 lg:flex-row lg:items-stretch lg:gap-16 xl:gap-20"
           >
             {/* Left image */}
             <motion.div
               variants={rise}
-              className="relative h-[300px] w-full shrink-0 overflow-hidden lg:h-[45vh] lg:max-h-[480px] lg:w-[44%]"
+              className="relative h-[300px] w-full shrink-0 overflow-hidden lg:h-auto lg:w-[44%]"
             >
               <motion.img
                 src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
@@ -89,7 +89,7 @@ export function AcademicProgrammesSection() {
 
               <motion.div variants={rise} className="mt-8 flex flex-wrap gap-3">
                 {[
-                  { to: "/academics", label: "Find a Programme" },
+                  { to: "/programmes", label: "Find a Programme" },
                   { to: "/admissions", label: "Admissions Information" },
                 ].map((cta) => (
                   <motion.div
@@ -100,9 +100,9 @@ export function AcademicProgrammesSection() {
                   >
                     <Link
                       to={cta.to}
-                      className="inline-block border-2 border-primary bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground transition-colors duration-300 hover:bg-primary/90"
+                      className="group relative overflow-hidden inline-flex items-center justify-center bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground shadow transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
                     >
-                      {cta.label} &raquo;
+                      <span className="relative z-10">{cta.label} &raquo;</span>
                     </Link>
                   </motion.div>
                 ))}

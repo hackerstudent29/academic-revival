@@ -36,15 +36,15 @@ const campusFacilities = [
 
 export function AboutBannerSection() {
   return (
-    <section id="about" className="w-full bg-[#F8F6F0] dark:bg-[#171613] min-h-[100svh] flex flex-col justify-center py-16 px-6 md:px-12 transition-colors">
-      <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+    <section id="about" className="w-full bg-gray-100 dark:bg-[#171613] min-h-[100svh] flex flex-col justify-center py-16 transition-colors">
+      <div className="mx-auto grid w-full max-w-[1440px] px-6 md:px-12 grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         {/* Left: editorial copy */}
         <Reveal variant="slide-right" className="flex flex-col justify-center lg:col-span-6">
           <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-primary">
             About MSAJCE
           </span>
 
-          <h2 className="mt-6 text-4xl font-black uppercase leading-[0.95] tracking-tighter text-foreground md:text-5xl lg:text-6xl">
+          <h2 className="mt-6 text-4xl sm:text-5xl font-black uppercase leading-[0.95] tracking-tighter text-foreground lg:text-6xl">
             <SplitText text="Empowering Leaders," />
             <br />
             <SplitText text="Innovators &" delay={0.1} />
@@ -78,7 +78,7 @@ export function AboutBannerSection() {
           <div className="mt-12">
             <Link
               to="/about"
-              className="group relative overflow-hidden inline-flex items-center bg-primary px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
+              className="group relative overflow-hidden inline-flex items-center justify-center bg-primary px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground shadow transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
             >
               <span className="relative z-10">Vision &amp; Mission</span>
             </Link>
@@ -86,11 +86,11 @@ export function AboutBannerSection() {
         </Reveal>
 
         {/* Right: hover accordion image gallery */}
-        <Reveal variant="slide-left" className="flex items-stretch gap-2 lg:col-span-6 h-[500px] lg:h-[65vh] lg:min-h-[600px]">
+        <Reveal variant="slide-left" className="flex lg:items-stretch gap-4 lg:gap-2 lg:col-span-6 h-[400px] lg:h-[65vh] lg:min-h-[600px] max-lg:overflow-x-auto max-lg:snap-x max-lg:snap-mandatory max-lg:pb-4 scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {campusFacilities.map((facility, idx) => (
             <div
               key={idx}
-              className="group relative h-full flex-1 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:flex-[6] border border-border cursor-pointer rounded-sm"
+              className="group relative h-full flex-1 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hover:flex-[15] border border-border cursor-pointer rounded-sm max-lg:min-w-[280px] max-lg:snap-center"
             >
               <img
                 className="absolute inset-0 h-full w-full object-cover object-center transition-all duration-700 group-hover:scale-105"
@@ -105,14 +105,14 @@ export function AboutBannerSection() {
               <div className="absolute inset-0 bg-black/60 transition-opacity duration-700 group-hover:opacity-0 z-10" />
 
               {/* Unhovered Vertical Text */}
-              <div className="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-8 group-hover:opacity-0 group-hover:pointer-events-none z-20 overflow-hidden">
+              <div className="absolute inset-0 hidden lg:flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-8 group-hover:opacity-0 group-hover:pointer-events-none z-20 overflow-hidden">
                 <span className="flex text-white text-4xl md:text-5xl lg:text-[60px] leading-none font-black uppercase tracking-tighter [writing-mode:vertical-rl] -rotate-180 whitespace-nowrap">
                   {facility.name}
                 </span>
               </div>
 
               {/* Hovered Content (Name + Description) */}
-              <div className="absolute bottom-0 left-0 w-[300px] p-6 translate-y-8 opacity-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:opacity-100 flex flex-col justify-end pointer-events-none z-20">
+              <div className="absolute bottom-0 left-0 w-full lg:w-[300px] p-6 lg:translate-y-8 lg:opacity-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:group-hover:translate-y-0 lg:group-hover:opacity-100 flex flex-col justify-end pointer-events-none z-20">
                 <h3 className="text-xl md:text-3xl font-black text-white uppercase tracking-tighter">{facility.name}</h3>
                 <p className="mt-2 text-xs md:text-sm text-white/90 leading-relaxed">
                   {facility.description}

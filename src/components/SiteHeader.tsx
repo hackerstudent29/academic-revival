@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
-import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { Link, useLocation } from "@tanstack/react-router";
+import { AnimatePresence, motion, useScroll, useMotionValueEvent, useTransform } from "framer-motion";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Logo } from "@/components/Logo";
 import { MoreHorizontal, X, ChevronDown } from "lucide-react";
 
-type RoutePath = "/" | "/about" | "/academics" | "/admissions" | "/placements" | "/campus-life" | "/contact";
+type RoutePath = 
+  | "/" 
+  | "/about" 
+  | "/academics" 
+  | "/admissions" 
+  | "/placements" 
+  | "/campus-life" 
+  | "/contact" 
+  | "/programmes" 
+  | `/programmes/${string}`;
 
 type Col = { title: string; links: { label: string; to?: RoutePath; href?: string; hash?: string }[] };
 type NavItem = { id: string; label: string; to: RoutePath; cols?: Col[] };
@@ -16,7 +25,7 @@ const nav: NavItem[] = [
   {
     id: "about",
     label: "The Institution",
-    to: "/about",
+    to: "/",
     cols: [
       { title: "Overview", links: [{ label: "Campus Profile", to: "/about" }, { label: "Mission & Values", to: "/about", hash: "mission" }, { label: "The Trust", to: "/about", hash: "trust" }, { label: "Principal's Message", to: "/about", hash: "leadership" }, { label: "Trust Network", to: "/about", hash: "trust" }] },
       { title: "Administration & Compliance", links: [{ label: "Governance", to: "/about", hash: "leadership" }, { label: "Welfare Committees", to: "/about" }, { label: "Code of Conduct", to: "/campus-life", hash: "code-of-conduct" }, { label: "Compliance", to: "/about" }] },
@@ -104,7 +113,7 @@ function PaneLink({ link, onClick }: { link: Col["links"][number]; onClick: () =
     );
   }
   return (
-    <Link to={link.to!} hash={link.hash} onClick={onClick} className={cls}>
+    <Link to={link.to!} {...(link.hash ? { hash: link.hash } : {})} onClick={onClick} className={cls}>
       {link.label}
     </Link>
   );
@@ -147,9 +156,13 @@ export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const { scrollY } = useScroll();
+  const logoOpacity = useTransform(scrollY, [50, 120], [0, 1]);
+
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 20);
+    setIsScrolled(latest > 80);
     const previous = scrollY.getPrevious() ?? 0;
     if (latest > previous && latest > 150) {
       if (!moreOpen && !active) {
@@ -201,15 +214,21 @@ export function SiteHeader() {
         }}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: APPLE_EASE }}
-        className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
-          active || moreOpen ? "border-transparent bg-background" : 
-          isScrolled ? "bg-background border-foreground/10" : "msajce-header-glass border-foreground/10"
+        className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 msajce-header-glass ${
+          active || moreOpen || isScrolled ? "border-foreground/10" : "border-transparent"
         }`}
         onMouseLeave={() => setActive(null)}
       >
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-2.5 md:px-12 md:py-3">
-        <div className="flex-1 lg:flex-none">
-          {/* Logo removed as per user request */}
+        <div className="flex-1 lg:flex-none flex items-center min-w-[140px]">
+          <Link to="/" className="flex items-center">
+            <motion.img
+              src="/logos/clg-logo.png" 
+              alt="MSAJCE Logo" 
+              className="h-9 md:h-10 w-auto object-contain origin-left"
+              style={{ opacity: isHome ? logoOpacity : 1 }}
+            />
+          </Link>
         </div>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
@@ -250,10 +269,10 @@ export function SiteHeader() {
           <ThemeToggle />
           <Link
             to="/admissions"
+            className="group relative hidden overflow-hidden rounded-none bg-primary px-5 py-2.5 text-[13px] font-bold text-primary-foreground shadow transition-colors hover:text-background sm:inline-flex after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
             onClick={closeAll}
-            className="group relative hidden overflow-hidden rounded-none bg-forest px-5 py-2.5 text-[13px] font-bold text-white shadow transition-colors hover:text-background sm:inline-flex after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
           >
-            <span className="relative z-10 flex items-center gap-2">Apply 2026-27</span>
+            <span className="relative z-10">Apply 2026-27</span>
           </Link>
           <button
             type="button"
@@ -335,7 +354,7 @@ export function SiteHeader() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={() => setMoreOpen(false)}
-              className="fixed inset-0 top-[53px] sm:top-[73px] z-[40] bg-black/40 touch-none"
+              className="fixed inset-0 top-0 z-[40] bg-black/40 touch-none"
             />
             <motion.div
               initial={{ opacity: 0, x: "100%" }}
@@ -344,7 +363,7 @@ export function SiteHeader() {
               transition={{ duration: 0.5, ease: APPLE_EASE }}
               style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}
               data-lenis-prevent="true"
-              className="fixed right-0 top-[53px] sm:top-[73px] z-[40] block w-full max-w-[360px] h-[calc(100dvh-53px)] sm:h-[calc(100dvh-73px)] pt-6 pb-12 msajce-dropdown-glass px-6 overflow-y-auto overflow-x-hidden overscroll-contain border-l border-foreground/10 shadow-2xl scrollbar-none"
+              className="fixed right-0 top-0 z-[45] block w-full max-w-[360px] h-[100dvh] pt-[80px] pb-12 msajce-dropdown-glass px-6 overflow-y-auto overflow-x-hidden overscroll-contain border-l border-foreground/10 shadow-2xl scrollbar-none"
             >
               <div className="relative w-full min-h-full">
                 <AnimatePresence mode="wait">
@@ -379,10 +398,10 @@ export function SiteHeader() {
                         ))}
                         <Link
                           to="/admissions"
+                          className="group relative my-5 inline-flex w-full items-center justify-center overflow-hidden rounded-none bg-primary px-5 py-3 text-[13px] font-bold text-primary-foreground shadow transition-colors hover:text-background sm:hidden after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
                           onClick={closeAll}
-                          className="my-5 inline-flex w-full items-center justify-center rounded-none bg-forest px-5 py-3 text-[13px] font-bold text-white sm:hidden"
                         >
-                          Apply 2026-27
+                          <span className="relative z-10">Apply 2026-27</span>
                         </Link>
                       </div>
 
