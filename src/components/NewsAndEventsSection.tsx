@@ -76,7 +76,7 @@ const bottomRowArticles: NewsItem[] = [
 
 export function NewsAndEventsSection() {
   return (
-    <section className="bg-[#F4EED9] dark:bg-[#1c1613] py-16 md:py-24 border-b border-foreground/12 transition-colors" id="news">
+    <section className="bg-[#E8E8E3] dark:bg-[#1c1613] py-16 md:py-24 border-b border-foreground/12 transition-colors" id="news">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12">
         {/* Section Header */}
         <div className="flex items-center justify-between mb-8 md:mb-10">
