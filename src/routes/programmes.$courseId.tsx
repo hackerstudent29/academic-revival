@@ -32,12 +32,58 @@ export const Route = createFileRoute('/programmes/$courseId')({
   component: CoursePage,
 });
 
+function getHeadingId(children: any): string {
+  const text = Array.isArray(children)
+    ? children.map(c => (typeof c === 'string' ? c : (c?.props?.children || ''))).join(' ')
+    : typeof children === 'string'
+      ? children
+      : children?.props?.children || '';
+  const lower = String(text).toLowerCase();
+  
+  if (lower.includes('overview') || lower.includes('vision') || lower.includes('mission') || lower.includes('about')) {
+    return 'about';
+  }
+  if (lower.includes('peo') || lower.includes('pso') || lower.includes('programme outcome') || lower.includes('program outcome') || lower.includes('educational objective') || lower.includes('obe') || (lower.includes('outcome') && lower.includes('po'))) {
+    return 'obe';
+  }
+  if (lower.includes('job profile') || lower.includes('employment') || lower.includes('career') || lower.includes('salary') || lower.includes('growth')) {
+    return 'job-profile';
+  }
+  if (lower.includes('faculty') || lower.includes('staff') || lower.includes('teaching staff')) {
+    return 'faculty';
+  }
+  if (lower.includes('facilit') || lower.includes('laborator') || lower.includes('lab')) {
+    return 'facilities';
+  }
+  if (lower.includes('regulation') || lower.includes('teaching method') || lower.includes('academic') || lower.includes('course material') || lower.includes('curriculum')) {
+    return 'academics';
+  }
+  if (lower.includes('news') || lower.includes('event') || lower.includes('symposium') || lower.includes('conference')) {
+    return 'news-events';
+  }
+  if (lower.includes('student') || lower.includes('activit') || lower.includes('club') || lower.includes('hackathon')) {
+    return 'student-activities';
+  }
+  return lower.replace(/[^a-z0-9]+/g, '-');
+}
+
 function CoursePage() {
   const { course, markdownContent } = Route.useLoaderData();
   const [hidden, setHidden] = useState(false);
+  const [activeTab, setActiveTab] = useState('about');
   const [currentNews, setCurrentNews] = useState(0);
   const currentItem = newsItems[currentNews] || newsItems[0];
   const { scrollY } = useScroll();
+
+  const scrollToSection = (tabId: string) => {
+    setActiveTab(tabId);
+    const el = document.getElementById(tabId);
+    if (el) {
+      const yOffset = -140;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -65,17 +111,35 @@ function CoursePage() {
       <motion.div 
         animate={{ y: hidden ? -73 : 0 }}
         transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
-        className="sticky top-[73px] z-40 bg-background border-b border-border hidden md:block"
+        className="sticky top-[73px] z-40 bg-background/95 backdrop-blur-md border-b border-border shadow-xs"
       >
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
-          <ul className="flex items-center gap-8 text-sm font-semibold text-foreground overflow-x-auto whitespace-nowrap py-4">
-            <li className="hover:text-primary cursor-pointer border-b-2 border-foreground pb-4 -mb-4">Course overview</li>
-            <li className="hover:text-foreground cursor-pointer text-muted-foreground transition-colors">Student work</li>
-            <li className="hover:text-foreground cursor-pointer text-muted-foreground transition-colors">Teaching staff</li>
-            <li className="hover:text-foreground cursor-pointer text-muted-foreground transition-colors">Fees and funding</li>
-            <li className="hover:text-foreground cursor-pointer text-muted-foreground transition-colors">Entry requirements</li>
-            <li className="hover:text-foreground cursor-pointer text-muted-foreground transition-colors">Apply now</li>
-            <li className="hover:text-foreground cursor-pointer text-muted-foreground transition-colors">Careers</li>
+          <ul className="flex items-center gap-6 lg:gap-8 text-xs md:text-sm font-bold uppercase tracking-wider text-foreground overflow-x-auto no-scrollbar whitespace-nowrap py-3.5">
+            {[
+              { id: 'about', label: 'About Department' },
+              { id: 'obe', label: 'OBE' },
+              { id: 'job-profile', label: 'JOB PROFILE' },
+              { id: 'faculty', label: 'Faculty' },
+              { id: 'facilities', label: 'Department Facilities' },
+              { id: 'academics', label: 'Academics' },
+              { id: 'news-events', label: 'News and Events' },
+              { id: 'student-activities', label: 'Student Activities' },
+            ].map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <li
+                  key={tab.id}
+                  onClick={() => scrollToSection(tab.id)}
+                  className={`cursor-pointer transition-colors pb-1 border-b-2 ${
+                    isActive
+                      ? 'text-primary border-primary font-extrabold'
+                      : 'text-muted-foreground border-transparent hover:text-foreground hover:border-border'
+                  }`}
+                >
+                  {tab.label}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </motion.div>
@@ -204,14 +268,75 @@ function CoursePage() {
         >
            {markdownContent ? (
              <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-8 prose-h2:mt-16 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary hover:prose-a:text-primary/80 [&_table]:w-full [&_table]:border-collapse [&_table]:border [&_table]:border-border [&_th]:border [&_th]:border-border [&_th]:p-4 [&_th]:bg-muted [&_td]:border [&_td]:border-border [&_td]:p-4 [&_td]:align-top [&_th]:text-left [&_td:first-child]:whitespace-nowrap [&_th:first-child]:whitespace-nowrap [&_td:first-child]:min-w-[220px]">
-               <ReactMarkdown remarkPlugins={[remarkGfm]}>
+               <ReactMarkdown 
+                 remarkPlugins={[remarkGfm]}
+                 components={{
+                   h2: ({ node, children, ...props }) => {
+                     const id = getHeadingId(children);
+                     return (
+                       <h2 id={id} className="scroll-mt-36 text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 mt-16 text-foreground border-b border-border/50 pb-4" {...props}>
+                         {children}
+                       </h2>
+                     );
+                   },
+                   h3: ({ node, children, ...props }) => {
+                     const id = getHeadingId(children);
+                     return (
+                       <h3 id={id} className="scroll-mt-36 text-xl md:text-2xl font-bold uppercase tracking-tight mb-4 mt-8 text-foreground" {...props}>
+                         {children}
+                       </h3>
+                     );
+                   }
+                 }}
+               >
                  {markdownContent}
                </ReactMarkdown>
+
+               {/* Section for News & Events */}
+               <section id="news-events" className="scroll-mt-36 mt-16 border-t border-border pt-12">
+                 <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground">
+                   News & Events
+                 </h2>
+                 <div className="space-y-4">
+                   {newsItems.map((item, idx) => (
+                     <div key={idx} className="p-5 bg-card border border-border rounded-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+                       <div>
+                         <span className="text-[10px] font-bold text-[#059669] bg-[#059669]/10 px-2 py-0.5 rounded-sm uppercase tracking-widest inline-block mb-2">{item.date}</span>
+                         <h4 className="font-bold text-card-foreground text-base">{item.title}</h4>
+                       </div>
+                       <Link to="/" className="text-xs font-bold text-primary hover:underline flex items-center gap-1 shrink-0 uppercase tracking-wider">
+                         Details <ArrowRight size={12} />
+                       </Link>
+                     </div>
+                   ))}
+                 </div>
+               </section>
+
+               {/* Section for Student Activities */}
+               <section id="student-activities" className="scroll-mt-36 mt-16 border-t border-border pt-12">
+                 <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground">
+                   Student Activities & Technical Associations
+                 </h2>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                   <div className="p-6 bg-card border border-border rounded-sm">
+                     <h4 className="font-bold text-card-foreground text-base mb-2">Technical Club & Hackathons</h4>
+                     <p className="text-sm text-muted-foreground leading-relaxed">
+                       Hands-on coding challenges, robotics competitions, national tech hackathons, and open-source project development sprints.
+                     </p>
+                   </div>
+                   <div className="p-6 bg-card border border-border rounded-sm">
+                     <h4 className="font-bold text-card-foreground text-base mb-2">Workshops & Guest Seminars</h4>
+                     <p className="text-sm text-muted-foreground leading-relaxed">
+                       Regular industry expert masterclasses on cutting-edge stacks, emerging research domains, and hands-on laboratory expos.
+                     </p>
+                   </div>
+                 </div>
+               </section>
              </article>
            ) : (
              <>
-               <section className="mb-16">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground">Why choose this course at MSAJCE</h2>
+               <section id="about" className="scroll-mt-36 mb-16">
+                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground border-b border-border/50 pb-4">About Department</h2>
                   <div className="text-base md:text-lg text-muted-foreground leading-relaxed space-y-6">
                     <p><strong className="text-foreground">Design focus:</strong> {course.details.overview.split('\n')[0]}</p>
                     <p><strong className="text-foreground">Pathway structure:</strong> {course.details.pathwayStructure}</p>
@@ -223,8 +348,8 @@ function CoursePage() {
     
                <div className="w-full h-px bg-border my-12" />
     
-               <section className="mb-16">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground">Course overview</h2>
+               <section id="obe" className="scroll-mt-36 mb-16">
+                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground border-b border-border/50 pb-4">Outcome Based Education (OBE)</h2>
                   <div className="text-base md:text-lg text-muted-foreground leading-relaxed space-y-6 whitespace-pre-wrap">
                      {course.details.overview}
                   </div>
@@ -232,8 +357,8 @@ function CoursePage() {
     
                <div className="w-full h-px bg-border my-12" />
     
-               <section className="mb-16">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground">Course units</h2>
+               <section id="academics" className="scroll-mt-36 mb-16">
+                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground border-b border-border/50 pb-4">Academics & Course Units</h2>
                   <div className="text-base md:text-lg text-muted-foreground leading-relaxed space-y-6 whitespace-pre-wrap">
                      {course.details.courseUnits}
                   </div>
@@ -241,10 +366,41 @@ function CoursePage() {
     
                <div className="w-full h-px bg-border my-12" />
     
-               <section className="mb-16">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground">Optional Diploma Year</h2>
+               <section id="job-profile" className="scroll-mt-36 mb-16">
+                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground border-b border-border/50 pb-4">Job Profile & Specializations</h2>
                   <div className="text-base md:text-lg text-muted-foreground leading-relaxed space-y-6 whitespace-pre-wrap">
                      {course.details.optionalDiploma}
+                  </div>
+               </section>
+
+               <div className="w-full h-px bg-border my-12" />
+
+               <section id="news-events" className="scroll-mt-36 mb-16">
+                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground border-b border-border/50 pb-4">News and Events</h2>
+                  <div className="space-y-4">
+                    {newsItems.map((item, idx) => (
+                      <div key={idx} className="p-5 bg-card border border-border rounded-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                          <span className="text-[10px] font-bold text-[#059669] bg-[#059669]/10 px-2 py-0.5 rounded-sm uppercase tracking-widest inline-block mb-2">{item.date}</span>
+                          <h4 className="font-bold text-card-foreground text-base">{item.title}</h4>
+                        </div>
+                        <Link to="/" className="text-xs font-bold text-primary hover:underline flex items-center gap-1 shrink-0 uppercase tracking-wider">
+                          Details <ArrowRight size={12} />
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+               </section>
+
+               <div className="w-full h-px bg-border my-12" />
+
+               <section id="student-activities" className="scroll-mt-36 mb-16">
+                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground border-b border-border/50 pb-4">Student Activities</h2>
+                  <div className="p-6 bg-card border border-border rounded-sm">
+                    <h4 className="font-bold text-card-foreground text-base mb-2">Technical Club & Hackathons</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Hands-on coding challenges, robotics competitions, national tech hackathons, and open-source project development sprints.
+                    </p>
                   </div>
                </section>
              </>
