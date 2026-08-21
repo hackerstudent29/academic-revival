@@ -297,70 +297,10 @@ function CoursePage() {
         </div>
 
       {/* Main Content Layout */}
-      <div id="department-main-content" className="max-w-[1440px] mx-auto px-6 lg:px-12 pt-16 md:pt-20 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+      <div id="department-main-content" className="max-w-[1440px] mx-auto px-6 lg:px-12 pt-16 md:pt-20 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
         
-        {/* Left Column: Sidebar / Meta details */}
-        <div className="lg:col-span-3 order-2 lg:order-1">
-           <div className="sticky top-32 space-y-8">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="bg-primary/5 p-6 rounded-sm border border-primary/10"
-              >
-                 <h4 className="font-bold text-primary mb-6 uppercase tracking-widest text-xs">At a Glance</h4>
-                 <ul className="space-y-4 text-sm">
-                    <li className="flex justify-between border-b border-border pb-3">
-                       <span className="text-muted-foreground">Total Intake</span>
-                       <span className="font-semibold text-foreground">{course.intake}</span>
-                    </li>
-                    <li className="flex justify-between border-b border-border pb-3">
-                       <span className="text-muted-foreground">Govt Quota</span>
-                       <span className="font-semibold text-foreground">{course.govtQuota}</span>
-                    </li>
-                    <li className="flex justify-between pb-1">
-                       <span className="text-muted-foreground">Mgmt Quota</span>
-                       <span className="font-semibold text-foreground">{course.managementQuota}</span>
-                    </li>
-                 </ul>
-              </motion.div>
-
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-primary text-primary-foreground p-6 rounded-sm min-h-[200px] flex flex-col justify-between shadow-lg"
-              >
-                 <h4 className="font-bold mb-4 uppercase tracking-widest text-xs opacity-80">News & Events</h4>
-                 <div className="flex-1 overflow-hidden relative">
-                   <AnimatePresence mode="wait">
-                      <motion.div
-                        key={currentNews}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.3 }}
-                        className="py-2"
-                      >
-                        <span className="text-[10px] font-bold text-[#059669] bg-white/90 px-2 py-0.5 rounded-sm inline-block mb-3 uppercase tracking-widest">{currentItem.date}</span>
-                        <p className="text-sm font-semibold leading-snug">{currentItem.title}</p>
-                      </motion.div>
-                   </AnimatePresence>
-                 </div>
-                 <button 
-                   onClick={() => handleTabChange('news-events')}
-                   className="text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:opacity-80 transition-opacity mt-4 text-white text-left cursor-pointer"
-                 >
-                    View all news <ArrowRight size={14} />
-                 </button>
-              </motion.div>
-           </div>
-        </div>
-
-        {/* Center/Right Column: Clean Isolated Tab Content */}
-        <div className="lg:col-span-6 order-1 lg:order-2 min-h-[500px]">
+        {/* Main Column: Clean Isolated Tab Content */}
+        <div className="lg:col-span-8 order-1 min-h-[500px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -580,71 +520,129 @@ function CoursePage() {
           </AnimatePresence>
         </div>
 
-        {/* Right Sidebar: Extra Info & CTAs */}
-        <div className="lg:col-span-3 order-3 lg:order-3 relative">
-          <div className="sticky top-40 space-y-8">
-            {/* Widget 1: Contact info */}
+        {/* Right Sidebar: Extra Info, Stats & CTAs */}
+        <div className="lg:col-span-4 order-2 relative">
+          <div className="sticky top-28 space-y-6">
+            
+            {/* Widget 1: At a Glance */}
             <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="border border-border p-6 rounded-sm bg-card shadow-sm"
+              className="bg-card p-6 rounded-sm border border-border shadow-xs"
             >
-              <h4 className="font-bold uppercase tracking-widest text-xs mb-4 opacity-70">Contact Department</h4>
-              <p className="text-sm font-semibold mb-1">Head of Department</p>
-              <p className="text-xs text-muted-foreground mb-6">hod.{course.department.toLowerCase()}@msajce.edu</p>
-              <Link to="/contact" className="block text-center w-full py-3 bg-[#059669] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#059669]/90 transition-colors shadow-md rounded-sm">
+               <h4 className="font-bold text-primary mb-5 uppercase tracking-widest text-xs">At a Glance</h4>
+               <ul className="space-y-4 text-sm">
+                  <li className="flex justify-between border-b border-border pb-3">
+                     <span className="text-muted-foreground font-medium">Total Intake</span>
+                     <span className="font-bold text-foreground text-base">{course.intake}</span>
+                  </li>
+                  <li className="flex justify-between border-b border-border pb-3">
+                     <span className="text-muted-foreground font-medium">Govt Quota</span>
+                     <span className="font-bold text-foreground text-base">{course.govtQuota}</span>
+                  </li>
+                  <li className="flex justify-between pb-1">
+                     <span className="text-muted-foreground font-medium">Mgmt Quota</span>
+                     <span className="font-bold text-foreground text-base">{course.managementQuota}</span>
+                  </li>
+               </ul>
+            </motion.div>
+
+            {/* Widget 2: Contact info */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="border border-border p-6 rounded-sm bg-card shadow-xs"
+            >
+              <h4 className="font-bold uppercase tracking-widest text-xs mb-3 text-foreground/70">Contact Department</h4>
+              <p className="text-sm font-bold text-foreground mb-0.5">Head of Department</p>
+              <p className="text-xs text-muted-foreground mb-5">hod.{course.department.toLowerCase()}@msajce.edu</p>
+              <Link to="/contact" className="block text-center w-full py-3 bg-[#059669] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#059669]/90 transition-colors shadow-sm rounded-sm">
                 Enquire Now
               </Link>
             </motion.div>
 
-            {/* Widget 2: Recruiters */}
+            {/* Widget 3: Live News & Events */}
             <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="border border-primary/10 p-6 rounded-sm bg-primary/5"
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="bg-primary text-primary-foreground p-6 rounded-sm min-h-[190px] flex flex-col justify-between shadow-md"
             >
-              <h4 className="font-bold uppercase tracking-widest text-xs mb-4 text-primary">Top Recruiters</h4>
+               <h4 className="font-bold mb-3 uppercase tracking-widest text-xs opacity-85">News & Events</h4>
+               <div className="flex-1 overflow-hidden relative">
+                 <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentNews}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                      className="py-2"
+                    >
+                      <span className="text-[10px] font-bold text-[#059669] bg-white px-2.5 py-0.5 rounded-sm inline-block mb-2 uppercase tracking-widest shadow-xs">{currentItem.date}</span>
+                      <p className="text-sm font-bold leading-snug">{currentItem.title}</p>
+                    </motion.div>
+                 </AnimatePresence>
+               </div>
+               <button 
+                 onClick={() => handleTabChange('news-events')}
+                 className="text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:opacity-80 transition-opacity mt-4 text-white text-left cursor-pointer"
+               >
+                  View all news <ArrowRight size={14} />
+               </button>
+            </motion.div>
+
+            {/* Widget 4: Recruiters */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="border border-primary/10 p-6 rounded-sm bg-primary/5 shadow-xs"
+            >
+              <h4 className="font-bold uppercase tracking-widest text-xs mb-3 text-primary">Top Recruiters</h4>
               <div className="flex flex-wrap gap-2">
                 {course.details.recruiters.map((company: string) => (
-                  <span key={company} className="text-[10px] uppercase font-bold tracking-wider px-3 py-1.5 bg-background border border-primary/20 text-primary shadow-sm rounded-full">
+                  <span key={company} className="text-[10px] uppercase font-bold tracking-wider px-3 py-1.5 bg-background border border-primary/20 text-primary shadow-xs rounded-full">
                     {company}
                   </span>
                 ))}
               </div>
             </motion.div>
 
-            {/* Widget 3: Career Opportunities */}
+            {/* Widget 5: Career Opportunities */}
             <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="border border-border p-6 rounded-sm bg-card shadow-sm"
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="border border-border p-6 rounded-sm bg-card shadow-xs"
             >
-              <h4 className="font-bold uppercase tracking-widest text-xs mb-4 opacity-70">Career Opportunities</h4>
-              <ul className="space-y-3 text-sm font-semibold text-foreground">
+              <h4 className="font-bold uppercase tracking-widest text-xs mb-4 text-foreground/70">Career Opportunities</h4>
+              <ul className="space-y-2.5 text-sm font-semibold text-foreground">
                 {course.details.careers.map((role: string) => (
                   <li key={role} className="flex items-start gap-2">
-                    <span className="text-[#059669] mt-1">•</span> {role}
+                    <span className="text-[#059669] mt-0.5">•</span> {role}
                   </li>
                 ))}
               </ul>
             </motion.div>
 
-            {/* Widget 4: Quick Links */}
+            {/* Widget 6: Quick Links */}
             <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="border border-border p-6 rounded-sm bg-card shadow-sm"
+              className="border border-border p-6 rounded-sm bg-card shadow-xs"
             >
-              <h4 className="font-bold uppercase tracking-widest text-xs mb-4 opacity-70">Related Links</h4>
-              <ul className="space-y-4 text-sm font-semibold text-foreground">
+              <h4 className="font-bold uppercase tracking-widest text-xs mb-4 text-foreground/70">Related Links</h4>
+              <ul className="space-y-3.5 text-sm font-semibold text-foreground">
                 <li><Link to="/academics" className="hover:text-[#059669] transition-colors flex items-center gap-2"><ArrowRight size={14} className="text-primary" /> Academic Rules</Link></li>
                 <li><Link to="/placements" className="hover:text-[#059669] transition-colors flex items-center gap-2"><ArrowRight size={14} className="text-primary" /> Placement Records</Link></li>
                 <li><Link to="/admissions" className="hover:text-[#059669] transition-colors flex items-center gap-2"><ArrowRight size={14} className="text-primary" /> Admission Process</Link></li>
