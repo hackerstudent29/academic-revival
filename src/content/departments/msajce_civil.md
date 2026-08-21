@@ -1,13 +1,36 @@
 # Civil Engineering
 
 ## 1. Overview
-Civil engineers conceive, design, construct, supervise, operate, and maintain infrastructure projects and systems in the public and private sectors, including roads, buildings, bridges, airports, tunnels, dams, systems for water supply and sewerage treatment, and pollution controls. Civil Engineering is one of the older engineering disciplines and serves as a backbone and integral part of society; without it, a society could not function. The profession is very diverse and offers a wide range of activities through various disciplines such as surveying, structural engineering, transport engineering, environment and water supply engineering, as well as Remote Sensing and GIS. Civil engineers are considered the heroes of the engineering world and play a part in helping society by adapting infrastructures with new technologies to meet population growth and climatic change. They will never have a dull moment and are always creative in their own unique way.
 
-Welcome to the Department of Civil Engineering at Mohamed Sathak A.J. College of Engineering in Siruseri, Chennai, India. The department is one of the pioneer departments of the Institute, having been established in 2007. It has excelled in the areas of academics, research, cultural, and sports activities, developing prestige up to global standards.
+### The Essence of Civil Engineering
+Civil engineers conceive, design, construct, supervise, operate, and maintain infrastructure projects and systems in both the public and private sectors. This encompasses roads, buildings, bridges, airports, tunnels, dams, systems for water supply and sewerage treatment, pollution control mechanisms, and environmental resilience infrastructure. 
 
-Currently, the department offers one undergraduate program, which is the B.E. in Civil Engineering, and a postgraduate program, specifically the M.E. in Structural Engineering. The framework of the program provides ample opportunities for students to get trained as industrialists, researchers, or entrepreneurs. The department has produced eminent engineers who are committed to the highest level of professional standards in the field of engineering and technology.
+As one of the oldest and foundational engineering disciplines, Civil Engineering forms the backbone of human society—without it, a modern society simply could not function. The profession is remarkably diverse, integrating specialized domains such as:
+- **Structural Engineering & Analysis**
+- **Surveying & Geomatics**
+- **Transportation & Highway Engineering**
+- **Environmental & Water Resources Engineering**
+- **Remote Sensing & Geographic Information Systems (GIS)**
 
-A strong alumni base has been created, and their contribution to the development of the department is perceived by providing ample opportunities to the students to use the expert network to enrich their careers and acquire experimental learning exposures through frequent interactions organized by the department. The leadership is honored to guide the department alongside a team of committed and compassionate individuals who keep the Civil Engineering department flag flying high.
+Civil engineers are the unsung heroes of the engineering world, continuously adapting infrastructure with innovative technologies to cater to population growth and combat climate change. In this ever-evolving discipline, civil engineers combine rigorous analytical principles with creative problem-solving to build a sustainable future.
+
+---
+
+### Welcome to the Department of Civil Engineering
+**Mohamed Sathak A.J. College of Engineering (MSAJCE), Siruseri, Chennai, India**
+
+Established in **2007**, the Department of Civil Engineering stands as one of the pioneer departments of the Institute. Over the years, the department has achieved notable distinctions across **Academics, Advanced Research, Cultural Initiatives, and Sports**, cultivating a prestigious standard recognized both nationally and globally.
+
+#### Academic Programmes Offered
+- **Undergraduate Programme**: B.E. in Civil Engineering (4 Years)
+- **Postgraduate Programme**: M.E. in Structural Engineering (2 Years)
+
+The progressive curriculum and rigorous training framework empower students to excel as top-tier industry professionals, dedicated researchers, or innovative entrepreneurs. The department takes pride in producing eminent engineers who uphold the highest ethical and professional standards in engineering and technology.
+
+#### Alumni Network & Experiential Learning
+A strong, engaged alumni base plays an active role in student enrichment. Through continuous industry interactions, expert lectures, site visits, and collaborative workshops organized by the department, students gain invaluable practical exposure and network with industry leaders.
+
+> *"I am honored to lead the Department of Civil Engineering with a team of dedicated, compassionate, and visionary faculty members who consistently keep the MSAJCE Civil Engineering flag flying high."*
 
 ## 2. Vision
 The vision is to be a center of excellence for transforming students into proficient Civil Engineers through sustainable practices.
