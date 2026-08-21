@@ -268,6 +268,19 @@ body.dropdown-open .msajce-page-blur {
   animation-iteration-count: infinite;
 }
 
+@keyframes msajce-marquee-vertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+.msajce-marquee-vertical {
+  animation: msajce-marquee-vertical 30s linear infinite;
+}
+
+.msajce-marquee-vertical:hover {
+  animation-play-state: paused;
+}
+
 @keyframes msajce-reel {
   from { transform: translateY(0); }
   to { transform: translateY(-50%); }
@@ -280,7 +293,8 @@ body.dropdown-open .msajce-page-blur {
 
 @media (prefers-reduced-motion: reduce) {
   .msajce-reel,
-  .msajce-marquee {
+  .msajce-marquee,
+  .msajce-marquee-vertical {
     animation: none;
   }
 }

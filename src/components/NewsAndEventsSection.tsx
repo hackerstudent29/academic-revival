@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Reveal } from "./motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface NewsItem {
   id: string;
@@ -47,6 +49,46 @@ const sidebarArticles: NewsItem[] = [
     image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600&auto=format&fit=crop", // placeholder for students talking
     link: "/campus-life",
   },
+  {
+    id: "side-4",
+    category: "ACADEMICS",
+    title: "Robotics Workshop: Build Your First Autonomous Drone",
+    date: "August 20, 2026",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop",
+    link: "/campus-life",
+  },
+  {
+    id: "side-5",
+    category: "TECH FEST",
+    title: "Annual Hackathon 'Innovate 2026' Registrations Open",
+    date: "September 2, 2026",
+    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=600&auto=format&fit=crop",
+    link: "/campus-life",
+  },
+  {
+    id: "side-6",
+    category: "SEMINAR",
+    title: "Guest Lecture: AI in Healthcare by Dr. Sarah Jenkins",
+    date: "September 15, 2026",
+    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600&auto=format&fit=crop",
+    link: "/campus-life",
+  },
+  {
+    id: "side-7",
+    category: "SPORTS",
+    title: "Inter-College Basketball Championship Finals",
+    date: "September 22, 2026",
+    image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=600&auto=format&fit=crop",
+    link: "/campus-life",
+  },
+  {
+    id: "side-8",
+    category: "ALUMNI",
+    title: "Alumni Meet & Greet: Celebrating 25 Years of Excellence",
+    date: "October 10, 2026",
+    image: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=600&auto=format&fit=crop",
+    link: "/campus-life",
+  },
 ];
 
 const bottomRowArticles: NewsItem[] = [
@@ -74,6 +116,20 @@ const bottomRowArticles: NewsItem[] = [
 ];
 
 export function NewsAndEventsSection() {
+  const [startIndex, setStartIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStartIndex((prev) => (prev + 1) % sidebarArticles.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const visibleArticles = [];
+  for (let i = 0; i < 3; i++) {
+    visibleArticles.push(sidebarArticles[(startIndex + i) % sidebarArticles.length]);
+  }
+
   return (
     <section className="bg-[#E4E6E6] dark:bg-[#151412] py-12 md:py-16 transition-colors" id="news">
       <div className="mx-auto w-full max-w-[1280px] px-6 md:px-12">
@@ -127,44 +183,67 @@ export function NewsAndEventsSection() {
             </Link>
           </Reveal>
 
-          {/* Right Column: Single Panel with 3 Stacked Articles (spans 5 columns) */}
-          <Reveal variant="rise" delay={0.2} className="lg:col-span-5">
-            <div className="bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm p-6 h-full flex flex-col justify-between gap-6">
-              {sidebarArticles.map((article) => (
-                <Link
-                  key={article.id}
-                  to={article.link || "/campus-life"}
-                  className="group flex flex-col"
-                >
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-gray-800 dark:text-gray-200 mb-3 block">
-                    {article.category}
-                  </span>
-
-                  <div className="flex items-start gap-4">
-                    {/* Thumbnail */}
-                    <div className="w-[120px] xl:w-[140px] aspect-[3/2] rounded-[4px] overflow-hidden shrink-0 bg-muted">
-                      <img
-                        src={article.image}
-                        alt={article.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-
-                    {/* Title and Date */}
-                    <div className="flex flex-col justify-start flex-1 min-w-0">
-                      <h4 className="text-[15px] font-bold text-primary leading-snug group-hover:underline">
-                        {article.title}
-                      </h4>
-                      {article.date && (
-                        <span className="text-[12px] text-gray-600 dark:text-gray-400 mt-2 block">
-                          {article.date}
+          {/* Right Column: Single Panel with Stacked Scrolling Articles (spans 5 columns) */}
+          <Reveal variant="rise" delay={0.2} className="lg:col-span-5 h-full">
+            <div className="bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm p-6 h-full flex flex-col">
+              <h3 className="text-xl md:text-2xl font-bold tracking-tight text-primary font-display mb-4">
+                Upcoming Events
+              </h3>
+              
+              <div className="flex-1 relative overflow-hidden flex flex-col gap-6">
+                <AnimatePresence initial={false} mode="popLayout">
+                  {visibleArticles.map((article) => (
+                    <motion.div
+                      layout
+                      key={article.id}
+                      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -30, scale: 0.95 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      className="w-full shrink-0"
+                    >
+                      <Link
+                        to={article.link || "/campus-life"}
+                        className="group flex flex-col"
+                      >
+                        <span className="text-[11px] font-bold uppercase tracking-widest text-gray-800 dark:text-gray-200 mb-3 block">
+                          {article.category}
                         </span>
-                      )}
-                    </div>
-                  </div>
-                </Link>
-              ))}
+
+                        <div className="flex items-start gap-4">
+                          {/* Thumbnail */}
+                          <div className="relative w-[120px] xl:w-[140px] aspect-[3/2] rounded-[4px] overflow-hidden shrink-0 bg-muted">
+                            <img
+                              src={article.image}
+                              alt={article.title}
+                              loading="lazy"
+                              className="w-full h-full object-cover"
+                            />
+                            {/* Date Badge Overlay */}
+                            {article.date && !isNaN(new Date(article.date).getTime()) && (
+                              <div className="absolute top-2 left-2 bg-white dark:bg-background shadow-md rounded-[3px] overflow-hidden flex flex-col items-center justify-center min-w-[38px] border border-border/50">
+                                <span className="bg-primary text-primary-foreground text-[9px] font-bold uppercase tracking-widest w-full text-center py-0.5 leading-tight">
+                                  {new Date(article.date).toLocaleString('en-US', { month: 'short' }).toUpperCase()}
+                                </span>
+                                <span className="text-foreground text-[15px] leading-none font-black py-1.5 px-1">
+                                  {new Date(article.date).getDate()}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Title */}
+                          <div className="flex flex-col justify-start flex-1 min-w-0 pt-1">
+                            <h4 className="text-[15px] font-bold text-primary leading-snug group-hover:underline">
+                              {article.title}
+                            </h4>
+                          </div>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
             </div>
           </Reveal>
         </div>
