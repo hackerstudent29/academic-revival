@@ -140,7 +140,7 @@ export function WhyJoinSection() {
 
                       {/* Title */}
                       <span
-                        className={`transition-all duration-300 ease-out text-lg md:text-2xl lg:text-3xl ${
+                        className={`font-display transition-all duration-300 ease-out text-lg md:text-2xl lg:text-3xl ${
                           isActive
                             ? "scale-105 font-bold translate-x-1 text-foreground"
                             : "opacity-40 text-foreground group-hover:opacity-80"
