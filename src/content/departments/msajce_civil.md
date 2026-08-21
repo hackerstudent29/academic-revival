@@ -1,69 +1,203 @@
-# Civil Engineering
+# Department of Civil Engineering
 
-## 1. Overview
-Civil engineers conceive, design, construct, supervise, operate, and maintain infrastructure projects and systems in the public and private sectors, including roads, buildings, bridges, airports, tunnels, dams, systems for water supply and sewerage treatment, and pollution controls. Civil Engineering is one of the older engineering disciplines and serves as a backbone and integral part of society; without it, a society could not function. The profession is very diverse and offers a wide range of activities through various disciplines such as surveying, structural engineering, transport engineering, environment and water supply engineering, as well as Remote Sensing and GIS. Civil engineers are considered the heroes of the engineering world and play a part in helping society by adapting infrastructures with new technologies to meet population growth and climatic change. They will never have a dull moment and are always creative in their own unique way.
+## About Department
 
-Welcome to the Department of Civil Engineering at Mohamed Sathak A.J. College of Engineering in Siruseri, Chennai, India. The department is one of the pioneer departments of the Institute, having been established in 2007. It has excelled in the areas of academics, research, cultural, and sports activities, developing prestige up to global standards.
+### Department Introduction
+The Department of Civil Engineering is one of the pioneer departments of Mohamed Sathak A.J. College of Engineering (MSAJCE), established in 2007. The department has excelled in the areas of Academics, Research, Cultural, and Sports activities, developing a prestige up to global engineering standards.
 
-Currently, the department offers one undergraduate program, which is the B.E. in Civil Engineering, and a postgraduate program, specifically the M.E. in Structural Engineering. The framework of the program provides ample opportunities for students to get trained as industrialists, researchers, or entrepreneurs. The department has produced eminent engineers who are committed to the highest level of professional standards in the field of engineering and technology.
+### Vision
+To be a centre of excellence for transforming students into proficient Civil Engineers, through sustainable practices.
 
-A strong alumni base has been created, and their contribution to the development of the department is perceived by providing ample opportunities to the students to use the expert network to enrich their careers and acquire experimental learning exposures through frequent interactions organized by the department. The leadership is honored to guide the department alongside a team of committed and compassionate individuals who keep the Civil Engineering department flag flying high.
+### Mission
+* **M1.** Impart core fundamental knowledge and necessary skills in Civil engineering, through innovative teaching and learning methodology.
+* **M2.** Inculcate critical thinking, ethics, lifelong learning and creativity needed for Industry and Society.
+* **M3.** Cultivate the students with all-round competencies, for career, higher education and self Employability.
 
-## 2. Vision
-The vision is to be a center of excellence for transforming students into proficient Civil Engineers through sustainable practices.
+### Department Overview
+Civil engineers conceive, design, construct, supervise, operate and maintain infrastructure projects and systems in the public and private sectors—including expressways, bridges, high-rise buildings, airports, tunnels, dams, water supply grids, and environmental pollution control systems. As the foundational discipline of human civilization, Civil Engineering is an integral backbone of modern society.
 
-## 3. Mission
-The mission involves imparting core fundamental knowledge and necessary skills in Civil engineering through innovative teaching and learning methodologies. It aims to inculcate the critical thinking, ethics, lifelong learning, and creativity needed for both the industry and society. Furthermore, the mission cultivates the students with all-around competencies for their careers, higher education, and self-employability.
+The department offers specialized training across surveying, structural engineering, transportation systems, environmental & hydraulic engineering, and Remote Sensing & GIS technologies. Our curriculum empowers students to address global challenges such as climate resilience, rapid urbanization, and sustainable smart city infrastructure.
 
-## 4. Programme Educational Objectives (PEOs)
-The Programme Educational Objectives state that graduates will be able to prepare designs and detail civil engineering components and systems with creativity and sustainability. They will also be skilled in the usage of modern tools for critical problem solving and analyzing industrial and societal requirements. In addition, graduates will be prepared with managerial and leadership skills for their careers and for starting up their own firms.
+### Department Highlights
+* **Established in 2007** with rich legacy of academic and technical excellence.
+* **Programs Offered:** B.E. in Civil Engineering (UG) and M.E. in Structural Engineering (PG).
+* **Affiliation & Approval:** Affiliated with Anna University, Chennai; Approved by AICTE, New Delhi.
+* **Hands-on Laboratories:** 5 fully-equipped testing & analysis laboratories with modern virtual lab integrations.
+* **Alumni Network:** Distinguished alumni working across premier infrastructure firms and international engineering consultancies.
 
-## 5. Program Specific Outcomes (PSOs)
-The Program Specific Outcomes emphasize that engineering graduates will be able to apply their skills to work on projects related to urban and rural planning and development, providing environment-friendly and sustainable solutions. They will also apply their acquired professional skills to design cost-effective structural components in various infrastructure development and civil engineering industries.
+> *"We are honored to lead the department with a team of committed, compassionate educators and researchers, keeping the Civil Engineering department flag flying high."*
 
-## 6. Programme Outcomes (PO)
-The Programme Outcomes define the core capabilities expected of the students. Engineering knowledge requires students to apply the knowledge of mathematics, science, engineering fundamentals, and an engineering specialization to the solution of complex engineering problems. Problem analysis involves identifying, formulating, reviewing research literature, and analyzing complex engineering problems to reach substantiated conclusions using the first principles of mathematics, natural sciences, and engineering sciences.
+---
 
-1. **Programme Outcome (PO3) - Design/Development of Solutions**: For the design and development of solutions, students must design solutions for complex engineering problems and design system components or processes that meet specified needs with appropriate consideration for public health and safety, as well as cultural, societal, and environmental considerations. Conducting investigations of complex problems mandates the use of research-based knowledge and methods, including the design of experiments, analysis, and interpretation of data, and synthesis of information to provide valid conclusions.
+## OBE
 
-1. **Programme Outcome (PO5) - Modern Tool Usage**: Modern tool usage involves creating, selecting, and applying appropriate techniques, resources, and modern engineering and IT tools, including prediction and modeling, to complex engineering activities with an understanding of their limitations.
+### Programme Educational Objectives (PEOs)
 
-Further Programme Outcomes emphasize the engineer and society, where students must apply reasoning informed by contextual knowledge to assess societal, health, safety, legal, and cultural issues and the consequent responsibilities relevant to professional engineering practice.
+| Code | Programme Educational Objective |
+| :--- | :--- |
+| **PEO1** | Graduates will be able to prepare design and detailing of civil engineering components and systems, with creativity and sustainability. |
+| **PEO2** | Graduates will be skilled in the usage of modern tools for critical problem solving, analyzing industrial and societal requirements. |
+| **PEO3** | Graduates will be prepared with managerial and leadership skills, for career advancement and founding successful entrepreneurial ventures. |
 
-1. **Programme Outcome (PO7) - Environment and Sustainability**: Environment and sustainability focus on understanding the impact of professional engineering solutions in societal and environmental contexts, demonstrating the knowledge of and need for sustainable development.
+### Program Specific Outcomes (PSOs)
 
-1. **Programme Outcome (PO8) - Ethics**: Ethics involves applying ethical principles and committing to professional ethics, responsibilities, and norms of engineering practice. Individual and teamwork require students to function effectively as an individual, and as a member or leader in diverse teams and multidisciplinary settings. Communication ensures that students can communicate effectively on complex engineering activities with the engineering community and with society at large, such as being able to comprehend and write effective reports, design documentation, make effective presentations, and give and receive clear instructions. Project management and finance demand demonstrating knowledge and understanding of engineering and management principles and applying these to one's own work, both as a member and a leader in a team, to manage projects and work in multidisciplinary environments. Finally, life-long learning requires recognizing the need for, and having the preparation and ability to engage in independent and life-long learning in the broadest context of technological change.
+| Code | Program Specific Outcome |
+| :--- | :--- |
+| **PSO1** | Apply engineering skills to work on Urban and Rural Planning and infrastructure development projects, providing environment-friendly and sustainable solutions. |
+| **PSO2** | Apply acquired professional skills to design cost-effective structural components in various Infrastructure development and Civil Engineering industries. |
 
-## 7. Job Profiles
+### Programme Outcomes (POs)
+
+| PO | Outcome Title | Description |
+| :--- | :--- | :--- |
+| **PO1** | **Engineering Knowledge** | Apply knowledge of mathematics, science, engineering fundamentals, and civil engineering specialization to the solution of complex engineering problems. |
+| **PO2** | **Problem Analysis** | Identify, formulate, review research literature, and analyze complex engineering problems reaching substantiated conclusions using first principles. |
+| **PO3** | **Design/Development Of Solutions** | Design solutions for complex civil engineering problems and design system components or processes that meet specified needs with due regard for public health, safety, and environmental considerations. |
+| **PO4** | **Conduct Investigations** | Use research-based knowledge and research methods including design of experiments, analysis, and interpretation of data to provide valid conclusions. |
+| **PO5** | **Modern Tool Usage** | Create, select, and apply appropriate techniques, resources, and modern engineering and IT tools (AutoCAD, ETABS, STAAD.Pro, GIS) with an understanding of limitations. |
+| **PO6** | **The Engineer and Society** | Apply contextual reasoning to assess societal, health, safety, legal, and cultural issues and the consequent responsibilities relevant to professional engineering practice. |
+| **PO7** | **Environment and Sustainability** | Understand the impact of professional engineering solutions in societal and environmental contexts and demonstrate knowledge of sustainable development. |
+| **PO8** | **Ethics** | Apply ethical principles and commit to professional ethics, responsibilities, and norms of engineering practice. |
+| **PO9** | **Individual and Team Work** | Function effectively as an individual, and as a member or leader in diverse and multidisciplinary teams. |
+| **PO10** | **Communication** | Communicate effectively on complex engineering activities with the engineering community and society through clear reports, presentations, and documentation. |
+| **PO11** | **Project Management and Finance** | Demonstrate knowledge and understanding of engineering and management principles and apply these to manage projects in multidisciplinary environments. |
+| **PO12** | **Life-long Learning** | Recognize the need for, and have the preparation and ability to engage in independent and life-long learning in the broadest context of technological change. |
+
+---
+
+## JOB PROFILES
 
 ### Employment Outlook for Civil Engineering in India (2025–2030)
-Based on current trends, government policies, industry shifts, and emerging technologies, the employment outlook for Civil Engineering in India over the next five years is highly promising. Growth drivers in the infrastructure sector include continued government investment through initiatives like PM Gati Shakti, the Smart Cities Mission, Bharatmala, and AMRUT 2.0, which will keep the demand for civil engineers steady. There is a strong focus on high-speed rail, metro rail, expressways, and affordable housing. Urbanization and housing are also major factors, as India's urban population is expected to reach over 600 million by 2030, creating a sustained need for urban planners, construction engineers, and structural designers. The rise in tier 2 and tier 3 city development will expand job locations significantly. Furthermore, increasing demand for sustainability and green buildings, energy-efficient structures, and climate-resilient designs creates new niches within civil engineering. Private sector investments in real estate and industrial corridor developments, such as the Delhi-Mumbai Industrial Corridor, are also expected to boost employment.
+Civil Engineering continues to witness robust career demand driven by national mega-infrastructure initiatives, rapid urbanization, smart transportation networks, and sustainable green construction practices.
 
-### Challenges and Skill Requirements
-There are challenges, such as automation and technological disruption, where basic civil jobs like drafting and surveying are increasingly being automated via Building Information Modeling, drones, and AI-based tools. Employers now seek multi-skilled engineers with knowledge of software tools, project management, and sustainability. To meet these requirements, professionals must upskill in tech tools like AutoCAD Civil 3D, Revit, STAAD Pro, Primavera, and BIM. Gaining project management certifications such as PMP or PRINCE2 can help engineers move into supervisory roles. It is also crucial to learn about green building standards like IGBC and GRIHA, along with sustainable practices. Engineers should consider specializations in areas like transportation engineering, geotechnical engineering, or environmental engineering for niche opportunities.
+### Key Growth Drivers
+1. **Infrastructure Sector Investment:** Continued government backing through **PM Gati Shakti**, **Smart Cities Mission**, **Bharatmala**, and **AMRUT 2.0** projects ensures high demand for civil engineers.
+2. **Urbanization & Mega Housing:** With India's urban population projected to surpass 600 million by 2030, skilled structural designers, urban planners, and site project managers are in continuous demand.
+3. **Sustainability & Green Buildings:** Growing emphasis on LEED-certified buildings, carbon-neutral construction materials, and renewable water/waste treatment infrastructure.
+4. **Smart Construction Technologies:** Rapid adoption of Building Information Modelling (BIM), precast modular construction, GIS mapping, and drone-based site surveying.
 
-### Projected Job Demand
-The projected job demand provides indicative estimates across various sectors. Public infrastructure jobs within the government sector are expected to see a 6 to 8 percent growth per year, driven by large national projects. Real estate and housing are projected to grow by 4 to 6 percent annually due to urban growth and housing demand. Transportation, including roads and rails, is expected to see a 7 to 10 percent annual growth, heavily boosted by national highways. Green and sustainable engineering is an emerging field with high potential, projected to grow at 10 to 12 percent per year. BIM and smart construction form a niche but rapidly growing sector, expected to expand by over 15 percent annually.
+### Projected Annual Job Demand Growth
+* **Green & Sustainable Engineering:** 10% – 12% per year
+* **BIM & Smart Construction:** 15%+ per year
+* **Transportation & Highways (Roads/Rails):** 7% – 10% per year
+* **Public Infrastructure & Utilities:** 6% – 8% per year
+* **Real Estate & Urban Housing:** 4% – 6% per year
 
-### Employment Opportunities for Fresh Graduates
-Fresh graduates holding a B.E. or B.Tech in Civil Engineering have numerous opportunities. In the government sector, there are recruitments for SSC JE, RRB, state PWDs, CPWD, and various PSUs. Construction and infrastructure firms such as L&T, Shapoorji Pallonji, Tata Projects, and Afcons offer significant employment prospects. Entry-level roles typically include Site Engineer, QA/QC Engineer, Junior Design Engineer, and Estimator. The job growth for qualified and skilled freshers is approximately 5 to 6 percent annually, and the employability rate may improve if skill gaps are effectively addressed.
+### Career Opportunities for Graduates
+* **Fresh Graduate Roles:** Site Engineer, Structural Design Engineer, QA/QC Inspector, Estimation & Quantity Surveyor, GIS Analyst, Geotechnical Assistant.
+* **Public Sector Opportunities:** SSC JE, RRB (Indian Railways), CPWD, State PWDs, NHAI, Metro Rail Corporations, ONGC.
+* **Top Private Recruiters:** L&T Construction, Shapoorji Pallonji, Tata Projects, Afcons Infrastructure, Sobha, Godrej Properties, AECOM, WSP, Atkins.
 
-### Employment Opportunities for Postgraduates
-Postgraduates with an M.Tech, M.E., or specialized MSc have opportunities for specialized roles in design, research and development, structural analysis, and transportation engineering. They are highly sought after in consulting, research, academia, and international projects. Top recruiters include major consultancy firms like AECOM, WSP, Atkins, and NHAI consultants. The trends indicate high demand in niche fields like geotechnical, environmental, and seismic engineering. Foreign opportunities in regions such as the UAE, Singapore, and Canada are stronger for those with postgraduate qualifications. Academic and research careers are also highly viable, especially with a PhD. The job growth for postgraduates is around 8 to 10 percent annually, growing faster in urban planning, sustainability, and infrastructure analytics.
+---
 
-## 8. Faculty (2023-2024)
-The department boasts a dedicated faculty team for the 2023-2024 academic year. The team includes
+## Faculty
 
-| Name | Profile Details |
-| --- | --- |
-| **Dr. Mohamed Adil Haque** | A Professor who joined on June 1, 2019, holding an M.E. and a Ph.D. |
-| **Dr. Someswaran R.** | Serves as an Assistant Professor, having joined on March 7, 2022, with an M.Tech. and a Ph.D. |
-| **Dr. Elliss Yogesh R.** | A Professor with an M.E. and a Ph.D., joined the department on June 1, 2021. |
-| **Dr. Vignesh Kumar M.** | Who joined on May 29, 2023, is an Associate Professor holding an M.E. and a Ph.D. |
-| **Mr. B Rizha Ur Rahman** | An Assistant Professor pursuing his Ph.D., has been with the department since January 7, 2016, and holds an M.E. degree. |
-| **Mr. Navaneetha Krishnan C.** | Holding an M.E., joined as an Assistant Professor on March 15, 2022. |
-| **Ms. S. Usha** | Joined the department on March 1, 2022, serving as an Assistant Professor with an M.E. degree. |
-| **Ms. Kavithra P.** | Is an Assistant Professor who joined on August 1, 2022, holding an M.Tech. |
-| **Mr. S. Vimalathithan** | An Assistant Professor with an M.E., joined on July 19, 2023. |
-| **Ms. Gayathri  N.** | Serves as an Assistant Professor, holding an M.E., and joined on July 21, 2023. Lastly, |
-| **Ms. Preethy Mary A.** | Is an Assistant Professor pursuing her Ph.D., holding an M.Tech., and joined the faculty on July 18, 2023. All members of this team have a regular nature of association with **MSAJCE**. |
+### Faculty Directory (2023–2024)
+
+| Name | Designation | Date of Joining | Qualification | Association |
+| :--- | :--- | :--- | :--- | :--- |
+| **Dr. MOHAMED ADIL HAQUE** | Professor & Head (PG) | 01/06/2019 | M.E., Ph.D. | Regular |
+| **Dr. SOMESWARAN R** | Assistant Professor & Head (UG) | 07/03/2022 | M.Tech., Ph.D. | Regular |
+| **Dr. ELLISS YOGESH R** | Professor | 01/06/2021 | M.E., Ph.D. | Regular |
+| **Dr. VIGNESH KUMAR M** | Associate Professor | 29/05/2023 | M.E., Ph.D. | Regular |
+| **Mr. RIZHA UR RAHMAN** | Assistant Professor | 07/01/2016 | M.E., (Ph.D) | Regular |
+| **Mr. NAVANEETHA KRISHNAN C** | Assistant Professor | 15/03/2022 | M.E. | Regular |
+| **Mrs. JANAKI V** | Assistant Professor | 01/03/2022 | M.E. | Regular |
+| **Mrs. KAVITHRA P** | Assistant Professor | 01/08/2022 | M.Tech. | Regular |
+| **Mr. VETRIVEL S C** | Assistant Professor | 19/07/2023 | M.E. | Regular |
+| **Mrs. GAYATHRI N** | Assistant Professor | 21/07/2023 | M.E. | Regular |
+| **Mrs. PREETHY MARY A** | Assistant Professor | 18/07/2023 | M.Tech., (Ph.D) | Regular |
+
+### Faculty Specializations
+
+| Name | Qualification | Designation | Area of Specialization |
+| :--- | :--- | :--- | :--- |
+| **Dr. MOHAMED ADIL HAQUE** | M.E., Ph.D. | Head - PG | Structural Engineering |
+| **Dr. SOMESWARAN R** | M.Tech., Ph.D. | Head - UG | Water Resources Engineering |
+| **Dr. ELLISS YOGESH R** | M.E., Ph.D. | Professor | Environmental Engineering |
+| **Mr. RIZHA UR RAHMAN** | M.E., (Ph.D) | Assistant Professor | Structural Engineering |
+| **Ms. HEMAVATHI S** | M.E. | Assistant Professor | Construction Engineering and Management |
+| **Mr. RAKESH R B** | M.E. | Assistant Professor | Environmental Engineering |
+| **Mrs. JANAKI V** | M.E. | Assistant Professor | Structural Engineering |
+| **Mr. NAVANEETHA KRISHNAN C** | M.E. | Assistant Professor | Structural Engineering |
+| **Mr. EMIL REYAN R** | M.E. | Assistant Professor | Structural Engineering |
+| **Mrs. KAVITHRA P** | M.Tech. | Assistant Professor | Construction Engineering and Management |
+| **Mr. RAKHESH R** | M.Tech. | Assistant Professor | Geotechnical Engineering |
+| **Mr. MOHAMED RIYAS M** | M.Tech. | Teaching Associate | Structural Engineering |
+
+---
+
+## Department Facilities
+
+### Specialized Laboratories & Infrastructure
+
+1. **Concrete and Highway Engineering Laboratory**
+   * **Courses Supported:** CE8311 - Construction Materials Laboratory, CE8611 - Highway Engineering Laboratory
+   * **Equipment:** Compression Testing Machine (2000 kN), Los Angeles Abrasion Testing Machine, Ductility Testing Apparatus, Tar Viscometer, Aggregate Impact Tester, Vicat Apparatus.
+
+2. **Soil Mechanics & Geotechnical Laboratory**
+   * **Courses Supported:** CE8511 - Soil Mechanics Laboratory
+   * **Equipment:** Direct Shear Apparatus, Triaxial Compression Test Rig, Standard & Modified Proctor Compaction Units, Consolidation Apparatus, Liquid & Plastic Limit Devices.
+
+3. **Strength of Materials Laboratory**
+   * **Courses Supported:** CE8481 - Strength of Materials Laboratory
+   * **Equipment:** Universal Testing Machine (UTM - 400 kN), Torsion Testing Machine, Rockwell & Brinell Hardness Testers, Izod & Charpy Impact Testing Machines, Deflection Test Rigs.
+
+4. **Hydraulic Engineering & Fluid Mechanics Laboratory**
+   * **Courses Supported:** CE8461 - Hydraulic Engineering Laboratory
+   * **Equipment:** Pelton Wheel Turbine, Francis Turbine, Centrifugal & Reciprocating Pumps, Venturi & Orifice Meter Test Benches, Pipe Friction Apparatus, Open Channel Flume.
+
+5. **Environmental Engineering Laboratory**
+   * **Courses Supported:** CE8512 - Water and Waste Water Analysis Laboratory
+   * **Equipment:** Digital pH Meters, Turbidity Meters, BOD Incubator, COD Digester, UV-Spectrophotometer, Jar Test Apparatus, Muffle Furnace.
+
+*All laboratories are supplemented with virtual lab experiments, computer-aided structural design suites (STAAD.Pro, AutoCAD, Revit), and ICT-enabled digital modules.*
+
+---
+
+## Academics
+
+### Academic Programs
+
+| Degree | Specialization | Duration | Intake | Seat Matrix | Eligibility |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **B.E.** | Civil Engineering | 4 Years (8 Semesters) / Lateral 3 Years | 30 Seats | Govt Quota: 15 \| Mgmt Quota: 15 | Pass in 10+2 with Physics, Chemistry & Mathematics (HSC / Equivalent) |
+| **M.E.** | Structural Engineering | 2 Years (4 Semesters) | 18 Seats | As per Anna University norms | B.E. / B.Tech in Civil Engineering / Equivalent with valid TANCET / GATE score |
+
+### Regulations & Syllabi
+* **Anna University 2021 Regulation (CBCS)** – Choice Based Credit System with industrial internships, professional electives, and multi-disciplinary open electives.
+* **Anna University 2017 Regulation** – Core domain depth with extensive practical laboratory credits.
+* **31 Total Courses** fully supported with structured Lesson Plans, Question Banks, Lecture Notes, and ICT-enabled learning tools.
+
+### Higher Education Scope
+* **Postgraduate Degrees:** M.E. / M.Tech in Structural Engineering, Geotechnical Engineering, Environmental Management, Construction Project Management, Transportation Engineering, Remote Sensing.
+* **Management Pathways:** MBA in Infrastructure & Real Estate Management, Project Management.
+* **Doctoral Studies:** Ph.D. research in sustainable concrete, earthquake engineering, hydrology, and computational mechanics.
+
+---
+
+## News and Events
+
+### Technical Events & Announcements
+* **National Level Technical Symposium (CONCRETO / CIVILIZE):** Annual inter-collegiate symposium featuring Technical Paper Presentations, Bridge-IT Model Contests, CADD Masters Design Contests, and Quiz Competitions.
+* **Workshops & Seminars:** State-level hands-on training on "BIM for Modern Infrastructure", "Total Station & Drone Surveying in Field Applications", and "Non-Destructive Testing of Concrete Structures".
+* **Guest Lectures by Industry Titans:** Expert sessions by senior structural consultants and chief project engineers from L&T, Tata Projects, and CSIR-SERC.
+
+---
+
+## Student Activities
+
+### Professional Chapters & Student Associations
+* **Civil Engineering Students Association (CESA):** Spearheads weekly technical forums, design hackathons, and community building initiatives.
+* **Indian Concrete Institute (ICI) Student Chapter:** Facilitates technical visits, concrete mix design competitions, and expert webinars.
+
+### Industrial Visits & Field Immersion
+Students undertake regular guided industrial visits to premier engineering sites:
+* **CSIR - Structural Engineering Research Centre (SERC), Chennai**
+* **Integral Coach Factory (ICF), Chennai**
+* **Indira Gandhi Centre for Atomic Research (IGCAR), Kalpakkam**
+* **Doordarshan Kendra & BSNL Transmission Towers**
+* **Chennai Metro Rail Infrastructure Construction Sites**
+
+### Placements & Alumni Career Records
+MSAJCE Civil graduates are recruited across top construction conglomerates and engineering consultancies including **L&T Construction, Tata Projects, Afcons Infrastructure, Alchimica, Almino Structures, Magnus Engineering, SHA Constructions, Sobha, and IDBI**.
