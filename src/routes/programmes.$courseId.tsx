@@ -184,6 +184,34 @@ function CoursePage() {
     window.scrollTo(0, 0);
   }, []);
 
+  const markdownComponents = {
+    h2: ({ node, children, ...props }: any) => (
+      <h2 className="text-[#059669] font-black uppercase text-2xl md:text-3xl lg:text-4xl tracking-tight mb-6 mt-2 border-b-2 border-[#059669]/20 pb-3" {...props}>
+        {children}
+      </h2>
+    ),
+    h3: ({ node, children, ...props }: any) => (
+      <h3 className="text-foreground font-extrabold uppercase text-lg md:text-xl tracking-tight mt-8 mb-3" {...props}>
+        {children}
+      </h3>
+    ),
+    p: ({ node, children, ...props }: any) => (
+      <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-5" {...props}>
+        {children}
+      </p>
+    ),
+    strong: ({ node, children, ...props }: any) => (
+      <strong className="text-foreground font-bold" {...props}>
+        {children}
+      </strong>
+    ),
+    blockquote: ({ node, children, ...props }: any) => (
+      <blockquote className="border-l-4 border-[#059669] bg-card p-5 rounded-r-sm text-card-foreground italic my-6 shadow-xs" {...props}>
+        {children}
+      </blockquote>
+    ),
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Sub Navigation Bar */}
@@ -346,7 +374,7 @@ function CoursePage() {
               {activeTab === 'about' && (
                 <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
                   {parsedContent['about'] ? (
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {parsedContent['about']}
                     </ReactMarkdown>
                   ) : (
@@ -364,7 +392,7 @@ function CoursePage() {
               {activeTab === 'obe' && (
                 <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
                   {parsedContent['obe'] ? (
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {parsedContent['obe']}
                     </ReactMarkdown>
                   ) : (
@@ -391,7 +419,7 @@ function CoursePage() {
               {activeTab === 'job-profile' && (
                 <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
                   {parsedContent['job-profile'] ? (
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {parsedContent['job-profile']}
                     </ReactMarkdown>
                   ) : (
@@ -414,7 +442,7 @@ function CoursePage() {
               {activeTab === 'faculty' && (
                 <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary [&_table]:w-full [&_table]:border-collapse [&_table]:border [&_table]:border-border [&_th]:border [&_th]:border-border [&_th]:p-4 [&_th]:bg-muted [&_td]:border [&_td]:border-border [&_td]:p-4 [&_td]:align-top [&_th]:text-left [&_td:first-child]:whitespace-nowrap [&_th:first-child]:whitespace-nowrap [&_td:first-child]:min-w-[200px]">
                   {parsedContent['faculty'] ? (
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {parsedContent['faculty']}
                     </ReactMarkdown>
                   ) : (
@@ -432,7 +460,7 @@ function CoursePage() {
               {activeTab === 'facilities' && (
                 <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
                   {parsedContent['facilities'] ? (
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {parsedContent['facilities']}
                     </ReactMarkdown>
                   ) : (
@@ -450,7 +478,7 @@ function CoursePage() {
               {activeTab === 'academics' && (
                 <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
                   {parsedContent['academics'] ? (
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {parsedContent['academics']}
                     </ReactMarkdown>
                   ) : (
@@ -474,7 +502,7 @@ function CoursePage() {
                   
                   {parsedContent['news-events'] && (
                     <article className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-black prose-p:text-muted-foreground">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                         {parsedContent['news-events']}
                       </ReactMarkdown>
                     </article>
@@ -507,7 +535,7 @@ function CoursePage() {
 
                   {parsedContent['student-activities'] && (
                     <article className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-black prose-p:text-muted-foreground">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                         {parsedContent['student-activities']}
                       </ReactMarkdown>
                     </article>
