@@ -28,52 +28,52 @@ export type CourseDetails = {
   recruiters: string[];
 };
 
-// Default template content derived from user prompt
+// Default engineering template content aligned with Anna University & NBA standards
 const defaultDetails: CourseDetails = {
-  ucasCode: "W23M",
-  startDate: "September 2026",
-  courseLength: "Three years full-time or four years full-time with Diploma in Professional Studies",
-  heroQuote: "Push engineering forward through research-led design that responds to culture, identity and the world around you.",
-  overview: `BA Fashion Design comprises five pathways: Womenswear, Menswear, Knit, Print, and Communication. We encourage collaboration at every stage, and throughout the course you will work on projects with the other courses and with students of the BA Fashion Communication course. As a program we encourage students to break down all societal barriers and perceptions when describing gender and identity.
+  ucasCode: "MSAJCE",
+  startDate: "August 2026",
+  courseLength: "4 Years (8 Semesters) Full-Time / 3 Years (6 Semesters) Lateral Entry",
+  heroQuote: "Empowering next-generation engineers through hands-on technical learning, outcome-based education, and industry-integrated innovation.",
+  overview: `The department offers a cutting-edge engineering curriculum affiliated with Anna University and approved by AICTE. Our academic framework integrates rigorous theoretical foundations with intensive laboratory experimentation, industry internships, and collaborative research projects.
 
-The pathway has a fearless approach that supports and challenges students to develop the unexpected through in-depth research, a broad range of ideas development, and reflecting on motivation and outcomes. Students work on a broad range of creative projects, with pathway tutors, specialist staff, expert technicians and industry practitioners.
+Students are mentored by experienced doctorates and industry veterans, preparing them for globally competitive engineering careers, entrepreneurship, and premier postgraduate research programs.
 
-Our course is globally renowned. We have an excellent staff team of highly experienced practitioners and researchers with international profiles who come from diverse backgrounds and remain connected to their industry. Students are innovators, critical thinkers, and trailblazers and thrive within a lively and dynamic environment.
+With smart classrooms, specialized research laboratories, active student professional chapters, and robust corporate placement partnerships, the department ensures holistic technical and leadership competency for every student.`,
+  pathwayStructure: "The curriculum provides structured learning pathways spanning fundamental engineering sciences, core domain depth, professional electives, open electives, and capstone industrial project work.",
+  professionalsAndSponsors: "The department maintains active Memorandums of Understanding (MoUs) with premier technology enterprises, research labs, and public sector undertakings for student internships, sponsored projects, and guest lectures.",
+  industryNetworks: "Students benefit from comprehensive placement training, hackathons, technical symposiums, and industrial visits across leading multinational corporations and tech parks in Chennai and beyond.",
+  alumniSuccess: "Our alumni network spans senior engineers, software architects, project managers, and research scholars across Fortune 500 companies, prestigious universities, and successful technological startups worldwide.",
+  courseUnits: `Structured under Anna University 2021 & 2017 Regulations across 8 comprehensive semesters:
 
-Learning is our core purpose and our research, industry and external relationships enrich our approach. We are committed to reflecting and influencing the sustainable transformation of the industry. Social, racial and climate justice are our core values and we believe in a fairer world for all.`,
-  pathwayStructure: "On this course, you can choose to study one of several pathways tailored to your specific engineering and design interests, focusing on both foundational skills and advanced technical applications.",
-  professionalsAndSponsors: "The course provides opportunities for collaboration with external professionals and sponsors. Previously, these have included major tech and engineering firms, government bodies, and international research institutes.",
-  industryNetworks: "You can take advantage of the course's excellent relationship with the international community. This will allow you to experience placements drawn from a wide and distinguished range of sources.",
-  alumniSuccess: "Our graduates work across a wide spectrum of careers. They have gone on to establish their own companies or to work as leading engineers, freelancers, and consultants globally.",
-  courseUnits: `An emphasis on professionalism, innovation and creativity on this pathway will allow you to develop and realise your ideas. You will be introduced to various technical skills which will inform and support your creativity. These will include research methods, design processes, technical implementations, and presentation skills.
+Foundation & Core Engineering (Semesters 1 - 4)
+Mathematics, Basic Sciences, Engineering Mechanics, Programming Fundamentals, Digital Systems, and Core Engineering Discipline Foundations with dedicated laboratory practicals.
 
-Stage 1
-In Stage 1, all students arrive with different skills and experiences, which adds richness to the course and enhances peer learning and collaboration. This first year aims to improve your understanding and approaches to learning and will provide a base level of skills to enable you to be successful in your pathway.
+Advanced Specialization & Electives (Semesters 5 - 6)
+Advanced Domain Subjects, Professional Electives, Open Interdisciplinary Electives, Mini-Projects, and Industrial Internship Trainings.
 
-Stage 2
-In stage 2, you are encouraged to consolidate the skills needed to develop and articulate your own practice. You will further enhance your knowledge of industry and collaborative working with a focus on your future employability. During this year, you will benefit from the opportunity to interact with, and gain feedback from external guest speakers and live projects.
+Capstone Innovation & Professional Practice (Semesters 7 - 8)
+Emerging Technology Seminars, Management & Professional Ethics, Capstone Major Project, and Comprehensive Viva-Voce.`,
+  optionalDiploma: `Value-Added Certification Programs
+Specialized industry certifications conducted in collaboration with leading technology partners (AWS, Cisco, Red Hat, Oracle, Autodesk, MATLAB).
 
-Stage 3
-Stage 3 gives you an increased level of autonomy. Within a supportive community, you will benefit from regular tutorials and guidance. Through exposure to different processes, systems and materials, you define your professional identity during this final year of study.`,
-  optionalDiploma: `Industry Diploma in Professional Studies (DIPS)
-This optional diploma can be taken between years 2 and 3. With support from your tutors, you will undertake an industry placement for a minimum of 100 days/20 weeks. As well as developing industry skills, you will gain an additional qualification upon successful completion.
-
-Diploma in Creative Computing
-Between years 2 and 3, you can undertake the year-long Diploma in Creative Computing. This will develop your skills in creative computing alongside your degree.`,
+Honours & Minor Degree Options
+Eligible high-performing students can opt for an additional Honours degree or interdisciplinary Minor degree as per Anna University guidelines.`,
   careers: [
-    "Systems Engineer",
-    "Product Designer",
-    "Research Scientist",
-    "Consultant",
-    "Project Manager"
+    "Software Development Engineer",
+    "Systems Design Engineer",
+    "R&D Engineer",
+    "Technical Project Manager",
+    "Data & Automation Specialist"
   ],
   recruiters: [
-    "Amazon",
     "TCS",
-    "Cognizant",
     "Infosys",
+    "Cognizant",
     "Wipro",
-    "HCL"
+    "HCL Technologies",
+    "Accenture",
+    "L&T Technology Services",
+    "Zoho"
   ]
 };
 

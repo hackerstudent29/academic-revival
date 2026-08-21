@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { allCourses } from '@/lib/courseData';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronRight, Award, BookOpen, Users, Building, Briefcase, GraduationCap, Calendar, CheckCircle2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -9,9 +9,9 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-
 const markdownImports = import.meta.glob('@/content/departments/*.md', { query: '?raw', import: 'default' });
 
 const newsItems = [
-  { title: "National Level Tech Hackathon 2026 Registration Open", date: "Aug 24, 2026" },
-  { title: "International Conference on Modern Engineering & AI", date: "Sep 12, 2026" },
-  { title: "Annual Alumni Meet & Corporate Tech Symposium", date: "Oct 05, 2026" }
+  { title: "National Level Technical Symposium & Project Expo 2026", date: "Aug 28, 2026" },
+  { title: "International Conference on Engineering Innovations & Smart Systems", date: "Sep 15, 2026" },
+  { title: "Corporate Campus Placement Drive by Tier-1 Tech Giants", date: "Oct 10, 2026" }
 ];
 
 export const Route = createFileRoute('/programmes/$courseId')({
@@ -56,33 +56,33 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
       const heading = line.replace(/^##\s+/, '').toLowerCase();
       
       if (
+        heading.includes('about') ||
         heading.includes('overview') ||
-        heading.includes('vision') ||
-        heading.includes('mission') ||
         heading.includes('welcome') ||
-        heading.includes('about')
+        heading.includes('introduction')
       ) {
         currentTab = 'about';
       } else if (
+        heading.includes('obe') ||
+        heading.includes('outcome based') ||
         heading.includes('peo') ||
         heading.includes('pso') ||
         heading.includes('outcome') ||
-        heading.includes('objective') ||
-        heading.includes('obe') ||
-        (heading.includes('program') && heading.includes('outcome'))
+        heading.includes('objective')
       ) {
         currentTab = 'obe';
       } else if (
         heading.includes('job profile') ||
-        heading.includes('employment') ||
         heading.includes('career') ||
-        heading.includes('salary') ||
-        heading.includes('prospect')
+        heading.includes('employment') ||
+        heading.includes('prospect') ||
+        heading.includes('salary')
       ) {
         currentTab = 'job-profile';
       } else if (
         heading.includes('faculty') ||
-        heading.includes('staff')
+        heading.includes('staff') ||
+        heading.includes('professor')
       ) {
         currentTab = 'faculty';
       } else if (
@@ -92,12 +92,12 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
       ) {
         currentTab = 'facilities';
       } else if (
-        heading.includes('regulation') ||
-        heading.includes('course material') ||
-        heading.includes('teaching method') ||
-        heading.includes('curriculum') ||
-        heading.includes('programme') ||
         heading.includes('academic') ||
+        heading.includes('curriculum') ||
+        heading.includes('syllabus') ||
+        heading.includes('regulation') ||
+        heading.includes('programme') ||
+        heading.includes('course material') ||
         heading.includes('unit')
       ) {
         currentTab = 'academics';
@@ -111,7 +111,8 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
         heading.includes('student') ||
         heading.includes('activit') ||
         heading.includes('club') ||
-        heading.includes('association')
+        heading.includes('association') ||
+        heading.includes('chapter')
       ) {
         currentTab = 'student-activities';
       }
@@ -132,14 +133,14 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
 }
 
 const departmentTabsList = [
-  { id: 'about', label: 'About Department' },
-  { id: 'obe', label: 'OBE' },
-  { id: 'job-profile', label: 'JOB PROFILE' },
-  { id: 'faculty', label: 'Faculty' },
-  { id: 'facilities', label: 'Department Facilities' },
-  { id: 'academics', label: 'Academics' },
-  { id: 'news-events', label: 'News and Events' },
-  { id: 'student-activities', label: 'Student Activities' },
+  { id: 'about', label: 'About Department', icon: Building },
+  { id: 'obe', label: 'OBE Outcomes', icon: Award },
+  { id: 'job-profile', label: 'Job Profiles', icon: Briefcase },
+  { id: 'faculty', label: 'Faculty Directory', icon: Users },
+  { id: 'facilities', label: 'Laboratories', icon: BookOpen },
+  { id: 'academics', label: 'Academics & Syllabi', icon: GraduationCap },
+  { id: 'news-events', label: 'News & Events', icon: Calendar },
+  { id: 'student-activities', label: 'Student Activities', icon: CheckCircle2 },
 ];
 
 function CoursePage() {
@@ -167,13 +168,13 @@ function CoursePage() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentNews((prev) => (prev + 1) % newsItems.length);
-    }, 3000);
+    }, 3500);
     return () => clearInterval(timer);
   }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
-    if (latest > previous && latest > 150) {
+    if (latest > previous && latest > 160) {
       setHidden(true);
     } else {
       setHidden(false);
@@ -186,7 +187,7 @@ function CoursePage() {
 
   const markdownComponents = {
     h2: ({ node, children, ...props }: any) => (
-      <h2 className="text-primary font-black uppercase text-2xl md:text-3xl lg:text-4xl tracking-tight mb-6 mt-2 border-b-2 border-primary/20 pb-3" {...props}>
+      <h2 className="text-primary font-black uppercase text-2xl md:text-3xl lg:text-4xl tracking-tight mb-6 mt-4 border-b-2 border-primary/20 pb-3" {...props}>
         {children}
       </h2>
     ),
@@ -194,6 +195,11 @@ function CoursePage() {
       <h3 className="text-foreground font-extrabold uppercase text-lg md:text-xl tracking-tight mt-8 mb-3" {...props}>
         {children}
       </h3>
+    ),
+    h4: ({ node, children, ...props }: any) => (
+      <h4 className="text-foreground font-bold text-base md:text-lg tracking-tight mt-6 mb-2 text-primary" {...props}>
+        {children}
+      </h4>
     ),
     p: ({ node, children, ...props }: any) => (
       <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-5" {...props}>
@@ -206,24 +212,24 @@ function CoursePage() {
       </strong>
     ),
     blockquote: ({ node, children, ...props }: any) => (
-      <blockquote className="border-l-4 border-primary bg-card p-5 rounded-r-sm text-card-foreground italic my-6 shadow-xs" {...props}>
+      <blockquote className="border-l-4 border-primary bg-card p-6 rounded-r-sm text-card-foreground italic my-6 shadow-xs" {...props}>
         {children}
       </blockquote>
     ),
     table: ({ node, children, ...props }: any) => (
-      <div className="overflow-x-auto my-6 border border-border rounded-sm shadow-xs">
+      <div className="overflow-x-auto my-6 border border-border rounded-sm shadow-xs bg-card">
         <table className="w-full text-left text-sm border-collapse" {...props}>
           {children}
         </table>
       </div>
     ),
     thead: ({ node, children, ...props }: any) => (
-      <thead className="bg-[#059669] text-white uppercase text-xs tracking-wider" {...props}>
+      <thead className="bg-[#005DA6] text-white uppercase text-xs tracking-wider font-bold" {...props}>
         {children}
       </thead>
     ),
     th: ({ node, children, ...props }: any) => (
-      <th className="p-3.5 font-bold border-r border-white/20 last:border-r-0" {...props}>
+      <th className="p-3.5 font-bold text-white bg-[#005DA6] border-r border-white/20 last:border-r-0" {...props}>
         {children}
       </th>
     ),
@@ -247,30 +253,35 @@ function CoursePage() {
         {children}
       </li>
     ),
+    hr: ({ node, ...props }: any) => (
+      <hr className="my-8 border-border" {...props} />
+    ),
   };
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Sub Navigation Bar */}
+      {/* Sub Navigation Bar with Sticky Scroll Indicator */}
       <motion.div 
         animate={{ y: hidden ? -73 : 0 }}
-        transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
+        transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
         className="sticky top-[73px] z-40 bg-background/95 backdrop-blur-md border-b border-border shadow-xs"
       >
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
-          <ul className="flex items-center gap-6 lg:gap-8 text-xs md:text-sm font-bold uppercase tracking-wider text-foreground overflow-x-auto no-scrollbar whitespace-nowrap py-3.5">
+          <ul className="flex items-center gap-4 md:gap-6 lg:gap-8 text-xs md:text-sm font-bold uppercase tracking-wider text-foreground overflow-x-auto no-scrollbar whitespace-nowrap py-3">
             {departmentTabsList.map((tab) => {
               const isActive = activeTab === tab.id;
+              const Icon = tab.icon;
               return (
                 <li
                   key={tab.id}
                   onClick={() => handleTabChange(tab.id)}
-                  className={`cursor-pointer transition-all pb-1 border-b-2 select-none ${
+                  className={`cursor-pointer transition-all flex items-center gap-2 pb-1 border-b-2 select-none shrink-0 ${
                     isActive
-                      ? 'text-primary border-primary font-extrabold shadow-xs'
+                      ? 'text-primary border-primary font-black shadow-xs'
                       : 'text-muted-foreground border-transparent hover:text-foreground hover:border-border'
                   }`}
                 >
+                  <Icon size={14} className={isActive ? 'text-primary' : 'text-muted-foreground'} />
                   {tab.label}
                 </li>
               );
@@ -280,76 +291,92 @@ function CoursePage() {
       </motion.div>
 
       {/* Breadcrumbs */}
-      <div className="bg-background py-4 px-6 lg:px-12 border-b border-border md:hidden">
-         <div className="text-sm text-muted-foreground flex items-center gap-2">
-            <Link to="/admissions" className="hover:text-foreground transition-colors">Admissions</Link>
-            <ChevronRight size={14} />
-            <span className="text-foreground font-semibold truncate">{course.name}</span>
+      <div className="bg-background py-3.5 px-6 lg:px-12 border-b border-border">
+         <div className="max-w-[1440px] mx-auto text-xs text-muted-foreground flex items-center gap-2 uppercase tracking-wider">
+            <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+            <ChevronRight size={12} />
+            <Link to="/academics" className="hover:text-primary transition-colors">Academics</Link>
+            <ChevronRight size={12} />
+            <span className="text-foreground font-bold truncate">{course.name}</span>
          </div>
       </div>
 
-      {/* Hero Section */}
-      <div className="w-full h-[70vh] md:h-[85vh] bg-muted">
+      {/* Hero Image Section (Flat & Static - No Zoom Animation) */}
+      <div className="w-full h-[60vh] md:h-[75vh] bg-muted relative overflow-hidden">
         <img 
           src={course.image} 
           alt={course.name} 
           className="w-full h-full object-cover opacity-90"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-black/30" />
       </div>
         
       {/* Information Header Box */}
-      <div className="relative -mt-24 md:-mt-32 left-0 w-full px-6 lg:px-12 z-10 flex justify-center md:justify-start max-w-[1440px] mx-auto right-0">
-          <div className="bg-card w-full max-w-5xl shadow-xl p-8 md:p-12 lg:p-16 border border-border">
-            
-            {/* Course Name & Short Description */}
-            <div className="mb-10">
-               <h1 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-card-foreground mb-4">
-                 {course.name}
-               </h1>
-               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl">
-                 {course.description}
-               </p>
-            </div>
+      <div className="relative -mt-28 md:-mt-36 left-0 w-full px-6 lg:px-12 z-10 flex justify-center md:justify-start max-w-[1440px] mx-auto right-0">
+        <div className="bg-card w-full max-w-5xl shadow-xl p-8 md:p-12 lg:p-14 border border-border rounded-sm">
+          
+          {/* Accreditation / Affiliation Pill Badges */}
+          <div className="flex flex-wrap items-center gap-2 mb-6">
+            <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full">
+              Anna University Affiliated
+            </span>
+            <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 bg-[#059669]/10 text-[#059669] border border-[#059669]/20 rounded-full">
+              AICTE Approved
+            </span>
+            <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 bg-muted text-muted-foreground border border-border rounded-full">
+              ISO 9001:2015 Certified
+            </span>
+          </div>
 
-            {/* Top Stats Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 border-t border-border pt-8">
-              <div>
-                <span className="block text-[11px] font-bold text-muted-foreground mb-2 uppercase tracking-widest">Department</span>
-                <span className="block text-sm md:text-base font-bold text-card-foreground">{course.department}</span>
-              </div>
-              <div>
-                <span className="block text-[11px] font-bold text-muted-foreground mb-2 uppercase tracking-widest">Level</span>
-                <span className="block text-sm md:text-base font-bold text-card-foreground">{course.level}</span>
-              </div>
-              <div>
-                <span className="block text-[11px] font-bold text-muted-foreground mb-2 uppercase tracking-widest">Start date</span>
-                <span className="block text-sm md:text-base font-bold text-card-foreground">{course.details.startDate}</span>
-              </div>
-              <div>
-                <span className="block text-[11px] font-bold text-muted-foreground mb-2 uppercase tracking-widest">Course length</span>
-                <span className="block text-sm font-bold text-card-foreground leading-snug">{course.details.courseLength}</span>
-              </div>
+          {/* Course Name & Lead Statement */}
+          <div className="mb-8">
+             <h1 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-card-foreground mb-4 leading-tight">
+               {course.name}
+             </h1>
+             <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl">
+               {course.description}
+             </p>
+          </div>
+
+          {/* Top Key Metrics Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 border-t border-border pt-8">
+            <div>
+              <span className="block text-[11px] font-bold text-muted-foreground mb-1.5 uppercase tracking-widest">Department</span>
+              <span className="block text-sm md:text-base font-black text-card-foreground">{course.department}</span>
+            </div>
+            <div>
+              <span className="block text-[11px] font-bold text-muted-foreground mb-1.5 uppercase tracking-widest">Degree Level</span>
+              <span className="block text-sm md:text-base font-black text-card-foreground">{course.level}</span>
+            </div>
+            <div>
+              <span className="block text-[11px] font-bold text-muted-foreground mb-1.5 uppercase tracking-widest">Total Intake</span>
+              <span className="block text-sm md:text-base font-black text-[#059669]">{course.intake} Seats / Year</span>
+            </div>
+            <div>
+              <span className="block text-[11px] font-bold text-muted-foreground mb-1.5 uppercase tracking-widest">Programme Duration</span>
+              <span className="block text-sm font-black text-card-foreground leading-snug">{course.details.courseLength}</span>
             </div>
           </div>
         </div>
+      </div>
 
       {/* Main Content Layout */}
-      <div id="department-main-content" className="max-w-[1440px] mx-auto px-6 lg:px-12 pt-16 md:pt-20 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      <div id="department-main-content" className="max-w-[1440px] mx-auto px-6 lg:px-12 pt-14 md:pt-18 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
         
-        {/* Main Column: Clean Isolated Tab Content */}
+        {/* Main Column: Clean Tab Content Area */}
         <div className="lg:col-span-8 order-1 min-h-[500px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
               className="space-y-8"
             >
               {/* Tab 1: About Department */}
               {activeTab === 'about' && (
-                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
+                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-2 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
                   {parsedContent['about'] ? (
                     <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {parsedContent['about']}
@@ -367,7 +394,7 @@ function CoursePage() {
 
               {/* Tab 2: OBE (Outcome Based Education) */}
               {activeTab === 'obe' && (
-                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
+                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-2 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
                   {parsedContent['obe'] ? (
                     <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {parsedContent['obe']}
@@ -375,16 +402,16 @@ function CoursePage() {
                   ) : (
                     <div className="space-y-8">
                       <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Outcome Based Education (OBE)</h2>
-                      <div className="p-6 bg-card border border-border rounded-sm space-y-4">
+                      <div className="p-6 bg-card border border-border rounded-sm space-y-4 shadow-xs">
                         <h4 className="font-bold text-lg text-foreground">Programme Educational Objectives (PEOs)</h4>
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                          Graduates are prepared to analyze, design, develop, and test engineering solutions with creativity, modern tool usage, and leadership capabilities for societal and industrial growth.
+                          Graduates are equipped to analyze, design, develop, and test modern engineering solutions with creativity, sustainability, and leadership.
                         </p>
                       </div>
-                      <div className="p-6 bg-card border border-border rounded-sm space-y-4">
+                      <div className="p-6 bg-card border border-border rounded-sm space-y-4 shadow-xs">
                         <h4 className="font-bold text-lg text-foreground">Program Specific Outcomes (PSOs)</h4>
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                          Apply cutting-edge technologies and domain expertise to solve real-world problems and implement sustainable applications.
+                          Apply cutting-edge domain tools and engineering frameworks to solve real-world problems and deliver industry-ready applications.
                         </p>
                       </div>
                     </div>
@@ -394,7 +421,7 @@ function CoursePage() {
 
               {/* Tab 3: JOB PROFILE */}
               {activeTab === 'job-profile' && (
-                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
+                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-2 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
                   {parsedContent['job-profile'] ? (
                     <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {parsedContent['job-profile']}
@@ -404,7 +431,7 @@ function CoursePage() {
                       <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Job Profile & Career Prospects</h2>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose">
                         {course.details.careers.map((role) => (
-                          <div key={role} className="p-5 bg-card border border-border rounded-sm">
+                          <div key={role} className="p-5 bg-card border border-border rounded-sm shadow-xs">
                             <span className="text-xs font-bold text-[#059669] uppercase tracking-widest block mb-1">Career Role</span>
                             <h4 className="font-bold text-base text-foreground">{role}</h4>
                           </div>
@@ -417,7 +444,7 @@ function CoursePage() {
 
               {/* Tab 4: Faculty */}
               {activeTab === 'faculty' && (
-                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary [&_table]:w-full [&_table]:border-collapse [&_table]:border [&_table]:border-border [&_th]:border [&_th]:border-border [&_th]:p-4 [&_th]:bg-muted [&_td]:border [&_td]:border-border [&_td]:p-4 [&_td]:align-top [&_th]:text-left [&_td:first-child]:whitespace-nowrap [&_th:first-child]:whitespace-nowrap [&_td:first-child]:min-w-[200px]">
+                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-2 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
                   {parsedContent['faculty'] ? (
                     <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {parsedContent['faculty']}
@@ -426,7 +453,7 @@ function CoursePage() {
                     <div className="space-y-6">
                       <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Department Faculty</h2>
                       <p className="text-base text-muted-foreground leading-relaxed">
-                        The department is powered by highly accomplished professors, doctorates, and researchers committed to student mentoring and outcome-based engineering education.
+                        The department is powered by accomplished professors, doctorates, and researchers committed to student mentoring and outcome-based engineering education.
                       </p>
                     </div>
                   )}
@@ -435,7 +462,7 @@ function CoursePage() {
 
               {/* Tab 5: Department Facilities */}
               {activeTab === 'facilities' && (
-                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
+                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-2 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
                   {parsedContent['facilities'] ? (
                     <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {parsedContent['facilities']}
@@ -453,7 +480,7 @@ function CoursePage() {
 
               {/* Tab 6: Academics */}
               {activeTab === 'academics' && (
-                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
+                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-2 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
                   {parsedContent['academics'] ? (
                     <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {parsedContent['academics']}
@@ -474,7 +501,7 @@ function CoursePage() {
                 <div className="space-y-8">
                   <div>
                     <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2 text-foreground">News & Events</h2>
-                    <p className="text-sm text-muted-foreground">Latest happenings, guest lectures, seminars, and technical announcements from the department.</p>
+                    <p className="text-sm text-muted-foreground">Latest happenings, technical symposiums, guest lectures, and student announcements.</p>
                   </div>
                   
                   {parsedContent['news-events'] && (
@@ -493,7 +520,7 @@ function CoursePage() {
                           <h4 className="font-bold text-card-foreground text-lg">{item.title}</h4>
                           <p className="text-xs text-muted-foreground mt-1">Organized by {course.name} Department, MSAJCE</p>
                         </div>
-                        <Link to="/" className="text-xs font-bold text-primary hover:underline flex items-center gap-1 shrink-0 uppercase tracking-wider">
+                        <Link to="/contact" className="text-xs font-bold text-primary hover:underline flex items-center gap-1 shrink-0 uppercase tracking-wider">
                           Details <ArrowRight size={14} />
                         </Link>
                       </div>
@@ -507,7 +534,7 @@ function CoursePage() {
                 <div className="space-y-8">
                   <div>
                     <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2 text-foreground">Student Activities & Associations</h2>
-                    <p className="text-sm text-muted-foreground">Active student-led technical chapters, national symposiums, hackathons, and cultural initiatives.</p>
+                    <p className="text-sm text-muted-foreground">Active student-led technical chapters, national symposiums, hackathons, and industrial immersions.</p>
                   </div>
 
                   {parsedContent['student-activities'] && (
@@ -531,7 +558,7 @@ function CoursePage() {
                       <div className="w-10 h-10 rounded-full bg-[#059669]/10 flex items-center justify-center text-[#059669] font-black text-sm">02</div>
                       <h4 className="font-bold text-card-foreground text-lg">Hackathons & Coding Sprints</h4>
                       <p className="text-sm text-muted-foreground leading-relaxed">
-                        Intensive 24-hour innovation hackathons focused on AI, sustainability, smart cities, and IoT product prototypes.
+                        Intensive innovation hackathons focused on AI, sustainability, smart cities, and IoT product prototypes.
                       </p>
                     </div>
 
@@ -557,71 +584,86 @@ function CoursePage() {
           </AnimatePresence>
         </div>
 
-        {/* Right Sidebar: Extra Info, Stats & CTAs */}
+        {/* Right Sidebar: Quick Stats & High-Impact Widgets */}
         <div className="lg:col-span-4 order-2 relative">
           <div className="sticky top-28 space-y-6">
             
-            {/* Widget 1: At a Glance */}
+            {/* Widget 1: At a Glance Admission Breakdown */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
               className="bg-card p-6 rounded-sm border border-border shadow-xs"
             >
-               <h4 className="font-bold text-primary mb-5 uppercase tracking-widest text-xs">At a Glance</h4>
-               <ul className="space-y-4 text-sm">
-                  <li className="flex justify-between border-b border-border pb-3">
-                     <span className="text-muted-foreground font-medium">Total Intake</span>
-                     <span className="font-bold text-foreground text-base">{course.intake}</span>
+               <h4 className="font-black text-primary mb-4 uppercase tracking-widest text-xs flex items-center gap-2">
+                 <GraduationCap size={16} /> Admission & Seat Matrix
+               </h4>
+               <ul className="space-y-3.5 text-sm">
+                  <li className="flex justify-between border-b border-border pb-2.5">
+                     <span className="text-muted-foreground font-medium">Total Sanctioned Intake</span>
+                     <span className="font-bold text-foreground text-base">{course.intake} Seats</span>
                   </li>
-                  <li className="flex justify-between border-b border-border pb-3">
-                     <span className="text-muted-foreground font-medium">Govt Quota</span>
+                  <li className="flex justify-between border-b border-border pb-2.5">
+                     <span className="text-muted-foreground font-medium">Government Quota (TNEA)</span>
                      <span className="font-bold text-foreground text-base">{course.govtQuota}</span>
                   </li>
-                  <li className="flex justify-between pb-1">
-                     <span className="text-muted-foreground font-medium">Mgmt Quota</span>
+                  <li className="flex justify-between border-b border-border pb-2.5">
+                     <span className="text-muted-foreground font-medium">Management Quota</span>
                      <span className="font-bold text-foreground text-base">{course.managementQuota}</span>
                   </li>
+                  <li className="flex justify-between pb-1">
+                     <span className="text-muted-foreground font-medium">Affiliated University</span>
+                     <span className="font-bold text-primary text-xs uppercase">Anna University</span>
+                  </li>
                </ul>
+               <Link 
+                 to="/admissions" 
+                 className="mt-5 block text-center w-full py-3 bg-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-primary/90 transition-colors shadow-xs rounded-sm"
+               >
+                 Apply for Admission
+               </Link>
             </motion.div>
 
-            {/* Widget 2: Contact info */}
+            {/* Widget 2: Contact Department */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.4, delay: 0.05 }}
               className="border border-border p-6 rounded-sm bg-card shadow-xs"
             >
-              <h4 className="font-bold uppercase tracking-widest text-xs mb-3 text-foreground/70">Contact Department</h4>
-              <p className="text-sm font-bold text-foreground mb-0.5">Head of Department</p>
-              <p className="text-xs text-muted-foreground mb-5">hod.{course.department.toLowerCase()}@msajce.edu</p>
-              <Link to="/contact" className="block text-center w-full py-3 bg-[#059669] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#059669]/90 transition-colors shadow-sm rounded-sm">
-                Enquire Now
+              <h4 className="font-black uppercase tracking-widest text-xs mb-3 text-foreground/70">Department Inquiries</h4>
+              <p className="text-sm font-bold text-foreground mb-0.5">Head of Department (HoD)</p>
+              <p className="text-xs text-muted-foreground mb-4 font-mono">hod.{course.slug}@msajce-edu.in</p>
+              <Link to="/contact" className="block text-center w-full py-2.5 bg-[#059669] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#059669]/90 transition-colors shadow-xs rounded-sm">
+                Enquire with Department
               </Link>
             </motion.div>
 
-            {/* Widget 3: Live News & Events */}
+            {/* Widget 3: Live News Ticker */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="bg-primary text-primary-foreground p-6 rounded-sm min-h-[190px] flex flex-col justify-between shadow-md"
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="bg-[#005DA6] text-white p-6 rounded-sm min-h-[180px] flex flex-col justify-between shadow-md"
             >
-               <h4 className="font-bold mb-3 uppercase tracking-widest text-xs opacity-85">News & Events</h4>
+               <div className="flex items-center justify-between mb-2">
+                 <h4 className="font-black uppercase tracking-widest text-xs opacity-90">Department News</h4>
+                 <span className="w-2 h-2 rounded-full bg-[#059669] animate-pulse" />
+               </div>
                <div className="flex-1 overflow-hidden relative">
                  <AnimatePresence mode="wait">
                     <motion.div
                       key={currentNews}
-                      initial={{ opacity: 0, y: 10 }}
+                      initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.3 }}
-                      className="py-2"
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.25 }}
+                      className="py-1"
                     >
-                      <span className="text-[10px] font-bold text-[#059669] bg-white px-2.5 py-0.5 rounded-sm inline-block mb-2 uppercase tracking-widest shadow-xs">{currentItem.date}</span>
+                      <span className="text-[10px] font-black text-[#059669] bg-white px-2 py-0.5 rounded-sm inline-block mb-1.5 uppercase tracking-widest shadow-xs">{currentItem.date}</span>
                       <p className="text-sm font-bold leading-snug">{currentItem.title}</p>
                     </motion.div>
                  </AnimatePresence>
@@ -630,61 +672,62 @@ function CoursePage() {
                  onClick={() => handleTabChange('news-events')}
                  className="text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:opacity-80 transition-opacity mt-4 text-white text-left cursor-pointer"
                >
-                  View all news <ArrowRight size={14} />
+                  All Department Announcements <ArrowRight size={14} />
                </button>
             </motion.div>
 
-            {/* Widget 4: Recruiters */}
+            {/* Widget 4: Top Recruiters */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="border border-primary/10 p-6 rounded-sm bg-primary/5 shadow-xs"
+              transition={{ duration: 0.4, delay: 0.15 }}
+              className="border border-primary/15 p-6 rounded-sm bg-card shadow-xs"
             >
-              <h4 className="font-bold uppercase tracking-widest text-xs mb-3 text-primary">Top Recruiters</h4>
+              <h4 className="font-black uppercase tracking-widest text-xs mb-3 text-primary">Top Industry Recruiters</h4>
               <div className="flex flex-wrap gap-2">
                 {course.details.recruiters.map((company: string) => (
-                  <span key={company} className="text-[10px] uppercase font-bold tracking-wider px-3 py-1.5 bg-background border border-primary/20 text-primary shadow-xs rounded-full">
+                  <span key={company} className="text-[10px] uppercase font-bold tracking-wider px-3 py-1.5 bg-background border border-border text-foreground shadow-xs rounded-sm">
                     {company}
                   </span>
                 ))}
               </div>
             </motion.div>
 
-            {/* Widget 5: Career Opportunities */}
+            {/* Widget 5: Career Roles */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.25 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
               className="border border-border p-6 rounded-sm bg-card shadow-xs"
             >
-              <h4 className="font-bold uppercase tracking-widest text-xs mb-4 text-foreground/70">Career Opportunities</h4>
+              <h4 className="font-black uppercase tracking-widest text-xs mb-3.5 text-foreground/70">Career Prospects</h4>
               <ul className="space-y-2.5 text-sm font-semibold text-foreground">
                 {course.details.careers.map((role: string) => (
                   <li key={role} className="flex items-start gap-2">
-                    <span className="text-[#059669] mt-0.5">•</span> {role}
+                    <span className="text-[#059669] font-bold">✓</span> {role}
                   </li>
                 ))}
               </ul>
             </motion.div>
 
-            {/* Widget 6: Quick Links */}
+            {/* Widget 6: Related Links */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.4, delay: 0.25 }}
               className="border border-border p-6 rounded-sm bg-card shadow-xs"
             >
-              <h4 className="font-bold uppercase tracking-widest text-xs mb-4 text-foreground/70">Related Links</h4>
-              <ul className="space-y-3.5 text-sm font-semibold text-foreground">
-                <li><Link to="/academics" className="hover:text-[#059669] transition-colors flex items-center gap-2"><ArrowRight size={14} className="text-primary" /> Academic Rules</Link></li>
-                <li><Link to="/placements" className="hover:text-[#059669] transition-colors flex items-center gap-2"><ArrowRight size={14} className="text-primary" /> Placement Records</Link></li>
-                <li><Link to="/admissions" className="hover:text-[#059669] transition-colors flex items-center gap-2"><ArrowRight size={14} className="text-primary" /> Admission Process</Link></li>
+              <h4 className="font-black uppercase tracking-widest text-xs mb-3.5 text-foreground/70">Academic Navigation</h4>
+              <ul className="space-y-3 text-sm font-semibold text-foreground">
+                <li><Link to="/academics" className="hover:text-primary transition-colors flex items-center gap-2"><ArrowRight size={14} className="text-primary" /> Academic Curriculum & Regulations</Link></li>
+                <li><Link to="/placements" className="hover:text-[#059669] transition-colors flex items-center gap-2"><ArrowRight size={14} className="text-[#059669]" /> College Placement Statistics</Link></li>
+                <li><Link to="/admissions" className="hover:text-primary transition-colors flex items-center gap-2"><ArrowRight size={14} className="text-primary" /> Admission Eligibility & Criteria</Link></li>
               </ul>
             </motion.div>
+
           </div>
         </div>
 
