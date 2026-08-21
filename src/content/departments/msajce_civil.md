@@ -14,39 +14,56 @@ A strong alumni base is created and their contribution to the development of the
 
 > *"I am honored to lead the department with a team of people who are committed and compassionate and keep the Civil Engineering department flag flying high."*
 
-## OUTCOME BASED EDUCATION (OBE)
+## OBE
 
 ### Vision
 To be a centre of excellence for transforming students into proficient Civil Engineers, through sustainable practices.
 
 ### Mission
-- **M1.** Impart core fundamental knowledge and necessary skills in Civil engineering, through innovative teaching and learning methodology
-- **M2.** Inculcate critical thinking, ethics, lifelong learning and creativity needed for Industry and Society
-- **M3.** Cultivate the students with all-round competencies, for career, higher education and self Employability
+M1. Impart core fundamental knowledge and necessary skills in Civil engineering, through innovative teaching and learning methodology
+
+M2. Inculcate critical thinking, ethics, lifelong learning and creativity needed for Industry and Society
+
+M3. Cultivate the students with all-round competencies, for career, higher education and self Employability
 
 ### Programme Educational Objectives (PEOs)
-- **PEO1.** Graduates will be able to prepare design and detailing civil engineering components and systems, with creativity and sustainability
-- **PEO2.** Graduates will be skilled in the usage of modern tools for critical problem solving, analyzing the industrial and societal requirements
-- **PEO3.** Graduates will be prepared with managerial and leadership skills, for career and starting up own firms
+PEO1. Graduates will be able to prepare design and detailing civil engineering components and systems, with creativity and sustainability
+
+PEO2. Graduates will be skilled in the usage of modern tools for critical problem solving, analyzing the industrial and societal requirements
+
+PEO3. Graduates will be prepared with managerial and leadership skills, for career and starting up own firms
 
 ### Program Specific Outcomes (PSOs)
-*Engineering Graduates will be able to:*
-- **PSO1.** Apply their skills to work on the projects of Urban/ Rural Planning and development; provide the Environment friendly and Sustainable solution.
-- **PSO2.** Apply their acquired professional skills to design cost effective structural components in various Infrastructure development / Civil engineering Industry
+Engineering Graduates will be able to
 
-### Programme Outcomes (POs)
-- **PO1. Engineering Knowledge:** Apply the knowledge of mathematics, science, engineering fundamentals, and an engineering specialization to the solution of complex engineering problems.
-- **PO2. Problem Analysis:** Identify, formulate, review research literature, and analyze complex engineering problems reaching substantiated conclusions using first principles of mathematics, natural sciences, and engineering sciences.
-- **PO3. Design/Development Of Solutions:** Design solutions for complex engineering problems and design system components or processes that meet the specified needs with appropriate consideration for the public health and safety, and the cultural, societal, and environmental considerations.
-- **PO4. Conduct Investigations of Complex Problems:** Use research-based knowledge and research methods including design of experiments, analysis and interpretation of data, and synthesis of the information to provide valid conclusions.
-- **PO5. Modern Tool Usage:** Create, select, and apply appropriate techniques, resources, and modern engineering and IT tools including prediction and modeling to complex engineering activities with an understanding of the limitations.
-- **PO6. The Engineer and Society:** Apply reasoning informed by the contextual knowledge to assess societal, health, safety, legal and cultural issues and the consequent responsibilities relevant to the professional engineering practice.
-- **PO7. Environment and Sustainability:** Understand the impact of the professional engineering solutions in societal and environmental contexts, and demonstrate the knowledge of, and need for sustainable development.
-- **PO8. Ethics:** Apply ethical principles and commit to professional ethics and responsibilities and norms of the engineering practice.
-- **PO9. Individual and Team Work:** Function effectively as an individual, and as a member or leader in diverse teams, and in multi disciplinary settings.
-- **PO10. Communication:** Communicate effectively on complex engineering activities with the engineering community and with society at large, such as, being able to comprehend and write effective reports and design documentation, make effective presentations, and give and receive clear instructions.
-- **PO11. Project Management and Finance:** Demonstrate knowledge and understanding of the engineering and management principles and apply these to one's own work, as a member and leader in a team, to manage projects and in multi disciplinary environments.
-- **PO12. Life-long Learning:** Recognize the need for, and have the preparation and ability to engage in independent and life-long learning in the broadest context of technological change.
+PSO1. Apply their skills to work on the projects of Urban/ Rural Planning and development; provide the Environment friendly and Sustainable solution.
+
+PSO2. Apply their acquired professional skills to design cost effective structural components in various Infrastructure development / Civil engineering Industry
+
+### Programme Outcomes (PO)
+PO1. Engineering Knowledge: Apply the knowledge of mathematics, science, engineering fundamentals, and an engineering specialization to the solution of complex engineering problems.
+
+PO2. Problem Analysis: Identify, formulate, review research literature, and analyze complex engineering problems reaching substantiated conclusions using first principles of mathematics, natural sciences, and engineering sciences.
+
+PO3. Design/Development Of Solutions: Design solutions for complex engineering problems and design system components or processes that meet the specified needs with appropriate consideration for the public health and safety, and the cultural, societal, and environmental considerations.
+
+PO4. Conduct Investigations of Complex Problems: Use research-based knowledge and research methods including design of experiments, analysis and interpretation of data, and synthesis of the information to provide valid conclusions.
+
+PO5. Modern Tool Usage: Create, select, and apply appropriate techniques, resources, and modern engineering and IT tools including prediction and modeling to complex engineering activities with an understanding of the limitations.
+
+PO6. The Engineer and Society: Apply reasoning informed by the contextual knowledge to assess societal, health, safety, legal and cultural issues and the consequent responsibilities relevant to the professional engineering practice.
+
+PO7. Environment and Sustainability: Understand the impact of the professional engineering solutions in societal and environmental contexts, and demonstrate the knowledge of, and need for sustainable development.
+
+PO8. Ethics: Apply ethical principles and commit to professional ethics and responsibilities and norms of the engineering practice.
+
+PO9. Individual and Team Work: Function effectively as an individual, and as a member or leader in diverse teams, and in multi disciplinary settings.
+
+PO10. Communication: Communicate effectively on complex engineering activities with the engineering community and with society at large, such as, being able to comprehend and write effective reports and design documentation, make effective presentations, and give and receive clear instructions.
+
+PO11. Project Management and Finance: Demonstrate knowledge and understanding of the engineering and management principles and apply these to one's own work, as a member and leader in a team, to manage projects and in multi disciplinary environments.
+
+PO12. Life-long Learning: Recognize the need for, and have the preparation and ability to engage in independent and life-long learning in the broadest context of technological change.
 
 ## 7. Job Profiles
 
