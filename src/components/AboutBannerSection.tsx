@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import { CountUp, Magnetic, Reveal, SplitText, Stagger, StaggerItem } from "@/components/motion";
 
 const campusFacilities = [
@@ -36,51 +37,55 @@ const campusFacilities = [
 
 export function AboutBannerSection() {
   return (
-    <section id="about" className="w-full bg-gray-100 dark:bg-[#171613] min-h-[100svh] flex flex-col justify-center py-16 transition-colors">
+    <section id="about" className="relative z-10 w-full bg-gray-100 dark:bg-[#171613] min-h-[100svh] flex flex-col justify-center py-16 transition-colors">
       <div className="mx-auto grid w-full max-w-[1440px] px-6 md:px-12 grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         {/* Left: editorial copy */}
-        <Reveal variant="slide-right" className="flex flex-col justify-center lg:col-span-6">
-          <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-primary">
-            About MSAJCE
-          </span>
+        <Reveal variant="slide-right" className="flex flex-col justify-center lg:col-span-6 pr-0 md:pr-10 lg:pr-16">
+          <div className="mb-8 flex items-center gap-3">
+            <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-foreground/70">
+              The MSAJCE Edge
+            </span>
+          </div>
 
-          <h2 className="mt-6 text-4xl sm:text-5xl font-black uppercase leading-[0.95] tracking-tighter text-foreground lg:text-6xl">
-            <SplitText text="Empowering Leaders," />
-            <br />
-            <SplitText text="Innovators &" delay={0.1} />
-            <br />
-            <SplitText text="Changemakers" delay={0.2} wordClassName="text-primary" />
+          <h2 className="text-[2.75rem] md:text-[3.5rem] lg:text-[4.25rem] font-bold leading-[1.05] tracking-tight text-foreground">
+            Empowering leaders, innovators &amp;{" "}
+            <span className="bg-gradient-to-r from-primary via-[#059669] to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient_8s_ease_infinite]">
+              changemakers.
+            </span>
           </h2>
 
-          <p className="mt-8 max-w-lg border-l-2 border-primary pl-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-            Be part of an institution that prepares you for tomorrow&rsquo;s challenges, today.
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            Be part of an institution that prepares you for tomorrow&rsquo;s challenges. We blend rigorous academics with real-world innovation to shape the future of engineering.
           </p>
 
-          <Stagger gap={0.12} className="mt-12 grid gap-px border-t border-border bg-border md:grid-cols-2">
-            <StaggerItem variant="unfold">
-              <article className="group border-b border-border bg-background p-8 transition-colors hover:bg-muted/50">
-                <CountUp value={5} suffix="th" className="block text-3xl font-bold tracking-tighter text-primary" />
-                <span className="mt-2 block text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                  In Tamil Nadu — NIRF 2024
+          <Stagger gap={0.15} className="mt-12 flex flex-col sm:flex-row gap-4">
+            <StaggerItem variant="rise" className="flex-1">
+              <div className="flex h-full flex-col justify-between rounded-2xl border border-border/50 bg-white/40 dark:bg-black/20 p-6 backdrop-blur-sm transition-all hover:bg-white/60 dark:hover:bg-black/40 hover:shadow-sm">
+                <CountUp value={5} suffix="th" className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4" />
+                <span className="text-sm font-medium text-muted-foreground leading-snug">
+                  Ranked in Tamil Nadu by NIRF 2024
                 </span>
-              </article>
+              </div>
             </StaggerItem>
-            <StaggerItem variant="unfold">
-              <article className="group border-b border-border bg-background p-8 transition-colors hover:bg-muted/50">
-                <span className="block text-3xl font-bold tracking-tighter text-primary">AICTE</span>
-                <span className="mt-2 block text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                  Approved &amp; Anna Univ Affiliated
+            
+            <StaggerItem variant="rise" className="flex-1">
+              <div className="flex h-full flex-col justify-between rounded-2xl border border-border/50 bg-white/40 dark:bg-black/20 p-6 backdrop-blur-sm transition-all hover:bg-white/60 dark:hover:bg-black/40 hover:shadow-sm">
+                <span className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">AICTE</span>
+                <span className="text-sm font-medium text-muted-foreground leading-snug">
+                  Approved &amp; Affiliated to Anna University
                 </span>
-              </article>
+              </div>
             </StaggerItem>
           </Stagger>
 
           <div className="mt-12">
             <Link
               to="/about"
-              className="group relative overflow-hidden inline-flex items-center justify-center bg-primary px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground shadow transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
+              className="group flex w-fit items-center gap-4 rounded-full bg-foreground px-6 py-3.5 text-sm font-semibold text-background transition-all hover:scale-105 hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/25"
             >
-              <span className="relative z-10">Vision &amp; Mission</span>
+              Explore our Vision
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </Reveal>

@@ -156,7 +156,6 @@ export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const { scrollY } = useScroll();
-  const logoOpacity = useTransform(scrollY, [50, 120], [0, 1]);
 
   const location = useLocation();
   const isHome = location.pathname === "/";
@@ -221,13 +220,16 @@ export function SiteHeader() {
       >
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-2.5 md:px-12 md:py-3">
         <div className="flex-1 lg:flex-none flex items-center min-w-[140px]">
-          <Link to="/" className="flex items-center">
-            <motion.img
-              src="/logos/clg-logo.png" 
-              alt="MSAJCE Logo" 
-              className="h-9 md:h-10 w-auto object-contain origin-left"
-              style={{ opacity: isHome ? logoOpacity : 1 }}
-            />
+          <Link to="/" className="flex items-center min-h-[36px] md:min-h-[40px] w-full">
+            {(!isHome || isScrolled) && (
+              <motion.img
+                layoutId="msajce-logo"
+                src="/logos/clg-logo.png" 
+                alt="MSAJCE Logo" 
+                className="h-9 md:h-10 w-auto object-contain origin-left"
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              />
+            )}
           </Link>
         </div>
 

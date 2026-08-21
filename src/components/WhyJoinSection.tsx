@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import {
   CountUp,
   Reveal,
@@ -9,10 +9,10 @@ import {
 } from "@/components/motion";
 
 const stats = [
-  { value: 25, suffix: "+", label: "Years Excellence" },
-  { value: 5000, suffix: "+", label: "Alumni" },
-  { value: 95, suffix: "%", label: "Placements", colorClass: "text-forest" },
-  { value: 50, suffix: "+", label: "Recruiters" },
+  { value: 981, suffix: "", label: "Happy Students" },
+  { value: 175, suffix: "", label: "Achievements" },
+  { value: 301, suffix: "", label: "Team Staff" },
+  { value: 54, suffix: "", label: "Awards Won" },
 ];
 
 const ITEMS = [
@@ -55,143 +55,147 @@ const ITEMS = [
 ];
 
 export function WhyJoinSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-
-  // Auto-advance timer
-  useEffect(() => {
-    if (isPaused) return;
-
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % ITEMS.length);
-    }, 4000);
-
-    return () => clearInterval(timer);
-  }, [isPaused]);
-
   return (
-    <section className="bg-[#EAEAEA] dark:bg-[#1a1c1a] py-16 md:py-24 border-b border-foreground/12 transition-colors" id="why-join">
-      {/* Static Header & Stats Section */}
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-10 md:gap-12 lg:gap-16 px-6 py-16 md:px-12">
-        {/* Header */}
-        <Reveal variant="slide-right" className="flex flex-col gap-4">
-          <h2 className="text-4xl md:text-5xl font-black text-foreground tracking-tighter">
-            <SplitText text="Why Join MSAJCE?" />
-          </h2>
-          <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            A campus that turns ambition into achievement — industry-integrated learning, global
-            opportunities, every single day.
-          </p>
-        </Reveal>
-
-        {/* Stats */}
-        <Stagger
-          gap={0.1}
-          className="grid grid-cols-2 gap-4 md:grid-cols-4"
-        >
-          {stats.map((stat) => (
-            <StaggerItem key={stat.label} variant="unfold" className="bg-background rounded-lg shadow-sm border border-border/50 p-6 md:p-8">
-              <CountUp
-                value={stat.value}
-                suffix={stat.suffix}
-                className="block text-4xl font-bold tracking-tighter text-primary md:text-5xl"
-              />
-              <span className="mt-2 block text-xs font-bold text-muted-foreground">
-                {stat.label}
-              </span>
-            </StaggerItem>
-          ))}
-        </Stagger>
+    <section className="relative z-10 bg-background overflow-hidden transition-colors" id="why-join">
+      {/* Diagonal Background Accents (matching screenshot 1 & 2) */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {/* Top diagonal stripe */}
+        <div className="absolute top-[-10%] right-[-10%] w-[120%] h-[40%] bg-[#F7F2EC] dark:bg-secondary/20 -rotate-12 origin-top-right" />
+        {/* Middle/Bottom diagonal stripe */}
+        <div className="absolute top-[40%] left-[-20%] w-[150%] h-[35%] bg-[#F7F2EC] dark:bg-secondary/20 -rotate-12 origin-bottom-left" />
       </div>
 
-      {/* Interactive Auto-Advancing Showcase */}
-      <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 pb-16">
-        <div className="relative w-full">
-          {/* Grid Container */}
-          <div className="w-full grid grid-cols-1 md:grid-cols-12 min-h-[500px] h-auto md:h-[70vh] max-h-[800px] gap-8 md:gap-12 lg:gap-16 items-center">
-          
-          {/* Left Column: Navigation Items */}
-          <div
-            className="md:col-span-5 flex flex-col justify-center z-20"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            <ul className="space-y-4 md:space-y-6 max-w-md mx-auto w-full">
-              {ITEMS.map((item, idx) => {
-                const isActive = idx === activeIndex;
-                return (
-                  <li
-                    key={item.id}
-                    onMouseEnter={() => setActiveIndex(idx)}
-                    onClick={() => setActiveIndex(idx)}
-                    className="cursor-pointer flex flex-col space-y-1 md:space-y-2 select-none group py-1 md:py-2"
-                  >
-                    <div className="flex items-center space-x-4">
-                      {/* Indicator Bullet */}
-                      <span
-                        className={`transition-all duration-300 transform font-bold text-primary ${
-                          isActive
-                            ? "opacity-100 scale-125 translate-x-0"
-                            : "opacity-0 -translate-x-2"
-                        }`}
-                      >
-                        &bull;
-                      </span>
+      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col px-6 py-12 md:px-12 md:py-16">
+        {/* Static Header & Stats Section */}
+        <div className="flex flex-col gap-10 md:gap-12 lg:gap-16 mb-16 md:mb-20">
+          {/* Header */}
+          <Reveal variant="slide-right" className="flex flex-col gap-4">
+            <h2 className="text-4xl md:text-5xl font-black text-foreground tracking-tighter">
+              <SplitText text="Why Join MSAJCE?" />
+            </h2>
+            <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+              A campus that turns ambition into achievement — industry-integrated learning, global
+              opportunities, every single day.
+            </p>
+          </Reveal>
 
-                      {/* Title */}
-                      <span
-                        className={`font-display transition-all duration-300 ease-out text-lg md:text-2xl lg:text-3xl ${
-                          isActive
-                            ? "scale-105 font-bold translate-x-1 text-foreground"
-                            : "opacity-40 text-foreground group-hover:opacity-80"
-                        }`}
-                      >
-                        {item.title}
-                      </span>
-                    </div>
-
-                    {/* Subtitle / Description */}
-                    <div
-                      className={`overflow-hidden transition-all duration-500 ease-in-out pl-6 md:pl-7 ${
-                        isActive ? "max-h-40 opacity-100 mt-2" : "max-h-0 opacity-0 mt-0"
-                      }`}
-                    >
-                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                        {item.label}
-                      </p>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          {/* Right Column: Media Display Area */}
-          <div className="md:col-span-7 relative h-[300px] md:h-full w-full overflow-hidden rounded-2xl bg-muted order-first md:order-last shadow-lg">
-            {ITEMS.map((item, idx) => {
-              const isActive = idx === activeIndex;
-              return (
-                <div
-                  key={item.id}
-                  className={`absolute inset-0 transition-all duration-700 ease-in-out transform ${
-                    isActive
-                      ? "opacity-100 scale-100 z-10 pointer-events-auto"
-                      : "opacity-0 scale-105 z-0 pointer-events-none"
-                  }`}
-                >
-                  <div className="absolute inset-0 bg-black/10 z-10"></div>
-                  <img
-                    src={item.mediaUrl}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              );
-            })}
-          </div>
+          {/* Stats */}
+          <Stagger gap={0.1} className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            {stats.map((stat) => (
+              <StaggerItem key={stat.label} variant="rise" className="flex flex-col items-start justify-center py-4 bg-background/50 backdrop-blur-md rounded-xl p-4 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-foreground/5">
+                <CountUp
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  className="block text-4xl font-bold tracking-tighter text-primary md:text-5xl lg:text-6xl"
+                />
+                <span className="mt-2 block text-sm font-medium text-muted-foreground uppercase tracking-wider">
+                  {stat.label}
+                </span>
+              </StaggerItem>
+            ))}
+          </Stagger>
         </div>
-      </div>
+
+        {/* Content Showcase matching screenshots layout */}
+        <div className="flex flex-col w-full max-w-[1200px] mx-auto gap-16 md:gap-24">
+          
+          {/* Block 1: 50/50 Image Left, Text Right (Screenshot 1) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+            <Reveal variant="slide-right" className="w-full">
+              <img
+                src={ITEMS[0].mediaUrl}
+                alt={ITEMS[0].title}
+                className="w-full aspect-[16/9] md:aspect-[3/2] object-cover rounded-lg shadow-xl"
+              />
+            </Reveal>
+            <Reveal variant="slide-left" className="flex flex-col justify-center items-start">
+              <h3 className="font-display text-3xl md:text-[2.75rem] leading-[1.1] text-foreground mb-5 tracking-tight">
+                {ITEMS[0].title}
+              </h3>
+              <p className="font-sans text-[1.1rem] text-muted-foreground leading-relaxed mb-8">
+                {ITEMS[0].label}
+              </p>
+              <Link
+                to="/admissions"
+                className="inline-flex items-center justify-center bg-foreground text-background font-display font-semibold uppercase tracking-wide text-xs md:text-sm px-6 py-4 rounded-md hover:bg-foreground/90 transition-all"
+              >
+                <ArrowRight className="w-4 h-4 mr-2" /> Explore The Experience
+              </Link>
+            </Reveal>
+          </div>
+
+          {/* Block 2: Masonry Layout (Screenshot 2) */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
+            {/* Left Column (Wider, Text Top, Image Bottom) */}
+            <div className="md:col-span-7 flex flex-col gap-6 md:gap-8">
+              <Reveal variant="rise" className="max-w-md">
+                <h3 className="font-display text-3xl md:text-[2.5rem] leading-[1.1] text-foreground mb-4 tracking-tight">
+                  {ITEMS[1].title}
+                </h3>
+                <p className="font-sans text-[1.1rem] text-muted-foreground leading-relaxed">
+                  {ITEMS[1].label}
+                </p>
+              </Reveal>
+              <Reveal variant="rise" delay={0.2} className="w-full">
+                <img
+                  src={ITEMS[1].mediaUrl}
+                  alt={ITEMS[1].title}
+                  className="w-full aspect-[16/9] object-cover rounded-lg shadow-xl"
+                />
+              </Reveal>
+            </div>
+            
+            {/* Right Column (Narrower, Image Top, Text Bottom) */}
+            <div className="md:col-span-5 flex flex-col gap-6 md:gap-8 md:mt-16">
+              <Reveal variant="rise" delay={0.3} className="w-full">
+                <img
+                  src={ITEMS[2].mediaUrl}
+                  alt={ITEMS[2].title}
+                  className="w-full aspect-[5/4] md:aspect-square object-cover rounded-lg shadow-xl"
+                />
+              </Reveal>
+              <Reveal variant="rise" delay={0.4} className="max-w-sm">
+                <h3 className="font-display text-2xl md:text-[2rem] leading-[1.1] text-foreground mb-4 tracking-tight">
+                  {ITEMS[2].title}
+                </h3>
+                <p className="font-sans text-[1rem] text-muted-foreground leading-relaxed">
+                  {ITEMS[2].label}
+                </p>
+              </Reveal>
+            </div>
+          </div>
+
+          {/* Block 3: 50/50 Text Left, Image Right (Screenshot 3) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+            <Reveal variant="slide-right" className="flex flex-col justify-center items-start order-last md:order-first">
+              <h3 className="font-display text-3xl md:text-[2.75rem] leading-[1.1] text-foreground mb-5 tracking-tight">
+                {ITEMS[3].title}
+              </h3>
+              <p className="font-sans text-[1.1rem] text-muted-foreground leading-relaxed mb-8">
+                {ITEMS[3].label}
+              </p>
+              <div className="flex flex-col gap-3 w-full">
+                {/* Simulated list links as seen in screenshot 3 */}
+                <Link to="/programmes" className="inline-flex items-center text-[#9c2b2b] dark:text-[#ff6b6b] font-display font-semibold uppercase tracking-wider text-xs md:text-sm hover:underline">
+                  {ITEMS[4].title} <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                </Link>
+                <Link to="/programmes" className="inline-flex items-center text-[#9c2b2b] dark:text-[#ff6b6b] font-display font-semibold uppercase tracking-wider text-xs md:text-sm hover:underline">
+                  {ITEMS[5].title} <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal variant="slide-left" className="w-full order-first md:order-last">
+              <img
+                src={ITEMS[3].mediaUrl}
+                alt={ITEMS[3].title}
+                className="w-full aspect-[16/9] md:aspect-[3/2] object-cover rounded-lg shadow-xl"
+              />
+            </Reveal>
+          </div>
+
+        </div>
       </div>
     </section>
   );
 }
+

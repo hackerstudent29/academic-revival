@@ -20,6 +20,31 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: 'Karrik';
+  src: url('/fonts/test_fonts/Karrik-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lineal';
+  src: url('/fonts/test_fonts/lineal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/test_fonts/nunito-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Switzer Temp';
+  src: url('/fonts/test_fonts/switzer-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Ubin Sans';
+  src: url('/fonts/test_fonts/UbinSans-Yq5Aa.otf') format('opentype');
+}
+
 /*
  * Design system definition.
  *
