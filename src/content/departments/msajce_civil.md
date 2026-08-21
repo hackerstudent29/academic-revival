@@ -14,30 +14,39 @@ A strong alumni base is created and their contribution to the development of the
 
 > *"I am honored to lead the department with a team of people who are committed and compassionate and keep the Civil Engineering department flag flying high."*
 
-## 2. Vision
-The vision is to be a center of excellence for transforming students into proficient Civil Engineers through sustainable practices.
+## OUTCOME BASED EDUCATION (OBE)
 
-## 3. Mission
-The mission involves imparting core fundamental knowledge and necessary skills in Civil engineering through innovative teaching and learning methodologies. It aims to inculcate the critical thinking, ethics, lifelong learning, and creativity needed for both the industry and society. Furthermore, the mission cultivates the students with all-around competencies for their careers, higher education, and self-employability.
+### Vision
+To be a centre of excellence for transforming students into proficient Civil Engineers, through sustainable practices.
 
-## 4. Programme Educational Objectives (PEOs)
-The Programme Educational Objectives state that graduates will be able to prepare designs and detail civil engineering components and systems with creativity and sustainability. They will also be skilled in the usage of modern tools for critical problem solving and analyzing industrial and societal requirements. In addition, graduates will be prepared with managerial and leadership skills for their careers and for starting up their own firms.
+### Mission
+- **M1.** Impart core fundamental knowledge and necessary skills in Civil engineering, through innovative teaching and learning methodology
+- **M2.** Inculcate critical thinking, ethics, lifelong learning and creativity needed for Industry and Society
+- **M3.** Cultivate the students with all-round competencies, for career, higher education and self Employability
 
-## 5. Program Specific Outcomes (PSOs)
-The Program Specific Outcomes emphasize that engineering graduates will be able to apply their skills to work on projects related to urban and rural planning and development, providing environment-friendly and sustainable solutions. They will also apply their acquired professional skills to design cost-effective structural components in various infrastructure development and civil engineering industries.
+### Programme Educational Objectives (PEOs)
+- **PEO1.** Graduates will be able to prepare design and detailing civil engineering components and systems, with creativity and sustainability
+- **PEO2.** Graduates will be skilled in the usage of modern tools for critical problem solving, analyzing the industrial and societal requirements
+- **PEO3.** Graduates will be prepared with managerial and leadership skills, for career and starting up own firms
 
-## 6. Programme Outcomes (PO)
-The Programme Outcomes define the core capabilities expected of the students. Engineering knowledge requires students to apply the knowledge of mathematics, science, engineering fundamentals, and an engineering specialization to the solution of complex engineering problems. Problem analysis involves identifying, formulating, reviewing research literature, and analyzing complex engineering problems to reach substantiated conclusions using the first principles of mathematics, natural sciences, and engineering sciences.
+### Program Specific Outcomes (PSOs)
+*Engineering Graduates will be able to:*
+- **PSO1.** Apply their skills to work on the projects of Urban/ Rural Planning and development; provide the Environment friendly and Sustainable solution.
+- **PSO2.** Apply their acquired professional skills to design cost effective structural components in various Infrastructure development / Civil engineering Industry
 
-1. **Programme Outcome (PO3) - Design/Development of Solutions**: For the design and development of solutions, students must design solutions for complex engineering problems and design system components or processes that meet specified needs with appropriate consideration for public health and safety, as well as cultural, societal, and environmental considerations. Conducting investigations of complex problems mandates the use of research-based knowledge and methods, including the design of experiments, analysis, and interpretation of data, and synthesis of information to provide valid conclusions.
-
-1. **Programme Outcome (PO5) - Modern Tool Usage**: Modern tool usage involves creating, selecting, and applying appropriate techniques, resources, and modern engineering and IT tools, including prediction and modeling, to complex engineering activities with an understanding of their limitations.
-
-Further Programme Outcomes emphasize the engineer and society, where students must apply reasoning informed by contextual knowledge to assess societal, health, safety, legal, and cultural issues and the consequent responsibilities relevant to professional engineering practice.
-
-1. **Programme Outcome (PO7) - Environment and Sustainability**: Environment and sustainability focus on understanding the impact of professional engineering solutions in societal and environmental contexts, demonstrating the knowledge of and need for sustainable development.
-
-1. **Programme Outcome (PO8) - Ethics**: Ethics involves applying ethical principles and committing to professional ethics, responsibilities, and norms of engineering practice. Individual and teamwork require students to function effectively as an individual, and as a member or leader in diverse teams and multidisciplinary settings. Communication ensures that students can communicate effectively on complex engineering activities with the engineering community and with society at large, such as being able to comprehend and write effective reports, design documentation, make effective presentations, and give and receive clear instructions. Project management and finance demand demonstrating knowledge and understanding of engineering and management principles and applying these to one's own work, both as a member and a leader in a team, to manage projects and work in multidisciplinary environments. Finally, life-long learning requires recognizing the need for, and having the preparation and ability to engage in independent and life-long learning in the broadest context of technological change.
+### Programme Outcomes (POs)
+- **PO1. Engineering Knowledge:** Apply the knowledge of mathematics, science, engineering fundamentals, and an engineering specialization to the solution of complex engineering problems.
+- **PO2. Problem Analysis:** Identify, formulate, review research literature, and analyze complex engineering problems reaching substantiated conclusions using first principles of mathematics, natural sciences, and engineering sciences.
+- **PO3. Design/Development Of Solutions:** Design solutions for complex engineering problems and design system components or processes that meet the specified needs with appropriate consideration for the public health and safety, and the cultural, societal, and environmental considerations.
+- **PO4. Conduct Investigations of Complex Problems:** Use research-based knowledge and research methods including design of experiments, analysis and interpretation of data, and synthesis of the information to provide valid conclusions.
+- **PO5. Modern Tool Usage:** Create, select, and apply appropriate techniques, resources, and modern engineering and IT tools including prediction and modeling to complex engineering activities with an understanding of the limitations.
+- **PO6. The Engineer and Society:** Apply reasoning informed by the contextual knowledge to assess societal, health, safety, legal and cultural issues and the consequent responsibilities relevant to the professional engineering practice.
+- **PO7. Environment and Sustainability:** Understand the impact of the professional engineering solutions in societal and environmental contexts, and demonstrate the knowledge of, and need for sustainable development.
+- **PO8. Ethics:** Apply ethical principles and commit to professional ethics and responsibilities and norms of the engineering practice.
+- **PO9. Individual and Team Work:** Function effectively as an individual, and as a member or leader in diverse teams, and in multi disciplinary settings.
+- **PO10. Communication:** Communicate effectively on complex engineering activities with the engineering community and with society at large, such as, being able to comprehend and write effective reports and design documentation, make effective presentations, and give and receive clear instructions.
+- **PO11. Project Management and Finance:** Demonstrate knowledge and understanding of the engineering and management principles and apply these to one's own work, as a member and leader in a team, to manage projects and in multi disciplinary environments.
+- **PO12. Life-long Learning:** Recognize the need for, and have the preparation and ability to engage in independent and life-long learning in the broadest context of technological change.
 
 ## 7. Job Profiles
 
