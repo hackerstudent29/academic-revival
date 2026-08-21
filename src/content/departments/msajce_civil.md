@@ -128,19 +128,20 @@ PO12. Life-long Learning: Recognize the need for, and have the preparation and a
      - Academic and research careers are possible, especially with PhD.
      - Job growth: ~8–10% annually, faster in urban planning, sustainability, and infrastructure analytics.
 
-## 8. Faculty (2023-2024)
-The department boasts a dedicated faculty team for the 2023-2024 academic year. The team includes
+## FACULTY
 
-| Name | Profile Details |
-| --- | --- |
-| **Dr. Mohamed Adil Haque** | A Professor who joined on June 1, 2019, holding an M.E. and a Ph.D. |
-| **Dr. Someswaran R.** | Serves as an Assistant Professor, having joined on March 7, 2022, with an M.Tech. and a Ph.D. |
-| **Dr. Elliss Yogesh R.** | A Professor with an M.E. and a Ph.D., joined the department on June 1, 2021. |
-| **Dr. Vignesh Kumar M.** | Who joined on May 29, 2023, is an Associate Professor holding an M.E. and a Ph.D. |
-| **Mr. B Rizha Ur Rahman** | An Assistant Professor pursuing his Ph.D., has been with the department since January 7, 2016, and holds an M.E. degree. |
-| **Mr. Navaneetha Krishnan C.** | Holding an M.E., joined as an Assistant Professor on March 15, 2022. |
-| **Ms. S. Usha** | Joined the department on March 1, 2022, serving as an Assistant Professor with an M.E. degree. |
-| **Ms. Kavithra P.** | Is an Assistant Professor who joined on August 1, 2022, holding an M.Tech. |
-| **Mr. S. Vimalathithan** | An Assistant Professor with an M.E., joined on July 19, 2023. |
-| **Ms. Gayathri  N.** | Serves as an Assistant Professor, holding an M.E., and joined on July 21, 2023. Lastly, |
-| **Ms. Preethy Mary A.** | Is an Assistant Professor pursuing her Ph.D., holding an M.Tech., and joined the faculty on July 18, 2023. All members of this team have a regular nature of association with **MSAJCE**. |
+The Department of Civil Engineering boasts a dedicated, highly qualified faculty team committed to academic excellence and research mentorship.
+
+| S.No. | Name | Designation | Date of Joining | Qualification | Nature of Association |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Dr. MOHAMED ADIL HAQUE | Professor | 01/06/2019 | M.E., Ph.D. | Regular |
+| 2 | Dr. SOMESWARAN R | Assistant Professor | 07/03/2022 | M.Tech., Ph.D. | Regular |
+| 3 | Dr. ELLISS YOGESH R | Professor | 01/06/2021 | M.E., Ph.D. | Regular |
+| 4 | Dr. VIGNESH KUMAR M | Associate Professor | 29/05/2023 | M.E., Ph.D. | Regular |
+| 5 | Mr. RIZHA UR RAHMAN | Assistant Professor | 07/01/2016 | M.E., (Ph.D) | Regular |
+| 6 | Mr. NAVANEETHA KRISHNAN C | Assistant Professor | 15/03/2022 | M.E. | Regular |
+| 7 | Mrs. JANAKI V | Assistant Professor | 01/03/2022 | M.E. | Regular |
+| 8 | Mrs. KAVITHRA P | Assistant Professor | 01/08/2022 | M.Tech. | Regular |
+| 9 | Mr. VETRIVEL S C | Assistant Professor | 19/07/2023 | M.E. | Regular |
+| 10 | Mrs. GAYATHRI N | Assistant Professor | 21/07/2023 | M.E. | Regular |
+| 11 | Mrs. PREETHY MARY A | Assistant Professor | 18/07/2023 | M.Tech., (Ph.D) | Regular |
