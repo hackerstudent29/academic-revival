@@ -210,6 +210,43 @@ function CoursePage() {
         {children}
       </blockquote>
     ),
+    table: ({ node, children, ...props }: any) => (
+      <div className="overflow-x-auto my-6 border border-border rounded-sm shadow-xs">
+        <table className="w-full text-left text-sm border-collapse" {...props}>
+          {children}
+        </table>
+      </div>
+    ),
+    thead: ({ node, children, ...props }: any) => (
+      <thead className="bg-[#059669] text-white uppercase text-xs tracking-wider" {...props}>
+        {children}
+      </thead>
+    ),
+    th: ({ node, children, ...props }: any) => (
+      <th className="p-3.5 font-bold border-r border-white/20 last:border-r-0" {...props}>
+        {children}
+      </th>
+    ),
+    td: ({ node, children, ...props }: any) => (
+      <td className="p-3.5 border-t border-border text-card-foreground align-top border-r border-border last:border-r-0" {...props}>
+        {children}
+      </td>
+    ),
+    ol: ({ node, children, ...props }: any) => (
+      <ol className="list-decimal pl-5 space-y-3 my-4 text-muted-foreground" {...props}>
+        {children}
+      </ol>
+    ),
+    ul: ({ node, children, ...props }: any) => (
+      <ul className="list-disc pl-5 space-y-2 my-3 text-muted-foreground" {...props}>
+        {children}
+      </ul>
+    ),
+    li: ({ node, children, ...props }: any) => (
+      <li className="leading-relaxed" {...props}>
+        {children}
+      </li>
+    ),
   };
 
   return (

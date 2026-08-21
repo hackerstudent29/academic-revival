@@ -67,31 +67,33 @@ PO12. Life-long Learning: Recognize the need for, and have the preparation and a
 
 ## JOB PROFILES
 
-### Employment Outlook for Civil Engineering in India (2025–2030)
-Based on current trends, government policy, industry shifts, and emerging technologies.
+### Employment Outlook for Civil Engineering in India over the next five years: 2025–2030
+( Based on current trends, government policy, industry shifts, and emerging technologies )
 
-### Growth Drivers
+### Growth Drivers :
 
-Infrastructure Sector:
-Continued government investment in infrastructure through PM Gati Shakti, Smart Cities Mission, Bharat mala, and AMRUT 2.0 will keep demand steady for civil engineers. Focus is placed on high-speed rail, metro rail, expressways, and affordable housing.
+1. **Infrastructure Sector:**
+   - Continued government investment in infrastructure through PM Gati Shakti, Smart Cities Mission, Bharat mala, and AMRUT 2.0 will keep demand steady for civil engineers.
+   - Focus on high-speed rail, metro rail, express ways, and affordable housing.
 
-Urbanization and Housing:
-With India's urban population expected to reach 600 million+ by 2030, there is a sustained need for urban planners, construction engineers, and structural designers. Rise in Tier 2 and Tier 3 city development will expand job locations.
+2. **Urbanization and Housing:**
+   - With India's urban population expected to reach 600 million+ by 2030, there’s a sustained need for urban planners, construction engineers, and structural designers.
+   - Rise in Tier 2 and Tier 3 city development will expand job locations.
 
-Sustainability and Green Buildings:
-Increasing demand for green infrastructure, energy-efficient buildings, and climate-resilient designs creates new niches within civil engineering.
+3. **Sustainability and Green Buildings:**
+   - Increasing demand for green infrastructure, energy-efficient buildings, and climate-resilient designs creates new niches within civil engineering.
 
-Private Sector Investment:
-Real estate and industrial corridor developments (like the Delhi-Mumbai Industrial Corridor) are expected to boost employment.
+4. **Private Sector Investment:**
+   - Real estate and industrial corridor developments (like the Delhi-Mumbai Industrial Corridor) are expected to boost employment.
 
-### Challenges
+### Challenges :
 
-Automation and Tech Disruption:
-Basic civil jobs (e.g., drafting, surveying) are increasingly automated via BIM, drones, and AI-based tools. Employers seek multi-skilled engineers with knowledge in software tools, project management, and sustainability.
+- **Automation and Tech Disruption:** Basic civil jobs (e.g., drafting, surveying) increasingly automated via BIM, drones, and AI-based tools.
+- Employers seek multi-skilled engineers with knowledge in software tools, project management, and sustainability.
 
 ### Projected Job Demand (Indicative Estimates)
 
-| Sector | Estimated Job Growth (2025–2030) | Comments |
+| SECTOR | ESTIMATED JOB GROWTH (2025–2030) | COMMENTS |
 | --- | --- | --- |
 | Public Infrastructure (Govt.) | 6–8% per year | Driven by large national projects |
 | Real Estate & Housing | 4–6% per year | Urban growth & housing demand |
@@ -99,26 +101,32 @@ Basic civil jobs (e.g., drafting, surveying) are increasingly automated via BIM,
 | Green & Sustainable Engineering | 10–12% per year | Emerging field, high potential |
 | BIM & Smart Construction | 15%+ per year | Niche but growing rapidly |
 
-### Skill Requirements
-Upskill in tech tools like AutoCAD Civil 3D, Revit, STAAD Pro, Primavera, and BIM.
+### Requirements :
 
-Gain project management certifications (PMP, PRINCE2) to move into supervisory roles.
+- Upskill in tech tools like AutoCAD Civil 3D, Revit, STAAD Pro, Primavera, and BIM.
+- Gain project management certifications (PMP, PRINCE2) to move into supervisory roles.
+- Learn about green building standards (IGBC, GRIHA) and sustainable practices.
+- Consider specializations like transportation engineering, geotechnical, or environmental engineering for niche opportunities.
 
-Learn about green building standards (IGBC, GRIHA) and sustainable practices.
+### Employment Opportunities:
 
-Consider specializations like transportation engineering, geotechnical, or environmental engineering for niche opportunities.
+1. **Fresh Graduates (B.E. / B.Tech Civil)**
+   - **Opportunities:**
+     - Government sector: SSC JE, RRB, state PWDs, CPWD, and PSU recruitments.
+     - Construction & Infrastructure Firms: L&T, Shapoorji Pallonji, Tata Projects, Afcons etc
+     - Entry-level roles: Site Engineer, QA/QC Engineer, Junior Design Engineer, Estimator.
+     - Job growth: ~5–6% annually for qualified and skilled freshers. Employability rate may improve if skill gaps are addressed.
 
-### Employment Opportunities
-
-Fresh Graduates (B.E. / B.Tech Civil):
-- Opportunities: Government sector including SSC JE, RRB, state PWDs, CPWD, and PSU recruitments. Construction & Infrastructure Firms such as L&T, Shapoorji Pallonji, Tata Projects, Afcons etc.
-- Entry-level roles: Site Engineer, QA/QC Engineer, Junior Design Engineer, Estimator.
-- Job growth: ~5–6% annually for qualified and skilled freshers. Employability rate may improve if skill gaps are addressed.
-
-Postgraduates (M.Tech / M.E. / Specialized MSc):
-- Opportunities: Specialized roles in Design, R&D, Structural analysis, and Transportation engineering. Sought after in Consulting, Research, Academia, and International projects. Top recruiters include AECOM, WSP, Atkins, and NHAI consultants.
-- Trends: High demand in niche fields like geotechnical, environmental, seismic engineering. Foreign opportunities (UAE, Singapore, Canada) are stronger with PG qualifications. Academic and research careers are possible, especially with PhD.
-- Job growth: ~8–10% annually, faster in urban planning, sustainability, and infrastructure analytics.
+2. **Postgraduates (M.Tech/M.E./Specialized MSc)**
+   - **Opportunities:**
+     - Specialized roles in Design, R&D, Structural analysis, and Transportation engineering.
+     - Sought after in Consulting, Research, Academia, and International projects.
+     - Top recruiters include AECOM, WSP, Atkins, and NHAI consultants.
+   - **Trends:**
+     - High demand in niche fields like geotechnical, environmental, seismic engineering.
+     - Foreign opportunities (UAE, Singapore, Canada) are stronger with PG qualifications.
+     - Academic and research careers are possible, especially with PhD.
+     - Job growth: ~8–10% annually, faster in urban planning, sustainability, and infrastructure analytics.
 
 ## 8. Faculty (2023-2024)
 The department boasts a dedicated faculty team for the 2023-2024 academic year. The team includes
