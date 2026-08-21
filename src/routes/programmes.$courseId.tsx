@@ -36,6 +36,7 @@ function CoursePage() {
   const { course, markdownContent } = Route.useLoaderData();
   const [hidden, setHidden] = useState(false);
   const [currentNews, setCurrentNews] = useState(0);
+  const currentItem = newsItems[currentNews] || newsItems[0];
   const { scrollY } = useScroll();
 
   useEffect(() => {
@@ -173,17 +174,17 @@ function CoursePage() {
                  <h4 className="font-bold mb-4 uppercase tracking-widest text-xs opacity-80">News & Events</h4>
                  <div className="flex-1 overflow-hidden relative">
                    <AnimatePresence mode="wait">
-                     <motion.div
-                       key={currentNews}
-                       initial={{ opacity: 0, y: 10 }}
-                       animate={{ opacity: 1, y: 0 }}
-                       exit={{ opacity: 0, y: -10 }}
-                       transition={{ duration: 0.3 }}
-                       className="py-2"
-                     >
-                       <span className="text-[10px] font-bold text-[#059669] bg-white/90 px-2 py-0.5 rounded-sm inline-block mb-3 uppercase tracking-widest">{newsItems[currentNews].date}</span>
-                       <p className="text-sm font-semibold leading-snug">{newsItems[currentNews].title}</p>
-                     </motion.div>
+                      <motion.div
+                        key={currentNews}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                        className="py-2"
+                      >
+                        <span className="text-[10px] font-bold text-[#059669] bg-white/90 px-2 py-0.5 rounded-sm inline-block mb-3 uppercase tracking-widest">{currentItem.date}</span>
+                        <p className="text-sm font-semibold leading-snug">{currentItem.title}</p>
+                      </motion.div>
                    </AnimatePresence>
                  </div>
                  <Link to="/" className="text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:opacity-80 transition-opacity mt-4 text-white">

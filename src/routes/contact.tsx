@@ -87,9 +87,9 @@ function Contact() {
           </div>
           <button
             type="submit"
-            className="mt-8 w-full rounded-full bg-primary px-8 py-4 text-xs font-bold uppercase tracking-[0.16em] text-primary-foreground transition-transform hover:-translate-y-0.5"
+            className="group relative overflow-hidden mt-8 w-full rounded-full bg-primary px-8 py-4 text-xs font-bold uppercase tracking-[0.16em] text-primary-foreground shadow transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
           >
-            {sent ? "Thank you — we'll be in touch" : "Send enquiry"}
+            <span className="relative z-10">{sent ? "Thank you — we'll be in touch" : "Send enquiry"}</span>
           </button>
         </form>
       </section>

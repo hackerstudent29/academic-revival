@@ -17,7 +17,7 @@ description: Design system rules and guidelines for MSAJCE website, ensuring an 
 ### Color Palette & Theming
 **Do NOT change these colors.** Use ONLY these five colors for the entire site:
 *   **Primary Blue**: `#005DA6`
-*   **White**: `#FFFFFF`
+*   **Custom White**: `#FEFFF5` (Use as default light background instead of plain white)
 *   **Dark Gray 1**: `#616161`
 *   **Dark Gray 2**: `#595959`
 *   **Black**: `#000000`

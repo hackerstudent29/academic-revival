@@ -1,172 +1,201 @@
-import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
-import { Reveal, Stagger, StaggerItem } from "./motion";
-import { ArrowRight, CalendarDays, ChevronRight } from "lucide-react";
+import { Reveal } from "./motion";
 
-const featuredNews = {
-  tag: "Featured Event",
-  date: "Oct 15-17, 2026",
-  title: "National Level AI & Web3 Hackathon 2026",
-  body: "Join over 500+ student innovators from across the country for a 48-hour coding marathon. Build the future, win exciting prizes, and get spotted by top tech recruiters. Register now to secure your spot.",
-  image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop"
+interface NewsItem {
+  id: string;
+  category: string;
+  title: string;
+  description?: string;
+  date?: string;
+  image: string;
+  link?: string;
+}
+
+const mainFeaturedArticle: NewsItem = {
+  id: "featured-1",
+  category: "CAMPUS NEWS",
+  title: "Summer 2026 Research Spotlight: MSAJCE Students Study Methane and Earthquake Activity at La Brea Tar Pits",
+  description:
+    "During the Seaver summer 2026 research program, MSAJCE students partnered with faculty mentors to study methane seepage and seismic activity at the world-famous La Brea Tar Pits.",
+  date: "August 18, 2026",
+  image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=1200&auto=format&fit=crop", // placeholder resembling students working
+  link: "/campus-life",
 };
 
-const smallNews = [
+const sidebarArticles: NewsItem[] = [
   {
-    tag: "Announcement",
-    date: "2 days ago",
-    title: "Odd Semester Examination Schedule Released",
-    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop"
+    id: "side-1",
+    category: "CAMPUS COMMUNITY",
+    title: "Buster Blazed a Trail as MSAJCE's First Campus Dog",
+    date: "August 11, 2026",
+    image: "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=600&auto=format&fit=crop", // placeholder for dog
+    link: "/campus-life",
   },
   {
-    tag: "Upcoming",
-    date: "Sept 10, 2026",
-    title: "Guest Lecture on Quantum Computing Frontiers",
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop"
+    id: "side-2",
+    category: "CAMPUS NEWS",
+    title: "Studio Arts Professor Dmitry Kemell Contributes to \"Hospital of Emotions\"...",
+    date: "August 7, 2026",
+    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600&auto=format&fit=crop", // placeholder for art piece
+    link: "/campus-life",
   },
   {
-    tag: "Campus Life",
-    date: "Sept 05, 2026",
-    title: "Annual Cultural Fest 'Sanskriti' Dates Announced",
-    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=800&auto=format&fit=crop"
-  }
+    id: "side-3",
+    category: "CAMPUS NEWS",
+    title: "BCLA Summer Internship Spotlight: Miles Gibson '27",
+    date: "August 5, 2026",
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600&auto=format&fit=crop", // placeholder for students talking
+    link: "/campus-life",
+  },
+];
+
+const bottomRowArticles: NewsItem[] = [
+  {
+    id: "bottom-1",
+    category: "CAMPUS COMMUNITY",
+    title: "Summer Innovation Fellowship: Students Explore Semiconductor Nanotechnology",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop",
+    link: "/campus-life",
+  },
+  {
+    id: "bottom-2",
+    category: "PRESS RELEASES",
+    title: "Mohamed Sathak Trust Digitizes 40-Year Heritage Archive and Research Publications",
+    image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600&auto=format&fit=crop",
+    link: "/campus-life",
+  },
+  {
+    id: "bottom-3",
+    category: "PRESS RELEASES",
+    title: "MSAJCE Selected as Regional Nodal Center for Green Energy & Sustainability Research",
+    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop",
+    link: "/campus-life",
+  },
 ];
 
 export function NewsAndEventsSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % smallNews.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const visibleNews = [
-    smallNews[currentIndex],
-    smallNews[(currentIndex + 1) % smallNews.length]
-  ];
-
   return (
-    <section className="bg-background min-h-[100svh] flex flex-col justify-center py-16" id="news">
-      <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12">
-        
+    <section className="bg-[#E4E6E6] dark:bg-[#151412] py-12 md:py-16 transition-colors" id="news">
+      <div className="mx-auto w-full max-w-[1280px] px-6 md:px-12">
         {/* Section Header */}
-        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
-          <div className="max-w-2xl text-left">
-            <Reveal variant="slide-up">
-              <h2 className="text-[12px] md:text-[14px] font-bold uppercase tracking-[0.25em] text-primary">
-                Happenings at MSAJCE
-              </h2>
-            </Reveal>
-            <Reveal variant="slide-up" delay={0.1}>
-              <h3 className="mt-4 text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-foreground">
-                News &amp; Events
-              </h3>
-            </Reveal>
-          </div>
-          
-          <Reveal variant="slide-up" delay={0.2}>
-            <Link
-              to="/news"
-              className="group flex items-center justify-between border-b border-foreground/12 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-foreground/70 transition-colors hover:text-primary active:text-primary min-w-[200px]"
-            >
-              <span className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2">
-                View All Updates
-              </span>
-              <ArrowRight 
-                size={16} 
-                className="text-primary transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1.5" 
-              />
-            </Link>
+        <div className="mb-6">
+          <Reveal variant="rise">
+            <h2 className="text-3xl md:text-[34px] font-bold tracking-tight text-primary font-display">
+              Currents
+            </h2>
           </Reveal>
         </div>
 
-        {/* Bento Grid Layout */}
-        <div className="mt-10 md:mt-12 grid grid-cols-1 lg:grid-cols-12 gap-6 h-auto lg:h-[55vh] lg:max-h-[600px] lg:min-h-[450px]">
+        {/* Top Section: 7/12 and 5/12 layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-5 items-stretch">
           
-          {/* Left: Large Featured News */}
-          <Reveal variant="slide-up" delay={0.1} className="lg:col-span-7 h-[400px] lg:h-full">
-            <div className="group relative overflow-hidden rounded-2xl flex flex-col justify-end p-8 md:p-12 h-full cursor-pointer">
-              <img 
-                src={featuredNews.image} 
-                alt="Featured News" 
-                className="absolute inset-0 w-full h-full object-cover grayscale-[30%] transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:grayscale-0"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent pointer-events-none" />
-              
-              <div className="relative z-10 flex flex-col items-start text-white">
-                <span className="bg-primary/90 backdrop-blur-sm px-3 py-1.5 text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-sm mb-6 shadow-lg">
-                  {featuredNews.tag}
-                </span>
-                <h4 className="text-3xl md:text-5xl lg:text-[3.5rem] font-black uppercase tracking-tighter leading-[0.95]">
-                  {featuredNews.title}
-                </h4>
-                <p className="mt-6 text-sm md:text-base text-white/80 max-w-lg leading-relaxed line-clamp-3">
-                  {featuredNews.body}
-                </p>
-                
-                <div className="mt-8 flex items-center justify-between w-full">
-                  <div className="flex items-center gap-2 text-xs font-semibold text-white/60 uppercase tracking-widest">
-                    <CalendarDays size={16} />
-                    {featuredNews.date}
-                  </div>
-                  
-                  <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs opacity-0 -translate-x-4 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-100 group-hover:translate-x-0">
-                    Read Story <ArrowRight size={14} />
-                  </div>
+          {/* Left Column: Large Featured Article (spans 7 columns) */}
+          <Reveal variant="rise" delay={0.1} className="lg:col-span-7">
+            <Link
+              to={mainFeaturedArticle.link || "/campus-life"}
+              className="group flex flex-col h-full bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm overflow-hidden p-5 md:p-7"
+            >
+              {/* Image with Gradient Overlay */}
+              <div className="relative w-full aspect-[2/1] bg-muted overflow-hidden rounded-[4px]">
+                <img
+                  src={mainFeaturedArticle.image}
+                  alt={mainFeaturedArticle.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-7">
+                  <span className="text-[12px] font-bold uppercase tracking-widest text-white mb-2 block drop-shadow-md">
+                    {mainFeaturedArticle.category}
+                  </span>
+                  <h3 className="text-[22px] md:text-[28px] font-bold leading-tight text-white drop-shadow-md transition-colors group-hover:underline">
+                    {mainFeaturedArticle.title}
+                  </h3>
                 </div>
               </div>
-            </div>
+
+              {/* Bottom Body */}
+              <div className="pt-6 flex flex-col justify-between flex-1">
+                <p className="text-[15px] text-gray-800 dark:text-gray-300 leading-relaxed">
+                  {mainFeaturedArticle.description}
+                </p>
+                <div className="mt-6 flex justify-end">
+                  <span className="text-[12px] text-gray-600 dark:text-gray-400">
+                    {mainFeaturedArticle.date}
+                  </span>
+                </div>
+              </div>
+            </Link>
           </Reveal>
 
-          {/* Right: 2 Cards Carousel */}
-          <div className="lg:col-span-5 relative h-[400px] lg:h-full flex flex-col gap-6 group">
-            <style>{`
-              @keyframes fadeInCard {
-                from { opacity: 0.6; transform: translateY(5px); }
-                to { opacity: 1; transform: translateY(0); }
-              }
-              .animate-fade-in-card {
-                animation: fadeInCard 0.4s ease-out forwards;
-              }
-            `}</style>
-            {visibleNews.map((news, idx) => (
-              <div 
-                key={`${currentIndex}-${idx}`} 
-                className="group/card animate-fade-in-card relative w-full flex-1 overflow-hidden rounded-2xl flex flex-col justify-end p-6 md:p-8 cursor-pointer" 
-              >
-                <img 
-                  src={news.image} 
-                  alt="News" 
-                  className="absolute inset-0 w-full h-full object-cover grayscale-[40%] transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:grayscale-0"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent pointer-events-none" />
-                
-                <div className="relative z-10 flex flex-col items-start text-white w-full">
-                  <div className="flex items-center justify-between w-full mb-3">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-primary drop-shadow-md">
-                      {news.tag}
-                    </span>
-                    <span className="text-[10px] font-semibold uppercase tracking-widest text-white/60 flex items-center gap-1.5">
-                      <CalendarDays size={12} />
-                      {news.date}
-                    </span>
-                  </div>
-                  <h4 className="text-lg md:text-xl font-bold uppercase tracking-tight leading-snug line-clamp-2">
-                    {news.title}
-                  </h4>
-                  
-                  <div className="overflow-hidden max-h-0 opacity-0 group-hover/card:max-h-12 group-hover/card:opacity-100 group-hover/card:mt-3 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
-                    <span className="text-primary text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5">
-                      Read Article <ChevronRight size={14} />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Right Column: Single Panel with 3 Stacked Articles (spans 5 columns) */}
+          <Reveal variant="rise" delay={0.2} className="lg:col-span-5">
+            <div className="bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm p-6 h-full flex flex-col justify-between gap-6">
+              {sidebarArticles.map((article) => (
+                <Link
+                  key={article.id}
+                  to={article.link || "/campus-life"}
+                  className="group flex flex-col"
+                >
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-gray-800 dark:text-gray-200 mb-3 block">
+                    {article.category}
+                  </span>
 
+                  <div className="flex items-start gap-4">
+                    {/* Thumbnail */}
+                    <div className="w-[120px] xl:w-[140px] aspect-[3/2] rounded-[4px] overflow-hidden shrink-0 bg-muted">
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    {/* Title and Date */}
+                    <div className="flex flex-col justify-start flex-1 min-w-0">
+                      <h4 className="text-[15px] font-bold text-primary leading-snug group-hover:underline">
+                        {article.title}
+                      </h4>
+                      {article.date && (
+                        <span className="text-[12px] text-gray-600 dark:text-gray-400 mt-2 block">
+                          {article.date}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Bottom Row: 3 Side-by-Side Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mt-5">
+          {bottomRowArticles.map((article, idx) => (
+            <Reveal key={article.id} variant="rise" delay={0.3 + idx * 0.05} className="w-full h-full">
+              <Link
+                to={article.link || "/campus-life"}
+                className="group flex flex-col h-full bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm p-6"
+              >
+                <span className="text-[11px] font-bold uppercase tracking-widest text-gray-800 dark:text-gray-200 mb-3 block">
+                  {article.category}
+                </span>
+
+                <div className="w-full aspect-[16/9] rounded-[2px] overflow-hidden mb-4 bg-muted">
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <h4 className="text-[15px] font-bold text-primary leading-snug group-hover:underline mt-auto">
+                  {article.title}
+                </h4>
+              </Link>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

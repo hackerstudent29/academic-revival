@@ -11,7 +11,7 @@ export function PageHero({
   description: string;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-foreground/12 bg-background">
+    <section className="relative overflow-hidden border-b border-foreground/12 bg-[#FEFFF5] dark:bg-background">
       <motion.div
         aria-hidden
         initial={{ opacity: 0, scale: 1.08 }}
@@ -35,7 +35,7 @@ export function PageHero({
             {eyebrow}
           </motion.span>
 
-          <h1 className="mt-6 text-4xl font-black uppercase leading-[1.05] tracking-tight text-foreground sm:text-6xl">
+          <h1 className="mt-6 text-3xl sm:text-5xl lg:text-6xl font-black uppercase leading-[1.05] tracking-tight text-foreground">
             <SplitText text={title} delay={0.1} />
           </h1>
 
