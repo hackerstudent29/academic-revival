@@ -32,40 +32,115 @@ export const Route = createFileRoute('/programmes/$courseId')({
   component: CoursePage,
 });
 
-function getHeadingId(children: any): string {
-  const text = Array.isArray(children)
-    ? children.map(c => (typeof c === 'string' ? c : (c?.props?.children || ''))).join(' ')
-    : typeof children === 'string'
-      ? children
-      : children?.props?.children || '';
-  const lower = String(text).toLowerCase();
-  
-  if (lower.includes('overview') || lower.includes('vision') || lower.includes('mission') || lower.includes('about')) {
-    return 'about';
+function parseDepartmentMarkdown(markdown: string | null): Record<string, string> {
+  const sections: Record<string, string[]> = {
+    about: [],
+    obe: [],
+    'job-profile': [],
+    faculty: [],
+    facilities: [],
+    academics: [],
+    'news-events': [],
+    'student-activities': [],
+  };
+
+  if (!markdown) return {};
+
+  const lines = markdown.split('\n');
+  let currentTab = 'about';
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    if (line.startsWith('## ')) {
+      const heading = line.replace(/^##\s+/, '').toLowerCase();
+      
+      if (
+        heading.includes('overview') ||
+        heading.includes('vision') ||
+        heading.includes('mission') ||
+        heading.includes('welcome') ||
+        heading.includes('about')
+      ) {
+        currentTab = 'about';
+      } else if (
+        heading.includes('peo') ||
+        heading.includes('pso') ||
+        heading.includes('outcome') ||
+        heading.includes('objective') ||
+        heading.includes('obe') ||
+        (heading.includes('program') && heading.includes('outcome'))
+      ) {
+        currentTab = 'obe';
+      } else if (
+        heading.includes('job profile') ||
+        heading.includes('employment') ||
+        heading.includes('career') ||
+        heading.includes('salary') ||
+        heading.includes('prospect')
+      ) {
+        currentTab = 'job-profile';
+      } else if (
+        heading.includes('faculty') ||
+        heading.includes('staff')
+      ) {
+        currentTab = 'faculty';
+      } else if (
+        heading.includes('facilit') ||
+        heading.includes('laborator') ||
+        heading.includes('lab')
+      ) {
+        currentTab = 'facilities';
+      } else if (
+        heading.includes('regulation') ||
+        heading.includes('course material') ||
+        heading.includes('teaching method') ||
+        heading.includes('curriculum') ||
+        heading.includes('programme') ||
+        heading.includes('academic') ||
+        heading.includes('unit')
+      ) {
+        currentTab = 'academics';
+      } else if (
+        heading.includes('news') ||
+        heading.includes('event') ||
+        heading.includes('symposium')
+      ) {
+        currentTab = 'news-events';
+      } else if (
+        heading.includes('student') ||
+        heading.includes('activit') ||
+        heading.includes('club') ||
+        heading.includes('association')
+      ) {
+        currentTab = 'student-activities';
+      }
+    }
+
+    if (sections[currentTab]) {
+      if (!line.startsWith('# ')) {
+        sections[currentTab].push(line);
+      }
+    }
   }
-  if (lower.includes('peo') || lower.includes('pso') || lower.includes('programme outcome') || lower.includes('program outcome') || lower.includes('educational objective') || lower.includes('obe') || (lower.includes('outcome') && lower.includes('po'))) {
-    return 'obe';
+
+  const result: Record<string, string> = {};
+  for (const [key, val] of Object.entries(sections)) {
+    result[key] = val.join('\n').trim();
   }
-  if (lower.includes('job profile') || lower.includes('employment') || lower.includes('career') || lower.includes('salary') || lower.includes('growth')) {
-    return 'job-profile';
-  }
-  if (lower.includes('faculty') || lower.includes('staff') || lower.includes('teaching staff')) {
-    return 'faculty';
-  }
-  if (lower.includes('facilit') || lower.includes('laborator') || lower.includes('lab')) {
-    return 'facilities';
-  }
-  if (lower.includes('regulation') || lower.includes('teaching method') || lower.includes('academic') || lower.includes('course material') || lower.includes('curriculum')) {
-    return 'academics';
-  }
-  if (lower.includes('news') || lower.includes('event') || lower.includes('symposium') || lower.includes('conference')) {
-    return 'news-events';
-  }
-  if (lower.includes('student') || lower.includes('activit') || lower.includes('club') || lower.includes('hackathon')) {
-    return 'student-activities';
-  }
-  return lower.replace(/[^a-z0-9]+/g, '-');
+  return result;
 }
+
+const departmentTabsList = [
+  { id: 'about', label: 'About Department' },
+  { id: 'obe', label: 'OBE' },
+  { id: 'job-profile', label: 'JOB PROFILE' },
+  { id: 'faculty', label: 'Faculty' },
+  { id: 'facilities', label: 'Department Facilities' },
+  { id: 'academics', label: 'Academics' },
+  { id: 'news-events', label: 'News and Events' },
+  { id: 'student-activities', label: 'Student Activities' },
+];
 
 function CoursePage() {
   const { course, markdownContent } = Route.useLoaderData();
@@ -75,13 +150,17 @@ function CoursePage() {
   const currentItem = newsItems[currentNews] || newsItems[0];
   const { scrollY } = useScroll();
 
-  const scrollToSection = (tabId: string) => {
+  const parsedContent = parseDepartmentMarkdown(markdownContent);
+
+  const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
-    const el = document.getElementById(tabId);
-    if (el) {
+    const contentContainer = document.getElementById('department-main-content');
+    if (contentContainer) {
       const yOffset = -140;
-      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      const y = contentContainer.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      if (window.pageYOffset > y) {
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
     }
   };
 
@@ -107,7 +186,7 @@ function CoursePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Sub Navigation */}
+      {/* Sub Navigation Bar */}
       <motion.div 
         animate={{ y: hidden ? -73 : 0 }}
         transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
@@ -115,24 +194,15 @@ function CoursePage() {
       >
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <ul className="flex items-center gap-6 lg:gap-8 text-xs md:text-sm font-bold uppercase tracking-wider text-foreground overflow-x-auto no-scrollbar whitespace-nowrap py-3.5">
-            {[
-              { id: 'about', label: 'About Department' },
-              { id: 'obe', label: 'OBE' },
-              { id: 'job-profile', label: 'JOB PROFILE' },
-              { id: 'faculty', label: 'Faculty' },
-              { id: 'facilities', label: 'Department Facilities' },
-              { id: 'academics', label: 'Academics' },
-              { id: 'news-events', label: 'News and Events' },
-              { id: 'student-activities', label: 'Student Activities' },
-            ].map((tab) => {
+            {departmentTabsList.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
                 <li
                   key={tab.id}
-                  onClick={() => scrollToSection(tab.id)}
-                  className={`cursor-pointer transition-colors pb-1 border-b-2 ${
+                  onClick={() => handleTabChange(tab.id)}
+                  className={`cursor-pointer transition-all pb-1 border-b-2 select-none ${
                     isActive
-                      ? 'text-primary border-primary font-extrabold'
+                      ? 'text-primary border-primary font-extrabold shadow-xs'
                       : 'text-muted-foreground border-transparent hover:text-foreground hover:border-border'
                   }`}
                 >
@@ -162,7 +232,7 @@ function CoursePage() {
         />
       </div>
         
-      {/* The White Info Box overlaying the bottom */}
+      {/* Information Header Box */}
       <div className="relative -mt-24 md:-mt-32 left-0 w-full px-6 lg:px-12 z-10 flex justify-center md:justify-start max-w-[1440px] mx-auto right-0">
           <div className="bg-card w-full max-w-5xl shadow-xl p-8 md:p-12 lg:p-16 border border-border">
             
@@ -199,7 +269,7 @@ function CoursePage() {
         </div>
 
       {/* Main Content Layout */}
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-12 pt-16 md:pt-24 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+      <div id="department-main-content" className="max-w-[1440px] mx-auto px-6 lg:px-12 pt-16 md:pt-20 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
         
         {/* Left Column: Sidebar / Meta details */}
         <div className="lg:col-span-3 order-2 lg:order-1">
@@ -251,161 +321,236 @@ function CoursePage() {
                       </motion.div>
                    </AnimatePresence>
                  </div>
-                 <Link to="/" className="text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:opacity-80 transition-opacity mt-4 text-white">
+                 <button 
+                   onClick={() => handleTabChange('news-events')}
+                   className="text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:opacity-80 transition-opacity mt-4 text-white text-left cursor-pointer"
+                 >
                     View all news <ArrowRight size={14} />
-                 </Link>
+                 </button>
               </motion.div>
            </div>
         </div>
 
-        {/* Right Column: Long form content */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="lg:col-span-6 order-1 lg:order-2"
-        >
-           {markdownContent ? (
-             <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-8 prose-h2:mt-16 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary hover:prose-a:text-primary/80 [&_table]:w-full [&_table]:border-collapse [&_table]:border [&_table]:border-border [&_th]:border [&_th]:border-border [&_th]:p-4 [&_th]:bg-muted [&_td]:border [&_td]:border-border [&_td]:p-4 [&_td]:align-top [&_th]:text-left [&_td:first-child]:whitespace-nowrap [&_th:first-child]:whitespace-nowrap [&_td:first-child]:min-w-[220px]">
-               <ReactMarkdown 
-                 remarkPlugins={[remarkGfm]}
-                 components={{
-                   h2: ({ node, children, ...props }) => {
-                     const id = getHeadingId(children);
-                     return (
-                       <h2 id={id} className="scroll-mt-36 text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 mt-16 text-foreground border-b border-border/50 pb-4" {...props}>
-                         {children}
-                       </h2>
-                     );
-                   },
-                   h3: ({ node, children, ...props }) => {
-                     const id = getHeadingId(children);
-                     return (
-                       <h3 id={id} className="scroll-mt-36 text-xl md:text-2xl font-bold uppercase tracking-tight mb-4 mt-8 text-foreground" {...props}>
-                         {children}
-                       </h3>
-                     );
-                   }
-                 }}
-               >
-                 {markdownContent}
-               </ReactMarkdown>
+        {/* Center/Right Column: Clean Isolated Tab Content */}
+        <div className="lg:col-span-6 order-1 lg:order-2 min-h-[500px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="space-y-8"
+            >
+              {/* Tab 1: About Department */}
+              {activeTab === 'about' && (
+                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
+                  {parsedContent['about'] ? (
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {parsedContent['about']}
+                    </ReactMarkdown>
+                  ) : (
+                    <div>
+                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">About Department</h2>
+                      <p className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-wrap">
+                        {course.details.overview}
+                      </p>
+                    </div>
+                  )}
+                </article>
+              )}
 
-               {/* Section for News & Events */}
-               <section id="news-events" className="scroll-mt-36 mt-16 border-t border-border pt-12">
-                 <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground">
-                   News & Events
-                 </h2>
-                 <div className="space-y-4">
-                   {newsItems.map((item, idx) => (
-                     <div key={idx} className="p-5 bg-card border border-border rounded-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-                       <div>
-                         <span className="text-[10px] font-bold text-[#059669] bg-[#059669]/10 px-2 py-0.5 rounded-sm uppercase tracking-widest inline-block mb-2">{item.date}</span>
-                         <h4 className="font-bold text-card-foreground text-base">{item.title}</h4>
-                       </div>
-                       <Link to="/" className="text-xs font-bold text-primary hover:underline flex items-center gap-1 shrink-0 uppercase tracking-wider">
-                         Details <ArrowRight size={12} />
-                       </Link>
-                     </div>
-                   ))}
-                 </div>
-               </section>
+              {/* Tab 2: OBE (Outcome Based Education) */}
+              {activeTab === 'obe' && (
+                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
+                  {parsedContent['obe'] ? (
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {parsedContent['obe']}
+                    </ReactMarkdown>
+                  ) : (
+                    <div className="space-y-8">
+                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Outcome Based Education (OBE)</h2>
+                      <div className="p-6 bg-card border border-border rounded-sm space-y-4">
+                        <h4 className="font-bold text-lg text-foreground">Programme Educational Objectives (PEOs)</h4>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          Graduates are prepared to analyze, design, develop, and test engineering solutions with creativity, modern tool usage, and leadership capabilities for societal and industrial growth.
+                        </p>
+                      </div>
+                      <div className="p-6 bg-card border border-border rounded-sm space-y-4">
+                        <h4 className="font-bold text-lg text-foreground">Program Specific Outcomes (PSOs)</h4>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          Apply cutting-edge technologies and domain expertise to solve real-world problems and implement sustainable applications.
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </article>
+              )}
 
-               {/* Section for Student Activities */}
-               <section id="student-activities" className="scroll-mt-36 mt-16 border-t border-border pt-12">
-                 <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground">
-                   Student Activities & Technical Associations
-                 </h2>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                   <div className="p-6 bg-card border border-border rounded-sm">
-                     <h4 className="font-bold text-card-foreground text-base mb-2">Technical Club & Hackathons</h4>
-                     <p className="text-sm text-muted-foreground leading-relaxed">
-                       Hands-on coding challenges, robotics competitions, national tech hackathons, and open-source project development sprints.
-                     </p>
-                   </div>
-                   <div className="p-6 bg-card border border-border rounded-sm">
-                     <h4 className="font-bold text-card-foreground text-base mb-2">Workshops & Guest Seminars</h4>
-                     <p className="text-sm text-muted-foreground leading-relaxed">
-                       Regular industry expert masterclasses on cutting-edge stacks, emerging research domains, and hands-on laboratory expos.
-                     </p>
-                   </div>
-                 </div>
-               </section>
-             </article>
-           ) : (
-             <>
-               <section id="about" className="scroll-mt-36 mb-16">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground border-b border-border/50 pb-4">About Department</h2>
-                  <div className="text-base md:text-lg text-muted-foreground leading-relaxed space-y-6">
-                    <p><strong className="text-foreground">Design focus:</strong> {course.details.overview.split('\n')[0]}</p>
-                    <p><strong className="text-foreground">Pathway structure:</strong> {course.details.pathwayStructure}</p>
-                    <p><strong className="text-foreground">Professionals and sponsors:</strong> {course.details.professionalsAndSponsors}</p>
-                    <p><strong className="text-foreground">Industry networks:</strong> {course.details.industryNetworks}</p>
-                    <p><strong className="text-foreground">Alumni success:</strong> {course.details.alumniSuccess}</p>
-                  </div>
-               </section>
-    
-               <div className="w-full h-px bg-border my-12" />
-    
-               <section id="obe" className="scroll-mt-36 mb-16">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground border-b border-border/50 pb-4">Outcome Based Education (OBE)</h2>
-                  <div className="text-base md:text-lg text-muted-foreground leading-relaxed space-y-6 whitespace-pre-wrap">
-                     {course.details.overview}
-                  </div>
-               </section>
-    
-               <div className="w-full h-px bg-border my-12" />
-    
-               <section id="academics" className="scroll-mt-36 mb-16">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground border-b border-border/50 pb-4">Academics & Course Units</h2>
-                  <div className="text-base md:text-lg text-muted-foreground leading-relaxed space-y-6 whitespace-pre-wrap">
-                     {course.details.courseUnits}
-                  </div>
-               </section>
-    
-               <div className="w-full h-px bg-border my-12" />
-    
-               <section id="job-profile" className="scroll-mt-36 mb-16">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground border-b border-border/50 pb-4">Job Profile & Specializations</h2>
-                  <div className="text-base md:text-lg text-muted-foreground leading-relaxed space-y-6 whitespace-pre-wrap">
-                     {course.details.optionalDiploma}
-                  </div>
-               </section>
+              {/* Tab 3: JOB PROFILE */}
+              {activeTab === 'job-profile' && (
+                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
+                  {parsedContent['job-profile'] ? (
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {parsedContent['job-profile']}
+                    </ReactMarkdown>
+                  ) : (
+                    <div className="space-y-8">
+                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Job Profile & Career Prospects</h2>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose">
+                        {course.details.careers.map((role) => (
+                          <div key={role} className="p-5 bg-card border border-border rounded-sm">
+                            <span className="text-xs font-bold text-[#059669] uppercase tracking-widest block mb-1">Career Role</span>
+                            <h4 className="font-bold text-base text-foreground">{role}</h4>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </article>
+              )}
 
-               <div className="w-full h-px bg-border my-12" />
+              {/* Tab 4: Faculty */}
+              {activeTab === 'faculty' && (
+                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary [&_table]:w-full [&_table]:border-collapse [&_table]:border [&_table]:border-border [&_th]:border [&_th]:border-border [&_th]:p-4 [&_th]:bg-muted [&_td]:border [&_td]:border-border [&_td]:p-4 [&_td]:align-top [&_th]:text-left [&_td:first-child]:whitespace-nowrap [&_th:first-child]:whitespace-nowrap [&_td:first-child]:min-w-[200px]">
+                  {parsedContent['faculty'] ? (
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {parsedContent['faculty']}
+                    </ReactMarkdown>
+                  ) : (
+                    <div className="space-y-6">
+                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Department Faculty</h2>
+                      <p className="text-base text-muted-foreground leading-relaxed">
+                        The department is powered by highly accomplished professors, doctorates, and researchers committed to student mentoring and outcome-based engineering education.
+                      </p>
+                    </div>
+                  )}
+                </article>
+              )}
 
-               <section id="news-events" className="scroll-mt-36 mb-16">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground border-b border-border/50 pb-4">News and Events</h2>
+              {/* Tab 5: Department Facilities */}
+              {activeTab === 'facilities' && (
+                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
+                  {parsedContent['facilities'] ? (
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {parsedContent['facilities']}
+                    </ReactMarkdown>
+                  ) : (
+                    <div className="space-y-6">
+                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Department Facilities & Laboratories</h2>
+                      <p className="text-base text-muted-foreground leading-relaxed">
+                        State-of-the-art laboratory infrastructure equipped with the latest software suites, hardware rigs, computing workstations, and industry-grade testing apparatus.
+                      </p>
+                    </div>
+                  )}
+                </article>
+              )}
+
+              {/* Tab 6: Academics */}
+              {activeTab === 'academics' && (
+                <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mb-6 prose-h2:mt-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary">
+                  {parsedContent['academics'] ? (
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {parsedContent['academics']}
+                    </ReactMarkdown>
+                  ) : (
+                    <div className="space-y-6">
+                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Academics & Curriculum</h2>
+                      <div className="text-base text-muted-foreground leading-relaxed whitespace-pre-wrap">
+                        {course.details.courseUnits}
+                      </div>
+                    </div>
+                  )}
+                </article>
+              )}
+
+              {/* Tab 7: News and Events */}
+              {activeTab === 'news-events' && (
+                <div className="space-y-8">
+                  <div>
+                    <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2 text-foreground">News & Events</h2>
+                    <p className="text-sm text-muted-foreground">Latest happenings, guest lectures, seminars, and technical announcements from the department.</p>
+                  </div>
+                  
+                  {parsedContent['news-events'] && (
+                    <article className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-black prose-p:text-muted-foreground">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {parsedContent['news-events']}
+                      </ReactMarkdown>
+                    </article>
+                  )}
+
                   <div className="space-y-4">
                     {newsItems.map((item, idx) => (
-                      <div key={idx} className="p-5 bg-card border border-border rounded-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+                      <div key={idx} className="p-6 bg-card border border-border rounded-sm flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
                         <div>
-                          <span className="text-[10px] font-bold text-[#059669] bg-[#059669]/10 px-2 py-0.5 rounded-sm uppercase tracking-widest inline-block mb-2">{item.date}</span>
-                          <h4 className="font-bold text-card-foreground text-base">{item.title}</h4>
+                          <span className="text-[10px] font-bold text-[#059669] bg-[#059669]/10 px-2.5 py-1 rounded-sm uppercase tracking-widest inline-block mb-2">{item.date}</span>
+                          <h4 className="font-bold text-card-foreground text-lg">{item.title}</h4>
+                          <p className="text-xs text-muted-foreground mt-1">Organized by {course.name} Department, MSAJCE</p>
                         </div>
                         <Link to="/" className="text-xs font-bold text-primary hover:underline flex items-center gap-1 shrink-0 uppercase tracking-wider">
-                          Details <ArrowRight size={12} />
+                          Details <ArrowRight size={14} />
                         </Link>
                       </div>
                     ))}
                   </div>
-               </section>
+                </div>
+              )}
 
-               <div className="w-full h-px bg-border my-12" />
-
-               <section id="student-activities" className="scroll-mt-36 mb-16">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 text-foreground border-b border-border/50 pb-4">Student Activities</h2>
-                  <div className="p-6 bg-card border border-border rounded-sm">
-                    <h4 className="font-bold text-card-foreground text-base mb-2">Technical Club & Hackathons</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      Hands-on coding challenges, robotics competitions, national tech hackathons, and open-source project development sprints.
-                    </p>
+              {/* Tab 8: Student Activities */}
+              {activeTab === 'student-activities' && (
+                <div className="space-y-8">
+                  <div>
+                    <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2 text-foreground">Student Activities & Associations</h2>
+                    <p className="text-sm text-muted-foreground">Active student-led technical chapters, national symposiums, hackathons, and cultural initiatives.</p>
                   </div>
-               </section>
-             </>
-           )}
-        </motion.div>
+
+                  {parsedContent['student-activities'] && (
+                    <article className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-black prose-p:text-muted-foreground">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {parsedContent['student-activities']}
+                      </ReactMarkdown>
+                    </article>
+                  )}
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="p-6 bg-card border border-border rounded-sm shadow-xs space-y-3">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-black text-sm">01</div>
+                      <h4 className="font-bold text-card-foreground text-lg">Department Technical Symposium</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Annual inter-collegiate technical festival featuring paper presentations, project expos, code debug contests, and circuit design tournaments.
+                      </p>
+                    </div>
+
+                    <div className="p-6 bg-card border border-border rounded-sm shadow-xs space-y-3">
+                      <div className="w-10 h-10 rounded-full bg-[#059669]/10 flex items-center justify-center text-[#059669] font-black text-sm">02</div>
+                      <h4 className="font-bold text-card-foreground text-lg">Hackathons & Coding Sprints</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Intensive 24-hour innovation hackathons focused on AI, sustainability, smart cities, and IoT product prototypes.
+                      </p>
+                    </div>
+
+                    <div className="p-6 bg-card border border-border rounded-sm shadow-xs space-y-3">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-black text-sm">03</div>
+                      <h4 className="font-bold text-card-foreground text-lg">Industry Expert Masterclasses</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Weekly technical lectures, hands-on tool bootcamps, and career orientation workshops delivered by corporate practitioners.
+                      </p>
+                    </div>
+
+                    <div className="p-6 bg-card border border-border rounded-sm shadow-xs space-y-3">
+                      <div className="w-10 h-10 rounded-full bg-[#059669]/10 flex items-center justify-center text-[#059669] font-black text-sm">04</div>
+                      <h4 className="font-bold text-card-foreground text-lg">Industrial Visits & Field Exposure</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Regular guided tours of leading industrial units, construction mega-sites, IT data centers, and advanced manufacturing hubs.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
         {/* Right Sidebar: Extra Info & CTAs */}
         <div className="lg:col-span-3 order-3 lg:order-3 relative">
