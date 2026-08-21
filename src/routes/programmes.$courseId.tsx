@@ -134,7 +134,7 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
 
 const departmentTabsList = [
   { id: 'about', label: 'About Department', icon: Building },
-  { id: 'obe', label: 'OBE Outcomes', icon: Award },
+  { id: 'obe', label: 'OBE', icon: Award },
   { id: 'job-profile', label: 'Job Profiles', icon: Briefcase },
   { id: 'faculty', label: 'Faculty Directory', icon: Users },
   { id: 'facilities', label: 'Laboratories', icon: BookOpen },
@@ -401,7 +401,7 @@ function CoursePage() {
                     </ReactMarkdown>
                   ) : (
                     <div className="space-y-8">
-                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Outcome Based Education (OBE)</h2>
+                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">OBE</h2>
                       <div className="p-6 bg-card border border-border rounded-sm space-y-4 shadow-xs">
                         <h4 className="font-bold text-lg text-foreground">Programme Educational Objectives (PEOs)</h4>
                         <p className="text-sm text-muted-foreground leading-relaxed">
