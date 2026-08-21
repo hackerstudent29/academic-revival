@@ -186,7 +186,7 @@ function CoursePage() {
 
   const markdownComponents = {
     h2: ({ node, children, ...props }: any) => (
-      <h2 className="text-[#059669] font-black uppercase text-2xl md:text-3xl lg:text-4xl tracking-tight mb-6 mt-2 border-b-2 border-[#059669]/20 pb-3" {...props}>
+      <h2 className="text-primary font-black uppercase text-2xl md:text-3xl lg:text-4xl tracking-tight mb-6 mt-2 border-b-2 border-primary/20 pb-3" {...props}>
         {children}
       </h2>
     ),
@@ -206,7 +206,7 @@ function CoursePage() {
       </strong>
     ),
     blockquote: ({ node, children, ...props }: any) => (
-      <blockquote className="border-l-4 border-[#059669] bg-card p-5 rounded-r-sm text-card-foreground italic my-6 shadow-xs" {...props}>
+      <blockquote className="border-l-4 border-primary bg-card p-5 rounded-r-sm text-card-foreground italic my-6 shadow-xs" {...props}>
         {children}
       </blockquote>
     ),
