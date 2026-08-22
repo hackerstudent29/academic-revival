@@ -1,89 +1,254 @@
 # Computer Science and Engineering with Specialization in Cyber Security (CSCS)
 
-## 1. Overview
+## About Department
+
+### Overview
 The B.E. Computer Science and Engineering with Specialization in Cyber Security is an undergraduate engineering degree program focused on equipping students with the knowledge and skills needed to protect computer systems, networks, and data from cyber threats and attacks. With the increasing reliance on digital infrastructure across sectors, cyber security has become a critical field, and this course is designed to meet the growing demand for professionals in this area. The primary objective is to develop experts in the field of information security, ethical hacking, and digital forensics.
 
 The program features a specialized curriculum focused on security principles, network security, cryptography, ethical hacking, and digital forensics, and includes foundational courses in computer science such as data structures, algorithms, and operating systems. Hands-on learning is emphasized through labs and simulation environments for penetration testing, secure coding, and threat analysis, along with capstone projects, internships, and real-world problem-solving. Legal and ethical foundations, including cyber laws and ethics, compliance, and governance, are integrated into the curriculum. Emerging technologies such as security in artificial intelligence, the Internet of Things, cloud computing, and blockchain are also covered.
 
 Top recruiters for graduates include government and defense agencies like DRDO and CERT-IN, IT and cyber security firms such as TCS, Infosys, Accenture, Palo Alto Networks, and IBM Security, as well as banks, financial institutions, healthcare and insurance companies, e-commerce, and cloud service providers. Students choose this program for its industry-aligned skills in a high-demand domain, greater job security and compensation potential, opportunities to contribute to national and corporate security, and global relevance leading to international career pathways.
 
-## 2. Programme
+### Programme
 The program offered is a B.E. in Computer Science and Engineering with Specialization in Cyber Security. The duration is four years for regular students and three years for lateral entry students, comprising eight and six semesters, respectively. The total intake is 30 seats, divided equally with 15 for the government quota and 15 for the management quota. Eligibility for the program requires completion of the 10+2 system of education, and students must have secured a pass in Physics, Chemistry, and Mathematics in their qualifying examination. The curriculum and syllabus follow the 2021 Regulation. The scope for higher studies includes pursuing an M.E., M.Tech, or M.B.A.
 
-## 3. Vision
+### Vision
 The vision is to be a center of excellence for transforming students into proficient Cyber Security Specialists through sustainable practices.
 
-## 4. Mission
+### Mission
 The mission involves imparting core fundamental knowledge and necessary skills in Cyber Security through innovative teaching and learning methodologies. It aims to inculcate the critical thinking, ethics, lifelong learning, and creativity needed for both the industry and society. Furthermore, the mission cultivates the students with all-around competencies for their careers, higher education, and self-employability.
 
-## 5. Programme Educational Objectives (PEOs)
-1. **Programme Educational Objective (PEO1)**: The Programme Educational Objectives state that graduates will be prepared for analyzing, designing, developing, and testing software solutions and products with creativity and sustainability. They will also be skilled in the use of modern tools for critical problem solving and analyzing industrial and societal requirements. In addition, graduates will be prepared with managerial and leadership skills for their careers and for starting up their own firms.
+---
 
-## 6. Program Specific Outcomes (PSOs)
-The Program Specific Outcomes emphasize that engineering graduates will be able to develop creative solutions by adapting emerging technologies and tools for real-time applications in the industry.
+## OBE
 
-1. **Program Specific Outcome (PSO2)**: They will also apply their acquired knowledge to develop software solutions and innovative mobile apps for various automation applications.
+### Programme Educational Objectives (PEOs)
 
-## 7. Programme Outcomes (PO)
-The Programme Outcomes define the foundational abilities of the students.
+| Code | Programme Educational Objectives |
+| :--- | :--- |
+| **PEO1** | The Programme Educational Objectives state that graduates will be prepared for analyzing, designing, developing, and testing software solutions and products with creativity and sustainability. They will also be skilled in the use of modern tools for critical problem solving and analyzing industrial and societal requirements. In addition, graduates will be prepared with managerial and leadership skills for their careers and for starting up their own firms. |
 
-1. **Programme Outcome (PO1) - Engineering Knowledge**: Engineering knowledge requires applying mathematics, science, engineering fundamentals, and an engineering specialization to solve complex engineering problems.
+### Program Specific Outcomes (PSOs)
 
-1. **Programme Outcome (PO2) - Problem Analysis**: Problem analysis involves identifying, formulating, reviewing research literature, and analyzing complex engineering problems to reach substantiated conclusions using first principles of mathematics, natural sciences, and engineering sciences.
+| Code | Program Specific Outcomes |
+| :--- | :--- |
+| **PSO1** | They will also apply their acquired knowledge to develop software solutions and innovative mobile apps for various automation applications. |
 
-1. **Programme Outcome (PO3) - Design/Development of Solutions**: For the design and development of solutions, students must design solutions for complex engineering problems and design system components or processes that meet specified needs with appropriate consideration for public health and safety, as well as cultural, societal, and environmental considerations.
+### Programme Outcomes (POs)
 
-1. **Programme Outcome (PO4) - Conduct Investigations**: Conducting investigations of complex problems requires using research-based knowledge and methods, including the design of experiments, analysis and interpretation of data, and synthesis of information to provide valid conclusions.
+| PO | Outcome Title | Description |
+| :--- | :--- | :--- |
+| **PO1** | **Engineering Knowledge** | Apply mathematics, science, engineering fundamentals, and an engineering specialization to solve complex engineering problems. |
+| **PO2** | **Problem Analysis** | Identify, formulate, review research literature, and analyze complex engineering problems to reach substantiated conclusions using first principles of mathematics, natural sciences, and engineering sciences. |
+| **PO3** | **Design/Development of Solutions** | Design solutions for complex engineering problems and design system components or processes that meet specified needs with appropriate consideration for public health and safety, as well as cultural, societal, and environmental considerations. |
+| **PO4** | **Conduct Investigations** | Use research-based knowledge and methods, including the design of experiments, analysis and interpretation of data, and synthesis of information to provide valid conclusions. |
+| **PO5** | **Modern Tool Usage** | Create, select, and apply appropriate techniques, resources, and modern engineering and IT tools, including prediction and modeling, to complex engineering activities with an understanding of their limitations. |
+| **PO6** | **The Engineer and Society** | Apply reasoning informed by contextual knowledge to assess societal, health, safety, legal, and cultural issues and the consequent responsibilities relevant to professional engineering practice. |
+| **PO7** | **Environment and Sustainability** | Understand the impact of professional engineering solutions in societal and environmental contexts, demonstrating the knowledge of and need for sustainable development. |
+| **PO8** | **Ethics** | Apply ethical principles and commit to professional ethics, responsibilities, and norms of engineering practice. |
+| **PO9** | **Individual and Team Work** | Function effectively as an individual, and as a member or leader in diverse teams and multidisciplinary settings. |
+| **PO10** | **Communication** | Communicate effectively on complex engineering activities with the engineering community and society at large, including comprehending and writing effective reports, designing documentation, making effective presentations, and giving and receiving clear instructions. |
+| **PO11** | **Project Management and Finance** | Demonstrate knowledge and understanding of engineering and management principles and apply these to one's own work, managing projects, and working in multidisciplinary environments. |
+| **PO12** | **Life-long Learning** | Recognize the need for and have the ability to engage in independent and life-long learning in the broadest context of technological change. |
 
-1. **Programme Outcome (PO5) - Modern Tool Usage**: Modern tool usage involves creating, selecting, and applying appropriate techniques, resources, and modern engineering and IT tools, including prediction and modeling, to complex engineering activities with an understanding of their limitations.
+---
 
-1. **Programme Outcome (PO6) - The Engineer and Society**: Further Programme Outcomes emphasize the engineer and society, applying reasoning informed by contextual knowledge to assess societal, health, safety, legal, and cultural issues and the consequent responsibilities relevant to professional engineering practice.
+## JOB PROFILES
 
-1. **Programme Outcome (PO7) - Environment and Sustainability**: Environment and sustainability focus on understanding the impact of professional engineering solutions in societal and environmental contexts, demonstrating the knowledge of and need for sustainable development.
+### Employment Growth in Cyber Security in India by 2025 – 2030
+The Cyber security sector in India is expected to experience strong growth over the next five years (2025–2030) due to the increasing frequency and sophistication of cyber attacks, the rapid digitization of businesses, and the expansion of digital infrastructures in various industries. As businesses and government organizations continue to embrace digital transformation, the demand for cyber security professionals will rise significantly.
 
-1. **Programme Outcome (PO8) - Ethics**: Ethics involves applying ethical principles and committing to professional ethics, responsibilities, and norms of engineering practice.
+### Key Drivers of Employment Growth in Cyber Security in India (2025–2030):
 
-1. **Programme Outcome (PO9) - Individual and Team Work**: Individual and teamwork require functioning effectively as an individual, and as a member or leader in diverse teams and multidisciplinary settings.
+**Increasing Cyber security Threats:**
+- With more data moving online and increasing cyber threats, the demand for cyber security experts is projected to rise. Organizations will need CSE professionals to design secure systems, prevent data breaches, and mitigate cyber risks.
 
-1. **Programme Outcome (PO10) - Communication**: Communication ensures the ability to communicate effectively on complex engineering activities with the engineering community and society at large, including comprehending and writing effective reports, designing documentation, making effective presentations, and giving and receiving clear instructions.
+**Government Initiatives and Regulations:**
+- Personal Data Protection Bill and National Cyber Security Strategy, best practices in data security, creating more demand for professionals.
+- Digital India and Smart Cities.
+- CERT-In and NCIIPC: Indian government agencies such as CERT-In (Indian Computer Emergency Response Team) and NCIIPC (National Critical Information Infrastructure Protection Centre) will continue to push for enhanced cyber security protocols, encouraging private sector adoption.
 
-1. **Programme Outcome (PO11) - Project Management and Finance**: Project management and finance involve demonstrating knowledge and understanding of engineering and management principles and applying these to one's own work, managing projects, and working in multidisciplinary environments.
+**Growth of Cloud Computing and IoT:**
+- **Cloud Adoption:** As companies migrate to the cloud, professionals skilled in cloud computing platforms like AWS, Azure, and Google Cloud will be in high demand. The cloud computing market in India is expected to grow at a strong pace.
+- **Smart Devices:** The rise of IoT devices in sectors like healthcare, agriculture, manufacturing, and home automation will create demand for CSE professionals to develop IoT platforms, design systems for device connectivity, and ensure data management and security.
 
-1. **Programme Outcome (PO12) - Life-long Learning**: Finally, life-long learning recognizes the need for and the ability to engage in independent and life-long learning in the broadest context of technological change.
+**Digital Payments and Financial Services:**
+- **Fin Tech Boom:** As India’s fin tech sector grows, there will be an increasing need for cyber security professionals to protect digital payment systems, mobile banking apps, and block chain-based solutions.
+- Regulatory authorities like the RBI and SEBI are implementing stricter cyber security regulations for financial institutions, driving demand for cyber security professionals in the banking and financial services sectors.
+- Data Privacy and GDPR compliance experts to manage data privacy and security.
+- **Regulatory Compliance:** As the government enforces stronger data protection regulations, such as the Personal Data Protection Bill, companies will require professionals with expertise in data security and privacy laws.
 
-## 8. Job Profiles
+**Digital Transformation Across Industries:**
+- **Digital India Initiative:** Government programs like Digital India, which aims to digitally empower the population, will boost demand for computer scientists and engineers.
+- **Smart Cities and IoT:** Increasing implementation of smart city projects, IoT devices, and automation will drive the need for software developers, system integrators, and data engineers.
+- **Automation and AI Adoption:** As businesses increasingly adopt artificial intelligence, machine learning, and automation, CSE professionals will be essential for developing, integrating, and managing these technologies.
 
-### Employment Growth in Cyber Security in India by 2025 - 2030
-The cybersecurity sector in India is expected to experience strong growth over the next five years due to the increasing frequency and sophistication of cyber attacks, the rapid digitization of businesses, and the expansion of digital infrastructures in various industries. As businesses and government organizations continue to embrace digital transformation, the demand for cybersecurity professionals will rise significantly.
+### Employment Opportunities in High Demand (2025–2030)
 
-### Key Drivers of Employment Growth
-Increasing cybersecurity threats are a primary driver, as more data moves online, necessitating experts to design secure systems, prevent data breaches, and mitigate risks. Government initiatives and regulations, such as the Personal Data Protection Bill, the National Cyber Security Strategy, and best practices in data security, create more demand for professionals. Agencies like CERT-In and NCIIPC push for enhanced cybersecurity protocols, encouraging private sector adoption. The growth of cloud computing and IoT also fuels demand; as companies migrate to the cloud, professionals skilled in platforms like AWS, Azure, and Google Cloud are highly sought after. The rise of IoT devices across sectors creates a need for developers to design secure systems. In digital payments and financial services, the fintech boom and stricter regulations from authorities like the RBI and SEBI require professionals to protect systems and ensure GDPR compliance. Furthermore, the digital transformation across industries, propelled by initiatives like Digital India, smart cities, and the adoption of AI and automation, continuously boosts the demand for cybersecurity experts.
+**1. Cyber security Analyst**
+- **Responsibilities:** Monitor network traffic, identify security breaches, and implement protective measures. Cyber security analysts are the first line of defense in identifying threats and responding to incidents.
+- **Skills Required:** Network security, incident response, SIEM (Security Information and Event Management) tools, firewall management, penetration testing.
 
-### Employment Opportunities in High Demand
-A Cybersecurity Analyst monitors network traffic, identifies security breaches, and implements protective measures, utilizing skills in network security, incident response, SIEM tools, firewall management, and penetration testing. A Security Architect designs and implements complex security infrastructures to protect IT systems, networks, and data, requiring expertise in network architecture, security frameworks, risk management, cloud security, firewalls, and encryption technologies. A Penetration Tester or Ethical Hacker conducts tests to identify and exploit vulnerabilities, simulating cyber attacks using tools like Kali Linux, Metasploit, Wireshark, nmap, and vulnerability scanning tools. A Security Operations Center Analyst monitors networks for threats and responds to incidents in real-time, relying on skills in threat analysis, log analysis, incident detection, and SIEM systems. A Cloud Security Specialist ensures the security of cloud infrastructures and applications, focusing on preventing unauthorized access and data breaches with skills in AWS, Azure, Google Cloud, and IAM.
+**2. Security Architect**
+- **Responsibilities:** Design and implement complex security infrastructures to protect IT systems, networks, and data. This role often involves setting up secure frameworks for cloud, IoT, and enterprise networks.
+- **Skills Required:** Network architecture, security frameworks, risk management, cloud security (AWS, Azure), firewalls, encryption technologies.
 
-A Cybersecurity Consultant provides expertise to organizations on improving their overall security posture by assessing vulnerabilities and recommending solutions, which requires skills in risk assessment, security audits, compliance frameworks, and policy development. An Incident Responder investigates and responds to cybersecurity incidents like data breaches and malware attacks, utilizing incident handling, forensics, malware analysis, and root cause analysis. A Cybersecurity Engineer builds and maintains security systems, firewalls, and encryption technologies to protect assets, requiring skills in firewall configuration, endpoint protection, and network security protocols. The Chief Information Security Officer oversees an organization's entire cybersecurity strategy, policies, systems, and incident response, ensuring compliance with regulations and requiring strong leadership, risk management, and business continuity planning skills. Finally, an IoT Security Expert protects connected devices in IoT ecosystems from cyber threats, ensuring encryption and security through knowledge of IoT protocols and embedded security.
+**3. Penetration Tester (Ethical Hacker)**
+- **Responsibilities:** Conduct penetration tests to identify and exploit vulnerabilities in an organization’s systems. They simulate cyber attacks to help organizations find weaknesses before malicious hackers can exploit them.
+- **Skills Required:** Kali Linux, Meta sploit, Wire shark, nmap, vulnerability scanning tools, ethical hacking certification (CEH, OSCP).
 
-### Sectors with High Employment Potential
-Sectors with high employment potential include IT and IT Services, where companies need experts to protect their systems and those of their clients. Financial Services and Fintech sectors, including banks and digital payment providers, invest heavily in cybersecurity to safeguard transactions and comply with regulations. The E-Commerce sector requires professionals to protect customer data and payment systems from threats. Government and Defense sectors focus on digital governance and smart cities, increasing the need to protect critical infrastructures. Telecommunications companies need network security experts to protect data as 5G technology rolls out. Healthcare requires specialists to secure sensitive health records and telemedicine systems. Finally, Cloud Services providers need professionals skilled in securing cloud platforms and ensuring compliance with data protection laws.
+**4. Security Operations Center (SOC) Analyst**
+- **Responsibilities:** Monitor an organization's network for potential security threats and respond to security incidents. SOC analysts work in real-time to ensure minimal downtime and risk.
+- **Skills Required:** Threat analysis, log analysis, incident detection and response, SIEM systems (Splunk, IBM QRadar).
+
+**5. Cloud Security Specialist**
+- **Responsibilities:** Ensure the security of cloud infrastructures and applications. Cloud security specialists focus on preventing unauthorized access, data breaches, and ensuring compliance with cloud-specific security protocols.
+- **Skills Required:** AWS, Azure, Google Cloud, cloud security best practices, identity and access management (IAM), encryption.
+
+**6. Cyber security Consultant**
+- **Responsibilities:** Provide expertise to organizations on how to improve their overall cyber security posture. Consultants assess vulnerabilities, provide strategic recommendations, and help implement security solutions.
+- **Skills Required:** Risk assessment, security audits, compliance frameworks (ISO 27001, NIST), penetration testing, security policy development.
+
+**7. Incident Responder**
+- **Responsibilities:** Investigate and respond to cybersecurity incidents, including data breaches and malware attacks. Incident responders work quickly to mitigate damage and prevent further issues.
+- **Skills Required:** Incident handling, forensics, malware analysis, root cause analysis, digital forensics tools.
+
+**8. Cyber security Engineer**
+- **Responsibilities:** Build and maintain security systems, firewalls, and encryption technologies to protect organizational assets. This role involves proactively designing systems to prevent breaches.
+- **Skills Required:** Firewall configuration, endpoint protection, network security protocols, security software development.
+
+**9. Chief Information Security Officer (CISO)**
+- **Responsibilities:** Oversee an organization’s entire cybersecurity strategy, including policies, systems, and incident response. The CISO ensures the company is compliant with relevant regulations and industry standards.
+- **Skills Required:** Leadership skills, risk management, compliance knowledge (GDPR, PCI DSS), security program management, business continuity planning.
+
+**10. IoT Security Expert**
+- **Responsibilities:** Protect connected devices in IoT ecosystems from cyber threats. This includes ensuring that IoT devices are secure, encrypted, and do not pose risks to organizational infrastructure.
+- **Skills Required:** IoT protocols, embedded security, network security, data encryption, IoT device security.
+
+### Sectors with High Employment Potential for Cyber security Professionals
+
+- **IT and IT Services:** Companies offering IT solutions and managed services will continue to need cyber security experts to protect their own systems and those of their clients.
+- **Financial Services and Fintech:** Banks, insurance companies, digital payment providers, and fin tech startups will invest in cyber security to safeguard transactions, customer data, and comply with financial regulations.
+- **E-Commerce:** With the rise in online shopping and digital payments, e-commerce platforms will require professionals to safeguard customer data, payment systems, and business operations from cyber threats.
+- **Government and Defense:** The government’s focus on digital governance and smart cities will increase the need for cyber security experts to protect critical infrastructures like energy, transportation, and healthcare.
+- **Telecommunications:** As 5G technology is rolled out and more devices become connected, telecom companies will require network security experts to protect data and ensure infrastructure reliability.
+- **Healthcare:** With the digitalization of healthcare systems, the need for healthcare cyber security specialists will grow, ensuring that sensitive health records and telemedicine systems are secure.
+- **Cloud Services:** Companies providing cloud solutions (e.g., AWS, Azure, Google Cloud) will require professionals skilled in securing cloud platforms and ensuring compliance with data protection laws.
 
 ### Key Skills Required for Cyber security Roles
-Network security requires an understanding of TCP/IP, network protocols, firewalls, and proficiency in tools like Wireshark, nmap, and Snort. Ethical hacking and penetration testing involve skills to simulate cyberattacks and uncover vulnerabilities using Kali Linux, Metasploit, Burp Suite, Nessus, and Aircrack-ng. Cloud security demands knowledge of securing environments like AWS, Azure, and Google Cloud, along with IAM and encryption. Incident response and forensics require skills to detect, respond, and recover from breaches, using digital forensics tools. Data encryption and cryptography involve understanding encryption methods like AES, OpenSSL, and GPG to protect data. Risk management and compliance require evaluating potential risks and understanding frameworks like ISO 27001, GDPR, HIPAA, and PCI DSS. Proficiency in SIEM tools such as Splunk, IBM QRadar, or ArcSight is necessary for real-time monitoring. Security automation and scripting require knowledge of tools like Puppet or Ansible and languages like Python or Bash. Threat intelligence involves analyzing and responding to emerging cyber threats. Lastly, understanding security in IoT and mobile devices is becoming increasingly important as these technologies become more pervasive.
 
-### Cybersecurity Certifications
-Certifications can greatly enhance credibility and job prospects in the cybersecurity field. Notable certifications include the Certified Ethical Hacker by EC-Council, the Certified Information Systems Security Professional by ISC2, the Certified Information Security Manager and the Certified Information Systems Auditor by ISACA, and CompTIA Security+. Other valuable certifications are the Certified Cloud Security Professional by ISC2, the Certified Penetration Testing Engineer and the Certified SOC Analyst by EC-Council, the Cisco Certified CyberOps Associate, and the GIAC Security Essentials.
+- **Network Security:** Understanding of Networking (TCP/IP, network protocols, firewalls) and proficiency in tools like Wireshark, nmap, and Snort for network analysis and intrusion detection.
+- **Ethical Hacking and Penetration Testing:** Skills to simulate cyberattacks on systems and uncover vulnerabilities using tools like Kali Linux, Metasploit, Burp Suite, Nessus, and Aircrack-ng.
+- **Cloud Security:** Knowledge of securing cloud environments (AWS, Azure, Google Cloud), IAM (Identity and Access Management), encryption, and data protection.
+- **Incident Response and Forensics:** Skills to detect, respond, and recover from cybersecurity incidents. Expertise in digital forensics tools and techniques.
+- **Data Encryption and Cryptography:** A strong understanding of cryptography principles and familiarity with tools like OpenSSL, GPG, and AES.
+- **Risk Management and Compliance:** Identifying potential risks to systems and understanding of frameworks like ISO 27001, GDPR, HIPAA, and PCI DSS.
+- **SIEM:** Proficiency in using tools such as Splunk, IBM QRadar, or ArcSight to detect, monitor, and respond to threats in real-time.
+- **Security Automation and Scripting:** Knowledge of automation tools (Puppet, Ansible) and scripting languages (Python, Bash).
+- **Threat Intelligence:** Skills in identifying, analyzing, and responding to emerging cyber threats.
+- **Security in IoT and Mobile Devices:** Understanding IoT and mobile device security.
+
+### Cyber security Certifications
+
+Certifications can greatly enhance your credibility and job prospects in the cyber security field.
+- **Certified Ethical Hacker (CEH):** EC-Council
+- **Certified Information Systems Security Professional (CISSP):** (ISC)²
+- **Certified Information Security Manager (CISM):** ISACA
+- **Certified Information Systems Auditor (CISA):** ISACA
+- **CompTIA Security+:** CompTIA
+- **Certified Cloud Security Professional (CCSP):** (ISC)²
+- **Certified Penetration Testing Engineer (CPTE):** EC-Council
+- **Certified SOC Analyst (CSA):** EC-Council
+- **Cisco Certified CyberOps Associate:** Cisco
+- **GIAC Security Essentials (GSEC):** GIAC
 
 ### Learning Paths for Cyber security Careers
-For beginners, the focus is on network security basics, firewall setup, and vulnerability scanning, often pursuing certifications like CompTIA Security+ and CEH Foundation through online platforms. At the intermediate level, the focus shifts to advanced network security, cloud security, penetration testing, and risk management, targeting certifications like CISSP, CISM, and CCSP through more in-depth training resources. Advanced level professionals focus on ethical hacking, security management, and incident response, aiming for certifications like CISA and CPTE through specialized training from organizations like EC-Council, GIAC, and the SANS Institute.
+
+**Beginner Level:**
+- **Certifications:** CompTIA Security+, Certified Ethical Hacker (CEH) Foundation.
+- **Skills Focus:** Network security basics, firewall setup, and vulnerability scanning.
+- **Training Resources:** Online platforms like Udemy, Coursera, edX.
+
+**Intermediate Level:**
+- **Certifications:** CISSP, CISM, Certified Cloud Security Professional (CCSP).
+- **Skills Focus:** Advanced network security, cloud security, penetration testing, and risk management.
+- **Training Resources:** Cybrary, Pluralsight, SANS Institute.
+
+**Advanced Level:**
+- **Certifications:** Certified Information Systems Auditor (CISA), Certified Penetration Testing Engineer (CPTE).
+- **Skills Focus:** Ethical hacking, penetration testing, security management, incident response.
+- **Training Resources:** EC-Council, GIAC, SANS Institute.
 
 ### Additional Resources to Enhance Your Skills
-Additional resources include participating in Capture The Flag challenges on platforms like Hack The Box, TryHackMe, and OverTheWire to practice penetration testing and cryptography. Following cybersecurity blogs and podcasts like Krebs On Security, Dark Reading, and the SANS Internet Storm Center helps stay updated on trends. Attending webinars and conferences like Black Hat, DEFCON, and the RSA Conference is excellent for networking and learning about emerging threats. Familiarizing oneself with open-source tools like Wireshark, Metasploit, Kali Linux, and Burp Suite is also highly recommended.
 
-### Top Online Cybersecurity Courses
-Top online courses include CompTIA Security+ for beginners, Certified Ethical Hacker for aspiring penetration testers, and Cisco CCNA Security for those interested in network security. Other advanced courses include the Certified Information Systems Security Professional for managerial roles, the Certified Cloud Security Professional for cloud computing, and GIAC Security Essentials for strengthening foundational skills. There are also comprehensive specializations offered by universities on platforms like Coursera, such as the Cybersecurity Specialization by the University of Maryland and the Cybersecurity for Business Specialization by the University of Colorado. Advanced learners can pursue Advanced Penetration Testing and Ethical Hacking through Offensive Security, while those seeking leadership roles can take the Certified Information Security Manager course.
+- **Capture The Flag (CTF) Challenges:** Platforms like Hack The Box, TryHackMe, and OverTheWire.
+- **Cyber security Blogs and Podcasts:** Follow Krebs On Security, Dark Reading, and SANS Internet Storm Center.
+- **Webinars and Conferences:** Attend Black Hat, DEFCON, and RSA Conference.
+- **Open-Source Tools:** Familiarize yourself with Wireshark, Metasploit, Kali Linux, and Burp Suite.
 
-### Free and Low-Cost Learning Resources
-Free and low-cost learning resources include Cybrary, which offers courses ranging from beginner to advanced levels, and Udemy, which provides affordable courses on various topics. Coursera offers free courses on basic concepts from top universities, while SANS Cyber Aces provides introductory courses on network security and operating systems. OWASP offers open-source resources for web application security. TryHackMe and Hack The Box are excellent platforms for interactive, hands-on challenges. Additionally, YouTube channels like The Cyber Mentor, NetworkChuck, and Professor Messer provide valuable tutorials and study materials.
+### Top Online Cyber security Courses
 
-### Cybersecurity Career Path Resources
-Career path resources include LinkedIn Learning for courses on fundamentals and risk management. Cybersecurity podcasts like Darknet Diaries, The CyberWire, and Security Now offer insights into real-world attacks and news. Communities on Reddit, Stack Exchange, and Twitter provide platforms for discussion, networking, and staying updated. Recommended books for deepening knowledge include The Web Application Hacker's Handbook by Dafydd Stuttard and Marcus Pinto, Hacking: The Art of Exploitation by Jon Erickson, and The CISSP All-in-One Exam Guide by Shon Harris.
+- **CompTIA Security+ (SY0-601):** Udemy, LinkedIn Learning, Cybrary
+- **Certified Ethical Hacker (CEH):** EC-Council, Udemy
+- **Cisco CCNA Security:** Cisco Networking Academy, Udemy
+- **Certified Information Systems Security Professional (CISSP):** Udemy, LinkedIn Learning, Cybrary
+- **Certified Cloud Security Professional (CCSP):** (ISC)², Udemy, LinkedIn Learning
+- **GIAC Security Essentials (GSEC):** SANS Institute
+- **Cyber security Specialization by University of Maryland:** Coursera
+- **Advanced Penetration Testing and Ethical Hacking:** Offensive Security (OffSec), Udemy
+- **Certified Information Security Manager (CISM):** ISACA, Udemy
+- **Cyber security for Business Specialization:** Coursera (University of Colorado)
+
+### Free and Low-Cost Cyber security Learning Resources
+
+- **Cybrary:** [Cybrary](https://www.cybrary.it/)
+- **Udemy:** [Udemy Cybersecurity Courses](https://www.udemy.com/topic/cyber-security/)
+- **Coursera:** [Coursera Cybersecurity Specializations](https://www.coursera.org/courses?query=cybersecurity)
+- **SANS Cyber Aces:** [SANS Cyber Aces](https://www.sans.org/cyberaces/)
+- **OWASP:** [OWASP Resources](https://owasp.org/)
+- **TryHackMe:** [TryHackMe](https://tryhackme.com/)
+- **Hack The Box:** [Hack The Box](https://www.hackthebox.com/)
+- **YouTube Channels:** The Cyber Mentor, NetworkChuck, Professor Messer.
+
+### Cyber security Career Path Resources
+
+- **LinkedIn Learning:** [LinkedIn Learning - Cybersecurity](https://www.linkedin.com/learning/topics/cybersecurity)
+- **Cybersecurity Podcasts:** Darknet Diaries, The CyberWire, Security Now.
+- **Cybersecurity Communities:** Reddit (r/cybersecurity), Stack Exchange, Twitter (Troy Hunt, Brian Krebs).
+- **Books to Consider:** "The Web Application Hacker's Handbook", "Hacking: The Art of Exploitation", "The CISSP All-in-One Exam Guide".
+
+---
+
+## Faculty
+
+### Faculty Directory
+
+| Name | Designation | Date of Joining | Qualification | Association |
+| :--- | :--- | :--- | :--- | :--- |
+| **Dr. Jane Doe** | Professor & Head | 01/06/2019 | M.E., Ph.D. | Regular |
+| **Dr. John Smith** | Professor | 15/07/2020 | M.E., Ph.D. | Regular |
+| **Mr. Alex Johnson** | Associate Professor | 10/08/2021 | M.E., Ph.D. | Regular |
+| **Ms. Emily Davis** | Assistant Professor | 05/09/2022 | M.E. | Regular |
+| **Mr. Michael Brown** | Assistant Professor | 12/01/2023 | M.E. | Regular |
+
+---
+
+
+---
+
+## Department Facilities
+
+### Specialized Laboratories & Computing Infrastructure
+
+1. **Network Security Laboratory**
+   * **Course Code:** CB8381 / CB3381
+   * **Specs & Tools:** Kali Linux, Wireshark, Snort, Metasploit.
+
+2. **Ethical Hacking and Penetration Testing Laboratory**
+   * **Course Code:** CB8481 / CB3481
+   * **Specs & Tools:** Burp Suite, Nmap, Nessus, OWASP ZAP.
+
+3. **Digital Forensics Laboratory**
+   * **Course Code:** CB8581 / CB3581
+   * **Specs & Tools:** Autopsy, EnCase, FTK Imager.
+

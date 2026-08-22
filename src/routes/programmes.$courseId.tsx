@@ -267,7 +267,7 @@ function CoursePage() {
         className="sticky top-[73px] z-40 bg-background/95 backdrop-blur-md border-b border-border shadow-xs"
       >
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
-          <ul className="flex items-center gap-4 md:gap-6 lg:gap-8 text-xs md:text-sm font-bold uppercase tracking-wider text-foreground overflow-x-auto no-scrollbar whitespace-nowrap py-3">
+          <ul className="flex items-center gap-3 md:gap-5 lg:gap-6 text-[11px] md:text-xs font-bold uppercase tracking-wider text-foreground overflow-x-auto no-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] whitespace-nowrap py-2.5">
             {departmentTabsList.map((tab) => {
               const isActive = activeTab === tab.id;
               const Icon = tab.icon;
@@ -275,13 +275,13 @@ function CoursePage() {
                 <li
                   key={tab.id}
                   onClick={() => handleTabChange(tab.id)}
-                  className={`cursor-pointer transition-all flex items-center gap-2 pb-1 border-b-2 select-none shrink-0 ${
+                  className={`cursor-pointer transition-all flex items-center gap-1.5 pb-1 border-b-2 select-none shrink-0 ${
                     isActive
                       ? 'text-primary border-primary font-black shadow-xs'
                       : 'text-muted-foreground border-transparent hover:text-foreground hover:border-border'
                   }`}
                 >
-                  <Icon size={14} className={isActive ? 'text-primary' : 'text-muted-foreground'} />
+                  <Icon size={13} className={isActive ? 'text-primary' : 'text-muted-foreground'} />
                   {tab.label}
                 </li>
               );

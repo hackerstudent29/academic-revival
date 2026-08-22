@@ -2,8 +2,11 @@
 
 ## About Department
 
+### About Department
 ### Department Introduction
-The Department of Civil Engineering is one of the pioneer departments of Mohamed Sathak A.J. College of Engineering (MSAJCE), established in 2007. The department has excelled in the areas of Academics, Research, Cultural, and Sports activities, developing a prestige up to global engineering standards.
+Welcome to the Department of Civil Engineering, Mohamed Sathak A.J. College of Engineering, Siruseri, Chennai, India.
+
+The Department of Civil Engineering is one of the pioneer departments of the Institute, established in 2007. The department has excelled in the areas of Academics, Research, Cultural and Sports activities developing a prestige up to global standards.
 
 ### Vision
 To be a centre of excellence for transforming students into proficient Civil Engineers, through sustainable practices.
@@ -13,19 +16,20 @@ To be a centre of excellence for transforming students into proficient Civil Eng
 * **M2.** Inculcate critical thinking, ethics, lifelong learning and creativity needed for Industry and Society.
 * **M3.** Cultivate the students with all-round competencies, for career, higher education and self Employability.
 
-### Department Overview
-Civil engineers conceive, design, construct, supervise, operate and maintain infrastructure projects and systems in the public and private sectors—including expressways, bridges, high-rise buildings, airports, tunnels, dams, water supply grids, and environmental pollution control systems. As the foundational discipline of human civilization, Civil Engineering is an integral backbone of modern society.
+### Department Overview & Core Discipline
+Civil engineers conceive, design, construct, supervise, operate and maintain infrastructure projects and system in the public and private sector including roads, building, bridges, airports, tunnels, dams, systems for water supply and sewerage treatment, pollution controls etc. Civil Engineering is one of the older engineering disciplines and it is a backbone and integral part of the society, without them a society could not function.
 
-The department offers specialized training across surveying, structural engineering, transportation systems, environmental & hydraulic engineering, and Remote Sensing & GIS technologies. Our curriculum empowers students to address global challenges such as climate resilience, rapid urbanization, and sustainable smart city infrastructure.
+Civil Engineering is a very diverse profession and offers a wide range of activities through various disciplines such as surveying, structural engineering, transport engineering, environment and water supply engineering, Remote Sensing and GIS, etc. Civil engineers are the heroes of the engineering world and part of helping society by adapting the infrastructures with new technologies, to meet the population growth and climatic change. Civil engineers will never have a dull moment and always creative in their own unique way.
 
-### Department Highlights
-* **Established in 2007** with rich legacy of academic and technical excellence.
-* **Programs Offered:** B.E. in Civil Engineering (UG) and M.E. in Structural Engineering (PG).
-* **Affiliation & Approval:** Affiliated with Anna University, Chennai; Approved by AICTE, New Delhi.
-* **Hands-on Laboratories:** 5 fully-equipped testing & analysis laboratories with modern virtual lab integrations.
-* **Alumni Network:** Distinguished alumni working across premier infrastructure firms and international engineering consultancies.
+### Academic Framework & Opportunities
+The department currently offers one Undergraduate program, namely B.E Civil Engineering and Postgraduate program, namely M.E Structural Engineering. The framework of the program provides ample opportunities for the students to get trained as an Industrialist, Researchers or Entrepreneur. The department has produced eminent engineers who are committed to the highest level of professional standards in the field of Engineering and Technology.
 
-> *"We are honored to lead the department with a team of committed, compassionate educators and researchers, keeping the Civil Engineering department flag flying high."*
+### Strong Alumni Network & Mentorship
+A strong alumni base is created and their contribution to the development of the department is perceived by providing ample opportunities to the students to use the experts network to enrich their career and to acquire experimental learning exposures through frequent interactions organized by the department.
+
+> *"I am honored to lead the department with a team of people who are committed and compassionate and keep the Civil Engineering department flag flying high."*
+
+---
 
 ---
 
@@ -65,28 +69,64 @@ The department offers specialized training across surveying, structural engineer
 
 ---
 
+---
+
 ## JOB PROFILES
 
 ### Employment Outlook for Civil Engineering in India (2025–2030)
-Civil Engineering continues to witness robust career demand driven by national mega-infrastructure initiatives, rapid urbanization, smart transportation networks, and sustainable green construction practices.
+Based on current trends, government policy, industry shifts, and emerging technologies, the civil engineering domain in India is positioned for sustained multi-sector expansion.
 
 ### Key Growth Drivers
-1. **Infrastructure Sector Investment:** Continued government backing through **PM Gati Shakti**, **Smart Cities Mission**, **Bharatmala**, and **AMRUT 2.0** projects ensures high demand for civil engineers.
-2. **Urbanization & Mega Housing:** With India's urban population projected to surpass 600 million by 2030, skilled structural designers, urban planners, and site project managers are in continuous demand.
-3. **Sustainability & Green Buildings:** Growing emphasis on LEED-certified buildings, carbon-neutral construction materials, and renewable water/waste treatment infrastructure.
-4. **Smart Construction Technologies:** Rapid adoption of Building Information Modelling (BIM), precast modular construction, GIS mapping, and drone-based site surveying.
 
-### Projected Annual Job Demand Growth
-* **Green & Sustainable Engineering:** 10% – 12% per year
-* **BIM & Smart Construction:** 15%+ per year
-* **Transportation & Highways (Roads/Rails):** 7% – 10% per year
-* **Public Infrastructure & Utilities:** 6% – 8% per year
-* **Real Estate & Urban Housing:** 4% – 6% per year
+1. **Infrastructure Sector:**
+   * Continued government investment in infrastructure through **PM Gati Shakti**, **Smart Cities Mission**, **Bharatmala**, and **AMRUT 2.0** will keep demand steady for civil engineers.
+   * High focus on high-speed rail, metro rail corridors, mega-expressways, and affordable housing initiatives.
 
-### Career Opportunities for Graduates
-* **Fresh Graduate Roles:** Site Engineer, Structural Design Engineer, QA/QC Inspector, Estimation & Quantity Surveyor, GIS Analyst, Geotechnical Assistant.
-* **Public Sector Opportunities:** SSC JE, RRB (Indian Railways), CPWD, State PWDs, NHAI, Metro Rail Corporations, ONGC.
-* **Top Private Recruiters:** L&T Construction, Shapoorji Pallonji, Tata Projects, Afcons Infrastructure, Sobha, Godrej Properties, AECOM, WSP, Atkins.
+2. **Urbanization & Housing:**
+   * With India's urban population expected to reach **600 million+ by 2030**, there is a sustained need for urban planners, construction engineers, and structural designers.
+   * Accelerating development across Tier-2 and Tier-3 cities will significantly expand regional employment locations.
+
+3. **Sustainability & Green Buildings:**
+   * Increasing demand for green infrastructure, energy-efficient buildings, and climate-resilient designs creates high-value niches within civil engineering.
+
+4. **Private Sector Investment:**
+   * Expansion across real estate and industrial corridors (e.g., Delhi–Mumbai Industrial Corridor) is projected to strongly boost engineering employment.
+
+### Industry Challenges & Paradigm Shifts
+* **Automation & Tech Disruption:** Basic civil engineering tasks (e.g., manual drafting, basic land surveying) are increasingly automated via Building Information Modelling (BIM), drones, and AI-driven site analytics.
+* **Multi-Skilled Engineering Demand:** Employers prioritize multi-skilled engineers equipped with modern software proficiency, agile project management competencies, and sustainability knowledge.
+
+### Projected Job Demand Growth (2025–2030)
+
+| Sector | Estimated Annual Job Growth (2025–2030) | Comments |
+| :--- | :--- | :--- |
+| **Public Infrastructure (Govt.)** | 6% – 8% per year | Driven by mega national public works & connectivity projects |
+| **Real Estate & Housing** | 4% – 6% per year | Fueled by rapid urban migration & smart housing demand |
+| **Transportation (Roads & Rails)** | 7% – 10% per year | Strong boost via national highway networks & metro expansions |
+| **Green & Sustainable Engineering** | 10% – 12% per year | Fast-emerging domain with high sustainability potential |
+| **BIM & Smart Construction** | 15%+ per year | High-growth technical niche with rapid industry adoption |
+
+### Industry Skill Requirements & Upskilling
+* **Technical Design & Modeling Tools:** Mastery of AutoCAD Civil 3D, Revit, STAAD.Pro, ETABS, Primavera P6, and BIM workflows.
+* **Project Management Certifications:** PMP and PRINCE2 credentials for moving into managerial and site supervisory roles.
+* **Green Building Standards:** Knowledge of IGBC, GRIHA, and LEED sustainable engineering practices.
+* **Specialization Domains:** Advanced expertise in Transportation Engineering, Geotechnical Analysis, and Environmental Water Resource Systems.
+
+### Employment Opportunities by Qualification Level
+
+#### 1. Fresh Graduates (B.E. / B.Tech Civil)
+* **Government Sector:** SSC JE, RRB (Indian Railways), State PWDs, CPWD, NHAI, Metro Rail Corporations, and PSU recruitments.
+* **Construction & Infrastructure Leaders:** L&T Construction, Shapoorji Pallonji, Tata Projects, Afcons Infrastructure, Sobha, Godrej Properties.
+* **Entry-Level Roles:** Site Engineer, QA/QC Engineer, Junior Structural Design Engineer, Estimation & Quantity Surveyor.
+* **Job Growth:** ~5% – 6% annually for skilled and qualified fresh graduates, with higher employability for software-proficient engineers.
+
+#### 2. Postgraduates (M.E. / M.Tech / Specialized M.Sc)
+* **Specialized High-Value Roles:** Structural R&D, Seismic Analysis, Foundation Engineering, Highway & Transportation Systems Design.
+* **Consulting & Global Engineering:** High demand in consulting firms, premier research laboratories, academia, and international projects.
+* **Top Global Consultancies:** AECOM, WSP, Atkins, Jacobs, ARUP, and NHAI advisory consultants.
+* **Global & Academic Trends:** Strong demand in geotechnical, environmental, and seismic engineering with foreign career opportunities (UAE, Singapore, Canada) and academic/doctoral research pathways (~8% – 10% annual job growth).
+
+---
 
 ---
 
@@ -108,55 +148,30 @@ Civil Engineering continues to witness robust career demand driven by national m
 | **Mrs. GAYATHRI N** | Assistant Professor | 21/07/2023 | M.E. | Regular |
 | **Mrs. PREETHY MARY A** | Assistant Professor | 18/07/2023 | M.Tech., (Ph.D) | Regular |
 
-### Faculty Specializations
-
-| Name | Qualification | Designation | Area of Specialization |
-| :--- | :--- | :--- | :--- |
-| **Dr. MOHAMED ADIL HAQUE** | M.E., Ph.D. | Head - PG | Structural Engineering |
-| **Dr. SOMESWARAN R** | M.Tech., Ph.D. | Head - UG | Water Resources Engineering |
-| **Dr. ELLISS YOGESH R** | M.E., Ph.D. | Professor | Environmental Engineering |
-| **Mr. RIZHA UR RAHMAN** | M.E., (Ph.D) | Assistant Professor | Structural Engineering |
-| **Ms. HEMAVATHI S** | M.E. | Assistant Professor | Construction Engineering and Management |
-| **Mr. RAKESH R B** | M.E. | Assistant Professor | Environmental Engineering |
-| **Mrs. JANAKI V** | M.E. | Assistant Professor | Structural Engineering |
-| **Mr. NAVANEETHA KRISHNAN C** | M.E. | Assistant Professor | Structural Engineering |
-| **Mr. EMIL REYAN R** | M.E. | Assistant Professor | Structural Engineering |
-| **Mrs. KAVITHRA P** | M.Tech. | Assistant Professor | Construction Engineering and Management |
-| **Mr. RAKHESH R** | M.Tech. | Assistant Professor | Geotechnical Engineering |
-| **Mr. MOHAMED RIYAS M** | M.Tech. | Teaching Associate | Structural Engineering |
+---
 
 ---
 
 ## Department Facilities
 
-### Specialized Laboratories & Infrastructure
+### Specialized Laboratories & Computing Infrastructure
 
-1. **Concrete and Highway Engineering Laboratory**
-   * **Courses Supported:** CE8311 - Construction Materials Laboratory, CE8611 - Highway Engineering Laboratory
-   * **Equipment:** Compression Testing Machine (2000 kN), Los Angeles Abrasion Testing Machine, Ductility Testing Apparatus, Tar Viscometer, Aggregate Impact Tester, Vicat Apparatus.
+1. **Computer Aided Design (CAD) Laboratory**
+   * **Course Code:** CE8381 / CE3381
+   * **Specs & Tools:** AutoCAD Civil 3D, STAAD Pro, ETABS, Revit Architecture.
 
-2. **Soil Mechanics & Geotechnical Laboratory**
-   * **Courses Supported:** CE8511 - Soil Mechanics Laboratory
-   * **Equipment:** Direct Shear Apparatus, Triaxial Compression Test Rig, Standard & Modified Proctor Compaction Units, Consolidation Apparatus, Liquid & Plastic Limit Devices.
+2. **Soil Mechanics Laboratory**
+   * **Course Code:** CE8481 / CE3481
+   * **Specs & Tools:** Direct shear test apparatus, Triaxial shear setup, CBR test equipment.
 
-3. **Strength of Materials Laboratory**
-   * **Courses Supported:** CE8481 - Strength of Materials Laboratory
-   * **Equipment:** Universal Testing Machine (UTM - 400 kN), Torsion Testing Machine, Rockwell & Brinell Hardness Testers, Izod & Charpy Impact Testing Machines, Deflection Test Rigs.
+3. **Concrete and Highway Engineering Laboratory**
+   * **Course Code:** CE8512 / CE3512
+   * **Specs & Tools:** Universal Testing Machine (UTM), Marshall stability apparatus, Bitumen penetrometer.
 
-4. **Hydraulic Engineering & Fluid Mechanics Laboratory**
-   * **Courses Supported:** CE8461 - Hydraulic Engineering Laboratory
-   * **Equipment:** Pelton Wheel Turbine, Francis Turbine, Centrifugal & Reciprocating Pumps, Venturi & Orifice Meter Test Benches, Pipe Friction Apparatus, Open Channel Flume.
-
-5. **Environmental Engineering Laboratory**
-   * **Courses Supported:** CE8512 - Water and Waste Water Analysis Laboratory
-   * **Equipment:** Digital pH Meters, Turbidity Meters, BOD Incubator, COD Digester, UV-Spectrophotometer, Jar Test Apparatus, Muffle Furnace.
-
-*All laboratories are supplemented with virtual lab experiments, computer-aided structural design suites (STAAD.Pro, AutoCAD, Revit), and ICT-enabled digital modules.*
-
----
 
 ## Academics
 
+### Academics
 ### Academic Programs
 
 | Degree | Specialization | Duration | Intake | Seat Matrix | Eligibility |
@@ -176,12 +191,16 @@ Civil Engineering continues to witness robust career demand driven by national m
 
 ---
 
+---
+
 ## News and Events
 
 ### Technical Events & Announcements
 * **National Level Technical Symposium (CONCRETO / CIVILIZE):** Annual inter-collegiate symposium featuring Technical Paper Presentations, Bridge-IT Model Contests, CADD Masters Design Contests, and Quiz Competitions.
 * **Workshops & Seminars:** State-level hands-on training on "BIM for Modern Infrastructure", "Total Station & Drone Surveying in Field Applications", and "Non-Destructive Testing of Concrete Structures".
 * **Guest Lectures by Industry Titans:** Expert sessions by senior structural consultants and chief project engineers from L&T, Tata Projects, and CSIR-SERC.
+
+---
 
 ---
 
@@ -201,3 +220,5 @@ Students undertake regular guided industrial visits to premier engineering sites
 
 ### Placements & Alumni Career Records
 MSAJCE Civil graduates are recruited across top construction conglomerates and engineering consultancies including **L&T Construction, Tata Projects, Afcons Infrastructure, Alchimica, Almino Structures, Magnus Engineering, SHA Constructions, Sobha, and IDBI**.
+
+---
