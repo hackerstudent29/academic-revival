@@ -47,7 +47,7 @@ function Row({ list, duration }: { list: typeof recruiters; duration: string }) 
 export function RecruiterMarquee() {
   const row2 = [...recruiters.slice(7), ...recruiters.slice(0, 7)];
   return (
-    <div className="flex select-none flex-col gap-10 py-10 md:gap-14 md:py-12">
+    <div className="flex select-none flex-col gap-6 md:gap-8 py-2">
       <Row list={recruiters} duration="50s" />
       <Row list={row2} duration="45s" />
     </div>

@@ -6,9 +6,9 @@ export function SmoothScroll() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const lenis = new Lenis({
-      lerp: 0.07, // Buttery smooth momentum scrolling
+      lerp: 0.15, // Higher value means faster, tighter settling (less drift)
       smoothWheel: true,
-      wheelMultiplier: 1.1,
+      wheelMultiplier: 0.9, // Slightly tighter scroll distance
       touchMultiplier: 1.5,
       infinite: false,
     });

@@ -9,20 +9,43 @@ interface NewsItem {
   title: string;
   description?: string;
   date?: string;
+  venue?: string;
   image: string;
   link?: string;
 }
 
-const mainFeaturedArticle: NewsItem = {
-  id: "featured-1",
-  category: "CAMPUS NEWS",
-  title: "Summer 2026 Research Spotlight: MSAJCE Students Study Methane and Earthquake Activity at La Brea Tar Pits",
-  description:
-    "During the Seaver summer 2026 research program, MSAJCE students partnered with faculty mentors to study methane seepage and seismic activity at the world-famous La Brea Tar Pits.",
-  date: "August 18, 2026",
-  image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=1200&auto=format&fit=crop", // placeholder resembling students working
-  link: "/campus-life",
-};
+const mainFeaturedArticles: NewsItem[] = [
+  {
+    id: "featured-1",
+    category: "CAMPUS NEWS",
+    title: "Summer 2026 Research Spotlight: MSAJCE Students Study Methane and Earthquake Activity at La Brea Tar Pits",
+    description:
+      "During the Seaver summer 2026 research program, MSAJCE students partnered with faculty mentors to study methane seepage and seismic activity at the world-famous La Brea Tar Pits.",
+    date: "August 18, 2026",
+    image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=1200&auto=format&fit=crop",
+    link: "/campus-life",
+  },
+  {
+    id: "featured-2",
+    category: "INNOVATION",
+    title: "New AI Research Center Opens on Campus",
+    description:
+      "MSAJCE inaugurates a state-of-the-art Artificial Intelligence research center to foster interdisciplinary collaboration and technological breakthroughs.",
+    date: "September 5, 2026",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1200&auto=format&fit=crop",
+    link: "/campus-life",
+  },
+  {
+    id: "featured-3",
+    category: "GLOBAL OUTREACH",
+    title: "Students Participate in International Tech Symposium in Tokyo",
+    description:
+      "A delegation of 15 engineering students presented their award-winning sustainable energy projects at the Global Tech Symposium.",
+    date: "October 12, 2026",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200&auto=format&fit=crop",
+    link: "/campus-life",
+  }
+];
 
 const sidebarArticles: NewsItem[] = [
   {
@@ -30,6 +53,7 @@ const sidebarArticles: NewsItem[] = [
     category: "CAMPUS COMMUNITY",
     title: "Buster Blazed a Trail as MSAJCE's First Campus Dog",
     date: "August 11, 2026",
+    venue: "Main Campus Quad",
     image: "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=600&auto=format&fit=crop", // placeholder for dog
     link: "/campus-life",
   },
@@ -38,6 +62,7 @@ const sidebarArticles: NewsItem[] = [
     category: "CAMPUS NEWS",
     title: "Studio Arts Professor Dmitry Kemell Contributes to \"Hospital of Emotions\"...",
     date: "August 7, 2026",
+    venue: "Fine Arts Studio",
     image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600&auto=format&fit=crop", // placeholder for art piece
     link: "/campus-life",
   },
@@ -46,6 +71,7 @@ const sidebarArticles: NewsItem[] = [
     category: "CAMPUS NEWS",
     title: "BCLA Summer Internship Spotlight: Miles Gibson '27",
     date: "August 5, 2026",
+    venue: "Career Center",
     image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600&auto=format&fit=crop", // placeholder for students talking
     link: "/campus-life",
   },
@@ -54,6 +80,7 @@ const sidebarArticles: NewsItem[] = [
     category: "ACADEMICS",
     title: "Robotics Workshop: Build Your First Autonomous Drone",
     date: "August 20, 2026",
+    venue: "Engineering Lab 3",
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop",
     link: "/campus-life",
   },
@@ -62,6 +89,7 @@ const sidebarArticles: NewsItem[] = [
     category: "TECH FEST",
     title: "Annual Hackathon 'Innovate 2026' Registrations Open",
     date: "September 2, 2026",
+    venue: "Computer Science Block",
     image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=600&auto=format&fit=crop",
     link: "/campus-life",
   },
@@ -70,6 +98,7 @@ const sidebarArticles: NewsItem[] = [
     category: "SEMINAR",
     title: "Guest Lecture: AI in Healthcare by Dr. Sarah Jenkins",
     date: "September 15, 2026",
+    venue: "Main Auditorium",
     image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600&auto=format&fit=crop",
     link: "/campus-life",
   },
@@ -78,6 +107,7 @@ const sidebarArticles: NewsItem[] = [
     category: "SPORTS",
     title: "Inter-College Basketball Championship Finals",
     date: "September 22, 2026",
+    venue: "Indoor Sports Complex",
     image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=600&auto=format&fit=crop",
     link: "/campus-life",
   },
@@ -86,6 +116,7 @@ const sidebarArticles: NewsItem[] = [
     category: "ALUMNI",
     title: "Alumni Meet & Greet: Celebrating 25 Years of Excellence",
     date: "October 10, 2026",
+    venue: "Grand Alumni Hall",
     image: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=600&auto=format&fit=crop",
     link: "/campus-life",
   },
@@ -117,6 +148,7 @@ const bottomRowArticles: NewsItem[] = [
 
 export function NewsAndEventsSection() {
   const [startIndex, setStartIndex] = useState(0);
+  const [mainIndex, setMainIndex] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -125,10 +157,19 @@ export function NewsAndEventsSection() {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    const mainTimer = setInterval(() => {
+      setMainIndex((prev) => (prev + 1) % mainFeaturedArticles.length);
+    }, 6000);
+    return () => clearInterval(mainTimer);
+  }, []);
+
   const visibleArticles = [];
   for (let i = 0; i < 3; i++) {
     visibleArticles.push(sidebarArticles[(startIndex + i) % sidebarArticles.length]);
   }
+
+  const currentMainArticle = mainFeaturedArticles[mainIndex];
 
   return (
     <section className="bg-[#E4E6E6] dark:bg-[#151412] py-12 md:py-16 transition-colors" id="news">
@@ -146,37 +187,48 @@ export function NewsAndEventsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-5 items-stretch">
           
           {/* Left Column: Large Featured Article (spans 7 columns) */}
-          <Reveal variant="rise" delay={0.1} className="lg:col-span-7">
+          <Reveal variant="rise" delay={0.1} className="lg:col-span-7 h-full">
             <Link
-              to={mainFeaturedArticle.link || "/campus-life"}
-              className="group flex flex-col h-full bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm overflow-hidden p-5 md:p-7"
+              to={currentMainArticle.link || "/campus-life"}
+              className="group flex flex-col h-full bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm p-5 md:p-7 relative overflow-hidden"
             >
               {/* Image with Gradient Overlay */}
-              <div className="relative w-full aspect-[2/1] bg-muted overflow-hidden rounded-[4px]">
-                <img
-                  src={mainFeaturedArticle.image}
-                  alt={mainFeaturedArticle.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-7">
-                  <span className="text-[12px] font-bold uppercase tracking-widest text-white mb-2 block drop-shadow-md">
-                    {mainFeaturedArticle.category}
-                  </span>
-                  <h3 className="text-[22px] md:text-[28px] font-bold leading-tight text-white drop-shadow-md transition-colors group-hover:underline">
-                    {mainFeaturedArticle.title}
-                  </h3>
-                </div>
+              <div className="relative w-full aspect-[2/1] bg-black overflow-hidden rounded-[4px]">
+                <AnimatePresence initial={false}>
+                  <motion.div
+                    key={currentMainArticle.id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="absolute inset-0 w-full h-full"
+                  >
+                    <img
+                      src={currentMainArticle.image}
+                      alt={currentMainArticle.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-6">
+                      <span className="text-[11px] font-bold uppercase tracking-widest text-white/90 mb-1.5 block drop-shadow-md">
+                        {currentMainArticle.category}
+                      </span>
+                      <h3 className="text-[18px] md:text-[22px] font-bold leading-tight text-white drop-shadow-md transition-colors group-hover:underline">
+                        {currentMainArticle.title}
+                      </h3>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
               </div>
 
               {/* Bottom Body */}
-              <div className="pt-6 flex flex-col justify-between flex-1">
-                <p className="text-[15px] text-gray-800 dark:text-gray-300 leading-relaxed">
-                  {mainFeaturedArticle.description}
+              <div className="pt-6 flex flex-col justify-between flex-1 z-10 relative">
+                <p className="text-[15px] text-gray-800 dark:text-gray-300 leading-relaxed transition-colors duration-300">
+                  {currentMainArticle.description}
                 </p>
                 <div className="mt-6 flex justify-end">
                   <span className="text-[12px] text-gray-600 dark:text-gray-400">
-                    {mainFeaturedArticle.date}
+                    {currentMainArticle.date}
                   </span>
                 </div>
               </div>
@@ -237,6 +289,12 @@ export function NewsAndEventsSection() {
                             <h4 className="text-[15px] font-bold text-primary leading-snug group-hover:underline">
                               {article.title}
                             </h4>
+                            {article.venue && (
+                              <span className="text-[#059669] dark:text-[#34d399] text-[12px] font-semibold mt-1.5 flex items-center gap-1 tracking-tight">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                                {article.venue}
+                              </span>
+                            )}
                           </div>
                         </div>
                       </Link>

@@ -12,6 +12,7 @@ import { RotatingWord } from "@/components/RotatingWord";
 import { TestimonialSection } from "@/components/TestimonialSection";
 import { NewsAndEventsSection } from "@/components/NewsAndEventsSection";
 import { ContactSection } from "@/components/ContactSection";
+import { CampusVideoReveal } from "@/components/CampusVideoReveal";
 import { ChatbotWidget } from "@/components/ChatbotWidget";
 
 const title = "MSAJCE — M.S.A.J. College of Engineering, Chennai";
@@ -42,32 +43,36 @@ const heroLinks = [
 
 function Index() {
   const { scrollY } = useScroll();
-  
-  const logoY = useTransform(scrollY, [0, 120], [0, -60]);
-  const logoScale = useTransform(scrollY, [0, 120], [1, 0.4]);
-  const logoOpacity = useTransform(scrollY, [0, 120], [1, 0]);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 80);
+  });
 
   return (
     <motion.main 
-      className="bg-background relative"
+      className="bg-background relative z-0"
       initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
       <section
-        className="relative border-b border-foreground/12 min-h-[calc(100svh-53px)] h-auto md:h-[calc(100svh-73px)] md:overflow-hidden bg-white dark:bg-background flex flex-col"
+        className="relative border-b border-foreground/12 min-h-[calc(100svh-53px)] h-auto md:h-[calc(100svh-65px)] md:overflow-hidden bg-gray-100 dark:bg-background flex flex-col"
         id="hero"
       >
         <div className="grid flex-1 items-stretch md:grid-cols-[47%_53%]">
           <div className="flex h-full flex-col justify-start px-6 pt-6 pb-8 md:px-8 md:pt-8 md:pb-10 lg:px-12 lg:pt-10">
             <DynamicText />
-            <div className="mt-6 mb-6 flex items-center justify-start">
-              <motion.img
-                src="/logos/clg-logo.png"
-                alt="Mohamed Sathak A.J. College of Engineering"
-                className="w-[90%] max-w-[340px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[850px] h-auto object-contain object-left origin-top-left"
-                style={{ y: logoY, scale: logoScale, opacity: logoOpacity }}
-              />
+            <div className="mt-6 mb-6 flex items-center justify-start min-h-[40px] sm:min-h-[50px] md:min-h-[70px] lg:min-h-[100px]">
+              {!isScrolled && (
+                <motion.img
+                  layoutId="msajce-logo"
+                  src="/logos/clg-logo.png"
+                  alt="Mohamed Sathak A.J. College of Engineering"
+                  className="w-[90%] max-w-[340px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[850px] h-auto object-contain object-left origin-top-left"
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                />
+              )}
             </div>
 
             <Stagger gap={0.07} delay={0.25} className="mt-8 border-t border-foreground/12 md:mt-10">
@@ -122,13 +127,13 @@ function Index() {
       </section>
 
       {/* ── Top recruiters marquee ── */}
-      <section className="bg-gray-100 dark:bg-[#121518] border-b border-foreground/12 flex flex-col justify-center py-16 transition-colors" id="top-recruiters">
+      <section className="bg-gray-100 dark:bg-[#121518] border-b border-foreground/12 flex flex-col justify-center py-6 transition-colors" id="top-recruiters">
         <Reveal variant="blur">
           <h2 className="px-6 text-center text-[11px] font-bold uppercase tracking-[0.32em] text-foreground/50 md:px-12">
             Top Recruiters
           </h2>
         </Reveal>
-        <div className="mt-12">
+        <div className="mt-6">
           <RecruiterMarquee />
         </div>
       </section>
@@ -140,6 +145,8 @@ function Index() {
       <WhyJoinSection />
 
       <AboutBannerSection />
+
+      <CampusVideoReveal />
 
       <TestimonialSection />
 

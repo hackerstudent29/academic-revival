@@ -262,9 +262,9 @@ function CoursePage() {
     <div className="min-h-screen bg-background">
       {/* Sub Navigation Bar with Sticky Scroll Indicator */}
       <motion.div 
-        animate={{ y: hidden ? -73 : 0 }}
-        transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
-        className="sticky top-[73px] z-40 bg-background/95 backdrop-blur-md border-b border-border shadow-xs"
+        animate={{ y: hidden ? -65 : 0 }}
+        transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
+        className="sticky top-[65px] z-40 msajce-header-glass border-b border-border hidden md:block"
       >
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <ul className="flex items-center gap-4 md:gap-6 lg:gap-8 text-xs md:text-sm font-bold uppercase tracking-wider text-foreground overflow-x-auto no-scrollbar whitespace-nowrap py-3">
