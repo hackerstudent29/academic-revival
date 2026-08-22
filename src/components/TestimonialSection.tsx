@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Quote } from "lucide-react";
+import { Quote, Play } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const TESTIMONIALS = [
@@ -127,124 +127,343 @@ const TESTIMONIALS = [
 
 export function TestimonialSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  // null = no card playing, 1 = reel 1, 2 = reel 2
+  const [playingCard, setPlayingCard] = useState<number | null>(null);
 
   useEffect(() => {
+    if (playingCard !== null) return;
+
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
-    }, 5000);
+      setActiveIndex((prev) => (prev + 1) % 11);
+    }, 7000);
     return () => clearInterval(interval);
-  }, []);
+  }, [playingCard]);
 
   return (
-    <section className="relative z-10 w-full bg-[#EAEAEA] dark:bg-[#15141c] border-t border-foreground/12 min-h-[100svh] flex flex-col justify-center py-16 transition-colors" id="alumni">
-      
-      {/* Title Elements - Relative so it pushes the content down and is fully visible */}
-      <div className="w-full text-center px-6 mb-12 md:mb-16">
+    <section className="relative z-10 w-full bg-[#EAEAEA] dark:bg-[#15141c] border-t border-border pt-16 pb-24 md:pt-20 md:pb-32 overflow-hidden transition-colors scroll-mt-24" id="alumni">
+
+      {/* Large Typography Watermark to fill background space */}
+      <div className="absolute right-[-2%] bottom-[5%] text-[18vw] font-black text-[#004b87]/[0.015] dark:text-foreground/[0.01] select-none pointer-events-none uppercase leading-none font-sans tracking-tighter">
+        ALUMNI
+      </div>
+
+      {/* Title Elements */}
+      <motion.div 
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.65, ease: [0.215, 0.61, 0.355, 1] }}
+        className="relative z-10 w-full text-center px-6 mb-10 md:mb-12"
+      >
         <p className="text-primary text-[11px] md:text-sm font-bold uppercase tracking-[0.16em] mb-4">
           3940+ Happy Alumni
         </p>
         <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-foreground">
           Testimonials
         </h2>
-      </div>
+      </motion.div>
 
-      <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-[35%_65%] gap-8 md:gap-12 lg:gap-16 items-start">
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col gap-20">
         
-        {/* Left Pane: Vertically scrolling list (Hidden on mobile/tablet) */}
-        <div className="hidden lg:block relative h-[400px] md:h-[450px] lg:h-[50vh] lg:min-h-[450px] lg:max-h-[500px] rounded-2xl border border-foreground/10 bg-card overflow-hidden group shadow-sm">
-          {/* Gradient masks */}
-          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-card to-transparent z-10 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-card to-transparent z-10 pointer-events-none" />
+        {/* Editorial Main Split Row */}
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          <style>{`
-            @keyframes vertical-marquee {
-              0% { transform: translateY(0); }
-              100% { transform: translateY(-50%); }
-            }
-            .animate-vertical-marquee {
-              animation: vertical-marquee 45s linear infinite;
-            }
-          `}</style>
-          
-          <div className="animate-vertical-marquee flex flex-col group-hover:[animation-play-state:paused] pt-12 pb-12">
-            {[...TESTIMONIALS, ...TESTIMONIALS].map((t, idx) => {
-              const realIndex = idx % TESTIMONIALS.length;
-              const isActive = activeIndex === realIndex;
-              return (
-                <div 
-                  key={idx}
-                  onMouseEnter={() => setActiveIndex(realIndex)}
-                  className={`flex items-center gap-4 p-3 mx-3 my-1.5 rounded-xl cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isActive 
-                      ? 'bg-background shadow-md border border-foreground/10 scale-105 z-10' 
-                      : 'hover:bg-foreground/5 scale-100 z-0'
-                  }`}
-                >
-                  <img 
-                    src={t.image} 
-                    alt={t.author} 
-                    className={`w-8 h-8 md:w-10 md:h-10 rounded-full object-cover shrink-0 transition-all duration-500 ${
-                      isActive ? 'filter-none' : 'grayscale opacity-70'
-                    }`} 
-                    loading="lazy"
+          {/* Left 60% (7 Columns): Featured Alumni Block */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.75, delay: 0.1, ease: [0.215, 0.61, 0.355, 1] }}
+            className="col-span-1 lg:col-span-7 w-full flex flex-col gap-6"
+          >
+            <span className="text-[10px] font-mono font-bold tracking-widest text-[#004b87] uppercase block">
+              Featured Alumni Spotlight //
+            </span>
+            
+            <div className="w-full bg-card/40 backdrop-blur-md border border-foreground/10 p-6 md:p-8 rounded-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center shadow-sm">
+              {/* Portrait Photo (Static on hover) */}
+              <div className="col-span-1 md:col-span-5 aspect-[4/5] w-full rounded-sm overflow-hidden border border-foreground/10 relative bg-muted shadow-sm">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={activeIndex}
+                    src={TESTIMONIALS[activeIndex].image}
+                    alt={TESTIMONIALS[activeIndex].author}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="w-full h-full object-cover"
                   />
-                  <div className="flex flex-col flex-grow min-w-0">
-                    <span className={`text-sm font-bold truncate transition-colors ${isActive ? 'text-primary' : 'text-foreground/80'}`}>{t.author}</span>
-                    <span className="text-[11px] font-medium text-foreground/50 uppercase tracking-wider truncate mt-0.5">{t.position}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Right Pane: Simple Dynamic Showcase */}
-        <div className="relative h-[400px] md:h-[450px] lg:h-[50vh] lg:min-h-[450px] lg:max-h-[500px] flex items-center justify-center w-full">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, scale: 0.98, filter: "blur(10px)" }}
-              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-              exit={{ opacity: 0, scale: 1.02, filter: "blur(10px)" }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full max-w-2xl bg-card rounded-2xl border border-foreground/10 shadow-lg p-8 md:p-12 flex flex-col items-start text-foreground"
-            >
-              <Quote className="h-8 w-8 md:h-10 md:w-10 text-primary/40 mb-6" aria-hidden="true" />
-              
-              <blockquote className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium leading-[1.6] text-foreground/90">
-                "{TESTIMONIALS[activeIndex].quote}"
-              </blockquote>
-              
-              <div className="mt-8 pt-6 border-t border-foreground/10 flex flex-col sm:flex-row sm:items-center justify-between w-full gap-4">
-                <div className="flex items-center gap-4">
-                  <img 
-                    src={TESTIMONIALS[activeIndex].image} 
-                    alt={TESTIMONIALS[activeIndex].alt}
-                    className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border border-foreground/10"
-                  />
-                  <div className="flex flex-col">
-                    <span className="text-lg md:text-xl font-bold">{TESTIMONIALS[activeIndex].author}</span>
-                    <span className="text-[11px] md:text-xs font-medium text-foreground/60 tracking-wider uppercase mt-1">
-                      {TESTIMONIALS[activeIndex].position}
-                    </span>
-                  </div>
-                </div>
-
+                </AnimatePresence>
+                
+                {/* Company Logo Badge */}
                 {TESTIMONIALS[activeIndex].companyLogo && (
-                  <div className="h-10 md:h-12 bg-background px-3 py-1.5 rounded-lg flex items-center justify-center border border-foreground/10 shrink-0">
-                    <img 
-                      src={TESTIMONIALS[activeIndex].companyLogo} 
-                      alt="Company Logo" 
-                      className="h-full w-auto max-w-[80px] object-contain" 
+                  <div className="absolute bottom-4 right-4 bg-background/95 backdrop-blur px-3 py-1 rounded-sm border border-foreground/10 shadow-sm shrink-0">
+                    <img
+                      src={TESTIMONIALS[activeIndex].companyLogo}
+                      alt="Company Logo"
+                      className="h-5 w-auto max-w-[70px] object-contain opacity-70"
                     />
                   </div>
                 )}
               </div>
-            </motion.div>
-          </AnimatePresence>
+
+              {/* Editorial Serif Pull-quote */}
+              <div className="col-span-1 md:col-span-7 flex flex-col justify-between h-full min-h-[240px]">
+                <div>
+                  <span className="text-5xl md:text-6xl font-serif text-[#004b87] leading-none block -mb-2">“</span>
+                  <AnimatePresence mode="wait">
+                    <motion.blockquote
+                      key={activeIndex}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.35 }}
+                      className="font-serif text-2xl md:text-3xl lg:text-[34px] font-black leading-tight text-foreground/90 tracking-tight"
+                      style={{ fontFamily: "'Karrik', Georgia, serif" }}
+                    >
+                      {TESTIMONIALS[activeIndex].quote}
+                    </motion.blockquote>
+                  </AnimatePresence>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-foreground/5 flex flex-col">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeIndex}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <span className="text-base font-bold text-foreground block">
+                        {TESTIMONIALS[activeIndex].author}
+                      </span>
+                      <span className="text-[10px] font-mono font-bold tracking-widest text-[#004b87] uppercase block mt-1">
+                        {TESTIMONIALS[activeIndex].position}
+                      </span>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
+
+            {/* Thumbnail Navigation Row & Absolute Principal Note */}
+            <div className="relative mt-2 w-full">
+              <div className="flex flex-wrap items-center gap-3">
+                {TESTIMONIALS.slice(0, 11).map((t, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveIndex(idx)}
+                    className={`relative w-12 h-12 rounded-full overflow-hidden border-2 transition-all duration-300 ${
+                      activeIndex === idx
+                        ? "border-[#004b87] scale-105"
+                        : "border-transparent opacity-60 hover:opacity-100"
+                    }`}
+                  >
+                    <img
+                      src={t.image}
+                      alt={t.author}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right 40% (5 Columns): Vertical Video Reels with matching top alignment header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.75, delay: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
+            className="col-span-1 lg:col-span-5 w-full flex flex-col gap-6"
+          >
+            <span className="text-[10px] font-mono font-bold tracking-widest text-[#004b87] uppercase block">
+              Alumni Video Reels //
+            </span>
+
+            <div className="w-full grid grid-cols-2 gap-4 sm:gap-6 justify-center items-stretch">
+              
+              {/* Reel 1 */}
+              <div className="group/video flex flex-col w-full rounded-md overflow-hidden bg-card border border-foreground/10 shadow-md cursor-pointer transition-all duration-300 hover:border-[#004b87]/40">
+                {/* Video Thumbnail or Inline Player */}
+                <div className="relative aspect-[4/5] w-full bg-black overflow-hidden">
+                  {playingCard === 1 ? (
+                    <iframe
+                      className="absolute inset-0 w-full h-full"
+                      src="https://www.youtube.com/embed/aNVaQWh1Pp4?autoplay=1"
+                      title="Alumni Placement Journey"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <>
+                      <img
+                        src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&q=80&auto=format&fit=crop&aspect=4/5"
+                        alt="Alumni Video Feedback 1"
+                        className="w-full h-full object-cover opacity-80"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center z-20" onClick={() => setPlayingCard(1)}>
+                        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-md group-hover/video:scale-110 transition-transform duration-300">
+                          <Play className="h-5 w-5 text-white fill-white ml-0.5" />
+                        </div>
+                      </div>
+                      <div className="absolute top-3 left-3 z-20 bg-background/90 backdrop-blur px-2.5 py-0.5 rounded-full border border-foreground/10 flex items-center gap-1.5 shadow-sm">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#004b87] animate-pulse" />
+                        <span className="text-[8px] font-mono font-bold tracking-widest text-[#004b87] uppercase">▶ Watch</span>
+                      </div>
+                    </>
+                  )}
+                </div>
+                <div className="p-4 flex flex-col gap-1 bg-card text-left">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-[#004b87]">ALUMNI I PLACEMENT</span>
+                  <h4 className="text-xs font-bold leading-snug text-foreground group-hover/video:text-[#004b87] transition-colors">Alumni Placement Journey</h4>
+                  <p className="text-[10px] text-muted-foreground leading-normal line-clamp-2 mt-0.5">Class of 2024 graduates share their interview prep & campus placement success.</p>
+                </div>
+              </div>
+
+              {/* Reel 2 */}
+              <div className="group/video flex flex-col w-full rounded-md overflow-hidden bg-card border border-foreground/10 shadow-md cursor-pointer transition-all duration-300 hover:border-[#004b87]/40">
+                <div className="relative aspect-[4/5] w-full bg-black overflow-hidden">
+                  {playingCard === 2 ? (
+                    <iframe
+                      className="absolute inset-0 w-full h-full"
+                      src="https://www.youtube.com/embed/aNVaQWh1Pp4?autoplay=1"
+                      title="Campus Life & Growth"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <>
+                      <img
+                        src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=80&auto=format&fit=crop&aspect=4/5"
+                        alt="Alumni Video Feedback 2"
+                        className="w-full h-full object-cover opacity-80"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center z-20" onClick={() => setPlayingCard(2)}>
+                        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-md group-hover/video:scale-110 transition-transform duration-300">
+                          <Play className="h-5 w-5 text-white fill-white ml-0.5" />
+                        </div>
+                      </div>
+                      <div className="absolute top-3 left-3 z-20 bg-background/90 backdrop-blur px-2.5 py-0.5 rounded-full border border-foreground/10 flex items-center gap-1.5 shadow-sm">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#004b87] animate-pulse" />
+                        <span className="text-[8px] font-mono font-bold tracking-widest text-[#004b87] uppercase">▶ Watch</span>
+                      </div>
+                    </>
+                  )}
+                </div>
+                <div className="p-4 flex flex-col gap-1 bg-card text-left">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-[#004b87]">CAMPUS I LIFE</span>
+                  <h4 className="text-xs font-bold leading-snug text-foreground group-hover/video:text-[#004b87] transition-colors">Campus Life & Growth</h4>
+                  <p className="text-[10px] text-muted-foreground leading-normal line-clamp-2 mt-0.5">Engineering leads share details about student research opportunities and campus growth.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Principal's Note (Handwritten, slanted) */}
+            <div className="hidden lg:flex flex-col items-center justify-center shrink-0 -rotate-3 opacity-80 pointer-events-none mt-10 w-full pl-6">
+              <div className="flex flex-col items-start">
+                <span 
+                  className="text-2xl md:text-[28px] text-foreground/90 leading-tight" 
+                  style={{ fontFamily: "'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive" }}
+                >
+                  "Our students don't just build careers,
+                </span>
+                <span 
+                  className="text-2xl md:text-[28px] text-foreground/90 leading-tight ml-8" 
+                  style={{ fontFamily: "'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive" }}
+                >
+                  they shape the future."
+                </span>
+                <span 
+                  className="text-xl md:text-2xl text-[#004b87] font-bold mt-4 ml-12" 
+                  style={{ fontFamily: "'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive" }}
+                >
+                  – Dr. K.S. Srinivasan, Principal
+                </span>
+              </div>
+            </div>
+
+          </motion.div>
+
         </div>
 
+        {/* Horizontal scroll-snap carousel of smaller testimonials below the fold */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.75, ease: [0.215, 0.61, 0.355, 1] }}
+          className="w-full -mt-2 md:-mt-6"
+        >
+          <div className="flex items-center justify-between border-b border-foreground/10 pb-4 mb-8">
+            <div className="flex flex-col">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#004b87]">// Legacy Spotlights</span>
+              <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight mt-1">Alumni Network Feed</h3>
+            </div>
+            <div className="flex gap-2">
+              <span className="text-xs text-muted-foreground font-mono">Hover to Pause</span>
+            </div>
+          </div>
+          
+          <div className="relative w-full overflow-hidden py-4">
+            {/* Gradient masks to fade edges */}
+            <div className="absolute top-0 left-0 bottom-0 w-16 bg-gradient-to-r from-[#EAEAEA] dark:from-[#15141c] to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-[#EAEAEA] dark:from-[#15141c] to-transparent z-10 pointer-events-none" />
+            
+            <style>{`
+              @keyframes horizontal-marquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+              }
+              .animate-horizontal-marquee {
+                display: flex;
+                width: max-content;
+                animation: horizontal-marquee 40s linear infinite;
+              }
+              .animate-horizontal-marquee:hover {
+                animation-play-state: paused;
+              }
+            `}</style>
+            
+            <div className="animate-horizontal-marquee flex gap-6 py-2 px-8">
+              {[...TESTIMONIALS.slice(11), ...TESTIMONIALS.slice(11)].map((t, idx) => (
+                <div 
+                  key={idx} 
+                  className="shrink-0 w-[300px] md:w-[350px] h-[220px] bg-card border border-foreground/10 p-6 rounded-md flex flex-col justify-between shadow-sm cursor-default"
+                >
+                  <div className="flex flex-col">
+                    <Quote className="h-5 w-5 text-[#004b87]/30 mb-4" />
+                    <p className="text-sm text-foreground/80 leading-relaxed font-medium mb-4 line-clamp-4">
+                      "{t.quote}"
+                    </p>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 pt-4 border-t border-foreground/5">
+                    <img 
+                      src={t.image} 
+                      alt={t.author} 
+                      className="w-10 h-10 rounded-full object-cover border border-foreground/10"
+                      loading="lazy"
+                    />
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-sm font-bold text-foreground truncate">{t.author}</span>
+                      <span className="text-[10px] font-mono tracking-widest text-muted-foreground uppercase truncate mt-0.5">
+                        {t.position}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
       </div>
+
+
     </section>
   );
 }

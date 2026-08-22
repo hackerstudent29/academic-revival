@@ -1,173 +1,266 @@
 import { Link } from "@tanstack/react-router";
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, Youtube, ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-const footerContainerVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+// Smooth settle ease — used everywhere
+const E: [number,number,number,number] = [0.16, 1, 0.3, 1];
+
+// Variants: NO transition inside — full transition passed via prop so delay+duration+ease all work together
+const fadeUp  = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
+const fadeUp2 = { hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } };
+const fadeUp3 = { hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } };
+const fadeIn  = { hidden: { opacity: 0 },         visible: { opacity: 1 } };
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.78 },
+  visible: { opacity: 1, scale: 1, transition: { type: "spring" as const, stiffness: 280, damping: 18 } },
+};
+const lineGrow = {
+  hidden:   { scaleX: 0 },
+  visible:  { scaleX: 1 },
 };
 
-const footerItemVariants: Variants = {
-  hidden: { opacity: 0, y: 28, filter: "blur(6px)" },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { type: "spring", stiffness: 120, damping: 20, mass: 0.9 },
-  },
+// Stagger container — children inherit timing from this, plus their own transition for duration/ease
+const stagger = (delay: number, staggerBy: number = 0.055) => ({
+  hidden: {},
+  visible: { transition: { delayChildren: delay, staggerChildren: staggerBy } },
+});
+
+// Children of stagger lists: duration+ease live here (delay comes from stagger parent)
+const listItem = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.42, ease: E } },
 };
+
+const t = (duration: number, delay: number) => ({ duration, ease: E, delay });
 
 const socials = [
   { label: "Instagram", href: "https://instagram.com", Icon: Instagram },
-  { label: "Facebook", href: "https://facebook.com", Icon: Facebook },
-  { label: "LinkedIn", href: "https://linkedin.com", Icon: Linkedin },
-  { label: "X", href: "https://x.com", Icon: Twitter },
-  { label: "YouTube", href: "https://youtube.com", Icon: Youtube },
+  { label: "Facebook",  href: "https://facebook.com",  Icon: Facebook  },
+  { label: "LinkedIn",  href: "https://linkedin.com",  Icon: Linkedin  },
+  { label: "X",         href: "https://x.com",         Icon: Twitter   },
+  { label: "YouTube",   href: "https://youtube.com",   Icon: Youtube   },
 ];
 
 export function SiteFooter() {
-  const footerRef = useRef<HTMLElement>(null);
+  const footerRef   = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [footerHeight, setFooterHeight] = useState(0);
+  const [on, setOn] = useState(false);
+
+  // Toggle on/off as user scrolls in and out of footer range
+  useEffect(() => {
+    const check = () => {
+      const scrollBottom = window.scrollY + window.innerHeight;
+      const docHeight    = document.documentElement.scrollHeight;
+      const threshold    = footerHeight > 0 ? footerHeight * 0.85 : 450;
+      const inView = docHeight - scrollBottom < threshold;
+      setOn(inView);
+    };
+    window.addEventListener("scroll", check, { passive: true });
+    check();
+    return () => window.removeEventListener("scroll", check);
+  }, [footerHeight]);
 
   useEffect(() => {
     if (!footerRef.current) return;
-    const observer = new ResizeObserver((entries) => {
-      const height = entries[0].contentRect.height;
-      setFooterHeight(height);
-      document.documentElement.style.setProperty('--footer-height', `${height}px`);
+    const ro = new ResizeObserver((entries) => {
+      const h = entries[0].contentRect.height;
+      setFooterHeight(h);
+      document.documentElement.style.setProperty("--footer-height", `${h}px`);
     });
-    observer.observe(footerRef.current);
-    return () => observer.disconnect();
+    ro.observe(footerRef.current);
+    return () => ro.disconnect();
   }, []);
 
+  const a = on ? "visible" : "hidden";
+
   return (
-    <div
-      className="relative w-full bg-foreground"
-      style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
-    >
-      <div 
-        className="relative w-full h-auto lg:h-[calc(100vh+var(--footer-height))] lg:mt-[-100vh]"
-      >
-        <div 
-          className="w-full relative lg:sticky lg:top-[calc(100vh-var(--footer-height))] lg:h-[var(--footer-height)]"
-        >
-          <footer 
-            ref={footerRef} 
-            className="w-full bg-foreground text-background"
-          >
+    <div className="relative w-full bg-[#222222]" style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}>
+      <div ref={containerRef} className="relative w-full h-auto lg:h-[calc(100vh+var(--footer-height))] lg:mt-[-100vh]">
+        <div className="w-full relative lg:sticky lg:top-[calc(100vh-var(--footer-height))] lg:h-[var(--footer-height)]">
+          <footer ref={footerRef} className="w-full bg-[#222222] text-[#CCCCCC] relative overflow-hidden">
+
+            {/* ── 1. Watermark: scale 1.08→1 + fade, fires first ── */}
             <motion.div
-              variants={footerContainerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-10%" }}
-              className="mx-auto grid max-w-[1440px] gap-12 px-6 py-16 md:grid-cols-12 md:gap-8 md:px-12 lg:px-16 lg:py-24"
+              className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0"
+              initial={{ opacity: 0, scale: 1.08 }}
+              animate={on ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.08 }}
+              transition={{ duration: 1.2, ease: E }}
             >
-              {/* Column 1: Brand & Contact (Spans 4 columns on desktop) */}
-              <motion.div variants={footerItemVariants} className="md:col-span-12 lg:col-span-5">
-                <svg className="h-24 w-auto text-background -ml-4" viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="30" y="30" width="500" height="1.5" fill="currentColor"/>
-                  <text x="30" y="95" fontFamily="Georgia, 'Times New Roman', serif" fontWeight="700" fontSize="52" fill="currentColor" letterSpacing="4">MSAJ<tspan fontSize="66">C</tspan>EA</text>
-                  <text x="34" y="130" fontFamily="Georgia, 'Times New Roman', serif" fontWeight="400" fontSize="20" fill="currentColor" letterSpacing="6">MOHAMED SATHAK A.J. COLLEGE</text>
-                  <text x="120" y="160" fontFamily="Georgia, 'Times New Roman', serif" fontWeight="400" fontSize="20" fill="currentColor" letterSpacing="6">OF ENGINEERING &amp; ARCHITECTURE</text>
-                </svg>
-                <p className="mt-6 max-w-md text-sm leading-relaxed text-background/60">
+              <span className="text-[20vw] font-black text-primary/[0.12] uppercase leading-none tracking-tighter">MSAJCEA</span>
+            </motion.div>
+
+            {/* ── Main grid ── */}
+            <div className="relative z-10 mx-auto grid max-w-[1440px] gap-12 px-6 py-16 md:grid-cols-12 lg:grid-cols-10 md:gap-8 md:px-12 lg:px-16 lg:py-24">
+
+              {/* ── Col 1: Brand ── */}
+              <div className="md:col-span-12 lg:col-span-4">
+
+                {/* ── 2. Logo block: slide up 0.1s ── */}
+                <motion.div variants={fadeUp} initial="hidden" animate={a} transition={t(0.6, 0.1)}>
+                  <svg className="h-24 w-auto text-white -ml-4" viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+                    {/* ── SVG divider line draws left→right ── */}
+                    <motion.rect x="30" y="30" width="500" height="1.5" fill="currentColor"
+                      initial={{ scaleX: 0 }} animate={on ? { scaleX: 1 } : { scaleX: 0 }}
+                      style={{ transformOrigin: "30px 30px" }}
+                      transition={t(0.75, 0.2)}
+                    />
+                    <text x="30" y="95" fontFamily="Georgia,'Times New Roman',serif" fontWeight="700" fontSize="52" fill="currentColor" letterSpacing="4">MSAJ<tspan fontSize="66">C</tspan>EA</text>
+                    <text x="34" y="130" fontFamily="Georgia,'Times New Roman',serif" fontWeight="400" fontSize="20" fill="currentColor" letterSpacing="6">MOHAMED SATHAK A.J. COLLEGE</text>
+                    <text x="120" y="160" fontFamily="Georgia,'Times New Roman',serif" fontWeight="400" fontSize="20" fill="currentColor" letterSpacing="6">OF ENGINEERING &amp; ARCHITECTURE</text>
+                  </svg>
+                </motion.div>
+
+                <motion.p className="mt-6 max-w-md text-sm leading-relaxed text-[#CCCCCC]/75"
+                  variants={fadeUp} initial="hidden" animate={a} transition={t(0.6, 0.2)}>
                   An autonomous-spirited engineering campus on Chennai's OMR IT corridor. Empowering the next generation of innovators with industry-aligned education, cutting-edge facilities, and global perspectives.
-                </p>
-                <div className="mt-10 space-y-4 text-sm text-background/80 flex flex-col items-start">
-                  <a href="https://maps.google.com/?q=Mohamed+Sathak+A.J.+College+of+Engineering" target="_blank" rel="noreferrer" className="group flex items-start gap-4 hover:text-primary transition-colors">
-                    <MapPin size={18} className="mt-0.5 shrink-0 text-background/50 group-hover:text-primary transition-colors" />
-                    <span className="leading-relaxed">
-                      34, Rajiv Gandhi Salai (OMR),<br />
-                      IT Highway, Siruseri, Egattur,<br />
-                      Chennai, Tamil Nadu 603103
-                    </span>
-                  </a>
-                  <div className="flex items-center gap-4">
-                    <Phone size={18} className="text-background/50" /> 
+                </motion.p>
+
+                {/* ── 3. Contact rows: stagger 90ms ── */}
+                <div className="mt-10 flex flex-col items-start gap-4 text-sm text-[#CCCCCC]">
+                  <motion.a href="https://maps.google.com/?q=Mohamed+Sathak+A.J.+College+of+Engineering"
+                    target="_blank" rel="noreferrer"
+                    className="group flex items-start gap-4 hover:text-primary transition-colors"
+                    variants={fadeUp2} initial="hidden" animate={a} transition={t(0.55, 0.28)}>
+                    <MapPin size={18} className="mt-0.5 shrink-0 text-white/40 group-hover:text-primary transition-colors" />
+                    <span className="leading-relaxed">34, Rajiv Gandhi Salai (OMR),<br />IT Highway, Siruseri, Egattur,<br />Chennai, Tamil Nadu 603103</span>
+                  </motion.a>
+
+                  <motion.div className="flex items-center gap-4"
+                    variants={fadeUp2} initial="hidden" animate={a} transition={t(0.55, 0.37)}>
+                    <Phone size={18} className="text-white/40" />
                     <span className="flex items-center gap-1.5">
                       <a href="tel:+914427470000" className="hover:text-primary transition-colors">+91 44 2747 0000</a>
-                      <span className="text-background/30">/</span>
+                      <span className="text-white/20">/</span>
                       <a href="tel:+914427470001" className="hover:text-primary transition-colors">+91 44 2747 0001</a>
                     </span>
-                  </div>
-                  <a href="mailto:admissions@msajce.edu.in" className="group flex items-center gap-4 hover:text-primary transition-colors">
-                    <Mail size={18} className="text-background/50 group-hover:text-primary transition-colors" /> 
+                  </motion.div>
+
+                  <motion.a href="mailto:admissions@msajce.edu.in"
+                    className="group flex items-center gap-4 hover:text-primary transition-colors"
+                    variants={fadeUp2} initial="hidden" animate={a} transition={t(0.55, 0.46)}>
+                    <Mail size={18} className="text-white/40 group-hover:text-primary transition-colors" />
                     <span>admissions@msajce.edu.in</span>
-                  </a>
-                </div>
-              </motion.div>
-
-              {/* Column 2: Academics (Spans 2 columns) */}
-              <motion.div variants={footerItemVariants} className="md:col-span-4 lg:col-span-2 lg:col-start-7">
-                <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-background/50">Academics</h3>
-                <ul className="mt-8 space-y-4 text-sm text-background/80">
-                  <li><Link to="/academics/msajce_cse" className="group flex items-center justify-between hover:text-primary transition-colors">B.E. CSE <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" /></Link></li>
-                  <li><Link to="/academics/msajce_ece" className="group flex items-center justify-between hover:text-primary transition-colors">B.E. ECE <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" /></Link></li>
-                  <li><Link to="/academics/msajce_it" className="group flex items-center justify-between hover:text-primary transition-colors">B.Tech IT <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" /></Link></li>
-                  <li><Link to="/academics/msajce_aids" className="group flex items-center justify-between hover:text-primary transition-colors">B.Tech AI & DS <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" /></Link></li>
-                  <li><Link to="/academics/msajce_mech" className="group flex items-center justify-between hover:text-primary transition-colors">B.E. Mechanical <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" /></Link></li>
-                  <li><Link to="/academics" className="mt-4 inline-block text-[11px] font-bold uppercase tracking-wider text-primary hover:text-primary/80 transition-colors">View All Programs &rarr;</Link></li>
-                </ul>
-              </motion.div>
-
-              {/* Column 3: Quick Links (Spans 2 columns) */}
-              <motion.div variants={footerItemVariants} className="md:col-span-4 lg:col-span-2">
-                <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-background/50">Quick Links</h3>
-                <ul className="mt-8 space-y-4 text-sm text-background/80">
-                  <li><Link to="/about" className="group flex items-center justify-between hover:text-primary transition-colors">About the College <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" /></Link></li>
-                  <li><Link to="/placements" className="group flex items-center justify-between hover:text-primary transition-colors">Placements & Career <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" /></Link></li>
-                  <li><Link to="/campus-life" className="group flex items-center justify-between hover:text-primary transition-colors">Campus Life <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" /></Link></li>
-                  <li><Link to="/" className="group flex items-center justify-between hover:text-primary transition-colors">Governance <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" /></Link></li>
-                  <li><Link to="/" className="group flex items-center justify-between hover:text-primary transition-colors">Alumni Network <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" /></Link></li>
-                </ul>
-              </motion.div>
-
-              {/* Column 4: Admissions (Spans 2 columns) */}
-              <motion.div variants={footerItemVariants} className="md:col-span-4 lg:col-span-2">
-                <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-background/50">Admissions</h3>
-                <ul className="mt-8 space-y-4 text-sm text-background/80">
-                  <li><Link to="/admissions" className="group flex items-center justify-between hover:text-primary transition-colors">How to Apply <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" /></Link></li>
-                  <li><Link to="/admissions" className="group flex items-center justify-between hover:text-primary transition-colors">Eligibility Criteria <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" /></Link></li>
-                  <li><Link to="/admissions" className="group flex items-center justify-between hover:text-primary transition-colors">Scholarships <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" /></Link></li>
-                  <li><Link to="/contact" className="group flex items-center justify-between hover:text-primary transition-colors">Talk to an Advisor <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" /></Link></li>
-                </ul>
-              </motion.div>
-            </motion.div>
-
-            {/* Bottom Bar */}
-            <motion.div
-              variants={footerItemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-6 border-t border-background/10 px-6 py-8 md:flex-row md:px-12 lg:px-16"
-            >
-              <div className="flex flex-wrap gap-4">
-                {socials.map(({ label, href, Icon }) => (
-                  <motion.a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label={label}
-                    whileTap={{ scale: 0.95 }}
-                    className="group relative inline-flex h-10 w-10 overflow-hidden items-center justify-center rounded-full border border-background/15 text-background/70 transition-colors hover:border-primary"
-                  >
-                    <span className="absolute inset-0 top-full bg-primary transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:top-0" />
-                    <Icon size={17} className="relative z-10 transition-colors duration-300 group-hover:text-primary-foreground" />
                   </motion.a>
-                ))}
+                </div>
               </div>
 
-              <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8 text-xs font-medium uppercase tracking-widest text-background/40">
-                <div className="flex gap-6">
-                  <Link to="/" className="hover:text-primary transition-colors">Privacy Policy</Link>
-                  <Link to="/" className="hover:text-primary transition-colors">Terms of Service</Link>
-                </div>
-                <p>&copy; {new Date().getFullYear()} MSAJCE. All rights reserved.</p>
+              {/* ── Col 2: Academics — header 0.15s, links stagger from 0.22s ── */}
+              <div className="md:col-span-4 lg:col-span-2 lg:col-start-5">
+                <motion.h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-white"
+                  variants={fadeUp} initial="hidden" animate={a} transition={t(0.5, 0.15)}>
+                  Academics
+                </motion.h3>
+                <motion.ul className="mt-8 space-y-4 text-sm text-[#CCCCCC]"
+                  initial="hidden" animate={a} variants={stagger(0.22)}>
+                  {[
+                    { to: "/academics/msajce_cse",  label: "B.E. CSE" },
+                    { to: "/academics/msajce_ece",  label: "B.E. ECE" },
+                    { to: "/academics/msajce_it",   label: "B.Tech IT" },
+                    { to: "/academics/msajce_aids", label: "B.Tech AI & DS" },
+                    { to: "/academics/msajce_mech", label: "B.E. Mechanical" },
+                  ].map(({ to, label }) => (
+                    <motion.li key={to} variants={listItem}>
+                      <Link to={to} className="group flex items-center justify-between hover:text-primary transition-colors">
+                        {label}
+                        <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                      </Link>
+                    </motion.li>
+                  ))}
+                  {/* View All — fires last, arrow nudge on entry */}
+                  <motion.li variants={listItem} transition={{ delay: 0.08 }}>
+                    <Link to="/academics" className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-primary hover:text-primary/80 transition-colors">
+                      View All Programs
+                      <motion.span initial={{ x: 0 }} animate={on ? { x: 4 } : { x: 0 }} transition={{ delay: 0.85, duration: 0.4, ease: E }}>
+                        →
+                      </motion.span>
+                    </Link>
+                  </motion.li>
+                </motion.ul>
               </div>
-            </motion.div>
+
+              {/* ── Col 3: Quick Links — 100ms diagonal offset ── */}
+              <div className="md:col-span-4 lg:col-span-2">
+                <motion.h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-white"
+                  variants={fadeUp} initial="hidden" animate={a} transition={t(0.5, 0.25)}>
+                  Quick Links
+                </motion.h3>
+                <motion.ul className="mt-8 space-y-4 text-sm text-[#CCCCCC]"
+                  initial="hidden" animate={a} variants={stagger(0.32)}>
+                  {[
+                    { to: "/about",        label: "About the College" },
+                    { to: "/placements",   label: "Placements & Career" },
+                    { to: "/campus-life",  label: "Campus Life" },
+                    { to: "/",            label: "Governance" },
+                    { to: "/",            label: "Alumni Network" },
+                  ].map(({ to, label }) => (
+                    <motion.li key={label} variants={listItem}>
+                      <Link to={to} className="group flex items-center justify-between hover:text-primary transition-colors">
+                        {label}
+                        <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                      </Link>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </div>
+
+              {/* ── Col 4: Admissions — another 100ms offset ── */}
+              <div className="md:col-span-4 lg:col-span-2">
+                <motion.h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-white"
+                  variants={fadeUp} initial="hidden" animate={a} transition={t(0.5, 0.35)}>
+                  Admissions
+                </motion.h3>
+                <motion.ul className="mt-8 space-y-4 text-sm text-[#CCCCCC]"
+                  initial="hidden" animate={a} variants={stagger(0.42)}>
+                  {[
+                    { to: "/admissions", label: "How to Apply" },
+                    { to: "/admissions", label: "Eligibility Criteria" },
+                    { to: "/admissions", label: "Scholarships" },
+                    { to: "/contact",    label: "Talk to an Advisor" },
+                  ].map(({ to, label }) => (
+                    <motion.li key={label} variants={listItem}>
+                      <Link to={to} className="group flex items-center justify-between hover:text-primary transition-colors">
+                        {label}
+                        <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                      </Link>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </div>
+            </div>
+
+            {/* ── 7. Bottom Bar ── */}
+            <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+              {/* Divider line draws left→right */}
+              <motion.div className="h-px w-full bg-white/10" style={{ transformOrigin: "left" }}
+                variants={lineGrow} initial="hidden" animate={a} transition={t(0.75, 0.52)} />
+
+              <div className="flex flex-col items-center justify-between gap-6 py-8 md:flex-row">
+                {/* Social icons: scale bounce, 60ms stagger */}
+                <motion.div className="flex flex-wrap gap-4"
+                  initial="hidden" animate={a} variants={stagger(0.62, 0.065)}>
+                  {socials.map(({ label, href, Icon }) => (
+                    <motion.a key={label} href={href} target="_blank" rel="noreferrer noopener" aria-label={label}
+                      variants={scaleIn} whileTap={{ scale: 0.92 }}
+                      className="group relative inline-flex h-10 w-10 overflow-hidden items-center justify-center rounded-full border border-white/15 text-[#CCCCCC] transition-colors hover:border-primary">
+                      <span className="absolute inset-0 top-full bg-primary transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:top-0" />
+                      <Icon size={17} className="relative z-10 transition-colors duration-300 group-hover:text-primary-foreground" />
+                    </motion.a>
+                  ))}
+                </motion.div>
+
+                {/* Copyright: fade only, fires last */}
+                <motion.div className="flex flex-col items-center gap-4 md:flex-row md:gap-8 text-xs font-medium uppercase tracking-widest text-white/40"
+                  variants={fadeIn} initial="hidden" animate={a} transition={t(0.55, 1.1)}>
+                  <div className="flex gap-6">
+                    <Link to="/" className="hover:text-primary transition-colors">Privacy Policy</Link>
+                    <Link to="/" className="hover:text-primary transition-colors">Terms of Service</Link>
+                  </div>
+                  <p>&copy; {new Date().getFullYear()} MSAJCE. All rights reserved.</p>
+                </motion.div>
+              </div>
+            </div>
           </footer>
         </div>
       </div>

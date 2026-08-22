@@ -57,7 +57,7 @@ function Index() {
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
       <section
-        className="relative border-b border-foreground/12 min-h-[calc(100svh-53px)] h-auto md:h-[calc(100svh-65px)] md:overflow-hidden bg-white dark:bg-background flex flex-col"
+        className="relative border-b border-foreground/12 min-h-[calc(100svh-53px)] h-auto md:h-[calc(100svh-65px)] md:overflow-hidden bg-gray-100 dark:bg-background flex flex-col"
         id="hero"
       >
         <div className="grid flex-1 items-stretch md:grid-cols-[47%_53%]">
