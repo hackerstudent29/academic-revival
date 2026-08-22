@@ -3,148 +3,11 @@ import { Reveal } from "./motion";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface NewsItem {
-  id: string;
-  category: string;
-  title: string;
-  description?: string;
-  date?: string;
-  venue?: string;
-  image: string;
-  link?: string;
-}
+import { allEvents } from "@/lib/eventsData";
 
-const mainFeaturedArticles: NewsItem[] = [
-  {
-    id: "featured-1",
-    category: "CAMPUS NEWS",
-    title: "Summer 2026 Research Spotlight: MSAJCE Students Study Methane and Earthquake Activity at La Brea Tar Pits",
-    description:
-      "During the Seaver summer 2026 research program, MSAJCE students partnered with faculty mentors to study methane seepage and seismic activity at the world-famous La Brea Tar Pits.",
-    date: "August 18, 2026",
-    image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=1200&auto=format&fit=crop",
-    link: "/campus-life",
-  },
-  {
-    id: "featured-2",
-    category: "INNOVATION",
-    title: "New AI Research Center Opens on Campus",
-    description:
-      "MSAJCE inaugurates a state-of-the-art Artificial Intelligence research center to foster interdisciplinary collaboration and technological breakthroughs.",
-    date: "September 5, 2026",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1200&auto=format&fit=crop",
-    link: "/campus-life",
-  },
-  {
-    id: "featured-3",
-    category: "GLOBAL OUTREACH",
-    title: "Students Participate in International Tech Symposium in Tokyo",
-    description:
-      "A delegation of 15 engineering students presented their award-winning sustainable energy projects at the Global Tech Symposium.",
-    date: "October 12, 2026",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200&auto=format&fit=crop",
-    link: "/campus-life",
-  }
-];
-
-const sidebarArticles: NewsItem[] = [
-  {
-    id: "side-1",
-    category: "CAMPUS COMMUNITY",
-    title: "Buster Blazed a Trail as MSAJCE's First Campus Dog",
-    date: "August 11, 2026",
-    venue: "Main Campus Quad",
-    image: "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=600&auto=format&fit=crop", // placeholder for dog
-    link: "/campus-life",
-  },
-  {
-    id: "side-2",
-    category: "CAMPUS NEWS",
-    title: "Studio Arts Professor Dmitry Kemell Contributes to \"Hospital of Emotions\"...",
-    date: "August 7, 2026",
-    venue: "Fine Arts Studio",
-    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600&auto=format&fit=crop", // placeholder for art piece
-    link: "/campus-life",
-  },
-  {
-    id: "side-3",
-    category: "CAMPUS NEWS",
-    title: "BCLA Summer Internship Spotlight: Miles Gibson '27",
-    date: "August 5, 2026",
-    venue: "Career Center",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600&auto=format&fit=crop", // placeholder for students talking
-    link: "/campus-life",
-  },
-  {
-    id: "side-4",
-    category: "ACADEMICS",
-    title: "Robotics Workshop: Build Your First Autonomous Drone",
-    date: "August 20, 2026",
-    venue: "Engineering Lab 3",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop",
-    link: "/campus-life",
-  },
-  {
-    id: "side-5",
-    category: "TECH FEST",
-    title: "Annual Hackathon 'Innovate 2026' Registrations Open",
-    date: "September 2, 2026",
-    venue: "Computer Science Block",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=600&auto=format&fit=crop",
-    link: "/campus-life",
-  },
-  {
-    id: "side-6",
-    category: "SEMINAR",
-    title: "Guest Lecture: AI in Healthcare by Dr. Sarah Jenkins",
-    date: "September 15, 2026",
-    venue: "Main Auditorium",
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600&auto=format&fit=crop",
-    link: "/campus-life",
-  },
-  {
-    id: "side-7",
-    category: "SPORTS",
-    title: "Inter-College Basketball Championship Finals",
-    date: "September 22, 2026",
-    venue: "Indoor Sports Complex",
-    image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=600&auto=format&fit=crop",
-    link: "/campus-life",
-  },
-  {
-    id: "side-8",
-    category: "ALUMNI",
-    title: "Alumni Meet & Greet: Celebrating 25 Years of Excellence",
-    date: "October 10, 2026",
-    venue: "Grand Alumni Hall",
-    image: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=600&auto=format&fit=crop",
-    link: "/campus-life",
-  },
-];
-
-const bottomRowArticles: NewsItem[] = [
-  {
-    id: "bottom-1",
-    category: "CAMPUS COMMUNITY",
-    title: "Summer Innovation Fellowship: Students Explore Semiconductor Nanotechnology",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop",
-    link: "/campus-life",
-  },
-  {
-    id: "bottom-2",
-    category: "PRESS RELEASES",
-    title: "Mohamed Sathak Trust Digitizes 40-Year Heritage Archive and Research Publications",
-    image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600&auto=format&fit=crop",
-    link: "/campus-life",
-  },
-  {
-    id: "bottom-3",
-    category: "PRESS RELEASES",
-    title: "MSAJCE Selected as Regional Nodal Center for Green Energy & Sustainability Research",
-    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop",
-    link: "/campus-life",
-  },
-];
+const mainFeaturedArticles = allEvents.filter(e => e.id.startsWith('featured-'));
+const sidebarArticles = allEvents.filter(e => e.id.startsWith('side-'));
+const bottomRowArticles = allEvents.filter(e => e.id.startsWith('bottom-'));
 
 export function NewsAndEventsSection() {
   const [startIndex, setStartIndex] = useState(0);
@@ -189,7 +52,7 @@ export function NewsAndEventsSection() {
           {/* Left Column: Large Featured Article (spans 7 columns) */}
           <Reveal variant="rise" delay={0.1} className="lg:col-span-7 h-full">
             <Link
-              to={currentMainArticle.link || "/campus-life"}
+              to={`/events/${currentMainArticle.id}`}
               className="group flex flex-col h-full bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm p-5 md:p-7 relative overflow-hidden"
             >
               {/* Image with Gradient Overlay */}
@@ -255,7 +118,7 @@ export function NewsAndEventsSection() {
                       className="w-full shrink-0"
                     >
                       <Link
-                        to={article.link || "/campus-life"}
+                        to={`/events/${article.id}`}
                         className="group flex flex-col"
                       >
                         <span className="text-[11px] font-bold uppercase tracking-widest text-gray-800 dark:text-gray-200 mb-3 block">
@@ -311,7 +174,7 @@ export function NewsAndEventsSection() {
           {bottomRowArticles.map((article, idx) => (
             <Reveal key={article.id} variant="rise" delay={0.3 + idx * 0.05} className="w-full h-full">
               <Link
-                to={article.link || "/campus-life"}
+                to={`/events/${article.id}`}
                 className="group flex flex-col h-full bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm p-6"
               >
                 <span className="text-[11px] font-bold uppercase tracking-widest text-gray-800 dark:text-gray-200 mb-3 block">

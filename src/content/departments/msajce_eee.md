@@ -1,20 +1,27 @@
-# Electrical and Electronics Engineering
+# Department of Electrical & Electronics Engineering (EEE)
 
 ## About Department
 
-### Overview
-Electrical engineering is an engineering discipline concerned with the study, design, installation, and operation of equipment and machines ranging from small motors to heavy generators and turbines. Electrical engineering jobs represent over 25 percent of all available jobs in engineering, and in India, 30 percent of government jobs are from electrical engineering sectors. Electrical and electronics engineers can enter into the job market of computer science, electronics, instrumentation, robotics, mechanical engineering, and healthcare sectors, providing them with vast opportunities compared to other branches. Beyond conventional electrical engineering roles in power generation, transmission, distribution, manufacturing, and utilization, they are well-positioned to address a variety of crucial engineering issues faced today. With an expected boom in the electric vehicle sector in the near future, the demand and contribution of electrical engineers to the development of the Indian economy will be tremendous. The Government of India has developed policies and set targets for the implementation of renewable energy sources like solar and wind to reduce the carbon footprint and boost the economy. This program is deeply grounded in science and mathematics, offering a rewarding field of study with numerous opportunities to solve real-time problems.
-
-### Programme
-The program offered is a B.E. in Electrical and Electronics Engineering. The duration is four years for regular students and three years for lateral entry students, comprising eight and six semesters, respectively. The total intake is 30 seats, divided equally with 15 for the government quota and 15 for the management quota. Eligibility for the program requires completion of the 10+2 system of education, and students must have secured a pass in Physics, Chemistry, and Mathematics in their qualifying examination. The curriculum and syllabus follow both the 2021 Regulation and the 2017 Regulation. 
-
-Career opportunities for graduates include roles such as Circuit Designers, Energy Efficiency Engineers, Distribution Planning Engineers, Power System Engineers, Research Engineers, Electrical Safety Engineers, and Power Plant Engineers. The scope for higher studies includes pursuing an M.E., M.Tech., or M.B.A.
+### About Department
+### Department Introduction
+The Department of Electrical & Electronics Engineering at Mohamed Sathak A.J. College of Engineering (MSAJCE) integrates cutting-edge computing hardware and software principles to deliver high-impact technological education. Computing touches every facet of modern civilization—from artificial intelligence, cloud infrastructure, and autonomous systems to healthcare, financial technology, and cybersecurity.
 
 ### Vision
-The vision is to be a center of excellence for transforming students into proficient Electrical and Electronics Engineers through sustainable practices.
+* **V.** To be a centre of excellence for transforming students into proficient Computer Science Engineers through sustainable practices.
 
 ### Mission
-The mission involves imparting core fundamental knowledge and necessary skills in Electrical and Electronics Engineering through innovative teaching and learning methodologies. It aims to inculcate the critical thinking, ethics, lifelong learning, and creativity needed for both the industry and society. Furthermore, the mission cultivates students with all-around competencies for their careers, higher education, and self-employability.
+* **M1.** Impart core fundamental knowledge and necessary skills in Electrical & Electronics Engineering through innovative teaching and learning methodology.
+* **M2.** Inculcate critical thinking, ethics, lifelong learning and creativity needed for industry and society.
+* **M3.** Cultivate the students with all-round competencies, for career, higher education and self-employability.
+
+### Department Overview & Focus Areas
+The department focuses on modern software architecture, algorithms, distributed computing, artificial intelligence, cloud engineering, cybersecurity, and full-stack system design. Interdisciplinary integration connects computational sciences with bioinformatics, data science, financial analytics, and operations research.
+
+Students gain hands-on proficiency in modern programming paradigms, open-source frameworks, database engineering, and mobile/web development.
+
+[DEPARTMENT_HIGHLIGHTS]
+
+---
 
 ---
 
@@ -22,101 +29,70 @@ The mission involves imparting core fundamental knowledge and necessary skills i
 
 ### Programme Educational Objectives (PEOs)
 
-| Code | Programme Educational Objectives |
+| Code | Programme Educational Objective |
 | :--- | :--- |
-| **PEO1** | graduates will be prepared for designing Electrical and Electronics components and systems with creativity and sustainability. |
-| **PEO2** | They will be skilled in the use of modern tools for critical problem solving and analyzing industrial and societal requirements. |
-| **PEO3** | In addition, graduates will be prepared with managerial and leadership skills for their careers and for starting up their own firms. |
+| **PEO1** | Graduates will be prepared for analyzing, designing, developing, and testing robust software solutions and computational products with creativity and sustainability. |
+| **PEO2** | Graduates will be skilled in the use of modern development tools and frameworks for critical problem solving, addressing industrial and societal requirements. |
+| **PEO3** | Graduates will be prepared with managerial and leadership skills, enabling successful tech careers, corporate leadership, and innovative startup ventures. |
 
 ### Program Specific Outcomes (PSOs)
 
-| Code | Program Specific Outcomes |
+| Code | Program Specific Outcome |
 | :--- | :--- |
-| **PSO1** | engineering graduates will be able to apply their acquired knowledge in conventional and non-conventional energy systems to provide acceptable solutions for industrial, societal, and entrepreneurial needs. |
-| **PSO2** | They will also be able to evaluate, analyze, and design components and systems for electric vehicles and hybrid vehicles that are sustainable and eco-friendly. |
+| **PSO1** | Develop creative, scalable computational solutions by adapting emerging technologies, cloud platforms, and AI tools for real-time industrial applications. |
+| **PSO2** | Apply acquired software engineering knowledge to design and deploy enterprise web architectures, secure networks, and innovative mobile applications. |
 
 ### Programme Outcomes (POs)
 
 | PO | Outcome Title | Description |
 | :--- | :--- | :--- |
-| **PO1** | **Engineering Knowledge** | Apply mathematics, science, engineering fundamentals, and an engineering specialization to solve complex engineering problems. |
-| **PO2** | **Problem Analysis** | Identify, formulate, review research literature, and analyze complex engineering problems to reach substantiated conclusions using first principles of mathematics, natural sciences, and engineering sciences. |
-| **PO3** | **Design/Development of Solutions** | Design solutions for complex engineering problems and design system components or processes that meet specified needs with appropriate consideration for public health and safety, as well as cultural, societal, and environmental considerations. |
-| **PO4** | **Conduct Investigations** | Use research-based knowledge and methods, including the design of experiments, analysis and interpretation of data, and synthesis of information to provide valid conclusions. |
-| **PO5** | **Modern Tool Usage** | Create, select, and apply appropriate techniques, resources, and modern engineering and IT tools, including prediction and modeling, to complex engineering activities with an understanding of their limitations. |
-| **PO6** | **The Engineer and Society** | Apply reasoning informed by contextual knowledge to assess societal, health, safety, legal, and cultural issues and the consequent responsibilities relevant to professional engineering practice. |
-| **PO7** | **Environment and Sustainability** | Understand the impact of professional engineering solutions in societal and environmental contexts, demonstrating the knowledge of and need for sustainable development. |
-| **PO8** | **Ethics** | Apply ethical principles and commit to professional ethics, responsibilities, and norms of engineering practice. |
-| **PO9** | **Individual and Team Work** | Function effectively as an individual, and as a member or leader in diverse teams and multidisciplinary settings. |
-| **PO10** | **Communication** | Communicate effectively on complex engineering activities with the engineering community and society at large, including comprehending and writing effective reports, designing documentation, making effective presentations, and giving and receiving clear instructions. |
-| **PO11** | **Project Management and Finance** | Demonstrate knowledge and understanding of engineering and management principles and apply these to one's own work, managing projects, and working in multidisciplinary environments. |
-| **PO12** | **Life-long Learning** | Recognize the need for and have the ability to engage in independent and life-long learning in the broadest context of technological change. |
+| **PO1** | **Engineering Knowledge** | Apply mathematics, computing fundamentals, and computer science specialization to the solution of complex computational problems. |
+| **PO2** | **Problem Analysis** | Identify, formulate, review research literature, and analyze complex engineering and software problems reaching substantiated conclusions using first principles. |
+| **PO3** | **Design/Development Of Solutions** | Design solutions for complex computational problems and design system components or software architectures that meet specified requirements. |
+| **PO4** | **Conduct Investigations** | Use research-based knowledge and methods including design of software experiments, data analysis, and synthesis to provide valid technical conclusions. |
+| **PO5** | **Modern Tool Usage** | Select and apply modern development environments, testing frameworks, cloud platforms, and DevOps tools with an understanding of limitations. |
+| **PO6** | **The Engineer and Society** | Apply contextual reasoning to assess societal, privacy, security, legal, and cultural responsibilities relevant to computing practice. |
+| **PO7** | **Environment and Sustainability** | Understand the impact of computational solutions in societal and environmental contexts and demonstrate knowledge of sustainable green computing. |
+| **PO8** | **Ethics** | Apply professional ethical principles and commit to code of ethics, cyber ethics, data privacy, and norms of engineering practice. |
+| **PO9** | **Individual and Team Work** | Function effectively as an individual, and as a member or leader in diverse software teams and agile multidisciplinary settings. |
+| **PO10** | **Communication** | Communicate effectively on complex computing activities with the engineering community through technical reports, design docs, and clear presentations. |
+| **PO11** | **Project Management and Finance** | Demonstrate knowledge of software project management principles, agile methodologies, and cost estimations in project development. |
+| **PO12** | **Life-long Learning** | Recognize the need for, and have the ability to engage in independent and life-long learning in the rapidly changing landscape of software technology. |
 
 ---
 
-## JOB PROFILES
-
-### Job opportunities in India and Abroad (Both Public & Private Sectors)
-Electrical motors and Generators, Manufacturing, Consultancy (Electrical Engineering), Electrical appliances, Electrical components companies, Lighting & luminaries, Power Generation, Electric wires & Cables, Electrical exporters, Measurements & Instrumentation, Power Distribution, Transformers, Manufacturing Industries, Green Energy Companies in India.
-
-### Employment Forecast: Electrical & Electronics Engineering - 2025–2030 in India
-*( Based on current trends, government policy, industry shifts, and emerging technologies)*
-
-### Key Growth Drivers:
-
-**Energy Transition & Renewable:**
-- Major national investment in solar, wind, and hybrid energy (target: 500 GW by 2030)
-- Rise in demand for Power systems engineers, Grid integrators, and Solar plant Designer.
-
-**Electric Vehicles (EVs):**
-- India’s EV market projected to grow at 40% CAGR
-- Strong demand for Power electronics, Battery management systems (BMS), Motor control, and Embedded system engineers
-
-**Smart Grids & Energy Automation:**
-- Deployment of Smart meters, IoT in transmission, and load balancing algorithms
-- Need for EEE engineers with knowledge in IoT, Data analytics, and AI integration.
-
-**Semiconductor & Electronics Manufacturing (PLI Scheme):**
-- Boost from government’s Production-Linked Incentive (PLI) scheme for electronics and chip manufacturing
-- Rise in job demand in PCB design, VLSI, microelectronics, and hardware design
-
-**Digital India & 5G Rollout:**
-- Massive growth in Telecom infrastructure, Optical fiber networks, & IoT eco systems
-- High demand for RF engineers, signal processing, and embedded firmware developers
-
-### Sector-Wise Employment Growth Projections
-
-| Sector | Projected Job Growth (2025–30) | Key Roles In Demand |
-| :--- | :--- | :--- |
-| Renewable Energy | 10–12% per year | Grid engineer, inverter designer, SCADA |
-| Electric Vehicles & Mobility | 15–18% per year | BMS, Motor control, Embedded systems |
-| Power Transmission & Utilities | 5–7% per year | Substation, load dispatch, Protection systems |
-| Semiconductor & Electronics | 12–15% per year | VLSI, PCB design, ASIC/FPGA engineers |
-| Automation/Industry 4.0 | 8–10% per year | PLC / SCADA, Robotics integration, IIoT |
-| Telecom & 5G | 10–12% per year | RF, Embedded C, DSP, IoT firmware |
-
-### Forecast by Education Level:
-
-| Education Level | Opportunities | Job Growth Rate | Recommendations |
-| :--- | :--- | :--- | :--- |
-| B.Tech/B.E. | Design, systems, product development | 7–9% | Focus on IoT, Power electronics, MATLAB, Embedded Systems, AI & IOT |
-
 ---
+
+
 
 ## Faculty
 
-### Faculty Directory
+### Faculty Directory (2023–2024)
 
 | Name | Designation | Date of Joining | Qualification | Association |
 | :--- | :--- | :--- | :--- | :--- |
-| **Dr. J. Jeha** | Professor | 10/08/2022 | M.E., Ph.D. | Regular |
-| **Dr. S. Devikala** | Professor | 15/03/2023 | M.E., Ph.D. | Regular |
-| **Dr. A. Kamalaselvan** | Assistant Professor | 01/06/2019 | M.E., Ph.D. | Regular |
-| **Mr. Chintala Venkatesh** | Assistant Professor | 14/07/2021 | M.E. | Regular |
-| **Mr. N. Suresh** | Assistant Professor | 22/08/2022 | M.E. | Regular |
-| **Mr. S. V. Vinodh** | Assistant Professor | 05/09/2020 | M.E. | Regular |
-| **Ms. K. Anupreyaa** | Assistant Professor | 18/06/2023 | M.E. | Regular |
-| **Ms. Achanta Gayathri** | Assistant Professor | 25/11/2023 | M.E. | Regular |
+| **Dr. MOHAN E** | Professor | 26/08/2022 | M.E., Ph.D. | Regular |
+| **Dr. VIJAYARANGAN R** | Professor | 19/06/2023 | M.E., Ph.D. | Regular |
+| **Dr. JEYANTHI S** | Associate Professor | 13/03/2023 | M.E., Ph.D. | Regular |
+| **Dr. PARAMESH J** | Professor | 06/09/2023 | M.E., Ph.D. | Regular |
+| **Mr. VIMALATHITHAN S** | Assistant Professor | 09/12/2022 | M.E., (Ph.D.) | Regular |
+| **Mr. PANDARINATHAN V** | Assistant Professor | 18/07/2023 | M.E., (Ph.D.) | Regular |
+| **Mr. MOHIDEEN ABDUL KADHER M** | Assistant Professor | 20/06/2018 | M.E., (Ph.D) | Regular |
+| **Mrs. AISHWARYA M S** | Assistant Professor | 19/12/2022 | M.E. | Regular |
+| **Mrs. GAYATHRI S** | Assistant Professor | 06/04/2022 | M.E. | Regular |
+| **Mrs. MUTHU PANDEESWARI R** | Assistant Professor | 12/09/2022 | M.E., (Ph.D.) | Regular |
+| **Mrs. KANMANI M** | Assistant Professor | 02/01/2023 | M.E. | Regular |
+| **Mrs. ANGAYARKANNI N** | Assistant Professor | 01/06/2023 | M.E. | Regular |
+| **Mrs. GOWRI A** | Assistant Professor | 12/06/2023 | M.E. | Regular |
+
+### PG / Visiting Faculty
+
+| Name | Designation | Date of Joining | Qualification | Association |
+| :--- | :--- | :--- | :--- | :--- |
+| **Dr. NAGASUBRAMANIAN R** | Professor | 01.07.2019 | M.E., Ph.D. | Regular |
+| **Mrs. PANDEESWARI M** | Assistant Professor | 29.08.2022 | M.E. | Regular |
+
+---
 
 ---
 
@@ -124,22 +100,113 @@ Electrical motors and Generators, Manufacturing, Consultancy (Electrical Enginee
 
 ### Specialized Laboratories & Computing Infrastructure
 
-1. **Control and Instrumentation Laboratory**
-   * **Course Code:** EE8511 / EE3511
-   * **Specs & Tools:** MATLAB, PID controllers, Transducers, Bridge circuits.
+1. **C & Data Structures Programming Laboratory**
+   * **Course Code:** CS8261 / CS3351
+   * **Specs & Tools:** High-performance Intel Core i7 workstations, GCC/G++ Compiler suites, Linux Ubuntu environments.
 
-2. **Electrical Machines Laboratory**
-   * **Course Code:** EE8311 / EE3311
-   * **Specs & Tools:** DC/AC Motor-generator sets, Transformers, Loading rheostats.
+2. **Internet Programming & Web Technology Laboratory**
+   * **Course Code:** CS8661 / IT8511
+   * **Specs & Tools:** Full Stack frameworks (React, Node.js, Express, MongoDB, MySQL, Apache Web Server, Postman).
 
-3. **Power Electronics Laboratory**
-   * **Course Code:** EE8512 / EE3512
-   * **Specs & Tools:** CRO/DSO, Chopper/Inverter kits, Power semiconductor devices.
+3. **Operating Systems & System Software Laboratory**
+   * **Course Code:** CS8461
+   * **Specs & Tools:** UNIX/Linux Shell Programming, Kernel compilation modules, VirtualBox/VMware virtualization tools.
 
+4. **Object Oriented Analysis and Design (OOAD) Laboratory**
+   * **Course Code:** CS8461 / CS3491
+   * **Specs & Tools:** Rational Rose, StarUML, Enterprise Architect, Design Pattern testing frameworks.
+
+5. **Computer Networks & Security Laboratory**
+   * **Course Code:** CS8581
+   * **Specs & Tools:** Cisco Packet Tracer, Wireshark Network Protocol Analyzer, NS2/NS3 Network Simulators, Snort IDS.
+
+6. **Cloud & AI Innovation Computing Center**
+   * **Specialization:** GPU-accelerated computing rigs (NVIDIA CUDA), Python/TensorFlow setups, AWS/Azure Sandbox environments.
+
+---
+
+---
 
 ## Academics
 
-### 2021 Regulation Course Materials
-The curriculum for the third semester includes courses in Probability and Complex Functions, Electromagnetic Fields, Digital Logic Circuits, Electrical Machines I, Electron Devices and Circuits, and C Programming and Data Structures. In the fourth semester, students study Environmental Sciences and Sustainability, Transmission and Distribution, Linear Integrated Circuits, Measurements and Instrumentation, Microprocessor and Microcontroller, and Electrical Machines II. The fifth semester covers Power System Analysis, Power Electronics, Control Systems, Utilization and Conservation of Electrical Energy, Power Quality, Electrical Drives, and Disaster Management. Course materials such as lesson plans, question banks, lecture notes, and ICT tools are provided for these subjects.
+### Academics
+### Academic Programs
+
+| Degree | Specialization | Duration | Intake | Seat Matrix | Eligibility |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **B.E.** | Electrical & Electronics Engineering | 4 Years (8 Semesters) / Lateral 3 Years | 60 Seats | Govt Quota: 30 \| Mgmt Quota: 30 | Pass in 10+2 with Physics, Chemistry & Mathematics (HSC / Equivalent) |
+| **M.E.** | Electrical & Electronics Engineering | 2 Years (4 Semesters) | 9 Seats | As per Anna University norms | B.E. / B.Tech in EEE / IT / Equivalent with valid TANCET / GATE score |
+
+### Regulations & Curriculum
+* **[Anna University 2021 Regulation (CBCS)](https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf)** – 33 specialized courses with lesson plans, question banks, lecture notes, and digital ICT tools.
+* **[Anna University 2017 Regulation](https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf)** – Comprehensive foundation and advanced core engineering credits.
+* **Innovative Teaching Methods (ITM):** Implemented across 14 core subjects incorporating problem-based learning, flipped classrooms, and open-source project sprints.
+
+### Higher Education Pathways
+* **Master of Engineering / Technology (M.E. / M.Tech)** in Computer Science, Artificial Intelligence, Data Engineering, or Cybersecurity.
+* **Management Pathways:** MBA in Technology Management, Business Analytics, or Systems Leadership.
+* **Doctoral Research (Ph.D.):** Premier research opportunities in Deep Learning, Blockchain, Quantum Computing, and Distributed Cloud Systems.
 
 ---
+
+---
+
+## News and Events
+
+### Technical Symposiums & Department Highlights
+* **National Level Technical Symposium (INFORIA / HACK-A-THON):** Annual flagship technical festival featuring 24-hour Code Sprints, Web-a-Thons, Algorithm Battles, Reverse Engineering Contests, and UI/UX Design Jams.
+* **Cloud & AI Tech Conclave:** Hands-on workshops on "Large Language Models & Generative AI", "DevOps & Microservices Architecture with Docker & Kubernetes", and "Full Stack Cloud Deployment".
+* **Guest Masterclasses:** Interactive sessions by Principal Architects, Staff Engineers, and Engineering Directors from Amazon, Zoho, TCS, and Cisco.
+
+---
+
+---
+
+## Student Activities
+
+### Student Chapters & Coding Clubs
+* **Computer Society of India (CSI) Student Chapter:** Organizes technical webinars, coding challenges, and professional certification drives.
+* **ACM & IEEE Computer Society Chapters:** Connects students with global research communities, conferences, and technical papers.
+* **Google Developer Student Club (GDSC) & MSAJCE Open Source Club:** Collaborative student teams developing real-world software solutions.
+
+### Industrial Visits & Placements
+* **Corporate Industrial Visits:** Regular technical immersion tours to TCS Siruseri Tech Park, Infosys Mahindra World City, Zoho Corporation, and CTS OMR Campus.
+* **Placement Success:** Over 40+ premier tech organizations recruit from MSAJCE EEE every year with competitive compensation packages.
+
+---
+## Job Profile
+
+### Job opportunities in India and Abroad
+**(Both Public & Private Sectors)**
+
+Job opportunities for Electrical & Electronics Engineering account for over 50% of all available jobs in engineering. In India, 60% of jobs are available in the IT sector (both private and public sector).
+
+*   **Public Sector:** Railways, Airports, ONGC, Remote Sensing, Banking Sector, etc.
+*   **Private Sector:** TCS, Infosys, CTS, Wipro, HCL Technology, Tech Mahindra, Zoho, Intel, Accenture, IBM, FSS, etc.
+
+---
+
+### Employment Growth in Electrical & Electronics Engineering (2025–2030)
+The employment opportunities for Electrical & Electronics Engineering (EEE) in India over the next five years (2025–2030) are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in EEE job openings.
+
+[KEY_DRIVERS_ACCORDION]
+
+---
+
+### Employment Opportunities in High Demand (2025–2030)
+
+| Role | Specializations | Key Skills |
+| :--- | :--- | :--- |
+| **Software Developer/Engineer** | Backend, Frontend, Full Stack Development | Java, Python, C++, JavaScript, React, Node.js, SQL/NoSQL |
+| **Data Scientist & Engineer** | Big Data Analytics, ML, AI, Data Visualization | R, Python, TensorFlow, Spark, Hadoop, SQL |
+| **Cybersecurity Specialist** | Penetration Testing, Ethical Hacking, Network Security | Firewall management, Cryptography, IDS/IPS systems, CISSP, AWS Security |
+| **Cloud Architect & Engineer** | Cloud Infrastructure, AWS, Google Cloud, Azure | Cloud Storage, IaC, Serverless Computing, Containerization (Docker, Kubernetes) |
+| **Blockchain Developer** | Smart Contracts, Decentralized Applications (DApps) | Ethereum, Solidity, Hyperledger, Crypto Libraries |
+| **DevOps Engineer** | Automation, CI/CD Pipelines | Jenkins, Docker, Kubernetes, Terraform |
+| **AI/ML Engineer** | Deep Learning, NLP, Computer Vision | TensorFlow, PyTorch, Keras, OpenCV, Scikit-learn |
+| **IoT Developer** | Embedded Systems, IoT Platforms, Smart Devices | Arduino, Raspberry Pi, Bluetooth, MQTT |
+| **Full-Stack Developer** | Web Development, Mobile Apps | React, Node.js, Express, HTML/CSS, MongoDB |
+| **Game Developer** | AR/VR, Game Engines, Interactive Systems | Unity, Unreal Engine, C#, 3D Modeling, Game Physics |
+
+---
+
