@@ -69,7 +69,14 @@ const keyDrivers = [
   }
 ];
 
-export function KeyDriversAccordion() {
+type DriverPoint = { label: string; description: string };
+export type KeyDriver = { title: string; description?: string; points?: DriverPoint[] };
+
+interface KeyDriversAccordionProps {
+  drivers?: KeyDriver[];
+}
+
+export function KeyDriversAccordion({ drivers = keyDrivers }: KeyDriversAccordionProps) {
   const [activeItem, setActiveItem] = useState<number | null>(null);
 
   return (
@@ -81,28 +88,31 @@ export function KeyDriversAccordion() {
         className="w-full flex flex-col"
         onMouseLeave={() => setActiveItem(null)}
       >
-        {keyDrivers.map((driver, index) => {
+        {drivers.map((driver, index) => {
           const isOpen = activeItem === index;
+          const hasContent = driver.description || (driver.points && driver.points.length > 0);
 
           return (
             <div 
               key={index}
               className="border-b border-border/50 overflow-hidden"
-              onMouseEnter={() => setActiveItem(index)}
+              onMouseEnter={() => hasContent && setActiveItem(index)}
             >
-              <div className="flex flex-1 items-center justify-between py-4 text-sm font-medium cursor-pointer transition-all hover:text-primary">
+              <div className={`flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all ${hasContent ? 'cursor-pointer hover:text-primary' : ''}`}>
                 <span className="text-left font-bold text-base md:text-lg">
                   {driver.title}
                 </span>
-                <motion.div
-                  animate={{ rotate: isOpen ? 180 : 0 }}
-                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground" />
-                </motion.div>
+                {hasContent && (
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground" />
+                  </motion.div>
+                )}
               </div>
               <AnimatePresence initial={false}>
-                {isOpen && (
+                {isOpen && hasContent && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
@@ -110,13 +120,18 @@ export function KeyDriversAccordion() {
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <div className="pb-4 pt-0">
-                      <ul className="space-y-4 pt-2 pb-4 text-muted-foreground text-sm md:text-base leading-relaxed pl-4 list-disc marker:text-primary/50">
-                        {driver.points.map((point, pIndex) => (
-                          <li key={pIndex}>
-                            <strong className="text-foreground">{point.label}:</strong> {point.description}
-                          </li>
-                        ))}
-                      </ul>
+                      {driver.description && (
+                        <p className="text-muted-foreground text-sm md:text-base leading-relaxed pl-4 mb-2">{driver.description}</p>
+                      )}
+                      {driver.points && driver.points.length > 0 && (
+                        <ul className="space-y-4 pt-2 pb-4 text-muted-foreground text-sm md:text-base leading-relaxed pl-4 list-disc marker:text-primary/50">
+                          {driver.points.map((point, pIndex) => (
+                            <li key={pIndex}>
+                              <strong className="text-foreground">{point.label}:</strong> {point.description}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
                   </motion.div>
                 )}

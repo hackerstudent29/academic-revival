@@ -256,6 +256,7 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
     academics: [],
     'news-events': [],
     'student-activities': [],
+    research: [],
   };
 
   if (!markdown) return {};
@@ -329,6 +330,14 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
         heading.includes('chapter')
       ) {
         currentTab = 'student-activities';
+      } else if (
+        heading.includes('research') ||
+        heading.includes('publication') ||
+        heading.includes('mou') ||
+        heading.includes('patent') ||
+        heading.includes('fdp')
+      ) {
+        currentTab = 'research';
       }
     }
 
@@ -350,12 +359,13 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
 const departmentTabsList = [
   { id: 'about', label: 'Overview' },
   { id: 'obe', label: 'Outcomes' },
-  { id: 'job-profile', label: 'Careers' },
+  { id: 'academics', label: 'Curriculum & Syllabus' },
   { id: 'faculty', label: 'Faculty' },
   { id: 'facilities', label: 'Facilities' },
-  { id: 'academics', label: 'Curriculum & Syllabus' },
-  { id: 'news-events', label: 'Happenings' },
+  { id: 'research', label: 'Research' },
+  { id: 'job-profile', label: 'Careers' },
   { id: 'student-activities', label: 'Activities' },
+  { id: 'news-events', label: 'Happenings' },
 ];
 
 function CoursePage() {
@@ -477,12 +487,12 @@ function CoursePage() {
       </td>
     ),
     ol: ({ node, children, ...props }: any) => (
-      <ol style={{ listStyleType: 'decimal', listStylePosition: 'outside', paddingLeft: '1.25rem', marginLeft: '0', margin: '1.5rem 0' }} className="space-y-4 text-muted-foreground" {...props}>
+      <ol style={{ listStyleType: 'decimal', listStylePosition: 'outside', paddingLeft: '1.25rem', marginLeft: '0', margin: '1.5rem 0' }} className="space-y-4 text-muted-foreground [&_ul]:pl-5 [&_ul]:mt-2 [&_ul]:space-y-1 [&_ol]:pl-5" {...props}>
         {children}
       </ol>
     ),
     ul: ({ node, children, ...props }: any) => (
-      <ul style={{ listStyleType: 'disc', listStylePosition: 'outside', paddingLeft: '1.25rem', marginLeft: '0', margin: '0.5rem 0 1rem 0' }} className="space-y-2 text-muted-foreground" {...props}>
+      <ul style={{ listStyleType: 'disc', listStylePosition: 'outside', paddingLeft: '1.25rem', marginLeft: '0', margin: '0.5rem 0 1rem 0' }} className="space-y-2 text-muted-foreground [&_ul]:pl-5 [&_ul]:mt-2 [&_ol]:pl-5" {...props}>
         {children}
       </ul>
     ),
@@ -521,17 +531,17 @@ function CoursePage() {
       >
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 py-1 flex items-center justify-between">
           <div className="font-serif text-foreground tracking-tight text-lg md:text-xl mr-12 shrink-0 hidden lg:block">
-            {course.name}
+            {course.shortName || course.name}
           </div>
-          <div className="flex-1 flex justify-end overflow-hidden">
-            <ul className="flex items-center gap-5 lg:gap-6 text-[13px] font-bold uppercase tracking-[0.04em] text-foreground overflow-x-auto no-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] whitespace-nowrap py-0.5 justify-start lg:justify-end">
-              {departmentTabsList.map((tab) => {
+          <div className="flex-1 overflow-hidden ml-8">
+            <ul className="flex items-center gap-5 lg:gap-6 text-[13px] font-bold uppercase tracking-[0.04em] text-foreground overflow-x-auto no-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] whitespace-nowrap py-0.5 w-full">
+              {departmentTabsList.map((tab, index) => {
                 const isActive = activeTab === tab.id;
                 return (
                   <li
                     key={tab.id}
                     onClick={() => handleTabChange(tab.id)}
-                    className={`relative py-1.5 cursor-pointer transition-colors duration-200 select-none shrink-0 ${
+                    className={`relative py-1.5 cursor-pointer transition-colors duration-200 select-none shrink-0 ${index === 0 ? 'ml-auto' : ''} ${
                       isActive
                         ? 'text-primary'
                         : 'text-foreground hover:text-primary'
@@ -701,8 +711,8 @@ function CoursePage() {
                                   {section}
                                 </ReactMarkdown>
                               </article>
-                              {idx === 0 && jobProfileSections.length > 1 && course.slug === 'computer-science-and-engineering' && (
-                                <KeyDriversAccordion />
+                              {idx === 0 && jobProfileSections.length > 1 && (
+                                <KeyDriversAccordion drivers={course.details.keyDrivers} />
                               )}
                             </Fragment>
                           ))}
@@ -857,7 +867,7 @@ function CoursePage() {
                 );
 
                 return (
-                  <div className="space-y-12">
+                  <div className="space-y-12 mx-0 max-w-none">
                     <div>
                       <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2 text-primary">Faculty</h2>
                       <p className="text-sm text-muted-foreground">The department is powered by accomplished professors, doctorates, and researchers committed to student mentoring and outcome-based engineering education.</p>
@@ -981,23 +991,33 @@ function CoursePage() {
                       Happenings
                     </h2>
                     {/* Category Filter Tabs */}
-                    <div className="flex flex-wrap items-center gap-6 border-b-2 border-primary/20 pb-4">
-                      {NEWS_CATEGORIES.map(category => (
-                        <button
-                          key={category}
-                          onClick={() => {
-                            setActiveCategory(category);
-                            setStartIndex(0);
-                          }}
-                          className={`text-sm font-bold uppercase tracking-widest transition-colors ${
-                            activeCategory === category 
-                              ? 'text-primary' 
-                              : 'text-muted-foreground hover:text-foreground'
-                          }`}
-                        >
-                          {category}
-                        </button>
-                      ))}
+                    <div className="flex flex-wrap items-center gap-2 border-b-2 border-primary/20 pb-4">
+                      {NEWS_CATEGORIES.map(category => {
+                        const isActive = activeCategory === category;
+                        return (
+                          <button
+                            key={category}
+                            onClick={() => {
+                              setActiveCategory(category);
+                              setStartIndex(0);
+                            }}
+                            className={`relative px-4 py-2 text-sm font-bold uppercase tracking-widest transition-colors cursor-pointer outline-none ${
+                              isActive 
+                                ? 'text-primary-foreground' 
+                                : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                            } rounded-full`}
+                          >
+                            {isActive && (
+                              <motion.div
+                                layoutId="activeCategoryPill"
+                                className="absolute inset-0 bg-primary rounded-full z-0"
+                                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                              />
+                            )}
+                            <span className="relative z-10">{category}</span>
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
 
@@ -1009,28 +1029,26 @@ function CoursePage() {
                         <h3 className="text-xl font-bold uppercase tracking-tight text-foreground">Recent Highlights</h3>
                       </div>
                       
-                      <div className="grid grid-cols-2 gap-4">
-                        {filteredHighlights.length > 0 ? filteredHighlights.map((highlight, idx) => (
-                           <Link to={`/events/${highlight.id}`} key={idx} className={`bg-muted relative overflow-hidden group border border-border block ${highlight.className || 'aspect-[16/9]'}`}>
-                             <img src={highlight.image} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt={highlight.title} />
-                             {/* Gradient Scrim */}
-                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-                             
-                             {/* Category Pill Overlay */}
-                             <div className="absolute top-3 left-3">
-                                <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-1 bg-background/90 text-foreground shadow-sm`}>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {filteredHighlights.length > 0 ? filteredHighlights.slice(0, 4).map((highlight, idx) => (
+                          <Link to={`/events/${highlight.id}`} key={idx} className="group flex flex-col gap-3 items-start">
+                            <div className="relative w-full aspect-[16/9] rounded-[4px] overflow-hidden bg-muted">
+                              <img src={highlight.image} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt={highlight.title} />
+                              <div className="absolute top-2 left-2">
+                                <span className="text-[9px] font-black uppercase tracking-widest px-2 py-1 bg-background/90 text-foreground shadow-sm rounded-[2px]">
                                   {highlight.category}
                                 </span>
-                             </div>
-
-                             {/* Text Overlay */}
-                             <div className="absolute bottom-0 left-0 w-full p-4">
-                                <span className="text-[10px] font-bold text-white/80 uppercase tracking-widest mb-1 block">{highlight.date}</span>
-                                <h4 className="font-bold text-white text-base leading-tight">{highlight.title}</h4>
-                             </div>
-                           </Link>
+                              </div>
+                            </div>
+                            <div className="flex flex-col justify-start w-full">
+                              <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold mb-1.5 block">{highlight.date}</span>
+                              <h4 className="text-[14px] font-bold text-foreground leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                                {highlight.title}
+                              </h4>
+                            </div>
+                          </Link>
                         )) : (
-                          <div className="col-span-2 py-12 text-center text-muted-foreground italic text-sm">No recent highlights in this category.</div>
+                          <div className="col-span-1 sm:col-span-2 py-12 text-center text-muted-foreground italic text-sm border border-dashed border-border">No recent highlights in this category.</div>
                         )}
                       </div>
                       <p className="text-sm text-foreground/80 font-medium leading-relaxed mt-4">
@@ -1040,12 +1058,12 @@ function CoursePage() {
                     </div>
 
                     {/* Right: Upcoming Events */}
-                    <div className="lg:col-span-6 space-y-6 flex flex-col">
+                    <div className="lg:col-span-6 space-y-6">
                       <div className="flex items-center gap-3 border-b border-border pb-3">
                         <h3 className="text-xl font-bold uppercase tracking-tight text-foreground">Upcoming Events</h3>
                       </div>
                       
-                      <div className="flex-1 relative overflow-hidden flex flex-col gap-6">
+                      <div className="relative overflow-hidden flex flex-col gap-6">
                         <AnimatePresence initial={false} mode="popLayout">
                           {visibleUpcoming.length > 0 ? visibleUpcoming.map((item) => {
                             const dateObj = new Date(item.date);
@@ -1132,37 +1150,49 @@ function CoursePage() {
                     </div>
                   )}
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="p-6 bg-card border border-border rounded-sm shadow-xs space-y-3">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-black text-sm">01</div>
-                      <h4 className="font-bold text-card-foreground text-lg">Department Technical Symposium</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        Annual inter-collegiate technical festival featuring paper presentations, project expos, code debug contests, and circuit design tournaments.
-                      </p>
+                  {/* Editorial Activities Layout */}
+                  <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 pt-8">
+                    
+                    {/* Left Column: Chapters & Placements */}
+                    <div className="flex-1 space-y-12">
+                      <div className="space-y-6">
+                        <h3 className="text-xl md:text-2xl font-serif tracking-tight text-foreground border-b border-border pb-4">Student Chapters & Clubs</h3>
+                        <div className="space-y-6">
+                          {course.details.activities?.chapters?.map((chapter, idx) => (
+                            <div key={idx}>
+                              <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">{chapter.title}</h4>
+                              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{chapter.description}</p>
+                            </div>
+                          )) || <p className="text-muted-foreground italic text-sm">Activities data not configured.</p>}
+                        </div>
+                      </div>
+
+                      <div className="space-y-6">
+                        <h3 className="text-xl md:text-2xl font-serif tracking-tight text-foreground border-b border-border pb-4">Industrial Visits & Placements</h3>
+                        <div className="space-y-6">
+                          {course.details.activities?.placements?.map((placement, idx) => (
+                            <div key={idx}>
+                              <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">{placement.title}</h4>
+                              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{placement.description}</p>
+                            </div>
+                          )) || <p className="text-muted-foreground italic text-sm">Placement data not configured.</p>}
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="p-6 bg-card border border-border rounded-sm shadow-xs space-y-3">
-                      <div className="w-10 h-10 rounded-full bg-[#059669]/10 flex items-center justify-center text-[#059669] font-black text-sm">02</div>
-                      <h4 className="font-bold text-card-foreground text-lg">Hackathons & Coding Sprints</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        Intensive innovation hackathons focused on AI, sustainability, smart cities, and IoT product prototypes.
-                      </p>
-                    </div>
-
-                    <div className="p-6 bg-card border border-border rounded-sm shadow-xs space-y-3">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-black text-sm">03</div>
-                      <h4 className="font-bold text-card-foreground text-lg">Industry Expert Masterclasses</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        Weekly technical lectures, hands-on tool bootcamps, and career orientation workshops delivered by corporate practitioners.
-                      </p>
-                    </div>
-
-                    <div className="p-6 bg-card border border-border rounded-sm shadow-xs space-y-3">
-                      <div className="w-10 h-10 rounded-full bg-[#059669]/10 flex items-center justify-center text-[#059669] font-black text-sm">04</div>
-                      <h4 className="font-bold text-card-foreground text-lg">Industrial Visits & Field Exposure</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        Regular guided tours of leading industrial units, construction mega-sites, IT data centers, and advanced manufacturing hubs.
-                      </p>
+                    {/* Right Column: Numbered Highlights (No Cards) */}
+                    <div className="flex-1 space-y-10 border-l-0 lg:border-l border-border lg:pl-12">
+                      {course.details.activities?.highlights?.map((highlight, idx) => (
+                        <div key={idx} className="flex gap-6 items-start group cursor-default">
+                          <div className="text-3xl md:text-4xl font-black text-muted-foreground/30 group-hover:text-primary transition-colors font-mono pt-1">
+                            {String(idx + 1).padStart(2, '0')}
+                          </div>
+                          <div>
+                            <h4 className="text-lg md:text-xl font-bold text-foreground mb-2">{highlight.title.replace(/^\d+\s*/, '')}</h4>
+                            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{highlight.description}</p>
+                          </div>
+                        </div>
+                      )) || <p className="text-muted-foreground italic text-sm">Highlights data not configured.</p>}
                     </div>
                   </div>
 
@@ -1224,10 +1254,65 @@ function CoursePage() {
                   })()}
                 </div>
               )}
+
+              {/* Tab 9: Research */}
+              {activeTab === 'research' && (
+                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-10">
+                  {parsedContent['research'] ? (
+                    <article className="mx-0 max-w-none">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                        {parsedContent['research']}
+                      </ReactMarkdown>
+                    </article>
+                  ) : (
+                    <div>
+                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2 text-foreground">Research & Development</h2>
+                      <p className="text-sm text-muted-foreground mb-8">Pioneering innovations, strategic partnerships, and academic excellence.</p>
+                      
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                        <div className="space-y-12">
+                          <div className="space-y-6">
+                            <h3 className="text-xl md:text-2xl font-serif tracking-tight text-foreground border-b border-border pb-4">Publications & Patents</h3>
+                            <div className="space-y-6">
+                              <div>
+                                <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">Research Publications</h4>
+                                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">Our faculty and students actively publish in high-impact international journals and top-tier IEEE/ACM conferences.</p>
+                              </div>
+                              <div>
+                                <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">Patent Details</h4>
+                                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">Fostering a culture of innovation with multiple patents filed and published in emerging technological domains.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="space-y-12">
+                          <div className="space-y-6">
+                            <h3 className="text-xl md:text-2xl font-serif tracking-tight text-foreground border-b border-border pb-4">Collaborations & Projects</h3>
+                            <div className="space-y-6">
+                              <div>
+                                <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">MoU & Partnerships</h4>
+                                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">Strategic Memorandums of Understanding (MoUs) with leading industries and academic institutions for knowledge exchange.</p>
+                              </div>
+                              <div>
+                                <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">Industrial Projects</h4>
+                                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">Solving real-world challenges through government-funded and industry-sponsored consultancy projects.</p>
+                              </div>
+                              <div>
+                                <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">FDPs Attended & Organized</h4>
+                                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">Continuous learning via Faculty Development Programs (FDPs) to stay abreast with state-of-the-art technological advancements.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
         </div>
-
       </div>
         </motion.div>
       </AnimatePresence>
