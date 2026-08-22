@@ -134,7 +134,7 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
 
 const departmentTabsList = [
   { id: 'about', label: 'About Department', icon: Building },
-  { id: 'obe', label: 'OBE Outcomes', icon: Award },
+  { id: 'obe', label: 'OBE', icon: Award },
   { id: 'job-profile', label: 'Job Profiles', icon: Briefcase },
   { id: 'faculty', label: 'Faculty Directory', icon: Users },
   { id: 'facilities', label: 'Laboratories', icon: BookOpen },
@@ -267,7 +267,7 @@ function CoursePage() {
         className="sticky top-[65px] z-40 msajce-header-glass border-b border-border hidden md:block"
       >
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
-          <ul className="flex items-center gap-4 md:gap-6 lg:gap-8 text-xs md:text-sm font-bold uppercase tracking-wider text-foreground overflow-x-auto no-scrollbar whitespace-nowrap py-3">
+          <ul className="flex items-center gap-3 md:gap-5 lg:gap-6 text-[11px] md:text-xs font-bold uppercase tracking-wider text-foreground overflow-x-auto no-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] whitespace-nowrap py-2.5">
             {departmentTabsList.map((tab) => {
               const isActive = activeTab === tab.id;
               const Icon = tab.icon;
@@ -275,13 +275,13 @@ function CoursePage() {
                 <li
                   key={tab.id}
                   onClick={() => handleTabChange(tab.id)}
-                  className={`cursor-pointer transition-all flex items-center gap-2 pb-1 border-b-2 select-none shrink-0 ${
+                  className={`cursor-pointer transition-all flex items-center gap-1.5 pb-1 border-b-2 select-none shrink-0 ${
                     isActive
                       ? 'text-primary border-primary font-black shadow-xs'
                       : 'text-muted-foreground border-transparent hover:text-foreground hover:border-border'
                   }`}
                 >
-                  <Icon size={14} className={isActive ? 'text-primary' : 'text-muted-foreground'} />
+                  <Icon size={13} className={isActive ? 'text-primary' : 'text-muted-foreground'} />
                   {tab.label}
                 </li>
               );
@@ -401,7 +401,7 @@ function CoursePage() {
                     </ReactMarkdown>
                   ) : (
                     <div className="space-y-8">
-                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Outcome Based Education (OBE)</h2>
+                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">OBE</h2>
                       <div className="p-6 bg-card border border-border rounded-sm space-y-4 shadow-xs">
                         <h4 className="font-bold text-lg text-foreground">Programme Educational Objectives (PEOs)</h4>
                         <p className="text-sm text-muted-foreground leading-relaxed">
