@@ -642,7 +642,7 @@ function CoursePage() {
                         <>
                           {aboutSections.map((section, idx) => (
                             <Fragment key={idx}>
-                              <article className="department-prose mx-0 max-w-none">
+                              <article className="w-full mx-0 max-w-none">
                                 <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                                   {section}
                                 </ReactMarkdown>
@@ -656,7 +656,7 @@ function CoursePage() {
                       );
                     })()
                   ) : (
-                    <article className="department-prose mx-0 max-w-none">
+                    <article className="w-full mx-0 max-w-none">
                       <div>
                         <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Overview</h2>
                         <p className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-wrap">
@@ -670,7 +670,7 @@ function CoursePage() {
 
               {/* Tab 2: OBE (Outcome Based Education) */}
               {activeTab === 'obe' && (
-                <article className="department-prose mx-0 max-w-none">
+                <article className="w-full mx-0 max-w-none">
                   {parsedContent['obe'] ? (
                     <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                       {parsedContent['obe']}
@@ -706,7 +706,7 @@ function CoursePage() {
                         <>
                           {jobProfileSections.map((section, idx) => (
                             <Fragment key={idx}>
-                              <article className="department-prose mx-0 max-w-none">
+                              <article className="w-full mx-0 max-w-none">
                                 <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                                   {section}
                                 </ReactMarkdown>
@@ -867,7 +867,7 @@ function CoursePage() {
                 );
 
                 return (
-                  <div className="space-y-12 mx-0 max-w-none">
+                  <div className="w-full space-y-12 mx-0 max-w-none">
                     <div>
                       <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2 text-primary">Faculty</h2>
                       <p className="text-sm text-muted-foreground">The department is powered by accomplished professors, doctorates, and researchers committed to student mentoring and outcome-based engineering education.</p>
@@ -935,7 +935,7 @@ function CoursePage() {
               {/* Tab 5: Department Facilities */}
               {activeTab === 'facilities' && (
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <article className="department-prose mx-0 max-w-none">
+                  <article className="w-full mx-0 max-w-none">
                     {parsedContent['facilities'] ? (
                       <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                         {parsedContent['facilities']}
@@ -955,7 +955,7 @@ function CoursePage() {
               {/* Tab 6: Academics */}
               {activeTab === 'academics' && (
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <article className="department-prose mx-0 max-w-none">
+                  <article className="w-full mx-0 max-w-none">
                     {parsedContent['academics'] ? (
                       <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                         {parsedContent['academics']}
