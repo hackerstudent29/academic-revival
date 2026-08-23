@@ -399,13 +399,6 @@ function CoursePage() {
     }
   };
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      // @ts-ignore
-      setCurrentNews((prev: any) => (prev + 1) % newsItems.length);
-    }, 3500);
-    return () => clearInterval(timer);
-  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
