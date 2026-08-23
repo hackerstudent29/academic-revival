@@ -140,7 +140,7 @@ export function TestimonialSection() {
   }, [playingCard]);
 
   return (
-    <section className="relative z-10 w-full bg-[#EAEAEA] dark:bg-[#15141c] border-t border-border pt-16 pb-24 md:pt-20 md:pb-32 overflow-hidden transition-colors scroll-mt-24" id="alumni">
+    <section className="relative z-10 w-full bg-[#EAEAEA] dark:bg-[#15141c] border-t border-border pt-16 pb-24 md:pt-20 md:pb-32 overflow-hidden scroll-mt-24" id="alumni">
 
       {/* Large Typography Watermark to fill background space */}
       <div className="absolute right-[-2%] bottom-[5%] text-[18vw] font-black text-[#004b87]/[0.015] dark:text-foreground/[0.01] select-none pointer-events-none uppercase leading-none font-sans tracking-tighter">

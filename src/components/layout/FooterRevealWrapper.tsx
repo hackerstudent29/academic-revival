@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { SiteFooter } from "@/components/SiteFooter";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 
 export function FooterRevealWrapper({ children }: { children: ReactNode }) {
   const footerRef = useRef<HTMLDivElement>(null);

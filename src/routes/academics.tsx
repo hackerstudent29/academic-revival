@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { PageHero } from "@/components/PageHero";
-import { AcademicProgrammesSection } from "@/components/AcademicProgrammesSection";
+import { PageHero } from "@/components/shared/PageHero";
+import { AcademicProgrammesSection } from "@/components/sections/AcademicProgrammesSection";
 
 const title = "Academic Programmes at MSAJCE — UG, PG & Research";
 const description =

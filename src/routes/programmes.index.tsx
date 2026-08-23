@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { PageHero } from '@/components/PageHero';
+import { PageHero } from '@/components/shared/PageHero';
 import { ArrowRight, Settings2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 

@@ -123,7 +123,7 @@ export const allCourses: Course[] = [
     name: "Computer Science & Engineering", shortName: "CSE", slug: "computer-science-and-engineering", 
     intake: 60, govtQuota: 30, managementQuota: 30, level: "Undergraduate", department: "Computing", 
     description: "Learn the fundamentals of software development, algorithms, and system design.", 
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1400&q=80",
     details: { 
       activities: {
         chapters: [

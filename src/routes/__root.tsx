@@ -4,15 +4,16 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SmoothScroll } from "@/components/SmoothScroll";
-import { ScrollToTop } from "@/components/ScrollToTop";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SmoothScroll } from "@/components/shared/SmoothScroll";
+import { ScrollToTop } from "@/components/shared/ScrollToTop";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -133,27 +134,33 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useRouterState({ select: (s) => s.location });
+  const isAdminRoute = location?.pathname?.startsWith('/admin') || false;
 
   return (
     <QueryClientProvider client={queryClient}>
       <SmoothScroll />
       <ScrollToTop />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <div className="bg-background text-foreground">
-        <div 
-          className="relative z-10 flex min-h-screen flex-col bg-background shadow-[0_20px_50px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
-          style={{ marginBottom: "var(--footer-height, 0px)" }}
-        >
-          <SiteHeader />
-          <div className="msajce-page-blur flex flex-1 flex-col">
-            <Outlet />
+      {isAdminRoute ? (
+        <Outlet />
+      ) : (
+        <div className="bg-background text-foreground">
+          <div 
+            className="relative z-10 flex min-h-screen flex-col bg-background shadow-[0_20px_50px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+            style={{ marginBottom: "var(--footer-height, 0px)" }}
+          >
+            <SiteHeader />
+            <div className="msajce-page-blur flex flex-1 flex-col">
+              <Outlet />
+            </div>
+          </div>
+          
+          <div className="fixed bottom-0 left-0 w-full z-0">
+            <SiteFooter />
           </div>
         </div>
-        
-        <div className="fixed bottom-0 left-0 w-full z-0">
-          <SiteFooter />
-        </div>
-      </div>
+      )}
     </QueryClientProvider>
   );
 }
