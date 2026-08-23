@@ -67,8 +67,6 @@ const campusFacilities = [
   }
 ];
 
-import { EditableText } from "@/components/admin/EditableText";
-
 export function AboutBannerSection() {
   const [activeFacility, setActiveFacility] = useState<number | null>(null);
 
@@ -97,12 +95,9 @@ export function AboutBannerSection() {
               >
                 <div className="flex flex-col h-full justify-center">
                   <div className="mb-8 pr-4">
-                    <EditableText 
-                      page="home" 
-                      field="about.quote" 
-                      as="blockquote"
-                      defaultValue={`"We don't just teach engineering. We build the people who will <span class="italic font-normal text-primary">rebuild it.</span>"`}
+                    <blockquote
                       className="text-[2rem] md:text-[2.5rem] lg:text-[2.75rem] font-medium leading-[1.15] tracking-tight text-foreground mb-6"
+                      dangerouslySetInnerHTML={{ __html: `"We don't just teach engineering. We build the people who will <span class="italic font-normal text-primary">rebuild it.</span>"` }}
                     />
                     <div className="flex flex-col gap-1">
                       <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-foreground">Dr. M. S. A. J.</span>

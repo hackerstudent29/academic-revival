@@ -134,7 +134,7 @@ export function TestimonialSection() {
     if (playingCard !== null) return;
 
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % 11);
+      setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
     }, 7000);
     return () => clearInterval(interval);
   }, [playingCard]);
@@ -186,8 +186,8 @@ export function TestimonialSection() {
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={activeIndex}
-                    src={TESTIMONIALS[activeIndex].image}
-                    alt={TESTIMONIALS[activeIndex].author}
+                    src={TESTIMONIALS[activeIndex]?.image}
+                    alt={TESTIMONIALS[activeIndex]?.author}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -197,10 +197,10 @@ export function TestimonialSection() {
                 </AnimatePresence>
                 
                 {/* Company Logo Badge */}
-                {TESTIMONIALS[activeIndex].companyLogo && (
+                {TESTIMONIALS[activeIndex]?.companyLogo && (
                   <div className="absolute bottom-4 right-4 bg-background/95 backdrop-blur px-3 py-1 rounded-sm border border-foreground/10 shadow-sm shrink-0">
                     <img
-                      src={TESTIMONIALS[activeIndex].companyLogo}
+                      src={TESTIMONIALS[activeIndex]?.companyLogo}
                       alt="Company Logo"
                       className="h-5 w-auto max-w-[70px] object-contain opacity-70"
                     />
@@ -222,7 +222,7 @@ export function TestimonialSection() {
                       className="font-serif text-2xl md:text-3xl lg:text-[34px] font-black leading-tight text-foreground/90 tracking-tight"
                       style={{ fontFamily: "'Karrik', Georgia, serif" }}
                     >
-                      {TESTIMONIALS[activeIndex].quote}
+                      {TESTIMONIALS[activeIndex]?.quote}
                     </motion.blockquote>
                   </AnimatePresence>
                 </div>
@@ -237,10 +237,10 @@ export function TestimonialSection() {
                       transition={{ duration: 0.3 }}
                     >
                       <span className="text-base font-bold text-foreground block">
-                        {TESTIMONIALS[activeIndex].author}
+                        {TESTIMONIALS[activeIndex]?.author}
                       </span>
                       <span className="text-[10px] font-mono font-bold tracking-widest text-[#004b87] uppercase block mt-1">
-                        {TESTIMONIALS[activeIndex].position}
+                        {TESTIMONIALS[activeIndex]?.position}
                       </span>
                     </motion.div>
                   </AnimatePresence>
@@ -251,7 +251,7 @@ export function TestimonialSection() {
             {/* Thumbnail Navigation Row & Absolute Principal Note */}
             <div className="relative mt-2 w-full">
               <div className="flex flex-wrap items-center gap-3">
-                {TESTIMONIALS.slice(0, 11).map((t, idx) => (
+                {TESTIMONIALS.map((t, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveIndex(idx)}

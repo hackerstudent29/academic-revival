@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import {
@@ -67,6 +68,7 @@ export function ImageCollageSquare({ images }: ImageCollageSquareProps) {
 }
 
 export function WhyJoinSection() {
+  const [activeItem, setActiveItem] = useState(0);
   const collageImages = [
     ITEMS[0].mediaUrl,
     ITEMS[1].mediaUrl,
@@ -90,8 +92,11 @@ export function WhyJoinSection() {
           <h2 className="text-4xl md:text-5xl font-black text-foreground tracking-tighter">
             <SplitText text="Why Join MSAJCE?" />
           </h2>
-          <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            A campus designed to turn your ambition into real-world achievement.
+          <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground leading-tight lg:leading-tight">
+            {ITEMS[activeItem].title}
+          </h3>
+          <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
+            {ITEMS[activeItem].content}
           </p>
         </Reveal>
 
@@ -106,9 +111,12 @@ export function WhyJoinSection() {
               {ITEMS.map((item, idx) => (
                 <Reveal key={item.id} variant="slide-right" delay={idx * 0.05} className="flex gap-3 items-start animate-fade-in">
                   <span className="text-primary font-bold text-base leading-none mt-1">✓</span>
-                  <span className="font-bold text-foreground text-sm md:text-base leading-relaxed">
+                  <button 
+                    onClick={() => setActiveItem(idx)}
+                    className="text-left font-bold text-foreground text-sm md:text-base leading-relaxed hover:text-primary transition-colors"
+                  >
                     {item.title}
-                  </span>
+                  </button>
                 </Reveal>
               ))}
             </div>
