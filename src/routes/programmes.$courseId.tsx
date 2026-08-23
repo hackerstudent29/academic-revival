@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { supabase } from '@/lib/supabase';
 import { allCourses } from '@/lib/courseData';
 import { ArrowRight, ChevronRight, Award, BookOpen, Users, Building, Briefcase, GraduationCap, Calendar, CheckCircle2 } from 'lucide-react';
 import { useEffect, useState, Fragment } from 'react';
@@ -8,8 +7,9 @@ import remarkGfm from 'remark-gfm';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { KeyDriversAccordion } from "@/components/widgets/KeyDriversAccordion";
 import { DepartmentHighlightsGrid } from "@/components/widgets/DepartmentHighlightsGrid";
-import { EditableProvider } from "@/components/admin/EditableProvider";
-import { EditableText } from "@/components/admin/EditableText";
+
+const markdownImports = import.meta.glob('@/content/departments/*.md', { query: '?raw', import: 'default' });
+
 const NEWS_CATEGORIES = ['All', 'Placements', 'Research', 'Workshops', 'Seminars', 'Achievements'];
 
 const categoryColors: Record<string, string> = {
@@ -228,71 +228,20 @@ const getStudentCoordinators = (slug: string) => {
   ];
 };
 
-const getCourseDisplayName = (course: any, useShort: boolean) => {
-  if (!course) return '';
-  const baseName = useShort ? (course.shortName || course.name) : course.name;
-  
-  if (course.department === 'Architecture' || course.department === 'Design') {
-    return baseName;
-  }
-  
-  if (course.level?.includes('Ph.D') || course.slug?.startsWith('phd-')) {
-    return `Ph.D. in ${baseName}`;
-  }
-  
-  let prefix = '';
-  if (course.level === 'Postgraduate') {
-    prefix = 'M.E.';
-  } else if (['information-technology', 'artificial-intelligence-and-data-science', 'artificial-intelligence-and-machine-learning', 'computer-science-and-business-systems', 'computer-science-and-engineering-cyber-security'].includes(course.slug)) {
-    prefix = 'B.Tech.';
-  } else {
-    prefix = 'B.E.';
-  }
-  
-  return `${prefix} ${baseName}`;
-};
-
 export const Route = createFileRoute('/programmes/$courseId')({
   loader: async ({ params }) => {
-    try {
-      const { data: dbCourse, error } = await supabase
-        .from('departments')
-        .select('*')
-        .eq('slug', params.courseId)
-        .single();
-      
-      let markdownContent = null;
-      
-      const { data: siteContent } = await supabase
-        .from('site_content')
-        .select('content')
-        .eq('page_name', `departments.${params.courseId}`)
-        .single();
-        
-      if (siteContent?.content?.markdownContent) {
-         markdownContent = siteContent.content.markdownContent;
-      }
-      
-      if (dbCourse) {
-         // Parse the JSONB details field from DB
-         const course = {
-           ...dbCourse,
-           shortName: dbCourse.short_name,
-           govtQuota: dbCourse.govt_quota,
-           managementQuota: dbCourse.management_quota,
-           details: dbCourse.details || {}
-         };
-         return { course, markdownContent };
-      }
-    } catch (e) {
-      console.warn("DB fetch failed, falling back to static course data");
-    }
-
-    // Fallback if DB fetch fails
     const course = allCourses.find(c => c.slug === params.courseId);
     if (!course) throw new Error("Course not found");
     
-    return { course, markdownContent: null };
+    let markdownContent = null;
+    if (course.markdownFile) {
+      const importFn = markdownImports[`/src/content/departments/${course.markdownFile}`];
+      if (importFn) {
+        markdownContent = await importFn() as string;
+      }
+    }
+
+    return { course, markdownContent };
   },
   component: CoursePage,
 });
@@ -317,7 +266,6 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    if (line === undefined) continue;
 
     if (line.startsWith('## ')) {
       const heading = line.replace(/^##\s+/, '').toLowerCase();
@@ -395,7 +343,7 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
 
     if (sections[currentTab]) {
       if (!line.startsWith('# ')) {
-        sections[currentTab]!.push(line);
+        sections[currentTab].push(line);
       }
     }
   }
@@ -422,15 +370,6 @@ const departmentTabsList = [
 
 function CoursePage() {
   const { course, markdownContent } = Route.useLoaderData();
-  
-  return (
-    <EditableProvider>
-      <CourseContent course={course} markdownContent={markdownContent} />
-    </EditableProvider>
-  );
-}
-
-function CourseContent({ course, markdownContent }: { course: any, markdownContent: any }) {
   const [hidden, setHidden] = useState(false);
   const [activeTab, setActiveTab] = useState('about');
   const [activeCategory, setActiveCategory] = useState('All');
@@ -460,7 +399,13 @@ function CourseContent({ course, markdownContent }: { course: any, markdownConte
     }
   };
 
-
+  useEffect(() => {
+    const timer = setInterval(() => {
+      // @ts-ignore
+      setCurrentNews((prev: any) => (prev + 1) % newsItems.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
@@ -587,17 +532,17 @@ function CourseContent({ course, markdownContent }: { course: any, markdownConte
       >
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 py-1 flex items-center justify-between">
           <div className="font-serif text-foreground tracking-tight text-lg md:text-xl mr-12 shrink-0 hidden lg:block">
-            {getCourseDisplayName(course, true)}
+            {course.shortName || course.name}
           </div>
           <div className="flex-1 overflow-hidden ml-8">
-            <ul className="flex items-center md:justify-end gap-5 lg:gap-6 text-[13px] font-bold uppercase tracking-[0.04em] text-foreground overflow-x-auto no-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] whitespace-nowrap py-0.5 w-full">
+            <ul className="flex items-center gap-5 lg:gap-6 text-[13px] font-bold uppercase tracking-[0.04em] text-foreground overflow-x-auto no-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] whitespace-nowrap py-0.5 w-full">
               {departmentTabsList.map((tab, index) => {
                 const isActive = activeTab === tab.id;
                 return (
                   <li
                     key={tab.id}
                     onClick={() => handleTabChange(tab.id)}
-                    className={`relative py-1.5 cursor-pointer transition-colors duration-200 select-none shrink-0 ${
+                    className={`relative py-1.5 cursor-pointer transition-colors duration-200 select-none shrink-0 ${index === 0 ? 'ml-auto' : ''} ${
                       isActive
                         ? 'text-primary'
                         : 'text-foreground hover:text-primary'
@@ -619,7 +564,7 @@ function CourseContent({ course, markdownContent }: { course: any, markdownConte
 
       <AnimatePresence mode="wait">
         <motion.div
-          key={`overlay-${course.id}`}
+          key={`overlay-${course.slug}`}
           initial={{ opacity: 0.85 }}
           animate={{ opacity: 0, transition: { duration: 0.18, ease: "easeOut" } }}
           exit={{ opacity: 0.85, transition: { duration: 0.12, ease: "easeIn" } }}
@@ -627,7 +572,7 @@ function CourseContent({ course, markdownContent }: { course: any, markdownConte
         />
 
         <motion.div
-          key={`page-${course.id}`}
+          key={`page-${course.slug}`}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.05, duration: 0.3 } }}
           exit={{ opacity: 0, transition: { duration: 0.12 } }}
@@ -653,7 +598,7 @@ function CourseContent({ course, markdownContent }: { course: any, markdownConte
                Department of
              </span>
              <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif tracking-tight text-foreground mb-6 leading-tight">
-               {getCourseDisplayName(course, false)}
+               {course.name}
              </h1>
              
              {/* Hero Strip */}
@@ -715,14 +660,9 @@ function CourseContent({ course, markdownContent }: { course: any, markdownConte
                     <article className="w-full mx-0 max-w-none">
                       <div>
                         <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Overview</h2>
-                        <EditableText
-                          page={`departments.${course.slug}`}
-                          field="overview"
-                          defaultValue={course.details.overview || 'Overview coming soon...'}
-                          as="p"
-                          className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-wrap"
-                          multiline={true}
-                        />
+                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-wrap">
+                          {course.details.overview}
+                        </p>
                       </div>
                     </article>
                   )}
@@ -1092,9 +1032,7 @@ function CourseContent({ course, markdownContent }: { course: any, markdownConte
                       
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {filteredHighlights.length > 0 ? filteredHighlights.slice(0, 4).map((highlight, idx) => (
-                          <Link
-                            // @ts-ignore
-                            to={`/events/${highlight.id}`} key={idx} className="group flex flex-col gap-3 items-start">
+                          <Link to={`/events/${highlight.id}`} key={idx} className="group flex flex-col gap-3 items-start">
                             <div className="relative w-full aspect-[16/9] rounded-[4px] overflow-hidden bg-muted">
                               <img src={highlight.image} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt={highlight.title} />
                               <div className="absolute top-2 left-2">
@@ -1129,30 +1067,28 @@ function CourseContent({ course, markdownContent }: { course: any, markdownConte
                       <div className="relative overflow-hidden flex flex-col gap-6">
                         <AnimatePresence initial={false} mode="popLayout">
                           {visibleUpcoming.length > 0 ? visibleUpcoming.map((item) => {
-                            const dateObj = new Date(item.date);
+                            const dateObj = new Date(item?.date);
                             return (
                               <motion.div
                                 layout
-                                key={item.id}
+                                key={item?.id}
                                 initial={{ opacity: 0, y: 30, scale: 0.95 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: -30, scale: 0.95 }}
                                 transition={{ duration: 0.5, ease: "easeInOut" }}
                                 className="w-full shrink-0"
                               >
-                                <Link
-                                  // @ts-ignore
-                                  to={`/events/${item.id}`} className="group flex flex-col">
+                                <Link to="/events/$eventId" params={{ eventId: item?.id }} className="group flex flex-col">
                                   <span className="text-[11px] font-bold uppercase tracking-widest text-primary mb-3 block">
-                                    {item.category}
+                                    {item?.category}
                                   </span>
 
                                   <div className="flex items-start gap-4">
                                     {/* Thumbnail */}
                                     <div className="relative w-[120px] xl:w-[140px] aspect-[3/2] rounded-[4px] overflow-hidden shrink-0 bg-muted">
                                       <img
-                                        src={item.image}
-                                        alt={item.title}
+                                        src={item?.image}
+                                        alt={item?.title}
                                         loading="lazy"
                                         className="w-full h-full object-cover"
                                       />
@@ -1172,7 +1108,7 @@ function CourseContent({ course, markdownContent }: { course: any, markdownConte
                                     {/* Title */}
                                     <div className="flex flex-col justify-start flex-1 min-w-0 pt-1">
                                       <h4 className="text-[15px] font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
-                                        {item.title}
+                                        {item?.title}
                                       </h4>
                                       <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold mt-2">
                                         Organized by {course.department} Dept.

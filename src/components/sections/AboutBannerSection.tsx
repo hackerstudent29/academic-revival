@@ -67,8 +67,6 @@ const campusFacilities = [
   }
 ];
 
-import { EditableText } from "@/components/admin/EditableText";
-
 export function AboutBannerSection() {
   const [activeFacility, setActiveFacility] = useState<number | null>(null);
 

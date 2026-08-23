@@ -134,18 +134,13 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const location = useRouterState({ select: (s) => s.location });
-  const isAdminRoute = location?.pathname?.startsWith('/admin') || false;
 
   return (
     <QueryClientProvider client={queryClient}>
       <SmoothScroll />
       <ScrollToTop />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      {isAdminRoute ? (
-        <Outlet />
-      ) : (
-        <div className="bg-background text-foreground">
+      <div className="bg-background text-foreground">
           <div 
             className="relative z-10 flex min-h-screen flex-col bg-background shadow-[0_20px_50px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
             style={{ marginBottom: "var(--footer-height, 0px)" }}
@@ -160,7 +155,6 @@ function RootComponent() {
             <SiteFooter />
           </div>
         </div>
-      )}
     </QueryClientProvider>
   );
 }

@@ -2,15 +2,16 @@ import { Link } from "@tanstack/react-router";
 import { Reveal } from "../motion";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 import { allEvents } from "@/lib/eventsData";
 
-const mainFeaturedArticles = allEvents.filter(e => e.id.startsWith('featured-'));
+const ITEMS = allEvents.filter(e => e.id.startsWith('featured-'));
 const sidebarArticles = allEvents.filter(e => e.id.startsWith('side-'));
 const bottomRowArticles = allEvents.filter(e => e.id.startsWith('bottom-'));
 
 export function NewsAndEventsSection() {
-  const [startIndex, setStartIndex] = useState(0);
+  const [activeItem, setActiveItem] = useState(0);
   const [mainIndex, setMainIndex] = useState(0);
 
   const sectionRef = useRef<HTMLElement>(null);
@@ -19,7 +20,7 @@ export function NewsAndEventsSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       if (!isInView) return;
-      setStartIndex((prev) => (prev + 1) % sidebarArticles.length);
+      setActiveItem((prev) => (prev + 1) % sidebarArticles.length);
     }, 4000);
     return () => clearInterval(timer);
   }, [isInView]);
@@ -27,17 +28,17 @@ export function NewsAndEventsSection() {
   useEffect(() => {
     const mainTimer = setInterval(() => {
       if (!isInView) return;
-      setMainIndex((prev) => (prev + 1) % mainFeaturedArticles.length);
+      setMainIndex((prev) => (prev + 1) % ITEMS.length);
     }, 6000);
     return () => clearInterval(mainTimer);
   }, [isInView]);
 
   const visibleArticles = [];
   for (let i = 0; i < 3; i++) {
-    visibleArticles.push(sidebarArticles[(startIndex + i) % sidebarArticles.length]);
+    visibleArticles.push(sidebarArticles[(activeItem + i) % sidebarArticles.length]);
   }
 
-  const currentMainArticle = mainFeaturedArticles[mainIndex];
+  const currentMainArticle = ITEMS[mainIndex];
 
   return (
     <section ref={sectionRef} className="bg-[#E4E6E6] dark:bg-[#151412] py-12 md:py-16" id="news">
