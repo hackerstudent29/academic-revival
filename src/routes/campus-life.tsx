@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { PageHero } from "@/components/PageHero";
-import { WhyJoinSection } from "@/components/WhyJoinSection";
+import { PageHero } from "@/components/shared/PageHero";
+import { WhyJoinSection } from "@/components/sections/WhyJoinSection";
 import { ShieldAlert, BookOpen, Code, Trophy } from "lucide-react";
 
 const title = "Campus Life at MSAJCE — Tech Centres, Facilities & Discipline";

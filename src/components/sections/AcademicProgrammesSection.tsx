@@ -16,8 +16,8 @@ const container: Variants = {
 };
 
 const rise: Variants = {
-  hidden: { opacity: 0, y: 28, filter: "blur(6px)" },
-  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.85, ease: EASE } },
+  hidden: { opacity: 0, y: 28 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.85, ease: EASE } },
 };
 
 export function AcademicProgrammesSection() {
@@ -28,7 +28,7 @@ export function AcademicProgrammesSection() {
   });
 
   const rawY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
-  const imageY = useSpring(rawY, { stiffness: 90, damping: 24, mass: 0.4 });
+  const imageY = rawY;
   const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.14, 1.06, 1.14]);
 
   return (
@@ -36,7 +36,7 @@ export function AcademicProgrammesSection() {
       <section
         ref={sectionRef}
         id="academic-programmes"
-        className="relative w-full bg-[#EAEAEA] dark:bg-[#111915] min-h-[100svh] flex flex-col justify-center py-16 text-foreground transition-colors"
+        className="relative w-full bg-[#EAEAEA] dark:bg-[#111915] min-h-[100svh] flex flex-col justify-center py-16 text-foreground"
       >
         <div className="mx-auto w-full max-w-[1440px] px-8 md:px-16">
           <motion.div

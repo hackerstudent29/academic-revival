@@ -1,19 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "framer-motion";
-import { WhyJoinSection } from "@/components/WhyJoinSection";
-import { AcademicProgrammesSection } from "@/components/AcademicProgrammesSection";
-import { AboutBannerSection } from "@/components/AboutBannerSection";
-import { DynamicText } from "@/components/DynamicText";
-import { HeroReel } from "@/components/HeroReel";
-import { RecruiterMarquee } from "@/components/RecruiterMarquee";
+import { WhyJoinSection } from "@/components/sections/WhyJoinSection";
+import { AcademicProgrammesSection } from "@/components/sections/AcademicProgrammesSection";
+import { AboutBannerSection } from "@/components/sections/AboutBannerSection";
+import { DynamicText } from "@/components/typography/DynamicText";
+import { HeroReel } from "@/components/widgets/HeroReel";
+import { RecruiterMarquee } from "@/components/widgets/RecruiterMarquee";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { RotatingWord } from "@/components/RotatingWord";
-import { TestimonialSection } from "@/components/TestimonialSection";
-import { NewsAndEventsSection } from "@/components/NewsAndEventsSection";
-import { ContactSection } from "@/components/ContactSection";
-import { CampusVideoReveal } from "@/components/CampusVideoReveal";
-import { ChatbotWidget } from "@/components/ChatbotWidget";
+import { RotatingWord } from "@/components/typography/RotatingWord";
+import { TestimonialSection } from "@/components/sections/TestimonialSection";
+import { NewsAndEventsSection } from "@/components/sections/NewsAndEventsSection";
+import { ContactSection } from "@/components/sections/ContactSection";
+import { CampusVideoReveal } from "@/components/widgets/CampusVideoReveal";
+import { ChatbotWidget } from "@/components/widgets/ChatbotWidget";
 
 const title = "MSAJCE — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: Index,
+  component: HomePage,
 });
 
 const heroLinks = [
@@ -41,13 +41,9 @@ const heroLinks = [
   { label: "Speak to an Advisor", to: "/contact" },
 ] as const;
 
-function Index() {
+export function HomePage() {
   const { scrollY } = useScroll();
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 80);
-  });
+  const logoOpacity = useTransform(scrollY, [0, 80], [1, 0]);
 
   return (
     <motion.main 
@@ -64,15 +60,13 @@ function Index() {
           <div className="flex h-full flex-col justify-start px-6 pt-6 pb-8 md:px-8 md:pt-8 md:pb-10 lg:px-12 lg:pt-10">
             <DynamicText />
             <div className="mt-6 mb-6 flex items-center justify-start min-h-[40px] sm:min-h-[50px] md:min-h-[70px] lg:min-h-[100px]">
-              {!isScrolled && (
                 <motion.img
                   layoutId="msajce-logo"
                   src="/logos/clg-logo.png"
                   alt="Mohamed Sathak A.J. College of Engineering"
                   className="w-[90%] max-w-[340px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[850px] h-auto object-contain object-left origin-top-left"
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  style={{ opacity: logoOpacity }}
                 />
-              )}
             </div>
 
             <Stagger gap={0.07} delay={0.25} className="mt-8 border-t border-foreground/12 md:mt-10">
@@ -127,7 +121,7 @@ function Index() {
       </section>
 
       {/* ── Top recruiters marquee ── */}
-      <section className="bg-gray-100 dark:bg-[#121518] border-b border-foreground/12 flex flex-col justify-center py-6 transition-colors" id="top-recruiters">
+      <section className="bg-gray-100 dark:bg-[#121518] border-b border-foreground/12 flex flex-col justify-center py-6" id="top-recruiters">
         <Reveal variant="blur">
           <h2 className="px-6 text-center text-[11px] font-bold uppercase tracking-[0.32em] text-foreground/50 md:px-12">
             Top Recruiters

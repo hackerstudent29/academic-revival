@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Reveal } from "./motion";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Reveal } from "../motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 
 import { allEvents } from "@/lib/eventsData";
 
@@ -13,19 +13,24 @@ export function NewsAndEventsSection() {
   const [startIndex, setStartIndex] = useState(0);
   const [mainIndex, setMainIndex] = useState(0);
 
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef);
+
   useEffect(() => {
     const timer = setInterval(() => {
+      if (!isInView) return;
       setStartIndex((prev) => (prev + 1) % sidebarArticles.length);
     }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isInView]);
 
   useEffect(() => {
     const mainTimer = setInterval(() => {
+      if (!isInView) return;
       setMainIndex((prev) => (prev + 1) % mainFeaturedArticles.length);
     }, 6000);
     return () => clearInterval(mainTimer);
-  }, []);
+  }, [isInView]);
 
   const visibleArticles = [];
   for (let i = 0; i < 3; i++) {
@@ -35,7 +40,7 @@ export function NewsAndEventsSection() {
   const currentMainArticle = mainFeaturedArticles[mainIndex];
 
   return (
-    <section className="bg-[#E4E6E6] dark:bg-[#151412] py-12 md:py-16 transition-colors" id="news">
+    <section ref={sectionRef} className="bg-[#E4E6E6] dark:bg-[#151412] py-12 md:py-16" id="news">
       <div className="mx-auto w-full max-w-[1280px] px-6 md:px-12">
         {/* Section Header */}
         <div className="mb-6">

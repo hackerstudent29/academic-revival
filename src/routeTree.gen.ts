@@ -12,10 +12,23 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AcademicsRouteImport } from './routes/academics'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as CampusLifeRouteImport } from './routes/campus-life'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as PlacementsRouteImport } from './routes/placements'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminAcademicsRouteImport } from './routes/admin.academics'
+import { Route as AdminAuditLogsRouteImport } from './routes/admin.audit-logs'
+import { Route as AdminEventsRouteImport } from './routes/admin.events'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminMentorsRouteImport } from './routes/admin.mentors'
+import { Route as AdminMyDepartmentRouteImport } from './routes/admin.my-department'
+import { Route as AdminPagesRouteImport } from './routes/admin.pages'
+import { Route as AdminPlacementsRouteImport } from './routes/admin.placements'
+import { Route as AdminPlacementsPortalRouteImport } from './routes/admin.placements-portal'
+import { Route as AdminStartupsRouteImport } from './routes/admin.startups'
+import { Route as AdminStudentsRouteImport } from './routes/admin.students'
 import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
 import { Route as ProgrammesIndexRouteImport } from './routes/programmes.index'
 import { Route as ProgrammesCourseIdRouteImport } from './routes/programmes.$courseId'
@@ -33,6 +46,11 @@ const AboutRoute = AboutRouteImport.update({
 const AcademicsRoute = AcademicsRouteImport.update({
   id: '/academics',
   path: '/academics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdmissionsRoute = AdmissionsRouteImport.update({
@@ -55,6 +73,66 @@ const PlacementsRoute = PlacementsRouteImport.update({
   path: '/placements',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAcademicsRoute = AdminAcademicsRouteImport.update({
+  id: '/academics',
+  path: '/academics',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAuditLogsRoute = AdminAuditLogsRouteImport.update({
+  id: '/audit-logs',
+  path: '/audit-logs',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminEventsRoute = AdminEventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMentorsRoute = AdminMentorsRouteImport.update({
+  id: '/mentors',
+  path: '/mentors',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMyDepartmentRoute = AdminMyDepartmentRouteImport.update({
+  id: '/my-department',
+  path: '/my-department',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPagesRoute = AdminPagesRouteImport.update({
+  id: '/pages',
+  path: '/pages',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPlacementsRoute = AdminPlacementsRouteImport.update({
+  id: '/placements',
+  path: '/placements',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPlacementsPortalRoute = AdminPlacementsPortalRouteImport.update({
+  id: '/placements-portal',
+  path: '/placements-portal',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminStartupsRoute = AdminStartupsRouteImport.update({
+  id: '/startups',
+  path: '/startups',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminStudentsRoute = AdminStudentsRouteImport.update({
+  id: '/students',
+  path: '/students',
+  getParentRoute: () => AdminRoute,
+} as any)
 const EventsEventIdRoute = EventsEventIdRouteImport.update({
   id: '/events/$eventId',
   path: '/events/$eventId',
@@ -75,12 +153,25 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/academics': typeof AcademicsRoute
+  '/admin': typeof AdminRouteWithChildren
   '/admissions': typeof AdmissionsRoute
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/placements': typeof PlacementsRoute
+  '/admin/academics': typeof AdminAcademicsRoute
+  '/admin/audit-logs': typeof AdminAuditLogsRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/mentors': typeof AdminMentorsRoute
+  '/admin/my-department': typeof AdminMyDepartmentRoute
+  '/admin/pages': typeof AdminPagesRoute
+  '/admin/placements': typeof AdminPlacementsRoute
+  '/admin/placements-portal': typeof AdminPlacementsPortalRoute
+  '/admin/startups': typeof AdminStartupsRoute
+  '/admin/students': typeof AdminStudentsRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -91,8 +182,20 @@ export interface FileRoutesByTo {
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/placements': typeof PlacementsRoute
+  '/admin/academics': typeof AdminAcademicsRoute
+  '/admin/audit-logs': typeof AdminAuditLogsRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/mentors': typeof AdminMentorsRoute
+  '/admin/my-department': typeof AdminMyDepartmentRoute
+  '/admin/pages': typeof AdminPagesRoute
+  '/admin/placements': typeof AdminPlacementsRoute
+  '/admin/placements-portal': typeof AdminPlacementsPortalRoute
+  '/admin/startups': typeof AdminStartupsRoute
+  '/admin/students': typeof AdminStudentsRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
+  '/admin': typeof AdminIndexRoute
   '/programmes': typeof ProgrammesIndexRoute
 }
 export interface FileRoutesById {
@@ -100,12 +203,25 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/academics': typeof AcademicsRoute
+  '/admin': typeof AdminRouteWithChildren
   '/admissions': typeof AdmissionsRoute
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/placements': typeof PlacementsRoute
+  '/admin/academics': typeof AdminAcademicsRoute
+  '/admin/audit-logs': typeof AdminAuditLogsRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/mentors': typeof AdminMentorsRoute
+  '/admin/my-department': typeof AdminMyDepartmentRoute
+  '/admin/pages': typeof AdminPagesRoute
+  '/admin/placements': typeof AdminPlacementsRoute
+  '/admin/placements-portal': typeof AdminPlacementsPortalRoute
+  '/admin/startups': typeof AdminStartupsRoute
+  '/admin/students': typeof AdminStudentsRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
 }
 export interface FileRouteTypes {
@@ -114,12 +230,25 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/academics'
+    | '/admin'
     | '/admissions'
     | '/campus-life'
     | '/contact'
     | '/placements'
+    | '/admin/academics'
+    | '/admin/audit-logs'
+    | '/admin/events'
+    | '/admin/login'
+    | '/admin/mentors'
+    | '/admin/my-department'
+    | '/admin/pages'
+    | '/admin/placements'
+    | '/admin/placements-portal'
+    | '/admin/startups'
+    | '/admin/students'
     | '/events/$eventId'
     | '/programmes/$courseId'
+    | '/admin/'
     | '/programmes/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -130,20 +259,45 @@ export interface FileRouteTypes {
     | '/campus-life'
     | '/contact'
     | '/placements'
+    | '/admin/academics'
+    | '/admin/audit-logs'
+    | '/admin/events'
+    | '/admin/login'
+    | '/admin/mentors'
+    | '/admin/my-department'
+    | '/admin/pages'
+    | '/admin/placements'
+    | '/admin/placements-portal'
+    | '/admin/startups'
+    | '/admin/students'
     | '/events/$eventId'
     | '/programmes/$courseId'
+    | '/admin'
     | '/programmes'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/academics'
+    | '/admin'
     | '/admissions'
     | '/campus-life'
     | '/contact'
     | '/placements'
+    | '/admin/academics'
+    | '/admin/audit-logs'
+    | '/admin/events'
+    | '/admin/login'
+    | '/admin/mentors'
+    | '/admin/my-department'
+    | '/admin/pages'
+    | '/admin/placements'
+    | '/admin/placements-portal'
+    | '/admin/startups'
+    | '/admin/students'
     | '/events/$eventId'
     | '/programmes/$courseId'
+    | '/admin/'
     | '/programmes/'
   fileRoutesById: FileRoutesById
 }
@@ -151,6 +305,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AcademicsRoute: typeof AcademicsRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AdmissionsRoute: typeof AdmissionsRoute
   CampusLifeRoute: typeof CampusLifeRoute
   ContactRoute: typeof ContactRoute
@@ -183,6 +338,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AcademicsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admissions': {
       id: '/admissions'
       path: '/admissions'
@@ -211,6 +373,90 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlacementsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/academics': {
+      id: '/admin/academics'
+      path: '/academics'
+      fullPath: '/admin/academics'
+      preLoaderRoute: typeof AdminAcademicsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/audit-logs': {
+      id: '/admin/audit-logs'
+      path: '/audit-logs'
+      fullPath: '/admin/audit-logs'
+      preLoaderRoute: typeof AdminAuditLogsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/events': {
+      id: '/admin/events'
+      path: '/events'
+      fullPath: '/admin/events'
+      preLoaderRoute: typeof AdminEventsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/mentors': {
+      id: '/admin/mentors'
+      path: '/mentors'
+      fullPath: '/admin/mentors'
+      preLoaderRoute: typeof AdminMentorsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/my-department': {
+      id: '/admin/my-department'
+      path: '/my-department'
+      fullPath: '/admin/my-department'
+      preLoaderRoute: typeof AdminMyDepartmentRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/pages': {
+      id: '/admin/pages'
+      path: '/pages'
+      fullPath: '/admin/pages'
+      preLoaderRoute: typeof AdminPagesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/placements': {
+      id: '/admin/placements'
+      path: '/placements'
+      fullPath: '/admin/placements'
+      preLoaderRoute: typeof AdminPlacementsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/placements-portal': {
+      id: '/admin/placements-portal'
+      path: '/placements-portal'
+      fullPath: '/admin/placements-portal'
+      preLoaderRoute: typeof AdminPlacementsPortalRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/startups': {
+      id: '/admin/startups'
+      path: '/startups'
+      fullPath: '/admin/startups'
+      preLoaderRoute: typeof AdminStartupsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/students': {
+      id: '/admin/students'
+      path: '/students'
+      fullPath: '/admin/students'
+      preLoaderRoute: typeof AdminStudentsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/events/$eventId': {
       id: '/events/$eventId'
       path: '/events/$eventId'
@@ -235,10 +481,43 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AdminRouteChildren {
+  AdminAcademicsRoute: typeof AdminAcademicsRoute
+  AdminAuditLogsRoute: typeof AdminAuditLogsRoute
+  AdminEventsRoute: typeof AdminEventsRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminMentorsRoute: typeof AdminMentorsRoute
+  AdminMyDepartmentRoute: typeof AdminMyDepartmentRoute
+  AdminPagesRoute: typeof AdminPagesRoute
+  AdminPlacementsRoute: typeof AdminPlacementsRoute
+  AdminPlacementsPortalRoute: typeof AdminPlacementsPortalRoute
+  AdminStartupsRoute: typeof AdminStartupsRoute
+  AdminStudentsRoute: typeof AdminStudentsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAcademicsRoute: AdminAcademicsRoute,
+  AdminAuditLogsRoute: AdminAuditLogsRoute,
+  AdminEventsRoute: AdminEventsRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminMentorsRoute: AdminMentorsRoute,
+  AdminMyDepartmentRoute: AdminMyDepartmentRoute,
+  AdminPagesRoute: AdminPagesRoute,
+  AdminPlacementsRoute: AdminPlacementsRoute,
+  AdminPlacementsPortalRoute: AdminPlacementsPortalRoute,
+  AdminStartupsRoute: AdminStartupsRoute,
+  AdminStudentsRoute: AdminStudentsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AcademicsRoute: AcademicsRoute,
+  AdminRoute: AdminRouteWithChildren,
   AdmissionsRoute: AdmissionsRoute,
   CampusLifeRoute: CampusLifeRoute,
   ContactRoute: ContactRoute,

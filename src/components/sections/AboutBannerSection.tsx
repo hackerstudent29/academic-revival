@@ -67,11 +67,13 @@ const campusFacilities = [
   }
 ];
 
+import { EditableText } from "@/components/admin/EditableText";
+
 export function AboutBannerSection() {
   const [activeFacility, setActiveFacility] = useState<number | null>(null);
 
   return (
-    <section id="about" className="relative z-10 w-full bg-[#F0F4F8] dark:bg-[#1a1e24] min-h-[100svh] flex flex-col justify-center py-16 transition-colors border-t border-b border-foreground/10">
+    <section id="about" className="relative z-10 w-full bg-[#F0F4F8] dark:bg-[#1a1e24] min-h-[100svh] flex flex-col justify-center py-16 border-t border-b border-foreground/10">
       <div className="mx-auto grid w-full max-w-[1440px] px-6 md:px-12 grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         
         {/* Left: Dynamic editorial copy */}
@@ -95,9 +97,13 @@ export function AboutBannerSection() {
               >
                 <div className="flex flex-col h-full justify-center">
                   <div className="mb-8 pr-4">
-                    <blockquote className="text-[2rem] md:text-[2.5rem] lg:text-[2.75rem] font-medium leading-[1.15] tracking-tight text-foreground mb-6">
-                      "We don't just teach engineering. We build the people who will <span className="italic font-normal text-primary">rebuild it.</span>"
-                    </blockquote>
+                    <EditableText 
+                      page="home" 
+                      field="about.quote" 
+                      as="blockquote"
+                      defaultValue={`"We don't just teach engineering. We build the people who will <span class="italic font-normal text-primary">rebuild it.</span>"`}
+                      className="text-[2rem] md:text-[2.5rem] lg:text-[2.75rem] font-medium leading-[1.15] tracking-tight text-foreground mb-6"
+                    />
                     <div className="flex flex-col gap-1">
                       <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-foreground">Dr. M. S. A. J.</span>
                       <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-muted-foreground">Principal & Dean of Engineering</span>

@@ -1,15 +1,15 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
+import { supabase } from '@/lib/supabase';
 import { allCourses } from '@/lib/courseData';
 import { ArrowRight, ChevronRight, Award, BookOpen, Users, Building, Briefcase, GraduationCap, Calendar, CheckCircle2 } from 'lucide-react';
 import { useEffect, useState, Fragment } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
-import { KeyDriversAccordion } from "@/components/KeyDriversAccordion";
-import { DepartmentHighlightsGrid } from "@/components/DepartmentHighlightsGrid";
-
-const markdownImports = import.meta.glob('@/content/departments/*.md', { query: '?raw', import: 'default' });
-
+import { KeyDriversAccordion } from "@/components/widgets/KeyDriversAccordion";
+import { DepartmentHighlightsGrid } from "@/components/widgets/DepartmentHighlightsGrid";
+import { EditableProvider } from "@/components/admin/EditableProvider";
+import { EditableText } from "@/components/admin/EditableText";
 const NEWS_CATEGORIES = ['All', 'Placements', 'Research', 'Workshops', 'Seminars', 'Achievements'];
 
 const categoryColors: Record<string, string> = {
@@ -228,20 +228,71 @@ const getStudentCoordinators = (slug: string) => {
   ];
 };
 
+const getCourseDisplayName = (course: any, useShort: boolean) => {
+  if (!course) return '';
+  const baseName = useShort ? (course.shortName || course.name) : course.name;
+  
+  if (course.department === 'Architecture' || course.department === 'Design') {
+    return baseName;
+  }
+  
+  if (course.level?.includes('Ph.D') || course.slug?.startsWith('phd-')) {
+    return `Ph.D. in ${baseName}`;
+  }
+  
+  let prefix = '';
+  if (course.level === 'Postgraduate') {
+    prefix = 'M.E.';
+  } else if (['information-technology', 'artificial-intelligence-and-data-science', 'artificial-intelligence-and-machine-learning', 'computer-science-and-business-systems', 'computer-science-and-engineering-cyber-security'].includes(course.slug)) {
+    prefix = 'B.Tech.';
+  } else {
+    prefix = 'B.E.';
+  }
+  
+  return `${prefix} ${baseName}`;
+};
+
 export const Route = createFileRoute('/programmes/$courseId')({
   loader: async ({ params }) => {
+    try {
+      const { data: dbCourse, error } = await supabase
+        .from('departments')
+        .select('*')
+        .eq('slug', params.courseId)
+        .single();
+      
+      let markdownContent = null;
+      
+      const { data: siteContent } = await supabase
+        .from('site_content')
+        .select('content')
+        .eq('page_name', `departments.${params.courseId}`)
+        .single();
+        
+      if (siteContent?.content?.markdownContent) {
+         markdownContent = siteContent.content.markdownContent;
+      }
+      
+      if (dbCourse) {
+         // Parse the JSONB details field from DB
+         const course = {
+           ...dbCourse,
+           shortName: dbCourse.short_name,
+           govtQuota: dbCourse.govt_quota,
+           managementQuota: dbCourse.management_quota,
+           details: dbCourse.details || {}
+         };
+         return { course, markdownContent };
+      }
+    } catch (e) {
+      console.warn("DB fetch failed, falling back to static course data");
+    }
+
+    // Fallback if DB fetch fails
     const course = allCourses.find(c => c.slug === params.courseId);
     if (!course) throw new Error("Course not found");
     
-    let markdownContent = null;
-    if (course.markdownFile) {
-      const importFn = markdownImports[`/src/content/departments/${course.markdownFile}`];
-      if (importFn) {
-        markdownContent = await importFn() as string;
-      }
-    }
-
-    return { course, markdownContent };
+    return { course, markdownContent: null };
   },
   component: CoursePage,
 });
@@ -266,6 +317,7 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
+    if (line === undefined) continue;
 
     if (line.startsWith('## ')) {
       const heading = line.replace(/^##\s+/, '').toLowerCase();
@@ -343,7 +395,7 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
 
     if (sections[currentTab]) {
       if (!line.startsWith('# ')) {
-        sections[currentTab].push(line);
+        sections[currentTab]!.push(line);
       }
     }
   }
@@ -370,6 +422,15 @@ const departmentTabsList = [
 
 function CoursePage() {
   const { course, markdownContent } = Route.useLoaderData();
+  
+  return (
+    <EditableProvider>
+      <CourseContent course={course} markdownContent={markdownContent} />
+    </EditableProvider>
+  );
+}
+
+function CourseContent({ course, markdownContent }: { course: any, markdownContent: any }) {
   const [hidden, setHidden] = useState(false);
   const [activeTab, setActiveTab] = useState('about');
   const [activeCategory, setActiveCategory] = useState('All');
@@ -399,12 +460,7 @@ function CoursePage() {
     }
   };
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentNews((prev) => (prev + 1) % newsItems.length);
-    }, 3500);
-    return () => clearInterval(timer);
-  }, []);
+
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
@@ -531,17 +587,17 @@ function CoursePage() {
       >
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 py-1 flex items-center justify-between">
           <div className="font-serif text-foreground tracking-tight text-lg md:text-xl mr-12 shrink-0 hidden lg:block">
-            {course.shortName || course.name}
+            {getCourseDisplayName(course, true)}
           </div>
           <div className="flex-1 overflow-hidden ml-8">
-            <ul className="flex items-center gap-5 lg:gap-6 text-[13px] font-bold uppercase tracking-[0.04em] text-foreground overflow-x-auto no-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] whitespace-nowrap py-0.5 w-full">
+            <ul className="flex items-center md:justify-end gap-5 lg:gap-6 text-[13px] font-bold uppercase tracking-[0.04em] text-foreground overflow-x-auto no-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] whitespace-nowrap py-0.5 w-full">
               {departmentTabsList.map((tab, index) => {
                 const isActive = activeTab === tab.id;
                 return (
                   <li
                     key={tab.id}
                     onClick={() => handleTabChange(tab.id)}
-                    className={`relative py-1.5 cursor-pointer transition-colors duration-200 select-none shrink-0 ${index === 0 ? 'ml-auto' : ''} ${
+                    className={`relative py-1.5 cursor-pointer transition-colors duration-200 select-none shrink-0 ${
                       isActive
                         ? 'text-primary'
                         : 'text-foreground hover:text-primary'
@@ -597,7 +653,7 @@ function CoursePage() {
                Department of
              </span>
              <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif tracking-tight text-foreground mb-6 leading-tight">
-               {course.name}
+               {getCourseDisplayName(course, false)}
              </h1>
              
              {/* Hero Strip */}
@@ -659,9 +715,14 @@ function CoursePage() {
                     <article className="w-full mx-0 max-w-none">
                       <div>
                         <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Overview</h2>
-                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-wrap">
-                          {course.details.overview}
-                        </p>
+                        <EditableText
+                          page={`departments.${course.slug}`}
+                          field="overview"
+                          defaultValue={course.details.overview || 'Overview coming soon...'}
+                          as="p"
+                          className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-wrap"
+                          multiline={true}
+                        />
                       </div>
                     </article>
                   )}
@@ -1031,7 +1092,9 @@ function CoursePage() {
                       
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {filteredHighlights.length > 0 ? filteredHighlights.slice(0, 4).map((highlight, idx) => (
-                          <Link to={`/events/${highlight.id}`} key={idx} className="group flex flex-col gap-3 items-start">
+                          <Link
+                            // @ts-ignore
+                            to={`/events/${highlight.id}`} key={idx} className="group flex flex-col gap-3 items-start">
                             <div className="relative w-full aspect-[16/9] rounded-[4px] overflow-hidden bg-muted">
                               <img src={highlight.image} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt={highlight.title} />
                               <div className="absolute top-2 left-2">
@@ -1077,7 +1140,9 @@ function CoursePage() {
                                 transition={{ duration: 0.5, ease: "easeInOut" }}
                                 className="w-full shrink-0"
                               >
-                                <Link to={`/events/${item.id}`} className="group flex flex-col">
+                                <Link
+                                  // @ts-ignore
+                                  to={`/events/${item.id}`} className="group flex flex-col">
                                   <span className="text-[11px] font-bold uppercase tracking-widest text-primary mb-3 block">
                                     {item.category}
                                   </span>

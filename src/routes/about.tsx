@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { PageHero } from "@/components/PageHero";
+import { PageHero } from "@/components/shared/PageHero";
 
 const title = "About MSAJCE — Vision, Mission & Accreditation";
 const description =

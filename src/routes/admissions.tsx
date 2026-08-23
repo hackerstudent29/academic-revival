@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Magnetic, Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { PageHero } from "@/components/PageHero";
+import { PageHero } from "@/components/shared/PageHero";
 import { ArrowRight, GraduationCap, Briefcase, Search, Plus, ArrowRight as ArrowRightIcon } from "lucide-react";
 import { allCourses } from "@/lib/courseData";
 

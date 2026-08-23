@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { PageHero } from "@/components/PageHero";
+import { PageHero } from "@/components/shared/PageHero";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 const title = "Contact MSAJCE — Admissions & Campus Enquiries";

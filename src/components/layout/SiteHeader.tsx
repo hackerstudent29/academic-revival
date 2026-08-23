@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { AnimatePresence, motion, useScroll, useMotionValueEvent, useTransform } from "framer-motion";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { Logo } from "@/components/Logo";
+import { ThemeToggle } from "@/components/shared/ThemeToggle";
+import { Logo } from "@/components/shared/Logo";
 import { MoreHorizontal, X, ChevronDown } from "lucide-react";
 
 type RoutePath = 
