@@ -62,7 +62,7 @@ export function HomePage() {
             <div className="mt-6 mb-6 flex items-center justify-start min-h-[40px] sm:min-h-[50px] md:min-h-[70px] lg:min-h-[100px]">
                 <motion.img
                   layoutId="msajce-logo"
-                  src="/college logo autonomous transparent.png"
+                  src="/logos/clg-logo.png"
                   alt="Mohamed Sathak A.J. College of Engineering"
                   className="w-[90%] max-w-[340px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[850px] h-auto object-contain object-left origin-top-left"
                   style={{ opacity: logoOpacity }}
