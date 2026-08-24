@@ -13,10 +13,11 @@ type RoutePath =
   | "/placements" 
   | "/campus-life" 
   | "/contact" 
+  | "/student-housing"
   | "/programmes" 
   | `/programmes/${string}`;
 
-type Col = { title: string; links: { label: string; to?: RoutePath; href?: string; hash?: string }[] };
+type Col = { title: string; links: { label: string; to?: RoutePath; href?: string; hash?: string; search?: any }[] };
 type NavItem = { id: string; label: string; to: RoutePath; cols?: Col[] };
 
 const APPLE_EASE = [0.32, 0.72, 0, 1] as const;
@@ -47,38 +48,13 @@ const nav: NavItem[] = [
     to: "/academics",
     cols: [
       { 
-        title: "Computing & IT", 
+        title: "Departments", 
         links: [
-          { label: "Computer Science & Engineering", to: "/programmes/computer-science-and-engineering" },
-          { label: "Information Technology", to: "/programmes/information-technology" },
-          { label: "AI & Data Science", to: "/programmes/artificial-intelligence-and-data-science" },
-          { label: "AI & Machine Learning", to: "/programmes/artificial-intelligence-and-machine-learning" },
-          { label: "Computer Science & Business", to: "/programmes/computer-science-and-business-systems" },
-          { label: "CSE (Cyber Security)", to: "/programmes/computer-science-and-engineering-cyber-security" }
+          { label: "Undergraduate (UG)", to: "/admissions", search: { level: "Undergraduate" } },
+          { label: "Postgraduate (PG)", to: "/admissions", search: { level: "Postgraduate" } },
+          { label: "Doctorate (Ph.D)", to: "/admissions", search: { level: "Research (Ph.D)" } }
         ] 
-      },
-      { 
-        title: "Core Engineering", 
-        links: [
-          { label: "Civil Engineering", to: "/programmes/civil-engineering" },
-          { label: "Mechanical Engineering", to: "/programmes/mechanical-engineering" },
-          { label: "Electrical & Electronics", to: "/programmes/electrical-and-electronics-engineering" },
-          { label: "Electronics & Communication", to: "/programmes/electronics-and-communication-engineering" },
-          { label: "ECE (Advanced Comm)", to: "/programmes/ece-advanced-communication" },
-          { label: "Electronics (VLSI)", to: "/programmes/electronics-engg-vlsi-design" }
-        ] 
-      },
-      { 
-        title: "Postgraduate & Ph.D", 
-        links: [
-          { label: "M.E. Structural Engineering", to: "/programmes/pg-structural-engineering" },
-          { label: "M.E. Computer Science", to: "/programmes/pg-computer-science-and-engineering" },
-          { label: "Master of Architecture", to: "/programmes/pg-master-of-architecture" },
-          { label: "Bachelor of Architecture", to: "/programmes/bachelor-of-architecture" },
-          { label: "Bachelor of Design", to: "/programmes/bachelor-of-design" },
-          { label: "Ph.D Mechanical Engg", to: "/programmes/phd-mechanical-engineering" }
-        ] 
-      },
+      }
     ],
   },
   { id: "placement", label: "Placements", to: "/placements" },
@@ -87,7 +63,7 @@ const nav: NavItem[] = [
     label: "Campus Life",
     to: "/campus-life",
     cols: [
-      { title: "Campus Facilities", links: [{ label: "Digital Library", to: "/campus-life", hash: "facilities" }, { label: "Student Housing", to: "/campus-life", hash: "facilities" }, { label: "Transit & Routes", to: "/campus-life", hash: "facilities" }, { label: "Athletics & Gym", to: "/campus-life", hash: "facilities" }, { label: "Tech Centres", to: "/campus-life", hash: "tech-centres" }] },
+      { title: "Campus Facilities", links: [{ label: "Digital Library", to: "/campus-life", hash: "facilities" }, { label: "Student Housing", to: "/student-housing" }, { label: "Transit & Routes", to: "/campus-life", hash: "facilities" }, { label: "Athletics & Gym", to: "/campus-life", hash: "facilities" }, { label: "Tech Centres", to: "/campus-life", hash: "tech-centres" }] },
       { title: "Student Engagement", links: [{ label: "Student Clubs", to: "/campus-life", hash: "facilities" }, { label: "Tech Chapters", to: "/campus-life", hash: "tech-centres" }, { label: "Social Outreach (NSS)", to: "/campus-life", hash: "facilities" }, { label: "EBSB", to: "/campus-life" }] },
       { title: "Career & Community", links: [{ label: "Student Corner", to: "/campus-life" }, { label: "Alumni Network", to: "/campus-life" }, { label: "Startup Hub", to: "/campus-life" }] },
     ],
@@ -113,7 +89,7 @@ function PaneLink({ link, onClick }: { link: Col["links"][number]; onClick: () =
     );
   }
   return (
-    <Link to={link.to!} {...(link.hash ? { hash: link.hash } : {})} onClick={onClick} className={cls}>
+    <Link to={link.to!} {...(link.hash ? { hash: link.hash } : {})} {...(link.search ? { search: link.search } : {})} onClick={onClick} className={cls}>
       {link.label}
     </Link>
   );
