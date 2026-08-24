@@ -266,6 +266,7 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
+    if (!line) continue;
 
     if (line.startsWith('## ')) {
       const heading = line.replace(/^##\s+/, '').toLowerCase();
@@ -341,7 +342,7 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
       }
     }
 
-    if (sections[currentTab]) {
+    if (line && sections[currentTab]) {
       if (!line.startsWith('# ')) {
         sections[currentTab].push(line);
       }
@@ -563,7 +564,9 @@ function CoursePage() {
           exit={{ opacity: 0.85, transition: { duration: 0.12, ease: "easeIn" } }}
           className="fixed inset-0 bg-background z-[100] pointer-events-none"
         />
+      </AnimatePresence>
 
+      <AnimatePresence mode="wait">
         <motion.div
           key={`page-${course.slug}`}
           initial={{ opacity: 0, y: 12 }}
@@ -705,7 +708,7 @@ function CoursePage() {
                                   {section}
                                 </ReactMarkdown>
                               </article>
-                              {idx === 0 && jobProfileSections.length > 1 && (
+                              {idx === 0 && jobProfileSections.length > 1 && course.details.keyDrivers && (
                                 <KeyDriversAccordion drivers={course.details.keyDrivers} />
                               )}
                             </Fragment>
@@ -1025,7 +1028,7 @@ function CoursePage() {
                       
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {filteredHighlights.length > 0 ? filteredHighlights.slice(0, 4).map((highlight, idx) => (
-                          <Link to={`/events/${highlight.id}`} key={idx} className="group flex flex-col gap-3 items-start">
+                          <Link to="/events/$eventId" params={{ eventId: highlight.id }} key={idx} className="group flex flex-col gap-3 items-start">
                             <div className="relative w-full aspect-[16/9] rounded-[4px] overflow-hidden bg-muted">
                               <img src={highlight.image} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt={highlight.title} />
                               <div className="absolute top-2 left-2">
@@ -1060,7 +1063,7 @@ function CoursePage() {
                       <div className="relative overflow-hidden flex flex-col gap-6">
                         <AnimatePresence initial={false} mode="popLayout">
                           {visibleUpcoming.length > 0 ? visibleUpcoming.map((item) => {
-                            const dateObj = new Date(item?.date);
+                            const dateObj = new Date(item?.date || '');
                             return (
                               <motion.div
                                 layout
@@ -1071,7 +1074,7 @@ function CoursePage() {
                                 transition={{ duration: 0.5, ease: "easeInOut" }}
                                 className="w-full shrink-0"
                               >
-                                <Link to="/events/$eventId" params={{ eventId: item?.id }} className="group flex flex-col">
+                                <Link to="/events/$eventId" params={{ eventId: item?.id || '' }} className="group flex flex-col">
                                   <span className="text-[11px] font-bold uppercase tracking-widest text-primary mb-3 block">
                                     {item?.category}
                                   </span>

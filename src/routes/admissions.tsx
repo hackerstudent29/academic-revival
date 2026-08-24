@@ -10,6 +10,11 @@ const description =
   "Eligibility, application steps, documents and scholarships for undergraduate and postgraduate engineering admissions at MSAJCE.";
 
 export const Route = createFileRoute("/admissions")({
+  validateSearch: (search: Record<string, unknown>) => {
+    return {
+      level: search.level as string | undefined,
+    }
+  },
   head: () => ({
     meta: [
       { title },
@@ -39,21 +44,20 @@ const eligibility = [
 
 
 function Admissions() {
+  const { level } = Route.useSearch();
   const [search, setSearch] = useState("");
-  const [levelFilter, setLevelFilter] = useState<string | null>(null);
-  const [hasUrlFilter, setHasUrlFilter] = useState(false);
+  const [levelFilter, setLevelFilter] = useState<string | null>(level || null);
+  const hasUrlFilter = !!level;
 
+  // Keep internal state in sync with URL changes
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const level = params.get("level");
     if (level) {
       setLevelFilter(level);
-      setHasUrlFilter(true);
       // Optional: scroll to programmes if a level is selected
       const el = document.getElementById("programmes");
       if (el) el.scrollIntoView({ behavior: "smooth" });
     }
-  }, []);
+  }, [level]);
 
   const filteredCourses = useMemo(() => {
     return allCourses.filter(course => {

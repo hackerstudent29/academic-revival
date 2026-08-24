@@ -16,6 +16,7 @@ import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as CampusLifeRouteImport } from './routes/campus-life'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as PlacementsRouteImport } from './routes/placements'
+import { Route as StudentHousingRouteImport } from './routes/student-housing'
 import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
 import { Route as ProgrammesIndexRouteImport } from './routes/programmes.index'
 import { Route as ProgrammesCourseIdRouteImport } from './routes/programmes.$courseId'
@@ -55,6 +56,11 @@ const PlacementsRoute = PlacementsRouteImport.update({
   path: '/placements',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudentHousingRoute = StudentHousingRouteImport.update({
+  id: '/student-housing',
+  path: '/student-housing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventsEventIdRoute = EventsEventIdRouteImport.update({
   id: '/events/$eventId',
   path: '/events/$eventId',
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/placements': typeof PlacementsRoute
+  '/student-housing': typeof StudentHousingRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
   '/programmes/': typeof ProgrammesIndexRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/placements': typeof PlacementsRoute
+  '/student-housing': typeof StudentHousingRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
   '/programmes': typeof ProgrammesIndexRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/placements': typeof PlacementsRoute
+  '/student-housing': typeof StudentHousingRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
   '/programmes/': typeof ProgrammesIndexRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/campus-life'
     | '/contact'
     | '/placements'
+    | '/student-housing'
     | '/events/$eventId'
     | '/programmes/$courseId'
     | '/programmes/'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/campus-life'
     | '/contact'
     | '/placements'
+    | '/student-housing'
     | '/events/$eventId'
     | '/programmes/$courseId'
     | '/programmes'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/campus-life'
     | '/contact'
     | '/placements'
+    | '/student-housing'
     | '/events/$eventId'
     | '/programmes/$courseId'
     | '/programmes/'
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   CampusLifeRoute: typeof CampusLifeRoute
   ContactRoute: typeof ContactRoute
   PlacementsRoute: typeof PlacementsRoute
+  StudentHousingRoute: typeof StudentHousingRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
   ProgrammesCourseIdRoute: typeof ProgrammesCourseIdRoute
   ProgrammesIndexRoute: typeof ProgrammesIndexRoute
@@ -211,6 +224,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlacementsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/student-housing': {
+      id: '/student-housing'
+      path: '/student-housing'
+      fullPath: '/student-housing'
+      preLoaderRoute: typeof StudentHousingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events/$eventId': {
       id: '/events/$eventId'
       path: '/events/$eventId'
@@ -243,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   CampusLifeRoute: CampusLifeRoute,
   ContactRoute: ContactRoute,
   PlacementsRoute: PlacementsRoute,
+  StudentHousingRoute: StudentHousingRoute,
   EventsEventIdRoute: EventsEventIdRoute,
   ProgrammesCourseIdRoute: ProgrammesCourseIdRoute,
   ProgrammesIndexRoute: ProgrammesIndexRoute,
