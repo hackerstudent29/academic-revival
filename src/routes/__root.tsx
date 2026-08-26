@@ -140,9 +140,9 @@ function RootComponent() {
       <SmoothScroll />
       <ScrollToTop />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <div className="bg-background text-foreground">
+      <div className="bg-background text-foreground overflow-x-clip w-full">
           <div 
-            className="relative z-10 isolate flex min-h-screen flex-col shadow-2xl"
+            className="relative z-10 isolate flex min-h-screen flex-col shadow-2xl w-full"
             style={{ marginBottom: "var(--footer-height, 0px)" }}
           >
             <SiteHeader />

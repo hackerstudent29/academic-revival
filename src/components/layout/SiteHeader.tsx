@@ -415,7 +415,7 @@ export function SiteHeader() {
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.42, ease: APPLE_EASE }}
-                className="msajce-dropdown-glass overflow-hidden border-b border-foreground/10 w-full"
+                className="bg-background/80 backdrop-blur-3xl overflow-hidden border-b border-foreground/10 w-full"
               >
                 <motion.div
                   key={activeItem.id}
@@ -486,7 +486,7 @@ export function SiteHeader() {
             transition={{ duration: 0.5, ease: APPLE_EASE }}
             style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}
             data-lenis-prevent="true"
-            className="fixed right-0 top-0 z-[45] block w-full max-w-[360px] h-[100dvh] pt-[80px] pb-12 msajce-dropdown-glass px-6 overflow-y-auto overflow-x-hidden overscroll-contain border-l border-foreground/10 shadow-2xl scrollbar-none"
+            className="fixed right-0 top-0 z-[45] block w-full lg:max-w-[360px] h-[100dvh] pt-[100px] lg:pt-[80px] pb-12 bg-background/80 backdrop-blur-3xl px-6 md:px-12 lg:px-8 overflow-y-auto overflow-x-hidden overscroll-contain lg:border-l border-foreground/10 shadow-2xl scrollbar-none"
           >
             <div className="relative w-full min-h-full">
               <AnimatePresence mode="wait">

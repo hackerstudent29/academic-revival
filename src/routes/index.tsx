@@ -130,7 +130,7 @@ export function HomePage() {
             </Stagger>
           </div>
 
-          <div className="relative min-w-0 min-h-0 w-full max-w-[100vw] overflow-hidden border-foreground/12 lg:h-full lg:border-l">
+          <div className="relative min-w-0 min-h-0 w-full overflow-hidden border-foreground/12 lg:h-full lg:border-l">
             <div className="absolute inset-0 hidden lg:block overflow-hidden">
               <HeroReel />
             </div>
