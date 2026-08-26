@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useRef } from "react";
 
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "framer-motion";
 import { WhyJoinSection } from "@/components/sections/WhyJoinSection";
@@ -44,19 +45,57 @@ const heroLinks = [
 export function HomePage() {
   const { scrollY } = useScroll();
   const logoOpacity = useTransform(scrollY, [0, 80], [1, 0]);
+  const stripRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const strip = stripRef.current;
+    if (!strip) return;
+
+    let intervalId: ReturnType<typeof setInterval>;
+
+    const startScroll = () => {
+      intervalId = setInterval(() => {
+        // If we are at the end, jump back to start
+        if (strip.scrollWidth - strip.scrollLeft <= strip.clientWidth + 10) {
+          strip.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          // Scroll by roughly one item width
+          const scrollAmount = strip.clientWidth > 0 ? strip.clientWidth * 0.75 : 250;
+          strip.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        }
+      }, 3500);
+    };
+
+    startScroll();
+
+    const pauseScroll = () => clearInterval(intervalId);
+    const resumeScroll = () => {
+      clearInterval(intervalId);
+      startScroll();
+    };
+
+    strip.addEventListener("touchstart", pauseScroll, { passive: true });
+    strip.addEventListener("touchend", resumeScroll, { passive: true });
+
+    return () => {
+      clearInterval(intervalId);
+      strip.removeEventListener("touchstart", pauseScroll);
+      strip.removeEventListener("touchend", resumeScroll);
+    };
+  }, []);
 
   return (
     <motion.main 
-      className="bg-background relative z-0"
-      initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
-      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      className="relative z-0"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
       <section
-        className="relative border-b border-foreground/12 min-h-[calc(100svh-53px)] h-auto md:h-[calc(100svh-65px)] md:overflow-hidden bg-gray-100 dark:bg-background flex flex-col"
+        className="relative border-b border-foreground/12 min-h-[calc(100svh-53px)] h-auto lg:h-[calc(100svh-65px)] overflow-x-hidden lg:overflow-hidden bg-gray-100 dark:bg-background flex flex-col"
         id="hero"
       >
-        <div className="grid flex-1 items-stretch md:grid-cols-[47%_53%]">
+        <div className="grid flex-1 items-stretch lg:grid-cols-[47%_53%]">
           <div className="flex h-full flex-col justify-start px-6 pt-6 pb-8 md:px-8 md:pt-8 md:pb-10 lg:px-12 lg:pt-10">
             <DynamicText />
             <div className="mt-6 mb-6 flex items-center justify-start min-h-[40px] sm:min-h-[50px] md:min-h-[70px] lg:min-h-[100px]">
@@ -91,12 +130,16 @@ export function HomePage() {
             </Stagger>
           </div>
 
-          <div className="relative min-h-0 border-foreground/12 md:h-full md:border-l">
-            <div className="absolute inset-0 hidden md:block overflow-hidden">
+          <div className="relative min-w-0 min-h-0 w-full max-w-[100vw] overflow-hidden border-foreground/12 lg:h-full lg:border-l">
+            <div className="absolute inset-0 hidden lg:block overflow-hidden">
               <HeroReel />
             </div>
             {/* Mobile: horizontal snap strip */}
-            <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto scrollbar-none px-6 pb-4 md:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div 
+              ref={stripRef}
+              className="flex snap-x snap-mandatory gap-3 overflow-x-auto scrollbar-none px-6 pb-4 lg:hidden" 
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
               {[
                 { src: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=400&h=300&q=80", label: "Research" },
                 { src: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=400&h=300&q=80", label: "Heritage" },

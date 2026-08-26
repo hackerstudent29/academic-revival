@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const campusFacilities = [
@@ -69,6 +69,34 @@ const campusFacilities = [
 
 export function AboutBannerSection() {
   const [activeFacility, setActiveFacility] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    // Only run intersection observer on mobile/tablet where scrolling happens
+    if (window.innerWidth >= 1024) return;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = cardRefs.current.indexOf(entry.target as HTMLDivElement);
+            if (idx !== -1) setActiveFacility(idx);
+          }
+        });
+      },
+      {
+        root: containerRef.current,
+        threshold: 0.6,
+      }
+    );
+
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="about" className="relative z-10 w-full bg-[#F0F4F8] dark:bg-[#1a1e24] min-h-[100svh] flex flex-col justify-center py-16 border-t border-b border-foreground/10">
@@ -175,10 +203,16 @@ export function AboutBannerSection() {
         </Reveal>
 
         {/* Right: hover accordion image gallery */}
-        <Reveal variant="slide-left" className="flex lg:items-stretch gap-4 lg:gap-2 lg:col-span-6 h-[400px] lg:h-[65vh] lg:min-h-[600px] max-lg:overflow-x-auto max-lg:snap-x max-lg:snap-mandatory max-lg:pb-4 scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <Reveal 
+          variant="slide-left" 
+          className="flex lg:items-stretch gap-4 lg:gap-2 lg:col-span-6 h-[400px] lg:h-[65vh] lg:min-h-[600px] max-lg:overflow-x-auto max-lg:snap-x max-lg:snap-mandatory max-lg:pb-4 scrollbar-none" 
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          ref={containerRef}
+        >
           {campusFacilities.map((facility, idx) => (
             <div
               key={idx}
+              ref={(el) => (cardRefs.current[idx] = el)}
               onMouseEnter={() => setActiveFacility(idx)}
               onMouseLeave={() => setActiveFacility(null)}
               onClick={() => setActiveFacility(idx)}
@@ -190,21 +224,21 @@ export function AboutBannerSection() {
                 alt={facility.name}
               />
               
-              {/* Hover Dark Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100 z-10" />
+              {/* Dark Gradient */}
+              <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-700 z-10 ${activeFacility === idx ? 'opacity-100' : 'opacity-0 lg:group-hover:opacity-100'}`} />
               
               {/* Unhovered Black Overlay */}
-              <div className="absolute inset-0 bg-black/60 transition-opacity duration-700 group-hover:opacity-0 z-10" />
+              <div className={`absolute inset-0 transition-opacity duration-700 z-10 ${activeFacility === idx ? 'bg-black/0 lg:bg-black/20' : 'bg-black/60'} lg:group-hover:bg-black/20 lg:group-hover:opacity-0`} />
 
-              {/* Unhovered Vertical Text */}
-              <div className="absolute inset-0 hidden lg:flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-8 group-hover:opacity-0 group-hover:pointer-events-none z-20 overflow-hidden">
+              {/* Unhovered Vertical Text (Desktop only) */}
+              <div className={`absolute inset-0 hidden lg:flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-20 overflow-hidden ${activeFacility === idx ? 'translate-y-8 opacity-0 pointer-events-none' : 'group-hover:translate-y-8 group-hover:opacity-0 group-hover:pointer-events-none'}`}>
                 <span className="flex text-white text-4xl md:text-5xl lg:text-[60px] leading-none font-black uppercase tracking-tighter [writing-mode:vertical-rl] -rotate-180 whitespace-nowrap">
                   {facility.name}
                 </span>
               </div>
 
               {/* Hovered Content (Name + Description) */}
-              <div className="absolute bottom-0 left-0 w-full lg:w-[300px] p-6 lg:translate-y-8 lg:opacity-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:group-hover:translate-y-0 lg:group-hover:opacity-100 flex flex-col justify-end pointer-events-none z-20">
+              <div className={`absolute bottom-0 left-0 w-full lg:w-[300px] p-6 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col justify-end pointer-events-none z-20 ${activeFacility === idx ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100'}`}>
                 <h3 className="text-xl md:text-3xl font-black text-white uppercase tracking-tighter">{facility.name}</h3>
                 <p className="mt-2 text-xs md:text-sm text-white/90 leading-relaxed">
                   {facility.description}

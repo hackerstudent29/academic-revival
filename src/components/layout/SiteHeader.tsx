@@ -5,16 +5,16 @@ import { ThemeToggle } from "@/components/shared/ThemeToggle";
 import { Logo } from "@/components/shared/Logo";
 import { MoreHorizontal, X, ChevronDown } from "lucide-react";
 
-type RoutePath = 
-  | "/" 
-  | "/about" 
-  | "/academics" 
-  | "/admissions" 
-  | "/placements" 
-  | "/campus-life" 
-  | "/contact" 
+type RoutePath =
+  | "/"
+  | "/about"
+  | "/academics"
+  | "/admissions"
+  | "/placements"
+  | "/campus-life"
+  | "/contact"
   | "/student-housing"
-  | "/programmes" 
+  | "/programmes"
   | `/programmes/${string}`;
 
 type Col = { title: string; links: { label: string; to?: RoutePath; href?: string; hash?: string; search?: any }[] };
@@ -28,9 +28,44 @@ const nav: NavItem[] = [
     label: "The Institution",
     to: "/",
     cols: [
-      { title: "Overview", links: [{ label: "Campus Profile", to: "/about" }, { label: "Mission & Values", to: "/about", hash: "mission" }, { label: "The Trust", to: "/about", hash: "trust" }, { label: "Principal's Message", to: "/about", hash: "leadership" }, { label: "Trust Network", to: "/about", hash: "trust" }] },
-      { title: "Administration & Compliance", links: [{ label: "Governance", to: "/about", hash: "leadership" }, { label: "Welfare Committees", to: "/about" }, { label: "Code of Conduct", to: "/campus-life", hash: "code-of-conduct" }, { label: "Compliance", to: "/about" }] },
-      { title: "Recognitions", links: [{ label: "NAAC", to: "/about", hash: "accreditations" }, { label: "IQAC", to: "/about", hash: "accreditations" }, { label: "NIRF", to: "/about", hash: "accreditations" }, { label: "ARIIA", to: "/about", hash: "accreditations" }] },
+      {
+        title: "About MSAJCE",
+        links: [
+          { label: "Institution Overview", to: "/about" },
+          { label: "Vision & Mission", to: "/about", hash: "mission" },
+          { label: "Leadership Message", to: "/about", hash: "leadership" },
+          { label: "The Trust", to: "/about", hash: "trust" },
+          { label: "Group of Institutions", to: "/about", hash: "trust" },
+        ],
+      },
+      {
+        title: "Welfare committees",
+        links: [
+          { label: "Grievance Cell", to: "/about", hash: "leadership" },
+          { label: "Statutory Committees", to: "/about", hash: "leadership" },
+          { label: "Functional Committees", to: "/about", hash: "leadership" },
+          { label: "Anti-Ragging Committee", to: "/about", hash: "leadership" },
+          { label: "Women's Empowerment Cell", to: "/about", hash: "leadership" },
+        ],
+      },
+      {
+        title: "Policies & Compliance",
+        links: [
+          { label: "Compliance", to: "/about", hash: "leadership" },
+          { label: "Code of Conduct", to: "/campus-life", hash: "code-of-conduct" },
+          { label: "Mandatory Disclosure", to: "/about", hash: "leadership" },
+          { label: "Institutional Policies", to: "/about", hash: "leadership" },
+        ],
+      },
+      {
+        title: "Accreditation & Rankings",
+        links: [
+          { label: "NAAC", to: "/about", hash: "accreditations" },
+          { label: "IQAC", to: "/about", hash: "accreditations" },
+          { label: "NIRF", to: "/about", hash: "accreditations" },
+          { label: "ARIIA", to: "/about", hash: "accreditations" },
+        ],
+      },
     ],
   },
   {
@@ -38,8 +73,30 @@ const nav: NavItem[] = [
     label: "Admissions",
     to: "/admissions",
     cols: [
-      { title: "Join MSAJCE", links: [{ label: "Courses Offered", to: "/programmes" }, { label: "Online Application", to: "/admissions", hash: "process" }, { label: "Fee Portal", to: "/admissions" }, { label: "Financial Aid", to: "/admissions", hash: "scholarships" }] },
-      { title: "Support", links: [{ label: "Eligibility", to: "/admissions", hash: "eligibility" }, { label: "Scholarships", to: "/admissions", hash: "scholarships" }, { label: "Admission Enquiry", to: "/contact" }] },
+      {
+        title: "Explore Admissions",
+        links: [
+          { label: "Programmes Offered", to: "/programmes" },
+          { label: "B.E. / B.Tech Admissions", to: "/admissions", search: { level: "Undergraduate" } },
+          { label: "M.E. Admissions", to: "/admissions", search: { level: "Postgraduate" } },
+          { label: "Admission Procedure", to: "/admissions", hash: "process" },
+        ],
+      },
+      {
+        title: "Eligibility & Scholarships",
+        links: [
+          { label: "Admission Eligibility", to: "/admissions", hash: "eligibility" },
+          { label: "Scholarship Programmes", to: "/admissions", hash: "scholarships" },
+        ],
+      },
+      {
+        title: "Apply Online",
+        links: [
+          { label: "Online Application", to: "/admissions", hash: "apply" },
+          { label: "Online Fee Payment", to: "/admissions", hash: "apply" },
+          { label: "Enquire Now", to: "/contact" },
+        ],
+      },
     ],
   },
   {
@@ -47,14 +104,40 @@ const nav: NavItem[] = [
     label: "Education",
     to: "/academics",
     cols: [
-      { 
-        title: "Departments", 
+      {
+        title: "Departments",
         links: [
-          { label: "Undergraduate (UG)", to: "/admissions", search: { level: "Undergraduate" } },
-          { label: "Postgraduate (PG)", to: "/admissions", search: { level: "Postgraduate" } },
-          { label: "Doctorate (Ph.D)", to: "/admissions", search: { level: "Research (Ph.D)" } }
-        ] 
-      }
+          { label: "Undergraduate Departments", to: "/admissions", search: { level: "Undergraduate" } },
+          { label: "Postgraduate Departments", to: "/admissions", search: { level: "Postgraduate" } },
+          { label: "Doctoral Studies", to: "/admissions", search: { level: "Research (Ph.D)" } },
+          { label: "All Departments", to: "/programmes" },
+        ],
+      },
+      {
+        title: "Academic Resources",
+        links: [
+          { label: "Regulations", to: "/academics" },
+          { label: "Academic Calendar", to: "/academics" },
+          { label: "Curriculum & Syllabus", to: "/academics" },
+        ],
+      },
+      {
+        title: "Research & Innovation",
+        links: [
+          { label: "Research", to: "/academics" },
+          { label: "Publications", to: "/academics" },
+          { label: "Patents", to: "/academics" },
+          { label: "Innovation Council (IIC)", to: "/academics" },
+          { label: "Startup Ecosystem", to: "/academics" },
+        ],
+      },
+      {
+        title: "Centres of Excellence",
+        links: [
+          { label: "Overview", to: "/academics" },
+          { label: "Explore Centres", to: "/academics" },
+        ],
+      },
     ],
   },
   { id: "placement", label: "Placements", to: "/placements" },
@@ -63,17 +146,72 @@ const nav: NavItem[] = [
     label: "Campus Life",
     to: "/campus-life",
     cols: [
-      { title: "Campus Facilities", links: [{ label: "Digital Library", to: "/campus-life", hash: "facilities" }, { label: "Student Housing", to: "/student-housing" }, { label: "Transit & Routes", to: "/campus-life", hash: "facilities" }, { label: "Athletics & Gym", to: "/campus-life", hash: "facilities" }, { label: "Tech Centres", to: "/campus-life", hash: "tech-centres" }] },
-      { title: "Student Engagement", links: [{ label: "Student Clubs", to: "/campus-life", hash: "facilities" }, { label: "Tech Chapters", to: "/campus-life", hash: "tech-centres" }, { label: "Social Outreach (NSS)", to: "/campus-life", hash: "facilities" }, { label: "EBSB", to: "/campus-life" }] },
-      { title: "Career & Community", links: [{ label: "Student Corner", to: "/campus-life" }, { label: "Alumni Network", to: "/campus-life" }, { label: "Startup Hub", to: "/campus-life" }] },
+      {
+        title: "Campus Facilities",
+        links: [
+          { label: "Central Library", to: "/campus-life", hash: "facilities" },
+          { label: "Hostel", to: "/student-housing" },
+          { label: "Transport", to: "/campus-life", hash: "facilities" },
+          { label: "Sports & Gym", to: "/campus-life", hash: "facilities" },
+        ],
+      },
+      {
+        title: "Student Life",
+        links: [
+          { label: "Student Hub", to: "/campus-life", hash: "facilities" },
+          { label: "Clubs & Societies", to: "/campus-life", hash: "facilities" },
+          { label: "Professional Societies", to: "/campus-life", hash: "tech-centres" },
+          { label: "Our TEDx Chapter", to: "/campus-life" },
+        ],
+      },
+      {
+        title: "Social & Community",
+        links: [
+          { label: "National Service Scheme (NSS)", to: "/campus-life", hash: "facilities" },
+          { label: "Youth Red Cross (YRC)", to: "/campus-life", hash: "facilities" },
+          { label: "Unnat Bharat Abhiyan (UBA)", to: "/campus-life", hash: "facilities" },
+          { label: "EBSB Initiative", to: "/campus-life" },
+        ],
+      },
+      {
+        title: "Student Community",
+        links: [
+          { label: "Our Alumni", to: "/campus-life" },
+          { label: "Convocation", to: "/campus-life" },
+          { label: "Campus Happenings", to: "/campus-life" },
+        ],
+      },
     ],
   },
+  { id: "incubation", label: "Incubation", to: "/incubation" },
   {
     id: "coe",
     label: "Examinations",
     to: "/academics",
     cols: [
-      { title: "Controller of Examinations", links: [{ label: "Exam Schedules", to: "/academics", hash: "examinations" }, { label: "Exam Results", href: "https://results.msajce-edu.in" }, { label: "Hall Tickets", to: "/academics", hash: "examinations" }, { label: "Arrear Exams", to: "/academics", hash: "examinations" }] },
+      {
+        title: "Examination",
+        links: [
+          { label: "Exam Schedules", to: "/academics", hash: "examinations" },
+          { label: "IAT Timetable", to: "/academics", hash: "examinations" },
+          { label: "ESE Timetable", to: "/academics", hash: "examinations" },
+          { label: "Hall Tickets", to: "/academics", hash: "examinations" },
+          { label: "Arrear Examinations", to: "/academics", hash: "examinations" },
+        ],
+      },
+      {
+        title: "Results",
+        links: [
+          { label: "Student Results Login", href: "https://results.msajce-edu.in" },
+          { label: "Academic Toppers", to: "/academics", hash: "examinations" },
+        ],
+      },
+      {
+        title: "Rules & Regulations",
+        links: [
+          { label: "Examination Regulations", to: "/academics", hash: "examinations" },
+        ],
+      },
     ],
   },
 ];
@@ -189,286 +327,296 @@ export function SiteHeader() {
         }}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: APPLE_EASE }}
-        className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 msajce-header-glass ${
-          active || moreOpen || isScrolled ? "border-foreground/10" : "border-transparent"
-        }`}
+        className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 bg-background/80 backdrop-blur-xl ${active || moreOpen || isScrolled ? "border-foreground/10" : "border-transparent"
+          }`}
         onMouseLeave={() => setActive(null)}
       >
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-2.5 md:px-12 md:py-3">
-        <div className="flex-1 lg:flex-none flex items-center min-w-[140px]">
-          <Link to="/" className="flex items-center min-h-[36px] md:min-h-[40px] w-full">
-            {(!isHome || isScrolled) && (
-              <motion.img
-                layoutId="msajce-logo"
-                src="/logos/clg-logo.png" 
-                alt="MSAJCE Logo" 
-                className="h-9 md:h-10 w-auto object-contain origin-left"
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              />
-            )}
-          </Link>
-        </div>
-
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
-          {nav.map((item) =>
-            item.cols ? (
-              <button
-                key={item.id}
-                type="button"
-                onMouseEnter={() => setActive(item.id)}
-                onClick={() => setActive((c) => (c === item.id ? null : item.id))}
-                aria-expanded={active === item.id}
-                className={`relative py-2 text-[13px] font-bold uppercase tracking-[0.04em] transition-colors duration-200 ${
-                  active === item.id ? "text-primary" : "text-foreground hover:text-primary"
-                }`}
-              >
-                {item.label}
-                <span
-                  className={`absolute -bottom-0.5 left-0 h-[2px] bg-primary transition-all duration-300 ${
-                    active === item.id ? "w-full" : "w-0"
-                  }`}
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 lg:gap-6 px-4 py-2.5 md:px-8 xl:px-12 md:py-3">
+          <div className="flex-1 lg:flex-none flex items-center min-w-[140px]">
+            <Link to="/" className="flex items-center min-h-[36px] md:min-h-[40px] w-full">
+              {(!isHome || isScrolled) && (
+                <motion.img
+                  layoutId="msajce-logo"
+                  src="/logos/clg-logo.png"
+                  alt="MSAJCE Logo"
+                  className="h-9 md:h-10 w-auto object-contain origin-left"
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 />
-              </button>
-            ) : (
-              <Link
-                key={item.id}
-                to={item.to}
-                onMouseEnter={() => setActive(null)}
-                className="py-2 text-[13px] font-bold uppercase tracking-[0.04em] text-foreground transition-colors duration-200 hover:text-primary"
-                activeProps={{ className: "text-primary" }}
-              >
-                {item.label}
-              </Link>
-            ),
-          )}
-        </nav>
+              )}
+            </Link>
+          </div>
 
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-          <Link
-            to="/admissions"
-            className="group relative hidden overflow-hidden rounded-none bg-primary px-5 py-2.5 text-[13px] font-bold text-primary-foreground shadow transition-colors hover:text-background sm:inline-flex after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
-            onClick={closeAll}
-          >
-            <span className="relative z-10">Apply 2026-27</span>
-          </Link>
-          <button
-            type="button"
-            aria-label={moreOpen ? "Close menu" : "Open menu"}
-            onClick={() => {
-              if (!moreOpen) setActivePanel("main");
-              setMoreOpen(!moreOpen);
-              setActive(null);
-            }}
-            className="group relative h-10 w-10 flex flex-col items-center justify-center gap-[5px] rounded-none border border-foreground/15 bg-transparent transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
-          >
-            <span className="relative z-10 flex flex-col items-center justify-center gap-[5px]">
-              <span className={`block h-[1.5px] w-4 bg-foreground transition-all duration-300 group-hover:bg-background ${moreOpen ? "translate-y-[6.5px] rotate-45" : ""}`} />
-              <span className={`block h-[1.5px] w-4 bg-foreground transition-all duration-200 group-hover:bg-background ${moreOpen ? "opacity-0" : ""}`} />
-              <span className={`block h-[1.5px] w-4 bg-foreground transition-all duration-300 group-hover:bg-background ${moreOpen ? "-translate-y-[6.5px] -rotate-45" : ""}`} />
-            </span>
-          </button>
-        </div>
-      </div>
+          <nav className="hidden items-center gap-3 lg:gap-4 xl:gap-7 lg:flex" aria-label="Main navigation">
+            {nav.map((item) =>
+              item.cols ? (
+                <button
+                  key={item.id}
+                  type="button"
+                  onMouseEnter={() => setActive(item.id)}
+                  onClick={() => setActive((c) => (c === item.id ? null : item.id))}
+                  aria-expanded={active === item.id}
+                  className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] transition-colors duration-200 ${active === item.id ? "text-primary" : "text-foreground hover:text-primary"
+                    }`}
+                >
+                  {item.label}
+                  <span
+                    className={`absolute -bottom-0.5 left-0 h-[2px] bg-primary transition-all duration-300 ${active === item.id ? "w-full" : "w-0"
+                      }`}
+                  />
+                </button>
+              ) : (
+                <Link
+                  key={item.id}
+                  to={item.to}
+                  onMouseEnter={() => setActive(null)}
+                  className="py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] text-foreground transition-colors duration-200 hover:text-primary"
+                  activeProps={{ className: "text-primary" }}
+                >
+                  {item.label}
+                </Link>
+              ),
+            )}
+          </nav>
 
-      {/* Apple-style dropdown overlay */}
-      <div className="absolute left-0 top-full hidden w-full lg:block">
-        <AnimatePresence initial={false}>
-          {activeItem && (
-            <motion.div
-              key="pane"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.42, ease: APPLE_EASE }}
-              className="msajce-dropdown-glass overflow-hidden border-b border-foreground/10 w-full"
+          <div className="flex items-center gap-3">
+            <Link
+              to="/admissions"
+              className="group relative hidden overflow-hidden whitespace-nowrap rounded-none bg-primary px-5 py-2.5 text-[11px] xl:text-[13px] font-bold text-primary-foreground shadow transition-colors hover:text-background sm:inline-flex after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
+              onClick={closeAll}
             >
+              <span className="relative z-10">Apply 2026-27</span>
+            </Link>
+            <button
+              type="button"
+              aria-label={moreOpen ? "Close menu" : "Open menu"}
+              onClick={() => {
+                if (!moreOpen) setActivePanel("main");
+                setMoreOpen(!moreOpen);
+                setActive(null);
+              }}
+              className="group relative h-10 w-10 flex flex-col items-center justify-center gap-[5px] rounded-none border border-foreground/15 bg-transparent transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
+            >
+              <span className="relative z-10 flex flex-col items-center justify-center gap-[5px]">
+                <span className={`block h-[1.5px] w-4 bg-foreground transition-all duration-300 group-hover:bg-background ${moreOpen ? "translate-y-[6.5px] rotate-45" : ""}`} />
+                <span className={`block h-[1.5px] w-4 bg-foreground transition-all duration-200 group-hover:bg-background ${moreOpen ? "opacity-0" : ""}`} />
+                <span className={`block h-[1.5px] w-4 bg-foreground transition-all duration-300 group-hover:bg-background ${moreOpen ? "-translate-y-[6.5px] -rotate-45" : ""}`} />
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {/* Apple-style dropdown overlay */}
+        <div className="absolute left-0 top-full hidden w-full lg:block">
+          <AnimatePresence initial={false}>
+            {activeItem && (
               <motion.div
-                key={activeItem.id}
-                initial="hidden"
-                animate="show"
-                variants={{ hidden: {}, show: { transition: { staggerChildren: 0.05, delayChildren: 0.08 } } }}
-                className="mx-auto grid max-w-[1440px] grid-cols-[0.8fr_2.2fr] gap-12 px-12 py-12"
+                key="pane"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.42, ease: APPLE_EASE }}
+                className="msajce-dropdown-glass overflow-hidden border-b border-foreground/10 w-full"
               >
                 <motion.div
-                  variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: APPLE_EASE } } }}
+                  key={activeItem.id}
+                  initial="hidden"
+                  animate="show"
+                  variants={{ hidden: {}, show: { transition: { staggerChildren: 0.05, delayChildren: 0.08 } } }}
+                  className="mx-auto grid max-w-[1440px] grid-cols-[0.8fr_2.2fr] xl:grid-cols-[0.5fr_2.5fr] gap-12 px-12 py-12"
                 >
-                  <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Explore</p>
-                  <Link to={activeItem.to} onClick={closeAll} className="text-3xl font-black leading-[0.95] text-primary transition-colors hover:text-primary/80">
-                    {activeItem.label}
-                  </Link>
+                  <motion.div
+                    variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: APPLE_EASE } } }}
+                  >
+                    <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Explore</p>
+                    <Link to={activeItem.to} onClick={closeAll} className="text-3xl font-black leading-[0.95] text-primary transition-colors hover:text-primary/80">
+                      {activeItem.label}
+                    </Link>
+                  </motion.div>
+                  <div className={`grid gap-x-10 gap-y-12 ${activeItem.cols!.length === 1 ? "grid-cols-1" :
+                      activeItem.cols!.length === 2 ? "grid-cols-2" :
+                        activeItem.cols!.length === 3 ? "grid-cols-3" :
+                          activeItem.cols!.length === 4 ? "grid-cols-2 xl:grid-cols-4" :
+                            "grid-cols-2 lg:grid-cols-3"
+                    }`}>
+                    {activeItem.cols!.map((col) => (
+                      <motion.div
+                        key={col.title}
+                        variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: APPLE_EASE } } }}
+                      >
+                        <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-primary">{col.title}</h3>
+                        <ul className="space-y-3">
+                          {col.links.map((link) => (
+                            <li key={link.label}>
+                              <PaneLink link={link} onClick={closeAll} />
+                            </li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    ))}
+                  </div>
                 </motion.div>
-                <div className={`grid gap-10 ${activeItem.cols!.length === 1 ? "grid-cols-1" : activeItem.cols!.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}>
-                  {activeItem.cols!.map((col) => (
-                    <motion.div
-                      key={col.title}
-                      variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: APPLE_EASE } } }}
-                    >
-                      <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-primary">{col.title}</h3>
-                      <ul className="space-y-3">
-                        {col.links.map((link) => (
-                          <li key={link.label}>
-                            <PaneLink link={link} onClick={closeAll} />
-                          </li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  ))}
-                </div>
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.header>
+            )}
+          </AnimatePresence>
+        </div>
+      </motion.header>
 
       {/* Sidebar unified menu overlay */}
       <AnimatePresence>
         {moreOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setMoreOpen(false)}
-              className="fixed inset-0 top-0 z-[40] bg-black/40 touch-none"
-            />
-            <motion.div
-              initial={{ opacity: 0, x: "100%" }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: "100%" }}
-              transition={{ duration: 0.5, ease: APPLE_EASE }}
-              style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}
-              data-lenis-prevent="true"
-              className="fixed right-0 top-0 z-[45] block w-full max-w-[360px] h-[100dvh] pt-[80px] pb-12 msajce-dropdown-glass px-6 overflow-y-auto overflow-x-hidden overscroll-contain border-l border-foreground/10 shadow-2xl scrollbar-none"
-            >
-              <div className="relative w-full min-h-full">
-                <AnimatePresence mode="wait">
-                  {activePanel === "main" ? (
-                    <motion.div
-                      key="main"
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -10 }}
-                      transition={{ duration: 0.2 }}
-                      className="w-full"
-                    >
-                      {/* Main Navigation Links */}
-                      <div className="mb-8">
-                        {nav.map((item) => (
-                          <div key={item.id} className="border-b border-foreground/10 last:border-b-0">
-                            {item.cols ? (
-                              <button
-                                type="button"
-                                onClick={() => setActivePanel(item.id)}
-                                className="flex w-full items-center justify-between py-4 text-[15px] font-bold uppercase tracking-widest text-foreground/80 hover:text-primary"
-                              >
-                                {item.label}
-                                <span className="text-xl leading-none">›</span>
-                              </button>
-                            ) : (
-                              <Link to={item.to} onClick={closeAll} className="block py-4 text-[15px] font-bold uppercase tracking-widest text-foreground/80 hover:text-primary">
-                                {item.label}
-                              </Link>
-                            )}
-                          </div>
-                        ))}
-                        <Link
-                          to="/admissions"
-                          className="group relative my-5 inline-flex w-full items-center justify-center overflow-hidden rounded-none bg-primary px-5 py-3 text-[13px] font-bold text-primary-foreground shadow transition-colors hover:text-background sm:hidden after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
-                          onClick={closeAll}
-                        >
-                          <span className="relative z-10">Apply 2026-27</span>
-                        </Link>
-                      </div>
+          <motion.div
+            key="sidebar-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setMoreOpen(false)}
+            className="fixed inset-0 top-0 z-[40] bg-black/40 touch-none"
+          />
+        )}
+      </AnimatePresence>
 
-                      <div className="w-full h-px bg-foreground/10 mb-8" />
-                      
-                      {/* Explore Additional Links */}
-                      <h2 className="mb-6 text-xl font-bold uppercase tracking-widest text-foreground/50">Explore MSAJCE</h2>
-                      <div className="flex flex-col">
-                        {moreMenuData.map((section) => (
-                          <div key={section.title} className="border-b border-foreground/10 last:border-b-0">
-                            <button 
-                              onClick={() => setActivePanel(section.title)}
+      <AnimatePresence>
+        {moreOpen && (
+          <motion.div
+            key="sidebar-panel"
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.5, ease: APPLE_EASE }}
+            style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}
+            data-lenis-prevent="true"
+            className="fixed right-0 top-0 z-[45] block w-full max-w-[360px] h-[100dvh] pt-[80px] pb-12 msajce-dropdown-glass px-6 overflow-y-auto overflow-x-hidden overscroll-contain border-l border-foreground/10 shadow-2xl scrollbar-none"
+          >
+            <div className="relative w-full min-h-full">
+              <AnimatePresence mode="wait">
+                {activePanel === "main" ? (
+                  <motion.div
+                    key="main"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-full"
+                  >
+                    {/* Main Navigation Links */}
+                    <div className="mb-8">
+                      {nav.map((item) => (
+                        <div key={item.id} className="border-b border-foreground/10 last:border-b-0">
+                          {item.cols ? (
+                            <button
+                              type="button"
+                              onClick={() => setActivePanel(item.id)}
                               className="flex w-full items-center justify-between py-4 text-[15px] font-bold uppercase tracking-widest text-foreground/80 hover:text-primary"
                             >
-                              {section.title}
+                              {item.label}
                               <span className="text-xl leading-none">›</span>
                             </button>
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key={activePanel}
-                      initial={{ opacity: 0, x: 10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 10 }}
-                      transition={{ duration: 0.2 }}
-                      className="w-full"
-                    >
-                      <button
-                        onClick={() => setActivePanel("main")}
-                        className="mb-8 flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-foreground/50 hover:text-primary"
+                          ) : (
+                            <Link to={item.to} onClick={closeAll} className="block py-4 text-[15px] font-bold uppercase tracking-widest text-foreground/80 hover:text-primary">
+                              {item.label}
+                            </Link>
+                          )}
+                        </div>
+                      ))}
+                      <Link
+                        to="/admissions"
+                        className="group relative my-5 inline-flex w-full items-center justify-center overflow-hidden rounded-none bg-primary px-5 py-3 text-[13px] font-bold text-primary-foreground shadow transition-colors hover:text-background sm:hidden after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
+                        onClick={closeAll}
                       >
-                        <span className="text-xl leading-none">‹</span> Back
-                      </button>
-                      
-                      {/* Render active item content */}
-                      {(() => {
-                        const navItem = nav.find(n => n.id === activePanel);
-                        if (navItem?.cols) {
-                          return (
-                            <div>
-                              <h2 className="mb-8 text-2xl font-black uppercase tracking-tight text-primary">{navItem.label}</h2>
-                              <div className="space-y-8">
-                                {navItem.cols.map(col => (
-                                  <div key={col.title}>
-                                    <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-primary">{col.title}</p>
-                                    <ul className="space-y-4">
-                                      {col.links.map(link => (
-                                        <li key={link.label}>
-                                          <PaneLink link={link} onClick={closeAll} />
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                ))}
-                              </div>
+                        <span className="relative z-10">Apply 2026-27</span>
+                      </Link>
+                      <div className="flex items-center justify-between py-4 border-t border-foreground/10 mt-4">
+                        <span className="text-[15px] font-bold uppercase tracking-widest text-foreground/80">Appearance</span>
+                        <ThemeToggle />
+                      </div>
+                    </div>
+
+                    <div className="w-full h-px bg-foreground/10 mb-8" />
+
+                    {/* Explore Additional Links */}
+                    <h2 className="mb-6 text-xl font-bold uppercase tracking-widest text-foreground/50">Explore MSAJCE</h2>
+                    <div className="flex flex-col">
+                      {moreMenuData.map((section) => (
+                        <div key={section.title} className="border-b border-foreground/10 last:border-b-0">
+                          <button
+                            onClick={() => setActivePanel(section.title)}
+                            className="flex w-full items-center justify-between py-4 text-[15px] font-bold uppercase tracking-widest text-foreground/80 hover:text-primary"
+                          >
+                            {section.title}
+                            <span className="text-xl leading-none">›</span>
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key={activePanel}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 10 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-full"
+                  >
+                    <button
+                      onClick={() => setActivePanel("main")}
+                      className="mb-8 flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-foreground/50 hover:text-primary"
+                    >
+                      <span className="text-xl leading-none">‹</span> Back
+                    </button>
+
+                    {/* Render active item content */}
+                    {(() => {
+                      const navItem = nav.find(n => n.id === activePanel);
+                      if (navItem?.cols) {
+                        return (
+                          <div>
+                            <h2 className="mb-8 text-2xl font-black uppercase tracking-tight text-primary">{navItem.label}</h2>
+                            <div className="space-y-8">
+                              {navItem.cols.map(col => (
+                                <div key={col.title}>
+                                  <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-primary">{col.title}</p>
+                                  <ul className="space-y-4">
+                                    {col.links.map(link => (
+                                      <li key={link.label}>
+                                        <PaneLink link={link} onClick={closeAll} />
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ))}
                             </div>
-                          );
-                        }
-                        
-                        const moreItem = moreMenuData.find(m => m.title === activePanel);
-                        if (moreItem) {
-                          return (
-                            <div>
-                              <h2 className="mb-8 text-2xl font-black uppercase tracking-tight text-primary">{moreItem.title}</h2>
-                              <ul className="space-y-5">
-                                {moreItem.links.map(link => (
-                                  <li key={link.label}>
-                                    {link.to ? (
-                                      <Link to={link.to} onClick={closeAll} className="text-[15px] font-bold leading-tight text-foreground hover:text-primary">{link.label}</Link>
-                                    ) : (
-                                      <a href={link.href} onClick={closeAll} target="_blank" rel="noopener noreferrer" className="text-[15px] font-bold leading-tight text-foreground hover:text-primary">{link.label}</a>
-                                    )}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          );
-                        }
-                        return null;
-                      })()}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </motion.div>
-          </>
+                          </div>
+                        );
+                      }
+
+                      const moreItem = moreMenuData.find(m => m.title === activePanel);
+                      if (moreItem) {
+                        return (
+                          <div>
+                            <h2 className="mb-8 text-2xl font-black uppercase tracking-tight text-primary">{moreItem.title}</h2>
+                            <ul className="space-y-5">
+                              {moreItem.links.map(link => (
+                                <li key={link.label}>
+                                  {link.to ? (
+                                    <Link to={link.to} onClick={closeAll} className="text-[15px] font-bold leading-tight text-foreground hover:text-primary">{link.label}</Link>
+                                  ) : (
+                                    <a href={link.href} onClick={closeAll} target="_blank" rel="noopener noreferrer" className="text-[15px] font-bold leading-tight text-foreground hover:text-primary">{link.label}</a>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })()}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>

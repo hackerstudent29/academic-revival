@@ -92,7 +92,7 @@ export function SiteFooter() {
             </motion.div>
 
             {/* ── Main grid ── */}
-            <div className="relative z-10 mx-auto grid max-w-[1440px] gap-12 px-6 py-16 md:grid-cols-12 lg:grid-cols-10 md:gap-8 md:px-12 lg:px-16 lg:py-24">
+            <div className="relative z-10 mx-auto grid max-w-[1440px] gap-12 px-6 py-16 md:grid-cols-12 md:gap-8 md:px-12 lg:px-16 lg:py-24">
 
               {/* ── Col 1: Brand ── */}
               <div className="md:col-span-12 lg:col-span-4">
@@ -146,41 +146,33 @@ export function SiteFooter() {
                 </div>
               </div>
 
-              {/* ── Col 2: Academics — header 0.15s, links stagger from 0.22s ── */}
+
+
+              {/* ── Col 3: Governance ── */}
               <div className="md:col-span-4 lg:col-span-2 lg:col-start-5">
                 <motion.h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-white"
-                  variants={fadeUp} initial="hidden" animate={a} transition={t(0.5, 0.15)}>
-                  Academics
+                  variants={fadeUp} initial="hidden" animate={a} transition={t(0.5, 0.20)}>
+                  Governance
                 </motion.h3>
                 <motion.ul className="mt-8 space-y-4 text-sm text-[#CCCCCC]"
-                  initial="hidden" animate={a} variants={stagger(0.22)}>
+                  initial="hidden" animate={a} variants={stagger(0.27)}>
                   {[
-                    { to: "/academics/msajce_cse",  label: "B.E. CSE" },
-                    { to: "/academics/msajce_ece",  label: "B.E. ECE" },
-                    { to: "/academics/msajce_it",   label: "B.Tech IT" },
-                    { to: "/academics/msajce_aids", label: "B.Tech AI & DS" },
-                    { to: "/academics/msajce_mech", label: "B.E. Mechanical" },
-                  ].map(({ to, label }) => (
-                    <motion.li key={to} variants={listItem}>
-                      <Link to={to} className="group flex items-center justify-between hover:text-primary transition-colors">
+                    { to: "/about", hash: "leadership", label: "Governing Council" },
+                    { to: "/about", hash: "leadership", label: "Planning & Monitoring Board" },
+                    { to: "/about", hash: "leadership", label: "Academic Advisory Board" },
+                    { to: "/about", hash: "leadership", label: "Governance Structure" },
+                  ].map(({ to, hash, label }) => (
+                    <motion.li key={label} variants={listItem}>
+                      <Link to={to} hash={hash} className="group flex items-center justify-between hover:text-primary transition-colors">
                         {label}
                         <ArrowUpRight size={14} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
                       </Link>
                     </motion.li>
                   ))}
-                  {/* View All — fires last, arrow nudge on entry */}
-                  <motion.li variants={listItem} transition={{ delay: 0.08 }}>
-                    <Link to="/academics" className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-primary hover:text-primary/80 transition-colors">
-                      View All Programs
-                      <motion.span initial={{ x: 0 }} animate={on ? { x: 4 } : { x: 0 }} transition={{ delay: 0.85, duration: 0.4, ease: E }}>
-                        →
-                      </motion.span>
-                    </Link>
-                  </motion.li>
                 </motion.ul>
               </div>
 
-              {/* ── Col 3: Quick Links — 100ms diagonal offset ── */}
+              {/* ── Col 4: Quick Links — 100ms diagonal offset ── */}
               <div className="md:col-span-4 lg:col-span-2">
                 <motion.h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-white"
                   variants={fadeUp} initial="hidden" animate={a} transition={t(0.5, 0.25)}>
@@ -192,8 +184,7 @@ export function SiteFooter() {
                     { to: "/about",        label: "About the College" },
                     { to: "/placements",   label: "Placements & Career" },
                     { to: "/campus-life",  label: "Campus Life" },
-                    { to: "/",            label: "Governance" },
-                    { to: "/",            label: "Alumni Network" },
+                    { to: "/campus-life",  label: "Alumni Network" },
                   ].map(({ to, label }) => (
                     <motion.li key={label} variants={listItem}>
                       <Link to={to} className="group flex items-center justify-between hover:text-primary transition-colors">

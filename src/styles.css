@@ -236,24 +236,17 @@
 }
 
 /* Apple-style glass header backdrop */
-.msajce-header-glass {
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: saturate(180%) blur(20px);
+.msajce-header-glass,
+.msajce-dropdown-glass {
+  background-color: rgba(255, 255, 255, 0.70);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   transition: background-color 0.3s ease;
 }
 
-.dark .msajce-header-glass {
-  background-color: rgba(10, 10, 10, 0.7);
-}
-
-/* Apple-style dropdown pane glass */
-.msajce-dropdown-glass {
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: saturate(180%) blur(20px);
-}
-
+.dark .msajce-header-glass,
 .dark .msajce-dropdown-glass {
-  background-color: rgba(10, 10, 10, 0.7);
+  background-color: rgba(10, 10, 10, 0.75);
 }
 
 /* Blur page content behind an open menu */
@@ -261,15 +254,12 @@ body.dropdown-open {
   overflow: hidden;
 }
 body.dropdown-open .msajce-page-blur {
-  filter: blur(12px) brightness(0.7) saturate(120%);
-  transform: scale(1.004);
+  filter: blur(8px) brightness(0.8);
+  will-change: filter;
 }
 
 .msajce-page-blur {
-  transition:
-    filter 0.5s cubic-bezier(0.32, 0.72, 0, 1),
-    transform 0.5s cubic-bezier(0.32, 0.72, 0, 1),
-    opacity 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: filter 0.4s ease-out;
 }
 
 /* Hide scrollbar across browsers */
@@ -283,23 +273,27 @@ body.dropdown-open .msajce-page-blur {
 
 /* Editorial motion utilities */
 @keyframes msajce-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-100%, 0, 0); }
 }
 
 .msajce-marquee {
   animation-name: msajce-marquee;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  will-change: transform;
 }
 
 @keyframes msajce-marquee-vertical {
-  from { transform: translateY(0); }
-  to { transform: translateY(-50%); }
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, -50%, 0); }
 }
 
 .msajce-marquee-vertical {
-  animation: msajce-marquee-vertical 30s linear infinite;
+  animation-name: msajce-marquee-vertical;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
 }
 
 .msajce-marquee-vertical:hover {
