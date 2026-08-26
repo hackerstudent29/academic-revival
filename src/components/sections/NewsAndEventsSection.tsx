@@ -59,10 +59,10 @@ export function NewsAndEventsSection() {
           <Reveal variant="rise" delay={0.1} className="lg:col-span-7 h-full">
             <Link
               to={`/events/${currentMainArticle.id}`}
-              className="group flex flex-col h-full bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm p-5 md:p-7 relative overflow-hidden"
+              className="group flex flex-col h-full bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm p-4 md:p-7 relative overflow-hidden"
             >
               {/* Image with Gradient Overlay */}
-              <div className="relative w-full aspect-[2/1] bg-black overflow-hidden rounded-[4px]">
+              <div className="relative w-full aspect-[4/3] md:aspect-[2/1] bg-black overflow-hidden rounded-[4px]">
                 <AnimatePresence initial={false}>
                   <motion.div
                     key={currentMainArticle.id}
