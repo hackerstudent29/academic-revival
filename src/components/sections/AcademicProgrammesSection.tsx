@@ -3,9 +3,9 @@ import { Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "framer-motion";
 
 const levels = [
-  { label: "Undergraduates", to: "/programmes" },
-  { label: "Postgraduates", to: "/programmes" },
-  { label: "Professional & Continuing Education", to: "/programmes" },
+  { label: "Undergraduates", to: "/admissions", search: { level: "Undergraduate" } },
+  { label: "Postgraduates", to: "/admissions", search: { level: "Postgraduate" } },
+  { label: "Doctorate", to: "/admissions", search: { level: "Doctorate" } },
 ] as const;
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -23,8 +23,8 @@ const rise: Variants = {
 const sequence = [
   {
     id: "ug",
-    subtitle: "Undergraduate Programmes",
-    title: "B.E., B.Tech, B.Arch & B.Des Degrees",
+    subtitle: "Bachelor's Degrees",
+    title: "UG Programmes",
     content: (
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 list-disc pl-5 text-[0.95rem] leading-snug">
         <li>Civil Engineering</li>
@@ -46,8 +46,8 @@ const sequence = [
   },
   {
     id: "pg",
-    subtitle: "Postgraduate Programmes",
-    title: "M.E. & M.Arch Degrees",
+    subtitle: "Master's Degrees",
+    title: "PG Programmes",
     content: (
       <ul className="list-disc pl-5 space-y-1.5 text-[0.95rem]">
         <li>M.E. Computer Science and Engineering</li>
@@ -58,8 +58,8 @@ const sequence = [
   },
   {
     id: "phd",
-    subtitle: "Doctoral Programmes",
-    title: "Ph.D. Research Programmes",
+    subtitle: "Research & Innovation",
+    title: "Doctorate",
     content: (
       <ul className="list-disc pl-5 space-y-1.5 text-[0.95rem]">
         <li>Ph.D. in Mechanical Engineering</li>
@@ -71,9 +71,9 @@ const sequence = [
     subtitle: "Studying at MSAJCE",
     title: (
       <>
-        Shape Your Future with
+        Empowering the Next Generation
         <br />
-        MSAJCE&rsquo;s Industry-relevant Programmes
+        of Global Innovators
       </>
     ),
     content: (
@@ -136,8 +136,8 @@ export function AcademicProgrammesSection() {
               
               {/* Mobile image overlay text */}
               <div className="absolute bottom-6 left-6 right-6 text-white text-shadow-sm lg:hidden">
-                <h3 className="text-2xl font-bold font-display leading-tight mb-2">Shape Your Future</h3>
-                <p className="text-sm font-medium text-white/90">Experience hands-on learning with industry-relevant curriculum designed for the modern world.</p>
+                <h3 className="text-2xl font-bold font-display leading-tight mb-2">Global Innovators</h3>
+                <p className="text-sm font-medium text-white/90">Experience hands-on learning with an innovative curriculum designed to solve real-world challenges.</p>
               </div>
             </motion.div>
 
@@ -224,9 +224,9 @@ export function AcademicProgrammesSection() {
 
               <div className="flex flex-col gap-4">
                 <motion.div variants={rise} className="group relative overflow-hidden rounded-[4px] border border-foreground/10 bg-background/50 p-5 transition-colors hover:bg-background">
-                  <h3 className="text-[1.15rem] font-bold text-primary mb-1.5">Undergraduate Programmes</h3>
+                  <h3 className="text-[1.15rem] font-bold text-primary mb-1.5">UG Programmes</h3>
                   <p className="text-[13px] text-foreground/70 mb-3 line-clamp-2">
-                    B.E., B.Tech, B.Arch & B.Des Degrees. 14 specialized programs including Artificial Intelligence, Cyber Security, and core engineering disciplines.
+                    14 specialized programs including Artificial Intelligence, Cyber Security, and core engineering disciplines.
                   </p>
                   <Link to="/programmes" className="inline-flex items-center text-[13px] font-bold text-primary group-hover:underline">
                     Explore UG Degrees <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
@@ -234,9 +234,9 @@ export function AcademicProgrammesSection() {
                 </motion.div>
 
                 <motion.div variants={rise} className="group relative overflow-hidden rounded-[4px] border border-foreground/10 bg-background/50 p-5 transition-colors hover:bg-background">
-                  <h3 className="text-[1.15rem] font-bold text-primary mb-1.5">Postgraduate Programmes</h3>
+                  <h3 className="text-[1.15rem] font-bold text-primary mb-1.5">PG Programmes</h3>
                   <p className="text-[13px] text-foreground/70 mb-3 line-clamp-2">
-                    M.E. & M.Arch Degrees. Advanced technical education and specialized master's programs in Computer Science, Structural Engineering, and Architecture.
+                    Advanced technical education and specialized master's programs in Computer Science, Structural Engineering, and Architecture.
                   </p>
                   <Link to="/programmes" className="inline-flex items-center text-[13px] font-bold text-primary group-hover:underline">
                     Explore PG Degrees <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
@@ -244,9 +244,9 @@ export function AcademicProgrammesSection() {
                 </motion.div>
 
                 <motion.div variants={rise} className="group relative overflow-hidden rounded-[4px] border border-foreground/10 bg-background/50 p-5 transition-colors hover:bg-background">
-                  <h3 className="text-[1.15rem] font-bold text-primary mb-1.5">Doctoral Research</h3>
+                  <h3 className="text-[1.15rem] font-bold text-primary mb-1.5">Doctorate</h3>
                   <p className="text-[13px] text-foreground/70 mb-3 line-clamp-2">
-                    Ph.D. Research Programmes. Push the boundaries of knowledge and innovation with our dedicated research centers and expert faculty.
+                    Push the boundaries of knowledge and innovation with our dedicated research centers and expert faculty.
                   </p>
                   <Link to="/programmes" className="inline-flex items-center text-[13px] font-bold text-primary group-hover:underline">
                     Explore Ph.D Programmes <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
@@ -297,6 +297,7 @@ export function AcademicProgrammesSection() {
                 >
                   <Link
                     to={l.to}
+                    search={l.search}
                     className="group relative overflow-hidden inline-flex w-full items-center justify-center border border-primary px-5 py-2.5 text-sm font-medium text-primary transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-primary after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
                   >
                     <span className="relative z-10">{l.label} &raquo;</span>

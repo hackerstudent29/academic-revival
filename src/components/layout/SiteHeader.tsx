@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { AnimatePresence, motion, useScroll, useMotionValueEvent, useTransform } from "framer-motion";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
@@ -271,18 +271,37 @@ export function SiteHeader() {
 
   const { scrollY } = useScroll();
 
+  const [showCode, setShowCode] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setShowCode(prev => !prev);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   const location = useLocation();
   const isHome = location.pathname === "/";
 
+  const lastScrollY = useRef(0);
+
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 80);
-    const previous = scrollY.getPrevious() ?? 0;
-    if (latest > previous && latest > 150) {
+    
+    if (latest < 150) {
+      setHidden(false);
+      lastScrollY.current = latest;
+      return;
+    }
+
+    if (latest > lastScrollY.current + 15) {
       if (!moreOpen && !active) {
         setHidden(true);
       }
-    } else {
+      lastScrollY.current = latest;
+    } else if (latest < lastScrollY.current - 15) {
       setHidden(false);
+      lastScrollY.current = latest;
     }
   });
 
@@ -322,13 +341,16 @@ export function SiteHeader() {
     <>
       <motion.header
         variants={{
-          visible: { y: 0 },
-          hidden: { y: "-100%" }
+          visible: { y: "0%", opacity: 1 },
+          hidden: { y: "-100%", opacity: 0 }
         }}
         animate={hidden ? "hidden" : "visible"}
-        transition={{ duration: 0.35, ease: APPLE_EASE }}
-        className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 bg-background/80 backdrop-blur-xl ${active || moreOpen || isScrolled ? "border-foreground/10" : "border-transparent"
-          }`}
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
+          active || moreOpen || isScrolled 
+            ? "border-foreground/10 bg-background/80 backdrop-blur-xl" 
+            : "border-transparent bg-background backdrop-blur-none"
+        }`}
         onMouseLeave={() => setActive(null)}
       >
         <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 lg:gap-6 px-4 py-2.5 md:px-8 xl:px-12 md:py-3">
@@ -381,10 +403,30 @@ export function SiteHeader() {
           <div className="flex items-center gap-3">
             <Link
               to="/admissions"
-              className="group relative hidden overflow-hidden whitespace-nowrap rounded-none bg-primary px-5 py-2.5 text-[11px] xl:text-[13px] font-bold text-primary-foreground shadow transition-colors hover:text-background sm:inline-flex after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
+              className={`group relative hidden overflow-hidden whitespace-nowrap rounded-none shadow sm:inline-flex items-center justify-center border border-primary transition-colors duration-500 ${showCode ? "bg-background" : "bg-primary"}`}
               onClick={closeAll}
             >
-              <span className="relative z-10">Apply 2026-27</span>
+              {/* Invisible placeholder dictates the original button size */}
+              <span className="invisible px-5 py-2.5 text-[11px] xl:text-[13px] font-bold uppercase tracking-wide">
+                Apply 2026-27
+              </span>
+              
+              <motion.div 
+                className="absolute inset-x-0 top-0 flex flex-col"
+                animate={{ y: showCode ? "-50%" : "0%" }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className="flex w-full items-center justify-center px-5 py-2.5">
+                  <span className={`text-[11px] xl:text-[13px] font-bold uppercase tracking-wide transition-colors duration-500 ${showCode ? "text-primary" : "text-primary-foreground"}`}>
+                    Apply 2026-27
+                  </span>
+                </div>
+                <div className="flex w-full items-center justify-center px-5 py-2.5">
+                  <span className={`text-[11px] xl:text-[13px] font-bold uppercase tracking-wide transition-colors duration-500 ${showCode ? "text-primary" : "text-primary-foreground"}`}>
+                    TNEA 1301
+                  </span>
+                </div>
+              </motion.div>
             </Link>
             <button
               type="button"
