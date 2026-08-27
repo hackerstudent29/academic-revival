@@ -164,7 +164,7 @@ export function HomePage() {
       </section>
 
       {/* ── Top recruiters marquee ── */}
-      <section className="bg-gray-100 dark:bg-[#121518] border-b border-foreground/12 flex flex-col justify-center py-6" id="top-recruiters">
+      <section className="bg-[#EAEAEA] dark:bg-[#111915] border-b border-foreground/12 flex flex-col justify-center py-6" id="top-recruiters">
         <Reveal variant="blur">
           <h2 className="px-6 text-center text-[11px] font-bold uppercase tracking-[0.32em] text-foreground/50 md:px-12">
             Top Recruiters

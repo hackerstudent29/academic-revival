@@ -106,9 +106,8 @@ const nav: NavItem[] = [
       {
         title: "Academic Resources",
         links: [
-          { label: "Regulations", to: "/academics" },
           { label: "Academic Calendar", to: "/academics" },
-          { label: "Curriculum & Syllabus", to: "/academics" },
+          { label: "Curriculum & Syllabus", to: "/curriculum" },
         ],
       },
       {
@@ -194,12 +193,6 @@ const nav: NavItem[] = [
         links: [
           { label: "Student Results Login", href: "https://results.msajce-edu.in" },
           { label: "Academic Toppers", to: "/academics", hash: "examinations" },
-        ],
-      },
-      {
-        title: "Rules & Regulations",
-        links: [
-          { label: "Examination Regulations", to: "/academics", hash: "examinations" },
         ],
       },
     ],
