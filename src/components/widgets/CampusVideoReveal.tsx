@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export function CampusVideoReveal() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -13,7 +13,7 @@ export function CampusVideoReveal() {
     // Scrolling = user interaction, so we can safely unmute when section enters view.
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry && entry.isIntersecting) {
           video.muted = false;
           video.play().catch(() => { video.muted = true; });
         } else {

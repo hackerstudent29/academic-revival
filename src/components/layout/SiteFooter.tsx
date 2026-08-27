@@ -65,9 +65,11 @@ export function SiteFooter() {
   useEffect(() => {
     if (!footerRef.current) return;
     const ro = new ResizeObserver((entries) => {
-      const h = entries[0].contentRect.height;
-      setFooterHeight(h);
-      document.documentElement.style.setProperty("--footer-height", `${h}px`);
+      const h = entries[0]?.contentRect.height;
+      if (h !== undefined) {
+        setFooterHeight(h);
+        document.documentElement.style.setProperty("--footer-height", `${h}px`);
+      }
     });
     ro.observe(footerRef.current);
     return () => ro.disconnect();
