@@ -147,13 +147,13 @@ export function AcademicProgrammesSection() {
                 {/* Ghost element to reserve max height dynamically */}
                 <div className="invisible pointer-events-none opacity-0 select-none" aria-hidden="true">
                   <span className="text-sm font-bold tracking-wide">
-                    {sequence[0].subtitle}
+                    {sequence[0]!.subtitle}
                   </span>
                   <h2 className="mt-4 text-4xl font-medium leading-[1.1] tracking-tight md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem]">
-                    {sequence[0].title}
+                    {sequence[0]!.title}
                   </h2>
                   <div className="mt-5 max-w-xl text-lg leading-relaxed">
-                    {sequence[0].content}
+                    {sequence[0]!.content}
                   </div>
                   {/* Ghost Buttons */}
                   <div className="mt-8 flex flex-wrap gap-3">
@@ -164,7 +164,7 @@ export function AcademicProgrammesSection() {
 
                 <AnimatePresence initial={false}>
                   <motion.div
-                    key={sequence[activeIndex].id}
+                    key={sequence[activeIndex]!.id}
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -15 }}
@@ -172,15 +172,15 @@ export function AcademicProgrammesSection() {
                     className="absolute inset-x-0 top-0 flex flex-col"
                   >
                     <span className="text-sm font-bold tracking-wide text-muted-foreground">
-                      {sequence[activeIndex].subtitle}
+                      {sequence[activeIndex]!.subtitle}
                     </span>
 
                     <h2 className="mt-4 text-4xl font-medium leading-[1.1] tracking-tight text-primary md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem]">
-                      {sequence[activeIndex].title}
+                      {sequence[activeIndex]!.title}
                     </h2>
 
                     <div className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                      {sequence[activeIndex].content}
+                      {sequence[activeIndex]!.content}
                     </div>
 
                     <div className="mt-8 flex flex-wrap gap-3">
@@ -263,6 +263,7 @@ export function AcademicProgrammesSection() {
                 </Link>
                 <Link
                   to="/admissions"
+                  search={{} as any}
                   className="inline-flex items-center justify-center border border-foreground/20 bg-transparent px-6 py-3 text-[12px] font-bold uppercase tracking-wide text-foreground transition-all hover:bg-foreground/5"
                 >
                   Admissions Info

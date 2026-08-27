@@ -344,7 +344,7 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
 
     if (line && sections[currentTab]) {
       if (!line.startsWith('# ')) {
-        sections[currentTab].push(line);
+        sections[currentTab]?.push(line);
       }
     }
   }
@@ -522,9 +522,10 @@ function CoursePage() {
       <motion.div 
         animate={{ y: hidden ? -65 : 0 }}
         transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
-        className="sticky top-[65px] z-40 w-full msajce-header-glass border-b border-foreground/10 hidden md:block"
+        className="sticky top-[65px] z-40 w-full hidden md:block"
       >
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12 py-1 flex items-center justify-between">
+        <div className="absolute inset-0 bg-background/80 backdrop-blur-xl border-b border-foreground/10 pointer-events-none -z-10" />
+        <div className="relative max-w-[1440px] mx-auto px-6 md:px-12 py-1 flex items-center justify-between">
           <div className="font-serif text-foreground tracking-tight text-lg md:text-xl mr-12 shrink-0 hidden lg:block">
             {course.shortName || course.name}
           </div>
@@ -1028,7 +1029,7 @@ function CoursePage() {
                       
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {filteredHighlights.length > 0 ? filteredHighlights.slice(0, 4).map((highlight, idx) => (
-                          <Link to="/events/$eventId" params={{ eventId: highlight.id }} key={idx} className="group flex flex-col gap-3 items-start">
+                          <Link to="/events/$eventId" params={{ eventId: highlight.id! }} key={idx} className="group flex flex-col gap-3 items-start">
                             <div className="relative w-full aspect-[16/9] rounded-[4px] overflow-hidden bg-muted">
                               <img src={highlight.image} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt={highlight.title} />
                               <div className="absolute top-2 left-2">

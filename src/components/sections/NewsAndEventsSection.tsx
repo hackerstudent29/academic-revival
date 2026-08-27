@@ -35,10 +35,12 @@ export function NewsAndEventsSection() {
 
   const visibleArticles = [];
   for (let i = 0; i < 3; i++) {
-    visibleArticles.push(sidebarArticles[(activeItem + i) % sidebarArticles.length]);
+    const article = sidebarArticles[(activeItem + i) % sidebarArticles.length];
+    if (article) visibleArticles.push(article);
   }
 
   const currentMainArticle = ITEMS[mainIndex];
+  if (!currentMainArticle) return null;
 
   return (
     <section ref={sectionRef} className="bg-[#E4E6E6] dark:bg-[#151412] py-12 md:py-16" id="news">
@@ -58,7 +60,8 @@ export function NewsAndEventsSection() {
           {/* Left Column: Large Featured Article (spans 7 columns) */}
           <Reveal variant="rise" delay={0.1} className="lg:col-span-7 h-full">
             <Link
-              to={`/events/${currentMainArticle.id}`}
+              to="/events/$eventId"
+              params={{ eventId: currentMainArticle.id }}
               className="group flex flex-col h-full bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm p-4 md:p-7 relative overflow-hidden"
             >
               {/* Image with Gradient Overlay */}
@@ -124,7 +127,8 @@ export function NewsAndEventsSection() {
                       className="w-full shrink-0"
                     >
                       <Link
-                        to={`/events/${article.id}`}
+                        to="/events/$eventId"
+                        params={{ eventId: article.id }}
                         className="group flex flex-col"
                       >
                         <span className="text-[11px] font-bold uppercase tracking-widest text-gray-800 dark:text-gray-200 mb-3 block">
@@ -180,7 +184,8 @@ export function NewsAndEventsSection() {
           {bottomRowArticles.map((article, idx) => (
             <Reveal key={article.id} variant="rise" delay={0.3 + idx * 0.05} className="w-full h-full">
               <Link
-                to={`/events/${article.id}`}
+                to="/events/$eventId"
+                params={{ eventId: article.id }}
                 className="group flex flex-col h-full bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm p-6"
               >
                 <span className="text-[11px] font-bold uppercase tracking-widest text-gray-800 dark:text-gray-200 mb-3 block">

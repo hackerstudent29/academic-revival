@@ -5,17 +5,7 @@ import { ThemeToggle } from "@/components/shared/ThemeToggle";
 import { Logo } from "@/components/shared/Logo";
 import { MoreHorizontal, X, ChevronDown } from "lucide-react";
 
-type RoutePath =
-  | "/"
-  | "/about"
-  | "/academics"
-  | "/admissions"
-  | "/placements"
-  | "/campus-life"
-  | "/contact"
-  | "/student-housing"
-  | "/programmes"
-  | `/programmes/${string}`;
+type RoutePath = any;
 
 type Col = { title: string; links: { label: string; to?: RoutePath; href?: string; hash?: string; search?: any }[] };
 type NavItem = { id: string; label: string; to: RoutePath; cols?: Col[] };
@@ -403,6 +393,7 @@ export function SiteHeader() {
           <div className="flex items-center gap-3">
             <Link
               to="/admissions"
+              search={{} as any}
               className={`group relative hidden overflow-hidden whitespace-nowrap rounded-none shadow sm:inline-flex items-center justify-center border border-primary transition-colors duration-500 ${showCode ? "bg-background" : "bg-primary"}`}
               onClick={closeAll}
             >
@@ -563,6 +554,7 @@ export function SiteHeader() {
                       ))}
                       <Link
                         to="/admissions"
+                        search={{} as any}
                         className="group relative my-5 inline-flex w-full items-center justify-center overflow-hidden rounded-none bg-primary px-5 py-3 text-[13px] font-bold text-primary-foreground shadow transition-colors hover:text-background sm:hidden after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
                         onClick={closeAll}
                       >
