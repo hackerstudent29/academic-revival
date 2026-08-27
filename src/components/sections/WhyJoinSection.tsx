@@ -88,16 +88,10 @@ export function WhyJoinSection() {
       <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 md:px-12 flex flex-col gap-12">
         
         {/* Header moved above the grid */}
-        <Reveal variant="slide-right" className="flex flex-col gap-4 max-w-xl lg:max-w-[50%]">
+        <Reveal variant="slide-right" className="flex flex-col gap-4 max-w-xl lg:max-w-2xl mb-4">
           <h2 className="text-4xl md:text-5xl font-black text-foreground tracking-tighter">
             <SplitText text="Why Join MSAJCE?" />
           </h2>
-          <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground leading-tight lg:leading-tight">
-            {ITEMS[activeItem].title}
-          </h3>
-          <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
-            {ITEMS[activeItem].content}
-          </p>
         </Reveal>
 
         {/* Main Grid: Left (Points + Numbers), Right (Collage) */}
@@ -106,17 +100,18 @@ export function WhyJoinSection() {
           {/* Left Column: Points and Stats Numbers */}
           <div className="lg:col-span-6 flex flex-col gap-8">
             
-            {/* Points at starting - vertical list of full-line points */}
-            <div className="flex flex-col gap-4">
+            {/* Points at starting - Interactive Feature Blocks */}
+            <div className="flex flex-col gap-6 lg:gap-8">
               {ITEMS.map((item, idx) => (
-                <Reveal key={item.id} variant="slide-right" delay={idx * 0.05} className="flex gap-3 items-start animate-fade-in">
-                  <span className="text-primary font-bold text-base leading-none mt-1">✓</span>
-                  <button 
-                    onClick={() => setActiveItem(idx)}
-                    className="text-left font-bold text-foreground text-sm md:text-base leading-relaxed hover:text-primary transition-colors"
-                  >
-                    {item.title}
-                  </button>
+                <Reveal key={item.id} variant="slide-right" delay={idx * 0.05} className="w-full animate-fade-in">
+                  <div className="group flex items-start gap-5 w-full text-left">
+                    <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full font-black text-[11px] bg-primary/10 text-primary mt-0.5">
+                      0{idx + 1}
+                    </div>
+                    <span className="text-sm md:text-[15px] font-medium text-foreground leading-relaxed">
+                      {item.title}
+                    </span>
+                  </div>
                 </Reveal>
               ))}
             </div>

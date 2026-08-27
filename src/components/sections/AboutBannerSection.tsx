@@ -109,13 +109,6 @@ export function AboutBannerSection() {
         
         {/* Left: Dynamic editorial copy */}
         <Reveal variant="slide-right" className="flex flex-col justify-center lg:col-span-6 pr-0 md:pr-10 lg:pr-16 relative min-h-[450px]">
-          <div className="mb-16 flex items-center gap-4">
-            <div className="h-px w-12 bg-border" />
-            <span className="text-[10px] font-black tracking-[0.2em] uppercase text-muted-foreground transition-all duration-300">
-              {activeFacility !== null ? "Campus Facilities" : "The MSAJCE Edge"}
-            </span>
-          </div>
-
           <AnimatePresence mode="wait">
             {activeFacility === null ? (
               <motion.div
@@ -124,38 +117,41 @@ export function AboutBannerSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full"
+                className="w-full h-full"
               >
-                <div className="flex flex-col h-full justify-center">
-                  <div className="mb-12 pr-4">
-                    <blockquote
-                      className="text-[2.2rem] md:text-[2.75rem] lg:text-[3.25rem] font-black uppercase leading-[0.95] tracking-tighter text-foreground mb-8"
-                      dangerouslySetInnerHTML={{ __html: `"We don't just teach engineering. We build the people who will <span class="text-primary">rebuild it.</span>"` }}
-                    />
-                    <div className="flex flex-col gap-2">
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground">Dr. M. S. A. J.</span>
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Principal & Dean of Engineering</span>
-                    </div>
+                <div className="flex flex-col h-full justify-center lg:pr-12 py-8">
+                  <div className="flex items-center gap-4 mb-10">
+                    <div className="w-8 h-[2px] bg-primary" />
+                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-foreground">The MSAJCE Edge</span>
                   </div>
 
-                  {/* Editorial Hairline Grid */}
-                  <div className="grid grid-cols-2 border-t border-l border-border max-w-[95%]">
+                  <h2 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5rem] font-black uppercase leading-[0.85] tracking-tighter text-foreground mb-8">
+                    BEYOND<br/>
+                    <span className="text-primary">TRADITION.</span>
+                  </h2>
+                  
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-md font-medium mb-12 border-l-[3px] border-primary pl-6">
+                    We merge a 25-year legacy of academic excellence with relentless innovation. Welcome to the proving ground for tomorrow's engineering pioneers.
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-x-8 gap-y-10">
                     {[
-                      { value: "25+", label: "Years Legacy" },
-                      { value: "90%", label: "Placement" },
-                      { value: "NAAC", label: "Certified" }
+                      { value: "25+", label: "Years of Legacy" },
+                      { value: "90%", label: "Placement Rate" },
+                      { value: "NAAC", label: "Accreditation" }
                     ].map((stat, i) => (
-                      <div key={i} className="flex flex-col justify-center p-6 border-b border-r border-border transition-colors hover:bg-muted/50">
-                        <span className="text-[2.5rem] md:text-[3rem] font-black uppercase tracking-tighter text-foreground leading-[0.95] mb-3">{stat.value}</span>
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">{stat.label}</span>
+                      <div key={i} className="flex flex-col group">
+                        <span className="text-6xl md:text-[5rem] font-black tracking-tighter text-foreground/10 group-hover:text-primary transition-colors duration-500 leading-none mb-3">{stat.value}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground">{stat.label}</span>
                       </div>
                     ))}
-                    <div className="flex items-center justify-start p-6 border-b border-r border-border group cursor-pointer transition-colors hover:bg-muted/50">
-                      <Link to="/about" className="flex items-center gap-3">
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary group-hover:text-foreground transition-colors">Read Message</span>
-                        <ArrowRight className="h-4 w-4 text-primary group-hover:text-foreground transition-transform group-hover:translate-x-1" />
-                      </Link>
-                    </div>
+                  </div>
+
+                  <div className="mt-14">
+                    <Link to="/about" className="group inline-flex items-center gap-4 text-xs font-black uppercase tracking-[0.2em] text-foreground hover:text-primary transition-all">
+                      <span className="w-12 h-[2px] bg-foreground group-hover:bg-primary transition-colors origin-left scale-x-100 group-hover:scale-x-150" />
+                      Discover Our Story
+                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -166,32 +162,36 @@ export function AboutBannerSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full flex flex-col justify-center"
+                className="w-full flex flex-col justify-center h-full"
               >
-                <div className="flex flex-col h-full justify-center">
-                  <div className="mb-12 pr-4">
-                    <h2 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5rem] font-black uppercase leading-[0.95] tracking-tighter text-foreground mb-6">
-                      {campusFacilities[activeFacility]!.name}
-                    </h2>
-                    <p className="text-sm md:text-base text-muted-foreground max-w-[85%] leading-relaxed">
-                      {campusFacilities[activeFacility]!.description}
-                    </p>
+                <div className="flex flex-col h-full justify-center lg:pr-12 py-8">
+                  <div className="flex items-center gap-4 mb-10">
+                    <div className="w-8 h-[2px] bg-primary" />
+                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-foreground">Campus Facilities</span>
                   </div>
+
+                  <h2 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5rem] font-black uppercase leading-[0.85] tracking-tighter text-foreground mb-8 break-words">
+                    {campusFacilities[activeFacility]!.name}
+                  </h2>
                   
-                  {/* Editorial Hairline Grid */}
-                  <div className="grid grid-cols-2 border-t border-l border-border max-w-[95%]">
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-md font-medium mb-12 border-l-[3px] border-primary pl-6">
+                    {campusFacilities[activeFacility]!.description}
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-x-8 gap-y-10">
                     {campusFacilities[activeFacility]!.stats.map((stat, i) => (
-                      <div key={i} className="flex flex-col justify-center p-6 border-b border-r border-border transition-colors hover:bg-muted/50">
-                        <span className="text-[2.5rem] md:text-[3rem] font-black uppercase tracking-tighter text-foreground leading-[0.95] mb-3">{stat.value}</span>
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">{stat.label}</span>
+                      <div key={i} className="flex flex-col group">
+                        <span className="text-6xl md:text-[5rem] font-black tracking-tighter text-foreground/10 group-hover:text-primary transition-colors duration-500 leading-none mb-3">{stat.value}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground">{stat.label}</span>
                       </div>
                     ))}
-                    <div className="flex items-center justify-start p-6 border-b border-r border-border group cursor-pointer transition-colors hover:bg-muted/50">
-                      <Link to="/campus-life" className="flex items-center gap-3">
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary group-hover:text-foreground transition-colors">Explore {campusFacilities[activeFacility]!.name}</span>
-                        <ArrowRight className="h-4 w-4 text-primary group-hover:text-foreground transition-transform group-hover:translate-x-1" />
-                      </Link>
-                    </div>
+                  </div>
+
+                  <div className="mt-14">
+                    <Link to="/campus-life" className="group inline-flex items-center gap-4 text-xs font-black uppercase tracking-[0.2em] text-foreground hover:text-primary transition-all">
+                      <span className="w-12 h-[2px] bg-foreground group-hover:bg-primary transition-colors origin-left scale-x-100 group-hover:scale-x-150" />
+                      Explore Facility
+                    </Link>
                   </div>
                 </div>
               </motion.div>

@@ -5,6 +5,22 @@
 @custom-variant dark (&:is(.dark *));
 
 @font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto/Roboto-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
   font-family: 'Switzer';
   src: url('/fonts/Switzer-Variable.woff2') format('woff2');
   font-weight: 100 900;
@@ -61,7 +77,9 @@
 
 @theme inline {
   --font-display: "Switzer", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Switzer", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-roboto: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-switzer: "Switzer", ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -227,10 +245,26 @@
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-}
 
-@layer base {
-  h1, h2, h3, h4 {
+  /* Headings, Titles, Navbar, Buttons, Uppercase text, Badges & Tag Labels use Switzer */
+  h1, h2, h3, h4, h5, h6,
+  header,
+  nav,
+  button,
+  .font-display,
+  .font-switzer,
+  .uppercase,
+  [class*="uppercase"] {
+    font-family: var(--font-display);
+  }
+
+  /* Body content: Bullet points, sentences, paragraphs, blockquotes, lists, tables use Roboto */
+  p, li, ul, ol, blockquote, dt, dd, td, th, article, main, .font-sans, .font-roboto {
+    font-family: var(--font-sans);
+  }
+
+  /* Uppercase tags/labels inside paragraphs or list items retain Switzer */
+  p .uppercase, li .uppercase, p [class*="uppercase"], li [class*="uppercase"] {
     font-family: var(--font-display);
   }
 }

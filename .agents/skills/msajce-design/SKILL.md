@@ -9,6 +9,7 @@ description: Design system rules and guidelines for MSAJCE website, ensuring an 
 
 *   **Design Aesthetic**: Bold, minimalist grid structure, strong margins, and large, editorial type hierarchy (UAL style) fused with Apple-like smooth transitions, blur effects (backdrop-filter), and clean layouts.
 *   **No Cards / Boxy Fills**: Prefer clean typographic alignment, open white space, and grids for data rather than putting content inside colored background "cards" or boxes.
+*   **Hero Sections**: Do NOT use the `PageHero` component with the grid background style for new pages. Create custom, sleek typography-driven hero sections for new pages instead.
 *   **Image Radii**: Use minimal edge curves for images (e.g., `rounded-lg` or `rounded-md`). Do NOT use excessively large curves like `rounded-3xl`.
 *   **Spacing Scale**: Use precise spacing: `4/8/12/16/24/32/48/64/96`.
 

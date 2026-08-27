@@ -66,23 +66,6 @@ const sequence = [
       </ul>
     ),
   },
-  {
-    id: "default",
-    subtitle: "Studying at MSAJCE",
-    title: (
-      <>
-        Empowering the Next Generation
-        <br />
-        of Global Innovators
-      </>
-    ),
-    content: (
-      <p className="text-lg">
-        Our innovative curriculum equips students with critical thinking, leadership skills, and a
-        global perspective, preparing them to excel in diverse, rapidly evolving industries.
-      </p>
-    ),
-  }
 ];
 
 export function AcademicProgrammesSection() {

@@ -360,7 +360,7 @@ function parseDepartmentMarkdown(markdown: string | null): Record<string, string
 const departmentTabsList = [
   { id: 'about', label: 'Overview' },
   { id: 'obe', label: 'Outcomes' },
-  { id: 'academics', label: 'Curriculum & Syllabus' },
+  { id: 'academics', label: 'Curriculum' },
   { id: 'faculty', label: 'Faculty' },
   { id: 'facilities', label: 'Facilities' },
   { id: 'research', label: 'Research' },
@@ -368,6 +368,27 @@ const departmentTabsList = [
   { id: 'student-activities', label: 'Activities' },
   { id: 'news-events', label: 'Happenings' },
 ];
+
+function getDepartmentHeaderTitle(course?: { name: string; shortName?: string; slug?: string }) {
+  if (!course) return '';
+  const slug = course.slug?.toLowerCase() || '';
+  if (slug.includes('vlsi')) return 'Electronics & Comm. Engg (VLSI)';
+  if (slug.includes('act') || slug.includes('advanced-communication')) return 'Electronics & Comm. Engg (ACT)';
+  if (slug.includes('cyber')) return 'Computer Science & Engg (Cyber Security)';
+  if (slug.includes('aids') || slug.includes('data-science')) return 'Artificial Intelligence & Data Science';
+  if (slug.includes('aiml') || slug.includes('machine-learning')) return 'Artificial Intelligence & Machine Learning';
+  if (slug.includes('csbs') || slug.includes('business-systems')) return 'Computer Science & Business Systems';
+  return course.name;
+}
+
+function getHeroTitle(course?: { name: string; slug?: string }) {
+  if (!course) return '';
+  const slug = course.slug?.toLowerCase() || '';
+  if (slug.includes('cyber')) return 'Computer Science & Engg (Cyber Security)';
+  if (slug.includes('vlsi')) return 'Electronics & Comm. Engg (VLSI)';
+  if (slug.includes('act') || slug.includes('advanced-communication')) return 'Electronics & Comm. Engg (ACT)';
+  return course.name;
+}
 
 function CoursePage() {
   const { course, markdownContent } = Route.useLoaderData();
@@ -525,19 +546,19 @@ function CoursePage() {
         className="sticky top-[65px] z-40 w-full hidden md:block"
       >
         <div className="absolute inset-0 bg-background/80 backdrop-blur-xl border-b border-foreground/10 pointer-events-none -z-10" />
-        <div className="relative max-w-[1440px] mx-auto px-6 md:px-12 py-1 flex items-center justify-between">
-          <div className="font-serif text-foreground tracking-tight text-lg md:text-xl mr-12 shrink-0 hidden lg:block">
-            {course.shortName || course.name}
+        <div className="relative max-w-[1440px] mx-auto px-4 md:px-8 xl:px-12 py-1 flex items-center justify-between">
+          <div className="text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] text-primary mr-4 xl:mr-8 shrink-0 hidden lg:block">
+            {getDepartmentHeaderTitle(course)}
           </div>
-          <div className="flex-1 overflow-hidden ml-8">
-            <ul className="flex items-center gap-5 lg:gap-6 text-[13px] font-bold uppercase tracking-[0.04em] text-foreground overflow-x-auto no-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] whitespace-nowrap py-0.5 w-full">
+          <div className="flex-1 relative ml-4 lg:ml-6 overflow-hidden flex items-center">
+            <ul className="flex items-center gap-4 lg:gap-5 xl:gap-6 w-full overflow-x-auto no-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               {departmentTabsList.map((tab, index) => {
                 const isActive = activeTab === tab.id;
                 return (
                   <li
                     key={tab.id}
                     onClick={() => handleTabChange(tab.id)}
-                    className={`relative py-1.5 cursor-pointer transition-colors duration-200 select-none shrink-0 ${index === 0 ? 'ml-auto' : ''} ${
+                    className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] cursor-pointer transition-colors duration-200 select-none shrink-0 ${index === 0 ? 'ml-auto' : ''} ${
                       isActive
                         ? 'text-primary'
                         : 'text-foreground hover:text-primary'
@@ -545,7 +566,7 @@ function CoursePage() {
                   >
                     {tab.label}
                     <span
-                      className={`absolute -bottom-1.5 left-0 h-[2px] bg-primary transition-all duration-300 ${
+                      className={`absolute -bottom-0.5 left-0 h-[2px] bg-primary transition-all duration-300 ${
                         isActive ? "w-full" : "w-0"
                       }`}
                     />
@@ -594,8 +615,8 @@ function CoursePage() {
              <span className="block text-[11px] font-bold text-primary mb-3 uppercase tracking-[0.2em]">
                Department of
              </span>
-             <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif tracking-tight text-foreground mb-6 leading-tight">
-               {course.name}
+             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif tracking-tight text-foreground mb-6 leading-tight max-w-full">
+               {getHeroTitle(course)}
              </h1>
              
              {/* Hero Strip */}

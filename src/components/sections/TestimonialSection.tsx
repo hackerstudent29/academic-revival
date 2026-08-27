@@ -219,8 +219,7 @@ export function TestimonialSection() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.35 }}
-                      className="font-serif text-2xl md:text-3xl lg:text-[34px] font-black leading-tight text-foreground/90 tracking-tight"
-                      style={{ fontFamily: "'Karrik', Georgia, serif" }}
+                      className="text-2xl md:text-3xl lg:text-[34px] font-bold leading-tight text-foreground/90 tracking-tight font-sans"
                     >
                       {TESTIMONIALS[activeIndex]?.quote}
                     </motion.blockquote>
