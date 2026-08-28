@@ -69,14 +69,14 @@ const nav: NavItem[] = [
           { label: "Programmes Offered", to: "/programmes" },
           { label: "B.E. / B.Tech Admissions", to: "/admissions", search: { level: "Undergraduate" } },
           { label: "M.E. Admissions", to: "/admissions", search: { level: "Postgraduate" } },
-          { label: "Admission Procedure", to: "/admissions", hash: "process" },
+          { label: "Admission Procedure", to: "/admissions/procedure" },
         ],
       },
       {
         title: "Eligibility & Scholarships",
         links: [
-          { label: "Admission Eligibility", to: "/admissions", hash: "eligibility" },
-          { label: "Scholarship Programmes", to: "/admissions", hash: "scholarships" },
+          { label: "Admission Eligibility", to: "/admissions/eligibility" },
+          { label: "Scholarship Programmes", to: "/admissions/scholarships" },
         ],
       },
       {

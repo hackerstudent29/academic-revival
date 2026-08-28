@@ -61,6 +61,14 @@
   src: url('/fonts/test_fonts/UbinSans-Yq5Aa.otf') format('opentype');
 }
 
+@font-face {
+  font-family: 'Gyozah';
+  src: url('/fonts/GYOZAH.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
 /*
  * Design system definition.
  *

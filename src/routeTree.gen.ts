@@ -15,9 +15,13 @@ import { Route as AcademicsRouteImport } from './routes/academics'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as CampusLifeRouteImport } from './routes/campus-life'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CreditsRouteImport } from './routes/credits'
 import { Route as CurriculumRouteImport } from './routes/curriculum'
 import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as StudentHousingRouteImport } from './routes/student-housing'
+import { Route as AdmissionsEligibilityRouteImport } from './routes/admissions_.eligibility'
+import { Route as AdmissionsProcedureRouteImport } from './routes/admissions_.procedure'
+import { Route as AdmissionsScholarshipsRouteImport } from './routes/admissions_.scholarships'
 import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
 import { Route as ProgrammesIndexRouteImport } from './routes/programmes.index'
 import { Route as ProgrammesCourseIdRouteImport } from './routes/programmes.$courseId'
@@ -52,6 +56,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreditsRoute = CreditsRouteImport.update({
+  id: '/credits',
+  path: '/credits',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CurriculumRoute = CurriculumRouteImport.update({
   id: '/curriculum',
   path: '/curriculum',
@@ -65,6 +74,21 @@ const PlacementsRoute = PlacementsRouteImport.update({
 const StudentHousingRoute = StudentHousingRouteImport.update({
   id: '/student-housing',
   path: '/student-housing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdmissionsEligibilityRoute = AdmissionsEligibilityRouteImport.update({
+  id: '/admissions_/eligibility',
+  path: '/admissions/eligibility',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdmissionsProcedureRoute = AdmissionsProcedureRouteImport.update({
+  id: '/admissions_/procedure',
+  path: '/admissions/procedure',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdmissionsScholarshipsRoute = AdmissionsScholarshipsRouteImport.update({
+  id: '/admissions_/scholarships',
+  path: '/admissions/scholarships',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsEventIdRoute = EventsEventIdRouteImport.update({
@@ -90,9 +114,13 @@ export interface FileRoutesByFullPath {
   '/admissions': typeof AdmissionsRoute
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
+  '/credits': typeof CreditsRoute
   '/curriculum': typeof CurriculumRoute
   '/placements': typeof PlacementsRoute
   '/student-housing': typeof StudentHousingRoute
+  '/admissions/eligibility': typeof AdmissionsEligibilityRoute
+  '/admissions/procedure': typeof AdmissionsProcedureRoute
+  '/admissions/scholarships': typeof AdmissionsScholarshipsRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
   '/programmes/': typeof ProgrammesIndexRoute
@@ -104,9 +132,13 @@ export interface FileRoutesByTo {
   '/admissions': typeof AdmissionsRoute
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
+  '/credits': typeof CreditsRoute
   '/curriculum': typeof CurriculumRoute
   '/placements': typeof PlacementsRoute
   '/student-housing': typeof StudentHousingRoute
+  '/admissions/eligibility': typeof AdmissionsEligibilityRoute
+  '/admissions/procedure': typeof AdmissionsProcedureRoute
+  '/admissions/scholarships': typeof AdmissionsScholarshipsRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
   '/programmes': typeof ProgrammesIndexRoute
@@ -119,9 +151,13 @@ export interface FileRoutesById {
   '/admissions': typeof AdmissionsRoute
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
+  '/credits': typeof CreditsRoute
   '/curriculum': typeof CurriculumRoute
   '/placements': typeof PlacementsRoute
   '/student-housing': typeof StudentHousingRoute
+  '/admissions_/eligibility': typeof AdmissionsEligibilityRoute
+  '/admissions_/procedure': typeof AdmissionsProcedureRoute
+  '/admissions_/scholarships': typeof AdmissionsScholarshipsRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
   '/programmes/': typeof ProgrammesIndexRoute
@@ -135,9 +171,13 @@ export interface FileRouteTypes {
     | '/admissions'
     | '/campus-life'
     | '/contact'
+    | '/credits'
     | '/curriculum'
     | '/placements'
     | '/student-housing'
+    | '/admissions/eligibility'
+    | '/admissions/procedure'
+    | '/admissions/scholarships'
     | '/events/$eventId'
     | '/programmes/$courseId'
     | '/programmes/'
@@ -149,9 +189,13 @@ export interface FileRouteTypes {
     | '/admissions'
     | '/campus-life'
     | '/contact'
+    | '/credits'
     | '/curriculum'
     | '/placements'
     | '/student-housing'
+    | '/admissions/eligibility'
+    | '/admissions/procedure'
+    | '/admissions/scholarships'
     | '/events/$eventId'
     | '/programmes/$courseId'
     | '/programmes'
@@ -163,9 +207,13 @@ export interface FileRouteTypes {
     | '/admissions'
     | '/campus-life'
     | '/contact'
+    | '/credits'
     | '/curriculum'
     | '/placements'
     | '/student-housing'
+    | '/admissions_/eligibility'
+    | '/admissions_/procedure'
+    | '/admissions_/scholarships'
     | '/events/$eventId'
     | '/programmes/$courseId'
     | '/programmes/'
@@ -178,9 +226,13 @@ export interface RootRouteChildren {
   AdmissionsRoute: typeof AdmissionsRoute
   CampusLifeRoute: typeof CampusLifeRoute
   ContactRoute: typeof ContactRoute
+  CreditsRoute: typeof CreditsRoute
   CurriculumRoute: typeof CurriculumRoute
   PlacementsRoute: typeof PlacementsRoute
   StudentHousingRoute: typeof StudentHousingRoute
+  AdmissionsEligibilityRoute: typeof AdmissionsEligibilityRoute
+  AdmissionsProcedureRoute: typeof AdmissionsProcedureRoute
+  AdmissionsScholarshipsRoute: typeof AdmissionsScholarshipsRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
   ProgrammesCourseIdRoute: typeof ProgrammesCourseIdRoute
   ProgrammesIndexRoute: typeof ProgrammesIndexRoute
@@ -230,6 +282,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/credits': {
+      id: '/credits'
+      path: '/credits'
+      fullPath: '/credits'
+      preLoaderRoute: typeof CreditsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/curriculum': {
       id: '/curriculum'
       path: '/curriculum'
@@ -249,6 +308,27 @@ declare module '@tanstack/react-router' {
       path: '/student-housing'
       fullPath: '/student-housing'
       preLoaderRoute: typeof StudentHousingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admissions_/eligibility': {
+      id: '/admissions_/eligibility'
+      path: '/admissions/eligibility'
+      fullPath: '/admissions/eligibility'
+      preLoaderRoute: typeof AdmissionsEligibilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admissions_/procedure': {
+      id: '/admissions_/procedure'
+      path: '/admissions/procedure'
+      fullPath: '/admissions/procedure'
+      preLoaderRoute: typeof AdmissionsProcedureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admissions_/scholarships': {
+      id: '/admissions_/scholarships'
+      path: '/admissions/scholarships'
+      fullPath: '/admissions/scholarships'
+      preLoaderRoute: typeof AdmissionsScholarshipsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events/$eventId': {
@@ -282,9 +362,13 @@ const rootRouteChildren: RootRouteChildren = {
   AdmissionsRoute: AdmissionsRoute,
   CampusLifeRoute: CampusLifeRoute,
   ContactRoute: ContactRoute,
+  CreditsRoute: CreditsRoute,
   CurriculumRoute: CurriculumRoute,
   PlacementsRoute: PlacementsRoute,
   StudentHousingRoute: StudentHousingRoute,
+  AdmissionsEligibilityRoute: AdmissionsEligibilityRoute,
+  AdmissionsProcedureRoute: AdmissionsProcedureRoute,
+  AdmissionsScholarshipsRoute: AdmissionsScholarshipsRoute,
   EventsEventIdRoute: EventsEventIdRoute,
   ProgrammesCourseIdRoute: ProgrammesCourseIdRoute,
   ProgrammesIndexRoute: ProgrammesIndexRoute,

@@ -959,15 +959,15 @@ function CoursePage() {
                       <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                         {parsedContent['facilities']}
                       </ReactMarkdown>
-                  ) : (
-                    <div className="space-y-6">
-                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Facilities</h2>
-                      <p className="text-base text-muted-foreground leading-relaxed">
-                        State-of-the-art laboratory infrastructure equipped with the latest software suites, hardware rigs, computing workstations, and industry-grade testing apparatus.
-                      </p>
-                    </div>
-                  )}
-                </article>
+                    ) : (
+                      <div className="space-y-6">
+                        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Facilities</h2>
+                        <p className="text-base text-muted-foreground leading-relaxed">
+                          State-of-the-art laboratory infrastructure equipped with the latest software suites, hardware rigs, computing workstations, and industry-grade testing apparatus.
+                        </p>
+                      </div>
+                    )}
+                  </article>
                 </div>
               )}
 

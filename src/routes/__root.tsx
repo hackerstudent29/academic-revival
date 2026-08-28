@@ -134,6 +134,8 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isCreditsPage = pathname === "/credits";
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -145,7 +147,7 @@ function RootComponent() {
             className="relative z-10 isolate flex min-h-screen flex-col shadow-2xl w-full"
             style={{ marginBottom: "var(--footer-height, 0px)" }}
           >
-            <SiteHeader />
+            {!isCreditsPage && <SiteHeader />}
             <div className="msajce-page-blur flex flex-1 flex-col">
               <Outlet />
             </div>

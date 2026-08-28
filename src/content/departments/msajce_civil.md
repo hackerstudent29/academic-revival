@@ -123,10 +123,6 @@ Students gain hands-on proficiency in modern programming paradigms, open-source 
 6. **Cloud & AI Innovation Computing Center**
    * **Specialization:** GPU-accelerated computing rigs (NVIDIA CUDA), Python/TensorFlow setups, AWS/Azure Sandbox environments.
 
----
-
----
-
 ## Academics
 
 ### Academics
