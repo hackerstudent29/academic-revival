@@ -821,132 +821,90 @@ function CoursePage() {
                 const deptFaculty = allFaculty.filter(f => f.departmentSlug === course.slug);
                 const displayFaculty = deptFaculty.length > 0 ? deptFaculty : allFaculty.slice(0, 4);
 
-                const hodFaculty = displayFaculty.find(f => f.designation.toLowerCase().includes('head')) || displayFaculty[0];
-                const otherFaculty = displayFaculty.filter(f => f.id !== hodFaculty?.id);
-
-                const renderFacultyCard = (faculty: any) => (
-                  <div key={faculty.id} className="group relative flex flex-col bg-card border border-border rounded-sm shadow-sm overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-md">
-                    
-                    {/* Image (Top Half - Full Width) */}
-                    <div className="w-full aspect-square relative bg-muted overflow-hidden border-b border-border">
-                      <img 
-                        src={faculty.photo} 
-                        alt={faculty.name} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                        loading="lazy" 
-                      />
-                    </div>
-
-                    {/* Name & Designation (Bottom Half - Default State) */}
-                    <div className="p-5 sm:p-6 flex flex-col bg-card z-10 relative flex-1 justify-center">
-                      <h4 className="font-black text-foreground text-[16px] sm:text-[17px] tracking-tight mb-1.5 truncate">{faculty.name}</h4>
-                      <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary truncate">{faculty.designation}</p>
-                    </div>
-
-                    {/* Hover Overlay Details (Covers the entire card on hover) */}
-                    <div className="absolute inset-0 bg-card/95 backdrop-blur-md p-4 flex flex-col opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 translate-y-4 group-hover:translate-y-0 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                      
-                      {/* Header inside hover */}
-                      <div className="mb-2 shrink-0">
-                        <h4 className="font-black text-foreground text-[15px] tracking-tight mb-0.5 line-clamp-1">{faculty.name}</h4>
-                        <p className="text-[9px] font-bold uppercase tracking-widest text-primary line-clamp-1">{faculty.designation}</p>
-                      </div>
-
-                      <div className="w-full h-px bg-border/60 mb-3 shrink-0" />
-
-                      {/* Details */}
-                      <div className="flex flex-col gap-1 mb-3 shrink-0">
-                        <p className="text-[11px] font-semibold text-foreground/90"><span className="text-muted-foreground font-normal">Joined:</span> {faculty.dateOfJoining}</p>
-                        <p className="text-[11px] font-semibold text-foreground/90"><span className="text-muted-foreground font-normal">Employment:</span> {faculty.association}</p>
-                      </div>
-
-                      {/* Courses Taught */}
-                      <div className="mb-3 shrink-0">
-                        <p className="text-[11px] text-foreground leading-relaxed">
-                          <span className="font-bold text-foreground/80 block mb-0.5">Courses Taught (Current Sem):</span> 
-                          Data Structures, Machine Learning
-                        </p>
-                      </div>
-
-                      {/* Short Bio / Philosophy */}
-                      <div className="mb-3 flex-1 shrink-0">
-                        <p className="text-[11px] text-muted-foreground leading-relaxed italic border-l-2 border-primary/30 pl-3">
-                          "{faculty.bio}"
-                        </p>
-                      </div>
-
-                      {/* Footer Info (Email) */}
-                      <div className="flex items-center pt-2 border-t border-border/40 text-[10px] font-semibold text-foreground/80 hover:text-primary transition-colors cursor-pointer w-fit mt-auto shrink-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        <span>{faculty.name.split(' ').pop()?.toLowerCase() || 'faculty'}@msajce-edu.in</span>
-                      </div>
-
-                    </div>
-                  </div>
-                );
+                // Sort so HOD is at the top
+                const sortedFaculty = [...displayFaculty].sort((a, b) => {
+                  const aIsHod = a.designation.toLowerCase().includes('head');
+                  const bIsHod = b.designation.toLowerCase().includes('head');
+                  if (aIsHod && !bIsHod) return -1;
+                  if (!aIsHod && bIsHod) return 1;
+                  return 0;
+                });
 
                 return (
-                  <div className="w-full space-y-12 mx-0 max-w-none">
+                  <div className="w-full space-y-8 mx-0 max-w-none">
                     <div>
                       <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2 text-primary">Faculty</h2>
                       <p className="text-sm text-muted-foreground">The department is powered by accomplished professors, doctorates, and researchers committed to student mentoring and outcome-based engineering education.</p>
                     </div>
 
-                    {hodFaculty && (
-                      <div className="mb-14">
-                        <h3 className="text-2xl md:text-3xl font-serif tracking-tight mb-8 text-foreground border-b border-border/50 pb-3">Head of Department</h3>
-                        <div className="flex flex-col md:flex-row gap-8 lg:gap-12 py-2">
-                          {/* Left: Image & Identity */}
-                          <div className="w-full md:w-[280px] shrink-0 flex flex-col">
-                            <div className="w-full aspect-square bg-muted overflow-hidden rounded-sm border border-border mb-5">
-                              <img src={hodFaculty.photo} alt={hodFaculty.name} className="w-full h-full object-cover filter hover:scale-105 transition-transform duration-700" loading="lazy" />
-                            </div>
-                            <h4 className="font-black text-foreground text-xl md:text-2xl tracking-tight mb-1">{hodFaculty.name}</h4>
-                            <p className="text-xs font-bold uppercase tracking-widest text-primary">{hodFaculty.designation}</p>
-                          </div>
-
-                          {/* Right: Details (Always visible) */}
-                          <div className="flex-1 flex flex-col justify-center py-2">
-                            <div className="mb-8">
-                              <h5 className="font-black text-sm text-foreground/80 uppercase tracking-widest mb-3">Biography & Vision</h5>
-                              <p className="text-sm md:text-base text-muted-foreground leading-relaxed italic border-l-4 border-primary/40 pl-4 py-1">
-                                "{hodFaculty.bio}"
-                              </p>
-                            </div>
-
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-                              <div>
-                                <h6 className="text-[10px] font-bold text-foreground/60 uppercase tracking-widest mb-1.5">Date of Joining</h6>
-                                <p className="text-sm font-semibold text-foreground/90">{hodFaculty.dateOfJoining}</p>
-                              </div>
-                              <div>
-                                <h6 className="text-[10px] font-bold text-foreground/60 uppercase tracking-widest mb-1.5">Employment Type</h6>
-                                <p className="text-sm font-semibold text-foreground/90">{hodFaculty.association}</p>
-                              </div>
-                            </div>
-
-                            <div className="mb-8">
-                              <h6 className="text-[10px] font-bold text-foreground/60 uppercase tracking-widest mb-1.5">Courses Taught</h6>
-                              <p className="text-sm font-semibold text-foreground/90">Data Structures, Machine Learning</p>
-                            </div>
-
-                            <div className="mt-auto pt-6 border-t border-border/50 flex items-center gap-2 text-[13px] font-semibold text-primary/90 hover:text-primary transition-colors cursor-pointer w-fit">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                              <span>{hodFaculty.name.split(' ').pop()?.toLowerCase() || 'faculty'}@msajce-edu.in</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {otherFaculty.length > 0 && (
-                      <div>
-                        <h3 className="text-2xl md:text-3xl font-serif tracking-tight mb-6 text-foreground border-b border-border/50 pb-3">Professors</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
-                          {otherFaculty.map(faculty => renderFacultyCard(faculty))}
-                        </div>
-                      </div>
-                    )}
+                    <div className="overflow-x-auto rounded-sm border border-border bg-card shadow-sm">
+                      <table className="w-full text-left border-collapse text-sm">
+                        <thead className="bg-muted/50 border-b border-border">
+                          <tr>
+                            <th className="py-4 px-4 font-black uppercase tracking-widest text-[11px] text-foreground w-[80px] md:w-[100px] text-center">Profile</th>
+                            <th className="py-4 px-4 font-black uppercase tracking-widest text-[11px] text-foreground">Name & Designation</th>
+                            <th className="py-4 px-4 font-black uppercase tracking-widest text-[11px] text-foreground hidden md:table-cell">Details</th>
+                            <th className="py-4 px-4 font-black uppercase tracking-widest text-[11px] text-foreground hidden lg:table-cell">Biography</th>
+                            <th className="py-4 px-4 font-black uppercase tracking-widest text-[11px] text-foreground">Contact</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-border">
+                          {sortedFaculty.map((faculty, idx) => {
+                            const isHod = faculty.designation.toLowerCase().includes('head');
+                            return (
+                              <tr key={faculty.id} className={`group hover:bg-muted/30 transition-colors ${isHod ? 'bg-primary/5' : ''}`}>
+                                <td className="py-4 px-4 align-top">
+                                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-background shadow-sm mx-auto">
+                                    <img 
+                                      src={faculty.photo} 
+                                      alt={faculty.name} 
+                                      className="w-full h-full object-cover" 
+                                      loading="lazy" 
+                                    />
+                                  </div>
+                                </td>
+                                <td className="py-4 px-4 align-top">
+                                  <div className="flex flex-col gap-1">
+                                    <div className="flex items-center gap-2">
+                                      <h4 className="font-bold text-foreground text-[15px]">{faculty.name}</h4>
+                                      {isHod && (
+                                        <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[9px] font-black uppercase tracking-widest">HOD</span>
+                                      )}
+                                    </div>
+                                    <p className="text-[11px] font-bold uppercase tracking-widest text-primary/80">{faculty.designation}</p>
+                                    {/* Mobile only details */}
+                                    <div className="md:hidden mt-3 flex flex-col gap-1 text-[12px]">
+                                      <p className="text-muted-foreground"><span className="font-semibold text-foreground/80">Joined:</span> {faculty.dateOfJoining}</p>
+                                      <p className="text-muted-foreground"><span className="font-semibold text-foreground/80">Type:</span> {faculty.association}</p>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td className="py-4 px-4 align-top hidden md:table-cell">
+                                  <div className="flex flex-col gap-1.5 text-[12px]">
+                                    <p className="text-muted-foreground"><span className="font-semibold text-foreground/80 block mb-0.5">Joined</span> {faculty.dateOfJoining}</p>
+                                    <p className="text-muted-foreground mt-2"><span className="font-semibold text-foreground/80 block mb-0.5">Employment</span> {faculty.association}</p>
+                                  </div>
+                                </td>
+                                <td className="py-4 px-4 align-top hidden lg:table-cell max-w-[300px]">
+                                  <p className="text-[12px] text-muted-foreground leading-relaxed italic line-clamp-4">
+                                    "{faculty.bio}"
+                                  </p>
+                                  <p className="text-[11px] mt-3">
+                                    <span className="font-semibold text-foreground/80">Courses:</span> Data Structures, Machine Learning
+                                  </p>
+                                </td>
+                                <td className="py-4 px-4 align-top">
+                                  <div className="flex items-center gap-2 text-[12px] font-semibold text-foreground/70 group-hover:text-primary transition-colors cursor-pointer w-fit mt-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                    <span className="break-all">{faculty.name.split(' ').pop()?.toLowerCase() || 'faculty'}@msajce-edu.in</span>
+                                  </div>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 );
               })()}

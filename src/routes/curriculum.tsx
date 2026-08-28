@@ -279,44 +279,42 @@ function DepartmentSection({ title, departments }: { title: string, departments:
 
 function CurriculumHero() {
   return (
-    <section className="relative w-full min-h-[60vh] lg:min-h-[85vh] flex flex-col lg:flex-row border-b border-foreground/10 overflow-hidden bg-background">
-      {/* Left Typography Side */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 py-20 md:px-12 lg:px-20 xl:px-32 z-10">
+    <section className="relative w-full min-h-[60vh] lg:min-h-[85vh] flex items-center justify-center overflow-hidden bg-background">
+      {/* Background Image with Dark Overlay */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-background/80 dark:bg-background/90 z-10" />
+        <img 
+          src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2000&auto=format&fit=crop" 
+          alt="University campus and students" 
+          className="w-full h-full object-cover object-center"
+        />
+      </div>
+
+      {/* Foreground Content */}
+      <div className="relative z-20 w-full max-w-[1440px] px-6 py-20 md:px-12 lg:px-20 mx-auto flex flex-col items-center text-center">
         <Reveal variant="slide-up">
-          <div className="flex items-center gap-4 mb-6 md:mb-8">
-            <div className="h-[2px] w-8 md:w-12 bg-primary" />
-            <span className="text-[10px] md:text-xs font-black tracking-[0.3em] uppercase text-primary">Academic Framework</span>
+          <div className="inline-flex items-center justify-center gap-3 mb-8 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-primary">Academic Framework</span>
           </div>
         </Reveal>
         
         <Reveal variant="slide-up" delay={0.1}>
-          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-black uppercase leading-[0.85] tracking-tighter text-foreground mb-8">
-            Curriculum<br/>
-            <span className="text-primary">& Syllabus.</span>
+          <h1 className="text-5xl md:text-7xl lg:text-[6rem] xl:text-[7rem] font-black uppercase leading-[0.9] tracking-tighter text-foreground mb-8 text-balance">
+            Curriculum <br className="hidden sm:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">& Syllabus.</span>
           </h1>
         </Reveal>
         
         <Reveal variant="blur" delay={0.2}>
-          <p className="text-base md:text-lg font-medium text-muted-foreground leading-relaxed max-w-xl border-l-[3px] border-primary/40 pl-6">
+          <p className="text-base md:text-lg lg:text-xl font-medium text-foreground/80 leading-relaxed max-w-2xl mx-auto text-balance">
             Comprehensive academic roadmaps designed to meet rigorous industry standards. Explore detailed syllabi across our Autonomous and Affiliated regulations to chart your engineering journey.
           </p>
         </Reveal>
       </div>
 
-      {/* Right Image Side */}
-      <div className="w-full lg:w-1/2 relative min-h-[40vh] lg:min-h-full overflow-hidden border-t lg:border-t-0 lg:border-l border-foreground/10">
-        {/* Subtle overlay to blend image nicely */}
-        <div className="absolute inset-0 bg-foreground/5 mix-blend-multiply z-10 pointer-events-none" />
-        
-        <img 
-          src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2000&auto=format&fit=crop" 
-          alt="University campus and students" 
-          className="absolute inset-0 w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000 ease-out"
-        />
-        
-        {/* Gradient fade on desktop for a smooth transition from the text */}
-        <div className="hidden lg:block absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-20 pointer-events-none" />
-      </div>
+      {/* Decorative Elements */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
     </section>
   );
 }
