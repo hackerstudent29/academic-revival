@@ -89,7 +89,7 @@ export function WhyJoinSection() {
         
         {/* Header moved above the grid */}
         <Reveal variant="slide-right" className="flex flex-col gap-4 max-w-xl lg:max-w-2xl mb-4">
-          <h2 className="text-4xl md:text-5xl font-black text-foreground tracking-tighter">
+          <h2 className="text-4xl md:text-5xl font-black text-primary tracking-tighter">
             <SplitText text="Why Join MSAJCE?" />
           </h2>
         </Reveal>
