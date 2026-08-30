@@ -117,11 +117,7 @@ export function AboutBannerSection() {
           className="w-full flex flex-col pt-8"
         >
           <div className="flex flex-col">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-8 h-[2px] bg-primary" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-foreground">The MSAJCE Edge</span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter text-foreground leading-none">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter text-primary leading-none">
               CAMPUS FACILITIES.
             </h2>
           </div>
@@ -150,7 +146,7 @@ export function AboutBannerSection() {
 
                 {/* Folder Tab UI (Matches section background to create the physical cutout illusion) */}
                 <div className="absolute top-0 left-0 bg-background rounded-tl-3xl rounded-br-[24px] px-5 py-3.5 z-20 flex items-center transition-colors duration-500">
-                  <span className="text-sm font-bold text-foreground group-hover:text-primary tracking-wide transition-colors duration-500">{facility.name}</span>
+                  <span className="text-sm font-bold text-foreground dark:text-primary group-hover:text-primary tracking-wide transition-colors duration-500">{facility.name}</span>
                   
                   {/* Sliding Arrow */}
                   <div className="flex items-center overflow-hidden max-w-0 opacity-0 group-hover:max-w-[24px] group-hover:opacity-100 group-hover:ml-2 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
