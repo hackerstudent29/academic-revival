@@ -43,8 +43,16 @@ export function NewsAndEventsSection() {
   if (!currentMainArticle) return null;
 
   return (
-    <section ref={sectionRef} className="bg-[#E4E6E6] dark:bg-[#151412] py-12 md:py-16" id="news">
-      <div className="mx-auto w-full max-w-[1280px] px-6 md:px-12">
+    <section ref={sectionRef} className="relative bg-[#E4E6E6] dark:bg-[#151412] py-12 md:py-16 overflow-hidden" id="news">
+      {/* Subtle Background Design - Elegant Swept Curves */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {/* Top-Right sweeping curve */}
+        <div className="absolute top-0 right-0 w-[65%] h-[90%] bg-[#DDE0E0] dark:bg-white/[0.02]" style={{ clipPath: "ellipse(100% 100% at 100% 0%)" }} />
+        {/* Bottom-Left counter curve */}
+        <div className="absolute bottom-0 left-0 w-[45%] h-[65%] bg-[#DDE0E0] dark:bg-white/[0.02]" style={{ clipPath: "ellipse(100% 100% at 0% 100%)" }} />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 md:px-12">
         {/* Section Header */}
         <div className="mb-6">
           <Reveal variant="rise">
