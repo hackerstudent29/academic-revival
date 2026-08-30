@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/motion";
+import { motion } from "framer-motion";
 import { ExternalLink, FileText, Download, X } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 
@@ -192,14 +193,14 @@ function PdfViewerModal({
 
 function DepartmentSection({ title, departments }: { title: string, departments: any[] }) {
   return (
-    <section className="px-6 py-24 md:px-12 border-b border-foreground/10 bg-foreground/[0.02]">
-      <div className="mx-auto max-w-[1440px]">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-24 border-b border-foreground/10 pb-12">
-            <Reveal variant="slide-up">
-              <h2 className="text-[2.5rem] md:text-[4rem] font-black uppercase tracking-tighter text-foreground leading-none" dangerouslySetInnerHTML={{ __html: title }} />
+    <section className="px-4 py-12 md:px-8 border-b border-foreground/10 bg-foreground/[0.02]">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 border-b border-foreground/10 pb-6">
+            <Reveal variant="rise">
+              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-foreground leading-none" dangerouslySetInnerHTML={{ __html: title }} />
             </Reveal>
             <Reveal variant="blur" delay={0.1}>
-              <div className="flex gap-4 items-center text-xs font-bold uppercase tracking-widest text-muted-foreground">
+              <div className="flex gap-3 items-center text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
                 <span>R-2024</span>
                 <span className="w-1 h-1 bg-foreground/30 rounded-full" />
                 <span>R-2021</span>
@@ -209,37 +210,37 @@ function DepartmentSection({ title, departments }: { title: string, departments:
             </Reveal>
         </div>
 
-        <div className="flex flex-col gap-32 lg:gap-48">
+        <div className="flex flex-col gap-16 lg:gap-20">
           {departments.map((dept, idx) => {
             const isEven = idx % 2 === 0;
             return (
-              <div key={dept.code} className={`flex flex-col lg:flex-row gap-12 lg:gap-24 items-center ${isEven ? '' : 'lg:flex-row-reverse'}`}>
+              <div id={`dept-${dept.code.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`} key={dept.code} className={`flex flex-col lg:flex-row gap-6 lg:gap-10 items-center ${isEven ? '' : 'lg:flex-row-reverse'} scroll-mt-24`}>
                 
                 {/* Image Block */}
-                <Reveal variant={isEven ? "slide-right" : "slide-left"} className="w-full lg:w-1/2">
-                    <div className="relative aspect-[4/3] w-full overflow-hidden group border border-foreground/10 bg-foreground/5">
-                      <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <Reveal variant={isEven ? "slide-right" : "slide-left"} className="w-full lg:w-5/12">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden group border border-foreground/10 bg-foreground/5 rounded-sm">
+                      <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       <img 
                         src={dept.image} 
                         alt={dept.name} 
-                        className="w-full h-full object-cover filter grayscale-[50%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                        className="w-full h-full object-cover filter grayscale-[50%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                       />
                     </div>
                 </Reveal>
 
                 {/* Content Block */}
-                <Reveal variant="blur" delay={0.1} className="w-full lg:w-1/2 flex flex-col justify-center">
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-6 block border-l-2 border-primary pl-4">
+                <Reveal variant="blur" delay={0.1} className="w-full lg:w-7/12 flex flex-col justify-center">
+                  <span className="text-[9px] font-black uppercase tracking-widest text-primary mb-3 block border-l-2 border-primary pl-3">
                     {dept.code}
                   </span>
-                  <h3 className="text-4xl md:text-5xl lg:text-[4rem] font-black uppercase tracking-tighter text-foreground leading-[0.9] mb-8">
+                  <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-foreground leading-snug mb-4">
                     {dept.name}
                   </h3>
-                  <p className="text-base md:text-lg font-medium text-muted-foreground leading-relaxed max-w-xl mb-12">
+                  <p className="text-sm font-medium text-muted-foreground leading-relaxed max-w-xl mb-6">
                     {dept.desc}
                   </p>
 
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-2">
                     
                     <PdfViewerModal
                       triggerLabel="R-2024"
@@ -278,50 +279,107 @@ function DepartmentSection({ title, departments }: { title: string, departments:
 }
 
 function CurriculumHero() {
-  return (
-    <section className="relative w-full min-h-[60vh] lg:min-h-[85vh] flex items-center justify-center overflow-hidden bg-background">
-      {/* Background Image with Dark Overlay */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-background/80 dark:bg-background/90 z-10" />
-        <img 
-          src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2000&auto=format&fit=crop" 
-          alt="University campus and students" 
-          className="w-full h-full object-cover object-center"
-        />
-      </div>
+  const scrollToDept = (code: string) => {
+    const id = `dept-${code.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-      {/* Foreground Content */}
-      <div className="relative z-20 w-full max-w-[1440px] px-6 py-20 md:px-12 lg:px-20 mx-auto flex flex-col items-center text-center">
-        <Reveal variant="slide-up">
-          <div className="inline-flex items-center justify-center gap-3 mb-8 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-primary">Academic Framework</span>
+  return (
+    <>
+      <section className="relative w-full overflow-hidden h-auto lg:h-[75vh] flex flex-col lg:block">
+        
+        {/* Desktop Image (Slides and reframes to the right) */}
+        <motion.div 
+          initial={{ width: "100%" }}
+          animate={{ width: "60%" }}
+          transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
+          className="absolute inset-y-0 right-0 z-10 hidden lg:block pointer-events-none"
+        >
+          <img 
+            src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2000&auto=format&fit=crop" 
+            alt="University campus and students" 
+            className="w-full h-full object-cover object-center"
+          />
+        </motion.div>
+
+        {/* Accent sliding block (The Blue Edge) */}
+        <motion.div 
+          initial={{ width: "0%" }}
+          animate={{ width: "51%" }}
+          transition={{ duration: 1.2, delay: 0.05, ease: [0.76, 0, 0.24, 1] }}
+          className="absolute inset-y-0 left-0 bg-primary z-20 hidden lg:block shadow-2xl"
+          style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
+        />
+
+        {/* Sliding Grey Background from Left with Diagonal Edge */}
+        <motion.div 
+          initial={{ width: "0%" }}
+          animate={{ width: "50%" }}
+          transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
+          className="absolute inset-y-0 left-0 bg-page-bg z-30 hidden lg:block"
+          style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
+        />
+
+        {/* Mobile Image */}
+        <div className="w-full h-[300px] relative lg:hidden block z-10">
+          <img 
+            src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2000&auto=format&fit=crop" 
+            alt="University campus and students" 
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-page-bg to-transparent z-10 pointer-events-none" />
+        </div>
+
+        {/* Text Content */}
+        <div className="w-full lg:w-[48%] px-6 py-12 md:py-16 lg:px-10 xl:px-12 flex flex-col justify-center z-40 relative lg:absolute lg:inset-y-0 lg:left-0 h-full">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="inline-flex items-center gap-2 mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <span className="text-[9px] font-bold tracking-widest uppercase text-primary">Academic Framework</span>
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.05] tracking-tight text-primary mb-5 text-balance">
+              Curriculum <br/>
+              & Syllabus
+            </h1>
+            
+            <p className="text-sm md:text-base font-medium text-muted-foreground leading-relaxed max-w-md">
+              Comprehensive academic roadmaps designed to meet rigorous industry standards. Explore detailed syllabi across our Autonomous and Affiliated regulations.
+            </p>
+          </motion.div>
+        </div>
+
+      </section>
+
+      {/* Navigation Strip Below Hero */}
+      <div className="w-full bg-foreground/[0.03] border-y border-border/40 py-6">
+        <Reveal variant="rise" delay={0.3}>
+          <div className="mx-auto max-w-[1440px] px-4 md:px-8 xl:px-12 overflow-hidden">
+            <div className="flex flex-nowrap items-center gap-3 overflow-x-auto pb-6 -mb-6 scroll-smooth">
+              {[...ugDepartments, ...pgDepartments].map((dept) => (
+                <button 
+                  key={dept.code}
+                  onClick={() => scrollToDept(dept.code)}
+                  className="flex-shrink-0 text-[11px] xl:text-[13px] font-bold uppercase tracking-wide px-5 py-2.5 bg-primary text-primary-foreground border border-primary hover:bg-background hover:text-primary transition-colors duration-500 rounded-none shadow"
+                >
+                  {dept.code}
+                </button>
+              ))}
+            </div>
           </div>
         </Reveal>
-        
-        <Reveal variant="slide-up" delay={0.1}>
-          <h1 className="text-5xl md:text-7xl lg:text-[6rem] xl:text-[7rem] font-black uppercase leading-[0.9] tracking-tighter text-foreground mb-8 text-balance">
-            Curriculum <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">& Syllabus.</span>
-          </h1>
-        </Reveal>
-        
-        <Reveal variant="blur" delay={0.2}>
-          <p className="text-base md:text-lg lg:text-xl font-medium text-foreground/80 leading-relaxed max-w-2xl mx-auto text-balance">
-            Comprehensive academic roadmaps designed to meet rigorous industry standards. Explore detailed syllabi across our Autonomous and Affiliated regulations to chart your engineering journey.
-          </p>
-        </Reveal>
       </div>
-
-      {/* Decorative Elements */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
-    </section>
+    </>
   );
 }
 
 function CurriculumPage() {
   return (
-    <main className="bg-background min-h-screen">
+    <main className="bg-page-bg min-h-screen">
       <CurriculumHero />
 
       {/* UG Departments */}<DepartmentSection title="Undergraduate<br/>Programmes" departments={ugDepartments} />

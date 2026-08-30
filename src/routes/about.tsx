@@ -77,21 +77,21 @@ function About() {
           </Reveal>
           
           <div className="grid gap-8 md:grid-cols-3">
-            <Reveal variant="slide-up" delay={0.1} className="rounded-3xl border border-foreground/12 bg-foreground/5 p-8">
+            <Reveal variant="rise" delay={0.1} className="rounded-3xl border border-foreground/12 bg-foreground/5 p-8">
               <h3 className="text-2xl font-black uppercase tracking-tight text-primary mb-4">NAAC</h3>
               <p className="text-sm leading-relaxed text-foreground/70 mb-4">
                 Assessed by the National Assessment and Accreditation Council across 7 core criteria including Curricular Aspects, Teaching-Learning, and Institutional Values.
               </p>
             </Reveal>
 
-            <Reveal variant="slide-up" delay={0.2} className="rounded-3xl border border-foreground/12 bg-foreground/5 p-8">
+            <Reveal variant="rise" delay={0.2} className="rounded-3xl border border-foreground/12 bg-foreground/5 p-8">
               <h3 className="text-2xl font-black uppercase tracking-tight text-primary mb-4">NIRF</h3>
               <p className="text-sm leading-relaxed text-foreground/70 mb-4">
                 Active participant in the National Institutional Ranking Framework across Engineering, Overall, and Innovation categories.
               </p>
             </Reveal>
 
-            <Reveal variant="slide-up" delay={0.3} className="rounded-3xl border border-foreground/12 bg-foreground/5 p-8">
+            <Reveal variant="rise" delay={0.3} className="rounded-3xl border border-foreground/12 bg-foreground/5 p-8">
               <h3 className="text-2xl font-black uppercase tracking-tight text-primary mb-4">IQAC</h3>
               <p className="text-sm leading-relaxed text-foreground/70 mb-4">
                 Our Internal Quality Assurance Cell continuously reviews teaching-learning structures, manages feedback, and prepares the Annual Quality Assurance Report (AQAR).

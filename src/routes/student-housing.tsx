@@ -88,19 +88,19 @@ function StudentHousing() {
         
         {/* Editorial Heading with Background Typography */}
         <div className="relative mb-24 md:mb-32 mt-10">
-          <Reveal variant="slide-up">
+          <Reveal variant="rise">
             <h2 className="text-[12vw] leading-[0.75] font-black uppercase tracking-tighter text-foreground/[0.03] dark:text-foreground/[0.05] absolute -top-16 left-0 whitespace-nowrap pointer-events-none hidden md:block">
               LIVING AT MSAJCE
             </h2>
           </Reveal>
           
           <div className="relative z-10 pt-4">
-            <Reveal variant="slide-up" delay={0.1}>
+            <Reveal variant="rise" delay={0.1}>
               <h3 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter text-primary leading-none">
                 Hostel Facilities
               </h3>
             </Reveal>
-            <Reveal variant="slide-up" delay={0.2}>
+            <Reveal variant="rise" delay={0.2}>
               <p className="mt-8 text-xl md:text-3xl font-medium text-foreground/80 max-w-4xl leading-snug">
                 A home away from home. We provide separate, fully-furnished accommodations for boys and girls, emphasizing absolute safety, comfort, and academic focus.
               </p>
@@ -110,7 +110,7 @@ function StudentHousing() {
 
         {/* Staggered Large Intro Blocks */}
         <div className="grid md:grid-cols-2 gap-16 md:gap-24 mb-24">
-          <Reveal variant="slide-up" delay={0.3}>
+          <Reveal variant="rise" delay={0.3}>
             <div className="border-t-4 border-primary pt-8">
               <h4 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-foreground mb-6">Boys Hostel</h4>
               <p className="text-foreground/70 text-lg md:text-xl leading-relaxed font-medium">
@@ -119,7 +119,7 @@ function StudentHousing() {
             </div>
           </Reveal>
 
-          <Reveal variant="slide-up" delay={0.4}>
+          <Reveal variant="rise" delay={0.4}>
             <div className="border-t-4 border-foreground/20 pt-8 mt-0 md:mt-24">
               <h4 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-foreground mb-6">Girls Hostel</h4>
               <p className="text-foreground/70 text-lg md:text-xl leading-relaxed font-medium">
@@ -130,7 +130,7 @@ function StudentHousing() {
         </div>
 
         {/* Structured Premium Table (Full Width now for maximum impact) */}
-        <Reveal variant="slide-up" delay={0.5}>
+        <Reveal variant="rise" delay={0.5}>
           <div className="w-full mb-16">
             <div className="w-full overflow-x-auto">
               <table className="w-full text-left border-collapse border-y border-foreground/20 min-w-[800px]">
@@ -182,21 +182,21 @@ function StudentHousing() {
 
         {/* Feature Highlights Grid - Elevated Design */}
         <div className="grid md:grid-cols-3 gap-12 mt-8">
-          <Reveal variant="slide-up" delay={0.6}>
+          <Reveal variant="rise" delay={0.6}>
             <div className="flex flex-col h-full bg-foreground/[0.02] p-8 border border-foreground/5 hover:border-primary/30 transition-colors">
               <Bed className="text-primary mb-6" size={32} />
               <h5 className="font-black text-foreground uppercase tracking-tight text-lg mb-3">Fully Furnished</h5>
               <p className="text-foreground/70 text-[15px] leading-relaxed font-medium">Mattresses, cup-boards, study tables & wall hangers included for absolute comfort.</p>
             </div>
           </Reveal>
-          <Reveal variant="slide-up" delay={0.7}>
+          <Reveal variant="rise" delay={0.7}>
             <div className="flex flex-col h-full bg-foreground/[0.02] p-8 border border-foreground/5 hover:border-primary/30 transition-colors">
               <Monitor className="text-primary mb-6" size={32} />
               <h5 className="font-black text-foreground uppercase tracking-tight text-lg mb-3">Recreation</h5>
               <p className="text-foreground/70 text-[15px] leading-relaxed font-medium">Entertainment halls equipped with TVs, indoor games, and dedicated reading rooms.</p>
             </div>
           </Reveal>
-          <Reveal variant="slide-up" delay={0.8}>
+          <Reveal variant="rise" delay={0.8}>
             <div className="flex flex-col h-full bg-foreground/[0.02] p-8 border border-foreground/5 hover:border-primary/30 transition-colors">
               <Wifi className="text-primary mb-6" size={32} />
               <h5 className="font-black text-foreground uppercase tracking-tight text-lg mb-3">Connectivity</h5>
@@ -230,7 +230,7 @@ function StudentHousing() {
         <div className="mx-auto max-w-[1440px] grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-24 relative">
           
           <div className="lg:sticky lg:top-32 self-start">
-            <Reveal variant="slide-up">
+            <Reveal variant="rise">
               <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-foreground">
                 Rules &<br />Regulations
               </h2>
@@ -239,7 +239,7 @@ function StudentHousing() {
           
           <ul className="grid gap-x-12 gap-y-10 sm:grid-cols-2">
             {rules.map((rule, idx) => (
-              <Reveal key={idx} variant="slide-up" delay={idx * 0.05}>
+              <Reveal key={idx} variant="rise" delay={idx * 0.05}>
                 <li className="flex gap-4 items-start">
                   <CheckCircle2 className="text-primary shrink-0 mt-0.5" size={20} />
                   <p className="text-foreground/80 leading-relaxed text-[15px] font-medium">{rule}</p>
@@ -258,7 +258,7 @@ function StudentHousing() {
           
           {/* Sticky Mess Header */}
           <div className="lg:sticky lg:top-32 self-start">
-            <Reveal variant="slide-up">
+            <Reveal variant="rise">
               <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary mb-4">Mess</h2>
               <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-foreground mb-6">
                 Dining Hall
@@ -274,7 +274,7 @@ function StudentHousing() {
           </div>
           
           <div className="space-y-16">
-            <Reveal variant="slide-up" delay={0.1}>
+            <Reveal variant="rise" delay={0.1}>
               <h4 className="text-xl font-black uppercase tracking-widest text-foreground mb-6 flex items-center gap-3">
                 <Utensils className="text-primary" size={24} /> Mess Timings
               </h4>
@@ -309,7 +309,7 @@ function StudentHousing() {
               </div>
             </Reveal>
 
-            <Reveal variant="slide-up" delay={0.2}>
+            <Reveal variant="rise" delay={0.2}>
               <h4 className="text-xl font-black uppercase tracking-widest text-foreground mb-6 flex items-center gap-3 mt-12">
                 <Monitor className="text-primary" size={24} /> Games & TV Timings
               </h4>
@@ -347,7 +347,7 @@ function StudentHousing() {
         {/* Cafeteria Row - Clean layout without cards */}
         <div className="grid lg:grid-cols-[1.5fr_1fr] gap-16 lg:gap-24 border-t border-foreground/10 pt-24 relative">
           <div className="lg:sticky lg:top-32 self-start">
-            <Reveal variant="slide-up">
+            <Reveal variant="rise">
               <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary mb-4">Canteen</h2>
               <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-foreground mb-6">
                 Cafeteria
@@ -367,7 +367,7 @@ function StudentHousing() {
             </Reveal>
           </div>
 
-          <Reveal variant="slide-up" delay={0.1} className="lg:pl-10">
+          <Reveal variant="rise" delay={0.1} className="lg:pl-10">
             <h4 className="text-2xl font-black uppercase tracking-tight text-foreground mb-8">Canteen Committee</h4>
             
             <div className="space-y-6">
