@@ -106,6 +106,7 @@
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
+  --color-page-bg: var(--page-bg);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
@@ -155,6 +156,7 @@
   --card-foreground: oklch(0 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0 0 0);
+  --page-bg: #EAEAEA;
   --primary: oklch(0.451 0.128 245.6);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.96 0 0);
@@ -202,6 +204,7 @@
   --card-foreground: oklch(0.88 0 0);
   --popover: oklch(0.14 0 0);
   --popover-foreground: oklch(0.88 0 0);
+  --page-bg: #15141c;
   --primary: oklch(0.52 0.14 245.6);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.2 0 0);

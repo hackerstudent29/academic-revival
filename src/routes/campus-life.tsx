@@ -142,7 +142,7 @@ function CampusLife() {
             </Reveal>
             <ul className="space-y-4">
               {rules.map((rule, idx) => (
-                <Reveal key={idx} variant="slide-up" delay={idx * 0.1}>
+                <Reveal key={idx} variant="rise" delay={idx * 0.1}>
                   <li className="flex items-start gap-4">
                     <span className="flex-shrink-0 mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary">
                       {idx + 1}

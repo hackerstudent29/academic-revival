@@ -40,8 +40,11 @@ const courseTypes = [
 
 function ProgrammesIndex() {
   return (
-    <main className="bg-background min-h-screen pt-24 md:pt-32">
+    <main className="bg-background min-h-screen pt-[60px]">
       <section className="px-6 md:px-12 max-w-[1440px] mx-auto pb-24">
+        <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-foreground mb-8">
+          PROGRAMMES
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {courseTypes.map((type, index) => (
             <motion.div 
@@ -70,8 +73,8 @@ function ProgrammesIndex() {
                 {type.description}
               </p>
               
-              <Link to={type.link as any} className="text-primary hover:text-primary/80 transition-colors">
-                <ArrowRight size={20} />
+              <Link to={type.link as any} className="text-primary hover:text-primary/80 transition-colors inline-flex">
+                <ArrowRight size={20} className="transition-transform duration-300 ease-out group-hover:translate-x-2" />
               </Link>
             </motion.div>
           ))}

@@ -155,10 +155,10 @@ export function TestimonialSection() {
         transition={{ duration: 0.65, ease: [0.215, 0.61, 0.355, 1] }}
         className="relative z-10 w-full text-center px-6 mb-10 md:mb-12"
       >
-        <p className="text-primary text-[11px] md:text-sm font-bold uppercase tracking-[0.16em] mb-4">
+        <p className="text-white text-[11px] md:text-sm font-bold uppercase tracking-[0.16em] mb-4">
           3940+ Happy Alumni
         </p>
-        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-foreground">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-primary">
           Testimonials
         </h2>
       </motion.div>
@@ -176,7 +176,7 @@ export function TestimonialSection() {
             transition={{ duration: 0.75, delay: 0.1, ease: [0.215, 0.61, 0.355, 1] }}
             className="col-span-1 lg:col-span-7 w-full flex flex-col gap-6"
           >
-            <span className="text-[10px] font-mono font-bold tracking-widest text-[#004b87] uppercase block">
+            <span className="text-[10px] font-mono font-bold tracking-widest text-white/70 uppercase block">
               Featured Alumni Spotlight //
             </span>
             
@@ -279,7 +279,7 @@ export function TestimonialSection() {
             transition={{ duration: 0.75, delay: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
             className="col-span-1 lg:col-span-5 w-full flex flex-col gap-6"
           >
-            <span className="text-[10px] font-mono font-bold tracking-widest text-[#004b87] uppercase block">
+            <span className="text-[10px] font-mono font-bold tracking-widest text-white/70 uppercase block">
               Alumni Video Reels //
             </span>
 
@@ -399,11 +399,8 @@ export function TestimonialSection() {
         >
           <div className="flex items-center justify-between border-b border-foreground/10 pb-4 mb-8">
             <div className="flex flex-col">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#004b87]">// Legacy Spotlights</span>
-              <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight mt-1">Alumni Network Feed</h3>
-            </div>
-            <div className="flex gap-2">
-              <span className="text-xs text-muted-foreground font-mono">Hover to Pause</span>
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-white/70">// Legacy Spotlights</span>
+              <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight mt-1 text-primary">Alumni Network Feed</h3>
             </div>
           </div>
           
