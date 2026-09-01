@@ -207,9 +207,9 @@ export function SiteFooter() {
                 <motion.ul className="mt-8 space-y-4 text-sm text-[#CCCCCC]"
                   initial="hidden" animate={a} variants={stagger(0.42)}>
                   {[
-                    { to: "/admissions", label: "How to Apply" },
-                    { to: "/admissions", label: "Eligibility Criteria" },
-                    { to: "/admissions", label: "Scholarships" },
+                    { to: "/admissions/procedure", label: "How to Apply" },
+                    { to: "/admissions/eligibility", label: "Eligibility Criteria" },
+                    { to: "/admissions/scholarships", label: "Scholarships" },
                     { to: "/contact",    label: "Talk to an Advisor" },
                   ].map(({ to, label }) => (
                     <motion.li key={label} variants={listItem}>
@@ -246,9 +246,10 @@ export function SiteFooter() {
                 {/* Copyright: fade only, fires last */}
                 <motion.div className="flex flex-col items-center gap-4 md:flex-row md:gap-8 text-xs font-medium uppercase tracking-widest text-white/40"
                   variants={fadeIn} initial="hidden" animate={a} transition={t(0.55, 1.1)}>
-                  <div className="flex gap-6">
+                  <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
                     <Link to="/" className="hover:text-primary transition-colors">Privacy Policy</Link>
                     <Link to="/" className="hover:text-primary transition-colors">Terms of Service</Link>
+                    <Link to="/credits" className="hover:text-primary transition-colors">Credits</Link>
                   </div>
                   <p>&copy; {new Date().getFullYear()} MSAJCE. All rights reserved.</p>
                 </motion.div>

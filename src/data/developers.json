@@ -1,0 +1,97 @@
+[
+  {
+    "id": "dev-001",
+    "name": "Jane Doe",
+    "role": "Lead Frontend Architect",
+    "department": "Department of Computer Science & Engineering",
+    "batch": "Class of 2026",
+    "avatarUrl": "https://i.pravatar.cc/300?img=1",
+    "bio": "Engineered the core navigation system and integrated real-time student portal APIs. Focuses on web accessibility and high-performance UI.",
+    "skills": ["React", "TypeScript", "Tailwind CSS", "A11y"],
+    "contributions": [
+      "Designed and implemented responsive departmental layouts.",
+      "Achieved 98+ Lighthouse score across performance and accessibility."
+    ],
+    "socials": {
+      "linkedin": "https://linkedin.com/in/janedoe",
+      "github": "https://github.com/janedoe",
+      "portfolio": "https://janedoe.dev",
+      "email": "j.doe@college.edu"
+    }
+  },
+  {
+    "id": "dev-002",
+    "name": "John Smith",
+    "role": "Backend Developer",
+    "department": "Department of Information Technology",
+    "batch": "Class of 2025",
+    "avatarUrl": "https://i.pravatar.cc/300?img=11",
+    "bio": "Specializes in secure API design and database optimization. Led the backend integration for the student showcase portal.",
+    "skills": ["Node.js", "Express", "PostgreSQL", "Docker"],
+    "contributions": [
+      "Architected the REST API for student records.",
+      "Implemented JWT-based authentication system."
+    ],
+    "socials": {
+      "linkedin": "https://linkedin.com/in/johnsmith",
+      "github": "https://github.com/johnsmith",
+      "email": "j.smith@college.edu"
+    }
+  },
+  {
+    "id": "dev-003",
+    "name": "Alice Johnson",
+    "role": "UI/UX Designer",
+    "department": "Department of Artificial Intelligence and Data Science",
+    "batch": "Class of 2026",
+    "avatarUrl": "https://i.pravatar.cc/300?img=5",
+    "bio": "Passionate about creating intuitive and visually stunning user interfaces. Crafted the design system for the academic revival project.",
+    "skills": ["Figma", "UI/UX Design", "Prototyping", "Tailwind CSS"],
+    "contributions": [
+      "Created the comprehensive Figma design system.",
+      "Conducted user testing with 50+ students for portal accessibility."
+    ],
+    "socials": {
+      "linkedin": "https://linkedin.com/in/alicejohnson",
+      "portfolio": "https://alicej.design",
+      "email": "a.johnson@college.edu"
+    }
+  },
+  {
+    "id": "dev-004",
+    "name": "Bob Williams",
+    "role": "DevOps Engineer",
+    "department": "Department of Electronics and Communication Engineering",
+    "batch": "Class of 2024",
+    "avatarUrl": "https://i.pravatar.cc/300?img=12",
+    "bio": "Automates everything. Streamlined the deployment pipeline reducing build times by 40%.",
+    "skills": ["AWS", "GitHub Actions", "Terraform", "Linux"],
+    "contributions": [
+      "Set up CI/CD pipelines for automated testing and deployment.",
+      "Configured AWS infrastructure with Auto Scaling."
+    ],
+    "socials": {
+      "github": "https://github.com/bobwilliams",
+      "email": "b.williams@college.edu"
+    }
+  },
+  {
+    "id": "dev-005",
+    "name": "Charlie Brown",
+    "role": "Project Lead",
+    "department": "Department of Computer Science & Engineering",
+    "batch": "Class of 2025",
+    "avatarUrl": "https://i.pravatar.cc/300?img=13",
+    "bio": "Coordinates between frontend, backend, and design teams to ensure smooth project delivery.",
+    "skills": ["Agile", "Scrum", "Jira", "TypeScript"],
+    "contributions": [
+      "Managed weekly sprints and cross-team communication.",
+      "Contributed to core frontend infrastructure."
+    ],
+    "socials": {
+      "linkedin": "https://linkedin.com/in/charliebrown",
+      "github": "https://github.com/charliebrown",
+      "email": "c.brown@college.edu"
+    }
+  }
+]

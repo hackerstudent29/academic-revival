@@ -1,4 +1,4 @@
-# MSAJCE Website — Agent, Design & Build Guide
+http://localhost:8080/programmes/civil-engineering# MSAJCE Website — Agent, Design & Build Guide
 
 Single source of truth for anyone (human or AI agent) adding pages/sections to this project.
 Read this file **before** writing any code. Do not invent new colors, fonts, or libraries.
