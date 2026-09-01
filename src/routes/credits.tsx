@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
-import { Skiper39 } from "../components/CrowdCanvas";
+import { Skiper39 } from "@/components/sections/credits/CrowdCanvas";
 
 export const Route = createFileRoute("/credits")({
   component: CreditsPage,

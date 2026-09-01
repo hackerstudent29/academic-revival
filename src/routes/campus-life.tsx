@@ -1,7 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PageHero } from "@/components/shared/PageHero";
-import { WhyJoinSection } from "@/components/sections/WhyJoinSection";
+import { WhyJoinSection } from "@/components/sections/home/WhyJoinSection";
 import { ShieldAlert, BookOpen, Code, Trophy } from "lucide-react";
 
 const title = "Campus Life at MSAJCE — Tech Centres, Facilities & Discipline";
@@ -91,45 +91,22 @@ function CampusLife() {
           <h2 className="text-3xl font-black uppercase tracking-tight text-foreground sm:text-4xl mb-12">Campus Facilities</h2>
         </Reveal>
         <Stagger gap={0.1} className="grid gap-8 sm:grid-cols-2">
-          {facilities.map((f) => {
-            const isHostel = f.t === "Hostels";
-            
-            const cardContent = (
-              <>
-                <div className="aspect-[16/10] overflow-hidden relative">
-                  <img
-                    src={f.img}
-                    alt={f.t}
-                    // Removed the zoom/scale effect per mandatory rule, keeping only grayscale transition
-                    className="h-full w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
-                  />
-                  {isHostel && (
-                    <div className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5 uppercase tracking-widest rounded-full">
-                      Explore
-                    </div>
-                  )}
-                </div>
-                <div className="p-8">
-                  <h2 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">{f.t}</h2>
-                  <p className="mt-3 text-sm leading-relaxed text-foreground/60">{f.d}</p>
-                </div>
-              </>
-            );
-
-            return (
-              <StaggerItem key={f.t} variant="unfold" className="group overflow-hidden rounded-3xl border border-foreground/12 bg-foreground/5 cursor-pointer hover:border-primary/50 transition-colors">
-                {isHostel ? (
-                  <Link to="/student-housing" className="block w-full h-full">
-                    {cardContent}
-                  </Link>
-                ) : (
-                  <div className="w-full h-full">
-                    {cardContent}
-                  </div>
-                )}
-              </StaggerItem>
-            );
-          })}
+          {facilities.map((f) => (
+            <StaggerItem key={f.t} variant="unfold" className="group overflow-hidden rounded-3xl border border-foreground/12 bg-foreground/5">
+              <div className="aspect-[16/10] overflow-hidden">
+                <img
+                  src={f.img}
+                  alt={f.t}
+                  // Removed the zoom/scale effect per mandatory rule, keeping only grayscale transition
+                  className="h-full w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
+                />
+              </div>
+              <div className="p-8">
+                <h2 className="text-2xl font-bold text-foreground">{f.t}</h2>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/60">{f.d}</p>
+              </div>
+            </StaggerItem>
+          ))}
         </Stagger>
       </section>
 

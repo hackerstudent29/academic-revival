@@ -2,17 +2,17 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "framer-motion";
-import { WhyJoinSection } from "@/components/sections/WhyJoinSection";
-import { AcademicProgrammesSection } from "@/components/sections/AcademicProgrammesSection";
-import { AboutBannerSection } from "@/components/sections/AboutBannerSection";
+import { WhyJoinSection } from "@/components/sections/home/WhyJoinSection";
+import { AcademicProgrammesSection } from "@/components/sections/home/AcademicProgrammesSection";
+import { AboutBannerSection } from "@/components/sections/about/AboutBannerSection";
 import { DynamicText } from "@/components/typography/DynamicText";
 import { HeroReel } from "@/components/widgets/HeroReel";
 import { RecruiterMarquee } from "@/components/widgets/RecruiterMarquee";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { RotatingWord } from "@/components/typography/RotatingWord";
-import { TestimonialSection } from "@/components/sections/TestimonialSection";
-import { NewsAndEventsSection } from "@/components/sections/NewsAndEventsSection";
-import { ContactSection } from "@/components/sections/ContactSection";
+import { TestimonialSection } from "@/components/sections/home/TestimonialSection";
+import { NewsAndEventsSection } from "@/components/sections/home/NewsAndEventsSection";
+import { ContactSection } from "@/components/sections/contact/ContactSection";
 import { CampusVideoReveal } from "@/components/widgets/CampusVideoReveal";
 import { ChatbotWidget } from "@/components/widgets/ChatbotWidget";
 

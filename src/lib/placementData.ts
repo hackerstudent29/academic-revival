@@ -16,7 +16,7 @@ import {
   AlumniProfile,
   TeamMember,
   GalleryItem,
-} from '../types';
+} from '@/types/placement';
 
 export const PLACEMENT_STATS: Record<string, PlacementStat> = {
   '2022-23': {
@@ -774,42 +774,42 @@ export const INTERNSHIP_PATHWAYS: InternshipPathway[] = [
     title: 'INDUSTRY',
     icon: 'Building2',
     tagline: 'Experience professional environments and real-world workflows.',
-    frontDescription: 'Immerse in corporate engineering workflows, participate in daily standups, and contribute directly to live product codebases or manufacturing assembly plants.',
-    backDescription: 'Work alongside experienced engineering mentors in leading IT corridor enterprises and manufacturing hubs across Chennai and Bengaluru.',
-    keyBenefits: ['Direct access to corporate mentor guidance', 'High Pre-Placement Offer (PPO) conversion rates', 'Stipend support and real deployment experience'],
-    sampleRoles: ['Software Development Intern', 'GET Intern', 'QA Automation Intern'],
+    frontDescription: 'Immerse in corporate engineering workflows, participate in live client projects, and work alongside senior industry engineers.',
+    backDescription: 'Gain hands-on exposure to enterprise tech stacks, corporate project management methodologies (Agile/Scrum), and shopfloor automation.',
+    keyBenefits: ['Direct pre-placement offer (PPO) opportunities', 'Monthly stipends up to ₹25,000/month', 'Mentorship by senior corporate tech leads'],
+    sampleRoles: ['Software Engineering Intern', 'GET Intern', 'Product QA Intern'],
   },
   {
     id: 'path-res',
     title: 'RESEARCH',
     icon: 'Microscope',
-    tagline: 'Explore research-oriented projects and problem solving.',
-    frontDescription: 'Collaborate with university research labs, Centres of Excellence, and sponsored industry projects tackling novel challenges in AI, EV, and robotics.',
-    backDescription: 'Publish research papers in IEEE / Scopus-indexed conferences and contribute to institutional patents with faculty mentorship.',
-    keyBenefits: ['Patent filing and IEEE paper publication opportunities', 'Exposure to sponsored government & DST projects', 'Direct pathway to funded Master’s / PhD programs'],
-    sampleRoles: ['AI Research Fellow', 'EV Battery Analytics Intern', 'Robotics Systems Researcher'],
+    tagline: 'Explore innovative technology and academic research.',
+    frontDescription: 'Engage in cutting-edge technology development alongside faculty researchers and industry R&D partners.',
+    backDescription: 'Work on grant-funded research projects, co-author international conference papers, and contribute to patent filings.',
+    keyBenefits: ['Co-authorship on IEEE & Springer publications', 'Preparation for GATE, GRE, and PhD master pathways', 'Access to advanced IoT, Robotics, and AI laboratories'],
+    sampleRoles: ['AI Research Trainee', 'Robotics Vision Intern', 'VLSI Design Fellow'],
   },
   {
     id: 'path-ent',
-    title: 'ENTREPRENEURIAL',
+    title: 'VENTURE',
     icon: 'Rocket',
-    tagline: 'Experience the process of turning ideas into solutions.',
-    frontDescription: 'Work directly within the MSAJCE Innovation & Incubation Centre, prototyping customer-facing MVPs, securing seed grants, and building business models.',
-    backDescription: 'Learn venture creation, product-market fit validation, pitch deck presentation, and intellectual property management from startup founders.',
-    keyBenefits: ['Access to campus incubation seed funding', 'Mentorship from MSME & Startup Tamil Nadu networks', 'Free workspace and prototyping lab infrastructure'],
+    tagline: 'Transform creative ideas into real startup products.',
+    frontDescription: 'Build your startup prototype inside the MSAJCE Innovation & Incubation Cell with dedicated mentor support.',
+    backDescription: 'Receive seed funding grants, legal IP registration assistance, and co-working space to launch tech ventures.',
+    keyBenefits: ['Incubation seed grant funding access', 'Patent drafting and trademark registration support', 'Direct pitching access to angel investors'],
     sampleRoles: ['Product Lead Intern', 'Growth & Tech Specialist', 'Hardware Prototyping Lead'],
   },
   {
     id: 'path-vir',
     title: 'VIRTUAL',
-    icon: 'Globe2',
+    icon: 'Globe',
     tagline: 'Build professional exposure through remote opportunities.',
     frontDescription: 'Participate in verified virtual internships with global technology consortiums including Infosys Springboard, AWS Academy, and Cisco DevNet.',
     backDescription: 'Gain international corporate exposure with flexible project milestones, cloud sandbox access, and globally recognized digital credentials.',
     keyBenefits: ['Globally verifiable digital achievement badges', 'Flexible schedule aligned with academic semesters', 'Access to cutting-edge cloud sandboxes and datasets'],
     sampleRoles: ['Cloud Solutions Intern', 'Cybersecurity Analyst Intern', 'Data Science Trainee'],
   },
-];
+] as InternshipPathway[];
 
 export const FEATURED_ACHIEVEMENTS: FeaturedAchievement[] = [
   {

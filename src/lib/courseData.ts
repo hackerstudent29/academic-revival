@@ -90,7 +90,7 @@ export const allCourses: Course[] = [
     name: "Civil Engineering", shortName: "Civil Engineering", slug: "civil-engineering", 
     intake: 30, govtQuota: 15, managementQuota: 15, level: "Undergraduate", department: "Civil", 
     description: "Plan and construct sustainable infrastructure, buildings, and transportation systems.", 
-    image: "https://images.unsplash.com/photo-1517581177682-a085bc7fcb10?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1541888081033-0c46b5a415ff?auto=format&fit=crop&w=1200&q=80",
     details: { 
       activities: {
         chapters: [
@@ -123,7 +123,7 @@ export const allCourses: Course[] = [
     name: "Computer Science & Engineering", shortName: "CSE", slug: "computer-science-and-engineering", 
     intake: 60, govtQuota: 30, managementQuota: 30, level: "Undergraduate", department: "Computing", 
     description: "Learn the fundamentals of software development, algorithms, and system design.", 
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1400&q=80",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
     details: { 
       activities: {
         chapters: [
@@ -179,7 +179,7 @@ export const allCourses: Course[] = [
     name: "Electronics & Communication Engineering", shortName: "ECE", slug: "electronics-and-communication-engineering", 
     intake: 60, govtQuota: 30, managementQuota: 30, level: "Undergraduate", department: "Electronics", 
     description: "Study signal processing, embedded systems, and telecommunication networks.", 
-    image: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1200&q=80",
     details: { 
       activities: {
         chapters: [
@@ -215,7 +215,7 @@ export const allCourses: Course[] = [
     name: "Electrical & Electronics Engineering", shortName: "EEE", slug: "electrical-and-electronics-engineering", 
     intake: 30, govtQuota: 15, managementQuota: 15, level: "Undergraduate", department: "Electrical", 
     description: "Master power generation, control systems, and electrical machinery.", 
-    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80",
     details: { 
       activities: {
         chapters: [
@@ -250,7 +250,7 @@ export const allCourses: Course[] = [
     name: "Mechanical Engineering", shortName: "Mechanical Engineering", slug: "mechanical-engineering", 
     intake: 30, govtQuota: 15, managementQuota: 15, level: "Undergraduate", department: "Mechanical", 
     description: "Design and manufacture machinery, robotics, and thermal systems.", 
-    image: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80",
     details: { 
       activities: {
         chapters: [
@@ -285,7 +285,7 @@ export const allCourses: Course[] = [
     name: "Information Technology", shortName: "IT", slug: "information-technology", 
     intake: 60, govtQuota: 30, managementQuota: 30, level: "Undergraduate", department: "Computing", 
     description: "Focus on network administration, database management, and enterprise software.", 
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1498084393753-b411b2d26b34?auto=format&fit=crop&w=1200&q=80",
     details: { 
       activities: {
         chapters: [
@@ -321,7 +321,7 @@ export const allCourses: Course[] = [
     name: "Artificial Intelligence & Data Science", shortName: "AI & DS", slug: "artificial-intelligence-and-data-science", 
     intake: 60, govtQuota: 30, managementQuota: 30, level: "Undergraduate", department: "Computing", 
     description: "Dive into machine learning, neural networks, and big data analytics.", 
-    image: "https://images.unsplash.com/photo-1518932945647-7a3c96943e28?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
     details: { 
       activities: {
         chapters: [
@@ -357,7 +357,7 @@ export const allCourses: Course[] = [
     name: "Computer Science & Business Systems", shortName: "CSBS", slug: "computer-science-and-business-systems", 
     intake: 30, govtQuota: 15, managementQuota: 15, level: "Undergraduate", department: "Computing", 
     description: "Bridge the gap between technology solutions and business strategy.", 
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
     details: { 
       activities: {
         chapters: [
@@ -393,7 +393,7 @@ export const allCourses: Course[] = [
     name: "Computer Science & Engineering (Cyber Security)", slug: "computer-science-and-engineering-cyber-security", 
     intake: 30, govtQuota: 15, managementQuota: 15, level: "Undergraduate", department: "Computing", 
     description: "Protect digital infrastructure through advanced cryptography and network security.", 
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
     details: { 
       activities: {
         chapters: [
@@ -429,7 +429,7 @@ export const allCourses: Course[] = [
     name: "Artificial Intelligence & Machine Learning", shortName: "AI & ML", slug: "artificial-intelligence-and-machine-learning", 
     intake: 60, govtQuota: 30, managementQuota: 30, level: "Undergraduate", department: "Computing", 
     description: "Specialized focus on deep learning architectures and AI model training.", 
-    image: "https://images.unsplash.com/photo-1507146426996-ef05306b995a?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80",
     details: { 
       activities: {
         chapters: [
@@ -465,7 +465,7 @@ export const allCourses: Course[] = [
     name: "Electronics Engg w/s in VLSI Design & Technology", shortName: "ECE (VLSI Design)", slug: "electronics-engg-vlsi-design", 
     intake: 30, govtQuota: 15, managementQuota: 15, level: "Undergraduate", department: "Electronics", 
     description: "Design complex integrated circuits and microprocessors.", 
-    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
     details: { 
       activities: {
         chapters: [
@@ -500,7 +500,7 @@ export const allCourses: Course[] = [
     name: "ECE w/s in Advanced Communication Technology", shortName: "ECE (Adv. Comm.)", slug: "ece-advanced-communication", 
     intake: 30, govtQuota: 15, managementQuota: 15, level: "Undergraduate", department: "Electronics", 
     description: "Explore next-generation communication protocols and wireless systems.", 
-    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1200&q=80",
     details: { 
       activities: {
         chapters: [
@@ -535,7 +535,7 @@ export const allCourses: Course[] = [
     name: "Bachelor of Architecture", shortName: "B.Arch", slug: "bachelor-of-architecture", 
     intake: 40, govtQuota: 20, managementQuota: 20, level: "Undergraduate", department: "Architecture", 
     description: "Explore architectural design, theory, and building technologies.", 
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80",
     details: { 
       activities: {
         chapters: [
@@ -566,7 +566,7 @@ export const allCourses: Course[] = [
     name: "Bachelor of Design", shortName: "B.Des", slug: "bachelor-of-design", 
     intake: 30, govtQuota: 15, managementQuota: 15, level: "Undergraduate", department: "Design", 
     description: "Develop creative solutions for visual communication and product design.", 
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80",
     details: { 
       activities: {
         chapters: [
@@ -599,7 +599,7 @@ export const allCourses: Course[] = [
     name: "Computer Science & Engineering", shortName: "CSE", slug: "pg-computer-science-and-engineering", 
     intake: 9, govtQuota: 3, managementQuota: 6, level: "Postgraduate", department: "Computing", 
     description: "Advanced research in distributed systems, AI, and advanced algorithms.", 
-    image: "https://images.unsplash.com/photo-1487958449943-2429e5be8624?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1200&q=80",
     details: { 
       ...defaultDetails,
       careers: ["Research Scientist", "Advanced Systems Architect", "Lead Developer", "AI Specialist"],
@@ -611,7 +611,7 @@ export const allCourses: Course[] = [
     name: "Structural Engineering", shortName: "Structural Engineering", slug: "pg-structural-engineering", 
     intake: 18, govtQuota: 6, managementQuota: 12, level: "Postgraduate", department: "Civil", 
     description: "Advanced structural analysis, earthquake engineering, and material science.", 
-    image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1541888081033-0c46b5a415ff?auto=format&fit=crop&w=1200&q=80",
     details: { 
       ...defaultDetails,
       careers: ["Senior Structural Engineer", "Project Director", "Seismic Design Specialist"],
@@ -623,7 +623,7 @@ export const allCourses: Course[] = [
     name: "Master of Architecture", shortName: "M.Arch", slug: "pg-master-of-architecture", 
     intake: 15, govtQuota: 7, managementQuota: 8, level: "Postgraduate", department: "Architecture", 
     description: "Advanced architectural design, urban planning, and sustainability.", 
-    image: "https://images.unsplash.com/photo-1517581177682-a085bc7fcb10?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80",
     details: { 
       ...defaultDetails,
       careers: ["Principal Architect", "Urban Planning Consultant", "Sustainable Design Lead"],
@@ -636,7 +636,7 @@ export const allCourses: Course[] = [
     name: "Mechanical Engineering", shortName: "Mechanical Engineering", slug: "phd-mechanical-engineering", 
     intake: "Varies", govtQuota: "-", managementQuota: "-", level: "Research (Ph.D)", department: "Mechanical", 
     description: "Doctoral research in advanced materials, thermal engineering, and robotics.", 
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
     details: { 
       ...defaultDetails,
       careers: ["University Professor", "R&D Head", "Principal Research Scientist"],

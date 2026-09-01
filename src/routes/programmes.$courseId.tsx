@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { KeyDriversAccordion } from "@/components/widgets/KeyDriversAccordion";
 import { DepartmentHighlightsGrid } from "@/components/widgets/DepartmentHighlightsGrid";
+import { SecondarySubNav } from "@/components/layout/SecondarySubNav";
 
 const markdownImports = import.meta.glob('@/content/departments/*.md', { query: '?raw', import: 'default' });
 
@@ -392,11 +393,9 @@ function getHeroTitle(course?: { name: string; slug?: string }) {
 
 function CoursePage() {
   const { course, markdownContent } = Route.useLoaderData();
-  const [hidden, setHidden] = useState(false);
   const [activeTab, setActiveTab] = useState('about');
   const [activeCategory, setActiveCategory] = useState('All');
   const [startIndex, setStartIndex] = useState(0);
-  const { scrollY } = useScroll();
 
   useEffect(() => {
     if (activeTab !== 'news-events') return;
@@ -420,16 +419,6 @@ function CoursePage() {
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
-
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0;
-    if (latest > previous && latest > 160) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
-  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -540,43 +529,13 @@ function CoursePage() {
   return (
     <div className="min-h-screen bg-page-bg text-foreground">
       {/* Sub Navigation Bar with Sticky Scroll Indicator */}
-      <motion.div 
-        animate={{ y: hidden ? -65 : 0 }}
-        transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
-        className="sticky top-[65px] z-40 w-full hidden md:block"
-      >
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-xl border-b border-foreground/10 pointer-events-none -z-10" />
-        <div className="relative max-w-[1440px] mx-auto px-4 md:px-8 xl:px-12 py-1 flex items-center justify-between">
-          <div className="text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] text-primary mr-4 xl:mr-8 shrink-0 hidden lg:block">
-            {getDepartmentHeaderTitle(course)}
-          </div>
-          <div className="flex-1 relative ml-4 lg:ml-6 overflow-hidden flex items-center">
-            <ul className="flex items-center gap-4 lg:gap-5 xl:gap-6 w-full overflow-x-auto no-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-              {departmentTabsList.map((tab, index) => {
-                const isActive = activeTab === tab.id;
-                return (
-                  <li
-                    key={tab.id}
-                    onClick={() => handleTabChange(tab.id)}
-                    className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] cursor-pointer transition-colors duration-200 select-none shrink-0 ${index === 0 ? 'ml-auto' : ''} ${
-                      isActive
-                        ? 'text-primary'
-                        : 'text-foreground hover:text-primary'
-                    }`}
-                  >
-                    {tab.label}
-                    <span
-                      className={`absolute -bottom-0.5 left-0 h-[2px] bg-primary transition-all duration-300 ${
-                        isActive ? "w-full" : "w-0"
-                      }`}
-                    />
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </div>
-      </motion.div>
+      <SecondarySubNav
+        title={getDepartmentHeaderTitle(course)}
+        tabs={departmentTabsList}
+        activeTab={activeTab}
+        onSelectTab={handleTabChange}
+        className="hidden md:block"
+      />
 
       <AnimatePresence mode="wait">
         <motion.div
@@ -597,18 +556,24 @@ function CoursePage() {
           className="w-full flex flex-col"
         >
 
-          {/* Hero Image Section (Flat & Static - No Zoom Animation) */}
-          <div className="w-full h-[60vh] md:h-[75vh] bg-muted relative overflow-hidden">
-            <img 
-              src={course.image} 
-              alt={course.name} 
-              className="w-full h-full object-cover"
-            />
-          </div>
-        
-      {/* Information Header Box */}
+      {/* Department Page Cover Hero Section (Full Size: 60vh / 75vh) */}
+      <div className="relative w-full h-[60vh] md:h-[75vh] bg-slate-950 overflow-hidden">
+        <img 
+          src={course.image} 
+          alt={getHeroTitle(course)} 
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=2000&q=80";
+          }}
+        />
+        {/* Rich Dark Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent pointer-events-none" />
+      </div>
+
+      {/* Information Header Box Overlapping Hero Banner */}
       <div className="relative -mt-28 md:-mt-36 left-0 w-full px-6 lg:px-12 z-10 flex justify-center md:justify-start max-w-[1440px] mx-auto right-0">
-        <div className="bg-card text-card-foreground w-full max-w-5xl p-8 md:p-12 lg:p-14 border border-border shadow-sm rounded-none">
+        <div className="bg-card text-card-foreground w-full max-w-5xl p-8 md:p-12 lg:p-14 border border-border shadow-xl rounded-none">
           
           {/* Course Name & Lead Statement */}
           <div className="mb-2">

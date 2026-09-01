@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Reveal } from "../motion";
+import { Reveal } from "@/components/motion";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";

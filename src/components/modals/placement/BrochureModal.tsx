@@ -21,12 +21,12 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#082B5C]/80 backdrop-blur-md animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
       <div 
-        className="relative w-full max-w-xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200 animate-in zoom-in-95 duration-300"
+        className="relative w-full max-w-xl bg-background dark:bg-card text-foreground rounded-xl shadow-2xl overflow-hidden border border-border animate-in zoom-in-95 duration-300"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="bg-[#082B5C] text-white p-6 sm:p-7 relative">
+        <div className="bg-primary text-primary-foreground p-6 sm:p-7 relative">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all"

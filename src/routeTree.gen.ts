@@ -18,6 +18,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreditsRouteImport } from './routes/credits'
 import { Route as CurriculumRouteImport } from './routes/curriculum'
 import { Route as PlacementsRouteImport } from './routes/placements'
+import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offered'
 import { Route as StudentHousingRouteImport } from './routes/student-housing'
 import { Route as AdmissionsEligibilityRouteImport } from './routes/admissions_.eligibility'
 import { Route as AdmissionsProcedureRouteImport } from './routes/admissions_.procedure'
@@ -71,6 +72,11 @@ const PlacementsRoute = PlacementsRouteImport.update({
   path: '/placements',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProgrammesOfferedRoute = ProgrammesOfferedRouteImport.update({
+  id: '/programmes-offered',
+  path: '/programmes-offered',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudentHousingRoute = StudentHousingRouteImport.update({
   id: '/student-housing',
   path: '/student-housing',
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/credits': typeof CreditsRoute
   '/curriculum': typeof CurriculumRoute
   '/placements': typeof PlacementsRoute
+  '/programmes-offered': typeof ProgrammesOfferedRoute
   '/student-housing': typeof StudentHousingRoute
   '/admissions/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions/procedure': typeof AdmissionsProcedureRoute
@@ -135,6 +142,7 @@ export interface FileRoutesByTo {
   '/credits': typeof CreditsRoute
   '/curriculum': typeof CurriculumRoute
   '/placements': typeof PlacementsRoute
+  '/programmes-offered': typeof ProgrammesOfferedRoute
   '/student-housing': typeof StudentHousingRoute
   '/admissions/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions/procedure': typeof AdmissionsProcedureRoute
@@ -154,6 +162,7 @@ export interface FileRoutesById {
   '/credits': typeof CreditsRoute
   '/curriculum': typeof CurriculumRoute
   '/placements': typeof PlacementsRoute
+  '/programmes-offered': typeof ProgrammesOfferedRoute
   '/student-housing': typeof StudentHousingRoute
   '/admissions_/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions_/procedure': typeof AdmissionsProcedureRoute
@@ -174,6 +183,7 @@ export interface FileRouteTypes {
     | '/credits'
     | '/curriculum'
     | '/placements'
+    | '/programmes-offered'
     | '/student-housing'
     | '/admissions/eligibility'
     | '/admissions/procedure'
@@ -192,6 +202,7 @@ export interface FileRouteTypes {
     | '/credits'
     | '/curriculum'
     | '/placements'
+    | '/programmes-offered'
     | '/student-housing'
     | '/admissions/eligibility'
     | '/admissions/procedure'
@@ -210,6 +221,7 @@ export interface FileRouteTypes {
     | '/credits'
     | '/curriculum'
     | '/placements'
+    | '/programmes-offered'
     | '/student-housing'
     | '/admissions_/eligibility'
     | '/admissions_/procedure'
@@ -229,6 +241,7 @@ export interface RootRouteChildren {
   CreditsRoute: typeof CreditsRoute
   CurriculumRoute: typeof CurriculumRoute
   PlacementsRoute: typeof PlacementsRoute
+  ProgrammesOfferedRoute: typeof ProgrammesOfferedRoute
   StudentHousingRoute: typeof StudentHousingRoute
   AdmissionsEligibilityRoute: typeof AdmissionsEligibilityRoute
   AdmissionsProcedureRoute: typeof AdmissionsProcedureRoute
@@ -303,6 +316,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlacementsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programmes-offered': {
+      id: '/programmes-offered'
+      path: '/programmes-offered'
+      fullPath: '/programmes-offered'
+      preLoaderRoute: typeof ProgrammesOfferedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/student-housing': {
       id: '/student-housing'
       path: '/student-housing'
@@ -365,6 +385,7 @@ const rootRouteChildren: RootRouteChildren = {
   CreditsRoute: CreditsRoute,
   CurriculumRoute: CurriculumRoute,
   PlacementsRoute: PlacementsRoute,
+  ProgrammesOfferedRoute: ProgrammesOfferedRoute,
   StudentHousingRoute: StudentHousingRoute,
   AdmissionsEligibilityRoute: AdmissionsEligibilityRoute,
   AdmissionsProcedureRoute: AdmissionsProcedureRoute,

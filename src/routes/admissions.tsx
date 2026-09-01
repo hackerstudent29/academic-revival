@@ -1,7 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Magnetic, Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { PageHero } from "@/components/shared/PageHero";
+import { Stagger, StaggerItem } from "@/components/motion";
 import { ArrowRight, GraduationCap, Briefcase, Search, Plus, ArrowRight as ArrowRightIcon } from "lucide-react";
 import { allCourses } from "@/lib/courseData";
 
@@ -28,32 +27,15 @@ export const Route = createFileRoute("/admissions")({
   component: Admissions,
 });
 
-const steps = [
-  { n: "01", t: "Submit the application", d: "Complete the online form with your academic details and preferred branch." },
-  { n: "02", t: "Document verification", d: "Upload marksheets, transfer certificate, community certificate and ID proof." },
-  { n: "03", t: "Counselling & seat offer", d: "Attend counselling; merit and TNEA rank determine the seat allotment." },
-  { n: "04", t: "Fee payment & joining", d: "Confirm the seat, pay fees and complete the orientation programme." },
-];
-
-const eligibility = [
-  { level: "B.E. / B.Tech (Regular)", req: "Pass in 10+2 (HSC Academic/Vocational) with Physics, Chemistry and Mathematics with prescribed minimum percentage as per TN Govt and Anna University norms." },
-  { level: "B.E. / B.Tech (Lateral Entry)", req: "Pass in Diploma examination in appropriate branch of Engineering or B.Sc. Degree with Mathematics for direct 2nd-year admission." },
-  { level: "M.E. Programmes", req: "Recognized Bachelor's degree in appropriate branch with a valid TANCET, CEETA-PG, or GATE score." },
-];
-
-
-
 function Admissions() {
   const { level } = Route.useSearch();
   const [search, setSearch] = useState("");
   const [levelFilter, setLevelFilter] = useState<string | null>(level || null);
   const hasUrlFilter = !!level;
 
-  // Keep internal state in sync with URL changes
   useEffect(() => {
     if (level) {
       setLevelFilter(level);
-      // Optional: scroll to programmes if a level is selected
       const el = document.getElementById("programmes");
       if (el) el.scrollIntoView({ behavior: "smooth" });
     }
@@ -61,21 +43,16 @@ function Admissions() {
 
   const filteredCourses = useMemo(() => {
     return allCourses.filter(course => {
-      const matchSearch = course.name.toLowerCase().includes(search.toLowerCase());
+      const matchSearch = course.name.toLowerCase().includes(search.toLowerCase()) ||
+                          course.department.toLowerCase().includes(search.toLowerCase());
       const matchLevel = levelFilter ? course.level === levelFilter : true;
       return matchSearch && matchLevel;
     });
   }, [search, levelFilter]);
 
   return (
-    <main className="bg-background min-h-screen">
-      <PageHero 
-        eyebrow="ADMISSIONS 2026-2027" 
-        title="APPLY TO MSAJCE" 
-        description="Eligibility, application steps, documents and scholarships for undergraduate and postgraduate engineering admissions." 
-      />
-
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-16">
+    <main className="bg-background min-h-screen pt-4 md:pt-6">
+      <section className="mx-auto max-w-[1440px] px-6 py-6 md:px-12 md:py-10">
         <Stagger gap={0.1} className="grid md:grid-cols-3 gap-6" viewport={{ once: true }}>
           <StaggerItem>
             <Link to="/admissions/eligibility" className="group flex flex-col justify-between h-full border border-border bg-card p-8 hover:bg-muted/50 transition-colors">
@@ -121,15 +98,21 @@ function Admissions() {
         </Stagger>
       </section>
 
-      <section id="programmes" className="bg-background text-foreground py-16 md:py-24">
+      <section id="programmes" className="bg-background text-foreground py-16 md:py-24 border-t border-border">
         <div className="mx-auto max-w-[1440px] px-6 md:px-12">
+          {/* Section Heading */}
+          <div className="mb-10">
+            <span className="text-xs font-bold uppercase tracking-widest text-primary block mb-2">Available Degree Courses</span>
+            <h2 className="text-2xl md:text-4xl font-serif tracking-tight text-foreground">Programmes & Specializations</h2>
+          </div>
+
           {/* Header / Search */}
           <div className="border-b border-border pb-4 mb-6">
             <div className="relative flex items-center">
               <Search className="absolute left-0 text-muted-foreground" size={24} />
               <input 
                 type="text"
-                placeholder="Search for a course..."
+                placeholder="Search for a course or department (e.g., CSE, Cyber, AI, Civil)..."
                 className="w-full bg-transparent pl-10 pr-10 py-3 text-xl md:text-2xl text-foreground placeholder:text-muted-foreground focus:outline-none"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
@@ -185,11 +168,14 @@ function Admissions() {
                 className="flex flex-col md:flex-row gap-6 md:gap-8 py-8 border-b border-border group cursor-pointer hover:bg-muted/50 transition-colors -mx-4 px-4 md:-mx-8 md:px-8 rounded-sm"
               >
                 {/* Image */}
-                <div className="w-full md:w-[360px] shrink-0 overflow-hidden bg-muted h-[220px]">
+                <div className="w-full md:w-[360px] shrink-0 overflow-hidden bg-[#082B5C] h-[220px]">
                   <img 
                     src={course.image} 
-                    alt={course.name} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    alt="" 
+                    className="w-full h-full object-cover" 
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80";
+                    }}
                   />
                 </div>
                 

@@ -27,7 +27,7 @@ import {
   Binary, 
   Globe 
 } from 'lucide-react';
-import { Facility } from '../../types';
+import { Facility } from '@/types/placement';
 
 interface TrainingSectionProps {
   onOpenFacility?: (facility: Facility) => void;
@@ -35,23 +35,12 @@ interface TrainingSectionProps {
 }
 
 export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility, onNavigate }) => {
-  // State for Mind Map active node
   const [activeMindNode, setActiveMindNode] = useState<string>('aptitude');
-  
-  // State for active item in Training Belt
   const [activeBeltIdx, setActiveBeltIdx] = useState<number>(0);
-
-  // State for Active Facility Hotspot
   const [activeHotspotId, setActiveHotspotId] = useState<string>('lab');
-
-  // State for Technology Centre category filter
   const [selectedTechDomain, setSelectedTechDomain] = useState<'ALL' | 'MECH_CIVIL' | 'ECE_EEE' | 'CSE_IT'>('ALL');
 
-  // -------------------------------------------------------------
-  // 01. HERO FLOATING PHOTOS (14 Scattered Photos: 8 Big + 6 Small across canvas)
-  // -------------------------------------------------------------
   const heroFloatingPhotos = [
-    // Left & Left-Center Scattered (4 Big + 3 Small)
     {
       id: 'h-scat-1',
       label: 'APTITUDE',
@@ -60,7 +49,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[8%] left-[6%]',
       size: 'w-28 sm:w-36 lg:w-44 h-36 sm:h-44 lg:h-52',
       rotate: '-rotate-4',
-      color: 'bg-[#0052CC]'
+      color: 'bg-primary'
     },
     {
       id: 'h-scat-2',
@@ -70,7 +59,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[36%] left-[12%]',
       size: 'w-30 sm:w-40 lg:w-48 h-38 sm:h-48 lg:h-56',
       rotate: 'rotate-3',
-      color: 'bg-[#0D9488]'
+      color: 'bg-[#059669]'
     },
     {
       id: 'h-scat-3',
@@ -80,7 +69,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'bottom-[14%] left-[4%]',
       size: 'w-28 sm:w-36 lg:w-42 h-34 sm:h-42 lg:h-48',
       rotate: '-rotate-3',
-      color: 'bg-[#0052CC]'
+      color: 'bg-primary'
     },
     {
       id: 'h-scat-4',
@@ -90,7 +79,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'bottom-[4%] left-[20%]',
       size: 'w-26 sm:w-34 lg:w-40 h-32 sm:h-40 lg:h-46',
       rotate: 'rotate-2',
-      color: 'bg-[#0D9488]'
+      color: 'bg-[#059669]'
     },
     {
       id: 'h-scat-5',
@@ -100,7 +89,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[16%] left-[22%]',
       size: 'w-20 sm:w-26 lg:w-30 h-24 sm:h-30 lg:h-36',
       rotate: 'rotate-6',
-      color: 'bg-[#0052CC]'
+      color: 'bg-primary'
     },
     {
       id: 'h-scat-6',
@@ -110,7 +99,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[60%] left-[6%]',
       size: 'w-20 sm:w-24 lg:w-28 h-22 sm:h-28 lg:h-34',
       rotate: '-rotate-6',
-      color: 'bg-[#0D9488]'
+      color: 'bg-[#059669]'
     },
     {
       id: 'h-scat-7',
@@ -120,10 +109,9 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[78%] left-[16%]',
       size: 'w-18 sm:w-22 lg:w-26 h-20 sm:h-26 lg:h-30',
       rotate: 'rotate-4',
-      color: 'bg-[#0052CC]'
+      color: 'bg-primary'
     },
 
-    // Right & Right-Center Scattered (4 Big + 3 Small)
     {
       id: 'h-scat-8',
       label: 'MOCK INTERVIEW',
@@ -132,7 +120,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[8%] right-[6%]',
       size: 'w-28 sm:w-36 lg:w-44 h-36 sm:h-44 lg:h-52',
       rotate: 'rotate-4',
-      color: 'bg-[#0D9488]'
+      color: 'bg-[#059669]'
     },
     {
       id: 'h-scat-9',
@@ -142,7 +130,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[36%] right-[12%]',
       size: 'w-30 sm:w-40 lg:w-48 h-38 sm:h-48 lg:h-56',
       rotate: '-rotate-3',
-      color: 'bg-[#0052CC]'
+      color: 'bg-primary'
     },
     {
       id: 'h-scat-10',
@@ -152,7 +140,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'bottom-[14%] right-[4%]',
       size: 'w-28 sm:w-36 lg:w-42 h-34 sm:h-42 lg:h-48',
       rotate: 'rotate-3',
-      color: 'bg-[#0D9488]'
+      color: 'bg-[#059669]'
     },
     {
       id: 'h-scat-11',
@@ -162,7 +150,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'bottom-[4%] right-[20%]',
       size: 'w-26 sm:w-34 lg:w-40 h-32 sm:h-40 lg:h-46',
       rotate: '-rotate-2',
-      color: 'bg-[#0052CC]'
+      color: 'bg-primary'
     },
     {
       id: 'h-scat-12',
@@ -172,7 +160,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[16%] right-[22%]',
       size: 'w-20 sm:w-26 lg:w-30 h-24 sm:h-30 lg:h-36',
       rotate: '-rotate-6',
-      color: 'bg-[#0D9488]'
+      color: 'bg-[#059669]'
     },
     {
       id: 'h-scat-13',
@@ -182,7 +170,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[60%] right-[6%]',
       size: 'w-20 sm:w-24 lg:w-28 h-22 sm:h-28 lg:h-34',
       rotate: 'rotate-5',
-      color: 'bg-[#0052CC]'
+      color: 'bg-primary'
     },
     {
       id: 'h-scat-14',
@@ -192,13 +180,10 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[78%] right-[16%]',
       size: 'w-18 sm:w-22 lg:w-26 h-20 sm:h-26 lg:h-30',
       rotate: '-rotate-4',
-      color: 'bg-[#0D9488]'
+      color: 'bg-[#059669]'
     }
   ];
 
-  // -------------------------------------------------------------
-  // 03B. STUDENT CLUBS WITH TRIANGLE PHOTOGRAPHS (NO BORDERS)
-  // -------------------------------------------------------------
   const studentClubs = [
     {
       name: 'PHOTOGRAPHY CLUB',
@@ -232,9 +217,6 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
     }
   ];
 
-  // -------------------------------------------------------------
-  // 02. MIND MAP NODES
-  // -------------------------------------------------------------
   const mindMapNodes = [
     {
       id: 'aptitude',
@@ -262,7 +244,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         'Accent neutralization and conversational clarity'
       ],
       icon: MessageSquareText,
-      color: '#0D9488'
+      color: '#059669'
     },
     {
       id: 'technical',
@@ -290,7 +272,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         'Hands-on capstone project verification and credentialing'
       ],
       icon: Microscope,
-      color: '#0D9488'
+      color: '#059669'
     },
     {
       id: 'interview',
@@ -318,15 +300,12 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         'Overcoming public speaking anxiety in air-conditioned GD suites'
       ],
       icon: Laptop,
-      color: '#0D9488'
+      color: '#059669'
     }
   ];
 
   const activeNodeData = mindMapNodes.find(n => n.id === activeMindNode) || mindMapNodes[0];
 
-  // -------------------------------------------------------------
-  // 03. TRAINING BELT ITEMS
-  // -------------------------------------------------------------
   const trainingBeltItems = [
     {
       title: 'APTITUDE',
@@ -384,9 +363,6 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
     }
   ];
 
-  // -------------------------------------------------------------
-  // 04. SPACES DESIGNED FOR PREPARATION (HOTSPOTS)
-  // -------------------------------------------------------------
   const facilityHotspots = [
     {
       id: 'lab',
@@ -432,47 +408,6 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
 
   const activeHotspot = facilityHotspots.find(h => h.id === activeHotspotId) || facilityHotspots[0];
 
-  // -------------------------------------------------------------
-  // 05. TECHNOLOGY CENTRES (OFFICIAL MSAJCE HUBS)
-  // -------------------------------------------------------------
-  const techCentres = [
-    // Mechanical & Civil
-    { name: '3D Printing & Additive Manufacturing', domain: 'MECH_CIVIL', lab: 'Central Prototyping Facility', icon: Box },
-    { name: 'CAE & Computational Design', domain: 'MECH_CIVIL', lab: 'Ansys & SolidWorks Lab', icon: Cpu },
-    { name: 'Industrial Robotics & Mechatronics', domain: 'MECH_CIVIL', lab: 'Robotics Assembly Unit', icon: Bot },
-    { name: 'NDT & Quality Testing Lab', domain: 'MECH_CIVIL', lab: 'Materials Testing Cell', icon: Microscope },
-    { name: 'Building Information Modelling (BIM)', domain: 'MECH_CIVIL', lab: 'Smart Infrastructure Suite', icon: Building2 },
-
-    // ECE & EEE
-    { name: 'Embedded Systems & IoT Innovation Hub', domain: 'ECE_EEE', lab: 'Texas Instruments & ARM Lab', icon: Cpu },
-    { name: 'UAV / Drone Technology Centre', domain: 'ECE_EEE', lab: 'Autonomous Flight Testing Cell', icon: Plane },
-    { name: 'Godrej Disha Skill Development Centre', domain: 'ECE_EEE', lab: 'Refrigeration & Industrial Automation', icon: Zap },
-    { name: 'Bosch Industry Institute Collaboration', domain: 'ECE_EEE', lab: 'Automotive Electronics Lab', icon: Activity },
-    { name: 'E-Mobility & Electric Powertrain', domain: 'ECE_EEE', lab: 'EV Battery & Drive Testing', icon: Zap },
-    { name: 'Renewable Energy & Solar Grid Hub', domain: 'ECE_EEE', lab: 'Clean Tech Laboratory', icon: Flame },
-    { name: 'APJ Abdul Kalam Innovation Centre', domain: 'ECE_EEE', lab: 'Interdisciplinary Incubator', icon: Sparkles },
-
-    // CSE & IT
-    { name: 'Bot Lab & Robotics Process Automation (RPA)', domain: 'CSE_IT', lab: 'UiPath & Automation Anywhere Lab', icon: Bot },
-    { name: 'Cisco Networking Academy', domain: 'CSE_IT', lab: 'CCNA / CCNP Routing & Switching', icon: Globe },
-    { name: 'CodeTantra Coding Learning Centre', domain: 'CSE_IT', lab: 'Interactive Algorithmic Sandbox', icon: Code2 },
-    { name: 'Gaming & AR/VR Studio', domain: 'CSE_IT', lab: 'Unity / Unreal Immersive Studio', icon: Laptop },
-    { name: 'Artificial Intelligence & Machine Learning', domain: 'CSE_IT', lab: 'NVIDIA AI Computing Node', icon: BrainCircuit },
-    { name: 'Blockchain & Distributed Ledger Centre', domain: 'CSE_IT', lab: 'Web3 & Smart Contracts Lab', icon: Binary },
-    { name: 'Mobile & Web Application Development', domain: 'CSE_IT', lab: 'Cross-Platform App Studio', icon: Laptop }
-  ];
-
-  const filteredTechCentres = selectedTechDomain === 'ALL' 
-    ? techCentres 
-    : techCentres.filter(t => t.domain === selectedTechDomain);
-
-  // Row 1 & Row 2 items for bidirectional marquee
-  const row1Tech = techCentres.slice(0, 10);
-  const row2Tech = techCentres.slice(10);
-
-  // -------------------------------------------------------------
-  // 07. MASSIVE 10 -> 9 -> 8 -> 7 PHOTO GALLERY (EXACTLY 34 REALISTIC PHOTOS)
-  // -------------------------------------------------------------
   const galleryRow1 = [
     { title: 'COMPUTER LABORATORY', tag: 'ACADEMIC', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&auto=format&fit=crop&q=80' },
     { title: 'INDUSTRIAL VISIT', tag: 'INDUSTRY', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&auto=format&fit=crop&q=80' },
@@ -520,143 +455,37 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
   ];
 
   return (
-    <div className="w-full bg-white text-[#10243E] overflow-hidden selection:bg-[#0052CC] selection:text-white">
+    <div className="w-full bg-page-bg text-foreground overflow-hidden font-sans">
       
-      {/* ========================================================================= */}
-      {/* SECTION 01 — CREATIVE HERO: SKILLS. TRAINING. READINESS. */}
-      {/* 2% Translucent blue over clearly visible college background, scattered photos, elegant typography */}
-      {/* ========================================================================= */}
-      <section 
-        className="relative w-full min-h-[680px] lg:min-h-[760px] flex items-center justify-center bg-slate-900 text-white overflow-hidden py-16 sm:py-20" 
-        id="skills-hero-banner"
-      >
-        {/* CLEARLY VISIBLE COLLEGE CAMPUS BACKGROUND WITH ~2% TRANSLUCENT BLUE TINT */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1562774053-701939374585?w=1600&auto=format&fit=crop&q=90" 
-            alt="College Campus Infrastructure" 
-            className="w-full h-full object-cover opacity-90 brightness-95 contrast-105"
-          />
-          {/* ~2% Translucent blue tone overlay */}
-          <div className="absolute inset-0 bg-[#082B5C]/20 backdrop-blur-[0.5px]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/50" />
-        </div>
-        
-        {/* Subtle Atmosphere Light */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#0052CC]/15 rounded-full blur-3xl pointer-events-none z-0" />
-
-        {/* SCATTERED FLOATING PHOTOGRAPHS (Not sticking strictly to extreme edges) */}
-        <div className="absolute inset-0 pointer-events-none z-10 hidden lg:block overflow-hidden">
-          {heroFloatingPhotos.map((card) => (
-            <div
-              key={card.id}
-              className={`absolute ${card.pos} ${card.size} ${card.rotate} transition-all duration-700 hover:scale-105 hover:z-30 pointer-events-auto group`}
-            >
-              <div className="w-full h-full bg-white/20 p-1.5 shadow-2xl backdrop-blur-xs rounded-sm overflow-hidden flex flex-col border border-white/40">
-                <div className="relative w-full flex-1 overflow-hidden rounded-xs">
-                  <img 
-                    src={card.image} 
-                    alt={card.title} 
-                    className="w-full h-full object-cover brightness-95 group-hover:scale-105 transition-transform duration-500" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent" />
-                  
-                  {/* Floating Tag */}
-                  <div className="absolute bottom-1.5 left-1.5 right-1.5 flex items-center justify-between">
-                    <span className={`px-2 py-0.5 text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-white ${card.color} shadow-xs`}>
-                      {card.label}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* CENTER HERO CONTENT */}
-        <div className="relative z-20 text-center px-4 sm:px-6 lg:px-8 max-w-2xl mx-auto space-y-4">
-          
-          {/* Small Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-black/40 backdrop-blur-md border border-white/30 text-blue-100 text-[11px] font-black tracking-widest uppercase shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-[#0D9488] animate-pulse" />
-            <span>MSAJCE PLACEMENT CELL</span>
-          </div>
-
-          {/* Main Heading — Small, Refined & Elegant */}
-          <div className="space-y-1">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight font-['Outfit',sans-serif] leading-snug drop-shadow-md">
-              <span className="inline-block px-1">SKILLS.</span>
-              <span className="inline-block px-1 text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-sky-100 to-teal-200">
-                TRAINING.
-              </span>
-              <span className="inline-block px-1">READINESS.</span>
-            </h1>
-          </div>
-
-          {/* Action Navigation Pill */}
-          <div className="pt-1 flex flex-wrap items-center justify-center gap-3">
-            <a 
-              href="#mind-map-section"
-              className="px-5 py-2.5 bg-[#0052CC] hover:bg-[#003d99] text-white text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-lg cursor-pointer inline-flex items-center gap-2"
-            >
-              <span>Explore Skill Ecosystem</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
-            <a 
-              href="#technology-centres"
-              className="px-5 py-2.5 bg-black/40 hover:bg-black/60 text-white text-xs font-black tracking-widest uppercase transition-all duration-200 border border-white/30 cursor-pointer inline-flex items-center gap-2 backdrop-blur-md"
-            >
-              <span>Technology Centres</span>
-              <ChevronRight className="w-3.5 h-3.5" />
-            </a>
-          </div>
-
-          {/* Hero Paragraph (Placed Down at Bottom of Hero Block) */}
-          <div className="pt-4 border-t border-white/20">
-            <p className="text-xs sm:text-sm text-white/95 font-medium leading-relaxed max-w-xl mx-auto drop-shadow-sm">
-              In a competitive job market, professional readiness requires more than academic knowledge. MSAJCE's Placement Cell supports students in developing the skills, experience and confidence required to approach professional opportunities through structured training, certification, industry exposure and recruitment preparation.
-            </p>
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* ========================================================================= */}
-      {/* SECTION 02 — BUILDING THE SKILLS INDUSTRY EXPECTS (LEFT & RIGHT IMAGES + CENTER HEXAGONS) */}
-      {/* Elongated left & right images (no border), Center Hexagons in Matte Green & Dark Green text (no border) */}
-      {/* ========================================================================= */}
-      <section className="w-full py-20 sm:py-28 bg-[#F8FAFC]" id="mind-map-section">
+      {/* BUILDING THE SKILLS INDUSTRY EXPECTS */}
+      <section className="w-full py-20 sm:py-28 bg-page-bg border-b border-border" id="mind-map-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Section Header */}
           <div className="max-w-3xl mx-auto text-center mb-14 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#DCEEFF] text-[#082B5C] text-xs font-extrabold tracking-widest uppercase">
-              <BrainCircuit className="w-3.5 h-3.5 text-[#0052CC]" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-muted text-foreground text-xs font-extrabold tracking-widest uppercase">
+              <BrainCircuit className="w-3.5 h-3.5 text-primary" />
               <span>COMPREHENSIVE SKILL ARCHITECTURE</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-[#082B5C] tracking-tight font-['Outfit',sans-serif] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
               BUILDING THE SKILLS INDUSTRY EXPECTS
             </h2>
-            <p className="text-slate-700 text-base sm:text-lg leading-relaxed font-normal pt-1">
-              MSAJCE's training approach focuses on developing employability skills alongside academic learning. The Placement Cell provides training in aptitude, communication and technical skills, while value-added certification courses help students gain domain-specific knowledge. The institution also conducts mock aptitude tests, mock interviews and mock group discussions to help students approach recruitment processes with greater confidence.
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-1">
+              MSAJCE's training approach focuses on developing employability skills alongside academic learning. The Placement Cell provides training in aptitude, communication and technical skills.
             </p>
           </div>
 
-          {/* THREE-PART SECTION: LEFT ELONGATED IMAGE | CENTER HEXAGON MIND MAP | RIGHT ELONGATED IMAGE */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-8 items-stretch">
             
-            {/* LEFT ELONGATED RECTANGLE IMAGE (STRICTLY NO BORDER) */}
             <div className="lg:col-span-3 hidden lg:block overflow-hidden shadow-xl">
               <div className="relative w-full h-full min-h-[560px]">
                 <img 
                   src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=85" 
                   alt="Students in Technical Lab" 
-                  className="w-full h-full object-cover brightness-95 hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover brightness-95"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#082B5C]/90 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-5 right-5 text-white space-y-1">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-[#86EFAC] block">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-[#059669] block">
                     TECHNICAL LABS
                   </span>
                   <p className="text-sm font-bold font-['Outfit',sans-serif] leading-snug">
@@ -666,187 +495,146 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               </div>
             </div>
 
-            {/* CENTER: HEXAGON ECOSYSTEM CANVAS (DEEP ROYAL MATTE GREEN WITH DARK YELLOW & WHITE LETTERS) */}
-            <div className="lg:col-span-6 flex flex-col justify-between bg-white p-6 sm:p-8 shadow-xl">
-              
-              {/* Top central indicator */}
+            <div className="lg:col-span-6 flex flex-col justify-between bg-card border border-border p-6 sm:p-8 shadow-xl">
               <div className="text-center mb-6">
-                <span className="text-[11px] font-black uppercase tracking-widest text-[#F59E0B] bg-[#0B3B2B] px-4 py-1.5 inline-block shadow-xs">
+                <span className="text-[11px] font-black uppercase tracking-widest text-amber-500 bg-primary/10 px-4 py-1.5 inline-block">
                   INTERCONNECTED DEVELOPMENT PILLARS
                 </span>
               </div>
 
-              {/* HEXAGON NODES GRID */}
               <div className="space-y-4">
-                
-                {/* ROW 1: TOP 2 HEXAGONS */}
                 <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-                  {/* Hexagon 1: APTITUDE */}
                   <button
                     onClick={() => setActiveMindNode('aptitude')}
-                    className={`relative w-32 sm:w-36 h-36 sm:h-40 flex flex-col items-center justify-center p-3 text-center transition-transform duration-300 hover:scale-105 cursor-pointer shadow-lg ${
-                      activeMindNode === 'aptitude' ? 'bg-[#06281C] ring-4 ring-[#F59E0B] scale-105' : 'bg-[#0B3B2B] hover:bg-[#0F4E3A]'
+                    className={`relative w-32 sm:w-36 h-36 sm:h-40 flex flex-col items-center justify-center p-3 text-center transition-all duration-200 cursor-pointer shadow-lg ${
+                      activeMindNode === 'aptitude' ? 'bg-primary text-primary-foreground ring-4 ring-amber-500' : 'bg-muted text-foreground hover:bg-accent'
                     }`}
                     style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                   >
-                    <BrainCircuit className="w-5 h-5 text-[#F59E0B] mb-1 shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-black text-[#F59E0B] uppercase font-['Outfit',sans-serif] leading-tight block">
+                    <BrainCircuit className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
+                    <span className="text-[11px] sm:text-xs font-black uppercase font-['Outfit',sans-serif] leading-tight block">
                       APTITUDE
-                    </span>
-                    <span className="text-[9px] text-white font-bold leading-tight mt-0.5 hidden sm:block">
-                      Speed & Logic
                     </span>
                   </button>
 
-                  {/* Hexagon 2: COMMUNICATION */}
                   <button
                     onClick={() => setActiveMindNode('communication')}
-                    className={`relative w-32 sm:w-36 h-36 sm:h-40 flex flex-col items-center justify-center p-3 text-center transition-transform duration-300 hover:scale-105 cursor-pointer shadow-lg ${
-                      activeMindNode === 'communication' ? 'bg-[#06281C] ring-4 ring-[#F59E0B] scale-105' : 'bg-[#0B3B2B] hover:bg-[#0F4E3A]'
+                    className={`relative w-32 sm:w-36 h-36 sm:h-40 flex flex-col items-center justify-center p-3 text-center transition-all duration-200 cursor-pointer shadow-lg ${
+                      activeMindNode === 'communication' ? 'bg-primary text-primary-foreground ring-4 ring-amber-500' : 'bg-muted text-foreground hover:bg-accent'
                     }`}
                     style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                   >
-                    <MessageSquareText className="w-5 h-5 text-[#F59E0B] mb-1 shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-black text-[#F59E0B] uppercase font-['Outfit',sans-serif] leading-tight block">
+                    <MessageSquareText className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
+                    <span className="text-[11px] sm:text-xs font-black uppercase font-['Outfit',sans-serif] leading-tight block">
                       COMMUNICATION
-                    </span>
-                    <span className="text-[9px] text-white font-bold leading-tight mt-0.5 hidden sm:block">
-                      Verbal Mastery
                     </span>
                   </button>
                 </div>
 
-                {/* ROW 2: CENTER ROW (TECHNICAL - STUDENT CORE - CERTIFICATION) */}
                 <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
-                  
-                  {/* Hexagon 3: TECHNICAL */}
                   <button
                     onClick={() => setActiveMindNode('technical')}
-                    className={`relative w-30 sm:w-34 h-34 sm:h-38 flex flex-col items-center justify-center p-3 text-center transition-transform duration-300 hover:scale-105 cursor-pointer shadow-lg ${
-                      activeMindNode === 'technical' ? 'bg-[#06281C] ring-4 ring-[#F59E0B] scale-105' : 'bg-[#0B3B2B] hover:bg-[#0F4E3A]'
+                    className={`relative w-30 sm:w-34 h-34 sm:h-38 flex flex-col items-center justify-center p-3 text-center transition-all duration-200 cursor-pointer shadow-lg ${
+                      activeMindNode === 'technical' ? 'bg-primary text-primary-foreground ring-4 ring-amber-500' : 'bg-muted text-foreground hover:bg-accent'
                     }`}
                     style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                   >
-                    <Code2 className="w-5 h-5 text-[#F59E0B] mb-1 shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-black text-[#F59E0B] uppercase font-['Outfit',sans-serif] leading-tight block">
+                    <Code2 className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
+                    <span className="text-[11px] sm:text-xs font-black uppercase font-['Outfit',sans-serif] leading-tight block">
                       TECHNICAL
-                    </span>
-                    <span className="text-[9px] text-white font-bold leading-tight mt-0.5 hidden sm:block">
-                      Core Domain
                     </span>
                   </button>
 
-                  {/* CENTER CORE: STUDENTS HEXAGON (DEEP ROYAL MATTE GREEN, DARK YELLOW & WHITE) */}
                   <div
-                    className="relative w-36 sm:w-44 h-40 sm:h-48 bg-[#06281E] flex flex-col items-center justify-center p-3 text-center shadow-2xl z-10 border-none"
+                    className="relative w-36 sm:w-44 h-40 sm:h-48 bg-primary text-primary-foreground flex flex-col items-center justify-center p-3 text-center shadow-2xl z-10"
                     style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                   >
-                    <GraduationCap className="w-7 h-7 sm:w-8 sm:h-8 text-[#F59E0B] mb-1 animate-pulse" />
-                    <span className="text-[9px] font-black uppercase tracking-widest text-white/90 block">
+                    <GraduationCap className="w-7 h-7 sm:w-8 sm:h-8 text-amber-400 mb-1 animate-pulse" />
+                    <span className="text-[9px] font-black uppercase tracking-widest text-primary-foreground/80 block">
                       CENTRAL CORE
                     </span>
-                    <h3 className="text-base sm:text-xl font-black text-[#F59E0B] tracking-tight font-['Outfit',sans-serif]">
+                    <h3 className="text-base sm:text-xl font-black text-amber-400 tracking-tight font-['Outfit',sans-serif]">
                       STUDENT
                     </h3>
                   </div>
 
-                  {/* Hexagon 4: CERTIFICATION */}
                   <button
                     onClick={() => setActiveMindNode('certification')}
-                    className={`relative w-30 sm:w-34 h-34 sm:h-38 flex flex-col items-center justify-center p-3 text-center transition-transform duration-300 hover:scale-105 cursor-pointer shadow-lg ${
-                      activeMindNode === 'certification' ? 'bg-[#06281C] ring-4 ring-[#F59E0B] scale-105' : 'bg-[#0B3B2B] hover:bg-[#0F4E3A]'
+                    className={`relative w-30 sm:w-34 h-34 sm:h-38 flex flex-col items-center justify-center p-3 text-center transition-all duration-200 cursor-pointer shadow-lg ${
+                      activeMindNode === 'certification' ? 'bg-primary text-primary-foreground ring-4 ring-amber-500' : 'bg-muted text-foreground hover:bg-accent'
                     }`}
                     style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                   >
-                    <Microscope className="w-5 h-5 text-[#F59E0B] mb-1 shrink-0" />
-                    <span className="text-[10px] sm:text-xs font-black text-[#F59E0B] uppercase font-['Outfit',sans-serif] leading-tight block">
+                    <Microscope className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
+                    <span className="text-[10px] sm:text-xs font-black uppercase font-['Outfit',sans-serif] leading-tight block">
                       CERTIFICATION
                     </span>
-                    <span className="text-[9px] text-white font-bold leading-tight mt-0.5 hidden sm:block">
-                      Value Add
-                    </span>
                   </button>
-
                 </div>
 
-                {/* ROW 3: BOTTOM 2 HEXAGONS (INTERVIEW - GROUP DISCUSSION) */}
                 <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-                  
-                  {/* Hexagon 5: INTERVIEW */}
                   <button
                     onClick={() => setActiveMindNode('interview')}
-                    className={`relative w-32 sm:w-36 h-36 sm:h-40 flex flex-col items-center justify-center p-3 text-center transition-transform duration-300 hover:scale-105 cursor-pointer shadow-lg ${
-                      activeMindNode === 'interview' ? 'bg-[#06281C] ring-4 ring-[#F59E0B] scale-105' : 'bg-[#0B3B2B] hover:bg-[#0F4E3A]'
+                    className={`relative w-32 sm:w-36 h-36 sm:h-40 flex flex-col items-center justify-center p-3 text-center transition-all duration-200 cursor-pointer shadow-lg ${
+                      activeMindNode === 'interview' ? 'bg-primary text-primary-foreground ring-4 ring-amber-500' : 'bg-muted text-foreground hover:bg-accent'
                     }`}
                     style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                   >
-                    <Users className="w-5 h-5 text-[#F59E0B] mb-1 shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-black text-[#F59E0B] uppercase font-['Outfit',sans-serif] leading-tight block">
+                    <Users className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
+                    <span className="text-[11px] sm:text-xs font-black uppercase font-['Outfit',sans-serif] leading-tight block">
                       INTERVIEW
                     </span>
-                    <span className="text-[9px] text-white font-bold leading-tight mt-0.5 hidden sm:block">
-                      Mock Panels
-                    </span>
                   </button>
 
-                  {/* Hexagon 6: GROUP DISCUSSION */}
                   <button
                     onClick={() => setActiveMindNode('group-discussion')}
-                    className={`relative w-32 sm:w-36 h-36 sm:h-40 flex flex-col items-center justify-center p-3 text-center transition-transform duration-300 hover:scale-105 cursor-pointer shadow-lg ${
-                      activeMindNode === 'group-discussion' ? 'bg-[#06281C] ring-4 ring-[#F59E0B] scale-105' : 'bg-[#0B3B2B] hover:bg-[#0F4E3A]'
+                    className={`relative w-32 sm:w-36 h-36 sm:h-40 flex flex-col items-center justify-center p-3 text-center transition-all duration-200 cursor-pointer shadow-lg ${
+                      activeMindNode === 'group-discussion' ? 'bg-primary text-primary-foreground ring-4 ring-amber-500' : 'bg-muted text-foreground hover:bg-accent'
                     }`}
                     style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                   >
-                    <Laptop className="w-5 h-5 text-[#F59E0B] mb-1 shrink-0" />
-                    <span className="text-[10px] sm:text-xs font-black text-[#F59E0B] uppercase font-['Outfit',sans-serif] leading-tight block">
+                    <Laptop className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
+                    <span className="text-[10px] sm:text-xs font-black uppercase font-['Outfit',sans-serif] leading-tight block">
                       GROUP DISCUSSION
                     </span>
-                    <span className="text-[9px] text-white font-bold leading-tight mt-0.5 hidden sm:block">
-                      Discourse
-                    </span>
                   </button>
-
                 </div>
-
               </div>
 
-              {/* Active Node Detail Card below Hexagon Constellation */}
-              <div className="mt-8 pt-5 border-t border-slate-100 bg-[#F8FAFC] p-4 sm:p-5">
+              <div className="mt-8 pt-5 border-t border-border bg-muted/40 p-4 sm:p-5">
                 <div className="flex items-center justify-between gap-2 mb-2">
                   <div className="inline-flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#0B3B2B]" />
-                    <span className="text-xs font-black uppercase tracking-widest text-[#0B3B2B]">{activeNodeData.category}</span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-primary" />
+                    <span className="text-xs font-black uppercase tracking-widest text-foreground">{(activeNodeData || skillArchitectureNodes[0]).category}</span>
                   </div>
-                  <span className="text-[10px] font-black uppercase text-[#F59E0B] bg-[#0B3B2B] px-2.5 py-0.5">
-                    {activeNodeData.name}
+                  <span className="text-[10px] font-black uppercase text-amber-500 bg-primary px-2.5 py-0.5">
+                    {(activeNodeData || skillArchitectureNodes[0]).name}
                   </span>
                 </div>
-                <p className="text-xs font-bold text-[#082B5C] mb-3">
-                  {activeNodeData.desc}
+                <p className="text-xs font-bold text-foreground mb-3">
+                  {(activeNodeData || skillArchitectureNodes[0]).desc}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  {activeNodeData.details.map((detail, dIdx) => (
-                    <div key={dIdx} className="p-2.5 bg-white shadow-xs flex items-start gap-2 text-[11px] text-slate-700 font-medium">
-                      <CheckCircle className="w-3.5 h-3.5 text-[#0B3B2B] shrink-0 mt-0.5" />
+                  {(activeNodeData || skillArchitectureNodes[0]).details.map((detail, dIdx) => (
+                    <div key={dIdx} className="p-2.5 bg-card border border-border flex items-start gap-2 text-[11px] text-foreground/80 font-medium">
+                      <CheckCircle className="w-3.5 h-3.5 text-[#059669] shrink-0 mt-0.5" />
                       <span>{detail}</span>
                     </div>
                   ))}
                 </div>
               </div>
-
             </div>
 
-            {/* RIGHT ELONGATED RECTANGLE IMAGE (STRICTLY NO BORDER) */}
             <div className="lg:col-span-3 hidden lg:block overflow-hidden shadow-xl">
               <div className="relative w-full h-full min-h-[560px]">
                 <img 
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=85" 
-                  alt="Students in Discussion and Interview Panel" 
-                  className="w-full h-full object-cover brightness-95 hover:scale-105 transition-transform duration-700"
+                  alt="Students in Discussion" 
+                  className="w-full h-full object-cover brightness-95"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#082B5C]/90 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-5 right-5 text-white space-y-1">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-[#86EFAC] block">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-[#059669] block">
                     SELECTION SIMULATIONS
                   </span>
                   <p className="text-sm font-bold font-['Outfit',sans-serif] leading-snug">
@@ -861,75 +649,48 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         </div>
       </section>
 
-      {/* ========================================================================= */}
-      {/* SECTION 03 — LEARN. PRACTISE. PERFORM. (YELLOW BACKGROUND + 5 TRIANGLES) */}
-      {/* ========================================================================= */}
-      <section className="w-full py-20 sm:py-28 bg-[#FACC15] text-[#082B5C] overflow-hidden" id="training-belt-section">
+      {/* LEARN. PRACTISE. PERFORM. */}
+      <section className="w-full py-20 sm:py-28 bg-page-bg text-foreground border-b border-border overflow-hidden" id="training-belt-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Section Header */}
           <div className="max-w-3xl mx-auto text-center mb-12 space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#082B5C] text-white text-xs font-extrabold tracking-widest uppercase shadow-sm">
-              <Activity className="w-3.5 h-3.5 text-[#FACC15]" />
+              <Activity className="w-3.5 h-3.5 text-emerald-400" />
               <span>CONTINUOUS PRACTICE PIPELINE</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-[#082B5C] tracking-tight font-['Outfit',sans-serif] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
               LEARN. PRACTISE. PERFORM.
             </h2>
-            <p className="text-[#082B5C]/90 text-base sm:text-lg leading-relaxed font-medium pt-1">
-              Skill development becomes meaningful when students have opportunities to practise what they learn. MSAJCE combines employability training with mock assessments, interviews, group discussions and workshops conducted by industrial experts. These activities help students become familiar with professional expectations while gaining exposure to current technological developments.
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-medium pt-1">
+              Skill development becomes meaningful when students have opportunities to practise what they learn. MSAJCE combines employability training with mock assessments.
             </p>
           </div>
 
-          {/* GIANT HORIZONTAL MOVING STRIP */}
-          <div className="relative w-full overflow-hidden py-4 my-6 bg-[#082B5C]/10 border-y border-[#082B5C]/20">
-            <div className="flex shrink-0 animate-marquee items-center gap-8 whitespace-nowrap">
-              {[...trainingBeltItems, ...trainingBeltItems].map((item, idx) => (
-                <div 
-                  key={idx}
-                  onClick={() => setActiveBeltIdx(idx % trainingBeltItems.length)}
-                  className={`px-6 py-3 cursor-pointer transition-all duration-200 flex items-center gap-4 ${
-                    activeBeltIdx === (idx % trainingBeltItems.length)
-                      ? 'bg-[#082B5C] text-white shadow-md'
-                      : 'hover:bg-[#082B5C]/15 text-[#082B5C]'
-                  }`}
-                >
-                  <span className="text-base sm:text-lg font-black tracking-wider font-['Outfit',sans-serif]">
-                    {item.title}
-                  </span>
-                  <span className="text-[#0052CC] font-bold text-sm">→</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* ACTIVE BELT DETAIL SHOWCASE */}
-          <div className="mt-8 max-w-4xl mx-auto bg-white p-6 sm:p-8 shadow-xl text-[#082B5C]">
+          <div className="mt-8 max-w-4xl mx-auto bg-card border border-border p-6 sm:p-8 shadow-xl text-card-foreground">
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
               <div className="sm:col-span-8 space-y-2">
-                <span className="text-xs font-black uppercase tracking-widest text-[#0052CC]">
+                <span className="text-xs font-black uppercase tracking-widest text-primary">
                   PIPELINE STAGE {activeBeltIdx + 1} OF {trainingBeltItems.length}
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-black text-[#082B5C] font-['Outfit',sans-serif]">
-                  {trainingBeltItems[activeBeltIdx].title}
+                  {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).title}
                 </h3>
                 <p className="text-sm sm:text-base text-slate-700 font-medium">
-                  {trainingBeltItems[activeBeltIdx].tagline}
+                  {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).tagline}
                 </p>
               </div>
               <div className="sm:col-span-4 flex flex-col items-start sm:items-end justify-center border-t sm:border-t-0 sm:border-l border-slate-200 pt-4 sm:pt-0 sm:pl-6 space-y-1">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">CURRICULUM VOLUME</span>
                 <span className="text-xl sm:text-2xl font-black text-[#082B5C] font-['Outfit',sans-serif]">
-                  {trainingBeltItems[activeBeltIdx].metric}
+                  {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).metric}
                 </span>
-                <span className="text-xs text-[#0D9488] font-bold">
-                  {trainingBeltItems[activeBeltIdx].focus}
+                <span className="text-xs text-[#059669] font-bold">
+                  {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).focus}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* 5 TRIANGLE STUDENT CLUBS SECTION (NO BORDERS) */}
           <div className="mt-20 pt-12 border-t border-[#082B5C]/20">
             <div className="max-w-3xl mx-auto text-center mb-12 space-y-3">
               <span className="px-3 py-1 bg-[#082B5C] text-white text-[11px] font-black uppercase tracking-widest inline-block">
@@ -938,33 +699,26 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               <h3 className="text-2xl sm:text-4xl font-black text-[#082B5C] font-['Outfit',sans-serif]">
                 CLUBS EMPOWERING EVERYDAY PRACTICE
               </h3>
-              <p className="text-[#082B5C]/85 text-sm sm:text-base font-medium">
-                Hands-on creative, technological and leadership forums where theory translates into everyday mastery.
-              </p>
             </div>
 
-            {/* 5 TRIANGLE CARDS GRID */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 items-start">
               {studentClubs.map((club, cIdx) => (
                 <div key={cIdx} className="text-center group flex flex-col items-center">
-                  
-                  {/* Triangle Image Container (Strictly NO BORDER) */}
                   <div className="relative w-40 h-40 sm:w-44 sm:h-44 mb-4 flex items-center justify-center">
                     <div 
-                      className="w-full h-full overflow-hidden transition-transform duration-500 group-hover:scale-105 shadow-md"
+                      className="w-full h-full overflow-hidden shadow-md"
                       style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
                     >
                       <img 
                         src={club.image} 
                         alt={club.name} 
-                        className="w-full h-full object-cover brightness-95 group-hover:scale-110 transition-transform duration-700" 
+                        className="w-full h-full object-cover brightness-95" 
                       />
                     </div>
                   </div>
 
-                  {/* Club Details */}
                   <div className="space-y-1 max-w-[200px]">
-                    <span className="text-[10px] font-black uppercase tracking-wider text-[#0052CC] block">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-primary block">
                       {club.tag}
                     </span>
                     <h4 className="text-sm font-black text-[#082B5C] font-['Outfit',sans-serif] tracking-tight">
@@ -974,7 +728,6 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                       {club.desc}
                     </p>
                   </div>
-
                 </div>
               ))}
             </div>
@@ -984,41 +737,32 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         </div>
       </section>
 
-      {/* ========================================================================= */}
-      {/* SECTION 04 — SPACES DESIGNED FOR PREPARATION (FACILITIES WITH HOTSPOTS) */}
-      {/* Large Training Environment Photo with 4 Interactive Hotspots (No simple 4 cards) */}
-      {/* ========================================================================= */}
-      <section className="w-full py-20 sm:py-28 bg-white" id="spaces-designed-for-preparation">
+      {/* SPACES DESIGNED FOR PREPARATION */}
+      <section className="w-full py-20 sm:py-28 bg-background border-b border-border" id="spaces-designed-for-preparation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Section Header */}
           <div className="max-w-3xl mx-auto text-center mb-14 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#DCEEFF] text-[#082B5C] text-xs font-extrabold tracking-widest uppercase">
-              <Building2 className="w-3.5 h-3.5 text-[#0052CC]" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-muted text-foreground text-xs font-extrabold tracking-widest uppercase">
+              <Building2 className="w-3.5 h-3.5 text-primary" />
               <span>DEDICATED PLACEMENT INFRASTRUCTURE</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-[#082B5C] tracking-tight font-['Outfit',sans-serif] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
               SPACES DESIGNED FOR PREPARATION
             </h2>
-            <p className="text-slate-700 text-base sm:text-lg leading-relaxed font-normal pt-1">
-              The Placement Cell provides dedicated facilities to support different stages of student preparation and recruitment. These include well-furnished air-conditioned rooms for written tests, group discussions and face-to-face interviews, established computer laboratories for online training and examinations, air-conditioned auditoriums, seminar and meeting halls, and dedicated rooms for group discussions. Career counselling and mentoring are also available to help students identify suitable pathways and remain focused on their goals.
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-1">
+              The Placement Cell provides dedicated facilities to support different stages of student preparation and recruitment.
             </p>
           </div>
 
-          {/* LARGE PHOTO ENVIRONMENT WITH 4 HOTSPOTS */}
-          <div className="relative w-full h-[420px] sm:h-[520px] lg:h-[580px] bg-slate-900 overflow-hidden shadow-2xl">
-            
-            {/* Dynamic Environment Photo */}
+          <div className="relative w-full h-[420px] sm:h-[520px] lg:h-[580px] bg-card border border-border overflow-hidden shadow-2xl">
             <img 
-              src={activeHotspot.image} 
-              alt={activeHotspot.name} 
+              src={(activeHotspot || facilityHotspots[0]).image} 
+              alt={(activeHotspot || facilityHotspots[0]).name} 
               className="w-full h-full object-cover brightness-[0.7] contrast-105 transition-all duration-700" 
             />
             
-            {/* Subtle Gradient Shadow for Contrast */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/40" />
 
-            {/* 4 Interactive Hotspot Badges Overlaid on Photograph */}
             <div className="absolute inset-0 p-4 sm:p-8">
               {facilityHotspots.map((hotspot) => {
                 const isSelected = activeHotspotId === hotspot.id;
@@ -1029,12 +773,12 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                     onClick={() => setActiveHotspotId(hotspot.id)}
                     className={`absolute ${hotspot.pos} cursor-pointer transition-all duration-300 transform -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 px-3 py-1.5 rounded-full shadow-2xl backdrop-blur-md ${
                       isSelected
-                        ? 'bg-[#0052CC] text-white ring-4 ring-white/50 scale-110 z-30'
-                        : 'bg-white/80 hover:bg-white text-[#082B5C] hover:scale-105 z-20'
+                        ? 'bg-primary text-primary-foreground ring-4 ring-white/50 z-30'
+                        : 'bg-background/80 text-foreground hover:bg-background z-20'
                     }`}
                   >
                     <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black ${
-                      isSelected ? 'bg-white text-[#0052CC]' : 'bg-[#082B5C] text-white'
+                      isSelected ? 'bg-primary-foreground text-primary' : 'bg-primary text-primary-foreground'
                     }`}>
                       {hotspot.num}
                     </span>
@@ -1046,35 +790,34 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               })}
             </div>
 
-            {/* Bottom Active Facility Info Drawer */}
-            <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 bg-white/95 backdrop-blur-md p-6 sm:p-8 shadow-2xl text-[#082B5C] border-l-4 border-[#0052CC]">
+            <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 bg-card/95 backdrop-blur-md p-6 sm:p-8 shadow-2xl text-foreground border-l-4 border-primary">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
                 <div className="lg:col-span-8 space-y-2">
                   <div className="inline-flex items-center gap-2">
-                    <span className="text-xs font-black text-[#0D9488] uppercase tracking-widest">
-                      FACILITY {activeHotspot.num}
+                    <span className="text-xs font-black text-[#059669] uppercase tracking-widest">
+                      FACILITY {(activeHotspot || facilityHotspots[0]).num}
                     </span>
-                    <span className="text-xs text-slate-400">•</span>
-                    <span className="text-xs font-bold text-slate-600 uppercase">
-                      {activeHotspot.sub}
+                    <span className="text-xs text-muted-foreground">•</span>
+                    <span className="text-xs font-bold text-muted-foreground uppercase">
+                      {(activeHotspot || facilityHotspots[0]).sub}
                     </span>
                   </div>
-                  <h3 className="text-xl sm:text-3xl font-black text-[#082B5C] font-['Outfit',sans-serif]">
-                    {activeHotspot.name}
+                  <h3 className="text-xl sm:text-3xl font-black text-foreground font-['Outfit',sans-serif]">
+                    {(activeHotspot || facilityHotspots[0]).name}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-                    {activeHotspot.desc}
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-medium">
+                    {(activeHotspot || facilityHotspots[0]).desc}
                   </p>
                 </div>
 
-                <div className="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-slate-200 pt-4 lg:pt-0 lg:pl-6 space-y-2">
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
+                <div className="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-border pt-4 lg:pt-0 lg:pl-6 space-y-2">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-muted-foreground">
                     KEY EQUIPMENT & SPECIFICATIONS:
                   </span>
                   <div className="grid grid-cols-1 gap-1.5">
-                    {activeHotspot.specs.map((spec, sIdx) => (
-                      <div key={sIdx} className="flex items-center gap-2 text-xs text-slate-800 font-semibold">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#0052CC]" />
+                    {(activeHotspot || facilityHotspots[0]).specs.map((spec, sIdx) => (
+                      <div key={sIdx} className="flex items-center gap-2 text-xs text-foreground font-semibold">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                         <span>{spec}</span>
                       </div>
                     ))}
@@ -1088,37 +831,31 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         </div>
       </section>
 
-      {/* ========================================================================= */}
-      {/* SECTION 05 — LEARNING THE TECHNOLOGIES OF TOMORROW (3 BULLETED COLUMNS) */}
-      {/* Strictly NO borders, NO background containers, NO images anywhere */}
-      {/* ========================================================================= */}
-      <section className="w-full py-20 sm:py-28 bg-white" id="technology-centres">
+      {/* LEARNING THE TECHNOLOGIES OF TOMORROW */}
+      <section className="w-full py-20 sm:py-28 bg-background border-b border-border" id="technology-centres">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Section Header */}
           <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#DCEEFF] text-[#082B5C] text-xs font-extrabold tracking-widest uppercase">
-              <Cpu className="w-3.5 h-3.5 text-[#0052CC]" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-muted text-foreground text-xs font-extrabold tracking-widest uppercase">
+              <Cpu className="w-3.5 h-3.5 text-primary" />
               <span>SPECIALISED ADVANCED HUBS</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-[#082B5C] tracking-tight font-['Outfit',sans-serif] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
               LEARNING THE TECHNOLOGIES OF TOMORROW
             </h2>
-            <p className="text-slate-700 text-base sm:text-lg leading-relaxed font-normal pt-1">
-              MSAJCE has established Technology and Skill Development Centres to educate, train and up-skill students in emerging industrial technologies. The centres are designed to provide an environment for learning, research and innovation, with industry and government collaborations supporting certifications, projects and internships.
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-1">
+              MSAJCE has established Technology and Skill Development Centres to educate, train and up-skill students in emerging industrial technologies.
             </p>
           </div>
 
-          {/* THREE CLEAN BULLETED COLUMNS (NO BORDER, NO BACKGROUND, NO IMAGES) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
             
-            {/* COLUMN 1: MECHANICAL, CIVIL & MANUFACTURING */}
             <div className="space-y-6">
-              <div className="pb-3 border-b-2 border-[#0052CC]">
-                <span className="text-[11px] font-black uppercase tracking-wider text-[#0052CC] block">
+              <div className="pb-3 border-b-2 border-primary">
+                <span className="text-[11px] font-black uppercase tracking-wider text-primary block">
                   COE & INDUSTRY LABS
                 </span>
-                <h3 className="text-xl font-black text-[#082B5C] font-['Outfit',sans-serif]">
+                <h3 className="text-xl font-black text-foreground font-['Outfit',sans-serif]">
                   Mechanical & Civil Tech
                 </h3>
               </div>
@@ -1136,12 +873,12 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                   { title: 'NDT & Quality Testing Lab', sub: 'Materials Testing Cell' }
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <span className="text-[#0052CC] font-black text-lg leading-none mt-0.5">•</span>
+                    <span className="text-primary font-black text-lg leading-none mt-0.5">•</span>
                     <div>
-                      <span className="text-sm font-bold text-[#082B5C] block font-['Outfit',sans-serif]">
+                      <span className="text-sm font-bold text-foreground block font-['Outfit',sans-serif]">
                         {item.title}
                       </span>
-                      <span className="text-xs text-slate-500 font-medium block">
+                      <span className="text-xs text-muted-foreground font-medium block">
                         {item.sub}
                       </span>
                     </div>
@@ -1150,13 +887,12 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               </ul>
             </div>
 
-            {/* COLUMN 2: ELECTRICAL & ELECTRONICS INNOVATIONS */}
             <div className="space-y-6">
-              <div className="pb-3 border-b-2 border-[#0D9488]">
-                <span className="text-[11px] font-black uppercase tracking-wider text-[#0D9488] block">
+              <div className="pb-3 border-b-2 border-[#059669]">
+                <span className="text-[11px] font-black uppercase tracking-wider text-[#059669] block">
                   EMERGING HARDWARE
                 </span>
-                <h3 className="text-xl font-black text-[#082B5C] font-['Outfit',sans-serif]">
+                <h3 className="text-xl font-black text-foreground font-['Outfit',sans-serif]">
                   ECE & EEE Systems
                 </h3>
               </div>
@@ -1173,12 +909,12 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                   { title: 'Wireless Sensor Networks & RF', sub: 'High-Frequency Antenna Research' }
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <span className="text-[#0D9488] font-black text-lg leading-none mt-0.5">•</span>
+                    <span className="text-[#059669] font-black text-lg leading-none mt-0.5">•</span>
                     <div>
-                      <span className="text-sm font-bold text-[#082B5C] block font-['Outfit',sans-serif]">
+                      <span className="text-sm font-bold text-foreground block font-['Outfit',sans-serif]">
                         {item.title}
                       </span>
-                      <span className="text-xs text-slate-500 font-medium block">
+                      <span className="text-xs text-muted-foreground font-medium block">
                         {item.sub}
                       </span>
                     </div>
@@ -1187,13 +923,12 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               </ul>
             </div>
 
-            {/* COLUMN 3: COMPUTER SCIENCE, AI & DIGITAL */}
             <div className="space-y-6">
-              <div className="pb-3 border-b-2 border-[#082B5C]">
-                <span className="text-[11px] font-black uppercase tracking-wider text-[#082B5C] block">
+              <div className="pb-3 border-b-2 border-primary">
+                <span className="text-[11px] font-black uppercase tracking-wider text-primary block">
                   COMPUTATION & CLOUD
                 </span>
-                <h3 className="text-xl font-black text-[#082B5C] font-['Outfit',sans-serif]">
+                <h3 className="text-xl font-black text-foreground font-['Outfit',sans-serif]">
                   CSE & IT Digital Hubs
                 </h3>
               </div>
@@ -1211,12 +946,12 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                   { title: 'Mobile & Web Application Development', sub: 'Cross-Platform Full-Stack Studio' }
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <span className="text-[#082B5C] font-black text-lg leading-none mt-0.5">•</span>
+                    <span className="text-primary font-black text-lg leading-none mt-0.5">•</span>
                     <div>
-                      <span className="text-sm font-bold text-[#082B5C] block font-['Outfit',sans-serif]">
+                      <span className="text-sm font-bold text-foreground block font-['Outfit',sans-serif]">
                         {item.title}
                       </span>
-                      <span className="text-xs text-slate-500 font-medium block">
+                      <span className="text-xs text-muted-foreground font-medium block">
                         {item.sub}
                       </span>
                     </div>
@@ -1230,47 +965,37 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         </div>
       </section>
 
-      {/* ========================================================================= */}
-      {/* SECTION 06 — CAREER DIRECTION STARTS WITH GUIDANCE (CAREER COUNSELLING) */}
-      {/* Yellow background, clean white borderless cards, no emojis */}
-      {/* ========================================================================= */}
-      <section className="w-full py-20 sm:py-28 bg-[#FACC15] text-[#082B5C]" id="career-counselling-guidance">
+      {/* CAREER DIRECTION STARTS WITH GUIDANCE */}
+      <section className="w-full py-20 sm:py-28 bg-page-bg text-foreground border-b border-border" id="career-counselling-guidance">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Section Header */}
           <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#082B5C] text-white text-xs font-extrabold tracking-widest uppercase shadow-sm">
-              <Compass className="w-3.5 h-3.5 text-[#FACC15]" />
+              <Compass className="w-3.5 h-3.5 text-blue-300" />
               <span>INDIVIDUAL MENTORING & PATHWAYS</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-[#082B5C] tracking-tight font-['Outfit',sans-serif] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
               CAREER DIRECTION STARTS WITH GUIDANCE
             </h2>
-            <p className="text-[#082B5C]/90 text-base sm:text-lg leading-relaxed font-medium pt-1">
-              Career counselling is available on the MSAJCE campus to help students identify pathways that meet their individual requirements and aspirations. Students are also supported by mentors who help them address challenges, remain focused on their targets and make informed decisions about their future direction.
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-medium pt-1">
+              Career counselling is available on the MSAJCE campus to help students identify pathways that meet their individual requirements.
             </p>
           </div>
 
-          {/* BRANCHING PATHWAY DIAGRAM */}
           <div className="max-w-4xl mx-auto bg-transparent p-4 sm:p-6">
-            
-            {/* Top Node: STUDENT */}
             <div className="flex justify-center mb-8">
               <div className="px-10 py-3.5 bg-[#082B5C] text-white shadow-xl text-center">
-                <span className="text-[10px] font-black uppercase tracking-widest text-[#FACC15]">STARTING POINT</span>
+                <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">STARTING POINT</span>
                 <h4 className="text-xl sm:text-2xl font-black font-['Outfit',sans-serif]">STUDENT</h4>
               </div>
             </div>
 
-            {/* 3 Primary Pathways (Pure White, No Border, No Emojis) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-              
-              {/* Pathway 1: JOB / INDUSTRY */}
               <div className="bg-white p-7 shadow-xl space-y-3 text-center">
-                <div className="w-10 h-10 mx-auto rounded-full bg-[#082B5C]/10 text-[#0052CC] flex items-center justify-center">
+                <div className="w-10 h-10 mx-auto rounded-full bg-[#082B5C]/10 text-primary flex items-center justify-center">
                   <Briefcase className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-extrabold text-[#0052CC] uppercase tracking-wider block">PATHWAY 01</span>
+                <span className="text-xs font-extrabold text-primary uppercase tracking-wider block">PATHWAY 01</span>
                 <h4 className="text-lg font-black text-[#082B5C] font-['Outfit',sans-serif]">JOB & EMPLOYMENT</h4>
                 <div className="py-1 text-[#082B5C]/40 font-bold text-xs">↓</div>
                 <div className="p-3 bg-[#082B5C]/5 text-xs font-bold text-[#082B5C]">
@@ -1281,12 +1006,11 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                 </p>
               </div>
 
-              {/* Pathway 2: HIGHER STUDIES / RESEARCH */}
               <div className="bg-white p-7 shadow-xl space-y-3 text-center">
-                <div className="w-10 h-10 mx-auto rounded-full bg-[#082B5C]/10 text-[#0D9488] flex items-center justify-center">
+                <div className="w-10 h-10 mx-auto rounded-full bg-[#082B5C]/10 text-[#059669] flex items-center justify-center">
                   <GraduationCap className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-extrabold text-[#0D9488] uppercase tracking-wider block">PATHWAY 02</span>
+                <span className="text-xs font-extrabold text-[#059669] uppercase tracking-wider block">PATHWAY 02</span>
                 <h4 className="text-lg font-black text-[#082B5C] font-['Outfit',sans-serif]">HIGHER STUDIES</h4>
                 <div className="py-1 text-[#082B5C]/40 font-bold text-xs">↓</div>
                 <div className="p-3 bg-[#082B5C]/5 text-xs font-bold text-[#082B5C]">
@@ -1297,7 +1021,6 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                 </p>
               </div>
 
-              {/* Pathway 3: OTHER PATHS / INNOVATION */}
               <div className="bg-white p-7 shadow-xl space-y-3 text-center">
                 <div className="w-10 h-10 mx-auto rounded-full bg-[#082B5C]/10 text-[#082B5C] flex items-center justify-center">
                   <Sparkles className="w-5 h-5" />
@@ -1312,45 +1035,34 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                   Incubation support, MSME grants, and seed funding assistance through innovation cells.
                 </p>
               </div>
-
             </div>
-
           </div>
 
         </div>
       </section>
 
-      {/* ========================================================================= */}
-      {/* SECTION 07 — LEARNING BEYOND THE CLASSROOM (MASSIVE 10 -> 9 -> 8 -> 7 GALLERY) */}
-      {/* 34 Curated Photos in Descending Pyramid + Clean Minimalist Hover Labels */}
-      {/* ========================================================================= */}
-      <section className="w-full py-20 sm:py-28 bg-[#F8FAFC]" id="learning-beyond-classroom">
+      {/* LEARNING BEYOND THE CLASSROOM */}
+      <section className="w-full py-20 sm:py-28 bg-muted/30" id="learning-beyond-classroom">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
-          
-          {/* TOP BADGE / STICKER */}
           <div className="flex flex-col items-center justify-center text-center space-y-2 mb-6">
-            <div className="px-4 py-1.5 bg-[#082B5C] text-white text-xs font-black tracking-widest uppercase shadow-md">
+            <div className="px-4 py-1.5 bg-primary text-primary-foreground text-xs font-black tracking-widest uppercase shadow-md">
               MSAJCE
             </div>
-            <span className="text-[11px] font-extrabold text-[#0052CC] tracking-widest uppercase">
+            <span className="text-[11px] font-extrabold text-primary tracking-widest uppercase">
               LEARN • EXPERIENCE • GROW
             </span>
           </div>
 
-          {/* HEADING & SMALL LINE ONLY (NO LONG TEXT) */}
           <div className="text-center mb-14 space-y-2">
-            <h2 className="text-3xl sm:text-5xl font-black text-[#082B5C] tracking-tight font-['Outfit',sans-serif] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
               LEARNING BEYOND THE CLASSROOM
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 font-medium">
+            <p className="text-sm sm:text-base text-muted-foreground font-medium">
               Where experience becomes part of learning.
             </p>
           </div>
 
-          {/* THE 10 -> 9 -> 8 -> 7 DESCENDING PHOTOGRAPHIC PYRAMID */}
           <div className="space-y-3 sm:space-y-4">
-            
-            {/* ROW 01: 10 IMAGES */}
             <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-10 gap-2 sm:gap-2.5">
               {galleryRow1.map((photo, pIdx) => (
                 <div 
@@ -1360,10 +1072,10 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                   <img 
                     src={photo.img} 
                     alt={photo.title} 
-                    className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500 brightness-95" 
+                    className="w-full h-full object-cover brightness-95" 
                   />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-2">
-                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-white bg-[#0052CC] px-1.5 py-0.5 shadow-xs">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-white bg-primary px-1.5 py-0.5 shadow-xs">
                       {photo.title}
                     </span>
                   </div>
@@ -1371,7 +1083,6 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               ))}
             </div>
 
-            {/* ROW 02: 9 IMAGES (Centered with margin) */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-2 sm:gap-2.5 max-w-[95%] mx-auto">
               {galleryRow2.map((photo, pIdx) => (
                 <div 
@@ -1381,10 +1092,10 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                   <img 
                     src={photo.img} 
                     alt={photo.title} 
-                    className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500 brightness-95" 
+                    className="w-full h-full object-cover brightness-95" 
                   />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-2">
-                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-white bg-[#0D9488] px-1.5 py-0.5 shadow-xs">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-white bg-[#059669] px-1.5 py-0.5 shadow-xs">
                       {photo.title}
                     </span>
                   </div>
@@ -1392,7 +1103,6 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               ))}
             </div>
 
-            {/* ROW 03: 8 IMAGES (Centered with margin) */}
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-2.5 max-w-[88%] mx-auto">
               {galleryRow3.map((photo, pIdx) => (
                 <div 
@@ -1402,10 +1112,10 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                   <img 
                     src={photo.img} 
                     alt={photo.title} 
-                    className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500 brightness-95" 
+                    className="w-full h-full object-cover brightness-95" 
                   />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-2">
-                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-white bg-[#0052CC] px-1.5 py-0.5 shadow-xs">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-white bg-primary px-1.5 py-0.5 shadow-xs">
                       {photo.title}
                     </span>
                   </div>
@@ -1413,7 +1123,6 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               ))}
             </div>
 
-            {/* ROW 04: 7 IMAGES (Centered with margin) */}
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 sm:gap-2.5 max-w-[78%] mx-auto">
               {galleryRow4.map((photo, pIdx) => (
                 <div 
@@ -1423,29 +1132,26 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                   <img 
                     src={photo.img} 
                     alt={photo.title} 
-                    className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500 brightness-95" 
+                    className="w-full h-full object-cover brightness-95" 
                   />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-2">
-                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-white bg-[#0D9488] px-1.5 py-0.5 shadow-xs">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-white bg-[#059669] px-1.5 py-0.5 shadow-xs">
                       {photo.title}
                     </span>
                   </div>
                 </div>
               ))}
             </div>
-
           </div>
 
-          {/* FINAL LINE AFTER GALLERY */}
-          <div className="mt-20 pt-10 border-t border-slate-200 text-center space-y-3">
-            <h3 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#082B5C] font-['Outfit',sans-serif] tracking-tight">
+          <div className="mt-20 pt-10 border-t border-border text-center space-y-3">
+            <h3 className="text-2xl sm:text-4xl md:text-5xl font-black text-foreground font-['Outfit',sans-serif] tracking-tight">
               LEARNING DOESN'T STOP <br className="hidden sm:inline" />WHEN THE CLASSROOM ENDS.
             </h3>
-            <p className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-[#0D9488]">
+            <p className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-[#059669]">
               TRAINING • TECHNOLOGY • INDUSTRY • EXPERIENCE
             </p>
           </div>
-
         </div>
       </section>
 

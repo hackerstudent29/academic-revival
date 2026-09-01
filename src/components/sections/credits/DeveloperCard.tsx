@@ -1,4 +1,3 @@
-import { Developer } from "../data/developers.json"; // We will define a type
 import { Github, Linkedin, Mail, Globe } from "lucide-react";
 import React from "react";
 

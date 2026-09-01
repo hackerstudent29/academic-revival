@@ -1,6 +1,6 @@
 import React from 'react';
 import { X, CheckCircle, Users, Sparkles, Building } from 'lucide-react';
-import { Facility } from '../../types';
+import { Facility } from '@/types/placement';
 
 interface FacilityLightboxProps {
   facility: Facility | null;
@@ -11,9 +11,9 @@ export const FacilityLightbox: React.FC<FacilityLightboxProps> = ({ facility, on
   if (!facility) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#082B5C]/80 backdrop-blur-md animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
       <div 
-        className="relative w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200 animate-in zoom-in-95 duration-300"
+        className="relative w-full max-w-3xl bg-background dark:bg-card text-foreground rounded-xl shadow-2xl overflow-hidden border border-border animate-in zoom-in-95 duration-300"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Image with Gradient */}
@@ -21,14 +21,14 @@ export const FacilityLightbox: React.FC<FacilityLightboxProps> = ({ facility, on
           <img
             src={facility.image}
             alt={facility.name}
-            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+            className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#082B5C] via-[#082B5C]/40 to-transparent" />
           
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-full bg-black/40 hover:bg-black/70 text-white backdrop-blur-sm transition-all"
+            className="absolute top-4 right-4 p-2 rounded-full bg-black/40 hover:bg-black/70 text-white backdrop-blur-sm transition-all cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -54,22 +54,22 @@ export const FacilityLightbox: React.FC<FacilityLightboxProps> = ({ facility, on
         {/* Modal Body */}
         <div className="p-6 sm:p-8 space-y-6">
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Space Overview</h4>
-            <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">Space Overview</h4>
+            <p className="text-sm sm:text-base text-foreground leading-relaxed">
               {facility.description}
             </p>
           </div>
 
           {/* Facility Specifications */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#082B5C] mb-3 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-[#1769AA]" />
+            <h4 className="text-xs font-bold uppercase tracking-wider text-primary mb-3 flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-primary" />
               Dedicated Equipment & Infrastructure Specs
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {facility.equipment.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2.5 p-2.5 rounded-lg bg-[#F5FAFF] border border-blue-100 text-xs sm:text-sm text-[#10243E]">
-                  <CheckCircle className="w-4 h-4 text-[#1769AA] shrink-0" />
+                <div key={idx} className="flex items-center gap-2.5 p-2.5 rounded-lg bg-muted/50 border border-border text-xs sm:text-sm text-foreground">
+                  <CheckCircle className="w-4 h-4 text-primary shrink-0" />
                   <span>{item}</span>
                 </div>
               ))}
@@ -77,14 +77,14 @@ export const FacilityLightbox: React.FC<FacilityLightboxProps> = ({ facility, on
           </div>
 
           {/* Action Bar */}
-          <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-            <div className="flex items-center gap-2 text-xs text-slate-500">
-              <Building className="w-4 h-4 text-[#1769AA]" />
+          <div className="pt-4 border-t border-border flex items-center justify-between">
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <Building className="w-4 h-4 text-primary" />
               <span>Location: MSAJCE Central Campus, Rajiv Gandhi Salai (OMR)</span>
             </div>
             <button
               onClick={onClose}
-              className="px-5 py-2 rounded-lg bg-[#082B5C] hover:bg-[#1769AA] text-white text-xs font-semibold tracking-wide transition-colors"
+              className="px-5 py-2 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-semibold tracking-wide transition-colors cursor-pointer"
             >
               Close Viewer
             </button>
