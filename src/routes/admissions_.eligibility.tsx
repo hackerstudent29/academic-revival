@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Magnetic, Reveal } from "@/components/motion";
-import { PageHero } from "@/components/shared/PageHero";
+import { Magnetic, Reveal, Stagger, StaggerItem } from "@/components/motion";
+import { motion } from "framer-motion";
 import { Download, ArrowRight, Info } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -71,14 +71,81 @@ const phdDirectEntryConditions = [
   "Proven research credentials with 3 publications in peer-reviewed impact factor journals OR 2 approved international patents registered within the last 5 years.",
 ];
 
+function EligibilityHero() {
+  return (
+    <section className="relative w-full overflow-hidden h-auto lg:h-[75vh] flex flex-col lg:block">
+      {/* Desktop Image */}
+      <motion.div 
+        initial={{ width: "100%" }}
+        animate={{ width: "60%" }}
+        transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
+        className="absolute inset-y-0 right-0 z-10 hidden lg:block pointer-events-none"
+      >
+        <img 
+          src="/images/eligibility_hero.jpg" 
+          alt="Students reviewing eligibility" 
+          className="w-full h-full object-cover object-center"
+        />
+      </motion.div>
+
+      {/* Accent sliding block (The Blue Edge) */}
+      <motion.div 
+        initial={{ width: "0%" }}
+        animate={{ width: "51%" }}
+        transition={{ duration: 1.2, delay: 0.05, ease: [0.76, 0, 0.24, 1] }}
+        className="absolute inset-y-0 left-0 bg-primary z-20 hidden lg:block shadow-2xl"
+        style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
+      />
+
+      {/* Sliding Background from Left with Diagonal Edge */}
+      <motion.div 
+        initial={{ width: "0%" }}
+        animate={{ width: "50%" }}
+        transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
+        className="absolute inset-y-0 left-0 bg-background z-30 hidden lg:block"
+        style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
+      />
+
+      {/* Mobile Image */}
+      <div className="w-full h-[300px] relative lg:hidden block z-10">
+        <img 
+          src="/images/eligibility_hero.jpg" 
+          alt="Students reviewing eligibility" 
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+      </div>
+
+      {/* Text Content */}
+      <div className="w-full lg:w-[48%] px-6 py-12 md:py-16 lg:px-10 xl:px-12 flex flex-col justify-center z-40 relative lg:absolute lg:inset-y-0 lg:left-0 h-full bg-background lg:bg-transparent">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="inline-flex items-center gap-2 mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <span className="text-[9px] font-bold tracking-widest uppercase text-primary">Eligibility & Scholarships</span>
+          </div>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.05] tracking-tight text-primary mb-5 text-balance">
+            Admission <br/>
+            Eligibility
+          </h1>
+          
+          <p className="text-sm md:text-base font-medium text-muted-foreground leading-relaxed max-w-md">
+            Criteria for undergraduate, lateral entry, and postgraduate programmes. Understand the pathways and cutoff marks required for admission.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 function AdmissionsEligibility() {
   return (
     <main className="bg-background min-h-screen">
-      <PageHero 
-        eyebrow="ELIGIBILITY & SCHOLARSHIPS" 
-        title="ADMISSION ELIGIBILITY" 
-        description="Criteria for undergraduate, lateral entry, and postgraduate programmes." 
-      />
+      <EligibilityHero />
       
       {/* Trust Badge Strip Equivalent: TNEA Code */}
       <div className="border-b border-border bg-muted/30">
@@ -87,17 +154,17 @@ function AdmissionsEligibility() {
         </div>
       </div>
 
-      <section className="mx-auto max-w-[1440px] px-6 py-24 md:px-12 md:py-32">
+      <section className="mx-auto max-w-[1200px] px-6 py-24 md:px-12 md:py-32">
         <Reveal variant="rise" viewport={{ once: true }}>
           <Tabs defaultValue="ug" className="w-full">
-            <TabsList className="mb-12 flex flex-wrap h-auto gap-2 bg-transparent">
-              <TabsTrigger value="ug" className="data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none border-b-2 border-transparent px-6 py-3 text-base font-bold uppercase tracking-widest text-muted-foreground data-[state=active]:text-foreground transition-colors shadow-none data-[state=active]:shadow-none data-[state=active]:bg-transparent">
+            <TabsList className="mb-12 flex flex-wrap h-auto gap-8 bg-transparent border-b border-border w-full justify-start rounded-none p-0">
+              <TabsTrigger value="ug" className="data-[state=active]:border-foreground data-[state=active]:text-foreground border-b-2 border-transparent px-0 py-4 text-sm font-black uppercase tracking-widest text-muted-foreground transition-all shadow-none rounded-none bg-transparent hover:text-foreground">
                 Undergraduate
               </TabsTrigger>
-              <TabsTrigger value="pg" className="data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none border-b-2 border-transparent px-6 py-3 text-base font-bold uppercase tracking-widest text-muted-foreground data-[state=active]:text-foreground transition-colors shadow-none data-[state=active]:shadow-none data-[state=active]:bg-transparent">
+              <TabsTrigger value="pg" className="data-[state=active]:border-foreground data-[state=active]:text-foreground border-b-2 border-transparent px-0 py-4 text-sm font-black uppercase tracking-widest text-muted-foreground transition-all shadow-none rounded-none bg-transparent hover:text-foreground">
                 Postgraduate
               </TabsTrigger>
-              <TabsTrigger value="phd" className="data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none border-b-2 border-transparent px-6 py-3 text-base font-bold uppercase tracking-widest text-muted-foreground data-[state=active]:text-foreground transition-colors shadow-none data-[state=active]:shadow-none data-[state=active]:bg-transparent">
+              <TabsTrigger value="phd" className="data-[state=active]:border-foreground data-[state=active]:text-foreground border-b-2 border-transparent px-0 py-4 text-sm font-black uppercase tracking-widest text-muted-foreground transition-all shadow-none rounded-none bg-transparent hover:text-foreground">
                 Ph.D.
               </TabsTrigger>
             </TabsList>
@@ -110,23 +177,21 @@ function AdmissionsEligibility() {
                 <p className="text-base text-muted-foreground leading-relaxed max-w-[80ch]">
                   Candidates must have passed 10+2 / HSC (Academic) or its equivalent examination with Physics, Chemistry, and Mathematics.
                 </p>
-                <div className="overflow-x-auto w-full">
-                  <Table className="border border-border bg-card">
-                    <TableHeader className="bg-muted">
-                      <TableRow className="border-border">
-                        <TableHead className="font-bold text-foreground">Community</TableHead>
-                        <TableHead className="font-bold text-foreground">Minimum Average Marks (Maths, Physics, Chemistry Combined)</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {hscAcademicCutoffs.map((row) => (
-                        <TableRow key={row.community} className="border-border">
-                          <TableCell className="font-medium text-foreground">{row.community}</TableCell>
-                          <TableCell className="text-muted-foreground">{row.percent}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                <div className="flex flex-col border-t border-border mt-8">
+                  <div className="flex px-4 py-3 bg-muted text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                    <div className="w-1/2">Community</div>
+                    <div className="w-1/2">Minimum Average Marks (Maths, Physics, Chemistry Combined)</div>
+                  </div>
+                  <Stagger gap={0.1} viewport={{ once: true }}>
+                    {hscAcademicCutoffs.map((row) => (
+                      <StaggerItem key={row.community}>
+                        <div className="flex px-4 py-6 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group">
+                          <div className="w-1/2 font-bold text-foreground text-sm tracking-wide">{row.community}</div>
+                          <div className="w-1/2 font-medium text-foreground text-lg">{row.percent}</div>
+                        </div>
+                      </StaggerItem>
+                    ))}
+                  </Stagger>
                 </div>
               </div>
 
@@ -135,64 +200,60 @@ function AdmissionsEligibility() {
                 <p className="text-base text-muted-foreground leading-relaxed max-w-[80ch]">
                   Pass in any one HSC (Vocational) subject with one related engineering subject (Mathematics, Physics, or Chemistry).
                 </p>
-                <div className="overflow-x-auto w-full">
-                  <Table className="border border-border bg-card">
-                    <TableHeader className="bg-muted">
-                      <TableRow className="border-border">
-                        <TableHead className="font-bold text-foreground">Community</TableHead>
-                        <TableHead className="font-bold text-foreground">Minimum Average Marks (Vocational Theory, Practicals & Related Subjects Combined)</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {hscVocationalCutoffs.map((row) => (
-                        <TableRow key={row.community} className="border-border">
-                          <TableCell className="font-medium text-foreground">{row.community}</TableCell>
-                          <TableCell className="text-muted-foreground">{row.percent}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                <div className="flex flex-col border-t border-border mt-8">
+                  <div className="flex px-4 py-3 bg-muted text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                    <div className="w-1/2">Community</div>
+                    <div className="w-1/2">Minimum Average Marks (Vocational Theory, Practicals & Related Subjects Combined)</div>
+                  </div>
+                  <Stagger gap={0.1} viewport={{ once: true }}>
+                    {hscVocationalCutoffs.map((row) => (
+                      <StaggerItem key={row.community}>
+                        <div className="flex px-4 py-6 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group">
+                          <div className="w-1/2 font-bold text-foreground text-sm tracking-wide">{row.community}</div>
+                          <div className="w-1/2 font-medium text-foreground text-lg">{row.percent}</div>
+                        </div>
+                      </StaggerItem>
+                    ))}
+                  </Stagger>
                 </div>
               </div>
 
               <div className="space-y-8">
                 <h3 className="text-2xl font-black uppercase tracking-tight text-foreground">1c. Direct Second Year (Lateral Entry)</h3>
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="border border-border p-8 bg-card flex flex-col">
-                    <h4 className="font-bold text-lg mb-4 text-foreground">Option A — Diploma Candidates</h4>
+                <div className="grid md:grid-cols-2 gap-12 pt-4">
+                  <div className="flex flex-col">
+                    <h4 className="font-bold text-lg mb-4 text-foreground uppercase tracking-tight">Option A — Diploma Candidates</h4>
                     <p className="text-base text-muted-foreground leading-relaxed">
                       Pass in Diploma in appropriate branch of Engineering / Technology from the State Board of Technical Education and Training, Tamil Nadu, or equivalent.
                     </p>
                   </div>
-                  <div className="border border-border p-8 bg-card flex flex-col">
-                    <h4 className="font-bold text-lg mb-4 text-foreground">Option B — B.Sc. Candidates</h4>
+                  <div className="flex flex-col">
+                    <h4 className="font-bold text-lg mb-4 text-foreground uppercase tracking-tight">Option B — B.Sc. Candidates</h4>
                     <p className="text-base text-muted-foreground leading-relaxed mb-6">
                       Pass in a recognized B.Sc. Degree of minimum 3 years duration under the 10+2+3 pattern with core Mathematics at the degree level.
                     </p>
-                    <Alert variant="destructive" className="mt-auto border-destructive/50 text-destructive bg-destructive/5 rounded-none">
+                    <Alert variant="destructive" className="mt-auto border-none bg-destructive/5 rounded-sm p-4">
                       <Info className="h-4 w-4" />
-                      <AlertDescription className="ml-2 font-medium">Non-B.Sc. degree holders are not eligible.</AlertDescription>
+                      <AlertDescription className="ml-2 font-medium text-xs uppercase tracking-wider">Non-B.Sc. degree holders are not eligible.</AlertDescription>
                     </Alert>
                   </div>
                 </div>
 
-                <div className="overflow-x-auto w-full mt-8">
-                  <Table className="border border-border bg-card">
-                    <TableHeader className="bg-muted">
-                      <TableRow className="border-border">
-                        <TableHead className="font-bold text-foreground">Community</TableHead>
-                        <TableHead className="font-bold text-foreground">Minimum Cutoff Marks (Lateral Entry)</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {lateralEntryCutoffs.map((row) => (
-                        <TableRow key={row.community} className="border-border">
-                          <TableCell className="font-medium text-foreground">{row.community}</TableCell>
-                          <TableCell className="text-muted-foreground">{row.percent}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                <div className="flex flex-col border-t border-border mt-8">
+                  <div className="flex px-4 py-3 bg-muted text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                    <div className="w-1/2">Community</div>
+                    <div className="w-1/2">Minimum Cutoff Marks (Lateral Entry)</div>
+                  </div>
+                  <Stagger gap={0.1} viewport={{ once: true }}>
+                    {lateralEntryCutoffs.map((row) => (
+                      <StaggerItem key={row.community}>
+                        <div className="flex px-4 py-6 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group">
+                          <div className="w-1/2 font-bold text-foreground text-sm tracking-wide">{row.community}</div>
+                          <div className="w-1/2 font-medium text-foreground text-lg">{row.percent}</div>
+                        </div>
+                      </StaggerItem>
+                    ))}
+                  </Stagger>
                 </div>
                 <p className="text-xs text-muted-foreground max-w-4xl leading-relaxed mt-4">
                   * As per G.O. (Ms.) No.263, Higher Education (J2) Dept (30.6.2008) & Govt Letter No.5464/J1/2011-1 (4.7.2011). For grade-based certificates, actual percentage marks must be produced; otherwise only minimum grade equivalent marks will be calculated.
@@ -206,13 +267,13 @@ function AdmissionsEligibility() {
                 Postgraduate engineering admissions are conducted under Anna University & Tamil Nadu Government norms via entrance examinations and qualifying degree scores.
               </p>
 
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-12 pt-4">
                 {pgEligibility.map(dept => (
-                  <div key={dept.dept} className="border border-border p-8 bg-card flex flex-col">
+                  <div key={dept.dept} className="flex flex-col py-6 border-t border-border">
                     <h4 className="font-black text-xl uppercase tracking-tight text-foreground mb-2">{dept.dept}</h4>
-                    <p className="text-sm font-bold uppercase tracking-widest text-primary mb-6">Duration: {dept.duration}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-6">Duration: {dept.duration}</p>
                     <h5 className="text-sm font-bold text-foreground mb-4">Eligible Entry Degrees:</h5>
-                    <ul className="list-disc pl-5 space-y-3 text-base text-muted-foreground marker:text-primary">
+                    <ul className="list-disc pl-5 space-y-3 text-base text-muted-foreground marker:text-foreground/30">
                       {dept.entryDegrees.map((degree, idx) => (
                         <li key={idx} className="leading-relaxed">{degree}</li>
                       ))}
@@ -251,23 +312,21 @@ function AdmissionsEligibility() {
 
               <div className="space-y-6 pt-6 border-t border-border/50">
                 <h4 className="font-black text-2xl uppercase tracking-tight text-foreground">Minimum Performance Requirements</h4>
-                <div className="overflow-x-auto w-full">
-                  <Table className="border border-border bg-card">
-                    <TableHeader className="bg-muted">
-                      <TableRow className="border-border">
-                        <TableHead className="font-bold text-foreground">Category</TableHead>
-                        <TableHead className="font-bold text-foreground">Requirement</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {phdCutoffs.map((row) => (
-                        <TableRow key={row.category} className="border-border">
-                          <TableCell className="font-medium text-foreground w-1/3">{row.category}</TableCell>
-                          <TableCell className="text-muted-foreground leading-relaxed">{row.requirement}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                <div className="flex flex-col border-t border-border mt-8">
+                  <div className="flex px-4 py-3 bg-muted text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                    <div className="w-1/3">Category</div>
+                    <div className="w-2/3">Requirement</div>
+                  </div>
+                  <Stagger gap={0.1} viewport={{ once: true }}>
+                    {phdCutoffs.map((row) => (
+                      <StaggerItem key={row.category}>
+                        <div className="flex px-4 py-6 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group">
+                          <div className="w-1/3 font-bold text-foreground text-sm tracking-wide pr-4">{row.category}</div>
+                          <div className="w-2/3 font-medium text-muted-foreground text-base leading-relaxed">{row.requirement}</div>
+                        </div>
+                      </StaggerItem>
+                    ))}
+                  </Stagger>
                 </div>
               </div>
 
@@ -322,7 +381,7 @@ function AdmissionsEligibility() {
             <Magnetic>
               <Link 
                 to="/programmes"
-                className="group flex w-full sm:w-auto items-center justify-between gap-4 border border-border bg-background px-8 py-5 text-sm font-bold uppercase tracking-widest text-foreground transition-colors hover:bg-muted"
+                className="group flex w-full sm:w-auto items-center justify-between gap-4 border border-foreground/20 bg-background px-8 py-5 text-sm font-bold uppercase tracking-widest text-foreground transition-all hover:bg-foreground hover:text-background"
               >
                 <span>View Programmes Offered</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

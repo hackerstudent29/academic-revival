@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Magnetic, Reveal } from "@/components/motion";
-import { PageHero } from "@/components/shared/PageHero";
+import { Magnetic, Reveal, Stagger, StaggerItem } from "@/components/motion";
+import { motion } from "framer-motion";
 import { KeyDriversAccordion } from "@/components/widgets/KeyDriversAccordion";
 import { Download, ArrowRight, Info } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -88,14 +88,81 @@ const scholarshipDetails = [
   },
 ];
 
+function ScholarshipsHero() {
+  return (
+    <section className="relative w-full overflow-hidden h-auto lg:h-[75vh] flex flex-col lg:block">
+      {/* Desktop Image */}
+      <motion.div 
+        initial={{ width: "100%" }}
+        animate={{ width: "60%" }}
+        transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
+        className="absolute inset-y-0 right-0 z-10 hidden lg:block pointer-events-none"
+      >
+        <img 
+          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2000&auto=format&fit=crop" 
+          alt="Students learning and securing scholarships" 
+          className="w-full h-full object-cover object-center"
+        />
+      </motion.div>
+
+      {/* Accent sliding block (The Blue Edge) */}
+      <motion.div 
+        initial={{ width: "0%" }}
+        animate={{ width: "51%" }}
+        transition={{ duration: 1.2, delay: 0.05, ease: [0.76, 0, 0.24, 1] }}
+        className="absolute inset-y-0 left-0 bg-primary z-20 hidden lg:block shadow-2xl"
+        style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
+      />
+
+      {/* Sliding Background from Left with Diagonal Edge */}
+      <motion.div 
+        initial={{ width: "0%" }}
+        animate={{ width: "50%" }}
+        transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
+        className="absolute inset-y-0 left-0 bg-background z-30 hidden lg:block"
+        style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
+      />
+
+      {/* Mobile Image */}
+      <div className="w-full h-[300px] relative lg:hidden block z-10">
+        <img 
+          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2000&auto=format&fit=crop" 
+          alt="Students learning and securing scholarships" 
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+      </div>
+
+      {/* Text Content */}
+      <div className="w-full lg:w-[48%] px-6 py-12 md:py-16 lg:px-10 xl:px-12 flex flex-col justify-center z-40 relative lg:absolute lg:inset-y-0 lg:left-0 h-full bg-background lg:bg-transparent">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="inline-flex items-center gap-2 mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <span className="text-[9px] font-bold tracking-widest uppercase text-primary">Eligibility & Scholarships</span>
+          </div>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.05] tracking-tight text-primary mb-5 text-balance">
+            Scholarship <br/>
+            Programmes
+          </h1>
+          
+          <p className="text-sm md:text-base font-medium text-muted-foreground leading-relaxed max-w-md">
+            Government and institutional financial assistance. Explore AICTE, MHRD, and Ministry-funded schemes for eligible students at MSAJCE.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 function ScholarshipsPage() {
   return (
     <main className="bg-background min-h-screen">
-      <PageHero 
-        eyebrow="ELIGIBILITY & SCHOLARSHIPS" 
-        title="SCHOLARSHIP PROGRAMMES" 
-        description="Government and institutional financial assistance for eligible students." 
-      />
+      <ScholarshipsHero />
 
       {/* Trust Badge Strip */}
       <div className="border-b border-border bg-muted/30">
@@ -104,44 +171,49 @@ function ScholarshipsPage() {
         </div>
       </div>
 
-      <section className="mx-auto max-w-[1440px] px-6 py-24 md:px-12 md:py-32">
+      <section className="mx-auto max-w-[1200px] px-6 py-24 md:px-12 md:py-32">
         <Reveal variant="rise" viewport={{ once: true }}>
           <p className="text-base text-muted-foreground leading-relaxed max-w-[80ch] mb-16">
             MSAJCE students can access AICTE, Ministry of Minority Affairs, MHRD, and Ministry of Labour scholarship schemes based on category, income, and academic eligibility.
           </p>
         </Reveal>
 
-        <Reveal variant="rise" viewport={{ once: true }}>
-          <div className="overflow-x-auto w-full mb-20 pb-4">
-            <Table className="border border-border bg-card min-w-[850px]">
-              <TableHeader className="bg-muted">
-                <TableRow className="border-border">
-                  <TableHead className="font-bold text-foreground">Scheme Name</TableHead>
-                  <TableHead className="font-bold text-foreground">Eligibility</TableHead>
-                  <TableHead className="font-bold text-foreground">Funding Agency</TableHead>
-                  <TableHead className="font-bold text-foreground">Amount</TableHead>
-                  <TableHead className="font-bold text-foreground">TN Quota</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {scholarshipMatrix.map((row) => (
-                  <TableRow key={row.scheme} className="border-border">
-                    <TableCell className="font-medium text-foreground whitespace-nowrap">
-                      {row.scheme}
-                      <span className="ml-3 inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-widest text-primary align-middle">
-                        {row.tag}
-                      </span>
-                    </TableCell>
-                    <TableCell className="text-muted-foreground leading-relaxed py-4">{row.eligibility}</TableCell>
-                    <TableCell className="text-muted-foreground whitespace-nowrap">{row.agency}</TableCell>
-                    <TableCell className="text-muted-foreground whitespace-nowrap font-medium text-foreground">{row.amount}</TableCell>
-                    <TableCell className="text-muted-foreground">{row.quota}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+        <div className="flex flex-col border-t border-border mt-8 mb-20">
+          <div className="hidden lg:flex px-4 py-3 bg-muted text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+            <div className="w-[25%]">Scheme Name</div>
+            <div className="w-[35%]">Eligibility</div>
+            <div className="w-[15%]">Funding Agency</div>
+            <div className="w-[15%]">Amount</div>
+            <div className="w-[10%]">TN Quota</div>
           </div>
-        </Reveal>
+          <Stagger gap={0.1} viewport={{ once: true }}>
+            {scholarshipMatrix.map((row) => (
+              <StaggerItem key={row.scheme}>
+                <div className="flex flex-col lg:flex-row px-4 py-6 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group gap-4 lg:gap-0">
+                  <div className="w-full lg:w-[25%] flex flex-col items-start justify-center pr-4">
+                    <span className="font-bold text-foreground text-sm tracking-wide group-hover:text-primary transition-colors">{row.scheme}</span>
+                    <span className="mt-2 inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-widest text-primary align-middle">
+                      {row.tag}
+                    </span>
+                  </div>
+                  <div className="w-full lg:w-[35%] text-muted-foreground text-sm leading-relaxed flex items-center pr-4">{row.eligibility}</div>
+                  <div className="w-full lg:w-[15%] text-muted-foreground text-sm flex items-center pr-4">
+                    <span className="lg:hidden text-[10px] font-bold uppercase tracking-widest text-muted-foreground mr-2">Agency:</span>
+                    {row.agency}
+                  </div>
+                  <div className="w-full lg:w-[15%] font-medium text-foreground text-base flex items-center pr-4">
+                    <span className="lg:hidden text-[10px] font-bold uppercase tracking-widest text-muted-foreground mr-2">Amount:</span>
+                    {row.amount}
+                  </div>
+                  <div className="w-full lg:w-[10%] text-muted-foreground text-sm flex items-center">
+                    <span className="lg:hidden text-[10px] font-bold uppercase tracking-widest text-muted-foreground mr-2">TN Quota:</span>
+                    {row.quota}
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
 
         <Reveal variant="mask" viewport={{ once: true }}>
           <div className="mb-16">
@@ -156,9 +228,9 @@ function ScholarshipsPage() {
 
         {/* Note block */}
         <Reveal variant="rise" viewport={{ once: true }}>
-          <div className="flex flex-col md:flex-row items-start justify-between gap-6 border border-border bg-muted p-6 md:p-8">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-6 py-8 border-y border-border">
             <div className="flex items-start gap-4">
-              <Info className="h-6 w-6 text-foreground shrink-0 mt-0.5" />
+              <Info className="h-6 w-6 text-primary shrink-0 mt-0.5" />
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-[80ch]">
                 Scholarship eligibility depends on category, income, and academic performance. Verify current-year income limits and required documents with the Admission Helpdesk before applying.
               </p>
@@ -183,7 +255,7 @@ function ScholarshipsPage() {
             <Magnetic>
               <Link 
                 to="/contact"
-                className="group flex w-full sm:w-auto items-center justify-between gap-4 border border-border bg-background px-8 py-5 text-sm font-bold uppercase tracking-widest text-foreground transition-colors hover:bg-muted"
+                className="group flex w-full sm:w-auto items-center justify-between gap-4 border border-foreground/20 bg-background px-8 py-5 text-sm font-bold uppercase tracking-widest text-foreground transition-all hover:bg-foreground hover:text-background"
               >
                 <span>Enquire Now</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

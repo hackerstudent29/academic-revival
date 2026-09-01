@@ -464,7 +464,7 @@ function CoursePage() {
       </h4>
     ),
     p: ({ node, children, ...props }: any) => (
-      <p className="text-muted-foreground text-base md:text-lg leading-[1.8] mb-8" {...props}>
+      <p className="text-foreground/80 text-base md:text-lg leading-[1.8] mb-8" {...props}>
         {children}
       </p>
     ),
@@ -522,12 +522,12 @@ function CoursePage() {
             <span className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full bg-primary/10 text-primary font-bold text-xs mt-0.5">
               {missionMatch[1]}
             </span>
-            <span className="text-muted-foreground leading-[1.8] text-base md:text-lg">{missionMatch[2]}</span>
+            <span className="text-foreground/80 leading-[1.8] text-base md:text-lg">{missionMatch[2]}</span>
           </li>
         );
       }
       return (
-        <li style={{ display: 'list-item' }} className="leading-[1.8] text-muted-foreground text-base md:text-lg [&>p]:inline" {...props}>
+        <li style={{ display: 'list-item' }} className="leading-[1.8] text-foreground/80 text-base md:text-lg [&>p]:inline" {...props}>
           {children}
         </li>
       );
@@ -538,7 +538,7 @@ function CoursePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EAEAEA] dark:bg-[#15141c]">
+    <div className="min-h-screen bg-page-bg text-foreground">
       {/* Sub Navigation Bar with Sticky Scroll Indicator */}
       <motion.div 
         animate={{ y: hidden ? -65 : 0 }}
@@ -608,7 +608,7 @@ function CoursePage() {
         
       {/* Information Header Box */}
       <div className="relative -mt-28 md:-mt-36 left-0 w-full px-6 lg:px-12 z-10 flex justify-center md:justify-start max-w-[1440px] mx-auto right-0">
-        <div className="bg-[#EAEAEA] dark:bg-[#15141c] w-full max-w-5xl p-8 md:p-12 lg:p-14 border border-border rounded-none">
+        <div className="bg-card text-card-foreground w-full max-w-5xl p-8 md:p-12 lg:p-14 border border-border shadow-sm rounded-none">
           
           {/* Course Name & Lead Statement */}
           <div className="mb-2">
@@ -620,7 +620,7 @@ function CoursePage() {
              </h1>
              
              {/* Hero Strip */}
-             <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] md:text-[12px] font-bold text-muted-foreground uppercase tracking-widest mb-6">
+             <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] md:text-[12px] font-bold text-foreground/70 uppercase tracking-widest mb-6">
                <span>Est. 1999</span>
                <span className="w-1 h-1 rounded-full bg-border"></span>
                <span>NAAC Accredited</span>
@@ -630,7 +630,7 @@ function CoursePage() {
                <span>Anna University Affiliated</span>
              </div>
              
-             <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mt-6 border-t border-border/50 pt-6">
+             <p className="text-base md:text-lg text-foreground/80 leading-relaxed max-w-3xl mt-6 border-t border-border/50 pt-6">
                {course.description}
              </p>
           </div>
