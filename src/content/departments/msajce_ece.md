@@ -1,18 +1,16 @@
-# Department of Electronics & Communication Engineering (ECE)
+# Department of Electronics and Communication Engineering (ECE)
 
 ## About Department
 
-### About Department
-### Department Introduction
-The Department of Electronics & Communication Engineering at Mohamed Sathak A.J. College of Engineering (MSAJCE) integrates cutting-edge computing hardware and software principles to deliver high-impact technological education. Computing touches every facet of modern civilization—from artificial intelligence, cloud infrastructure, and autonomous systems to healthcare, financial technology, and cybersecurity.
+The Department of Electronics and Communication Engineering at Mohamed Sathak A.J. College of Engineering (MSAJCE) specializes in signal processing, VLSI design, wireless communications, IoT systems, and embedded hardware engineering.
 
 ### Vision
-* **V.** To be a centre of excellence for transforming students into proficient Computer Science Engineers through sustainable practices.
+* **V.** To be a centre of excellence for transforming students into proficient Electronics and Communication Engineers with technical competence, research acumen, and ethical values.
 
 ### Mission
-* **M1.** Impart core fundamental knowledge and necessary skills in Electronics & Communication Engineering through innovative teaching and learning methodology.
-* **M2.** Inculcate critical thinking, ethics, lifelong learning and creativity needed for industry and society.
-* **M3.** Cultivate the students with all-round competencies, for career, higher education and self-employability.
+* **M1.** Provide rigorous education in electronics, communication systems, signal processing, and VLSI design through modern laboratories.
+* **M2.** Encourage innovative research in 5G/6G wireless networks, IoT edge devices, and embedded AI platforms.
+* **M3.** Develop leadership, teamwork, and entrepreneurial skills to meet the demands of global core engineering industries.
 
 ### Department Overview & Focus Areas
 The department focuses on modern software architecture, algorithms, distributed computing, artificial intelligence, cloud engineering, cybersecurity, and full-stack system design. Interdisciplinary integration connects computational sciences with bioinformatics, data science, financial analytics, and operations research.

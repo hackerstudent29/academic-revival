@@ -85,7 +85,7 @@ function Placements() {
   };
 
   return (
-    <div className="min-h-screen bg-page-bg text-foreground font-sans flex flex-col selection:bg-[#005DA6] selection:text-white tracking-[0.01em]">
+    <div className="min-h-screen bg-page-bg text-foreground font-sans flex flex-col selection:bg-primary selection:text-white tracking-[0.01em]">
       {/* Secondary Sub Navigation Bar */}
       <SecondarySubNav
         title="CAREER & PLACEMENT CELL"
@@ -169,7 +169,7 @@ function Placements() {
 
         <button
           onClick={() => setIsContactOpen(true)}
-          className="w-12 h-12 rounded-full bg-[#005DA6] hover:bg-[#059669] text-white shadow-xl flex items-center justify-center transition-colors group cursor-pointer border border-white/20"
+          className="w-12 h-12 rounded-full bg-primary hover:bg-primary/90 text-white shadow-xl flex items-center justify-center transition-colors group cursor-pointer border border-white/20"
           title="Contact Placement Cell"
           aria-label="Contact Placement Cell"
         >
@@ -178,7 +178,7 @@ function Placements() {
 
         <button
           onClick={() => setIsBrochureOpen(true)}
-          className="w-12 h-12 rounded-full bg-[#059669] hover:bg-[#005DA6] text-white shadow-xl flex items-center justify-center transition-colors group cursor-pointer border border-white/20"
+          className="w-12 h-12 rounded-full bg-primary hover:bg-primary/90 text-white shadow-xl flex items-center justify-center transition-colors group cursor-pointer border border-white/20"
           title="Download Placement Dossier"
           aria-label="Download Placement Dossier"
         >

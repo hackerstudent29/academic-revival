@@ -70,11 +70,11 @@ export function ImageCollageSquare({ images }: ImageCollageSquareProps) {
 export function WhyJoinSection() {
   const [activeItem, setActiveItem] = useState(0);
   const collageImages = [
-    ITEMS[0].mediaUrl,
-    ITEMS[1].mediaUrl,
-    ITEMS[2].mediaUrl,
-    ITEMS[3].mediaUrl,
-    ITEMS[4].mediaUrl,
+    ITEMS[0]?.mediaUrl ?? "",
+    ITEMS[1]?.mediaUrl ?? "",
+    ITEMS[2]?.mediaUrl ?? "",
+    ITEMS[3]?.mediaUrl ?? "",
+    ITEMS[4]?.mediaUrl ?? "",
   ];
 
   return (
@@ -89,7 +89,7 @@ export function WhyJoinSection() {
         
         {/* Header moved above the grid */}
         <Reveal variant="slide-right" className="flex flex-col gap-4 max-w-xl lg:max-w-2xl mb-4">
-          <h2 className="text-4xl md:text-5xl font-black text-primary tracking-tighter">
+          <h2 className="text-4xl md:text-5xl font-black font-oswald uppercase text-primary tracking-tight">
             <SplitText text="Why Join MSAJCE?" />
           </h2>
         </Reveal>
@@ -105,10 +105,10 @@ export function WhyJoinSection() {
               {ITEMS.map((item, idx) => (
                 <Reveal key={item.id} variant="slide-right" delay={idx * 0.05} className="w-full animate-fade-in">
                   <div className="group flex items-start gap-5 w-full text-left">
-                    <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full font-black text-[11px] bg-primary/10 text-primary mt-0.5">
+                    <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full font-black text-[11px] bg-primary/10 text-primary font-oswald mt-0.5">
                       0{idx + 1}
                     </div>
-                    <span className="text-sm md:text-[15px] font-medium text-foreground leading-relaxed">
+                    <span className="text-sm md:text-[15px] font-medium font-libre text-foreground leading-relaxed">
                       {item.title}
                     </span>
                   </div>
@@ -123,9 +123,9 @@ export function WhyJoinSection() {
                   <CountUp
                     value={stat.value}
                     suffix={stat.suffix}
-                    className="block text-3xl md:text-4xl font-bold tracking-tighter text-primary"
+                    className="block text-3xl md:text-4xl font-bold font-oswald tracking-tight text-primary"
                   />
-                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-widest block mt-1">
+                  <span className="text-xs font-bold font-libre text-foreground uppercase tracking-widest block mt-1">
                     {stat.label}
                   </span>
                 </StaggerItem>

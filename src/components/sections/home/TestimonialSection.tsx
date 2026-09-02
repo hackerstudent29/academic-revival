@@ -180,9 +180,9 @@ export function TestimonialSection() {
               Featured Alumni Spotlight //
             </span>
             
-            <div className="w-full bg-card/40 backdrop-blur-md border border-foreground/10 p-6 md:p-8 rounded-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center shadow-sm">
+            <div className="w-full bg-card/40 backdrop-blur-md border border-foreground/10 p-6 md:p-8 rounded-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center min-h-[380px] sm:min-h-[420px] shadow-sm">
               {/* Portrait Photo (Static on hover) */}
-              <div className="col-span-1 md:col-span-5 aspect-[4/5] w-full rounded-sm overflow-hidden border border-foreground/10 relative bg-muted shadow-sm">
+              <div className="col-span-1 md:col-span-5 aspect-[4/5] w-full rounded-sm overflow-hidden border border-foreground/10 relative bg-muted shadow-sm shrink-0">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={activeIndex}
@@ -208,25 +208,25 @@ export function TestimonialSection() {
                 )}
               </div>
 
-              {/* Editorial Serif Pull-quote */}
-              <div className="col-span-1 md:col-span-7 flex flex-col justify-between h-full min-h-[240px]">
-                <div>
-                  <span className="text-5xl md:text-6xl font-serif text-[#004b87] leading-none block -mb-2">“</span>
+              {/* Editorial Serif Pull-quote (Fixed Height Container to prevent card jumping) */}
+              <div className="col-span-1 md:col-span-7 flex flex-col justify-between h-full min-h-[260px] sm:min-h-[300px]">
+                <div className="min-h-[170px] sm:min-h-[200px] flex flex-col justify-center">
+                  <span className="text-4xl md:text-5xl font-serif text-primary leading-none block -mb-1">“</span>
                   <AnimatePresence mode="wait">
                     <motion.blockquote
                       key={activeIndex}
-                      initial={{ opacity: 0, y: 10 }}
+                      initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.35 }}
-                      className="text-2xl md:text-3xl lg:text-[34px] font-bold leading-tight text-foreground/90 tracking-tight font-sans"
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug text-foreground tracking-tight font-sans line-clamp-4"
                     >
                       {TESTIMONIALS[activeIndex]?.quote}
                     </motion.blockquote>
                   </AnimatePresence>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-foreground/5 flex flex-col">
+                <div className="mt-4 pt-4 border-t border-foreground/10 flex flex-col shrink-0">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeIndex}
@@ -235,10 +235,10 @@ export function TestimonialSection() {
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <span className="text-base font-bold text-foreground block">
+                      <span className="text-lg font-black text-primary font-oswald uppercase tracking-wide block">
                         {TESTIMONIALS[activeIndex]?.author}
                       </span>
-                      <span className="text-[10px] font-mono font-bold tracking-widest text-[#004b87] uppercase block mt-1">
+                      <span className="text-xs font-semibold font-sans text-foreground/80 uppercase tracking-wider block mt-0.5">
                         {TESTIMONIALS[activeIndex]?.position}
                       </span>
                     </motion.div>
@@ -256,7 +256,7 @@ export function TestimonialSection() {
                     onClick={() => setActiveIndex(idx)}
                     className={`relative w-12 h-12 rounded-full overflow-hidden border-2 transition-all duration-300 ${
                       activeIndex === idx
-                        ? "border-[#004b87] scale-105"
+                        ? "border-primary scale-105"
                         : "border-transparent opacity-60 hover:opacity-100"
                     }`}
                   >
@@ -311,14 +311,14 @@ export function TestimonialSection() {
                       </div>
                       <div className="absolute top-3 left-3 z-20 bg-background/90 backdrop-blur px-2.5 py-0.5 rounded-full border border-foreground/10 flex items-center gap-1.5 shadow-sm">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#004b87] animate-pulse" />
-                        <span className="text-[8px] font-mono font-bold tracking-widest text-[#004b87] uppercase">▶ Watch</span>
+                        <span className="text-[8px] font-mono font-bold tracking-widest text-primary uppercase">▶ Watch</span>
                       </div>
                     </>
                   )}
                 </div>
                 <div className="p-4 flex flex-col gap-1 bg-card text-left">
-                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-[#004b87]">ALUMNI I PLACEMENT</span>
-                  <h4 className="text-xs font-bold leading-snug text-foreground group-hover/video:text-[#004b87] transition-colors">Alumni Placement Journey</h4>
+                  <span className="text-[9px] font-oswald font-bold uppercase tracking-wider text-primary">ALUMNI PLACEMENTS</span>
+                  <h4 className="text-xs font-bold leading-snug text-foreground group-hover/video:text-primary transition-colors">Alumni Placement Journey</h4>
                   <p className="text-[10px] text-muted-foreground leading-normal line-clamp-2 mt-0.5">Class of 2024 graduates share their interview prep & campus placement success.</p>
                 </div>
               </div>
@@ -348,14 +348,14 @@ export function TestimonialSection() {
                       </div>
                       <div className="absolute top-3 left-3 z-20 bg-background/90 backdrop-blur px-2.5 py-0.5 rounded-full border border-foreground/10 flex items-center gap-1.5 shadow-sm">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#004b87] animate-pulse" />
-                        <span className="text-[8px] font-mono font-bold tracking-widest text-[#004b87] uppercase">▶ Watch</span>
+                        <span className="text-[8px] font-mono font-bold tracking-widest text-primary uppercase">▶ Watch</span>
                       </div>
                     </>
                   )}
                 </div>
                 <div className="p-4 flex flex-col gap-1 bg-card text-left">
-                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-[#004b87]">CAMPUS I LIFE</span>
-                  <h4 className="text-xs font-bold leading-snug text-foreground group-hover/video:text-[#004b87] transition-colors">Campus Life & Growth</h4>
+                  <span className="text-[9px] font-oswald font-bold uppercase tracking-wider text-primary">CAMPUS LIFE</span>
+                  <h4 className="text-xs font-bold leading-snug text-foreground group-hover/video:text-primary transition-colors">Campus Life & Growth</h4>
                   <p className="text-[10px] text-muted-foreground leading-normal line-clamp-2 mt-0.5">Engineering leads share details about student research opportunities and campus growth.</p>
                 </div>
               </div>
@@ -377,7 +377,7 @@ export function TestimonialSection() {
                   they shape the future."
                 </span>
                 <span 
-                  className="text-xl md:text-2xl text-[#004b87] font-bold mt-4 ml-12" 
+                  className="text-xl md:text-2xl text-primary font-bold mt-4 ml-12" 
                   style={{ fontFamily: "'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive" }}
                 >
                   – Dr. K.S. Srinivasan, Principal
@@ -431,7 +431,7 @@ export function TestimonialSection() {
                   className="shrink-0 w-[300px] md:w-[350px] h-[220px] bg-card border border-foreground/10 p-6 rounded-md flex flex-col justify-between shadow-sm cursor-default"
                 >
                   <div className="flex flex-col">
-                    <Quote className="h-5 w-5 text-[#004b87]/30 mb-4" />
+                    <Quote className="h-5 w-5 text-primary/30 mb-4" />
                     <p className="text-sm text-foreground/80 leading-relaxed font-medium mb-4 line-clamp-4">
                       "{t.quote}"
                     </p>

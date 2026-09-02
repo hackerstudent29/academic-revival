@@ -27,7 +27,7 @@ const MatteArchPhotoFrame: React.FC<{
   const getBorders = () => {
     switch (accentColor) {
       case 'navy':
-        return { outer: '#082B5C', inner: '#0A3B7B' };
+        return { outer: '#9E2339', inner: '#0A3B7B' };
       case 'blue':
         return { outer: '#0284C7', inner: '#38BDF8' };
       case 'teal':
@@ -85,7 +85,7 @@ const ElongatedArchPhotoFrame: React.FC<{
                 <span className="inline-block px-3.5 py-1 text-[10px] font-black uppercase tracking-widest bg-[#059669] text-white shadow-xs">
                   CIVIL & INFRASTRUCTURE EXCELLENCE
                 </span>
-                <p className="text-xs font-bold text-white mt-1.5 font-['Outfit',sans-serif]">
+                <p className="text-xs font-bold text-white mt-1.5 font-oswald">
                   Green Valleys Shelters Pvt. Ltd. Placement Cohort
                 </p>
               </div>
@@ -104,7 +104,7 @@ const COHORT_CARDS = [
     category: 'HARDWARE QA & ADVANCED MANUFACTURING',
     metric: '75 Students',
     badge: 'TIER-1 MANUFACTURING',
-    color: '#082B5C',
+    color: '#9E2339',
     image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80',
     description: 'Students deployed at high-precision electronics manufacturing and systems QA facilities in Sriperumbudur, mastering board-level testing, automated assembly and surface-mount production.'
   },
@@ -159,7 +159,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
               <span className="text-xs font-mono font-bold text-[#059669] tracking-widest uppercase bg-muted px-3 py-1 inline-block border border-border rounded-md">
                 PRACTICAL IMMERSION & INDUSTRY PIPELINE
               </span>
-              <h1 className="text-3xl sm:text-5xl font-black text-primary uppercase tracking-tight font-['Outfit',sans-serif]">
+              <h1 className="text-3xl sm:text-5xl font-black text-primary uppercase tracking-tight font-oswald">
                 FROM CLASSROOM TO WORKPLACE
               </h1>
               <p className="text-sm sm:text-base text-muted-foreground font-normal">
@@ -248,7 +248,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
                   <div className="text-[10px] font-mono text-[#059669] font-bold tracking-widest">
                     [{nav.num}]
                   </div>
-                  <div className="text-xs sm:text-sm font-black tracking-wider text-foreground uppercase mt-0.5 font-['Outfit',sans-serif]">
+                  <div className="text-xs sm:text-sm font-black tracking-wider text-foreground uppercase mt-0.5 font-oswald">
                     {nav.label}
                   </div>
                   <div className="text-[11px] text-muted-foreground font-medium">
@@ -267,7 +267,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
               <span className="text-xs font-mono font-bold text-[#059669] tracking-widest uppercase bg-muted px-3 py-1 inline-block border border-border">
                 PROVEN COHORT DEPLOYMENTS
               </span>
-              <h2 className="text-2xl sm:text-4xl font-black text-foreground font-['Outfit',sans-serif] uppercase tracking-tight">
+              <h2 className="text-2xl sm:text-4xl font-black text-foreground font-oswald uppercase tracking-tight">
                 WHERE STUDENTS STEPPED INTO INDUSTRY
               </h2>
               <p className="text-sm text-muted-foreground font-normal">
@@ -306,7 +306,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
                       <div className="text-[10px] font-mono font-bold text-[#059669] uppercase">
                         {card.category}
                       </div>
-                      <h3 className="text-base font-bold text-foreground font-['Outfit',sans-serif]">
+                      <h3 className="text-base font-bold text-foreground font-oswald">
                         {card.title}
                       </h3>
                       <p className="text-xs text-muted-foreground leading-relaxed font-normal">
@@ -329,11 +329,11 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
                 </span>
 
                 <div className="flex items-baseline gap-3">
-                  <div className="text-[80px] sm:text-[120px] font-black text-foreground leading-[0.85] tracking-tighter font-['Outfit',sans-serif]">
+                  <div className="text-[80px] sm:text-[120px] font-black text-foreground leading-[0.85] tracking-tighter font-oswald">
                     45
                   </div>
                   <div className="space-y-1">
-                    <span className="text-lg sm:text-2xl font-black tracking-widest text-[#059669] uppercase font-['Outfit',sans-serif] block">
+                    <span className="text-lg sm:text-2xl font-black tracking-widest text-[#059669] uppercase font-oswald block">
                       STUDENTS
                     </span>
                     <span className="text-xs font-mono text-muted-foreground uppercase block">
@@ -343,7 +343,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
                 </div>
 
                 <div className="space-y-2 pt-2 border-t-2 border-primary">
-                  <div className="text-2xl sm:text-3xl font-black text-foreground font-['Outfit',sans-serif] uppercase tracking-tight">
+                  <div className="text-2xl sm:text-3xl font-black text-foreground font-oswald uppercase tracking-tight">
                     GREEN VALLEYS SHELTERS PVT. LTD.
                   </div>
                   <div className="inline-block px-2.5 py-0.5 bg-emerald-100 dark:bg-emerald-950 text-[#059669] font-mono text-xs font-bold uppercase">
@@ -380,7 +380,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
               <span className="text-xs font-mono font-bold text-[#059669] tracking-widest uppercase bg-muted px-3 py-1 inline-block border border-border">
                 OFFICIAL REPOSITORY
               </span>
-              <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-foreground font-['Outfit',sans-serif] uppercase">
+              <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-foreground font-oswald uppercase">
                 THE INTERNSHIP LANDSCAPE
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed font-normal">
@@ -437,7 +437,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
                       className="grid grid-cols-12 p-3.5 items-center hover:bg-muted/50 transition-colors"
                     >
                       <div className="col-span-7 sm:col-span-8 pr-4">
-                        <div className="text-sm font-bold text-foreground font-['Outfit',sans-serif]">
+                        <div className="text-sm font-bold text-foreground font-oswald">
                           {entry.organisation}
                         </div>
                         <div className="text-xs text-[#059669] font-mono mt-0.5 font-bold">
@@ -445,7 +445,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
                         </div>
                       </div>
                       <div className="col-span-5 sm:col-span-4 text-right">
-                        <span className="text-xl font-black text-foreground font-['Outfit',sans-serif]">
+                        <span className="text-xl font-black text-foreground font-oswald">
                           {entry.students}
                         </span>
                         <span className="text-[10px] font-mono text-muted-foreground block uppercase">
@@ -465,7 +465,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
 
               <div className="lg:col-span-4 space-y-4">
                 <div className="p-5 bg-muted/40 border border-border space-y-4">
-                  <h3 className="text-sm font-black text-foreground font-['Outfit',sans-serif] uppercase tracking-wider pb-2 border-b border-border">
+                  <h3 className="text-sm font-black text-foreground font-oswald uppercase tracking-wider pb-2 border-b border-border">
                     HISTORIC SUMMARY
                   </h3>
 
@@ -474,7 +474,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
                       <div className="text-[10px] font-mono text-muted-foreground uppercase">
                         ACADEMIC YEAR 2022–23
                       </div>
-                      <div className="text-2xl font-black text-foreground font-['Outfit',sans-serif]">
+                      <div className="text-2xl font-black text-foreground font-oswald">
                         42 Entries
                       </div>
                       <div className="text-xs text-muted-foreground">
@@ -486,7 +486,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
                       <div className="text-[10px] font-mono text-muted-foreground uppercase">
                         ACADEMIC YEAR 2021–22
                       </div>
-                      <div className="text-2xl font-black text-[#059669] font-['Outfit',sans-serif]">
+                      <div className="text-2xl font-black text-[#059669] font-oswald">
                         5 Entries
                       </div>
                       <div className="text-xs text-muted-foreground">
@@ -498,7 +498,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
                       <div className="text-[10px] font-mono text-muted-foreground uppercase">
                         ACADEMIC YEAR 2020–21
                       </div>
-                      <div className="text-2xl font-black text-[#0284C7] font-['Outfit',sans-serif]">
+                      <div className="text-2xl font-black text-[#0284C7] font-oswald">
                         15 Entries
                       </div>
                       <div className="text-xs text-muted-foreground">

@@ -39,10 +39,10 @@ export const PlacementContactModal: React.FC<PlacementContactModalProps> = ({ is
             <X className="w-5 h-5" />
           </button>
 
-          <div className="inline-flex items-center gap-1.5 bg-[#1769AA] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full mb-2 uppercase">
+          <div className="inline-flex items-center gap-1.5 bg-primary-foreground/20 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full mb-2 uppercase font-oswald">
             Recruiter & Student Helpdesk
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold font-['Outfit',sans-serif]">
+          <h3 className="text-xl sm:text-2xl font-bold font-oswald">
             Contact Training & Placement Cell
           </h3>
           <p className="text-xs sm:text-sm text-primary-foreground/80 mt-1">

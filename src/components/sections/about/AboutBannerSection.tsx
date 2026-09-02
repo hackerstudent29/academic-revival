@@ -107,8 +107,8 @@ export function AboutBannerSection() {
           className="w-full flex flex-col pt-8"
         >
           <div className="flex flex-col">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter text-primary leading-none">
-              CAMPUS FACILITIES.
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
+              CAMPUS FACILITIES
             </h2>
           </div>
         </motion.div>
@@ -135,15 +135,15 @@ export function AboutBannerSection() {
                 />
                 
                 {/* Always-on bottom gradient for text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                 
-                {/* Hover overlay that dims the image slightly */}
-                <div className="absolute inset-0 bg-[#004b87]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Hover overlay with Academic Maroon Red accent */}
+                <div className="absolute inset-0 bg-[#9E2339]/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* Content Overlay */}
                 <div className="absolute inset-0 p-5 md:p-6 flex flex-col justify-end">
                   <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
-                    <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tighter mb-2">
+                    <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight font-oswald mb-2 drop-shadow-sm">
                       {facility.name}
                     </h3>
                     

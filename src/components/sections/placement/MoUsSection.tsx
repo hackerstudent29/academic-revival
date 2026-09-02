@@ -253,7 +253,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
               <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
                 Official bilateral engagements
               </div>
-              <h1 className="text-4xl font-black leading-tight tracking-[0.01em] text-foreground sm:text-5xl lg:text-6xl font-['Outfit',sans-serif]">
+              <h1 className="text-4xl font-black leading-tight tracking-[0.01em] text-foreground sm:text-5xl lg:text-6xl font-oswald">
                 Industry Alliances<br />
                 <span className="text-primary">& Memorandums</span>
               </h1>
@@ -399,7 +399,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
                   </div>
 
                   <div>
-                    <h4 className="text-xs sm:text-sm font-bold text-foreground font-['Outfit',sans-serif] group-hover:text-primary transition-colors">
+                    <h4 className="text-xs sm:text-sm font-bold text-foreground font-oswald group-hover:text-primary transition-colors">
                       {partner.name}
                     </h4>
                     <p className="text-[10px] font-mono text-muted-foreground">
@@ -415,7 +415,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
         <section className="w-full py-24 px-4 sm:px-8 lg:px-14 border-b border-border">
           <div className="max-w-7xl mx-auto">
             <div className="max-w-3xl mb-12 space-y-4">
-              <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-foreground font-['Outfit',sans-serif] uppercase">
+              <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-foreground font-oswald uppercase">
                 INSTITUTIONAL MOU MATRIX
               </h2>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
@@ -472,7 +472,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
                 <tbody className="divide-y divide-border">
                   {mouTableData.map((row, idx) => (
                     <tr key={idx} className="hover:bg-muted/50 transition-colors">
-                      <td className="py-4 px-4 font-bold text-foreground text-sm font-['Outfit',sans-serif]">
+                      <td className="py-4 px-4 font-bold text-foreground text-sm font-oswald">
                         {row.partner}
                       </td>
                       <td className="py-4 px-4 text-foreground/80 font-semibold">{row.domain}</td>
@@ -483,7 +483,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
                         </span>
                       </td>
                       <td className="py-4 px-4 text-muted-foreground max-w-sm leading-relaxed">{row.scope}</td>
-                      <td className="py-4 px-4 font-black text-primary text-right font-['Outfit',sans-serif] text-sm">
+                      <td className="py-4 px-4 font-black text-primary text-right font-oswald text-sm">
                         {row.outcome}
                       </td>
                     </tr>
@@ -498,7 +498,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
         <section className="w-full py-24 px-4 sm:px-8 lg:px-14 border-b border-border">
           <div className="max-w-7xl mx-auto">
             <div className="mb-14">
-              <h2 className="text-3xl sm:text-5xl font-black text-foreground font-['Outfit',sans-serif] uppercase">
+              <h2 className="text-3xl sm:text-5xl font-black text-foreground font-oswald uppercase">
                 ACTIVE AGREEMENTS DOSSIER
               </h2>
               <p className="text-xs sm:text-sm font-mono text-muted-foreground mt-1 uppercase tracking-widest">
@@ -521,7 +521,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
                         <span className="text-muted-foreground font-normal">{mou.duration}</span>
                       </div>
                       
-                      <h3 className="text-2xl sm:text-3xl font-black text-foreground font-['Outfit',sans-serif] group-hover:text-primary transition-colors leading-tight">
+                      <h3 className="text-2xl sm:text-3xl font-black text-foreground font-oswald group-hover:text-primary transition-colors leading-tight">
                         {mou.partnerName}
                       </h3>
                       
@@ -563,7 +563,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
                 <div className="text-xs font-mono tracking-widest text-primary font-bold uppercase">
                   ARCHIVAL CEREMONY RECORD
                 </div>
-                <h2 className="text-3xl sm:text-5xl font-black text-foreground font-['Outfit',sans-serif] uppercase tracking-tight">
+                <h2 className="text-3xl sm:text-5xl font-black text-foreground font-oswald uppercase tracking-tight">
                   MOU SIGNING CEREMONIES & MOMENTS
                 </h2>
               </div>
@@ -617,7 +617,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
                     <div className="text-xs font-mono font-bold text-primary uppercase tracking-wider">
                       {moment.partner}
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-foreground font-['Outfit',sans-serif] group-hover:text-primary transition-colors leading-snug">
+                    <h3 className="text-lg sm:text-xl font-bold text-foreground font-oswald group-hover:text-primary transition-colors leading-snug">
                       {moment.title}
                     </h3>
                     <p className="text-xs text-muted-foreground leading-relaxed font-normal">

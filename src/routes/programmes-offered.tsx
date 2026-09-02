@@ -8,7 +8,7 @@ const description =
 export const Route = createFileRoute('/programmes-offered')({
   validateSearch: (search: Record<string, unknown>) => {
     return {
-      level: search.level as string | undefined,
+      level: search['level'] as string | undefined,
     };
   },
   head: () => ({

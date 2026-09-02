@@ -52,7 +52,7 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
       label: 'EXPERT INTERACTIONS',
       sub: 'Guest Lectures & Seminars',
       icon: Users,
-      color: '#082B5C',
+      color: '#9E2339',
       heading: 'Executive & Expert Interactions',
       desc: 'Direct interaction with visiting industry leaders, corporate technologists, and subject matter experts providing perspectives on emerging domains.',
       points: [
@@ -108,7 +108,7 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
       label: 'TRAINING & CERTIFICATIONS',
       sub: 'Aptitude & Technical Value-Add',
       icon: Target,
-      color: '#082B5C',
+      color: '#9E2339',
       heading: 'Aptitude, Verbal & Technical Certifications',
       desc: 'Comprehensive training in quantitative aptitude, communication, STAR behavioral interviewing, and industry-certified technical courses.',
       points: [
@@ -150,7 +150,7 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
       label: 'MoUs & PARTNERSHIPS',
       sub: 'Institutional Alliances',
       icon: Building,
-      color: '#082B5C',
+      color: '#9E2339',
       heading: 'Corporate Memorandums of Understanding (MoUs)',
       desc: 'Formal Memorandums of Understanding with corporate leaders facilitating student internships, joint research, and prioritized recruitment.',
       points: [
@@ -356,7 +356,7 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
             <div className="lg:col-span-6 space-y-6">
               
               <div className="space-y-3">
-                <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
+                <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
                   WHERE INDUSTRY MEETS TALENT
                 </h2>
               </div>
@@ -370,33 +370,33 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
                   
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
-                    <span className="text-xs sm:text-sm font-black tracking-wider text-foreground font-['Outfit',sans-serif]">
+                    <span className="text-xs sm:text-sm font-black tracking-wider text-foreground font-oswald">
                       TALENT
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-2 text-[#059669]">
-                    <span className="h-0.5 w-6 sm:w-10 bg-[#059669]/50" />
+                  <div className="flex items-center gap-2 text-primary">
+                    <span className="h-0.5 w-6 sm:w-10 bg-primary/50" />
                     <span className="text-xs font-bold animate-pulse">↔</span>
-                    <span className="h-0.5 w-6 sm:w-10 bg-[#059669]/50" />
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#059669] animate-pulse" />
-                    <span className="text-xs sm:text-sm font-black tracking-wider text-foreground font-['Outfit',sans-serif]">
-                      INDUSTRY
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-2 text-[#059669]">
-                    <span className="h-0.5 w-6 sm:w-10 bg-[#059669]/50" />
-                    <span className="text-xs font-bold animate-pulse">↔</span>
-                    <span className="h-0.5 w-6 sm:w-10 bg-[#059669]/50" />
+                    <span className="h-0.5 w-6 sm:w-10 bg-primary/50" />
                   </div>
 
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
-                    <span className="text-xs sm:text-sm font-black tracking-wider text-foreground font-['Outfit',sans-serif]">
+                    <span className="text-xs sm:text-sm font-black tracking-wider text-foreground font-oswald">
+                      INDUSTRY
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-primary">
+                    <span className="h-0.5 w-6 sm:w-10 bg-primary/50" />
+                    <span className="text-xs font-bold animate-pulse">↔</span>
+                    <span className="h-0.5 w-6 sm:w-10 bg-primary/50" />
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
+                    <span className="text-xs sm:text-sm font-black tracking-wider text-foreground font-oswald">
                       OPPORTUNITY
                     </span>
                   </div>
@@ -437,11 +437,11 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
               <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-muted text-foreground text-xs font-extrabold tracking-widest uppercase">
                 <span>INDUSTRY PARTNERSHIPS</span>
               </div>
-              <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
                 THE RECRUITER ECOSYSTEM
               </h2>
               <div className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest text-primary uppercase pt-1">
-                <Building2 className="w-4 h-4 text-[#059669]" />
+                <Building2 className="w-4 h-4 text-[#3E5D7C]" />
                 CAMPUS TO CAREER OPPORTUNITIES
               </div>
               <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-1">
@@ -534,7 +534,7 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
                         <ItemIcon className="w-5 h-5" />
                       </div>
                       <div>
-                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-['Outfit',sans-serif]">
+                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-oswald">
                           {item.label}
                         </h4>
                         <p className={`text-[11px] leading-tight mt-0.5 line-clamp-1 ${
@@ -562,10 +562,10 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
                       {React.createElement(activeEcosystem.icon, { className: 'w-5 h-5' })}
                     </div>
                     <div>
-                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#059669]">
+                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#3E5D7C]">
                         KEY FOCUS AREA
                       </span>
-                      <h4 className="text-lg sm:text-xl font-bold text-foreground font-['Outfit',sans-serif] leading-snug">
+                      <h4 className="text-lg sm:text-xl font-bold text-foreground font-oswald leading-snug">
                         {activeEcosystem.label}
                       </h4>
                     </div>
@@ -587,7 +587,7 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
                   </p>
                   {activeEcosystem.points.map((pt, pIdx) => (
                     <div key={pIdx} className="flex items-start gap-2.5">
-                      <div className="w-4 h-4 rounded-full bg-emerald-100 dark:bg-emerald-950 text-[#059669] flex items-center justify-center shrink-0 mt-0.5 text-[10px]">
+                      <div className="w-4 h-4 rounded-full bg-emerald-100 dark:bg-emerald-950 text-[#3E5D7C] flex items-center justify-center shrink-0 mt-0.5 text-[10px]">
                         <Check className="w-3 h-3" />
                       </div>
                       <span className="text-xs text-foreground/90 font-medium leading-relaxed">{pt}</span>
@@ -611,13 +611,13 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
           </div>
 
           <div className="mt-14 pt-8 border-t border-border text-center">
-            <p className="text-xs sm:text-sm font-extrabold tracking-widest text-foreground font-['Outfit',sans-serif] uppercase flex flex-wrap items-center justify-center gap-2 sm:gap-4">
+            <p className="text-xs sm:text-sm font-extrabold tracking-widest text-foreground font-oswald uppercase flex flex-wrap items-center justify-center gap-2 sm:gap-4">
               <span>ACADEMIA</span>
-              <span className="text-[#059669]">→</span>
+              <span className="text-[#3E5D7C]">→</span>
               <span>INDUSTRY</span>
-              <span className="text-[#059669]">→</span>
+              <span className="text-[#3E5D7C]">→</span>
               <span>EXPERIENCE</span>
-              <span className="text-[#059669]">→</span>
+              <span className="text-[#3E5D7C]">→</span>
               <span className="text-primary font-bold">EMPLOYABILITY</span>
             </p>
           </div>
@@ -632,7 +632,7 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
             
             <div className="lg:col-span-6 space-y-4">
-              <h2 className="text-3xl sm:text-5xl font-black text-amber-600 tracking-tight font-['Outfit',sans-serif] leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-black text-amber-600 tracking-tight font-oswald leading-tight">
                 FROM CAMPUS TO COMPANY
               </h2>
               <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-2">
@@ -700,7 +700,7 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
                       {stage.num}
                     </div>
 
-                    <h4 className={`text-sm font-black font-['Outfit',sans-serif] tracking-tight uppercase mt-1 ${
+                    <h4 className={`text-sm font-black font-oswald tracking-tight uppercase mt-1 ${
                       isActive ? 'text-amber-600' : 'text-foreground'
                     }`}>
                       {stage.word}
@@ -755,7 +755,7 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-muted text-foreground text-xs font-extrabold tracking-widest uppercase">
             <span>OFFICIAL CAMPUS HIRING ALLIANCES</span>
           </div>
-          <h3 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight font-['Outfit',sans-serif]">
+          <h3 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight font-oswald">
             Our Major Recruiters
           </h3>
           <p className="text-sm text-muted-foreground">
@@ -797,10 +797,10 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
               {majorRecruiters.concat(majorRecruiters).map((rec, idx) => (
                 <React.Fragment key={`rec-${idx}`}>
                   <div className="recruiter-item group cursor-pointer">
-                    <span className="text-sm sm:text-base font-black text-foreground group-hover:text-primary transition-colors duration-300 font-['Outfit',sans-serif] text-center whitespace-normal line-clamp-2">
+                    <span className="text-sm sm:text-base font-black text-foreground group-hover:text-primary transition-colors duration-300 font-oswald text-center whitespace-normal line-clamp-2">
                       {rec.name}
                     </span>
-                    <span className="text-[10px] text-[#059669] font-bold mt-2 uppercase tracking-wide">
+                    <span className="text-[10px] text-[#3E5D7C] font-bold mt-2 uppercase tracking-wide">
                       {rec.category}
                     </span>
                   </div>
@@ -809,7 +809,7 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
                     <div className="recruiter-item flex-col items-center justify-center h-full">
                       <div className="w-24 h-24 sm:w-32 sm:h-32 bg-muted rounded-lg flex items-center justify-center group hover:bg-primary/20 transition-all duration-300">
                         <div className="text-center">
-                          <div className="text-2xl sm:text-3xl font-black text-primary opacity-60 font-['Outfit',sans-serif]">
+                          <div className="text-2xl sm:text-3xl font-black text-primary opacity-60 font-oswald">
                             +
                           </div>
                           <span className="text-[10px] text-muted-foreground font-bold uppercase mt-1 block">
@@ -831,10 +831,10 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-3xl mx-auto text-center mb-14 space-y-3.5">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#082B5C] text-white text-xs font-black tracking-widest uppercase shadow-xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#9E2339] text-white text-xs font-black tracking-widest uppercase shadow-xs">
               <span>STRUCTURAL PERSPECTIVE</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
               RECRUITER & OPPORTUNITY MATRIX
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-2">
@@ -846,14 +846,14 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-[#082B5C] text-white border-b border-border">
-                    <th className="py-4 px-6 text-xs font-black uppercase tracking-wider font-['Outfit',sans-serif]">
+                  <tr className="bg-[#9E2339] text-white border-b border-border">
+                    <th className="py-4 px-6 text-xs font-black uppercase tracking-wider font-oswald">
                       Dimension
                     </th>
-                    <th className="py-4 px-6 text-xs font-black uppercase tracking-wider font-['Outfit',sans-serif]">
+                    <th className="py-4 px-6 text-xs font-black uppercase tracking-wider font-oswald">
                       What It Represents
                     </th>
-                    <th className="py-4 px-6 text-xs font-black uppercase tracking-wider font-['Outfit',sans-serif]">
+                    <th className="py-4 px-6 text-xs font-black uppercase tracking-wider font-oswald">
                       Student Perspective
                     </th>
                   </tr>
@@ -866,7 +866,7 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
                     >
                       <td className="py-4.5 px-6 font-bold text-foreground whitespace-nowrap">
                         <span className="inline-flex items-center gap-2.5">
-                          <span className="w-2 h-2 rounded-full bg-[#005DA6] shadow-xs" />
+                          <span className="w-2 h-2 rounded-full bg-primary shadow-xs" />
                           {row.dimension}
                         </span>
                       </td>
@@ -890,7 +890,7 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-3xl mb-14 space-y-3">
-            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
               MORE THAN A COMPANY LOGO
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-2">
@@ -910,14 +910,14 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
                   className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.92]"
                 />
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#082B5C]/90 via-[#082B5C]/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#9E2339]/90 via-[#9E2339]/40 to-transparent" />
 
                 <div className="relative z-10 space-y-2 text-white">
                   <div className="inline-flex items-center gap-2 px-2.5 py-0.5 bg-white/20 backdrop-blur-xs text-[11px] font-extrabold uppercase tracking-wider">
                     <span>IMAGE {story.step}</span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-black tracking-tight font-['Outfit',sans-serif]">
+                  <h3 className="text-xl sm:text-2xl font-black tracking-tight font-oswald">
                     {story.title}
                   </h3>
 
@@ -933,10 +933,10 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
       </section>
 
       {/* FINAL CLOSING */}
-      <section className="w-full py-20 sm:py-28 bg-[#082B5C] text-white relative overflow-hidden" id="closing-statement">
+      <section className="w-full py-20 sm:py-28 bg-[#9E2339] text-white relative overflow-hidden" id="closing-statement">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
           
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight font-['Outfit',sans-serif] leading-tight text-white">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight font-oswald leading-tight text-white">
             <span className="block">THE RIGHT CONNECTION</span>
             <span className="text-emerald-400 block mt-1">
               CAN OPEN THE NEXT DOOR.

@@ -2,17 +2,15 @@
 
 ## About Department
 
-### About Department
-### Department Introduction
-The Department of Mechanical Engineering at Mohamed Sathak A.J. College of Engineering (MSAJCE) integrates cutting-edge computing hardware and software principles to deliver high-impact technological education. Computing touches every facet of modern civilization—from artificial intelligence, cloud infrastructure, and autonomous systems to healthcare, financial technology, and cybersecurity.
+The Department of Mechanical Engineering at Mohamed Sathak A.J. College of Engineering (MSAJCE) is dedicated to developing world-class mechanical engineers, thermal systems designers, robotics innovators, and manufacturing specialists. Mechanical Engineering powers industrial automation, electric vehicle systems, renewable energy platforms, and advanced product design.
 
 ### Vision
-* **V.** To be a centre of excellence for transforming students into proficient Computer Science Engineers through sustainable practices.
+* **V.** To be a centre of excellence for transforming students into proficient Mechanical Engineers through sustainable manufacturing practices, thermal innovation, and industry-aligned skills.
 
 ### Mission
-* **M1.** Impart core fundamental knowledge and necessary skills in Mechanical Engineering through innovative teaching and learning methodology.
-* **M2.** Inculcate critical thinking, ethics, lifelong learning and creativity needed for industry and society.
-* **M3.** Cultivate the students with all-round competencies, for career, higher education and self-employability.
+* **M1.** Impart fundamental engineering principles and practical machine design skills through modern laboratories and workshop experience.
+* **M2.** Inculcate analytical thinking, industrial safety standards, ethics, and innovation for modern automotive and thermal engineering.
+* **M3.** Prepare students for successful global careers, higher studies, R&D leadership, and industrial entrepreneurship.
 
 ### Department Overview & Focus Areas
 The department focuses on modern software architecture, algorithms, distributed computing, artificial intelligence, cloud engineering, cybersecurity, and full-stack system design. Interdisciplinary integration connects computational sciences with bioinformatics, data science, financial analytics, and operations research.

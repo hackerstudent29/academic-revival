@@ -113,7 +113,7 @@ export function HomePage() {
                 <StaggerItem key={item.to} variant="mask">
                 <Link
                   to={item.to}
-                  className="group flex items-center justify-between border-b border-foreground/12 py-5 text-[12px] font-semibold uppercase tracking-[0.12em] text-foreground/70 transition-colors hover:text-primary active:text-primary md:py-4 lg:py-5"
+                  className="group flex items-center justify-between border-b border-foreground/12 py-5 text-[13px] font-bold font-oswald uppercase tracking-[0.12em] text-foreground/80 transition-colors hover:text-primary active:text-primary md:py-4 lg:py-5"
                 >
                   <span className="pl-4 lg:pl-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2">
                     {item.label}
@@ -153,7 +153,7 @@ export function HomePage() {
                 >
                   <img src={item.src} alt={item.label} loading="lazy" className="h-full w-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <span className="absolute bottom-4 left-4 text-sm font-bold uppercase tracking-widest text-white">
+                  <span className="absolute bottom-4 left-4 text-sm font-bold font-oswald uppercase tracking-widest text-white">
                     {item.label}
                   </span>
                 </div>
@@ -166,7 +166,7 @@ export function HomePage() {
       {/* ── Top recruiters marquee ── */}
       <section className="bg-page-bg border-b border-border flex flex-col justify-center py-6" id="top-recruiters">
         <Reveal variant="blur">
-          <h2 className="px-6 text-center text-[11px] font-bold uppercase tracking-[0.32em] text-muted-foreground md:px-12">
+          <h2 className="px-6 text-center text-[12px] font-bold font-oswald uppercase tracking-[0.32em] text-[#005DA6] dark:text-[#60A5FA] md:px-12">
             Top Recruiters
           </h2>
         </Reveal>

@@ -87,7 +87,7 @@ export const PlacementHero: React.FC<PlacementHeroProps> = ({
   const config = HERO_CONFIG[activeTab] || HERO_CONFIG.overview;
 
   return (
-    <section className="relative w-full min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#082B5C]">
+    <section className="relative w-full min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#9E2339]">
       {/* Background Image with Dark Vignette Overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -104,13 +104,13 @@ export const PlacementHero: React.FC<PlacementHeroProps> = ({
       <div className="relative z-10 max-w-4xl mx-auto space-y-6 pt-10 pb-14 flex flex-col items-center">
         
         {/* Top Badge matching screenshot */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#1F2937]/90 border border-white/20 rounded-sm text-[11px] font-black uppercase tracking-[0.2em] text-white backdrop-blur-md shadow-md">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary/90 border border-white/20 rounded-sm text-[11px] font-black uppercase tracking-[0.2em] text-white backdrop-blur-md shadow-md font-oswald">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           <span>{config.badge}</span>
         </div>
 
         {/* 3-Line Big Bold Heading matching screenshot */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight uppercase leading-[1.05] font-['Switzer',sans-serif] drop-shadow-lg">
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight uppercase leading-[1.05] font-oswald drop-shadow-lg">
           {config.headingLine1} {config.headingLine2}
           {config.headingLine3 && (
             <>
@@ -121,10 +121,10 @@ export const PlacementHero: React.FC<PlacementHeroProps> = ({
         </h1>
 
         {/* Action Buttons matching screenshot */}
-        <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
+        <div className="pt-2 flex flex-wrap items-center justify-center gap-4 font-oswald">
           <button
             onClick={onExploreClick}
-            className="px-6 py-3 bg-[#005DA6] hover:bg-[#004A85] text-white text-xs sm:text-sm font-bold tracking-wider uppercase rounded-md transition-all duration-200 shadow-lg flex items-center gap-2 cursor-pointer border border-blue-400/30"
+            className="px-6 py-3 bg-primary hover:bg-primary/90 text-white text-xs sm:text-sm font-bold tracking-wider uppercase rounded-md transition-all duration-200 shadow-lg flex items-center gap-2 cursor-pointer border border-white/20"
           >
             <span>{config.primaryBtnText}</span>
             <ArrowRight className="w-4 h-4" />
@@ -132,7 +132,7 @@ export const PlacementHero: React.FC<PlacementHeroProps> = ({
 
           <button
             onClick={onSecondaryClick}
-            className="px-6 py-3 bg-[#374151]/90 hover:bg-[#1F2937] text-white text-xs sm:text-sm font-bold tracking-wider uppercase rounded-md transition-all duration-200 shadow-lg flex items-center gap-2 cursor-pointer border border-white/20 backdrop-blur-sm"
+            className="px-6 py-3 bg-background/80 hover:bg-background text-foreground text-xs sm:text-sm font-bold tracking-wider uppercase rounded-md transition-all duration-200 shadow-lg flex items-center gap-2 cursor-pointer border border-border backdrop-blur-sm"
           >
             <span>{config.secondaryBtnText}</span>
             <ChevronRight className="w-4 h-4" />

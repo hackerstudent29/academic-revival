@@ -23,7 +23,7 @@ export const FacilityLightbox: React.FC<FacilityLightboxProps> = ({ facility, on
             alt={facility.name}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#082B5C] via-[#082B5C]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#9E2339] via-[#9E2339]/40 to-transparent" />
           
           {/* Close button */}
           <button

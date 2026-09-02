@@ -42,12 +42,16 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
       className={`sticky top-0 lg:top-[65px] z-40 w-full ${className}`}
     >
       <div className="absolute inset-0 bg-background/80 backdrop-blur-xl border-b border-foreground/10 pointer-events-none -z-10" />
-      <div className="relative max-w-[1440px] mx-auto px-4 md:px-8 xl:px-12 py-1 flex items-center justify-between">
+      <div className="relative max-w-[1440px] mx-auto px-4 md:px-8 xl:px-12 py-2 min-h-[48px] flex items-center justify-between">
         
         {/* Left Title */}
         <div 
           onClick={onTitleClick}
-          className={`text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] text-primary mr-4 xl:mr-8 shrink-0 select-none ${
+          className={`${
+            title.length <= 25 
+              ? 'text-sm sm:text-base md:text-lg xl:text-xl font-black tracking-tight' 
+              : 'text-xs sm:text-sm xl:text-base font-bold tracking-tight'
+          } uppercase text-primary font-oswald mr-4 xl:mr-8 shrink-0 select-none transition-all ${
             onTitleClick ? 'cursor-pointer hover:opacity-80' : ''
           }`}
         >
@@ -63,7 +67,7 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
                 <li
                   key={tab.id}
                   onClick={() => onSelectTab(tab.id)}
-                  className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] cursor-pointer transition-colors duration-200 select-none shrink-0 ${
+                  className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] font-oswald cursor-pointer transition-colors duration-200 select-none shrink-0 ${
                     index === 0 ? 'ml-auto' : ''
                   } ${
                     isActive

@@ -42,7 +42,7 @@ export function DepartmentHighlightsGrid({ course }: { course?: Course }) {
 
   return (
     <div className="my-14">
-      <h3 className="text-2xl md:text-3xl font-serif tracking-tight mb-6 text-foreground">
+      <h3 className="text-2xl md:text-3xl font-oswald font-bold uppercase tracking-tight mb-6 text-primary">
         Programme Highlights
       </h3>
       

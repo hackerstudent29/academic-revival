@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,300..900;1,300..900&family=Oswald:wght@400..700&family=Outfit:wght@400..900&display=swap');
 @import "tailwindcss" source(none);
 @import "tw-animate-css";
 @source "../src";
@@ -84,10 +85,16 @@
  */
 
 @theme inline {
-  --font-display: "Switzer", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Oswald", "Outfit", sans-serif;
+  --font-serif: "Oswald", "Outfit", sans-serif;
+  --font-oswald: "Oswald", "Outfit", sans-serif;
+  --font-outfit: "Outfit", "Oswald", sans-serif;
+  --font-sans: "Libre Franklin", "Switzer", "Roboto", sans-serif;
+  --font-body: "Libre Franklin", "Switzer", "Roboto", sans-serif;
+  --font-libre: "Libre Franklin", "Switzer", "Roboto", sans-serif;
   --font-roboto: "Roboto", ui-sans-serif, system-ui, sans-serif;
   --font-switzer: "Switzer", ui-sans-serif, system-ui, sans-serif;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -95,143 +102,84 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Core Brand Tokens (All Maroon Red) */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  /* Core Interface Tokens */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
-  --color-page-bg: var(--page-bg);
   --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
+  --color-page-bg: var(--page-bg);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sand: var(--sand);
-  --color-sand-foreground: var(--sand-foreground);
-  --color-clay: var(--clay);
-  --color-clay-foreground: var(--clay-foreground);
-  --color-navy: var(--navy);
-  --color-forest: var(--forest);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
 }
 
 :root {
   --radius: 0.625rem;
-  /* MSAJCE design tokens — light theme (default) */
-  --primary-blue: #005da6;
-  --bg-color: #ffffff;
-  --text-color: #000000;
-  --card-bg: #ffffff;
-  --border-color: rgba(0, 0, 0, 0.14);
-  --sand: oklch(0.912 0.019 71.5);
-  --sand-foreground: oklch(0.18 0 0);
-  --clay: oklch(0.565 0.041 66.5);
-  --clay-foreground: oklch(1 0 0);
-  --navy: oklch(0.259 0.093 265.5);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0 0 0);
-  --page-bg: #EAEAEA;
-  --primary: oklch(0.451 0.128 245.6);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.96 0 0);
-  --secondary-foreground: oklch(0 0 0);
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.47 0 0);
-  --accent: oklch(0.96 0 0);
-  --accent-foreground: oklch(0 0 0);
+
+  /* Signature Brand Colors — Academic Maroon Red (#9E2339) */
+  --primary: oklch(0.42 0.18 15); /* #9E2339 */
+  --primary-foreground: #ffffff;
+  --secondary: oklch(0.42 0.18 15); /* #9E2339 */
+  --secondary-foreground: #ffffff;
+  --accent: oklch(0.42 0.18 15); /* #9E2339 */
+  --accent-foreground: #ffffff;
+
+  /* Warm Academic Off-White Neutrals (No Sterile Pure White) */
+  --background: #F9F9F8;
+  --foreground: #1A1C1C;
+  --card: #FAF9F6;
+  --card-foreground: #1A1C1C;
+  --popover: #FAF9F6;
+  --popover-foreground: #1A1C1C;
+  --page-bg: #F3F3F2;
+  --muted: #EEEEED;
+  --muted-foreground: #585856;
+  --border: rgba(0, 0, 0, 0.12);
+  --input: rgba(0, 0, 0, 0.12);
+  --ring: oklch(0.42 0.18 15);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0 0 0 / 14%);
-  --input: oklch(0 0 0 / 14%);
-  --ring: oklch(0.451 0.128 245.6);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-  --forest: #059669;
+  --destructive-foreground: #ffffff;
 }
 
 .dark {
-  /* MSAJCE dark theme */
-  --primary-blue: #005DA6;
-  --bg-color: #000000;
-  --text-color: #d4d4d4;
-  --card-bg: #0a0a0a;
-  --border-color: rgba(255, 255, 255, 0.16);
-  --sand: oklch(0.19 0.008 71.5);
-  --sand-foreground: oklch(0.96 0.008 71.5);
-  --clay: oklch(0.48 0.038 66.5);
-  --clay-foreground: oklch(0.88 0 0);
-  --navy: oklch(0.62 0.12 265.5);
-  --background: oklch(0 0 0);
-  --foreground: oklch(0.88 0 0);
-  --card: oklch(0.14 0 0);
-  --card-foreground: oklch(0.88 0 0);
-  --popover: oklch(0.14 0 0);
-  --popover-foreground: oklch(0.88 0 0);
-  --page-bg: #15141c;
-  --primary: oklch(0.52 0.14 245.6);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.2 0 0);
-  --secondary-foreground: oklch(0.88 0 0);
-  --muted: oklch(0.2 0 0);
+  /* Signature Brand Colors (Dark Mode Crimson #E11D48) */
+  --primary: oklch(0.55 0.22 15); /* #E11D48 */
+  --primary-foreground: #ffffff;
+  --secondary: oklch(0.55 0.22 15); /* #E11D48 */
+  --secondary-foreground: #ffffff;
+  --accent: oklch(0.55 0.22 15); /* #E11D48 */
+  --accent-foreground: #ffffff;
+
+  /* Universal Dark Theme Neutral Charcoal Background (#121214) */
+  --background: #121214;
+  --foreground: #d4d4d4;
+  --card: #18181B;
+  --card-foreground: #d4d4d4;
+  --popover: #18181B;
+  --popover-foreground: #d4d4d4;
+  --page-bg: #121214;
+  --muted: #1E1E22;
   --muted-foreground: oklch(0.72 0 0);
-  --accent: oklch(0.2 0 0);
-  --accent-foreground: oklch(0.88 0 0);
+  --border: rgba(255, 255, 255, 0.14);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: oklch(0.55 0.22 15);
   --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 16%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(1 0 0 / 40%);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
-  --forest: #059669;
+  --destructive-foreground: #ffffff;
 }
 
 @layer base {
@@ -239,6 +187,7 @@
     scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    font-family: var(--font-libre);
   }
 
   html::-webkit-scrollbar {
@@ -252,32 +201,85 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-sans);
+    font-family: var(--font-libre);
+    font-size: 16px;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  /* Headings, Titles, Navbar, Buttons, Uppercase text, Badges & Tag Labels use Switzer */
+  /* Headings, Titles, Buttons & Hero Display elements use Oswald */
   h1, h2, h3, h4, h5, h6,
-  header,
-  nav,
-  button,
+  button, .btn, .button,
   .font-display,
-  .font-switzer,
-  .uppercase,
-  [class*="uppercase"] {
-    font-family: var(--font-display);
+  .font-serif,
+  .font-oswald {
+    font-family: var(--font-oswald);
+    letter-spacing: 0.02em;
   }
 
-  /* Body content: Bullet points, sentences, paragraphs, blockquotes, lists, tables use Roboto */
-  p, li, ul, ol, blockquote, dt, dd, td, th, article, main, .font-sans, .font-roboto {
-    font-family: var(--font-sans);
+  /* Sentences, Paragraphs, Articles, Lists, Tables & Form Inputs use Libre Franklin */
+  p, li, ul, ol, blockquote, dt, dd, td, th, article, main, input, textarea, select, label, .font-sans, .font-roboto, .font-libre, .font-body {
+    font-family: var(--font-libre);
   }
 
-  /* Uppercase tags/labels inside paragraphs or list items retain Switzer */
-  p .uppercase, li .uppercase, p [class*="uppercase"], li [class*="uppercase"] {
-    font-family: var(--font-display);
+  /* Small uppercase labels retain Libre Franklin label styling */
+  label, .label-md, .label-sm {
+    font-family: var(--font-libre);
   }
+}
+
+/* Academic Heritage Typography Specs */
+@utility headline-xl {
+  font-family: var(--font-oswald);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+@utility headline-lg {
+  font-family: var(--font-oswald);
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+@utility headline-md {
+  font-family: var(--font-oswald);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+@utility body-lg {
+  font-family: var(--font-libre);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+@utility body-md {
+  font-family: var(--font-libre);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@utility label-md {
+  font-family: var(--font-libre);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+}
+
+@utility label-sm {
+  font-family: var(--font-libre);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 /* Apple-style glass header backdrop */

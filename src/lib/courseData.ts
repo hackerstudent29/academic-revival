@@ -90,7 +90,7 @@ export const allCourses: Course[] = [
     name: "Civil Engineering", shortName: "Civil Engineering", slug: "civil-engineering", 
     intake: 30, govtQuota: 15, managementQuota: 15, level: "Undergraduate", department: "Civil", 
     description: "Plan and construct sustainable infrastructure, buildings, and transportation systems.", 
-    image: "https://images.unsplash.com/photo-1541888081033-0c46b5a415ff?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop",
     details: { 
       activities: {
         chapters: [

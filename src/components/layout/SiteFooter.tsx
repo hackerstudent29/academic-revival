@@ -152,11 +152,11 @@ export function SiteFooter() {
 
               {/* ── Col 3: Governance ── */}
               <div className="md:col-span-4 lg:col-span-2 lg:col-start-5">
-                <motion.h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-white"
+                <motion.h3 className="text-sm font-bold uppercase tracking-[0.18em] text-primary font-oswald mb-2"
                   variants={fadeUp} initial="hidden" animate={a} transition={t(0.5, 0.20)}>
                   Governance
                 </motion.h3>
-                <motion.ul className="mt-8 space-y-4 text-sm text-[#CCCCCC]"
+                <motion.ul className="mt-8 space-y-4 text-sm text-[#CCCCCC] font-sans"
                   initial="hidden" animate={a} variants={stagger(0.27)}>
                   {[
                     { to: "/about", hash: "leadership", label: "Governing Council" },
@@ -176,11 +176,11 @@ export function SiteFooter() {
 
               {/* ── Col 4: Quick Links — 100ms diagonal offset ── */}
               <div className="md:col-span-4 lg:col-span-2">
-                <motion.h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-white"
+                <motion.h3 className="text-sm font-bold uppercase tracking-[0.18em] text-primary font-oswald mb-2"
                   variants={fadeUp} initial="hidden" animate={a} transition={t(0.5, 0.25)}>
                   Quick Links
                 </motion.h3>
-                <motion.ul className="mt-8 space-y-4 text-sm text-[#CCCCCC]"
+                <motion.ul className="mt-8 space-y-4 text-sm text-[#CCCCCC] font-sans"
                   initial="hidden" animate={a} variants={stagger(0.32)}>
                   {[
                     { to: "/about",        label: "About the College" },
@@ -200,7 +200,7 @@ export function SiteFooter() {
 
               {/* ── Col 4: Admissions — another 100ms offset ── */}
               <div className="md:col-span-4 lg:col-span-2">
-                <motion.h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-white"
+                <motion.h3 className="text-sm font-bold uppercase tracking-[0.18em] text-primary font-oswald mb-2"
                   variants={fadeUp} initial="hidden" animate={a} transition={t(0.5, 0.35)}>
                   Admissions
                 </motion.h3>

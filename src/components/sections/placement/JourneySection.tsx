@@ -99,7 +99,7 @@ const GLOBAL_JOURNEY_STEPS = [
     category: 'YEARS 1–3',
     metric: 'Step 01',
     badge: 'CORE FOUNDATION',
-    color: '#082B5C',
+    color: '#9E2339',
     image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&auto=format&fit=crop&q=80',
     description: 'Rigorous engineering coursework, laboratory projects, and faculty research mentorship establishing strong academic transcripts.'
   },
@@ -109,7 +109,7 @@ const GLOBAL_JOURNEY_STEPS = [
     category: 'SEMESTER 5',
     metric: 'Step 02',
     badge: 'ORIENTATION',
-    color: '#059669',
+    color: '#005DA6',
     image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80',
     description: 'Comprehensive seminars on global Master’s/Ph.D. options, international scholarships, and application timelines.'
   },
@@ -152,7 +152,7 @@ export const JourneySection: React.FC<JourneySectionProps> = () => {
       fullName: 'Graduate Record Examinations',
       pathway: 'Overseas higher education (US, Germany, Singapore & Global)',
       support: 'Awareness & guidance',
-      color: '#082B5C'
+      color: '#9E2339'
     },
     {
       exam: 'TOEFL',
@@ -166,7 +166,7 @@ export const JourneySection: React.FC<JourneySectionProps> = () => {
       fullName: 'International English Language Testing System',
       pathway: 'English proficiency for overseas education (UK, Canada, Europe, Australia)',
       support: 'Awareness / coaching where necessary',
-      color: '#059669'
+      color: '#005DA6'
     },
     {
       exam: 'CAT',
@@ -218,7 +218,7 @@ export const JourneySection: React.FC<JourneySectionProps> = () => {
               <span>ACADEMIC EXPANSION & GLOBAL OPPORTUNITIES</span>
             </div>
 
-            <h2 className="text-2xl sm:text-4xl font-black text-foreground font-['Outfit',sans-serif] uppercase tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-black text-foreground font-oswald uppercase tracking-tight">
               IMPORTANCE OF HIGHER EDUCATION
             </h2>
 
@@ -256,10 +256,10 @@ export const JourneySection: React.FC<JourneySectionProps> = () => {
       <section className="w-full py-16 px-4 sm:px-8 lg:px-14 bg-muted/40 border-b border-border">
         <div className="max-w-7xl mx-auto space-y-10">
           <div className="max-w-3xl space-y-2">
-            <span className="text-xs font-mono font-bold text-[#059669] tracking-widest uppercase bg-card px-3 py-1 inline-block border border-border">
+            <span className="text-xs font-mono font-bold text-[#005DA6] tracking-widest uppercase bg-card px-3 py-1 inline-block border border-border">
               HIGHER STUDIES PATHWAY
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-foreground font-['Outfit',sans-serif] uppercase">
+            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-foreground font-oswald uppercase">
               THE 5-STAGE GLOBAL GRADUATE JOURNEY
             </h2>
             <p className="text-sm text-muted-foreground font-normal">
@@ -288,17 +288,17 @@ export const JourneySection: React.FC<JourneySectionProps> = () => {
                       {step.badge}
                     </span>
                   </div>
-                  <div className="absolute bottom-3 right-3 bg-black/75 px-2.5 py-1 text-xs font-mono font-bold text-[#059669] backdrop-blur-xs">
+                  <div className="absolute bottom-3 right-3 bg-black/75 px-2.5 py-1 text-xs font-mono font-bold text-[#005DA6] backdrop-blur-xs">
                     {step.metric}
                   </div>
                 </div>
 
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
                   <div className="space-y-1.5">
-                    <div className="text-[10px] font-mono font-bold text-[#059669] uppercase">
+                    <div className="text-[10px] font-mono font-bold text-[#005DA6] uppercase">
                       {step.category}
                     </div>
-                    <h3 className="text-base font-bold text-foreground font-['Outfit',sans-serif]">
+                    <h3 className="text-base font-bold text-foreground font-oswald">
                       {step.title}
                     </h3>
                     <p className="text-xs text-muted-foreground leading-relaxed font-normal">
@@ -315,10 +315,10 @@ export const JourneySection: React.FC<JourneySectionProps> = () => {
       <section className="w-full py-16 px-4 sm:px-8 lg:px-14 bg-background border-b border-border">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="max-w-3xl space-y-2">
-            <span className="text-xs font-mono font-bold text-[#059669] tracking-widest uppercase bg-muted px-3 py-1 inline-block border border-border">
+            <span className="text-xs font-mono font-bold text-[#005DA6] tracking-widest uppercase bg-muted px-3 py-1 inline-block border border-border">
               QUALIFYING EXAMINATIONS
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-foreground font-['Outfit',sans-serif] uppercase">
+            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-foreground font-oswald uppercase">
               STANDARDISED EXAM SUPPORT
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed font-normal">
@@ -353,7 +353,7 @@ export const JourneySection: React.FC<JourneySectionProps> = () => {
                     </p>
                   </div>
                   <div className="col-span-4 text-right">
-                    <span className="text-xs font-mono font-bold text-[#059669] bg-emerald-50 dark:bg-emerald-950 px-2.5 py-1 border border-emerald-200 dark:border-emerald-800 inline-block">
+                    <span className="text-xs font-mono font-bold text-[#005DA6] bg-emerald-50 dark:bg-emerald-950 px-2.5 py-1 border border-emerald-200 dark:border-emerald-800 inline-block">
                       {item.support}
                     </span>
                   </div>

@@ -4,7 +4,7 @@ import { Search, Plus, ArrowRight, LayoutGrid, LayoutList, List } from "lucide-r
 import { allCourses } from "@/lib/courseData";
 
 interface CourseCatalogSectionProps {
-  initialLevel?: string;
+  initialLevel?: string | undefined;
   titleOverride?: string;
   showViewToggles?: boolean;
   defaultViewMode?: "list" | "table" | "grid";
@@ -13,7 +13,7 @@ interface CourseCatalogSectionProps {
 export function CourseCatalogSection({ 
   initialLevel, 
   titleOverride, 
-  showViewToggles = false,
+  showViewToggles = true,
   defaultViewMode = "table"
 }: CourseCatalogSectionProps) {
   const [search, setSearch] = useState("");
@@ -76,7 +76,7 @@ export function CourseCatalogSection({
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary block mb-2 font-mono">
             {headerInfo.eyebrow}
           </span>
-          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-foreground font-['Outfit',sans-serif]">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold font-oswald uppercase tracking-tight text-primary">
             {headerInfo.title}
           </h1>
           <p className="mt-2 text-sm sm:text-base text-muted-foreground max-w-3xl">
@@ -91,11 +91,11 @@ export function CourseCatalogSection({
             <input 
               type="text"
               placeholder="Search for a course or department (e.g., CSE, Cyber, AI, Civil)..."
-              className="w-full bg-transparent pl-10 pr-10 py-3 text-xl md:text-2xl text-foreground placeholder:text-muted-foreground focus:outline-none"
+              className="w-full bg-transparent pl-10 pr-10 py-3 text-xl md:text-2xl text-foreground placeholder:text-muted-foreground focus:outline-none font-sans"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <ArrowRight className="absolute right-0 text-foreground" size={24} />
+            <ArrowRight className="absolute right-0 text-primary" size={24} />
           </div>
         </div>
 
@@ -105,12 +105,12 @@ export function CourseCatalogSection({
           <div className="flex flex-wrap items-center gap-3">
             {levelFilter ? (
               <>
-                <div className="px-5 py-2 border border-foreground bg-foreground text-background text-sm font-bold flex items-center gap-2 shadow-xs">
+                <div className="px-5 py-2 border border-primary bg-primary text-primary-foreground text-sm font-bold flex items-center gap-2 shadow-xs font-oswald uppercase">
                   {levelFilter === "Research (Ph.D)" ? "Doctoral Studies" : `${levelFilter} Programmes`}
                 </div>
                 <button 
                   onClick={() => setLevelFilter(null)}
-                  className="px-4 py-2 border border-border text-muted-foreground hover:border-foreground text-sm flex items-center gap-2 transition-colors cursor-pointer"
+                  className="px-4 py-2 border border-border text-muted-foreground hover:border-primary hover:text-primary text-sm flex items-center gap-2 transition-colors cursor-pointer font-sans"
                 >
                   View all study options
                 </button>
@@ -119,8 +119,8 @@ export function CourseCatalogSection({
               <>
                 <button 
                   onClick={() => setLevelFilter(null)}
-                  className={`px-5 py-2 text-sm font-bold border transition-colors cursor-pointer ${
-                    levelFilter === null ? "bg-foreground text-background border-foreground shadow-xs" : "border-border text-muted-foreground hover:border-foreground"
+                  className={`px-5 py-2 text-sm font-bold border transition-colors cursor-pointer font-oswald uppercase ${
+                    levelFilter === null ? "bg-primary text-primary-foreground border-primary shadow-xs" : "border-border text-muted-foreground hover:border-primary hover:text-primary"
                   }`}
                 >
                   All Programmes ({allCourses.length})
@@ -128,8 +128,8 @@ export function CourseCatalogSection({
 
                 <button 
                   onClick={() => setLevelFilter("Undergraduate")}
-                  className={`px-4 py-2 border flex items-center gap-2 text-sm font-bold transition-colors cursor-pointer ${
-                    levelFilter === "Undergraduate" ? "bg-foreground text-background border-foreground shadow-xs" : "border-border text-muted-foreground hover:border-foreground"
+                  className={`px-4 py-2 border flex items-center gap-2 text-sm font-bold transition-colors cursor-pointer font-oswald uppercase ${
+                    levelFilter === "Undergraduate" ? "bg-primary text-primary-foreground border-primary shadow-xs" : "border-border text-muted-foreground hover:border-primary hover:text-primary"
                   }`}
                 >
                   Undergraduate Programmes <Plus size={16} />
@@ -137,8 +137,8 @@ export function CourseCatalogSection({
 
                 <button 
                   onClick={() => setLevelFilter("Postgraduate")}
-                  className={`px-4 py-2 border flex items-center gap-2 text-sm font-bold transition-colors cursor-pointer ${
-                    levelFilter === "Postgraduate" ? "bg-foreground text-background border-foreground shadow-xs" : "border-border text-muted-foreground hover:border-foreground"
+                  className={`px-4 py-2 border flex items-center gap-2 text-sm font-bold transition-colors cursor-pointer font-oswald uppercase ${
+                    levelFilter === "Postgraduate" ? "bg-primary text-primary-foreground border-primary shadow-xs" : "border-border text-muted-foreground hover:border-primary hover:text-primary"
                   }`}
                 >
                   Postgraduate Programmes <Plus size={16} />
@@ -146,8 +146,8 @@ export function CourseCatalogSection({
 
                 <button 
                   onClick={() => setLevelFilter("Research (Ph.D)")}
-                  className={`px-4 py-2 border flex items-center gap-2 text-sm font-bold transition-colors cursor-pointer ${
-                    levelFilter === "Research (Ph.D)" ? "bg-foreground text-background border-foreground shadow-xs" : "border-border text-muted-foreground hover:border-foreground"
+                  className={`px-4 py-2 border flex items-center gap-2 text-sm font-bold transition-colors cursor-pointer font-oswald uppercase ${
+                    levelFilter === "Research (Ph.D)" ? "bg-primary text-primary-foreground border-primary shadow-xs" : "border-border text-muted-foreground hover:border-primary hover:text-primary"
                   }`}
                 >
                   Doctoral Studies <Plus size={16} />
@@ -207,7 +207,7 @@ export function CourseCatalogSection({
                 className="flex flex-col md:flex-row gap-6 md:gap-8 py-8 border-b border-border group cursor-pointer hover:bg-muted/50 transition-colors -mx-4 px-4 md:-mx-8 md:px-8 rounded-sm"
               >
                 {/* Image (Flat static - no zoom animation) */}
-                <div className="w-full md:w-[360px] shrink-0 overflow-hidden bg-[#082B5C] h-[220px]">
+                <div className="w-full md:w-[360px] shrink-0 overflow-hidden bg-primary/10 h-[220px]">
                   <img 
                     src={course.image} 
                     alt={course.name} 
@@ -221,8 +221,8 @@ export function CourseCatalogSection({
                 {/* Content */}
                 <div className="flex-1 flex flex-col md:flex-row gap-8 md:gap-12">
                   <div className="flex-1">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2 block">COURSE</span>
-                    <h3 className="text-2xl md:text-3xl lg:text-[2rem] font-bold tracking-tight text-foreground group-hover:underline underline-offset-8 decoration-1 leading-tight flex items-center gap-3 font-['Outfit',sans-serif]">
+                    <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-2 block font-oswald">COURSE</span>
+                    <h3 className="text-2xl md:text-3xl lg:text-[2rem] font-bold tracking-tight text-primary font-oswald group-hover:underline underline-offset-8 decoration-1 leading-tight flex items-center gap-3">
                       {course.name}
                       <ArrowRight className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" size={28} strokeWidth={3} />
                     </h3>
@@ -265,11 +265,11 @@ export function CourseCatalogSection({
           </div>
         )}
 
-        {/* ── MODE 2: DENSE COMPACT TABLE VIEW (Shown when showViewToggles = true and viewMode = "table") ── */}
-        {showViewToggles && viewMode === "table" && (
+        {/* ── MODE 2: DENSE COMPACT TABLE VIEW ── */}
+        {viewMode === "table" && (
           <div className="overflow-x-auto border border-border bg-card shadow-xs">
             <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-[#082B5C] text-white uppercase text-[11px] font-black tracking-wider border-b border-border">
+              <thead className="bg-primary text-primary-foreground uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-primary/20">
                 <tr>
                   <th className="py-3.5 px-4">Programme Name</th>
                   <th className="py-3.5 px-4">Level</th>
@@ -283,32 +283,32 @@ export function CourseCatalogSection({
               <tbody className="divide-y divide-border">
                 {filteredCourses.map((course, idx) => (
                   <tr key={idx} className="hover:bg-muted/50 transition-colors">
-                    <td className="py-3.5 px-4 font-bold text-foreground">
+                    <td className="py-3.5 px-4 font-bold text-foreground font-sans">
                       <Link to={`/programmes/${course.slug}` as any} className="hover:text-primary transition-colors block">
                         {course.name}
                       </Link>
                     </td>
-                    <td className="py-3.5 px-4">
+                    <td className="py-3.5 px-4 font-sans">
                       <span className="inline-block px-2 py-0.5 text-[10px] font-extrabold uppercase bg-muted text-foreground border border-border">
                         {course.level}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-muted-foreground hidden md:table-cell font-medium">
+                    <td className="py-3.5 px-4 text-muted-foreground hidden md:table-cell font-medium font-sans">
                       {course.department}
                     </td>
-                    <td className="py-3.5 px-4 text-center font-bold text-foreground">
+                    <td className="py-3.5 px-4 text-center font-bold text-foreground font-sans">
                       {course.intake}
                     </td>
-                    <td className="py-3.5 px-4 text-center text-muted-foreground hidden sm:table-cell">
+                    <td className="py-3.5 px-4 text-center text-muted-foreground hidden sm:table-cell font-sans">
                       {course.govtQuota}
                     </td>
-                    <td className="py-3.5 px-4 text-center text-muted-foreground hidden sm:table-cell">
+                    <td className="py-3.5 px-4 text-center text-muted-foreground hidden sm:table-cell font-sans">
                       {course.managementQuota}
                     </td>
-                    <td className="py-3.5 px-4 text-right">
+                    <td className="py-3.5 px-4 text-right font-sans">
                       <Link 
                         to={`/programmes/${course.slug}` as any} 
-                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider hover:bg-primary/90 transition-colors"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider hover:bg-primary/90 transition-colors font-oswald"
                       >
                         <span>View</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -321,8 +321,8 @@ export function CourseCatalogSection({
           </div>
         )}
 
-        {/* ── MODE 3: GRID VIEW (Shown when showViewToggles = true and viewMode = "grid") ── */}
-        {showViewToggles && viewMode === "grid" && (
+        {/* ── MODE 3: GRID VIEW ── */}
+        {viewMode === "grid" && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {filteredCourses.map((course, idx) => (
               <Link 
@@ -331,18 +331,18 @@ export function CourseCatalogSection({
                 className="group flex flex-col justify-between bg-card border border-border hover:border-primary transition-all duration-200 shadow-xs hover:shadow-md cursor-pointer overflow-hidden"
               >
                 <div>
-                  <div className="relative w-full h-36 bg-[#082B5C] overflow-hidden border-b border-border">
+                  <div className="relative w-full h-36 bg-primary/10 overflow-hidden border-b border-border">
                     <img 
                       src={course.image} 
                       alt="" 
                       className="w-full h-full object-cover relative z-0" 
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800";
+                        (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80";
                       }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none z-5" />
                     
-                    <span className="absolute top-3 left-3 bg-[#082B5C] text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-1 border border-white/20 shadow-xs z-10">
+                    <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold font-oswald uppercase tracking-wider px-2.5 py-1 border border-white/20 shadow-xs z-10">
                       {course.level}
                     </span>
 
@@ -352,7 +352,7 @@ export function CourseCatalogSection({
                   </div>
 
                   <div className="p-5 space-y-3">
-                    <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-snug line-clamp-2">
+                    <h3 className="text-lg font-bold font-oswald text-primary group-hover:text-primary transition-colors leading-snug line-clamp-2">
                       {course.name}
                     </h3>
 
