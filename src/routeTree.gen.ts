@@ -20,6 +20,11 @@ import { Route as CurriculumRouteImport } from './routes/curriculum'
 import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offered'
 import { Route as StudentHousingRouteImport } from './routes/student-housing'
+import { Route as AboutGroupInstitutionsRouteImport } from './routes/about_.group-institutions'
+import { Route as AboutLeadershipRouteImport } from './routes/about_.leadership'
+import { Route as AboutOverviewRouteImport } from './routes/about_.overview'
+import { Route as AboutTrustRouteImport } from './routes/about_.trust'
+import { Route as AboutVisionMissionRouteImport } from './routes/about_.vision-mission'
 import { Route as AdmissionsEligibilityRouteImport } from './routes/admissions_.eligibility'
 import { Route as AdmissionsProcedureRouteImport } from './routes/admissions_.procedure'
 import { Route as AdmissionsScholarshipsRouteImport } from './routes/admissions_.scholarships'
@@ -82,6 +87,31 @@ const StudentHousingRoute = StudentHousingRouteImport.update({
   path: '/student-housing',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutGroupInstitutionsRoute = AboutGroupInstitutionsRouteImport.update({
+  id: '/about_/group-institutions',
+  path: '/about/group-institutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutLeadershipRoute = AboutLeadershipRouteImport.update({
+  id: '/about_/leadership',
+  path: '/about/leadership',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutOverviewRoute = AboutOverviewRouteImport.update({
+  id: '/about_/overview',
+  path: '/about/overview',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutTrustRoute = AboutTrustRouteImport.update({
+  id: '/about_/trust',
+  path: '/about/trust',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutVisionMissionRoute = AboutVisionMissionRouteImport.update({
+  id: '/about_/vision-mission',
+  path: '/about/vision-mission',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdmissionsEligibilityRoute = AdmissionsEligibilityRouteImport.update({
   id: '/admissions_/eligibility',
   path: '/admissions/eligibility',
@@ -125,6 +155,11 @@ export interface FileRoutesByFullPath {
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/student-housing': typeof StudentHousingRoute
+  '/about/group-institutions': typeof AboutGroupInstitutionsRoute
+  '/about/leadership': typeof AboutLeadershipRoute
+  '/about/overview': typeof AboutOverviewRoute
+  '/about/trust': typeof AboutTrustRoute
+  '/about/vision-mission': typeof AboutVisionMissionRoute
   '/admissions/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions/procedure': typeof AdmissionsProcedureRoute
   '/admissions/scholarships': typeof AdmissionsScholarshipsRoute
@@ -144,6 +179,11 @@ export interface FileRoutesByTo {
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/student-housing': typeof StudentHousingRoute
+  '/about/group-institutions': typeof AboutGroupInstitutionsRoute
+  '/about/leadership': typeof AboutLeadershipRoute
+  '/about/overview': typeof AboutOverviewRoute
+  '/about/trust': typeof AboutTrustRoute
+  '/about/vision-mission': typeof AboutVisionMissionRoute
   '/admissions/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions/procedure': typeof AdmissionsProcedureRoute
   '/admissions/scholarships': typeof AdmissionsScholarshipsRoute
@@ -164,6 +204,11 @@ export interface FileRoutesById {
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/student-housing': typeof StudentHousingRoute
+  '/about_/group-institutions': typeof AboutGroupInstitutionsRoute
+  '/about_/leadership': typeof AboutLeadershipRoute
+  '/about_/overview': typeof AboutOverviewRoute
+  '/about_/trust': typeof AboutTrustRoute
+  '/about_/vision-mission': typeof AboutVisionMissionRoute
   '/admissions_/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions_/procedure': typeof AdmissionsProcedureRoute
   '/admissions_/scholarships': typeof AdmissionsScholarshipsRoute
@@ -185,6 +230,11 @@ export interface FileRouteTypes {
     | '/placements'
     | '/programmes-offered'
     | '/student-housing'
+    | '/about/group-institutions'
+    | '/about/leadership'
+    | '/about/overview'
+    | '/about/trust'
+    | '/about/vision-mission'
     | '/admissions/eligibility'
     | '/admissions/procedure'
     | '/admissions/scholarships'
@@ -204,6 +254,11 @@ export interface FileRouteTypes {
     | '/placements'
     | '/programmes-offered'
     | '/student-housing'
+    | '/about/group-institutions'
+    | '/about/leadership'
+    | '/about/overview'
+    | '/about/trust'
+    | '/about/vision-mission'
     | '/admissions/eligibility'
     | '/admissions/procedure'
     | '/admissions/scholarships'
@@ -223,6 +278,11 @@ export interface FileRouteTypes {
     | '/placements'
     | '/programmes-offered'
     | '/student-housing'
+    | '/about_/group-institutions'
+    | '/about_/leadership'
+    | '/about_/overview'
+    | '/about_/trust'
+    | '/about_/vision-mission'
     | '/admissions_/eligibility'
     | '/admissions_/procedure'
     | '/admissions_/scholarships'
@@ -243,6 +303,11 @@ export interface RootRouteChildren {
   PlacementsRoute: typeof PlacementsRoute
   ProgrammesOfferedRoute: typeof ProgrammesOfferedRoute
   StudentHousingRoute: typeof StudentHousingRoute
+  AboutGroupInstitutionsRoute: typeof AboutGroupInstitutionsRoute
+  AboutLeadershipRoute: typeof AboutLeadershipRoute
+  AboutOverviewRoute: typeof AboutOverviewRoute
+  AboutTrustRoute: typeof AboutTrustRoute
+  AboutVisionMissionRoute: typeof AboutVisionMissionRoute
   AdmissionsEligibilityRoute: typeof AdmissionsEligibilityRoute
   AdmissionsProcedureRoute: typeof AdmissionsProcedureRoute
   AdmissionsScholarshipsRoute: typeof AdmissionsScholarshipsRoute
@@ -330,6 +395,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentHousingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about_/group-institutions': {
+      id: '/about_/group-institutions'
+      path: '/about/group-institutions'
+      fullPath: '/about/group-institutions'
+      preLoaderRoute: typeof AboutGroupInstitutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about_/leadership': {
+      id: '/about_/leadership'
+      path: '/about/leadership'
+      fullPath: '/about/leadership'
+      preLoaderRoute: typeof AboutLeadershipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about_/overview': {
+      id: '/about_/overview'
+      path: '/about/overview'
+      fullPath: '/about/overview'
+      preLoaderRoute: typeof AboutOverviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about_/trust': {
+      id: '/about_/trust'
+      path: '/about/trust'
+      fullPath: '/about/trust'
+      preLoaderRoute: typeof AboutTrustRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about_/vision-mission': {
+      id: '/about_/vision-mission'
+      path: '/about/vision-mission'
+      fullPath: '/about/vision-mission'
+      preLoaderRoute: typeof AboutVisionMissionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admissions_/eligibility': {
       id: '/admissions_/eligibility'
       path: '/admissions/eligibility'
@@ -387,6 +487,11 @@ const rootRouteChildren: RootRouteChildren = {
   PlacementsRoute: PlacementsRoute,
   ProgrammesOfferedRoute: ProgrammesOfferedRoute,
   StudentHousingRoute: StudentHousingRoute,
+  AboutGroupInstitutionsRoute: AboutGroupInstitutionsRoute,
+  AboutLeadershipRoute: AboutLeadershipRoute,
+  AboutOverviewRoute: AboutOverviewRoute,
+  AboutTrustRoute: AboutTrustRoute,
+  AboutVisionMissionRoute: AboutVisionMissionRoute,
   AdmissionsEligibilityRoute: AdmissionsEligibilityRoute,
   AdmissionsProcedureRoute: AdmissionsProcedureRoute,
   AdmissionsScholarshipsRoute: AdmissionsScholarshipsRoute,

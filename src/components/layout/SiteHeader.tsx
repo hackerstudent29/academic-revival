@@ -21,11 +21,11 @@ const nav: NavItem[] = [
       {
         title: "About MSAJCE",
         links: [
-          { label: "Institution Overview", to: "/about" },
-          { label: "Vision & Mission", to: "/about", hash: "mission" },
-          { label: "Leadership Message", to: "/about", hash: "leadership" },
-          { label: "The Trust", to: "/about", hash: "trust" },
-          { label: "Group of Institutions", to: "/about", hash: "trust" },
+          { label: "Institution Overview", to: "/about/overview" },
+          { label: "Vision & Mission", to: "/about/vision-mission" },
+          { label: "Leadership Message", to: "/about/leadership" },
+          { label: "The Trust", to: "/about/trust" },
+          { label: "Group of Institutions", to: "/about/group-institutions" },
         ],
       },
       {
