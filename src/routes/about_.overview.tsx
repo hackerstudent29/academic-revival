@@ -57,7 +57,7 @@ const highlights = [
 
 export function InstitutionOverviewPage() {
   return (
-    <main className="bg-background text-foreground min-h-screen">
+    <main className="bg-page-bg text-foreground min-h-screen">
       {/* Editorial Page Hero */}
       <section className="relative border-b border-border bg-page-bg py-16 md:py-24">
         <div className="mx-auto max-w-[1440px] px-6 md:px-12">

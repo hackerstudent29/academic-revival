@@ -122,7 +122,7 @@ const groupStats = [
 
 export function GroupOfInstitutionsPage() {
   return (
-    <main className="bg-background text-foreground min-h-screen">
+    <main className="bg-page-bg text-foreground min-h-screen">
       {/* Page Hero */}
       <section className="relative border-b border-border bg-page-bg py-16 md:py-24">
         <div className="mx-auto max-w-[1440px] px-6 md:px-12">
