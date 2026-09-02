@@ -14,12 +14,12 @@ export function ContactSection() {
                 Contact Us
               </h2>
             </Reveal>
-            <Reveal variant="up" delay={0.1}>
+            <Reveal variant="rise" delay={0.1}>
               <h3 className="mt-8 text-[40px] font-black uppercase leading-[0.9] tracking-tighter text-foreground sm:text-[60px] md:text-[5vw] lg:text-[6vw]">
                 GET IN <br /> TOUCH.
               </h3>
             </Reveal>
-            <Reveal variant="up" delay={0.2}>
+            <Reveal variant="rise" delay={0.2}>
               <p className="mt-8 max-w-md text-sm leading-relaxed text-foreground/70 sm:text-base md:mt-12">
                 Have questions about admissions, academic programs, or campus life? Our advisors are here to help you begin your journey at MSAJCE.
               </p>
@@ -32,7 +32,7 @@ export function ContactSection() {
 
         {/* Right Column: Form */}
         <div className="flex items-center md:pl-8 lg:pl-16 mt-12 md:mt-0">
-          <Reveal variant="up" delay={0.3} className="w-full">
+          <Reveal variant="rise" delay={0.3} className="w-full">
             <form className="flex w-full flex-col gap-8 lg:gap-10" onSubmit={(e) => e.preventDefault()}>
               <div className="group relative">
                 <input
