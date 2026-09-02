@@ -70,7 +70,7 @@ export function NewsAndEventsSection() {
             <Link
               to="/events/$eventId"
               params={{ eventId: currentMainArticle.id }}
-              className="group flex flex-col h-full bg-[#EAEAEA] dark:bg-muted/40 border border-border/70 rounded-[4px] shadow-xs p-4 md:p-7 relative overflow-hidden transition-colors hover:border-primary/40"
+              className="group flex flex-col h-full bg-[#FEFFF5] dark:bg-[#181816] border border-border/70 rounded-[4px] shadow-xs p-4 md:p-7 relative overflow-hidden transition-colors hover:border-primary/40"
             >
               {/* Image with Gradient Overlay */}
               <div className="relative w-full aspect-[4/3] md:aspect-[2/1] bg-black overflow-hidden rounded-[4px]">
@@ -117,7 +117,7 @@ export function NewsAndEventsSection() {
 
           {/* Right Column: Single Panel with Stacked Scrolling Articles (spans 5 columns) */}
           <Reveal variant="rise" delay={0.2} className="lg:col-span-5 h-full">
-            <div className="bg-[#EAEAEA] dark:bg-muted/40 border border-border/70 rounded-[4px] shadow-xs p-6 h-full flex flex-col">
+            <div className="bg-[#FEFFF5] dark:bg-[#181816] border border-border/70 rounded-[4px] shadow-xs p-6 h-full flex flex-col">
               <h3 className="text-xl md:text-2xl font-bold tracking-tight text-primary font-display mb-4">
                 Upcoming Events
               </h3>
@@ -219,7 +219,7 @@ export function NewsAndEventsSection() {
               <Link
                 to="/events/$eventId"
                 params={{ eventId: article.id }}
-                className="group flex flex-col h-full bg-[#EAEAEA] dark:bg-muted/40 border border-border/70 rounded-[4px] shadow-xs p-6 transition-colors hover:border-primary/40"
+                className="group flex flex-col h-full bg-[#FEFFF5] dark:bg-[#181816] border border-border/70 rounded-[4px] shadow-xs p-6 transition-colors hover:border-primary/40"
               >
                 <span className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3 block">
                   {article.category}
