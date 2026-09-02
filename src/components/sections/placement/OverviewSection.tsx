@@ -297,7 +297,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
       ],
       steps: ['LEARN', 'CERTIFY', 'SPECIALISE', 'ADAPT'],
       icon: Award,
-      color: '#082B5C',
+      color: '#9E2339',
       image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&auto=format&fit=crop&q=85',
       imageCaption: 'Continuous professional learning and industry certifications',
       navTarget: 'training',
@@ -376,9 +376,9 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                     alt={archedTrioImages[0].title}
                     className="w-full h-full object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#082B5C]/80 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#9E2339]/80 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-3 left-2 right-2 text-center text-white">
-                    <p className="text-[11px] font-bold leading-tight font-['Outfit',sans-serif]">
+                    <p className="text-[11px] font-bold leading-tight font-oswald">
                       {archedTrioImages[0].title}
                     </p>
                   </div>
@@ -390,9 +390,9 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                     alt={archedTrioImages[1].title}
                     className="w-full h-full object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#082B5C]/85 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#9E2339]/85 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-4 left-2 right-2 text-center text-white">
-                    <p className="text-xs font-black leading-tight font-['Outfit',sans-serif]">
+                    <p className="text-xs font-black leading-tight font-oswald">
                       {archedTrioImages[1].title}
                     </p>
                     <p className="text-[10px] text-teal-200 font-medium mt-0.5">
@@ -407,9 +407,9 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                     alt={archedTrioImages[2].title}
                     className="w-full h-full object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#082B5C]/80 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#9E2339]/80 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-3 left-2 right-2 text-center text-white">
-                    <p className="text-[11px] font-bold leading-tight font-['Outfit',sans-serif]">
+                    <p className="text-[11px] font-bold leading-tight font-oswald">
                       {archedTrioImages[2].title}
                     </p>
                   </div>
@@ -436,10 +436,10 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
             <div className="inline-flex items-center gap-1.5 text-xs font-extrabold tracking-widest text-primary uppercase">
-              <TrendingUp className="w-4 h-4 text-[#059669]" />
+              <TrendingUp className="w-4 h-4 text-[#005DA6]" />
               INSTITUTIONAL METRICS
             </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight font-['Outfit',sans-serif]">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight font-oswald">
               Proven Track Record of Career Excellence
             </h2>
             <p className="text-base text-muted-foreground">
@@ -449,7 +449,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
 
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6 sm:gap-8 bg-muted/40 p-8 rounded-xl border border-border">
             <div className="text-center space-y-1.5">
-              <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-['Outfit',sans-serif]">
+              <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-oswald">
                 {counts.rate}%
               </p>
               <p className="text-xs font-extrabold text-primary uppercase tracking-wider">Placement Rate</p>
@@ -457,7 +457,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
             </div>
 
             <div className="text-center space-y-1.5">
-              <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-['Outfit',sans-serif]">
+              <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-oswald">
                 {counts.offers}+
               </p>
               <p className="text-xs font-extrabold text-primary uppercase tracking-wider">Offers Made</p>
@@ -465,7 +465,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
             </div>
 
             <div className="text-center space-y-1.5">
-              <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-['Outfit',sans-serif]">
+              <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-oswald">
                 {counts.companies}+
               </p>
               <p className="text-xs font-extrabold text-primary uppercase tracking-wider">Recruiting Companies</p>
@@ -473,15 +473,15 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
             </div>
 
             <div className="text-center space-y-1.5">
-              <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-['Outfit',sans-serif]">
+              <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-oswald">
                 ₹{counts.highest} <span className="text-lg font-bold text-muted-foreground">LPA</span>
               </p>
-              <p className="text-xs font-extrabold text-[#059669] uppercase tracking-wider">Highest Package</p>
+              <p className="text-xs font-extrabold text-[#005DA6] uppercase tracking-wider">Highest Package</p>
               <p className="text-xs text-muted-foreground">Peak compensation</p>
             </div>
 
             <div className="text-center space-y-1.5 col-span-2 md:col-span-1">
-              <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-['Outfit',sans-serif]">
+              <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-oswald">
                 ₹{counts.average} <span className="text-lg font-bold text-muted-foreground">LPA</span>
               </p>
               <p className="text-xs font-extrabold text-primary uppercase tracking-wider">Average Package</p>
@@ -503,32 +503,32 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                 <div className="grid grid-cols-2 gap-x-6 sm:gap-x-10 gap-y-5 relative">
                   
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                    <div className="bg-[#082B5C] text-white px-4 py-3 shadow-xl text-center max-w-[170px] pointer-events-auto border-2 border-white">
+                    <div className="bg-[#7D0424] text-white px-4 py-3 shadow-xl text-center max-w-[170px] pointer-events-auto border-2 border-white">
                       <p className="text-xs font-serif font-bold text-white leading-snug">
                         6 Essential Pillars of Career Readiness
                       </p>
-                      <div className="w-6 h-0.5 bg-[#005DA6] mx-auto mt-1" />
+                      <div className="w-6 h-0.5 bg-[#9E2339] mx-auto mt-1" />
                     </div>
                   </div>
 
                   <div className="space-y-4">
                     <div 
                       onClick={() => setActiveEcosystemPillar(0)}
-                      className={`p-4 sm:p-5 bg-[#082B5C] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
-                        activeEcosystemPillar === 0 ? 'ring-4 ring-[#005DA6]' : ''
+                      className={`p-4 sm:p-5 bg-[#7D0424] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
+                        activeEcosystemPillar === 0 ? 'ring-4 ring-[#9E2339]' : ''
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <BookOpen className="w-5 h-5 text-blue-200" />
-                        <span className="w-6 h-6 rounded-full bg-white text-[#082B5C] font-bold text-xs flex items-center justify-center shadow-xs">
+                        <BookOpen className="w-5 h-5 text-rose-200" />
+                        <span className="w-6 h-6 rounded-full bg-white text-[#7D0424] font-bold text-xs flex items-center justify-center shadow-xs">
                           1
                         </span>
                       </div>
                       <div>
-                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-['Outfit',sans-serif]">
+                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-oswald">
                           Academics & Theory
                         </h4>
-                        <p className="text-[11px] text-blue-100/90 leading-tight mt-0.5">
+                        <p className="text-[11px] text-rose-100/90 leading-tight mt-0.5">
                           Rigorous Anna Univ. syllabus
                         </p>
                       </div>
@@ -536,21 +536,21 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
 
                     <div 
                       onClick={() => setActiveEcosystemPillar(1)}
-                      className={`p-4 sm:p-5 bg-[#005DA6] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
-                        activeEcosystemPillar === 1 ? 'ring-4 ring-[#082B5C]' : ''
+                      className={`p-4 sm:p-5 bg-[#9E2339] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
+                        activeEcosystemPillar === 1 ? 'ring-4 ring-[#7D0424]' : ''
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <Code2 className="w-5 h-5 text-white" />
-                        <span className="w-6 h-6 rounded-full bg-white text-[#005DA6] font-bold text-xs flex items-center justify-center shadow-xs">
+                        <span className="w-6 h-6 rounded-full bg-white text-[#9E2339] font-bold text-xs flex items-center justify-center shadow-xs">
                           2
                         </span>
                       </div>
                       <div>
-                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-['Outfit',sans-serif]">
+                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-oswald">
                           Technical Skills
                         </h4>
-                        <p className="text-[11px] text-blue-100 leading-tight mt-0.5">
+                        <p className="text-[11px] text-rose-100 leading-tight mt-0.5">
                           Full-stack & data bootcamps
                         </p>
                       </div>
@@ -558,21 +558,21 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
 
                     <div 
                       onClick={() => setActiveEcosystemPillar(2)}
-                      className={`p-4 sm:p-5 bg-[#059669] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
-                        activeEcosystemPillar === 2 ? 'ring-4 ring-[#082B5C]' : ''
+                      className={`p-4 sm:p-5 bg-[#9E2339] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
+                        activeEcosystemPillar === 2 ? 'ring-4 ring-[#7D0424]' : ''
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <Target className="w-5 h-5 text-emerald-100" />
-                        <span className="w-6 h-6 rounded-full bg-white text-[#059669] font-bold text-xs flex items-center justify-center shadow-xs">
+                        <Target className="w-5 h-5 text-blue-100" />
+                        <span className="w-6 h-6 rounded-full bg-white text-[#005DA6] font-bold text-xs flex items-center justify-center shadow-xs">
                           3
                         </span>
                       </div>
                       <div>
-                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-['Outfit',sans-serif]">
+                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-oswald">
                           Training & Aptitude
                         </h4>
-                        <p className="text-[11px] text-emerald-50 leading-tight mt-0.5">
+                        <p className="text-[11px] text-blue-50 leading-tight mt-0.5">
                           STAR method & quant drills
                         </p>
                       </div>
@@ -582,18 +582,18 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                   <div className="space-y-4">
                     <div 
                       onClick={() => setActiveEcosystemPillar(3)}
-                      className={`p-4 sm:p-5 bg-[#1E293B] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
-                        activeEcosystemPillar === 3 ? 'ring-4 ring-[#005DA6]' : ''
+                      className={`p-4 sm:p-5 bg-[#9E2339] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
+                        activeEcosystemPillar === 3 ? 'ring-4 ring-[#9E2339]' : ''
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <Laptop className="w-5 h-5 text-slate-200" />
-                        <span className="w-6 h-6 rounded-full bg-white text-[#1E293B] font-bold text-xs flex items-center justify-center shadow-xs">
+                        <span className="w-6 h-6 rounded-full bg-white text-[#9E2339] font-bold text-xs flex items-center justify-center shadow-xs">
                           4
                         </span>
                       </div>
                       <div>
-                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-['Outfit',sans-serif]">
+                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-oswald">
                           Live Internships
                         </h4>
                         <p className="text-[11px] text-slate-200 leading-tight mt-0.5">
@@ -604,21 +604,21 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
 
                     <div 
                       onClick={() => setActiveEcosystemPillar(4)}
-                      className={`p-4 sm:p-5 bg-[#005DA6] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
-                        activeEcosystemPillar === 4 ? 'ring-4 ring-[#082B5C]' : ''
+                      className={`p-4 sm:p-5 bg-[#9E2339] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
+                        activeEcosystemPillar === 4 ? 'ring-4 ring-[#7D0424]' : ''
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <Building className="w-5 h-5 text-white" />
-                        <span className="w-6 h-6 rounded-full bg-white text-[#005DA6] font-bold text-xs flex items-center justify-center shadow-xs">
+                        <span className="w-6 h-6 rounded-full bg-white text-[#9E2339] font-bold text-xs flex items-center justify-center shadow-xs">
                           5
                         </span>
                       </div>
                       <div>
-                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-['Outfit',sans-serif]">
+                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-oswald">
                           Corporate MoUs
                         </h4>
-                        <p className="text-[11px] text-blue-100 leading-tight mt-0.5">
+                        <p className="text-[11px] text-rose-100 leading-tight mt-0.5">
                           65+ industry partnerships
                         </p>
                       </div>
@@ -626,18 +626,18 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
 
                     <div 
                       onClick={() => setActiveEcosystemPillar(5)}
-                      className={`p-4 sm:p-5 bg-[#082B5C] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
-                        activeEcosystemPillar === 5 ? 'ring-4 ring-[#005DA6]' : ''
+                      className={`p-4 sm:p-5 bg-[#7D0424] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
+                        activeEcosystemPillar === 5 ? 'ring-4 ring-[#9E2339]' : ''
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <Users className="w-5 h-5 text-blue-200" />
-                        <span className="w-6 h-6 rounded-full bg-white text-[#082B5C] font-bold text-xs flex items-center justify-center shadow-xs">
+                        <Users className="w-5 h-5 text-rose-200" />
+                        <span className="w-6 h-6 rounded-full bg-white text-[#7D0424] font-bold text-xs flex items-center justify-center shadow-xs">
                           6
                         </span>
                       </div>
                       <div>
-                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-['Outfit',sans-serif]">
+                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-oswald">
                           1-on-1 Mentorship
                         </h4>
                         <p className="text-[11px] text-blue-100/90 leading-tight mt-0.5">
@@ -649,7 +649,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
 
                 </div>
 
-                <div className="mt-5 pt-3 flex items-center justify-between text-xs text-[#082B5C] font-bold">
+                <div className="mt-5 pt-3 flex items-center justify-between text-xs text-[#9E2339] font-bold">
                   <span>MSAJCE Career Framework</span>
                   <span>Click any pillar to view detailed coverage</span>
                 </div>
@@ -660,7 +660,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
             <div className="lg:col-span-5 space-y-6">
               
               <div className="space-y-3">
-                <h2 className="text-3xl sm:text-5xl font-black text-[#082B5C] tracking-tight font-['Outfit',sans-serif] leading-tight">
+                <h2 className="text-3xl sm:text-5xl font-black text-[#9E2339] tracking-tight font-oswald leading-tight">
                   AN ECOSYSTEM BUILT AROUND READINESS
                 </h2>
               </div>
@@ -672,12 +672,12 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
               {(() => {
                 const current = ecosystemPillars[activeEcosystemPillar] || ecosystemPillars[0];
                 return (
-                  <div className="space-y-4 pt-4 p-6 bg-white shadow-xl border-2 border-[#082B5C]">
+                  <div className="space-y-4 pt-4 p-6 bg-white shadow-xl border-2 border-[#9E2339]">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-extrabold px-2.5 py-1 bg-[#082B5C] text-white">
+                      <span className="text-xs font-extrabold px-2.5 py-1 bg-[#9E2339] text-white">
                         Pillar {current.num}
                       </span>
-                      <h3 className="text-base font-bold text-[#082B5C] font-['Outfit',sans-serif]">
+                      <h3 className="text-base font-bold text-[#9E2339] font-oswald">
                         {current.title} — {current.subtitle}
                       </h3>
                     </div>
@@ -722,7 +722,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                       alt={current.heading} 
                       className="w-full h-full object-cover brightness-95" 
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#082B5C]/95 via-[#082B5C]/25 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#9E2339]/95 via-[#9E2339]/25 to-transparent" />
                     
                     <div className="absolute top-8 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-md shadow-lg flex items-center justify-center">
                       <DestinationIcon className="w-6 h-6" style={{ color: current.color }} />
@@ -735,7 +735,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                       >
                         {current.badge}
                       </span>
-                      <p className="text-xs sm:text-sm font-bold text-white/95 leading-snug px-2 font-['Outfit',sans-serif]">
+                      <p className="text-xs sm:text-sm font-bold text-white/95 leading-snug px-2 font-oswald">
                         {current.imageCaption}
                       </p>
                     </div>
@@ -747,7 +747,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
             <div className="lg:col-span-7 space-y-6">
               
               <div className="space-y-3">
-                <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
+                <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
                   WHERE YOUR JOURNEY CAN TAKE YOU
                 </h2>
               </div>
@@ -787,7 +787,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                 return (
                   <div className="space-y-4 pt-2">
                     <div className="space-y-1 border-l-4 pl-4" style={{ borderColor: current.color }}>
-                      <h3 className="text-xl sm:text-2xl font-black text-foreground font-['Outfit',sans-serif] tracking-tight">
+                      <h3 className="text-xl sm:text-2xl font-black text-foreground font-oswald tracking-tight">
                         {current.heading}
                       </h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">
@@ -807,7 +807,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                       ))}
                     </div>
 
-                    <div className="pt-2 flex flex-wrap items-center gap-2 font-['Outfit',sans-serif] text-xs font-black">
+                    <div className="pt-2 flex flex-wrap items-center gap-2 font-oswald text-xs font-black">
                       <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mr-1">
                         FLOW:
                       </span>
@@ -844,7 +844,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
       </section>
 
       {/* SECTION 4 — THE JOURNEY DOESN'T END AT PLACEMENT */}
-      <section className="w-full py-20 sm:py-28 bg-[#082B5C] text-white relative overflow-hidden" id="journey-continues-section">
+      <section className="w-full py-20 sm:py-28 bg-[#9E2339] text-white relative overflow-hidden" id="journey-continues-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -861,7 +861,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                   <div className="absolute inset-0 rounded-full shadow-inner pointer-events-none" />
                 </div>
 
-                <div className="absolute bottom-4 right-6 z-20 bg-white text-[#082B5C] px-4 py-2 shadow-2xl border-2 border-white text-center">
+                <div className="absolute bottom-4 right-6 z-20 bg-white text-[#9E2339] px-4 py-2 shadow-2xl border-2 border-white text-center">
                   <p className="text-xs font-black uppercase tracking-wider">
                     MSAJCE MAIN CAMPUS
                   </p>

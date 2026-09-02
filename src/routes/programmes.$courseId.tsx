@@ -428,7 +428,7 @@ function CoursePage() {
     h2: ({ node, children, ...props }: any) => {
       const tabLabel = departmentTabsList.find(t => t.id === activeTab)?.label || children;
       return (
-        <h2 className="text-primary font-black uppercase text-2xl md:text-3xl lg:text-4xl tracking-tight mb-10 mt-2 border-b-2 border-primary/20 pb-4" {...props}>
+        <h2 className="text-primary font-oswald font-black uppercase text-2xl md:text-3xl lg:text-4xl tracking-tight mb-8 border-b-2 border-primary/20 pb-4" {...props}>
           {tabLabel}
         </h2>
       );
@@ -440,20 +440,20 @@ function CoursePage() {
       }
 
       return (
-        <div className="mt-14 mb-6 department-h3-container">
-          <h3 className="text-foreground font-serif text-2xl md:text-3xl tracking-tight" {...props}>
+        <div className="mt-10 mb-4 department-h3-container">
+          <h3 className="text-primary font-oswald font-bold uppercase text-xl md:text-2xl tracking-tight" {...props}>
             {children}
           </h3>
         </div>
       );
     },
     h4: ({ node, children, ...props }: any) => (
-      <h4 className="text-foreground font-bold text-base md:text-lg tracking-tight mt-8 mb-3 text-primary" {...props}>
+      <h4 className="text-primary font-oswald font-bold text-base md:text-lg tracking-tight mt-6 mb-2" {...props}>
         {children}
       </h4>
     ),
     p: ({ node, children, ...props }: any) => (
-      <p className="text-foreground/80 text-base md:text-lg leading-[1.8] mb-8" {...props}>
+      <p className="text-foreground/85 font-sans text-base md:text-lg leading-[1.8] mb-6" {...props}>
         {children}
       </p>
     ),
@@ -463,41 +463,41 @@ function CoursePage() {
       </strong>
     ),
     blockquote: ({ node, children, ...props }: any) => (
-      <blockquote className="border-l-[3px] border-primary pl-6 py-2 my-10" {...props}>
-        <p className="text-2xl md:text-3xl font-serif italic text-foreground leading-[1.4] tracking-tight m-0">
+      <blockquote className="border-l-[4px] border-primary pl-6 py-2 my-8 bg-muted/30" {...props}>
+        <p className="text-xl md:text-2xl font-oswald italic text-foreground leading-[1.4] tracking-tight m-0">
           {children}
         </p>
       </blockquote>
     ),
     table: ({ node, children, ...props }: any) => (
-      <div className="overflow-x-auto my-8">
-        <table className="w-full text-left text-sm border-collapse border-y border-foreground/20" {...props}>
+      <div className="overflow-x-auto my-8 border border-border shadow-xs">
+        <table className="w-full text-left text-sm border-collapse" {...props}>
           {children}
         </table>
       </div>
     ),
     thead: ({ node, children, ...props }: any) => (
-      <thead className="text-foreground uppercase text-[11px] tracking-widest font-black" {...props}>
+      <thead className="bg-muted/60 text-foreground uppercase text-[11px] font-oswald tracking-widest font-bold" {...props}>
         {children}
       </thead>
     ),
     th: ({ node, children, ...props }: any) => (
-      <th className="p-4 font-black text-foreground border border-foreground/20 align-bottom" {...props}>
+      <th className="p-3.5 font-oswald font-bold text-foreground border border-border align-bottom" {...props}>
         {children}
       </th>
     ),
     td: ({ node, children, ...props }: any) => (
-      <td className="p-4 text-foreground/80 align-top border border-foreground/20 font-medium" {...props}>
+      <td className="p-3.5 text-foreground/90 font-sans align-top border border-border font-medium text-sm" {...props}>
         {children}
       </td>
     ),
     ol: ({ node, children, ...props }: any) => (
-      <ol style={{ listStyleType: 'decimal', listStylePosition: 'outside', paddingLeft: '1.25rem', marginLeft: '0', margin: '1.5rem 0' }} className="space-y-4 text-muted-foreground [&_ul]:pl-5 [&_ul]:mt-2 [&_ul]:space-y-1 [&_ol]:pl-5" {...props}>
+      <ol style={{ listStyleType: 'decimal', listStylePosition: 'outside', paddingLeft: '1.25rem', marginLeft: '0', margin: '1.5rem 0' }} className="space-y-4 text-foreground/80 font-sans [&_ul]:pl-5 [&_ul]:mt-2 [&_ul]:space-y-1 [&_ol]:pl-5" {...props}>
         {children}
       </ol>
     ),
     ul: ({ node, children, ...props }: any) => (
-      <ul style={{ listStyleType: 'disc', listStylePosition: 'outside', paddingLeft: '1.25rem', marginLeft: '0', margin: '0.5rem 0 1rem 0' }} className="space-y-2 text-muted-foreground [&_ul]:pl-5 [&_ul]:mt-2 [&_ol]:pl-5" {...props}>
+      <ul style={{ listStyleType: 'disc', listStylePosition: 'outside', paddingLeft: '1.25rem', marginLeft: '0', margin: '0.5rem 0 1rem 0' }} className="space-y-2 text-foreground/80 font-sans [&_ul]:pl-5 [&_ul]:mt-2 [&_ol]:pl-5" {...props}>
         {children}
       </ul>
     ),
@@ -507,16 +507,16 @@ function CoursePage() {
       const missionMatch = rawText.match(/^([MV]\d*)\.\s*(.*)/);
       if (missionMatch) {
         return (
-          <li className="flex items-start gap-4 mb-6 list-none -ml-5" {...props}>
-            <span className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full bg-primary/10 text-primary font-bold text-xs mt-0.5">
+          <li className="flex items-start gap-4 mb-5 list-none -ml-5" {...props}>
+            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs mt-0.5 border border-foreground/20 shadow-2xs">
               {missionMatch[1]}
             </span>
-            <span className="text-foreground/80 leading-[1.8] text-base md:text-lg">{missionMatch[2]}</span>
+            <span className="text-foreground/90 font-sans leading-[1.7] text-base md:text-lg">{missionMatch[2]}</span>
           </li>
         );
       }
       return (
-        <li style={{ display: 'list-item' }} className="leading-[1.8] text-foreground/80 text-base md:text-lg [&>p]:inline" {...props}>
+        <li style={{ display: 'list-item' }} className="leading-[1.7] text-foreground/90 font-sans text-base md:text-lg [&>p]:inline" {...props}>
           {children}
         </li>
       );
@@ -527,7 +527,7 @@ function CoursePage() {
   };
 
   return (
-    <div className="min-h-screen bg-page-bg text-foreground">
+    <div className="min-h-screen bg-page-bg text-foreground font-sans">
       {/* Sub Navigation Bar with Sticky Scroll Indicator */}
       <SecondarySubNav
         title={getDepartmentHeaderTitle(course)}
@@ -556,51 +556,125 @@ function CoursePage() {
           className="w-full flex flex-col"
         >
 
-      {/* Department Page Cover Hero Section (Full Size: 60vh / 75vh) */}
-      <div className="relative w-full h-[60vh] md:h-[75vh] bg-slate-950 overflow-hidden">
-        <img 
-          src={course.image} 
-          alt={getHeroTitle(course)} 
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=2000&q=80";
-          }}
-        />
-        {/* Rich Dark Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent pointer-events-none" />
-      </div>
-
-      {/* Information Header Box Overlapping Hero Banner */}
-      <div className="relative -mt-28 md:-mt-36 left-0 w-full px-6 lg:px-12 z-10 flex justify-center md:justify-start max-w-[1440px] mx-auto right-0">
-        <div className="bg-card text-card-foreground w-full max-w-5xl p-8 md:p-12 lg:p-14 border border-border shadow-xl rounded-none">
+      {/* Department Page Split-Layout Hero Section with Ultra-Smooth Staggered Animations */}
+      <section className="relative w-full bg-background border-b border-border overflow-hidden">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 min-h-[520px] lg:min-h-[580px]">
           
-          {/* Course Name & Lead Statement */}
-          <div className="mb-2">
-             <span className="block text-[11px] font-bold text-primary mb-3 uppercase tracking-[0.2em]">
-               Department of
-             </span>
-             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif tracking-tight text-foreground mb-6 leading-tight max-w-full">
-               {getHeroTitle(course)}
-             </h1>
-             
-             {/* Hero Strip */}
-             <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] md:text-[12px] font-bold text-foreground/70 uppercase tracking-widest mb-6">
-               <span>Est. 1999</span>
-               <span className="w-1 h-1 rounded-full bg-border"></span>
-               <span>NAAC Accredited</span>
-               <span className="w-1 h-1 rounded-full bg-border"></span>
-               <span className="text-foreground">{course.intake} Seats</span>
-               <span className="w-1 h-1 rounded-full bg-border"></span>
-               <span>Anna University Affiliated</span>
-             </div>
-             
-             <p className="text-base md:text-lg text-foreground/80 leading-relaxed max-w-3xl mt-6 border-t border-border/50 pt-6">
-               {course.description}
-             </p>
+          {/* Left Column: Signature Academic Maroon Red Brand Panel */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 xl:col-span-5 bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white p-8 sm:p-10 lg:p-12 flex flex-col justify-between relative overflow-hidden z-10 shadow-xl"
+          >
+            {/* Ambient Background Light Glow Effect */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: [0.25, 0.55, 0.25], scale: [1, 1.25, 1] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-white/10 blur-3xl pointer-events-none"
+            />
+
+            <div className="relative z-10 pt-2">
+              {/* Eyebrow Label */}
+              <motion.div 
+                initial={{ opacity: 0, y: -12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="flex items-center gap-2 mb-3"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                <span className="text-[11px] font-bold text-white/90 uppercase tracking-[0.22em] font-oswald">
+                  Department of
+                </span>
+              </motion.div>
+
+              {/* Big Bold Headline in Oswald (Smooth Slide Up Reveal) */}
+              <motion.h1 
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-white font-oswald leading-[1.08] tracking-tight mb-5 drop-shadow-sm"
+              >
+                {getHeroTitle(course)}
+              </motion.h1>
+
+              {/* Description Paragraph in Libre Franklin */}
+              <motion.p 
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="text-sm sm:text-base leading-relaxed text-white/90 font-sans font-normal mb-6 line-clamp-5"
+              >
+                {course.description}
+              </motion.p>
+            </div>
+
+            <div className="relative z-10 pt-4">
+              {/* Metadata Badges Strip */}
+              <motion.div 
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.45 }}
+                className="flex flex-wrap gap-2 text-[10px] font-bold font-oswald text-white/90 uppercase tracking-widest mb-8 pt-4 border-t border-white/20"
+              >
+                <motion.span whileHover={{ scale: 1.05, y: -2, backgroundColor: "rgba(255, 255, 255, 0.25)" }} className="bg-white/15 px-3 py-1.5 rounded-tl-sm rounded-br-sm backdrop-blur-xs transition-all shadow-xs">Est. 1999</motion.span>
+                <motion.span whileHover={{ scale: 1.05, y: -2, backgroundColor: "rgba(255, 255, 255, 0.25)" }} className="bg-white/15 px-3 py-1.5 rounded-tl-sm rounded-br-sm backdrop-blur-xs transition-all shadow-xs">NAAC Accredited</motion.span>
+                <motion.span whileHover={{ scale: 1.05, y: -2, backgroundColor: "rgba(255, 255, 255, 0.3)" }} className="bg-white/20 text-white font-black px-3 py-1.5 rounded-tl-sm rounded-br-sm backdrop-blur-xs transition-all shadow-xs">{course.intake} Seats</motion.span>
+                <motion.span whileHover={{ scale: 1.05, y: -2, backgroundColor: "rgba(255, 255, 255, 0.25)" }} className="bg-white/15 px-3 py-1.5 rounded-tl-sm rounded-br-sm backdrop-blur-xs transition-all shadow-xs">Anna Univ. Affiliated</motion.span>
+              </motion.div>
+
+              {/* Boxy Asymmetrical Rectangle CTA Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.55 }}
+              >
+                <motion.button
+                  whileHover={{ scale: 1.03, x: 4 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => {
+                    const el = document.getElementById('department-main-content');
+                    if (el) {
+                      const yOffset = -120;
+                      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                      window.scrollTo({ top: y, behavior: 'smooth' });
+                    }
+                  }}
+                  className="group relative overflow-hidden inline-flex items-center justify-center gap-2.5 bg-white text-[#9E2339] hover:bg-white/95 px-7 py-3.5 text-xs font-bold uppercase tracking-wider font-oswald rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs shadow-lg transition-all cursor-pointer border-l-4 border-[#9E2339]"
+                >
+                  <span>Explore Department Curriculum</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1.5" />
+                </motion.button>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Right Column: High-End Zoom Reveal Image Showcase */}
+          <div className="lg:col-span-7 xl:col-span-7 relative min-h-[380px] lg:min-h-full overflow-hidden bg-slate-950 flex items-center justify-center">
+            <motion.img 
+              key={course.slug}
+              initial={{ scale: 1.15, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              src={course.image} 
+              alt={getHeroTitle(course)} 
+              className="w-full h-full object-cover brightness-[0.95]"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                if (!target.src.endsWith('/images/eligibility_hero.jpg')) {
+                  target.src = '/images/eligibility_hero.jpg';
+                }
+              }}
+            />
+
+            {/* Subtle Gradient Overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent pointer-events-none" />
           </div>
+
         </div>
-      </div>
+      </section>
 
       {/* Main Content Layout */}
       <div id="department-main-content" className="max-w-[1440px] mx-auto px-6 lg:px-12 pt-6 md:pt-8 pb-24">
@@ -1172,7 +1246,7 @@ function CoursePage() {
                                     <div className="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
                                       <span className="text-primary">{role}</span>
                                       <span className="text-muted-foreground/60">•</span>
-                                      <span className="text-[#059669]">{yearDept}</span>
+                                      <span className="text-[#005DA6]">{yearDept}</span>
                                     </div>
                                   </div>
 

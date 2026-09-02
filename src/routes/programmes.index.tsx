@@ -4,7 +4,7 @@ import { CourseCatalogSection } from '@/components/widgets/CourseCatalogSection'
 export const Route = createFileRoute('/programmes/')({
   validateSearch: (search: Record<string, unknown>) => {
     return {
-      level: search.level as string | undefined,
+      level: search['level'] as string | undefined,
     };
   },
   component: ProgrammesIndex,

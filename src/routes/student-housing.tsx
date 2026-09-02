@@ -1,11 +1,21 @@
-import { useRef } from "react";
-import { createFileRoute } from "@tanstack/react-router";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Bed, Wifi, Monitor, BookOpen, CheckCircle2, ShieldCheck, Utensils } from "lucide-react";
+import { useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ChevronDown,
+  ChevronUp,
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+  CheckCircle2,
+  Phone,
+  Mail,
+  MapPin,
+  Search
+} from "lucide-react";
 
-const title = "Hostel Facilities | MSAJCE";
-const description = "Student housing, mess, cafeteria, and hostel rules at MSAJCE.";
+const title = "Living On Campus | MSAJCE Hostel Facilities";
+const description = "Explore MSAJCE student housing, residence halls, mess facilities, guidelines, and office of residence life.";
 
 export const Route = createFileRoute("/student-housing")({
   head: () => ({
@@ -14,8 +24,147 @@ export const Route = createFileRoute("/student-housing")({
       { name: "description", content: description },
     ],
   }),
-  component: StudentHousing,
+  component: StudentHousingPage,
 });
+
+// FAQ Item Data
+interface FaqItem {
+  id: string;
+  category: "all" | "rules" | "mess" | "girls" | "facilities";
+  question: string;
+  answer: string;
+}
+
+const faqData: FaqItem[] = [
+  {
+    id: "faq-1",
+    category: "rules",
+    question: "What are the hostel curfew timings for students?",
+    answer: "The standard evening curfew is 7:00 PM for all residential students. Late entries are strictly monitored and require prior written authorization or parent confirmation submitted to the Warden."
+  },
+  {
+    id: "faq-2",
+    category: "facilities",
+    question: "How is the room allotment process managed?",
+    answer: "Rooms are allotted by the Warden (Principal's Office) at the beginning of each academic year based on course level, year of study, and availability. Roommate requests are considered wherever possible."
+  },
+  {
+    id: "faq-3",
+    category: "mess",
+    question: "What dining options are provided in the hostel mess?",
+    answer: "The hostel mess serves 4 nutritious meals daily (Breakfast, Lunch, Evening Snacks with Tea/Coffee, and Dinner). Menus feature balanced South Indian & North Indian vegetarian and non-vegetarian dishes."
+  },
+  {
+    id: "faq-4",
+    category: "girls",
+    question: "How is transportation arranged for the Sholinganallur Girls Hostel?",
+    answer: "Dedicated MSAJCE college buses provide complimentary, timed shuttle services between the Sholinganallur Girls Hostel (5 km from campus) and the main academic campus every morning and evening."
+  },
+  {
+    id: "faq-5",
+    category: "rules",
+    question: "What is the policy regarding visitors and parents?",
+    answer: "Only authorized parents and local guardians registered in the official visitor list are permitted to visit students. Visiting hours are on Sundays and official holidays from 11:00 AM to 6:00 PM."
+  },
+  {
+    id: "faq-6",
+    category: "facilities",
+    question: "Is high-speed internet and power backup available in the hostel?",
+    answer: "Yes, 24/7 high-speed Wi-Fi access is provided across all hostel blocks, alongside uninterrupted generator power backup for study halls and common areas."
+  },
+  {
+    id: "faq-7",
+    category: "facilities",
+    question: "What medical assistance is available on campus?",
+    answer: "An on-campus health clinic with a resident medical practitioner and first-aid center is active 24/7. Emergency transportation/ambulance services are available for immediate hospital visits."
+  }
+];
+
+// Team Members (Carousel)
+const teamMembers = [
+  {
+    id: 1,
+    name: "Dr. Arlene Adams Manning",
+    role: "Director of Residence Life",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+    buttonText: "Contact",
+    variant: "blue",
+    bio: "Overseeing student housing operations, residential programs, and campus community standards."
+  },
+  {
+    id: 2,
+    name: "Sandra Moreau",
+    role: "Warden (Girls Residence)",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80",
+    buttonText: "Contact",
+    variant: "blue",
+    bio: "Managing the Sholinganallur Girls Hostel, safety protocols, and resident care."
+  },
+  {
+    id: 3,
+    name: "Andrew Swain",
+    role: "Warden (Boys Residence)",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+    buttonText: "Contact",
+    variant: "blue",
+    bio: "Supervising the 3 Boys Hostel blocks on main campus, floor advisers, and sports activities."
+  },
+  {
+    id: 4,
+    name: "Resident Advisors",
+    role: "Student Support Team",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80",
+    buttonText: "Learn More",
+    variant: "gold",
+    bio: "Dedicated 24/7 peer advisers assisting residents with transition, peer mentoring, and events."
+  }
+];
+
+// 6 Campus Image Cards
+const campusCards = [
+  {
+    id: 1,
+    title: "Watch Residence Hall Room Tours",
+    image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=800&q=80",
+    buttonText: "Learn More",
+    link: "#halls"
+  },
+  {
+    id: 2,
+    title: "What Do Residence Halls Cost?",
+    image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80",
+    buttonText: "Learn More",
+    link: "#matrix"
+  },
+  {
+    id: 3,
+    title: "Types of Housing",
+    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80",
+    buttonText: "Learn More",
+    link: "#halls"
+  },
+  {
+    id: 4,
+    title: "Sophomore Housing",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80",
+    buttonText: "Learn More",
+    link: "#upperclass"
+  },
+  {
+    id: 5,
+    title: "Student Spaces",
+    image: "https://images.unsplash.com/photo-1519452314541-e945c7ea9dc6?auto=format&fit=crop&w=800&q=80",
+    buttonText: "Learn More",
+    link: "#halls"
+  },
+  {
+    id: 6,
+    title: "Housing Info for J-Term, Maymester, and Summer",
+    image: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80",
+    buttonText: "Learn More",
+    link: "#faq"
+  }
+];
 
 const rules = [
   "Students must occupy the rooms allotted to them by the Warden (Principal).",
@@ -28,384 +177,771 @@ const rules = [
   "Visitors are allowed on holidays from 11.00 A.M. to 6.00 P.M."
 ];
 
-// Reusable animated table row
-const AnimatedTableRow = ({ children, index = 0, className = "" }: { children: React.ReactNode, index?: number, className?: string }) => (
-  <motion.tr
-    initial={{ opacity: 0, x: -10 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true, margin: "-20px" }}
-    transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-    className={`hover:bg-foreground/[0.02] transition-colors ${className}`}
-  >
-    {children}
-  </motion.tr>
-);
+function StudentHousingPage() {
+  // Accordion state for "Your Story Starts Here"
+  const [openStoryIndex, setOpenStoryIndex] = useState<number | null>(0);
 
-function StudentHousing() {
-  const { scrollY } = useScroll();
+  // FAQ State
+  const [openFaqId, setOpenFaqId] = useState<string | null>("faq-1");
+  const [faqSearch, setFaqSearch] = useState("");
 
-  // Smooth spring for scroll values
-  const smoothY = useSpring(scrollY, { stiffness: 100, damping: 20 });
-  
-  // Hero animations
-  const wrapperX = useTransform(smoothY, [0, 150], ["50%", "0%"]);
-  const childX = useTransform(smoothY, [0, 150], ["-50%", "0%"]);
-  const scale = useTransform(smoothY, [0, 150], [1, 0.55]);
-  const y = useTransform(smoothY, [0, 150], ["0px", "-120px"]);
+  // Team Modal
+  const [selectedMember, setSelectedMember] = useState<typeof teamMembers[0] | null>(null);
+
+  const filteredFaqs = faqData.filter(item => 
+    item.question.toLowerCase().includes(faqSearch.toLowerCase()) ||
+    item.answer.toLowerCase().includes(faqSearch.toLowerCase())
+  );
 
   return (
-    <main className="bg-background font-sans">
+    <main className="bg-[#F9F8F6] dark:bg-background text-foreground font-sans min-h-screen">
       
-      {/* Full Screen Hero Section */}
-      <section className="relative h-[80vh] min-h-[600px] w-full flex flex-col justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=2000&q=80" 
-            alt="MSAJCE Hostel" 
-            className="w-full h-full object-cover"
-          />
-        </div>
+      {/* =========================================================================
+          SECTION 1: HERO BANNER ("Living On Campus")
+          ========================================================================= */}
+      <section className="relative bg-[#7A1C30] dark:bg-[#5C1424] text-white pt-10 pb-16 px-4 sm:px-6 lg:px-12 overflow-hidden">
         
-        <div className="relative z-10 w-full max-w-[1440px] px-6 md:px-12 mx-auto">
-          <motion.div style={{ x: wrapperX, width: "100%", y }}>
-            <motion.div 
-              style={{ x: childX, scale, transformOrigin: "left center" }} 
-              className="inline-flex flex-col text-center md:text-left"
-            >
-              <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-black uppercase tracking-tighter text-white drop-shadow-2xl mb-6">
-                Student Housing
-              </h1>
-              <p className="text-lg md:text-2xl text-white max-w-3xl font-bold tracking-wide drop-shadow-xl">
-                A serene home away from home with modern amenities and complete security.
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Main Content - Highly Creative Editorial Layout */}
-      <section className="mx-auto max-w-[1440px] px-6 pt-24 pb-12 md:px-12">
-        
-        {/* Editorial Heading with Background Typography */}
-        <div className="relative mb-24 md:mb-32 mt-10">
-          <Reveal variant="rise">
-            <h2 className="text-[12vw] leading-[0.75] font-black uppercase tracking-tighter text-foreground/[0.03] dark:text-foreground/[0.05] absolute -top-16 left-0 whitespace-nowrap pointer-events-none hidden md:block">
-              LIVING AT MSAJCE
-            </h2>
-          </Reveal>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
           
-          <div className="relative z-10 pt-4">
-            <Reveal variant="rise" delay={0.1}>
-              <h3 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter text-primary leading-none">
-                Hostel Facilities
-              </h3>
-            </Reveal>
-            <Reveal variant="rise" delay={0.2}>
-              <p className="mt-8 text-xl md:text-3xl font-medium text-foreground/80 max-w-4xl leading-snug">
-                A home away from home. We provide separate, fully-furnished accommodations for boys and girls, emphasizing absolute safety, comfort, and academic focus.
-              </p>
-            </Reveal>
-          </div>
-        </div>
-
-        {/* Staggered Large Intro Blocks */}
-        <div className="grid md:grid-cols-2 gap-16 md:gap-24 mb-24">
-          <Reveal variant="rise" delay={0.3}>
-            <div className="border-t-4 border-primary pt-8">
-              <h4 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-foreground mb-6">Boys Hostel</h4>
-              <p className="text-foreground/70 text-lg md:text-xl leading-relaxed font-medium">
-                Accommodating <strong className="text-foreground font-black text-2xl md:text-3xl">480</strong> male students in a vibrant, green campus environment. Designed to foster academic focus and personal growth, all rooms are fully furnished with modern amenities, ensuring a highly comfortable stay.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal variant="rise" delay={0.4}>
-            <div className="border-t-4 border-foreground/20 pt-8 mt-0 md:mt-24">
-              <h4 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-foreground mb-6">Girls Hostel</h4>
-              <p className="text-foreground/70 text-lg md:text-xl leading-relaxed font-medium">
-                Accommodating <strong className="text-foreground font-black text-2xl md:text-3xl">210</strong> female students in a highly secure, premium location at Sholinganallur. Featuring en-suite facilities, a dedicated reading space, and 24/7 security for absolute safety and convenience.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Structured Premium Table (Full Width now for maximum impact) */}
-        <Reveal variant="rise" delay={0.5}>
-          <div className="w-full mb-16">
-            <div className="w-full overflow-x-auto">
-              <table className="w-full text-left border-collapse border-y border-foreground/20 min-w-[800px]">
-                <thead className="bg-foreground/[0.01]">
-                  <tr className="border-b border-foreground/20">
-                    <th className="py-5 pr-6 border-r border-foreground/20 font-black uppercase tracking-widest text-[12px] align-bottom text-foreground w-[20%]">Location</th>
-                    <th className="p-6 border-r border-foreground/20 font-black uppercase tracking-widest text-[12px] align-bottom text-foreground w-[40%]">
-                      Boys Hostel<br/>
-                      <span className="text-[10px] text-foreground/50 tracking-widest block mt-2 font-bold">INCLUDE THE CAMPUS</span>
-                    </th>
-                    <th className="p-6 font-black uppercase tracking-widest text-[12px] align-bottom text-foreground w-[40%]">
-                      Girls Hostel<br/>
-                      <span className="text-[10px] text-foreground/50 tracking-widest block mt-2 font-bold">AT SHOLINGANALLUR (5 KM)</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-foreground/10">
-                  <AnimatedTableRow index={1}>
-                    <td className="py-5 pr-6 border-r border-foreground/20 text-foreground font-black text-[15px]">No. of Blocks</td>
-                    <td className="p-6 border-r border-foreground/20 text-foreground/80 text-lg font-medium">3</td>
-                    <td className="p-6 text-foreground/80 text-lg font-medium">1</td>
-                  </AnimatedTableRow>
-                  <AnimatedTableRow index={2}>
-                    <td className="py-5 pr-6 border-r border-foreground/20 text-foreground font-black text-[15px]">Rooms (Non-AC)</td>
-                    <td className="p-6 border-r border-foreground/20 text-foreground/80 text-lg font-medium">233</td>
-                    <td className="p-6 text-foreground/80 text-lg font-medium">71</td>
-                  </AnimatedTableRow>
-                  <AnimatedTableRow index={3}>
-                    <td className="py-5 pr-6 border-r border-foreground/20 text-foreground font-black text-[15px]">Rooms (AC)</td>
-                    <td className="p-6 border-r border-foreground/20 text-foreground/80 text-lg font-medium">6</td>
-                    <td className="p-6 text-foreground/80 text-lg font-medium">-</td>
-                  </AnimatedTableRow>
-                  <AnimatedTableRow index={4}>
-                    <td className="py-5 pr-6 border-r border-foreground/20 text-foreground font-black text-[15px]">Occupancy</td>
-                    <td className="p-6 border-r border-foreground/20 text-foreground/80 text-lg font-medium">2 per room</td>
-                    <td className="p-6 text-foreground/80 text-lg font-medium">3 per room</td>
-                  </AnimatedTableRow>
-                  <AnimatedTableRow index={5}>
-                    <td className="py-5 pr-6 border-r border-foreground/20 text-foreground font-black text-[15px]">Facilities</td>
-                    <td className="p-6 text-foreground/80 text-[16px] leading-relaxed font-medium" colSpan={2}>
-                      Cot, Chair, Lamp, Fan, Water Heater, WiFi Facility and TV Hall
-                    </td>
-                  </AnimatedTableRow>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </Reveal>
-
-        {/* Feature Highlights Grid - Elevated Design */}
-        <div className="grid md:grid-cols-3 gap-12 mt-8">
-          <Reveal variant="rise" delay={0.6}>
-            <div className="flex flex-col h-full bg-foreground/[0.02] p-8 border border-foreground/5 hover:border-primary/30 transition-colors">
-              <Bed className="text-primary mb-6" size={32} />
-              <h5 className="font-black text-foreground uppercase tracking-tight text-lg mb-3">Fully Furnished</h5>
-              <p className="text-foreground/70 text-[15px] leading-relaxed font-medium">Mattresses, cup-boards, study tables & wall hangers included for absolute comfort.</p>
-            </div>
-          </Reveal>
-          <Reveal variant="rise" delay={0.7}>
-            <div className="flex flex-col h-full bg-foreground/[0.02] p-8 border border-foreground/5 hover:border-primary/30 transition-colors">
-              <Monitor className="text-primary mb-6" size={32} />
-              <h5 className="font-black text-foreground uppercase tracking-tight text-lg mb-3">Recreation</h5>
-              <p className="text-foreground/70 text-[15px] leading-relaxed font-medium">Entertainment halls equipped with TVs, indoor games, and dedicated reading rooms.</p>
-            </div>
-          </Reveal>
-          <Reveal variant="rise" delay={0.8}>
-            <div className="flex flex-col h-full bg-foreground/[0.02] p-8 border border-foreground/5 hover:border-primary/30 transition-colors">
-              <Wifi className="text-primary mb-6" size={32} />
-              <h5 className="font-black text-foreground uppercase tracking-tight text-lg mb-3">Connectivity</h5>
-              <p className="text-foreground/70 text-[15px] leading-relaxed font-medium">High-speed Wi-Fi access throughout, with extended late-night library access until 9 PM.</p>
-            </div>
-          </Reveal>
-        </div>
-
-      </section>
-
-      {/* Campus Life Gallery (Asymmetric Masonry Collage with slight curves) */}
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 mb-12">
-        <Stagger gap={0.1} className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[150px] md:auto-rows-[250px]">
-          <StaggerItem variant="unfold" className="col-span-2 md:col-span-2 row-span-2 rounded-lg overflow-hidden border border-foreground/10">
-            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80" alt="Campus Life" className="w-full h-full object-cover grayscale transition-all duration-700 hover:grayscale-0" />
-          </StaggerItem>
-          <StaggerItem variant="unfold" className="col-span-2 md:col-span-1 row-span-1 rounded-lg overflow-hidden border border-foreground/10">
-            <img src="https://images.unsplash.com/photo-1519452314541-e945c7ea9dc6?auto=format&fit=crop&w=800&q=80" alt="Study Area" className="w-full h-full object-cover grayscale transition-all duration-700 hover:grayscale-0" />
-          </StaggerItem>
-          <StaggerItem variant="unfold" className="col-span-1 md:col-span-1 row-span-2 rounded-lg overflow-hidden border border-foreground/10">
-            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Students" className="w-full h-full object-cover grayscale transition-all duration-700 hover:grayscale-0" />
-          </StaggerItem>
-          <StaggerItem variant="unfold" className="col-span-1 md:col-span-1 row-span-1 rounded-lg overflow-hidden border border-foreground/10">
-            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80" alt="Library" className="w-full h-full object-cover grayscale transition-all duration-700 hover:grayscale-0" />
-          </StaggerItem>
-        </Stagger>
-      </section>
-
-      {/* Rules - No Cards */}
-      <section className="bg-foreground/[0.02] border-y border-foreground/10 px-6 py-24 md:px-12">
-        <div className="mx-auto max-w-[1440px] grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-24 relative">
-          
-          <div className="lg:sticky lg:top-32 self-start">
-            <Reveal variant="rise">
-              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-foreground">
-                Rules &<br />Regulations
-              </h2>
-            </Reveal>
-          </div>
-          
-          <ul className="grid gap-x-12 gap-y-10 sm:grid-cols-2">
-            {rules.map((rule, idx) => (
-              <Reveal key={idx} variant="rise" delay={idx * 0.05}>
-                <li className="flex gap-4 items-start">
-                  <CheckCircle2 className="text-primary shrink-0 mt-0.5" size={20} />
-                  <p className="text-foreground/80 leading-relaxed text-[15px] font-medium">{rule}</p>
-                </li>
-              </Reveal>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* Dining & Cafeteria */}
-      <section className="mx-auto max-w-[1440px] px-6 py-24 md:px-12">
-        
-        {/* Dining Hall Row */}
-        <div className="grid lg:grid-cols-[1fr_1.5fr] gap-16 lg:gap-24 mb-32 relative">
-          
-          {/* Sticky Mess Header */}
-          <div className="lg:sticky lg:top-32 self-start">
-            <Reveal variant="rise">
-              <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary mb-4">Mess</h2>
-              <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-foreground mb-6">
-                Dining Hall
-              </h3>
-              <p className="text-foreground/70 leading-relaxed mb-6 text-lg font-medium">
-                Run by the Management through a private contractor under the guidance of the Principal. 
-                We serve Vegetarian and Non-Vegetarian food in a spacious dining hall with separate seating arrangements for boys and girls.
-              </p>
-              <div className="pl-6 border-l-4 border-primary italic text-foreground/60 mb-6 font-medium">
-                "Mess charges are collected on an annual basis. Parents and guests are welcome to consume food by paying per meal."
-              </div>
-            </Reveal>
-          </div>
-          
-          <div className="space-y-16">
-            <Reveal variant="rise" delay={0.1}>
-              <h4 className="text-xl font-black uppercase tracking-widest text-foreground mb-6 flex items-center gap-3">
-                <Utensils className="text-primary" size={24} /> Mess Timings
-              </h4>
-              
-              <div className="w-full overflow-x-auto">
-                <table className="w-full text-left whitespace-nowrap border-collapse border-y border-foreground/20">
-                  <thead className="bg-foreground/[0.01]">
-                    <tr className="border-b border-foreground/20">
-                      <th className="py-4 px-4 border-r border-foreground/20 text-[11px] font-black uppercase tracking-widest text-foreground w-1/3">Meal</th>
-                      <th className="py-4 px-4 border-r border-foreground/20 text-[11px] font-black uppercase tracking-widest text-foreground">Working Days</th>
-                      <th className="py-4 px-4 text-[11px] font-black uppercase tracking-widest text-foreground">Holidays</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-foreground/10">
-                    <AnimatedTableRow index={1}>
-                      <td className="py-4 px-4 border-r border-foreground/20 text-[14px] font-black text-foreground">Break Fast</td>
-                      <td className="py-4 px-4 border-r border-foreground/20 text-[14px] text-foreground/80 font-medium">07:00 AM - 08:00 AM</td>
-                      <td className="py-4 px-4 text-[14px] text-foreground/80 font-medium">07:30 AM - 09:00 AM</td>
-                    </AnimatedTableRow>
-                    <AnimatedTableRow index={2}>
-                      <td className="py-4 px-4 border-r border-foreground/20 text-[14px] font-black text-foreground">Lunch</td>
-                      <td className="py-4 px-4 border-r border-foreground/20 text-[14px] text-foreground/80 font-medium">01:00 PM - 01:45 PM</td>
-                      <td className="py-4 px-4 text-[14px] text-foreground/80 font-medium">12:30 PM - 02:00 PM</td>
-                    </AnimatedTableRow>
-                    <AnimatedTableRow index={3}>
-                      <td className="py-4 px-4 border-r border-foreground/20 text-[14px] font-black text-foreground">Dinner</td>
-                      <td className="py-4 px-4 border-r border-foreground/20 text-[14px] text-foreground/80 font-medium">07:00 PM - 08:30 PM</td>
-                      <td className="py-4 px-4 text-[14px] text-foreground/80 font-medium">07:00 PM - 09:00 PM</td>
-                    </AnimatedTableRow>
-                  </tbody>
-                </table>
-              </div>
-            </Reveal>
-
-            <Reveal variant="rise" delay={0.2}>
-              <h4 className="text-xl font-black uppercase tracking-widest text-foreground mb-6 flex items-center gap-3 mt-12">
-                <Monitor className="text-primary" size={24} /> Games & TV Timings
-              </h4>
-              
-              <div className="w-full overflow-x-auto">
-                <table className="w-full text-left whitespace-nowrap border-collapse border-y border-foreground/20">
-                  <thead className="bg-foreground/[0.01]">
-                    <tr className="border-b border-foreground/20">
-                      <th className="py-4 px-4 border-r border-foreground/20 text-[11px] font-black uppercase tracking-widest text-foreground">Working Days</th>
-                      <th className="py-4 px-4 border-r border-foreground/20 text-[11px] font-black uppercase tracking-widest text-foreground">Holidays</th>
-                      <th className="py-4 px-4 border-r border-foreground/20 text-[11px] font-black uppercase tracking-widest text-foreground">Morning Study</th>
-                      <th className="py-4 px-4 text-[11px] font-black uppercase tracking-widest text-foreground">Evening Study</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-foreground/10">
-                    <AnimatedTableRow index={1}>
-                      <td className="py-4 px-4 border-r border-foreground/20 text-[14px] font-black text-foreground">04:30 PM - 06:00 PM</td>
-                      <td className="py-4 px-4 border-r border-foreground/20 text-[14px] text-foreground/80 font-medium">09:00 AM - 12:00 PM</td>
-                      <td className="py-4 px-4 border-r border-foreground/20 text-[14px] text-foreground/80 font-medium">05:00 AM - 07:00 AM</td>
-                      <td className="py-4 px-4 text-[14px] text-foreground/80 font-medium">06:00 PM - 07:00 PM</td>
-                    </AnimatedTableRow>
-                    <AnimatedTableRow index={2}>
-                      <td className="py-4 px-4 border-r border-foreground/20 text-[14px] font-black text-foreground">01:00 PM - 06:00 PM</td>
-                      <td className="py-4 px-4 border-r border-foreground/20 text-[14px] text-foreground/50 font-medium">-</td>
-                      <td className="py-4 px-4 border-r border-foreground/20 text-[14px] text-foreground/80 font-medium">09:00 PM - 10:30 PM</td>
-                      <td className="py-4 px-4 text-[14px] text-foreground/50 font-medium">-</td>
-                    </AnimatedTableRow>
-                  </tbody>
-                </table>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-
-        {/* Cafeteria Row - Clean layout without cards */}
-        <div className="grid lg:grid-cols-[1.5fr_1fr] gap-16 lg:gap-24 border-t border-foreground/10 pt-24 relative">
-          <div className="lg:sticky lg:top-32 self-start">
-            <Reveal variant="rise">
-              <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary mb-4">Canteen</h2>
-              <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-foreground mb-6">
-                Cafeteria
-              </h3>
-              <p className="text-foreground/70 leading-relaxed mb-6 text-lg font-medium">
-                A spacious and hygienic cafeteria accommodating 100 students at a time. Furnished with modern seating 
-                and electrical cooking facilities, providing delicious breakfast, lunch, snacks, and beverages at reasonable rates. 
-                Separate spaces are maintained for staff and students.
-              </p>
-              <div className="inline-block border border-foreground/20 bg-foreground/[0.02] px-6 py-3 rounded-full text-[13px] font-black tracking-widest uppercase text-foreground">
-                Open 8:00 AM to 8:00 PM
-              </div>
-              
-              <p className="mt-10 text-xl font-bold text-primary italic leading-relaxed">
-                "Our canteen is effectively functioning to satisfy the needs of students and staff with a variety of delicious food items at affordable rates."
-              </p>
-            </Reveal>
-          </div>
-
-          <Reveal variant="rise" delay={0.1} className="lg:pl-10">
-            <h4 className="text-2xl font-black uppercase tracking-tight text-foreground mb-8">Canteen Committee</h4>
+          {/* Left Content Column */}
+          <div className="lg:col-span-7 flex flex-col items-start">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight text-white mb-4">
+              Living On Campus
+            </h1>
+            <p className="text-base sm:text-lg text-white/90 leading-relaxed font-normal mb-6 max-w-xl">
+              Move in, unpack, and open the door to something new. Late-night conversations, spontaneous study sessions, and friends who become family are just the beginning!
+            </p>
             
-            <div className="space-y-6">
-              <div className="border-b border-foreground/5 pb-4">
-                <p className="text-[10px] font-black uppercase tracking-widest text-foreground/50 mb-1">President</p>
-                <p className="font-bold text-foreground">Dr. K S Srinivasan <span className="font-medium text-foreground/60">(Principal)</span></p>
+            {/* Dropdown Select Box */}
+            <div className="relative w-full max-w-xs">
+              <select
+                onChange={(e) => {
+                  if (e.target.value) {
+                    const el = document.getElementById(e.target.value);
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+                className="w-full bg-white text-[#1C1917] font-semibold text-sm px-4 py-3 rounded appearance-none cursor-pointer focus:outline-none pr-10 shadow-md"
+                defaultValue=""
+              >
+                <option value="" disabled>Jump to a section...</option>
+                <option value="story">Your Story Starts Here</option>
+                <option value="halls">Residence Halls</option>
+                <option value="upperclass">Upperclass Housing</option>
+                <option value="more">Even More About Campus</option>
+                <option value="office">About Residence Life</option>
+                <option value="team">Meet the Team</option>
+                <option value="faq">Frequently Asked Questions</option>
+                <option value="matrix">Hostel Specifications</option>
+              </select>
+              <ChevronDown className="w-5 h-5 text-gray-600 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            </div>
+          </div>
+
+          {/* Right Image Container (Flat static image, no hover zoom) */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 aspect-[4/3]">
+              <img
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80"
+                alt="Students Living On Campus"
+                className="w-full h-full object-cover block"
+              />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 2: SECOND INTRO BLOCK & "YOUR STORY STARTS HERE" ACCORDION
+          ========================================================================= */}
+      <section id="story" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto scroll-mt-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          
+          {/* Left Column: 2 Intro Paragraphs */}
+          <div className="lg:col-span-6 space-y-4 text-base sm:text-lg text-foreground/90 leading-relaxed font-normal">
+            <p>
+              Flagler College (and MSAJCE) is move-in ready, conveniently located, and opens the door to something new. Late-night conversations, spontaneous study sessions, and friends who become family are just the beginning!
+            </p>
+            <p className="text-muted-foreground text-sm sm:text-base">
+              Learn about room allocations, floor communities, amenities, and resident life to prepare for your residential journey.
+            </p>
+          </div>
+
+          {/* Right Column: Dark Crimson Accordion */}
+          <div className="lg:col-span-6 border border-foreground/15 rounded-xl overflow-hidden shadow-md">
+            
+            {/* Header Strip */}
+            <div className="bg-[#7A1C30] dark:bg-[#5C1424] text-white px-6 py-4 flex items-center justify-between">
+              <h3 className="text-lg font-serif font-bold text-white">
+                Your Story Starts Here
+              </h3>
+              <ChevronUp className="w-5 h-5 text-white/80" />
+            </div>
+
+            {/* Accordion Body */}
+            <div className="bg-card dark:bg-card divide-y divide-foreground/10">
+              
+              {/* Item 1 */}
+              <div className="px-6 py-4">
+                <button
+                  onClick={() => setOpenStoryIndex(openStoryIndex === 0 ? null : 0)}
+                  className="w-full flex items-center justify-between text-left group cursor-pointer focus:outline-none"
+                >
+                  <span className="text-sm sm:text-base font-bold text-foreground group-hover:text-[#7A1C30]">
+                    Giving you peace of mind... and 24/7 care
+                  </span>
+                  <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${openStoryIndex === 0 ? "rotate-180" : ""}`} />
+                </button>
+
+                <AnimatePresence>
+                  {openStoryIndex === 0 && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <p className="pt-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                        Dedicated resident wardens, 24/7 gated security, medical assistance, and strict safety guidelines ensure peace of mind for parents and students alike.
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-              <div className="border-b border-foreground/5 pb-4">
-                <p className="text-[10px] font-black uppercase tracking-widest text-foreground/50 mb-1">Officer In-charge</p>
-                <p className="font-bold text-foreground">Dr. S. Vijayakumar <span className="font-medium text-foreground/60">(COO)</span></p>
+
+              {/* Item 2 */}
+              <div className="px-6 py-4">
+                <button
+                  onClick={() => setOpenStoryIndex(openStoryIndex === 1 ? null : 1)}
+                  className="w-full flex items-center justify-between text-left group cursor-pointer focus:outline-none"
+                >
+                  <span className="text-sm sm:text-base font-bold text-foreground group-hover:text-[#7A1C30]">
+                    Great Food. Great Company. Endless Selection.
+                  </span>
+                  <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${openStoryIndex === 1 ? "rotate-180" : ""}`} />
+                </button>
+
+                <AnimatePresence>
+                  {openStoryIndex === 1 && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <p className="pt-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                        Nutritious 4-meal daily menu featuring South & North Indian dishes in a clean, spacious dining hall with dedicated staff.
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-              <div className="border-b border-foreground/5 pb-4">
-                <p className="text-[10px] font-black uppercase tracking-widest text-foreground/50 mb-1">Manager</p>
-                <p className="font-bold text-foreground">Mr. Arun</p>
+
+              {/* Item 3 */}
+              <div className="px-6 py-4">
+                <button
+                  onClick={() => setOpenStoryIndex(openStoryIndex === 2 ? null : 2)}
+                  className="w-full flex items-center justify-between text-left group cursor-pointer focus:outline-none"
+                >
+                  <span className="text-sm sm:text-base font-bold text-foreground group-hover:text-[#7A1C30]">
+                    Getting Around Campus & Shuttle Transport
+                  </span>
+                  <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${openStoryIndex === 2 ? "rotate-180" : ""}`} />
+                </button>
+
+                <AnimatePresence>
+                  {openStoryIndex === 2 && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <p className="pt-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                        Convenient access to classrooms, laboratories, and sports grounds, with free shuttle bus transport for off-campus girls hostel.
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-              <div className="border-b border-foreground/5 pb-4">
-                <p className="text-[10px] font-black uppercase tracking-widest text-foreground/50 mb-1">Head - Student Affairs</p>
-                <p className="font-bold text-foreground">Dr. K.P. Santhosh Nathan</p>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 3: FEATURED RESIDENCE HALLS ("Find the Hall That Feels Like Home")
+          ========================================================================= */}
+      <section id="halls" className="py-12 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto scroll-mt-24">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-foreground tracking-tight mb-3">
+            Find the Hall That Feels Like Home
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            Find the residence hall that suits your preferences... room sizes, options, amenities... we will help you find the hall that feels like home.
+          </p>
+        </div>
+
+        {/* Carousel Controls Container */}
+        <div className="relative">
+          
+          <div className="space-y-12">
+            
+            {/* Card 1: Ponce de Leon Hall */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 rounded-xl overflow-hidden shadow-lg border border-foreground/10">
+              <div className="lg:col-span-7 relative min-h-[300px] lg:min-h-[400px] bg-muted">
+                <img
+                  src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=1200&q=80"
+                  alt="Ponce de Leon Hall"
+                  className="w-full h-full object-cover block"
+                />
+              </div>
+              <div className="lg:col-span-5 bg-[#7A1C30] dark:bg-[#5C1424] text-white p-8 sm:p-10 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-3">
+                    Ponce de Leon Hall
+                  </h3>
+                  <p className="text-xs sm:text-sm text-white/90 leading-relaxed mb-5">
+                    Ponce de Leon Hall has direct access to classrooms, late-night study sessions, and student lounges. Features iconic architecture and central campus proximity.
+                  </p>
+                  <ul className="space-y-2 text-xs sm:text-sm text-white/90 font-medium mb-6">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#E5A93C] font-bold">•</span>
+                      <span>Historic restoration & modern amenities</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#E5A93C] font-bold">•</span>
+                      <span>Neighborhood atmosphere</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#E5A93C] font-bold">•</span>
+                      <span>Historic Resort Tour</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="flex flex-wrap gap-3 pt-4 border-t border-white/20">
+                  <a
+                    href="#matrix"
+                    className="inline-flex items-center justify-center px-5 py-2.5 rounded text-xs font-bold text-[#1C1917] bg-[#E5A93C] hover:bg-[#d89b30] transition-colors shadow-sm"
+                  >
+                    Read about renovations
+                  </a>
+                  <a
+                    href="#faq"
+                    className="inline-flex items-center justify-center px-5 py-2.5 rounded text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/30 transition-colors"
+                  >
+                    Watch a Room Tour
+                  </a>
+                </div>
               </div>
             </div>
 
-            <div className="mt-12">
-              <p className="text-[10px] font-black uppercase tracking-widest text-foreground/50 mb-4">Staff & Members</p>
-              <div className="grid grid-cols-2 gap-y-5 text-[15px]">
-                <div className="font-bold text-foreground">Dr. S Vijayakumar</div>
-                <div className="text-foreground/70 font-medium">Mr. Abdul Rashid <span className="text-xs">(Cook)</span></div>
-                
-                <div className="font-bold text-foreground">Mr. Arun</div>
-                <div className="text-foreground/70 font-medium">Mr. Kannan <span className="text-xs">(Asst Cook)</span></div>
-                
-                <div className="font-bold text-foreground">Mr. A. Abdul Gafoor</div>
-                <div className="text-foreground/70 font-medium">Mr. Shankar <span className="text-xs">(Asst Cook)</span></div>
+            {/* Card 2: Cedar Hall */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 rounded-xl overflow-hidden shadow-lg border border-foreground/10">
+              <div className="lg:col-span-5 bg-[#0F4C5C] dark:bg-[#0A343F] text-white p-8 sm:p-10 flex flex-col justify-between order-2 lg:order-1">
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-3">
+                    Cedar Hall
+                  </h3>
+                  <p className="text-xs sm:text-sm text-white/90 leading-relaxed mb-5">
+                    Cedar Hall is a central residential hub featuring suite layouts, private study desks, and dedicated floor lounges.
+                  </p>
+                  <ul className="space-y-2 text-xs sm:text-sm text-white/90 font-medium mb-6">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#E5A93C] font-bold">•</span>
+                      <span>Spacious 4-person suite layout</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#E5A93C] font-bold">•</span>
+                      <span>Single bed availability</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#E5A93C] font-bold">•</span>
+                      <span>Maintenance & laundry on site</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="pt-4 border-t border-white/20">
+                  <a
+                    href="#faq"
+                    className="inline-flex items-center justify-center px-5 py-2.5 rounded text-xs font-bold text-[#1C1917] bg-[#E5A93C] hover:bg-[#d89b30] transition-colors shadow-sm"
+                  >
+                    Get a Room Tour
+                  </a>
+                </div>
+              </div>
+              <div className="lg:col-span-7 relative min-h-[300px] lg:min-h-[400px] bg-muted order-1 lg:order-2">
+                <img
+                  src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80"
+                  alt="Cedar Hall"
+                  className="w-full h-full object-cover block"
+                />
               </div>
             </div>
-          </Reveal>
+
+            {/* Card 3: Lantern Hall */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 rounded-xl overflow-hidden shadow-lg border border-foreground/10">
+              <div className="lg:col-span-5 bg-[#0F4C5C] dark:bg-[#0A343F] text-white p-8 sm:p-10 flex flex-col justify-between order-2 lg:order-1">
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-3">
+                    Lantern Hall
+                  </h3>
+                  <p className="text-xs sm:text-sm text-white/90 leading-relaxed mb-5">
+                    Cedar Hall/Lantern Hall offers single and double occupancy layouts with study desks, air conditioning, and quiet atmosphere.
+                  </p>
+                  <ul className="space-y-2 text-xs sm:text-sm text-white/90 font-medium mb-6">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#E5A93C] font-bold">•</span>
+                      <span>En-suite hot water facilities</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#E5A93C] font-bold">•</span>
+                      <span>24/7 security supervision</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#E5A93C] font-bold">•</span>
+                      <span>High-speed Wi-Fi & LAN access</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="pt-4 border-t border-white/20">
+                  <a
+                    href="#upperclass"
+                    className="inline-flex items-center justify-center px-5 py-2.5 rounded text-xs font-bold text-[#1C1917] bg-[#E5A93C] hover:bg-[#d89b30] transition-colors shadow-sm"
+                  >
+                    View Junior/Senior Housing
+                  </a>
+                </div>
+              </div>
+              <div className="lg:col-span-7 relative min-h-[300px] lg:min-h-[400px] bg-muted order-1 lg:order-2">
+                <img
+                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80"
+                  alt="Lantern Hall"
+                  className="w-full h-full object-cover block"
+                />
+              </div>
+            </div>
+
+            {/* Card 4: Lewis House */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 rounded-xl overflow-hidden shadow-lg border border-foreground/10">
+              <div className="lg:col-span-7 relative min-h-[300px] lg:min-h-[400px] bg-muted">
+                <img
+                  src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80"
+                  alt="Lewis House"
+                  className="w-full h-full object-cover block"
+                />
+              </div>
+              <div className="lg:col-span-5 bg-[#7A1C30] dark:bg-[#5C1424] text-white p-8 sm:p-10 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-3">
+                    Lewis House
+                  </h3>
+                  <p className="text-xs sm:text-sm text-white/90 leading-relaxed mb-5">
+                    Lewis House offers specialized accommodations with communal spaces, reading rooms, and quiet study areas.
+                  </p>
+                  <ul className="space-y-2 text-xs sm:text-sm text-white/90 font-medium mb-6">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#E5A93C] font-bold">•</span>
+                      <span>Quiet study room access</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#E5A93C] font-bold">•</span>
+                      <span>Air-conditioned rooms</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#E5A93C] font-bold">•</span>
+                      <span>Priority mess access</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="pt-4 border-t border-white/20">
+                  <a
+                    href="#faq"
+                    className="inline-flex items-center justify-center px-5 py-2.5 rounded text-xs font-bold text-[#1C1917] bg-[#E5A93C] hover:bg-[#d89b30] transition-colors shadow-sm"
+                  >
+                    Watch a Room Tour
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
       </section>
+
+      {/* =========================================================================
+          SECTION 4: UPPERCLASS HOUSING
+          ========================================================================= */}
+      <section id="upperclass" className="py-10 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto scroll-mt-24">
+        <div className="text-center max-w-2xl mx-auto py-8">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-foreground tracking-tight mb-3">
+            Upperclass Housing
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6">
+            Upperclass housing options include our residence halls and executive suites for Junior and Senior scholars.
+          </p>
+          <a
+            href="#matrix"
+            className="inline-flex items-center justify-center px-5 py-2.5 rounded text-xs font-bold text-[#1C1917] bg-[#E5A93C] hover:bg-[#d89b30] transition-colors shadow-sm"
+          >
+            View Junior/Senior Housing
+          </a>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 5: "EVEN MORE ABOUT CAMPUS" (6 IMAGE CARDS GRID)
+          ========================================================================= */}
+      <section id="more" className="py-12 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto scroll-mt-24">
+        
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-foreground tracking-tight">
+            Even More About Campus
+          </h2>
+        </div>
+
+        {/* 6 Image Cards Grid (3 cols x 2 rows) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          {campusCards.map((card) => (
+            <div key={card.id} className="bg-card dark:bg-card border border-foreground/10 rounded-xl overflow-hidden shadow-sm flex flex-col justify-between">
+              
+              {/* Flat Static Image */}
+              <div className="aspect-[16/10] bg-muted relative overflow-hidden">
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="w-full h-full object-cover block"
+                />
+              </div>
+
+              {/* Title & Gold Button */}
+              <div className="p-6 flex-1 flex flex-col justify-between items-center text-center">
+                <h3 className="text-base font-bold text-foreground mb-4 leading-snug">
+                  {card.title}
+                </h3>
+
+                <a
+                  href={card.link}
+                  className="inline-flex items-center justify-center px-6 py-2 rounded text-xs font-bold text-[#1C1917] bg-[#E5A93C] hover:bg-[#d89b30] transition-colors shadow-sm"
+                >
+                  {card.buttonText}
+                </a>
+              </div>
+
+            </div>
+          ))}
+
+        </div>
+
+      </section>
+
+      {/* =========================================================================
+          SECTION 6: "ABOUT THE OFFICE OF RESIDENCE LIFE"
+          ========================================================================= */}
+      <section id="office" className="py-12 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto scroll-mt-24 border-t border-foreground/15">
+        
+        <div className="mb-8">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-foreground tracking-tight mb-2">
+            About the Office of Residence Life
+          </h2>
+        </div>
+
+        {/* 3-Column Layout: Photo | Leadership | Contact */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-card dark:bg-card border border-foreground/10 p-6 rounded-xl">
+          
+          {/* Photo */}
+          <div className="md:col-span-3 flex justify-center">
+            <img
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+              alt="Dr. Arlene Adams Manning"
+              className="w-32 h-32 sm:w-36 sm:h-36 rounded-full object-cover border-2 border-[#7A1C30]"
+            />
+          </div>
+
+          {/* Leadership */}
+          <div className="md:col-span-5 text-sm leading-relaxed">
+            <p className="font-bold text-xs uppercase text-[#7A1C30] dark:text-[#f87171] mb-1">Leadership</p>
+            <h3 className="text-base font-bold text-foreground mb-1">Dr. Arlene Adams Manning</h3>
+            <p className="text-muted-foreground text-xs">Director of Flagler House / MSAJCE Residence Life</p>
+            <p className="text-muted-foreground text-xs mt-2">Overseeing campus community standards, housing policies, and resident care.</p>
+          </div>
+
+          {/* Contact Info */}
+          <div className="md:col-span-4 text-sm leading-relaxed border-t md:border-t-0 md:border-l border-foreground/10 pt-4 md:pt-0 md:pl-6">
+            <p className="font-bold text-xs uppercase text-[#7A1C30] dark:text-[#f87171] mb-2">Contact Info</p>
+            <p className="font-semibold text-foreground text-xs mb-1">Dr. Arlene Adams Manning</p>
+            <p className="text-xs text-muted-foreground flex items-center gap-2 mb-1">
+              <Phone className="w-3.5 h-3.5 text-[#7A1C30]" /> (904) 819-6334 / (044) 2747 3333
+            </p>
+            <p className="text-xs text-muted-foreground flex items-center gap-2">
+              <Mail className="w-3.5 h-3.5 text-[#7A1C30]" /> reslife@flagler.edu / hostel@msajce-edu.in
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* =========================================================================
+          SECTION 7: "MEET THE TEAM" (STAFF CAROUSEL)
+          ========================================================================= */}
+      <section id="team" className="py-12 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto scroll-mt-24">
+        
+        {/* Section Header */}
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-foreground tracking-tight">
+            Meet the Team
+          </h2>
+          <div className="flex items-center gap-2">
+            <button className="w-9 h-9 rounded-full border border-foreground/20 flex items-center justify-center text-foreground/70 hover:bg-foreground/10 transition-colors">
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button className="w-9 h-9 rounded-full border border-foreground/20 flex items-center justify-center text-foreground/70 hover:bg-foreground/10 transition-colors">
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* 4 Staff Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          {teamMembers.map((member) => (
+            <div key={member.id} className="bg-card dark:bg-card border border-foreground/10 rounded-xl overflow-hidden shadow-sm flex flex-col justify-between">
+              
+              {/* Photo */}
+              <div className="aspect-[4/3] bg-muted relative overflow-hidden">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover block"
+                />
+              </div>
+
+              {/* Blue/Gold Bottom Container */}
+              <div className={`p-4 ${member.variant === "gold" ? "bg-[#E5A93C] text-[#1C1917]" : "bg-[#0F4C5C] text-white"} flex flex-col justify-between flex-1`}>
+                <div>
+                  <h3 className="text-sm sm:text-base font-bold mb-0.5 leading-snug">
+                    {member.name}
+                  </h3>
+                  <p className={`text-xs ${member.variant === "gold" ? "text-gray-800" : "text-white/80"} mb-3`}>
+                    {member.role}
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => setSelectedMember(member)}
+                  className={`inline-flex items-center justify-center px-4 py-2 rounded text-xs font-bold transition-colors w-full cursor-pointer ${
+                    member.variant === "gold"
+                      ? "bg-[#1C1917] text-white hover:bg-black"
+                      : "bg-[#7A1C30] text-white hover:bg-[#621626]"
+                  }`}
+                >
+                  {member.buttonText}
+                </button>
+              </div>
+
+            </div>
+          ))}
+
+        </div>
+
+      </section>
+
+      {/* =========================================================================
+          SECTION 8: "FREQUENTLY ASKED QUESTIONS"
+          ========================================================================= */}
+      <section id="faq" className="py-12 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto scroll-mt-24 border-t border-foreground/15">
+        
+        <div className="mb-6">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-foreground tracking-tight mb-2">
+            Frequently Asked Questions
+          </h2>
+        </div>
+
+        {/* Dropdown / Search Box */}
+        <div className="relative max-w-xl mb-6">
+          <input
+            type="text"
+            value={faqSearch}
+            onChange={(e) => setFaqSearch(e.target.value)}
+            placeholder="What can do you recommend question? (Search FAQs...)"
+            className="w-full bg-card dark:bg-card border border-foreground/20 text-foreground text-xs sm:text-sm px-4 py-3 rounded-lg focus:outline-none focus:border-[#7A1C30] pr-10 shadow-sm"
+          />
+          <Search className="w-4 h-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2" />
+        </div>
+
+        {/* FAQ Accordion List */}
+        <div className="space-y-3 max-w-4xl">
+          {filteredFaqs.map((faq) => (
+            <div
+              key={faq.id}
+              className="bg-card dark:bg-card border border-foreground/10 rounded-lg p-4 transition-colors"
+            >
+              <button
+                onClick={() => setOpenFaqId(openFaqId === faq.id ? null : faq.id)}
+                className="w-full flex items-center justify-between text-left cursor-pointer focus:outline-none gap-4"
+              >
+                <span className="text-sm sm:text-base font-bold text-foreground">
+                  {faq.question}
+                </span>
+                <div className="text-foreground/70 shrink-0">
+                  {openFaqId === faq.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                </div>
+              </button>
+
+              <AnimatePresence>
+                {openFaqId === faq.id && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    <p className="pt-3 text-xs sm:text-sm text-muted-foreground leading-relaxed border-t border-foreground/10 mt-3">
+                      {faq.answer}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
+
+      </section>
+
+      {/* =========================================================================
+          SECTION 9: RULES & DINING MATRIX
+          ========================================================================= */}
+      <section id="matrix" className="py-12 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-foreground/15 scroll-mt-24">
+        
+        {/* Rules */}
+        <div className="mb-10">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-foreground tracking-tight mb-4">
+            Hostel Rules & Regulations
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {rules.map((rule, index) => (
+              <div key={index} className="flex items-start gap-2.5 p-3 rounded-lg bg-card dark:bg-card border border-foreground/10">
+                <CheckCircle2 className="w-4 h-4 text-[#7A1C30] dark:text-[#f87171] shrink-0 mt-0.5" />
+                <p className="text-xs text-foreground/90 font-medium leading-relaxed">{rule}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Hostel Capacity Table */}
+        <div>
+          <h3 className="text-xl font-serif font-bold text-foreground tracking-tight mb-4">
+            Hostel Capacity & Specifications
+          </h3>
+          <div className="overflow-x-auto rounded-xl border border-foreground/10 shadow-sm">
+            <table className="w-full text-left border-collapse min-w-[650px]">
+              <thead className="bg-foreground/5 text-foreground">
+                <tr className="border-b border-foreground/10">
+                  <th className="py-3 px-4 font-bold text-xs uppercase tracking-wider">Metric / Category</th>
+                  <th className="py-3 px-4 font-bold text-xs uppercase tracking-wider">Boys Hostel (Main Campus)</th>
+                  <th className="py-3 px-4 font-bold text-xs uppercase tracking-wider">Girls Hostel (Sholinganallur)</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-foreground/10 text-xs sm:text-sm">
+                <tr>
+                  <td className="py-3 px-4 font-bold text-foreground">Total Capacity</td>
+                  <td className="py-3 px-4 text-muted-foreground font-semibold">480 Male Students</td>
+                  <td className="py-3 px-4 text-muted-foreground font-semibold">210 Female Students</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4 font-bold text-foreground">No. of Residential Blocks</td>
+                  <td className="py-3 px-4 text-muted-foreground">3 Blocks</td>
+                  <td className="py-3 px-4 text-muted-foreground">1 Block Enclave</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4 font-bold text-foreground">Non-AC Rooms</td>
+                  <td className="py-3 px-4 text-muted-foreground">233 Rooms</td>
+                  <td className="py-3 px-4 text-muted-foreground">71 Rooms</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4 font-bold text-foreground">AC Rooms</td>
+                  <td className="py-3 px-4 text-muted-foreground">6 Executive Rooms</td>
+                  <td className="py-3 px-4 text-muted-foreground">Available on Request</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4 font-bold text-foreground">Room Occupancy</td>
+                  <td className="py-3 px-4 text-muted-foreground">2 per room</td>
+                  <td className="py-3 px-4 text-muted-foreground">3 per room</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4 font-bold text-foreground">Included Furnishings</td>
+                  <td className="py-3 px-4 text-muted-foreground" colSpan={2}>
+                    Cot, Mattress, Study Desk, Chair, Personal Wardrobe, Lamp, Ceiling Fan, Solar Hot Water, Wi-Fi & TV Lounge access.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      {/* =========================================================================
+          TEAM MEMBER DETAIL MODAL
+          ========================================================================= */}
+      <AnimatePresence>
+        {selectedMember && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-card dark:bg-card border border-border rounded-xl max-w-lg w-full p-6 shadow-2xl relative"
+            >
+              <button
+                onClick={() => setSelectedMember(null)}
+                className="absolute top-4 right-4 text-muted-foreground hover:text-foreground text-xl font-bold p-1 cursor-pointer"
+              >
+                ✕
+              </button>
+
+              <div className="flex items-center gap-4 mb-5">
+                <img
+                  src={selectedMember.image}
+                  alt={selectedMember.name}
+                  className="w-14 h-14 rounded-full object-cover border-2 border-[#7A1C30]"
+                />
+                <div>
+                  <h3 className="text-lg font-bold text-foreground">{selectedMember.name}</h3>
+                  <p className="text-xs font-semibold text-[#7A1C30] dark:text-[#f87171] uppercase tracking-wider">{selectedMember.role}</p>
+                </div>
+              </div>
+
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-6">
+                {selectedMember.bio}
+              </p>
+
+              <div className="flex justify-end">
+                <button
+                  onClick={() => setSelectedMember(null)}
+                  className="px-4 py-2 rounded text-xs font-bold text-white bg-[#7A1C30] hover:bg-[#621626] transition-colors cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
     </main>
   );

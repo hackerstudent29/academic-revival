@@ -114,6 +114,12 @@ export function AcademicProgrammesSection() {
                 loading="lazy"
                 style={{ y: imageY, scale: imageScale }}
                 className="absolute inset-0 h-full w-full object-cover will-change-transform"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  if (target.src !== '/images/eligibility_hero.jpg') {
+                    target.src = '/images/eligibility_hero.jpg';
+                  }
+                }}
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:bg-foreground/5" />
               
@@ -154,15 +160,15 @@ export function AcademicProgrammesSection() {
                     transition={{ duration: 0.4, ease: EASE }}
                     className="absolute inset-x-0 top-0 flex flex-col"
                   >
-                    <span className="text-sm font-bold tracking-wide text-muted-foreground">
+                    <span className="text-xs font-bold tracking-widest text-primary uppercase font-oswald block">
                       {sequence[activeIndex]!.subtitle}
                     </span>
 
-                    <h2 className="mt-4 text-4xl font-medium leading-[1.1] tracking-tight text-primary md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem]">
+                    <h2 className="mt-2 text-4xl font-bold uppercase leading-[1.1] tracking-tight text-primary font-oswald md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem]">
                       {sequence[activeIndex]!.title}
                     </h2>
 
-                    <div className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                    <div className="mt-5 max-w-xl text-base md:text-lg leading-relaxed text-muted-foreground font-sans">
                       {sequence[activeIndex]!.content}
                     </div>
 
@@ -179,7 +185,7 @@ export function AcademicProgrammesSection() {
                         >
                           <Link
                             to={cta.to}
-                            className="group relative overflow-hidden inline-flex items-center justify-center bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground shadow transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
+                            className="group relative overflow-hidden inline-flex items-center justify-center bg-primary px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-primary-foreground font-oswald shadow-md transition-colors hover:text-white after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
                           >
                             <span className="relative z-10">{cta.label} &raquo;</span>
                           </Link>

@@ -2,22 +2,20 @@
 
 ## About Department
 
-### About Department
-### Department Introduction
-The Department of Civil Engineering at Mohamed Sathak A.J. College of Engineering (MSAJCE) integrates cutting-edge computing hardware and software principles to deliver high-impact technological education. Computing touches every facet of modern civilization—from artificial intelligence, cloud infrastructure, and autonomous systems to healthcare, financial technology, and cybersecurity.
+The Department of Civil Engineering at Mohamed Sathak A.J. College of Engineering (MSAJCE) prepares future structural engineers, infrastructure planners, and environmental stewards. Civil Engineering shapes the physical foundation of human civilization—from sustainable buildings, bridges, and highways to water supply networks and smart city infrastructures.
 
 ### Vision
-* **V.** To be a centre of excellence for transforming students into proficient Computer Science Engineers through sustainable practices.
+* **V.** To be a centre of excellence for transforming students into proficient Civil Engineers through sustainable practices, ethical leadership, and technological innovation.
 
 ### Mission
-* **M1.** Impart core fundamental knowledge and necessary skills in Civil Engineering through innovative teaching and learning methodology.
-* **M2.** Inculcate critical thinking, ethics, lifelong learning and creativity needed for industry and society.
-* **M3.** Cultivate the students with all-round competencies, for career, higher education and self-employability.
+* **M1.** Impart core fundamental knowledge and practical skills in Civil Engineering through innovative teaching and experiential laboratory learning.
+* **M2.** Inculcate critical thinking, environmental ethics, structural safety norms, and creativity needed for infrastructure development.
+* **M3.** Cultivate students with all-round competencies for successful engineering careers, higher education, consultancy, and entrepreneurship.
 
 ### Department Overview & Focus Areas
-The department focuses on modern software architecture, algorithms, distributed computing, artificial intelligence, cloud engineering, cybersecurity, and full-stack system design. Interdisciplinary integration connects computational sciences with bioinformatics, data science, financial analytics, and operations research.
+The department focuses on structural engineering, geotechnical analysis, surveying, environmental engineering, transportation networks, and construction management. Students gain hands-on proficiency in CAD software, STAAD.Pro, Revit BIM, GIS mapping, and concrete testing laboratories.
 
-Students gain hands-on proficiency in modern programming paradigms, open-source frameworks, database engineering, and mobile/web development.
+Interdisciplinary projects connect civil infrastructure with green building technology, smart city planning, earthquake-resistant design, and sustainable water management.
 
 [DEPARTMENT_HIGHLIGHTS]
 
@@ -31,33 +29,33 @@ Students gain hands-on proficiency in modern programming paradigms, open-source 
 
 | Code | Programme Educational Objective |
 | :--- | :--- |
-| **PEO1** | Graduates will be prepared for analyzing, designing, developing, and testing robust software solutions and computational products with creativity and sustainability. |
-| **PEO2** | Graduates will be skilled in the use of modern development tools and frameworks for critical problem solving, addressing industrial and societal requirements. |
-| **PEO3** | Graduates will be prepared with managerial and leadership skills, enabling successful tech careers, corporate leadership, and innovative startup ventures. |
+| **PEO1** | Graduates will be prepared for analyzing, designing, planning, and executing resilient civil infrastructure and structural engineering projects. |
+| **PEO2** | Graduates will be skilled in using modern surveying instruments, CAD/BIM software, and material testing tools for critical problem solving. |
+| **PEO3** | Graduates will be prepared with managerial, ethical, and environmental leadership skills for careers in construction, public works, and consultancy. |
 
 ### Program Specific Outcomes (PSOs)
 
 | Code | Program Specific Outcome |
 | :--- | :--- |
-| **PSO1** | Develop creative, scalable computational solutions by adapting emerging technologies, cloud platforms, and AI tools for real-time industrial applications. |
-| **PSO2** | Apply acquired software engineering knowledge to design and deploy enterprise web architectures, secure networks, and innovative mobile applications. |
+| **PSO1** | Apply structural, environmental, and geotechnical principles to design sustainable buildings, highways, and hydraulic infrastructure. |
+| **PSO2** | Utilize GIS, AutoCAD, Revit, and structural analysis software to plan, simulate, and manage modern construction projects efficiently. |
 
 ### Programme Outcomes (POs)
 
 | PO | Outcome Title | Description |
 | :--- | :--- | :--- |
-| **PO1** | **Engineering Knowledge** | Apply mathematics, computing fundamentals, and computer science specialization to the solution of complex computational problems. |
-| **PO2** | **Problem Analysis** | Identify, formulate, review research literature, and analyze complex engineering and software problems reaching substantiated conclusions using first principles. |
-| **PO3** | **Design/Development Of Solutions** | Design solutions for complex computational problems and design system components or software architectures that meet specified requirements. |
-| **PO4** | **Conduct Investigations** | Use research-based knowledge and methods including design of software experiments, data analysis, and synthesis to provide valid technical conclusions. |
-| **PO5** | **Modern Tool Usage** | Select and apply modern development environments, testing frameworks, cloud platforms, and DevOps tools with an understanding of limitations. |
-| **PO6** | **The Engineer and Society** | Apply contextual reasoning to assess societal, privacy, security, legal, and cultural responsibilities relevant to computing practice. |
-| **PO7** | **Environment and Sustainability** | Understand the impact of computational solutions in societal and environmental contexts and demonstrate knowledge of sustainable green computing. |
-| **PO8** | **Ethics** | Apply professional ethical principles and commit to code of ethics, cyber ethics, data privacy, and norms of engineering practice. |
-| **PO9** | **Individual and Team Work** | Function effectively as an individual, and as a member or leader in diverse software teams and agile multidisciplinary settings. |
-| **PO10** | **Communication** | Communicate effectively on complex computing activities with the engineering community through technical reports, design docs, and clear presentations. |
-| **PO11** | **Project Management and Finance** | Demonstrate knowledge of software project management principles, agile methodologies, and cost estimations in project development. |
-| **PO12** | **Life-long Learning** | Recognize the need for, and have the ability to engage in independent and life-long learning in the rapidly changing landscape of software technology. |
+| **PO1** | **Engineering Knowledge** | Apply mathematics, science, and civil engineering fundamentals to solve complex infrastructure problems. |
+| **PO2** | **Problem Analysis** | Identify, formulate, and analyze structural, geotechnical, and environmental engineering challenges. |
+| **PO3** | **Design/Development Of Solutions** | Design solutions for civil infrastructure systems, structural components, and water networks that meet safety and environmental norms. |
+| **PO4** | **Conduct Investigations** | Use experimental methods, soil testing, concrete lab analysis, and synthesis to arrive at valid engineering conclusions. |
+| **PO5** | **Modern Tool Usage** | Select and apply modern CAD tools, total station surveying, GIS, and structural design software. |
+| **PO6** | **The Engineer and Society** | Apply contextual reasoning to assess societal, health, safety, legal, and cultural responsibilities in construction. |
+| **PO7** | **Environment and Sustainability** | Understand the impact of civil engineering projects in environmental contexts and demonstrate sustainable building practices. |
+| **PO8** | **Ethics** | Apply professional ethical principles, safety standards, and engineering norms in public works and private practice. |
+| **PO9** | **Individual and Team Work** | Function effectively as an individual, and as a member or leader in multidisciplinary construction and planning teams. |
+| **PO10** | **Communication** | Communicate effectively on complex civil engineering activities through technical reports, blueprints, and presentations. |
+| **PO11** | **Project Management and Finance** | Demonstrate knowledge of construction management, estimation, billing, and site project execution. |
+| **PO12** | **Life-long Learning** | Engage in independent and life-long learning in the evolving domain of green building technologies and smart materials. |
 
 ---
 

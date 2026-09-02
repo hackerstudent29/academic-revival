@@ -360,13 +360,15 @@ export function SiteHeader() {
                   onMouseEnter={() => setActive(item.id)}
                   onClick={() => setActive((c) => (c === item.id ? null : item.id))}
                   aria-expanded={active === item.id}
-                  className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] transition-colors duration-200 ${active === item.id ? "text-primary" : "text-foreground hover:text-primary"
-                    }`}
+                  className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] font-oswald transition-colors duration-200 ${
+                    active === item.id ? "text-primary" : "text-foreground hover:text-primary"
+                  }`}
                 >
                   {item.label}
                   <span
-                    className={`absolute -bottom-0.5 left-0 h-[2px] bg-primary transition-all duration-300 ${active === item.id ? "w-full" : "w-0"
-                      }`}
+                    className={`absolute -bottom-0.5 left-0 h-[2px] bg-primary transition-all duration-300 ${
+                      active === item.id ? "w-full" : "w-0"
+                    }`}
                   />
                 </button>
               ) : (
@@ -374,12 +376,13 @@ export function SiteHeader() {
                   key={item.id}
                   to={item.to}
                   onMouseEnter={() => setActive(null)}
-                  className="py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] text-foreground transition-colors duration-200 hover:text-primary"
-                  activeProps={{ className: "text-primary" }}
+                  className="relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] font-oswald text-foreground transition-colors duration-200 hover:text-primary"
+                  activeProps={{ className: "text-primary font-bold" }}
                 >
                   {item.label}
+                  <span className="absolute -bottom-0.5 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
                 </Link>
-              ),
+              )
             )}
           </nav>
 
@@ -526,20 +529,20 @@ export function SiteHeader() {
                     className="w-full"
                   >
                     {/* Main Navigation Links */}
-                    <div className="mb-8">
+                    <div className="mb-8 font-oswald">
                       {nav.map((item) => (
                         <div key={item.id} className="border-b border-foreground/10 last:border-b-0">
                           {item.cols ? (
                             <button
                               type="button"
                               onClick={() => setActivePanel(item.id)}
-                              className="flex w-full items-center justify-between py-4 text-[15px] font-bold uppercase tracking-widest text-foreground/80 hover:text-primary"
+                              className="flex w-full items-center justify-between py-4 text-[15px] font-bold uppercase tracking-widest text-foreground/80 hover:text-primary font-oswald"
                             >
                               {item.label}
-                              <span className="text-xl leading-none">›</span>
+                              <span className="text-xl leading-none font-sans">›</span>
                             </button>
                           ) : (
-                            <Link to={item.to} onClick={closeAll} className="block py-4 text-[15px] font-bold uppercase tracking-widest text-foreground/80 hover:text-primary">
+                            <Link to={item.to} onClick={closeAll} className="block py-4 text-[15px] font-bold uppercase tracking-widest text-foreground/80 hover:text-primary font-oswald">
                               {item.label}
                             </Link>
                           )}
@@ -548,13 +551,13 @@ export function SiteHeader() {
                       <Link
                         to="/admissions"
                         search={{} as any}
-                        className="group relative my-5 inline-flex w-full items-center justify-center overflow-hidden rounded-none bg-primary px-5 py-3 text-[13px] font-bold text-primary-foreground shadow transition-colors hover:text-background sm:hidden after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
+                        className="group relative my-5 inline-flex w-full items-center justify-center overflow-hidden rounded-none bg-primary px-5 py-3 text-[13px] font-bold text-primary-foreground shadow transition-colors hover:text-background sm:hidden font-oswald uppercase tracking-wider after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
                         onClick={closeAll}
                       >
                         <span className="relative z-10">Apply 2026-27</span>
                       </Link>
                       <div className="flex items-center justify-between py-4 border-t border-foreground/10 mt-4">
-                        <span className="text-[15px] font-bold uppercase tracking-widest text-foreground/80">Appearance</span>
+                        <span className="text-[15px] font-bold uppercase tracking-widest text-foreground/80 font-oswald">Appearance</span>
                         <ThemeToggle />
                       </div>
                     </div>
@@ -562,16 +565,16 @@ export function SiteHeader() {
                     <div className="w-full h-px bg-foreground/10 mb-8" />
 
                     {/* Explore Additional Links */}
-                    <h2 className="mb-6 text-xl font-bold uppercase tracking-widest text-foreground/50">Explore MSAJCE</h2>
-                    <div className="flex flex-col">
+                    <h2 className="mb-6 text-xl font-bold uppercase tracking-widest text-foreground/50 font-oswald">Explore MSAJCE</h2>
+                    <div className="flex flex-col font-oswald">
                       {moreMenuData.map((section) => (
                         <div key={section.title} className="border-b border-foreground/10 last:border-b-0">
                           <button
                             onClick={() => setActivePanel(section.title)}
-                            className="flex w-full items-center justify-between py-4 text-[15px] font-bold uppercase tracking-widest text-foreground/80 hover:text-primary"
+                            className="flex w-full items-center justify-between py-4 text-[15px] font-bold uppercase tracking-widest text-foreground/80 hover:text-primary font-oswald"
                           >
                             {section.title}
-                            <span className="text-xl leading-none">›</span>
+                            <span className="text-xl leading-none font-sans">›</span>
                           </button>
                         </div>
                       ))}
@@ -584,13 +587,13 @@ export function SiteHeader() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 10 }}
                     transition={{ duration: 0.2 }}
-                    className="w-full"
+                    className="w-full font-oswald"
                   >
                     <button
                       onClick={() => setActivePanel("main")}
-                      className="mb-8 flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-foreground/50 hover:text-primary"
+                      className="mb-8 flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-foreground/50 hover:text-primary font-oswald"
                     >
-                      <span className="text-xl leading-none">‹</span> Back
+                      <span className="text-xl leading-none font-sans">‹</span> Back
                     </button>
 
                     {/* Render active item content */}
@@ -599,11 +602,11 @@ export function SiteHeader() {
                       if (navItem?.cols) {
                         return (
                           <div>
-                            <h2 className="mb-8 text-2xl font-black uppercase tracking-tight text-primary">{navItem.label}</h2>
+                            <h2 className="mb-8 text-2xl font-black uppercase tracking-tight text-primary font-oswald">{navItem.label}</h2>
                             <div className="space-y-8">
                               {navItem.cols.map(col => (
                                 <div key={col.title}>
-                                  <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-primary">{col.title}</p>
+                                  <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-primary font-oswald">{col.title}</p>
                                   <ul className="space-y-4">
                                     {col.links.map(link => (
                                       <li key={link.label}>
@@ -622,14 +625,14 @@ export function SiteHeader() {
                       if (moreItem) {
                         return (
                           <div>
-                            <h2 className="mb-8 text-2xl font-black uppercase tracking-tight text-primary">{moreItem.title}</h2>
+                            <h2 className="mb-8 text-2xl font-black uppercase tracking-tight text-primary font-oswald">{moreItem.title}</h2>
                             <ul className="space-y-5">
                               {moreItem.links.map(link => (
                                 <li key={link.label}>
                                   {link.to ? (
-                                    <Link to={link.to} onClick={closeAll} className="text-[15px] font-bold leading-tight text-foreground hover:text-primary">{link.label}</Link>
+                                    <Link to={link.to} onClick={closeAll} className="text-[15px] font-bold leading-tight text-foreground hover:text-primary font-oswald uppercase tracking-wider">{link.label}</Link>
                                   ) : (
-                                    <a href={link.href} onClick={closeAll} target="_blank" rel="noopener noreferrer" className="text-[15px] font-bold leading-tight text-foreground hover:text-primary">{link.label}</a>
+                                    <a href={link.href} onClick={closeAll} target="_blank" rel="noopener noreferrer" className="text-[15px] font-bold leading-tight text-foreground hover:text-primary font-oswald uppercase tracking-wider">{link.label}</a>
                                   )}
                                 </li>
                               ))}

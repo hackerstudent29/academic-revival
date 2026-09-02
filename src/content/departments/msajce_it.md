@@ -2,17 +2,15 @@
 
 ## About Department
 
-### About Department
-### Department Introduction
-The Department of Information Technology at Mohamed Sathak A.J. College of Engineering (MSAJCE) integrates cutting-edge computing hardware and software principles to deliver high-impact technological education. Computing touches every facet of modern civilization—from artificial intelligence, cloud infrastructure, and autonomous systems to healthcare, financial technology, and cybersecurity.
+The Department of Information Technology at Mohamed Sathak A.J. College of Engineering (MSAJCE) prepares students in enterprise software systems, cloud computing, cybersecurity, web engineering, and digital transformation.
 
 ### Vision
-* **V.** To be a centre of excellence for transforming students into proficient Computer Science Engineers through sustainable practices.
+* **V.** To be a centre of excellence for transforming students into proficient Information Technology Engineers through innovative software practices, industry collaboration, and ethical values.
 
 ### Mission
-* **M1.** Impart core fundamental knowledge and necessary skills in Information Technology through innovative teaching and learning methodology.
-* **M2.** Inculcate critical thinking, ethics, lifelong learning and creativity needed for industry and society.
-* **M3.** Cultivate the students with all-round competencies, for career, higher education and self-employability.
+* **M1.** Impart strong fundamental knowledge and practical skills in Information Technology through innovative pedagogy and hands-on laboratory experiences.
+* **M2.** Foster research, critical thinking, problem-solving, and adaptability to emerging software technologies.
+* **M3.** Develop leadership, teamwork, and entrepreneurial competencies for global career readiness.
 
 ### Department Overview & Focus Areas
 The department focuses on modern software architecture, algorithms, distributed computing, artificial intelligence, cloud engineering, cybersecurity, and full-stack system design. Interdisciplinary integration connects computational sciences with bioinformatics, data science, financial analytics, and operations research.

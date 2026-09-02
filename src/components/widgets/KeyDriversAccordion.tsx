@@ -99,7 +99,7 @@ export function KeyDriversAccordion({ drivers = keyDrivers }: KeyDriversAccordio
               onMouseEnter={() => hasContent && setActiveItem(index)}
             >
               <div className={`flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all ${hasContent ? 'cursor-pointer hover:text-primary' : ''}`}>
-                <span className="text-left font-bold text-base md:text-lg">
+                <span className="text-left font-oswald font-bold uppercase text-[#9E2339] dark:text-[#E11D48] text-base md:text-lg tracking-tight">
                   {driver.title}
                 </span>
                 {hasContent && (

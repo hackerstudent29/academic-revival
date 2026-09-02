@@ -59,7 +59,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[36%] left-[12%]',
       size: 'w-30 sm:w-40 lg:w-48 h-38 sm:h-48 lg:h-56',
       rotate: 'rotate-3',
-      color: 'bg-[#059669]'
+      color: 'bg-primary'
     },
     {
       id: 'h-scat-3',
@@ -79,7 +79,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'bottom-[4%] left-[20%]',
       size: 'w-26 sm:w-34 lg:w-40 h-32 sm:h-40 lg:h-46',
       rotate: 'rotate-2',
-      color: 'bg-[#059669]'
+      color: 'bg-primary'
     },
     {
       id: 'h-scat-5',
@@ -99,7 +99,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[60%] left-[6%]',
       size: 'w-20 sm:w-24 lg:w-28 h-22 sm:h-28 lg:h-34',
       rotate: '-rotate-6',
-      color: 'bg-[#059669]'
+      color: 'bg-primary'
     },
     {
       id: 'h-scat-7',
@@ -120,7 +120,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[8%] right-[6%]',
       size: 'w-28 sm:w-36 lg:w-44 h-36 sm:h-44 lg:h-52',
       rotate: 'rotate-4',
-      color: 'bg-[#059669]'
+      color: 'bg-primary'
     },
     {
       id: 'h-scat-9',
@@ -140,7 +140,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'bottom-[14%] right-[4%]',
       size: 'w-28 sm:w-36 lg:w-42 h-34 sm:h-42 lg:h-48',
       rotate: 'rotate-3',
-      color: 'bg-[#059669]'
+      color: 'bg-primary'
     },
     {
       id: 'h-scat-11',
@@ -160,7 +160,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[16%] right-[22%]',
       size: 'w-20 sm:w-26 lg:w-30 h-24 sm:h-30 lg:h-36',
       rotate: '-rotate-6',
-      color: 'bg-[#059669]'
+      color: 'bg-primary'
     },
     {
       id: 'h-scat-13',
@@ -180,7 +180,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
       pos: 'top-[78%] right-[16%]',
       size: 'w-18 sm:w-22 lg:w-26 h-20 sm:h-26 lg:h-30',
       rotate: '-rotate-4',
-      color: 'bg-[#059669]'
+      color: 'bg-primary'
     }
   ];
 
@@ -244,7 +244,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         'Accent neutralization and conversational clarity'
       ],
       icon: MessageSquareText,
-      color: '#059669'
+      color: '#005DA6'
     },
     {
       id: 'technical',
@@ -272,7 +272,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         'Hands-on capstone project verification and credentialing'
       ],
       icon: Microscope,
-      color: '#059669'
+      color: '#005DA6'
     },
     {
       id: 'interview',
@@ -300,7 +300,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         'Overcoming public speaking anxiety in air-conditioned GD suites'
       ],
       icon: Laptop,
-      color: '#059669'
+      color: '#005DA6'
     }
   ];
 
@@ -466,7 +466,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               <BrainCircuit className="w-3.5 h-3.5 text-primary" />
               <span>COMPREHENSIVE SKILL ARCHITECTURE</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
               BUILDING THE SKILLS INDUSTRY EXPECTS
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-1">
@@ -485,10 +485,10 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-5 right-5 text-white space-y-1">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-[#059669] block">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-[#3E5D7C] block">
                     TECHNICAL LABS
                   </span>
-                  <p className="text-sm font-bold font-['Outfit',sans-serif] leading-snug">
+                  <p className="text-sm font-bold font-oswald leading-snug">
                     Hands-on coding, simulation and advanced terminal problem-solving.
                   </p>
                 </div>
@@ -512,7 +512,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                     style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                   >
                     <BrainCircuit className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-black uppercase font-['Outfit',sans-serif] leading-tight block">
+                    <span className="text-[11px] sm:text-xs font-black uppercase font-oswald leading-tight block">
                       APTITUDE
                     </span>
                   </button>
@@ -525,7 +525,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                     style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                   >
                     <MessageSquareText className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-black uppercase font-['Outfit',sans-serif] leading-tight block">
+                    <span className="text-[11px] sm:text-xs font-black uppercase font-oswald leading-tight block">
                       COMMUNICATION
                     </span>
                   </button>
@@ -540,7 +540,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                     style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                   >
                     <Code2 className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-black uppercase font-['Outfit',sans-serif] leading-tight block">
+                    <span className="text-[11px] sm:text-xs font-black uppercase font-oswald leading-tight block">
                       TECHNICAL
                     </span>
                   </button>
@@ -553,7 +553,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                     <span className="text-[9px] font-black uppercase tracking-widest text-primary-foreground/80 block">
                       CENTRAL CORE
                     </span>
-                    <h3 className="text-base sm:text-xl font-black text-amber-400 tracking-tight font-['Outfit',sans-serif]">
+                    <h3 className="text-base sm:text-xl font-black text-amber-400 tracking-tight font-oswald">
                       STUDENT
                     </h3>
                   </div>
@@ -566,7 +566,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                     style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                   >
                     <Microscope className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
-                    <span className="text-[10px] sm:text-xs font-black uppercase font-['Outfit',sans-serif] leading-tight block">
+                    <span className="text-[10px] sm:text-xs font-black uppercase font-oswald leading-tight block">
                       CERTIFICATION
                     </span>
                   </button>
@@ -581,7 +581,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                     style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                   >
                     <Users className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-black uppercase font-['Outfit',sans-serif] leading-tight block">
+                    <span className="text-[11px] sm:text-xs font-black uppercase font-oswald leading-tight block">
                       INTERVIEW
                     </span>
                   </button>
@@ -594,7 +594,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                     style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                   >
                     <Laptop className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
-                    <span className="text-[10px] sm:text-xs font-black uppercase font-['Outfit',sans-serif] leading-tight block">
+                    <span className="text-[10px] sm:text-xs font-black uppercase font-oswald leading-tight block">
                       GROUP DISCUSSION
                     </span>
                   </button>
@@ -617,7 +617,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   {(activeNodeData || skillArchitectureNodes[0]).details.map((detail, dIdx) => (
                     <div key={dIdx} className="p-2.5 bg-card border border-border flex items-start gap-2 text-[11px] text-foreground/80 font-medium">
-                      <CheckCircle className="w-3.5 h-3.5 text-[#059669] shrink-0 mt-0.5" />
+                      <CheckCircle className="w-3.5 h-3.5 text-[#3E5D7C] shrink-0 mt-0.5" />
                       <span>{detail}</span>
                     </div>
                   ))}
@@ -634,10 +634,10 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-5 right-5 text-white space-y-1">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-[#059669] block">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-[#3E5D7C] block">
                     SELECTION SIMULATIONS
                   </span>
-                  <p className="text-sm font-bold font-['Outfit',sans-serif] leading-snug">
+                  <p className="text-sm font-bold font-oswald leading-snug">
                     Mock interviews, STAR behavioural panels & collaborative GD sessions.
                   </p>
                 </div>
@@ -654,11 +654,11 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-3xl mx-auto text-center mb-12 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#082B5C] text-white text-xs font-extrabold tracking-widest uppercase shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#9E2339] text-white text-xs font-extrabold tracking-widest uppercase shadow-sm">
               <Activity className="w-3.5 h-3.5 text-emerald-400" />
               <span>CONTINUOUS PRACTICE PIPELINE</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
               LEARN. PRACTISE. PERFORM.
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-medium pt-1">
@@ -672,7 +672,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                 <span className="text-xs font-black uppercase tracking-widest text-primary">
                   PIPELINE STAGE {activeBeltIdx + 1} OF {trainingBeltItems.length}
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-black text-[#082B5C] font-['Outfit',sans-serif]">
+                <h3 className="text-2xl sm:text-3xl font-black text-[#9E2339] font-oswald">
                   {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).title}
                 </h3>
                 <p className="text-sm sm:text-base text-slate-700 font-medium">
@@ -681,22 +681,22 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               </div>
               <div className="sm:col-span-4 flex flex-col items-start sm:items-end justify-center border-t sm:border-t-0 sm:border-l border-slate-200 pt-4 sm:pt-0 sm:pl-6 space-y-1">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">CURRICULUM VOLUME</span>
-                <span className="text-xl sm:text-2xl font-black text-[#082B5C] font-['Outfit',sans-serif]">
+                <span className="text-xl sm:text-2xl font-black text-[#9E2339] font-oswald">
                   {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).metric}
                 </span>
-                <span className="text-xs text-[#059669] font-bold">
+                <span className="text-xs text-[#3E5D7C] font-bold">
                   {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).focus}
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="mt-20 pt-12 border-t border-[#082B5C]/20">
+          <div className="mt-20 pt-12 border-t border-[#9E2339]/20">
             <div className="max-w-3xl mx-auto text-center mb-12 space-y-3">
-              <span className="px-3 py-1 bg-[#082B5C] text-white text-[11px] font-black uppercase tracking-widest inline-block">
+              <span className="px-3 py-1 bg-[#9E2339] text-white text-[11px] font-black uppercase tracking-widest inline-block">
                 STUDENT CLUBS & ACTIVE PRACTICE
               </span>
-              <h3 className="text-2xl sm:text-4xl font-black text-[#082B5C] font-['Outfit',sans-serif]">
+              <h3 className="text-2xl sm:text-4xl font-black text-[#9E2339] font-oswald">
                 CLUBS EMPOWERING EVERYDAY PRACTICE
               </h3>
             </div>
@@ -721,10 +721,10 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                     <span className="text-[10px] font-black uppercase tracking-wider text-primary block">
                       {club.tag}
                     </span>
-                    <h4 className="text-sm font-black text-[#082B5C] font-['Outfit',sans-serif] tracking-tight">
+                    <h4 className="text-sm font-black text-[#9E2339] font-oswald tracking-tight">
                       {club.name}
                     </h4>
-                    <p className="text-xs text-[#082B5C]/80 leading-snug font-medium pt-1">
+                    <p className="text-xs text-[#9E2339]/80 leading-snug font-medium pt-1">
                       {club.desc}
                     </p>
                   </div>
@@ -746,7 +746,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               <Building2 className="w-3.5 h-3.5 text-primary" />
               <span>DEDICATED PLACEMENT INFRASTRUCTURE</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
               SPACES DESIGNED FOR PREPARATION
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-1">
@@ -782,7 +782,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                     }`}>
                       {hotspot.num}
                     </span>
-                    <span className="text-xs font-black tracking-tight font-['Outfit',sans-serif] whitespace-nowrap">
+                    <span className="text-xs font-black tracking-tight font-oswald whitespace-nowrap">
                       {hotspot.name}
                     </span>
                   </button>
@@ -794,7 +794,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
                 <div className="lg:col-span-8 space-y-2">
                   <div className="inline-flex items-center gap-2">
-                    <span className="text-xs font-black text-[#059669] uppercase tracking-widest">
+                    <span className="text-xs font-black text-[#3E5D7C] uppercase tracking-widest">
                       FACILITY {(activeHotspot || facilityHotspots[0]).num}
                     </span>
                     <span className="text-xs text-muted-foreground">•</span>
@@ -802,7 +802,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                       {(activeHotspot || facilityHotspots[0]).sub}
                     </span>
                   </div>
-                  <h3 className="text-xl sm:text-3xl font-black text-foreground font-['Outfit',sans-serif]">
+                  <h3 className="text-xl sm:text-3xl font-black text-foreground font-oswald">
                     {(activeHotspot || facilityHotspots[0]).name}
                   </h3>
                   <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-medium">
@@ -840,7 +840,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               <Cpu className="w-3.5 h-3.5 text-primary" />
               <span>SPECIALISED ADVANCED HUBS</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
               LEARNING THE TECHNOLOGIES OF TOMORROW
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-1">
@@ -855,7 +855,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                 <span className="text-[11px] font-black uppercase tracking-wider text-primary block">
                   COE & INDUSTRY LABS
                 </span>
-                <h3 className="text-xl font-black text-foreground font-['Outfit',sans-serif]">
+                <h3 className="text-xl font-black text-foreground font-oswald">
                   Mechanical & Civil Tech
                 </h3>
               </div>
@@ -875,7 +875,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                   <li key={idx} className="flex items-start gap-3">
                     <span className="text-primary font-black text-lg leading-none mt-0.5">•</span>
                     <div>
-                      <span className="text-sm font-bold text-foreground block font-['Outfit',sans-serif]">
+                      <span className="text-sm font-bold text-foreground block font-oswald">
                         {item.title}
                       </span>
                       <span className="text-xs text-muted-foreground font-medium block">
@@ -888,11 +888,11 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
             </div>
 
             <div className="space-y-6">
-              <div className="pb-3 border-b-2 border-[#059669]">
-                <span className="text-[11px] font-black uppercase tracking-wider text-[#059669] block">
+              <div className="pb-3 border-b-2 border-[#3E5D7C]">
+                <span className="text-[11px] font-black uppercase tracking-wider text-[#3E5D7C] block">
                   EMERGING HARDWARE
                 </span>
-                <h3 className="text-xl font-black text-foreground font-['Outfit',sans-serif]">
+                <h3 className="text-xl font-black text-foreground font-oswald">
                   ECE & EEE Systems
                 </h3>
               </div>
@@ -909,9 +909,9 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                   { title: 'Wireless Sensor Networks & RF', sub: 'High-Frequency Antenna Research' }
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <span className="text-[#059669] font-black text-lg leading-none mt-0.5">•</span>
+                    <span className="text-[#3E5D7C] font-black text-lg leading-none mt-0.5">•</span>
                     <div>
-                      <span className="text-sm font-bold text-foreground block font-['Outfit',sans-serif]">
+                      <span className="text-sm font-bold text-foreground block font-oswald">
                         {item.title}
                       </span>
                       <span className="text-xs text-muted-foreground font-medium block">
@@ -928,7 +928,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                 <span className="text-[11px] font-black uppercase tracking-wider text-primary block">
                   COMPUTATION & CLOUD
                 </span>
-                <h3 className="text-xl font-black text-foreground font-['Outfit',sans-serif]">
+                <h3 className="text-xl font-black text-foreground font-oswald">
                   CSE & IT Digital Hubs
                 </h3>
               </div>
@@ -948,7 +948,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                   <li key={idx} className="flex items-start gap-3">
                     <span className="text-primary font-black text-lg leading-none mt-0.5">•</span>
                     <div>
-                      <span className="text-sm font-bold text-foreground block font-['Outfit',sans-serif]">
+                      <span className="text-sm font-bold text-foreground block font-oswald">
                         {item.title}
                       </span>
                       <span className="text-xs text-muted-foreground font-medium block">
@@ -970,11 +970,11 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#082B5C] text-white text-xs font-extrabold tracking-widest uppercase shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#9E2339] text-white text-xs font-extrabold tracking-widest uppercase shadow-sm">
               <Compass className="w-3.5 h-3.5 text-blue-300" />
               <span>INDIVIDUAL MENTORING & PATHWAYS</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
               CAREER DIRECTION STARTS WITH GUIDANCE
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-medium pt-1">
@@ -984,21 +984,21 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
 
           <div className="max-w-4xl mx-auto bg-transparent p-4 sm:p-6">
             <div className="flex justify-center mb-8">
-              <div className="px-10 py-3.5 bg-[#082B5C] text-white shadow-xl text-center">
+              <div className="px-10 py-3.5 bg-[#9E2339] text-white shadow-xl text-center">
                 <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">STARTING POINT</span>
-                <h4 className="text-xl sm:text-2xl font-black font-['Outfit',sans-serif]">STUDENT</h4>
+                <h4 className="text-xl sm:text-2xl font-black font-oswald">STUDENT</h4>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
               <div className="bg-white p-7 shadow-xl space-y-3 text-center">
-                <div className="w-10 h-10 mx-auto rounded-full bg-[#082B5C]/10 text-primary flex items-center justify-center">
+                <div className="w-10 h-10 mx-auto rounded-full bg-[#9E2339]/10 text-primary flex items-center justify-center">
                   <Briefcase className="w-5 h-5" />
                 </div>
                 <span className="text-xs font-extrabold text-primary uppercase tracking-wider block">PATHWAY 01</span>
-                <h4 className="text-lg font-black text-[#082B5C] font-['Outfit',sans-serif]">JOB & EMPLOYMENT</h4>
-                <div className="py-1 text-[#082B5C]/40 font-bold text-xs">↓</div>
-                <div className="p-3 bg-[#082B5C]/5 text-xs font-bold text-[#082B5C]">
+                <h4 className="text-lg font-black text-[#9E2339] font-oswald">JOB & EMPLOYMENT</h4>
+                <div className="py-1 text-[#9E2339]/40 font-bold text-xs">↓</div>
+                <div className="p-3 bg-[#9E2339]/5 text-xs font-bold text-[#9E2339]">
                   INDUSTRY PLACEMENT
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed pt-1">
@@ -1007,13 +1007,13 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               </div>
 
               <div className="bg-white p-7 shadow-xl space-y-3 text-center">
-                <div className="w-10 h-10 mx-auto rounded-full bg-[#082B5C]/10 text-[#059669] flex items-center justify-center">
+                <div className="w-10 h-10 mx-auto rounded-full bg-[#9E2339]/10 text-[#3E5D7C] flex items-center justify-center">
                   <GraduationCap className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-extrabold text-[#059669] uppercase tracking-wider block">PATHWAY 02</span>
-                <h4 className="text-lg font-black text-[#082B5C] font-['Outfit',sans-serif]">HIGHER STUDIES</h4>
-                <div className="py-1 text-[#082B5C]/40 font-bold text-xs">↓</div>
-                <div className="p-3 bg-[#082B5C]/5 text-xs font-bold text-[#082B5C]">
+                <span className="text-xs font-extrabold text-[#3E5D7C] uppercase tracking-wider block">PATHWAY 02</span>
+                <h4 className="text-lg font-black text-[#9E2339] font-oswald">HIGHER STUDIES</h4>
+                <div className="py-1 text-[#9E2339]/40 font-bold text-xs">↓</div>
+                <div className="p-3 bg-[#9E2339]/5 text-xs font-bold text-[#9E2339]">
                   RESEARCH & GLOBAL MASTERS
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed pt-1">
@@ -1022,13 +1022,13 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               </div>
 
               <div className="bg-white p-7 shadow-xl space-y-3 text-center">
-                <div className="w-10 h-10 mx-auto rounded-full bg-[#082B5C]/10 text-[#082B5C] flex items-center justify-center">
+                <div className="w-10 h-10 mx-auto rounded-full bg-[#9E2339]/10 text-[#9E2339] flex items-center justify-center">
                   <Sparkles className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-extrabold text-[#082B5C] uppercase tracking-wider block">PATHWAY 03</span>
-                <h4 className="text-lg font-black text-[#082B5C] font-['Outfit',sans-serif]">OTHER PATHS</h4>
-                <div className="py-1 text-[#082B5C]/40 font-bold text-xs">↓</div>
-                <div className="p-3 bg-[#082B5C]/5 text-xs font-bold text-[#082B5C]">
+                <span className="text-xs font-extrabold text-[#9E2339] uppercase tracking-wider block">PATHWAY 03</span>
+                <h4 className="text-lg font-black text-[#9E2339] font-oswald">OTHER PATHS</h4>
+                <div className="py-1 text-[#9E2339]/40 font-bold text-xs">↓</div>
+                <div className="p-3 bg-[#9E2339]/5 text-xs font-bold text-[#9E2339]">
                   ENTREPRENEURSHIP & STARTUPS
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed pt-1">
@@ -1054,7 +1054,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
           </div>
 
           <div className="text-center mb-14 space-y-2">
-            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-['Outfit',sans-serif] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
               LEARNING BEYOND THE CLASSROOM
             </h2>
             <p className="text-sm sm:text-base text-muted-foreground font-medium">
@@ -1145,7 +1145,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
           </div>
 
           <div className="mt-20 pt-10 border-t border-border text-center space-y-3">
-            <h3 className="text-2xl sm:text-4xl md:text-5xl font-black text-foreground font-['Outfit',sans-serif] tracking-tight">
+            <h3 className="text-2xl sm:text-4xl md:text-5xl font-black text-foreground font-oswald tracking-tight">
               LEARNING DOESN'T STOP <br className="hidden sm:inline" />WHEN THE CLASSROOM ENDS.
             </h3>
             <p className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-[#059669]">

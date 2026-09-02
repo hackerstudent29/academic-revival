@@ -35,34 +35,34 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
             <X className="w-5 h-5" />
           </button>
 
-          <div className="inline-flex items-center gap-1.5 bg-[#1769AA] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full mb-2 uppercase">
+          <div className="inline-flex items-center gap-1.5 bg-primary-foreground/20 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full mb-2 uppercase font-oswald">
             Official Placement Dossier
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold font-['Outfit',sans-serif]">
+          <h3 className="text-xl sm:text-2xl font-bold font-oswald">
             MSAJCE Placement Brochure 2026
           </h3>
-          <p className="text-xs sm:text-sm text-[#DCEEFF] mt-1">
+          <p className="text-xs sm:text-sm text-primary-foreground/80 mt-1">
             Comprehensive recruiter handbook, department statistics, academic demographics, and recruitment guidelines.
           </p>
         </div>
 
         <div className="p-6 sm:p-7 space-y-5">
           {/* Highlights in the brochure */}
-          <div className="grid grid-cols-2 gap-2 text-xs text-slate-700">
-            <div className="flex items-center gap-2 p-2.5 bg-[#F5FAFF] rounded-lg border border-blue-100">
-              <GraduationCap className="w-4 h-4 text-[#1769AA] shrink-0" />
+          <div className="grid grid-cols-2 gap-2 text-xs text-foreground font-sans">
+            <div className="flex items-center gap-2 p-2.5 bg-muted/50 rounded-lg border border-border">
+              <GraduationCap className="w-4 h-4 text-primary shrink-0" />
               <span>8 Undergraduate Disciplines</span>
             </div>
-            <div className="flex items-center gap-2 p-2.5 bg-[#F5FAFF] rounded-lg border border-blue-100">
-              <Building2 className="w-4 h-4 text-[#1769AA] shrink-0" />
+            <div className="flex items-center gap-2 p-2.5 bg-muted/50 rounded-lg border border-border">
+              <Building2 className="w-4 h-4 text-primary shrink-0" />
               <span>42+ Visiting Corporates</span>
             </div>
-            <div className="flex items-center gap-2 p-2.5 bg-[#F5FAFF] rounded-lg border border-blue-100">
-              <Award className="w-4 h-4 text-[#1769AA] shrink-0" />
+            <div className="flex items-center gap-2 p-2.5 bg-muted/50 rounded-lg border border-border">
+              <Award className="w-4 h-4 text-primary shrink-0" />
               <span>₹12 LPA Peak CTC Offered</span>
             </div>
             <div className="flex items-center gap-2 p-2.5 bg-[#F5FAFF] rounded-lg border border-blue-100">
-              <FileText className="w-4 h-4 text-[#1769AA] shrink-0" />
+              <FileText className="w-4 h-4 text-primary shrink-0" />
               <span>MoU Partnerships & Labs</span>
             </div>
           </div>
@@ -107,7 +107,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
 
               <button
                 type="submit"
-                className="w-full py-3 rounded-lg bg-[#082B5C] hover:bg-[#1769AA] text-white text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center gap-2 transition-all shadow-md active:scale-98 cursor-pointer"
+                className="w-full py-3 rounded-lg bg-[#9E2339] hover:bg-[#1769AA] text-white text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center gap-2 transition-all shadow-md active:scale-98 cursor-pointer"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Official Placement Brochure (PDF)</span>

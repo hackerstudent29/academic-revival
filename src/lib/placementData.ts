@@ -211,7 +211,7 @@ export const RECRUITERS: Recruiter[] = [
     domain: 'Core',
     tier: 'Tier B',
     logoText: 'APTIV',
-    logoBg: '#059669',
+    logoBg: '#005DA6',
     logoColor: '#FFFFFF',
     engagement: 'Recruitment',
     departments: ['ECE', 'EEE', 'CSE'],
@@ -241,7 +241,7 @@ export const RECRUITERS: Recruiter[] = [
     domain: 'Manufacturing',
     tier: 'Tier B',
     logoText: 'AMPHENOL',
-    logoBg: '#082B5C',
+    logoBg: '#9E2339',
     logoColor: '#FFFFFF',
     engagement: 'Internship',
     departments: ['ECE', 'EEE', 'MECH'],
@@ -455,7 +455,7 @@ export const SKILL_PILLARS: SkillPillar[] = [
     summary: 'Master foundational numeracy, speed calculation, logical deductions, data interpretation, and abstract reasoning through timed company-specific simulated test sets.',
     direction: 'left',
     iconName: 'BrainCircuit',
-    color: '#082B5C',
+    color: '#9E2339',
     modules: [
       {
         title: 'Quantitative Foundations & Speed Maths',
@@ -523,7 +523,7 @@ export const SKILL_PILLARS: SkillPillar[] = [
     summary: 'Deepen core algorithmic foundations, full-stack web/cloud architectures, data structures, specialized AI/ML pipelines, and engineering design tools.',
     direction: 'right',
     iconName: 'Code2',
-    color: '#082B5C',
+    color: '#9E2339',
     modules: [
       {
         title: 'Data Structures, Algorithms & LeetCode Sprints',

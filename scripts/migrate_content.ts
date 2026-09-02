@@ -1,4 +1,5 @@
-import { allCourses } from './src/lib/courseData';
+import { allCourses } from '../src/lib/courseData';
+// @ts-ignore
 import pg from 'pg';
 import fs from 'fs';
 import path from 'path';
