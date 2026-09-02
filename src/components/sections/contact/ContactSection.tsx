@@ -4,7 +4,7 @@ import { Reveal } from "@/components/motion";
 
 export function ContactSection() {
   return (
-    <section className="relative min-h-[100svh] w-full flex flex-col justify-center border-t border-foreground/12 bg-gray-100 dark:bg-[#171613] py-16" id="contact">
+    <section className="relative min-h-[100svh] w-full flex flex-col justify-center border-b border-border bg-background py-16" id="contact">
       <div className="mx-auto grid max-w-[1440px] w-full gap-12 px-6 md:grid-cols-2 md:gap-8 md:px-12 lg:px-16">
         {/* Left Column: Info */}
         <div className="flex flex-col justify-between">

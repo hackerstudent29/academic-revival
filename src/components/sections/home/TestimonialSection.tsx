@@ -140,10 +140,10 @@ export function TestimonialSection() {
   }, [playingCard]);
 
   return (
-    <section className="relative z-10 w-full bg-[#EAEAEA] dark:bg-[#15141c] border-t border-border pt-16 pb-24 md:pt-20 md:pb-32 overflow-hidden scroll-mt-24" id="alumni">
+    <section className="relative z-10 w-full bg-page-bg border-b border-border pt-16 pb-24 md:pt-20 md:pb-32 overflow-hidden scroll-mt-24" id="alumni">
 
       {/* Large Typography Watermark to fill background space */}
-      <div className="absolute right-[-2%] bottom-[5%] text-[18vw] font-black text-[#004b87]/[0.015] dark:text-foreground/[0.01] select-none pointer-events-none uppercase leading-none font-sans tracking-tighter">
+      <div className="absolute right-[-2%] bottom-[5%] text-[18vw] font-black text-foreground/[0.02] select-none pointer-events-none uppercase leading-none font-sans tracking-tighter">
         ALUMNI
       </div>
 
@@ -155,7 +155,7 @@ export function TestimonialSection() {
         transition={{ duration: 0.65, ease: [0.215, 0.61, 0.355, 1] }}
         className="relative z-10 w-full text-center px-6 mb-10 md:mb-12"
       >
-        <p className="text-black dark:text-white text-[11px] md:text-sm font-bold uppercase tracking-[0.16em] mb-4">
+        <p className="text-muted-foreground text-[11px] md:text-sm font-bold uppercase tracking-[0.16em] mb-4">
           3940+ Happy Alumni
         </p>
         <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-primary">
@@ -176,7 +176,7 @@ export function TestimonialSection() {
             transition={{ duration: 0.75, delay: 0.1, ease: [0.215, 0.61, 0.355, 1] }}
             className="col-span-1 lg:col-span-7 w-full flex flex-col gap-6"
           >
-            <span className="text-[10px] font-mono font-bold tracking-widest text-black/70 dark:text-white/70 uppercase block">
+            <span className="text-[10px] font-mono font-bold tracking-widest text-muted-foreground uppercase block">
               Featured Alumni Spotlight //
             </span>
             
@@ -279,7 +279,7 @@ export function TestimonialSection() {
             transition={{ duration: 0.75, delay: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
             className="col-span-1 lg:col-span-5 w-full flex flex-col gap-6"
           >
-            <span className="text-[10px] font-mono font-bold tracking-widest text-black/70 dark:text-white/70 uppercase block">
+            <span className="text-[10px] font-mono font-bold tracking-widest text-muted-foreground uppercase block">
               Alumni Video Reels //
             </span>
 
@@ -399,15 +399,15 @@ export function TestimonialSection() {
         >
           <div className="flex items-center justify-between border-b border-foreground/10 pb-4 mb-8">
             <div className="flex flex-col">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-black/70 dark:text-white/70">// Legacy Spotlights</span>
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground">// Legacy Spotlights</span>
               <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight mt-1 text-primary">Alumni Network Feed</h3>
             </div>
           </div>
           
           <div className="relative w-full overflow-hidden py-4">
             {/* Gradient masks to fade edges */}
-            <div className="absolute top-0 left-0 bottom-0 w-16 bg-gradient-to-r from-[#EAEAEA] dark:from-[#15141c] to-transparent z-10 pointer-events-none" />
-            <div className="absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-[#EAEAEA] dark:from-[#15141c] to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 left-0 bottom-0 w-16 bg-gradient-to-r from-page-bg to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-page-bg to-transparent z-10 pointer-events-none" />
             
             <style>{`
               @keyframes horizontal-marquee {

@@ -43,13 +43,13 @@ export function NewsAndEventsSection() {
   if (!currentMainArticle) return null;
 
   return (
-    <section ref={sectionRef} className="relative bg-[#E4E6E6] dark:bg-[#151412] py-12 md:py-16 overflow-hidden" id="news">
+    <section ref={sectionRef} className="relative bg-background border-b border-border py-12 md:py-16 overflow-hidden" id="news">
       {/* Subtle Background Design - Elegant Swept Curves */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         {/* Top-Right sweeping curve */}
-        <div className="absolute top-0 right-0 w-[65%] h-[90%] bg-[#DDE0E0] dark:bg-white/[0.02]" style={{ clipPath: "ellipse(100% 100% at 100% 0%)" }} />
+        <div className="absolute top-0 right-0 w-[65%] h-[90%] bg-muted/40 dark:bg-white/[0.02]" style={{ clipPath: "ellipse(100% 100% at 100% 0%)" }} />
         {/* Bottom-Left counter curve */}
-        <div className="absolute bottom-0 left-0 w-[45%] h-[65%] bg-[#DDE0E0] dark:bg-white/[0.02]" style={{ clipPath: "ellipse(100% 100% at 0% 100%)" }} />
+        <div className="absolute bottom-0 left-0 w-[45%] h-[65%] bg-muted/40 dark:bg-white/[0.02]" style={{ clipPath: "ellipse(100% 100% at 0% 100%)" }} />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 md:px-12">
@@ -70,7 +70,7 @@ export function NewsAndEventsSection() {
             <Link
               to="/events/$eventId"
               params={{ eventId: currentMainArticle.id }}
-              className="group flex flex-col h-full bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm p-4 md:p-7 relative overflow-hidden"
+              className="group flex flex-col h-full bg-card border border-border rounded-[4px] shadow-sm p-4 md:p-7 relative overflow-hidden"
             >
               {/* Image with Gradient Overlay */}
               <div className="relative w-full aspect-[4/3] md:aspect-[2/1] bg-black overflow-hidden rounded-[4px]">
@@ -103,11 +103,11 @@ export function NewsAndEventsSection() {
 
               {/* Bottom Body */}
               <div className="pt-6 flex flex-col justify-between flex-1 z-10 relative">
-                <p className="text-[15px] text-gray-800 dark:text-gray-300 leading-relaxed transition-colors duration-300">
+                <p className="text-[15px] text-foreground/80 leading-relaxed transition-colors duration-300">
                   {currentMainArticle.description}
                 </p>
                 <div className="mt-6 flex justify-end">
-                  <span className="text-[12px] text-gray-600 dark:text-gray-400">
+                  <span className="text-[12px] text-muted-foreground">
                     {currentMainArticle.date}
                   </span>
                 </div>
@@ -117,7 +117,7 @@ export function NewsAndEventsSection() {
 
           {/* Right Column: Single Panel with Stacked Scrolling Articles (spans 5 columns) */}
           <Reveal variant="rise" delay={0.2} className="lg:col-span-5 h-full">
-            <div className="bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm p-6 h-full flex flex-col">
+            <div className="bg-card border border-border rounded-[4px] shadow-sm p-6 h-full flex flex-col">
               <h3 className="text-xl md:text-2xl font-bold tracking-tight text-primary font-display mb-4">
                 Upcoming Events
               </h3>
@@ -139,7 +139,7 @@ export function NewsAndEventsSection() {
                         params={{ eventId: article.id }}
                         className="group flex flex-col"
                       >
-                        <span className="text-[11px] font-bold uppercase tracking-widest text-gray-800 dark:text-gray-200 mb-3 block">
+                        <span className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3 block">
                           {article.category}
                         </span>
 
@@ -154,7 +154,7 @@ export function NewsAndEventsSection() {
                             />
                             {/* Date Badge Overlay */}
                             {article.date && !isNaN(new Date(article.date).getTime()) && (
-                              <div className="absolute top-2 left-2 bg-white dark:bg-background shadow-md rounded-[3px] overflow-hidden flex flex-col items-center justify-center min-w-[38px] border border-border/50">
+                              <div className="absolute top-2 left-2 bg-card shadow-md rounded-[3px] overflow-hidden flex flex-col items-center justify-center min-w-[38px] border border-border/50">
                                 <span className="bg-primary text-primary-foreground text-[9px] font-bold uppercase tracking-widest w-full text-center py-0.5 leading-tight">
                                   {new Date(article.date).toLocaleString('en-US', { month: 'short' }).toUpperCase()}
                                 </span>
@@ -185,8 +185,8 @@ export function NewsAndEventsSection() {
               </div>
 
               {/* Upcoming Event Dates Footer */}
-              <div className="mt-6 pt-5 border-t border-gray-200 dark:border-gray-800">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-3 flex items-center gap-1.5">
+              <div className="mt-6 pt-5 border-t border-border">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3 flex items-center gap-1.5">
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
                   Mark Your Calendars
                 </span>
@@ -198,9 +198,9 @@ export function NewsAndEventsSection() {
                       key={article.id}
                       to="/events/$eventId"
                       params={{ eventId: article.id }}
-                      className="group flex items-center gap-2 bg-white dark:bg-[#1C1A17] text-gray-700 dark:text-gray-300 text-[12.5px] font-bold px-4 py-2 rounded-md border border-gray-200 dark:border-gray-800 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md hover:border-primary/50 hover:text-primary"
+                      className="group flex items-center gap-2 bg-card text-foreground text-[12.5px] font-bold px-4 py-2 rounded-md border border-border shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md hover:border-primary/50 hover:text-primary"
                     >
-                      <span className="text-gray-400 group-hover:text-primary transition-colors flex items-center justify-center">
+                      <span className="text-muted-foreground group-hover:text-primary transition-colors flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
                       </span>
                       {article.date}
@@ -219,9 +219,9 @@ export function NewsAndEventsSection() {
               <Link
                 to="/events/$eventId"
                 params={{ eventId: article.id }}
-                className="group flex flex-col h-full bg-white dark:bg-[#1C1A17] rounded-[4px] shadow-sm p-6"
+                className="group flex flex-col h-full bg-card border border-border rounded-[4px] shadow-sm p-6"
               >
-                <span className="text-[11px] font-bold uppercase tracking-widest text-gray-800 dark:text-gray-200 mb-3 block">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3 block">
                   {article.category}
                 </span>
 

@@ -78,11 +78,11 @@ export function WhyJoinSection() {
   ];
 
   return (
-    <section className="relative z-10 bg-[#EAEAEA] dark:bg-[#111915] overflow-hidden py-12 md:py-16 scroll-mt-20" id="why-join">
+    <section className="relative z-10 bg-page-bg border-b border-border overflow-hidden py-12 md:py-16 scroll-mt-20" id="why-join">
       {/* Diagonal Background Accents */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] right-[-10%] w-[120%] h-[40%] bg-[#E0E2E5] dark:bg-secondary/20 -rotate-12 origin-top-right" />
-        <div className="absolute top-[40%] left-[-20%] w-[150%] h-[35%] bg-[#E0E2E5] dark:bg-secondary/20 -rotate-12 origin-bottom-left" />
+        <div className="absolute top-[-10%] right-[-10%] w-[120%] h-[40%] bg-muted/30 dark:bg-secondary/20 -rotate-12 origin-top-right" />
+        <div className="absolute top-[40%] left-[-20%] w-[150%] h-[35%] bg-muted/30 dark:bg-secondary/20 -rotate-12 origin-bottom-left" />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 md:px-12 flex flex-col gap-12">

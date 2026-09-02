@@ -83,17 +83,17 @@ const cardVariants = {
 
 export function AboutBannerSection() {
   return (
-    <section id="about" className="relative z-10 w-full bg-[#EDEDED] dark:bg-[#131313] min-h-[100svh] flex flex-col justify-center py-16 border-t border-b border-foreground/10 overflow-hidden">
+    <section id="about" className="relative z-10 w-full bg-background min-h-[100svh] flex flex-col justify-center py-16 border-b border-border overflow-hidden">
       {/* Clean, Cool Minimalist Background - Layered Floating Panels */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         {/* Deep offset plane */}
-        <div className="absolute top-[-30%] right-[-10%] w-[120%] lg:w-[100%] h-[85%] bg-[#E0E2E5] dark:bg-white/[0.03] rounded-bl-[100px] lg:rounded-bl-[200px] -rotate-6 origin-top-right" />
+        <div className="absolute top-[-30%] right-[-10%] w-[120%] lg:w-[100%] h-[85%] bg-muted/30 dark:bg-white/[0.03] rounded-bl-[100px] lg:rounded-bl-[200px] -rotate-6 origin-top-right" />
         
         {/* Clean primary overlapping plane */}
-        <div className="absolute top-[-20%] right-[-5%] w-[120%] lg:w-[95%] h-[80%] bg-[#E6E8EA] dark:bg-white/[0.02] rounded-bl-[100px] lg:rounded-bl-[200px] -rotate-6 origin-top-right" />
+        <div className="absolute top-[-20%] right-[-5%] w-[120%] lg:w-[95%] h-[80%] bg-muted/20 dark:bg-white/[0.02] rounded-bl-[100px] lg:rounded-bl-[200px] -rotate-6 origin-top-right" />
         
         {/* Subtle accent panel at the bottom left */}
-        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[40%] bg-[#E6E8EA] dark:bg-white/[0.02] rounded-tr-[100px] lg:rounded-tr-[150px] rotate-3 origin-bottom-left" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[40%] bg-muted/20 dark:bg-white/[0.02] rounded-tr-[100px] lg:rounded-tr-[150px] rotate-3 origin-bottom-left" />
       </div>
 
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col gap-12 lg:gap-16">
