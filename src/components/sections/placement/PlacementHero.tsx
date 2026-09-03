@@ -84,7 +84,7 @@ export const PlacementHero: React.FC<PlacementHeroProps> = ({
   onExploreClick,
   onSecondaryClick,
 }) => {
-  const config = HERO_CONFIG[activeTab] || HERO_CONFIG.overview;
+  const config = HERO_CONFIG[activeTab] ?? HERO_CONFIG['overview']!;
 
   return (
     <section className="relative w-full min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#9E2339]">

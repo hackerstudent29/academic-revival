@@ -77,7 +77,7 @@ const cardVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }
+    transition: { duration: 0.8, ease: [0.215, 0.61, 0.355, 1] as const }
   }
 };
 
@@ -103,7 +103,7 @@ export function AboutBannerSection() {
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.65, ease: [0.215, 0.61, 0.355, 1] }}
+          transition={{ duration: 0.65, ease: [0.215, 0.61, 0.355, 1] as const }}
           className="w-full flex flex-col pt-8"
         >
           <div className="flex flex-col">

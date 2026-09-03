@@ -217,7 +217,7 @@ export function AcademicProgrammesSection() {
                   <p className="text-[13px] text-foreground/70 mb-3 line-clamp-2">
                     14 specialized programs including Artificial Intelligence, Cyber Security, and core engineering disciplines.
                   </p>
-                  <Link to="/programmes" className="inline-flex items-center text-[13px] font-bold text-primary group-hover:underline">
+                  <Link to="/programmes" search={{ level: 'UG' }} className="inline-flex items-center text-[13px] font-bold text-primary group-hover:underline">
                     Explore UG Degrees <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
                   </Link>
                 </motion.div>
@@ -227,7 +227,7 @@ export function AcademicProgrammesSection() {
                   <p className="text-[13px] text-foreground/70 mb-3 line-clamp-2">
                     Advanced technical education and specialized master's programs in Computer Science, Structural Engineering, and Architecture.
                   </p>
-                  <Link to="/programmes" className="inline-flex items-center text-[13px] font-bold text-primary group-hover:underline">
+                  <Link to="/programmes" search={{ level: 'PG' }} className="inline-flex items-center text-[13px] font-bold text-primary group-hover:underline">
                     Explore PG Degrees <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
                   </Link>
                 </motion.div>
@@ -237,7 +237,7 @@ export function AcademicProgrammesSection() {
                   <p className="text-[13px] text-foreground/70 mb-3 line-clamp-2">
                     Push the boundaries of knowledge and innovation with our dedicated research centers and expert faculty.
                   </p>
-                  <Link to="/programmes" className="inline-flex items-center text-[13px] font-bold text-primary group-hover:underline">
+                  <Link to="/programmes" search={{ level: 'Doctorate' }} className="inline-flex items-center text-[13px] font-bold text-primary group-hover:underline">
                     Explore Ph.D Programmes <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
                   </Link>
                 </motion.div>
@@ -246,6 +246,7 @@ export function AcademicProgrammesSection() {
               <motion.div variants={rise} className="mt-8 flex flex-wrap gap-3">
                 <Link
                   to="/programmes"
+                  search={{ level: undefined }}
                   className="inline-flex items-center justify-center bg-primary px-6 py-3 text-[12px] font-bold uppercase tracking-wide text-primary-foreground shadow-sm transition-all hover:bg-primary/90"
                 >
                   All Programmes

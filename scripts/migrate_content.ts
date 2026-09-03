@@ -1,12 +1,12 @@
 import { allCourses } from '../src/lib/courseData';
 // @ts-ignore
-import pg from 'pg';
+import { Pool } from 'pg';
 import fs from 'fs';
 import path from 'path';
 
 const connectionString = 'postgresql://postgres.ounikqjoupdiewkyjusw:RAMAZENDRUM2007@aws-0-ap-southeast-2.pooler.supabase.com:5432/postgres';
 
-const pool = new pg.Pool({
+const pool = new Pool({
   connectionString,
 });
 

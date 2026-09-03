@@ -10,8 +10,8 @@ const description =
 export const Route = createFileRoute("/admissions")({
   validateSearch: (search: Record<string, unknown>) => {
     return {
-      level: search.level as string | undefined,
-    }
+      level: search['level'] as string | undefined,
+    };
   },
   head: () => ({
     meta: [
@@ -32,7 +32,7 @@ function Admissions() {
   return (
     <main className="bg-background min-h-screen pt-4 md:pt-6">
       <section className="mx-auto max-w-[1440px] px-6 py-6 md:px-12 md:py-10">
-        <Stagger gap={0.1} className="grid md:grid-cols-3 gap-6" viewport={{ once: true }}>
+        <Stagger gap={0.1} className="grid md:grid-cols-3 gap-6">
           <StaggerItem>
             <Link to="/admissions/eligibility" className="group flex flex-col justify-between h-full border border-border bg-card p-8 hover:bg-muted/50 transition-colors">
               <div>
