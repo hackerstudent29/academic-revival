@@ -230,7 +230,6 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         'Timed online diagnostic tests mirroring national recruiter patterns'
       ],
       icon: BrainCircuit,
-      color: '#0052CC'
     },
     {
       id: 'communication',
@@ -244,7 +243,6 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         'Accent neutralization and conversational clarity'
       ],
       icon: MessageSquareText,
-      color: '#005DA6'
     },
     {
       id: 'technical',
@@ -258,7 +256,6 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         'Core branch technologies: VLSI, Embedded Systems, CAD/CAM, Robotics'
       ],
       icon: Code2,
-      color: '#0052CC'
     },
     {
       id: 'certification',
@@ -272,7 +269,6 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         'Hands-on capstone project verification and credentialing'
       ],
       icon: Microscope,
-      color: '#005DA6'
     },
     {
       id: 'interview',
@@ -286,7 +282,6 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         'Personalized video feedback and resume articulation drills'
       ],
       icon: Users,
-      color: '#0052CC'
     },
     {
       id: 'group-discussion',
@@ -300,7 +295,6 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         'Overcoming public speaking anxiety in air-conditioned GD suites'
       ],
       icon: Laptop,
-      color: '#005DA6'
     }
   ];
 
@@ -495,129 +489,53 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               </div>
             </div>
 
-            <div className="lg:col-span-6 flex flex-col justify-between bg-card border border-border p-6 sm:p-8 shadow-xl">
+            <div className="lg:col-span-6 flex flex-col justify-between bg-card border border-border p-6 sm:p-8 shadow-xl rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs">
               <div className="text-center mb-6">
-                <span className="text-[11px] font-black uppercase tracking-widest text-amber-500 bg-primary/10 px-4 py-1.5 inline-block">
+                <span className="text-[11px] font-black uppercase tracking-widest text-primary bg-primary/10 px-4 py-1.5 inline-block font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
                   INTERCONNECTED DEVELOPMENT PILLARS
                 </span>
               </div>
 
-              <div className="space-y-4">
-                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-                  <button
-                    onClick={() => setActiveMindNode('aptitude')}
-                    className={`relative w-32 sm:w-36 h-36 sm:h-40 flex flex-col items-center justify-center p-3 text-center transition-all duration-200 cursor-pointer shadow-lg ${
-                      activeMindNode === 'aptitude' ? 'bg-primary text-primary-foreground ring-4 ring-amber-500' : 'bg-muted text-foreground hover:bg-accent'
-                    }`}
-                    style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
-                  >
-                    <BrainCircuit className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-black uppercase font-oswald leading-tight block">
-                      APTITUDE
-                    </span>
-                  </button>
-
-                  <button
-                    onClick={() => setActiveMindNode('communication')}
-                    className={`relative w-32 sm:w-36 h-36 sm:h-40 flex flex-col items-center justify-center p-3 text-center transition-all duration-200 cursor-pointer shadow-lg ${
-                      activeMindNode === 'communication' ? 'bg-primary text-primary-foreground ring-4 ring-amber-500' : 'bg-muted text-foreground hover:bg-accent'
-                    }`}
-                    style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
-                  >
-                    <MessageSquareText className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-black uppercase font-oswald leading-tight block">
-                      COMMUNICATION
-                    </span>
-                  </button>
-                </div>
-
-                <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
-                  <button
-                    onClick={() => setActiveMindNode('technical')}
-                    className={`relative w-30 sm:w-34 h-34 sm:h-38 flex flex-col items-center justify-center p-3 text-center transition-all duration-200 cursor-pointer shadow-lg ${
-                      activeMindNode === 'technical' ? 'bg-primary text-primary-foreground ring-4 ring-amber-500' : 'bg-muted text-foreground hover:bg-accent'
-                    }`}
-                    style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
-                  >
-                    <Code2 className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-black uppercase font-oswald leading-tight block">
-                      TECHNICAL
-                    </span>
-                  </button>
-
-                  <div
-                    className="relative w-36 sm:w-44 h-40 sm:h-48 bg-primary text-primary-foreground flex flex-col items-center justify-center p-3 text-center shadow-2xl z-10"
-                    style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
-                  >
-                    <GraduationCap className="w-7 h-7 sm:w-8 sm:h-8 text-amber-400 mb-1 animate-pulse" />
-                    <span className="text-[9px] font-black uppercase tracking-widest text-primary-foreground/80 block">
-                      CENTRAL CORE
-                    </span>
-                    <h3 className="text-base sm:text-xl font-black text-amber-400 tracking-tight font-oswald">
-                      STUDENT
-                    </h3>
-                  </div>
-
-                  <button
-                    onClick={() => setActiveMindNode('certification')}
-                    className={`relative w-30 sm:w-34 h-34 sm:h-38 flex flex-col items-center justify-center p-3 text-center transition-all duration-200 cursor-pointer shadow-lg ${
-                      activeMindNode === 'certification' ? 'bg-primary text-primary-foreground ring-4 ring-amber-500' : 'bg-muted text-foreground hover:bg-accent'
-                    }`}
-                    style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
-                  >
-                    <Microscope className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
-                    <span className="text-[10px] sm:text-xs font-black uppercase font-oswald leading-tight block">
-                      CERTIFICATION
-                    </span>
-                  </button>
-                </div>
-
-                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-                  <button
-                    onClick={() => setActiveMindNode('interview')}
-                    className={`relative w-32 sm:w-36 h-36 sm:h-40 flex flex-col items-center justify-center p-3 text-center transition-all duration-200 cursor-pointer shadow-lg ${
-                      activeMindNode === 'interview' ? 'bg-primary text-primary-foreground ring-4 ring-amber-500' : 'bg-muted text-foreground hover:bg-accent'
-                    }`}
-                    style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
-                  >
-                    <Users className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-black uppercase font-oswald leading-tight block">
-                      INTERVIEW
-                    </span>
-                  </button>
-
-                  <button
-                    onClick={() => setActiveMindNode('group-discussion')}
-                    className={`relative w-32 sm:w-36 h-36 sm:h-40 flex flex-col items-center justify-center p-3 text-center transition-all duration-200 cursor-pointer shadow-lg ${
-                      activeMindNode === 'group-discussion' ? 'bg-primary text-primary-foreground ring-4 ring-amber-500' : 'bg-muted text-foreground hover:bg-accent'
-                    }`}
-                    style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
-                  >
-                    <Laptop className="w-5 h-5 text-amber-500 mb-1 shrink-0" />
-                    <span className="text-[10px] sm:text-xs font-black uppercase font-oswald leading-tight block">
-                      GROUP DISCUSSION
-                    </span>
-                  </button>
-                </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {mindMapNodes.map((node) => {
+                  const NodeIcon = node.icon;
+                  const isSelected = activeMindNode === node.id;
+                  return (
+                    <button
+                      key={node.id}
+                      onClick={() => setActiveMindNode(node.id)}
+                      className={`p-4 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs flex flex-col items-center justify-center text-center transition-all duration-200 cursor-pointer border ${
+                        isSelected 
+                          ? 'bg-primary text-white border-primary shadow-md' 
+                          : 'bg-page-bg text-foreground border-border hover:border-primary/40'
+                      }`}
+                    >
+                      <NodeIcon className={`w-5 h-5 mb-2.5 ${isSelected ? 'text-white' : 'text-primary'}`} />
+                      <span className="text-[11px] font-black uppercase font-oswald leading-tight block">
+                        {node.name}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
 
-              <div className="mt-8 pt-5 border-t border-border bg-muted/40 p-4 sm:p-5">
+              <div className="mt-8 pt-5 border-t border-border bg-muted/30 p-4 sm:p-5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
                 <div className="flex items-center justify-between gap-2 mb-2">
                   <div className="inline-flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-primary" />
-                    <span className="text-xs font-black uppercase tracking-widest text-foreground">{(activeNodeData || skillArchitectureNodes[0]).category}</span>
+                    <span className="text-xs font-black uppercase tracking-widest text-foreground font-oswald">{(activeNodeData || mindMapNodes[0]).category}</span>
                   </div>
-                  <span className="text-[10px] font-black uppercase text-amber-500 bg-primary px-2.5 py-0.5">
-                    {(activeNodeData || skillArchitectureNodes[0]).name}
+                  <span className="text-[10px] font-black uppercase text-white bg-primary px-2.5 py-0.5 font-oswald rounded-sm">
+                    {(activeNodeData || mindMapNodes[0]).name}
                   </span>
                 </div>
-                <p className="text-xs font-bold text-foreground mb-3">
-                  {(activeNodeData || skillArchitectureNodes[0]).desc}
+                <p className="text-xs font-bold text-foreground mb-3 font-sans">
+                  {(activeNodeData || mindMapNodes[0]).desc}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  {(activeNodeData || skillArchitectureNodes[0]).details.map((detail, dIdx) => (
-                    <div key={dIdx} className="p-2.5 bg-card border border-border flex items-start gap-2 text-[11px] text-foreground/80 font-medium">
-                      <CheckCircle className="w-3.5 h-3.5 text-[#3E5D7C] shrink-0 mt-0.5" />
+                  {(activeNodeData || mindMapNodes[0]).details.map((detail, dIdx) => (
+                    <div key={dIdx} className="p-2.5 bg-card border border-border flex items-start gap-2 text-[11px] text-foreground/80 font-medium font-sans rounded-sm">
+                      <CheckCircle className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
                       <span>{detail}</span>
                     </div>
                   ))}
@@ -625,7 +543,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               </div>
             </div>
 
-            <div className="lg:col-span-3 hidden lg:block overflow-hidden shadow-xl">
+            <div className="lg:col-span-3 hidden lg:block overflow-hidden shadow-xl rounded-md border border-border">
               <div className="relative w-full h-full min-h-[560px]">
                 <img 
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=85" 
@@ -634,7 +552,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-5 right-5 text-white space-y-1">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-[#3E5D7C] block">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-primary font-oswald block">
                     SELECTION SIMULATIONS
                   </span>
                   <p className="text-sm font-bold font-oswald leading-snug">
@@ -654,77 +572,72 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-3xl mx-auto text-center mb-12 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#9E2339] text-white text-xs font-extrabold tracking-widest uppercase shadow-sm">
-              <Activity className="w-3.5 h-3.5 text-emerald-400" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-primary text-white text-xs font-extrabold tracking-widest uppercase shadow-sm font-oswald rounded-sm">
+              <Activity className="w-3.5 h-3.5 text-white" />
               <span>CONTINUOUS PRACTICE PIPELINE</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
               LEARN. PRACTISE. PERFORM.
             </h2>
-            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-medium pt-1">
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-1 font-sans">
               Skill development becomes meaningful when students have opportunities to practise what they learn. MSAJCE combines employability training with mock assessments.
             </p>
           </div>
 
-          <div className="mt-8 max-w-4xl mx-auto bg-card border border-border p-6 sm:p-8 shadow-xl text-card-foreground">
+          <div className="mt-8 max-w-4xl mx-auto bg-card border border-border p-6 sm:p-8 shadow-xl text-card-foreground rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs">
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
               <div className="sm:col-span-8 space-y-2">
-                <span className="text-xs font-black uppercase tracking-widest text-primary">
+                <span className="text-xs font-black uppercase tracking-widest text-primary font-oswald">
                   PIPELINE STAGE {activeBeltIdx + 1} OF {trainingBeltItems.length}
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-black text-[#9E2339] font-oswald">
+                <h3 className="text-2xl sm:text-3xl font-black text-primary font-oswald">
                   {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).title}
                 </h3>
-                <p className="text-sm sm:text-base text-slate-700 font-medium">
+                <p className="text-sm sm:text-base text-muted-foreground font-medium font-sans">
                   {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).tagline}
                 </p>
               </div>
-              <div className="sm:col-span-4 flex flex-col items-start sm:items-end justify-center border-t sm:border-t-0 sm:border-l border-slate-200 pt-4 sm:pt-0 sm:pl-6 space-y-1">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">CURRICULUM VOLUME</span>
-                <span className="text-xl sm:text-2xl font-black text-[#9E2339] font-oswald">
+              <div className="sm:col-span-4 flex flex-col items-start sm:items-end justify-center border-t sm:border-t-0 sm:border-l border-border pt-4 sm:pt-0 sm:pl-6 space-y-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground font-oswald">CURRICULUM VOLUME</span>
+                <span className="text-xl sm:text-2xl font-black text-primary font-oswald">
                   {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).metric}
                 </span>
-                <span className="text-xs text-[#3E5D7C] font-bold">
+                <span className="text-xs text-primary font-bold font-oswald">
                   {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).focus}
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="mt-20 pt-12 border-t border-[#9E2339]/20">
+          <div className="mt-20 pt-12 border-t border-border">
             <div className="max-w-3xl mx-auto text-center mb-12 space-y-3">
-              <span className="px-3 py-1 bg-[#9E2339] text-white text-[11px] font-black uppercase tracking-widest inline-block">
+              <span className="px-3 py-1 bg-primary text-white text-[11px] font-black uppercase tracking-widest inline-block font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
                 STUDENT CLUBS & ACTIVE PRACTICE
               </span>
-              <h3 className="text-2xl sm:text-4xl font-black text-[#9E2339] font-oswald">
+              <h3 className="text-2xl sm:text-4xl font-black text-primary font-oswald uppercase">
                 CLUBS EMPOWERING EVERYDAY PRACTICE
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 items-start">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 items-stretch">
               {studentClubs.map((club, cIdx) => (
-                <div key={cIdx} className="text-center group flex flex-col items-center">
-                  <div className="relative w-40 h-40 sm:w-44 sm:h-44 mb-4 flex items-center justify-center">
-                    <div 
-                      className="w-full h-full overflow-hidden shadow-md"
-                      style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
-                    >
-                      <img 
-                        src={club.image} 
-                        alt={club.name} 
-                        className="w-full h-full object-cover brightness-95" 
-                      />
-                    </div>
+                <div key={cIdx} className="bg-card border border-border rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs hover:border-primary/40 transition-all duration-200 overflow-hidden shadow-xs p-4 flex flex-col justify-between text-center group">
+                  <div className="relative w-full h-36 mb-4 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border">
+                    <img 
+                      src={club.image} 
+                      alt={club.name} 
+                      className="w-full h-full object-cover" 
+                    />
                   </div>
 
-                  <div className="space-y-1 max-w-[200px]">
-                    <span className="text-[10px] font-black uppercase tracking-wider text-primary block">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-primary block font-oswald">
                       {club.tag}
                     </span>
-                    <h4 className="text-sm font-black text-[#9E2339] font-oswald tracking-tight">
+                    <h4 className="text-sm font-black text-foreground font-oswald tracking-tight uppercase">
                       {club.name}
                     </h4>
-                    <p className="text-xs text-[#9E2339]/80 leading-snug font-medium pt-1">
+                    <p className="text-xs text-muted-foreground leading-snug font-normal pt-1 font-sans">
                       {club.desc}
                     </p>
                   </div>
@@ -742,19 +655,19 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-3xl mx-auto text-center mb-14 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-muted text-foreground text-xs font-extrabold tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-muted text-foreground text-xs font-extrabold tracking-widest uppercase font-oswald rounded-sm">
               <Building2 className="w-3.5 h-3.5 text-primary" />
               <span>DEDICATED PLACEMENT INFRASTRUCTURE</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight uppercase">
               SPACES DESIGNED FOR PREPARATION
             </h2>
-            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-1">
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-1 font-sans">
               The Placement Cell provides dedicated facilities to support different stages of student preparation and recruitment.
             </p>
           </div>
 
-          <div className="relative w-full h-[420px] sm:h-[520px] lg:h-[580px] bg-card border border-border overflow-hidden shadow-2xl">
+          <div className="relative w-full h-[420px] sm:h-[520px] lg:h-[580px] bg-card border border-border overflow-hidden shadow-2xl rounded-md">
             <img 
               src={(activeHotspot || facilityHotspots[0]).image} 
               alt={(activeHotspot || facilityHotspots[0]).name} 
@@ -771,18 +684,18 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                   <button
                     key={hotspot.id}
                     onClick={() => setActiveHotspotId(hotspot.id)}
-                    className={`absolute ${hotspot.pos} cursor-pointer transition-all duration-300 transform -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 px-3 py-1.5 rounded-full shadow-2xl backdrop-blur-md ${
+                    className={`absolute ${hotspot.pos} cursor-pointer transition-all duration-300 transform -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 px-3.5 py-1.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs shadow-2xl backdrop-blur-md border ${
                       isSelected
-                        ? 'bg-primary text-primary-foreground ring-4 ring-white/50 z-30'
-                        : 'bg-background/80 text-foreground hover:bg-background z-20'
+                        ? 'bg-primary text-white border-white/50 z-30'
+                        : 'bg-background/80 text-foreground border-border hover:bg-background z-20'
                     }`}
                   >
-                    <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black ${
-                      isSelected ? 'bg-primary-foreground text-primary' : 'bg-primary text-primary-foreground'
+                    <span className={`w-5 h-5 rounded-sm flex items-center justify-center text-[10px] font-black font-oswald ${
+                      isSelected ? 'bg-white text-primary' : 'bg-primary text-white'
                     }`}>
                       {hotspot.num}
                     </span>
-                    <span className="text-xs font-black tracking-tight font-oswald whitespace-nowrap">
+                    <span className="text-xs font-black tracking-tight font-oswald whitespace-nowrap uppercase">
                       {hotspot.name}
                     </span>
                   </button>
@@ -790,19 +703,19 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
               })}
             </div>
 
-            <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 bg-card/95 backdrop-blur-md p-6 sm:p-8 shadow-2xl text-foreground border-l-4 border-primary">
+            <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 bg-card/95 backdrop-blur-md p-6 sm:p-8 shadow-2xl text-foreground border-l-4 border-primary rounded-r-md">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
                 <div className="lg:col-span-8 space-y-2">
                   <div className="inline-flex items-center gap-2">
-                    <span className="text-xs font-black text-[#3E5D7C] uppercase tracking-widest">
+                    <span className="text-xs font-black text-primary uppercase tracking-widest font-oswald">
                       FACILITY {(activeHotspot || facilityHotspots[0]).num}
                     </span>
                     <span className="text-xs text-muted-foreground">•</span>
-                    <span className="text-xs font-bold text-muted-foreground uppercase">
+                    <span className="text-xs font-bold text-muted-foreground uppercase font-sans">
                       {(activeHotspot || facilityHotspots[0]).sub}
                     </span>
                   </div>
-                  <h3 className="text-xl sm:text-3xl font-black text-foreground font-oswald">
+                  <h3 className="text-xl sm:text-3xl font-black text-foreground font-oswald uppercase">
                     {(activeHotspot || facilityHotspots[0]).name}
                   </h3>
                   <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-medium">
