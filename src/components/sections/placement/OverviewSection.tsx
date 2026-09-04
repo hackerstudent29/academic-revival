@@ -412,11 +412,11 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-1.5 text-xs font-extrabold tracking-widest text-primary uppercase font-oswald">
-              <TrendingUp className="w-4 h-4 text-primary" />
+            <div className="inline-flex items-center gap-1.5 text-xs font-extrabold tracking-widest text-foreground uppercase font-oswald">
+              <TrendingUp className="w-4 h-4 text-foreground" />
               INSTITUTIONAL METRICS
             </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight font-oswald uppercase">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-primary tracking-tight font-oswald uppercase">
               Proven Track Record of Career Excellence
             </h2>
             <p className="text-base text-muted-foreground font-sans">
@@ -596,7 +596,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                     </div>
 
                     <div className="absolute bottom-6 left-5 right-5 text-center text-white space-y-2">
-                      <span className="inline-block px-3 py-1 text-[10px] font-black uppercase tracking-widest bg-primary text-white shadow-xs font-oswald rounded-sm">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-primary inline-block font-oswald mb-1">
                         {current.badge}
                       </span>
                       <p className="text-xs sm:text-sm font-bold text-white/95 leading-snug px-2 font-oswald">
@@ -611,7 +611,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
             <div className="lg:col-span-7 space-y-6">
               
               <div className="space-y-3">
-                <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
+                <h2 className="text-3xl sm:text-5xl font-black text-primary tracking-tight font-oswald leading-tight">
                   WHERE YOUR JOURNEY CAN TAKE YOU
                 </h2>
               </div>

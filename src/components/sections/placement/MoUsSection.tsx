@@ -223,11 +223,11 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
         <section className="relative w-full border-b border-border bg-page-bg px-4 py-12 sm:px-8 lg:px-14 lg:py-16">
           <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="space-y-6 lg:col-span-7">
-              <span className="text-xs font-bold text-primary tracking-widest uppercase bg-card px-3.5 py-1 inline-block border border-border rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs font-oswald shadow-2xs">
+              <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
                 OFFICIAL BILATERAL ENGAGEMENTS
               </span>
               
-              <h1 className="text-4xl font-black leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl font-oswald uppercase">
+              <h1 className="text-4xl font-black leading-tight tracking-tight text-primary sm:text-5xl lg:text-6xl font-oswald uppercase">
                 INDUSTRY ALLIANCES & MEMORANDUMS
               </h1>
               
@@ -283,10 +283,10 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
           <div className="max-w-7xl mx-auto space-y-12">
             
             <div className="text-center max-w-3xl mx-auto space-y-2">
-              <span className="text-xs font-bold text-primary tracking-widest uppercase bg-card px-3.5 py-1 inline-block border border-border font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+              <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
                 ENGAGEMENT FRAMEWORK
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black text-foreground font-oswald uppercase tracking-tight">
+              <h2 className="text-3xl sm:text-5xl font-black text-primary font-oswald uppercase tracking-tight">
                 THREE PILLARS OF INDUSTRY INTEGRATION
               </h2>
               <p className="text-sm text-muted-foreground font-normal font-sans">
@@ -478,10 +478,10 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
           <div className="max-w-7xl mx-auto space-y-8">
             
             <div className="max-w-3xl space-y-2">
-              <span className="text-xs font-bold text-primary tracking-widest uppercase bg-card px-3.5 py-1 inline-block border border-border font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+              <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
                 OFFICIAL REGISTRY
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-foreground font-oswald uppercase">
+              <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-primary font-oswald uppercase">
                 INSTITUTIONAL MOU MATRIX
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed font-normal font-sans">
@@ -538,40 +538,30 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs border-collapse">
                   <thead>
-                    <tr className="bg-primary text-white font-oswald font-bold text-xs tracking-wider uppercase">
-                      <th className="py-3.5 px-4">PARTNER ORGANISATION</th>
-                      <th className="py-3.5 px-4">DOMAIN FOCUS</th>
-                      <th className="py-3.5 px-4">VALIDITY</th>
-                      <th className="py-3.5 px-4">DEPARTMENTS</th>
-                      <th className="py-3.5 px-4">KEY DELIVERABLES & SCOPE</th>
-                      <th className="py-3.5 px-4 text-right">STUDENT OUTCOME</th>
+                    <tr className="border-b-2 border-primary text-primary font-oswald font-bold text-xs tracking-wider uppercase bg-muted/20">
+                      <th className="py-4 px-4">PARTNER ORGANISATION</th>
+                      <th className="py-4 px-4">DOMAIN FOCUS</th>
+                      <th className="py-4 px-4">VALIDITY</th>
+                      <th className="py-4 px-4">DEPARTMENTS</th>
+                      <th className="py-4 px-4">KEY DELIVERABLES & SCOPE</th>
+                      <th className="py-4 px-4 text-right">STUDENT OUTCOME</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
                     {mouTableData.map((row, idx) => {
-                      const initials = row.partner.slice(0, 3).toUpperCase();
                       return (
-                        <tr key={idx} className="hover:bg-muted/50 transition-colors">
-                          <td className="py-4 px-4 font-bold text-foreground text-sm font-oswald">
-                            <div className="flex items-center gap-2.5">
-                              <div className="w-7 h-7 rounded-xs bg-primary/10 border border-primary/20 text-primary font-oswald font-bold text-[11px] flex items-center justify-center shrink-0">
-                                {initials}
-                              </div>
-                              <span>{row.partner}</span>
-                            </div>
+                        <tr key={idx} className="hover:bg-muted/30 transition-colors">
+                          <td className="py-4 px-4 font-bold text-foreground text-sm font-sans">
+                            {row.partner}
                           </td>
-                          <td className="py-4 px-4 text-primary font-sans font-bold">{row.domain}</td>
-                          <td className="py-4 px-4 text-muted-foreground font-sans font-medium text-xs whitespace-nowrap">{row.duration}</td>
-                          <td className="py-4 px-4">
-                            <span className="px-2 py-0.5 bg-page-bg border border-border text-foreground text-[10px] font-oswald font-bold rounded-xs">
-                              {row.depts}
-                            </span>
+                          <td className="py-4 px-4 text-foreground font-sans text-sm">{row.domain}</td>
+                          <td className="py-4 px-4 text-muted-foreground font-sans text-xs whitespace-nowrap">{row.duration}</td>
+                          <td className="py-4 px-4 text-foreground font-sans text-xs font-medium">
+                            {row.depts}
                           </td>
-                          <td className="py-4 px-4 text-muted-foreground max-w-sm leading-relaxed font-sans">{row.scope}</td>
-                          <td className="py-4 px-4 font-black text-foreground text-right font-oswald text-sm whitespace-nowrap">
-                            <span className="px-2.5 py-1 bg-primary/10 border border-primary/20 text-primary rounded-xs">
-                              {row.outcome}
-                            </span>
+                          <td className="py-4 px-4 text-muted-foreground max-w-sm leading-relaxed font-sans text-xs">{row.scope}</td>
+                          <td className="py-4 px-4 font-bold text-primary text-right font-sans text-sm whitespace-nowrap">
+                            {row.outcome}
                           </td>
                         </tr>
                       );
@@ -590,10 +580,10 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
             
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border pb-4">
               <div className="space-y-1">
-                <span className="text-xs font-bold text-primary tracking-widest uppercase bg-card px-3.5 py-1 inline-block border border-border font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
                   EXECUTIVE DOSSIER
                 </span>
-                <h2 className="text-3xl sm:text-5xl font-black text-foreground font-oswald uppercase tracking-tight">
+                <h2 className="text-3xl sm:text-5xl font-black text-primary font-oswald uppercase tracking-tight">
                   ACTIVE AGREEMENTS DOSSIER
                 </h2>
               </div>
@@ -666,10 +656,10 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
             
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
               <div className="space-y-2">
-                <span className="text-xs font-bold text-primary tracking-widest uppercase bg-card px-3.5 py-1 inline-block border border-border font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
                   ARCHIVAL CEREMONY RECORD
                 </span>
-                <h2 className="text-3xl sm:text-5xl font-black text-foreground font-oswald uppercase tracking-tight">
+                <h2 className="text-3xl sm:text-5xl font-black text-primary font-oswald uppercase tracking-tight">
                   MOU SIGNING CEREMONIES & MOMENTS
                 </h2>
               </div>

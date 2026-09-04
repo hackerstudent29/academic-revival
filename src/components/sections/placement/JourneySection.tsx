@@ -163,12 +163,12 @@ export const JourneySection: React.FC<JourneySectionProps> = () => {
           </div>
 
           <div className="space-y-4 max-w-4xl pt-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-card border border-border text-xs font-bold text-primary uppercase tracking-widest font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+            <div className="inline-flex items-center gap-2 text-xs font-bold text-foreground uppercase tracking-widest font-oswald mb-2">
               <GraduationCap className="w-4 h-4 text-primary" />
               <span>ACADEMIC EXPANSION & GLOBAL OPPORTUNITIES</span>
             </div>
 
-            <h2 className="text-2xl sm:text-4xl font-black text-foreground font-oswald uppercase tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-black text-primary font-oswald uppercase tracking-tight">
               IMPORTANCE OF HIGHER EDUCATION
             </h2>
 
@@ -206,10 +206,10 @@ export const JourneySection: React.FC<JourneySectionProps> = () => {
       <section className="w-full py-16 px-4 sm:px-8 lg:px-14 bg-page-bg border-b border-border">
         <div className="max-w-7xl mx-auto space-y-10">
           <div className="max-w-3xl space-y-2">
-            <span className="text-xs font-bold text-primary tracking-widest uppercase bg-card px-3 py-1 inline-block border border-border font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+            <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
               HIGHER STUDIES PATHWAY
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-foreground font-oswald uppercase">
+            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-primary font-oswald uppercase">
               THE 5-STAGE GLOBAL GRADUATE JOURNEY
             </h2>
             <p className="text-sm text-muted-foreground font-normal font-sans">
@@ -262,10 +262,10 @@ export const JourneySection: React.FC<JourneySectionProps> = () => {
       <section className="w-full py-16 px-4 sm:px-8 lg:px-14 bg-background border-b border-border">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="max-w-3xl space-y-2">
-            <span className="text-xs font-bold text-primary tracking-widest uppercase bg-card px-3 py-1 inline-block border border-border font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+            <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
               QUALIFYING EXAMINATIONS
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-foreground font-oswald uppercase">
+            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-primary font-oswald uppercase">
               STANDARDISED EXAM SUPPORT
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed font-normal font-sans">

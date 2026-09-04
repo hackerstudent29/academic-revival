@@ -259,7 +259,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
           <div className="max-w-7xl mx-auto space-y-12">
             
             <div className="text-center max-w-3xl mx-auto space-y-3">
-              <span className="text-xs font-bold text-primary tracking-widest uppercase bg-card px-3.5 py-1 inline-block border border-border rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs font-oswald shadow-2xs">
+              <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
                 PRACTICAL IMMERSION & INDUSTRY PIPELINE
               </span>
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-primary uppercase tracking-tight font-oswald">
@@ -360,10 +360,10 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
             
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="max-w-2xl space-y-2">
-                <span className="text-xs font-bold text-primary tracking-widest uppercase bg-card px-3 py-1 inline-block border border-border font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
                   PROVEN COHORT DEPLOYMENTS
                 </span>
-                <h2 className="text-2xl sm:text-4xl font-black text-foreground font-oswald uppercase tracking-tight">
+                <h2 className="text-2xl sm:text-4xl font-black text-primary font-oswald uppercase tracking-tight">
                   WHERE STUDENTS STEPPED INTO INDUSTRY
                 </h2>
                 <p className="text-sm text-muted-foreground font-normal font-sans">
@@ -463,7 +463,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
           <div className="max-w-7xl mx-auto space-y-8">
             
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <span className="text-xs font-bold text-primary tracking-widest uppercase bg-card px-3.5 py-1 inline-block border border-border font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+              <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
                 FEATURED COHORT HIGHLIGHT
               </span>
 
@@ -556,10 +556,10 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
           <div className="max-w-7xl mx-auto space-y-8">
             
             <div className="max-w-3xl space-y-2">
-              <span className="text-xs font-bold text-primary tracking-widest uppercase bg-card px-3 py-1 inline-block border border-border font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+              <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
                 OFFICIAL REPOSITORY
               </span>
-              <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-foreground font-oswald uppercase">
+              <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-primary font-oswald uppercase">
                 THE INTERNSHIP LANDSCAPE
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed font-normal font-sans">
@@ -645,9 +645,9 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
               
               {/* Repository Table */}
               <div className="lg:col-span-8 bg-card border border-border shadow-xs rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden">
-                <div className="grid grid-cols-12 p-3.5 bg-primary text-white text-xs font-oswald font-bold tracking-widest uppercase">
-                  <div className="col-span-7 sm:col-span-8">ORGANISATION & FOCUS DOMAIN</div>
-                  <div className="col-span-5 sm:col-span-4 text-right">STUDENTS HOSTED</div>
+                <div className="flex items-center justify-between p-3.5 bg-primary text-white text-xs font-oswald font-bold tracking-widest uppercase">
+                  <div>ORGANISATION & FOCUS DOMAIN</div>
+                  <div className="text-right">STUDENTS HOSTED</div>
                 </div>
 
                 <div className="divide-y divide-border max-h-[580px] overflow-y-auto">
@@ -656,17 +656,17 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
                     return (
                       <div
                         key={entry.id || index}
-                        className="grid grid-cols-12 p-3.5 items-center hover:bg-muted/50 transition-colors"
+                        className="flex items-center justify-between p-3.5 hover:bg-muted/50 transition-colors gap-4"
                       >
-                        <div className="col-span-7 sm:col-span-8 pr-4 flex items-center gap-3">
+                        <div className="flex items-center gap-3 flex-1 min-w-0">
                           <div className="w-8 h-8 rounded-xs bg-primary/10 border border-primary/20 text-primary font-oswald font-bold text-xs flex items-center justify-center shrink-0">
                             {initials}
                           </div>
-                          <div>
-                            <div className="text-sm font-bold text-foreground font-oswald flex items-center gap-2">
-                              <span>{entry.organisation}</span>
+                          <div className="min-w-0">
+                            <div className="text-sm font-bold text-foreground font-oswald flex items-center gap-2 flex-wrap">
+                              <span className="truncate">{entry.organisation}</span>
                               {entry.mode && (
-                                <span className={`text-[9px] px-1.5 py-0.2 uppercase font-oswald font-bold rounded-xs ${
+                                <span className={`text-[9px] px-1.5 py-0.2 uppercase font-oswald font-bold rounded-xs shrink-0 ${
                                   entry.mode.toLowerCase() === 'on-site'
                                     ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
                                     : entry.mode.toLowerCase() === 'hybrid'
@@ -677,13 +677,13 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
                                 </span>
                               )}
                             </div>
-                            <div className="text-xs text-primary font-sans mt-0.5 font-bold">
+                            <div className="text-xs text-primary font-sans mt-0.5 font-bold truncate">
                               {entry.domain}
                             </div>
                           </div>
                         </div>
 
-                        <div className="col-span-5 sm:col-span-4 text-right flex items-center justify-end gap-3">
+                        <div className="text-right flex items-center justify-end gap-3 shrink-0">
                           <div>
                             <span className="text-xl font-black text-foreground font-oswald">
                               {entry.students}

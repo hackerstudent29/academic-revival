@@ -324,7 +324,7 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
             <div className="lg:col-span-6 space-y-6">
               
               <div className="space-y-3">
-                <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
+                <h2 className="text-3xl sm:text-5xl font-black text-primary tracking-tight font-oswald leading-tight">
                   WHERE INDUSTRY MEETS TALENT
                 </h2>
               </div>
@@ -402,10 +402,10 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
           <div className="mb-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center bg-page-bg border border-border p-6 sm:p-10 shadow-xs rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs">
             
             <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-primary/10 border border-primary/20 text-primary text-xs font-extrabold tracking-widest uppercase font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+              <div className="inline-flex items-center gap-2 text-foreground text-xs font-extrabold tracking-widest uppercase font-oswald mb-1">
                 <span>INDUSTRY PARTNERSHIPS</span>
               </div>
-              <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-black text-primary tracking-tight font-oswald leading-tight">
                 THE RECRUITER ECOSYSTEM
               </h2>
               <div className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest text-primary uppercase pt-1 font-oswald">
@@ -666,10 +666,10 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
       {/* OUR MAJOR RECRUITERS */}
       <section className="w-full py-16 bg-background border-b border-border overflow-hidden relative" id="our-major-recruiters">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-muted text-foreground text-xs font-extrabold tracking-widest uppercase">
+          <div className="inline-flex items-center gap-2 text-foreground text-xs font-extrabold tracking-widest uppercase mb-1">
             <span>OFFICIAL CAMPUS HIRING ALLIANCES</span>
           </div>
-          <h3 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight font-oswald">
+          <h3 className="text-2xl sm:text-4xl font-extrabold text-primary tracking-tight font-oswald">
             Our Major Recruiters
           </h3>
           <p className="text-sm text-muted-foreground">
@@ -745,10 +745,10 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-3xl mx-auto text-center mb-14 space-y-3.5">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-primary text-white text-xs font-black tracking-widest uppercase shadow-xs">
+            <div className="inline-flex items-center gap-2 text-foreground text-xs font-black tracking-widest uppercase mb-1">
               <span>STRUCTURAL PERSPECTIVE</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-primary tracking-tight font-oswald leading-tight">
               RECRUITER & OPPORTUNITY MATRIX
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-2">
