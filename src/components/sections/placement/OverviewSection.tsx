@@ -121,9 +121,6 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
         'Continuous internal assessments and individual academic mentoring'
       ],
       icon: BookOpen,
-      bgColor: 'bg-[#123E33]',
-      textColor: 'text-[#123E33]',
-      lineColor: '#123E33'
     },
     {
       id: 'skills',
@@ -137,9 +134,6 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
         'Open-source code repositories and real-world project portfolios'
       ],
       icon: Code2,
-      bgColor: 'bg-[#8BB72A]',
-      textColor: 'text-[#8BB72A]',
-      lineColor: '#8BB72A'
     },
     {
       id: 'training',
@@ -153,9 +147,6 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
         'Simulated computer-based recruitment assessment environments'
       ],
       icon: Target,
-      bgColor: 'bg-[#FF6A42]',
-      textColor: 'text-[#FF6A42]',
-      lineColor: '#FF6A42'
     },
     {
       id: 'internships',
@@ -169,9 +160,6 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
         'High conversion rates to full-time Pre-Placement Offers (PPO)'
       ],
       icon: Laptop,
-      bgColor: 'bg-[#FF6A42]',
-      textColor: 'text-[#FF6A42]',
-      lineColor: '#FF6A42'
     },
     {
       id: 'industry',
@@ -185,9 +173,6 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
         'Campus recruitment drives across Tier-1, Tier-2, and core sectors'
       ],
       icon: Building,
-      bgColor: 'bg-[#8BB72A]',
-      textColor: 'text-[#8BB72A]',
-      lineColor: '#8BB72A'
     },
     {
       id: 'mentorship',
@@ -201,9 +186,6 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
         'Personalized counseling for career dilemmas and higher studies'
       ],
       icon: Users,
-      bgColor: 'bg-[#123E33]',
-      textColor: 'text-[#123E33]',
-      lineColor: '#123E33'
     }
   ];
 
@@ -221,7 +203,6 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
       ],
       steps: ['Student', 'Interview', 'Organisation', 'Career'],
       icon: Briefcase,
-      color: '#0052CC',
       image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&auto=format&fit=crop&q=85',
       imageCaption: 'Campus career recruitment and corporate placement pathways',
       navTarget: 'recruiters',
@@ -240,7 +221,6 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
       ],
       steps: ['IDEA', 'PROBLEM', 'SOLUTION', 'PRODUCT', 'VENTURE'],
       icon: Rocket,
-      color: '#D97706',
       image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&auto=format&fit=crop&q=85',
       imageCaption: 'Incubating startup ventures and tech innovations',
       navTarget: 'journey',
@@ -259,7 +239,6 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
       ],
       steps: ['B.TECH', "MASTER'S", 'SPECIALISATION', 'EXPERTISE'],
       icon: GraduationCap,
-      color: '#0D9488',
       image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=900&auto=format&fit=crop&q=85',
       imageCaption: 'Postgraduate research & premier university admissions',
       navTarget: 'journey',
@@ -278,7 +257,6 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
       ],
       steps: ['QUESTION', 'EXPLORE', 'EXPERIMENT', 'DISCOVER', 'INNOVATE'],
       icon: Microscope,
-      color: '#7C3AED',
       image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900&auto=format&fit=crop&q=85',
       imageCaption: 'Interdisciplinary R&D and funded technological labs',
       navTarget: 'training',
@@ -297,7 +275,6 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
       ],
       steps: ['LEARN', 'CERTIFY', 'SPECIALISE', 'ADAPT'],
       icon: Award,
-      color: '#9E2339',
       image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&auto=format&fit=crop&q=85',
       imageCaption: 'Continuous professional learning and industry certifications',
       navTarget: 'training',
@@ -368,15 +345,15 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
             </div>
 
             <div className="lg:col-span-6 flex flex-col items-center">
-              <div className="w-full max-w-[560px] grid grid-cols-3 gap-3 sm:gap-4 items-end">
+              <div className="w-full max-w-[560px] grid grid-cols-3 gap-3 sm:gap-4 items-center">
                 
-                <div className="relative h-[320px] sm:h-[400px] rounded-t-full overflow-hidden shadow-lg group">
+                <div className="relative h-[280px] sm:h-[340px] rounded-md overflow-hidden shadow-md border border-border group">
                   <img 
                     src={(archedTrioImages[0] ?? archedTrioImages[0]!).url} 
                     alt={(archedTrioImages[0] ?? archedTrioImages[0]!).title}
                     className="w-full h-full object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#9E2339]/80 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-3 left-2 right-2 text-center text-white">
                     <p className="text-[11px] font-bold leading-tight font-oswald">
                       {(archedTrioImages[0] ?? archedTrioImages[0]!).title}
@@ -384,30 +361,30 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                   </div>
                 </div>
 
-                <div className="relative h-[360px] sm:h-[450px] rounded-t-full overflow-hidden shadow-2xl group">
+                <div className="relative h-[320px] sm:h-[380px] rounded-md overflow-hidden shadow-lg border border-primary/40 group">
                   <img 
                     src={(archedTrioImages[1] ?? archedTrioImages[0]!).url} 
                     alt={(archedTrioImages[1] ?? archedTrioImages[0]!).title}
                     className="w-full h-full object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#9E2339]/85 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-4 left-2 right-2 text-center text-white">
                     <p className="text-xs font-black leading-tight font-oswald">
                       {(archedTrioImages[1] ?? archedTrioImages[0]!).title}
                     </p>
-                    <p className="text-[10px] text-teal-200 font-medium mt-0.5">
+                    <p className="text-[10px] text-white/80 font-medium mt-0.5 font-sans">
                       MSAJCE Excellence
                     </p>
                   </div>
                 </div>
 
-                <div className="relative h-[320px] sm:h-[400px] rounded-t-full overflow-hidden shadow-lg group">
+                <div className="relative h-[280px] sm:h-[340px] rounded-md overflow-hidden shadow-md border border-border group">
                   <img 
                     src={(archedTrioImages[2] ?? archedTrioImages[0]!).url} 
                     alt={(archedTrioImages[2] ?? archedTrioImages[0]!).title}
                     className="w-full h-full object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#9E2339]/80 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-3 left-2 right-2 text-center text-white">
                     <p className="text-[11px] font-bold leading-tight font-oswald">
                       {(archedTrioImages[2] ?? archedTrioImages[0]!).title}
@@ -417,7 +394,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
 
               </div>
               
-              <p className="text-center text-xs text-muted-foreground font-medium mt-4 tracking-wide">
+              <p className="text-center text-xs text-muted-foreground font-medium mt-4 tracking-wide font-sans">
                 Empowering engineering students for prestigious national and multinational career destinations.
               </p>
             </div>
@@ -435,57 +412,57 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-1.5 text-xs font-extrabold tracking-widest text-primary uppercase">
-              <TrendingUp className="w-4 h-4 text-[#005DA6]" />
+            <div className="inline-flex items-center gap-1.5 text-xs font-extrabold tracking-widest text-foreground uppercase font-oswald">
+              <TrendingUp className="w-4 h-4 text-foreground" />
               INSTITUTIONAL METRICS
             </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight font-oswald">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-primary tracking-tight font-oswald uppercase">
               Proven Track Record of Career Excellence
             </h2>
-            <p className="text-base text-muted-foreground">
+            <p className="text-base text-muted-foreground font-sans">
               Consistently high placement rates backed by industry-aligned engineering education.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 sm:gap-8 bg-muted/40 p-8 rounded-xl border border-border">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 sm:gap-8 bg-card p-8 rounded-md border border-border shadow-xs">
             <div className="text-center space-y-1.5">
               <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-oswald">
                 {counts.rate}%
               </p>
-              <p className="text-xs font-extrabold text-primary uppercase tracking-wider">Placement Rate</p>
-              <p className="text-xs text-muted-foreground">Across eligible cohorts</p>
+              <p className="text-xs font-extrabold text-primary uppercase tracking-wider font-oswald">Placement Rate</p>
+              <p className="text-xs text-muted-foreground font-sans">Across eligible cohorts</p>
             </div>
 
             <div className="text-center space-y-1.5">
               <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-oswald">
                 {counts.offers}+
               </p>
-              <p className="text-xs font-extrabold text-primary uppercase tracking-wider">Offers Made</p>
-              <p className="text-xs text-muted-foreground">Full-time & PPO roles</p>
+              <p className="text-xs font-extrabold text-primary uppercase tracking-wider font-oswald">Offers Made</p>
+              <p className="text-xs text-muted-foreground font-sans">Full-time & PPO roles</p>
             </div>
 
             <div className="text-center space-y-1.5">
               <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-oswald">
                 {counts.companies}+
               </p>
-              <p className="text-xs font-extrabold text-primary uppercase tracking-wider">Recruiting Companies</p>
-              <p className="text-xs text-muted-foreground">Tier-1 & Global MNCs</p>
+              <p className="text-xs font-extrabold text-primary uppercase tracking-wider font-oswald">Recruiting Companies</p>
+              <p className="text-xs text-muted-foreground font-sans">Tier-1 & Global MNCs</p>
             </div>
 
             <div className="text-center space-y-1.5">
               <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-oswald">
-                ₹{counts.highest} <span className="text-lg font-bold text-muted-foreground">LPA</span>
+                ₹{counts.highest} <span className="text-lg font-bold text-muted-foreground font-sans">LPA</span>
               </p>
-              <p className="text-xs font-extrabold text-[#005DA6] uppercase tracking-wider">Highest Package</p>
-              <p className="text-xs text-muted-foreground">Peak compensation</p>
+              <p className="text-xs font-extrabold text-primary uppercase tracking-wider font-oswald">Highest Package</p>
+              <p className="text-xs text-muted-foreground font-sans">Peak compensation</p>
             </div>
 
             <div className="text-center space-y-1.5 col-span-2 md:col-span-1">
               <p className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-oswald">
-                ₹{counts.average} <span className="text-lg font-bold text-muted-foreground">LPA</span>
+                ₹{counts.average} <span className="text-lg font-bold text-muted-foreground font-sans">LPA</span>
               </p>
-              <p className="text-xs font-extrabold text-primary uppercase tracking-wider">Average Package</p>
-              <p className="text-xs text-muted-foreground">Consolidated average</p>
+              <p className="text-xs font-extrabold text-primary uppercase tracking-wider font-oswald">Average Package</p>
+              <p className="text-xs text-muted-foreground font-sans">Consolidated average</p>
             </div>
           </div>
         </div>
@@ -500,158 +477,48 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
             <div className="lg:col-span-7 flex flex-col items-center">
               <div className="relative w-full max-w-[620px] bg-transparent p-2 sm:p-4">
                 
-                <div className="grid grid-cols-2 gap-x-6 sm:gap-x-10 gap-y-5 relative">
+                <div className="grid grid-cols-2 gap-x-4 sm:gap-x-6 gap-y-4 relative">
                   
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                    <div className="bg-[#7D0424] text-white px-4 py-3 shadow-xl text-center max-w-[170px] pointer-events-auto border-2 border-white">
-                      <p className="text-xs font-serif font-bold text-white leading-snug">
-                        6 Essential Pillars of Career Readiness
-                      </p>
-                      <div className="w-6 h-0.5 bg-[#9E2339] mx-auto mt-1" />
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div 
-                      onClick={() => setActiveEcosystemPillar(0)}
-                      className={`p-4 sm:p-5 bg-[#7D0424] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
-                        activeEcosystemPillar === 0 ? 'ring-4 ring-[#9E2339]' : ''
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <BookOpen className="w-5 h-5 text-rose-200" />
-                        <span className="w-6 h-6 rounded-full bg-white text-[#7D0424] font-bold text-xs flex items-center justify-center shadow-xs">
-                          1
-                        </span>
+                  {ecosystemPillars.map((pillar, pIdx) => {
+                    const PillarIcon = pillar.icon;
+                    const isSelected = activeEcosystemPillar === pIdx;
+                    return (
+                      <div 
+                        key={pillar.id}
+                        onClick={() => setActiveEcosystemPillar(pIdx)}
+                        className={`p-4 sm:p-5 rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs cursor-pointer transition-all duration-200 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] border ${
+                          isSelected 
+                            ? 'bg-primary text-white border-primary shadow-md' 
+                            : 'bg-page-bg text-foreground border-border hover:border-primary/40'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <PillarIcon className={`w-5 h-5 ${isSelected ? 'text-white' : 'text-primary'}`} />
+                          <span className={`w-6 h-6 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs font-bold text-xs flex items-center justify-center font-oswald ${
+                            isSelected ? 'bg-white text-primary' : 'bg-primary text-white'
+                          }`}>
+                            {pillar.num}
+                          </span>
+                        </div>
+                        <div>
+                          <h4 className="text-xs sm:text-sm font-bold tracking-tight font-oswald">
+                            {pillar.title}
+                          </h4>
+                          <p className={`text-[11px] leading-tight mt-0.5 font-sans ${
+                            isSelected ? 'text-white/90' : 'text-muted-foreground'
+                          }`}>
+                            {pillar.subtitle}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-oswald">
-                          Academics & Theory
-                        </h4>
-                        <p className="text-[11px] text-rose-100/90 leading-tight mt-0.5">
-                          Rigorous Anna Univ. syllabus
-                        </p>
-                      </div>
-                    </div>
-
-                    <div 
-                      onClick={() => setActiveEcosystemPillar(1)}
-                      className={`p-4 sm:p-5 bg-[#9E2339] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
-                        activeEcosystemPillar === 1 ? 'ring-4 ring-[#7D0424]' : ''
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <Code2 className="w-5 h-5 text-white" />
-                        <span className="w-6 h-6 rounded-full bg-white text-[#9E2339] font-bold text-xs flex items-center justify-center shadow-xs">
-                          2
-                        </span>
-                      </div>
-                      <div>
-                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-oswald">
-                          Technical Skills
-                        </h4>
-                        <p className="text-[11px] text-rose-100 leading-tight mt-0.5">
-                          Full-stack & data bootcamps
-                        </p>
-                      </div>
-                    </div>
-
-                    <div 
-                      onClick={() => setActiveEcosystemPillar(2)}
-                      className={`p-4 sm:p-5 bg-[#9E2339] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
-                        activeEcosystemPillar === 2 ? 'ring-4 ring-[#7D0424]' : ''
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <Target className="w-5 h-5 text-blue-100" />
-                        <span className="w-6 h-6 rounded-full bg-white text-[#005DA6] font-bold text-xs flex items-center justify-center shadow-xs">
-                          3
-                        </span>
-                      </div>
-                      <div>
-                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-oswald">
-                          Training & Aptitude
-                        </h4>
-                        <p className="text-[11px] text-blue-50 leading-tight mt-0.5">
-                          STAR method & quant drills
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div 
-                      onClick={() => setActiveEcosystemPillar(3)}
-                      className={`p-4 sm:p-5 bg-[#9E2339] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
-                        activeEcosystemPillar === 3 ? 'ring-4 ring-[#9E2339]' : ''
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <Laptop className="w-5 h-5 text-slate-200" />
-                        <span className="w-6 h-6 rounded-full bg-white text-[#9E2339] font-bold text-xs flex items-center justify-center shadow-xs">
-                          4
-                        </span>
-                      </div>
-                      <div>
-                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-oswald">
-                          Live Internships
-                        </h4>
-                        <p className="text-[11px] text-slate-200 leading-tight mt-0.5">
-                          In-plant training & PPOs
-                        </p>
-                      </div>
-                    </div>
-
-                    <div 
-                      onClick={() => setActiveEcosystemPillar(4)}
-                      className={`p-4 sm:p-5 bg-[#9E2339] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
-                        activeEcosystemPillar === 4 ? 'ring-4 ring-[#7D0424]' : ''
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <Building className="w-5 h-5 text-white" />
-                        <span className="w-6 h-6 rounded-full bg-white text-[#9E2339] font-bold text-xs flex items-center justify-center shadow-xs">
-                          5
-                        </span>
-                      </div>
-                      <div>
-                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-oswald">
-                          Corporate MoUs
-                        </h4>
-                        <p className="text-[11px] text-rose-100 leading-tight mt-0.5">
-                          65+ industry partnerships
-                        </p>
-                      </div>
-                    </div>
-
-                    <div 
-                      onClick={() => setActiveEcosystemPillar(5)}
-                      className={`p-4 sm:p-5 bg-[#7D0424] text-white shadow-lg cursor-pointer transition-all duration-300 flex flex-col justify-between min-h-[115px] sm:min-h-[125px] relative ${
-                        activeEcosystemPillar === 5 ? 'ring-4 ring-[#9E2339]' : ''
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <Users className="w-5 h-5 text-rose-200" />
-                        <span className="w-6 h-6 rounded-full bg-white text-[#7D0424] font-bold text-xs flex items-center justify-center shadow-xs">
-                          6
-                        </span>
-                      </div>
-                      <div>
-                        <h4 className="text-xs sm:text-sm font-bold tracking-tight font-oswald">
-                          1-on-1 Mentorship
-                        </h4>
-                        <p className="text-[11px] text-blue-100/90 leading-tight mt-0.5">
-                          Alumni & faculty guidance
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                    );
+                  })}
 
                 </div>
 
-                <div className="mt-5 pt-3 flex items-center justify-between text-xs text-[#9E2339] font-bold">
+                <div className="mt-5 pt-3 flex items-center justify-between text-xs text-primary font-bold font-oswald uppercase">
                   <span>MSAJCE Career Framework</span>
-                  <span>Click any pillar to view detailed coverage</span>
+                  <span>Select any pillar to view coverage</span>
                 </div>
 
               </div>
@@ -660,37 +527,37 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
             <div className="lg:col-span-5 space-y-6">
               
               <div className="space-y-3">
-                <h2 className="text-3xl sm:text-5xl font-black text-[#9E2339] tracking-tight font-oswald leading-tight">
+                <h2 className="text-3xl sm:text-5xl font-black text-primary tracking-tight font-oswald leading-tight">
                   AN ECOSYSTEM BUILT AROUND READINESS
                 </h2>
               </div>
 
-              <p className="text-slate-900 text-base sm:text-lg leading-relaxed font-medium pt-2">
+              <p className="text-foreground text-base sm:text-lg leading-relaxed font-normal pt-2 font-sans">
                 Career readiness is developed through multiple experiences rather than a single recruitment programme. Students are exposed to technical and aptitude training, communication development, mock assessments, interviews and group discussions, along with internships, industrial visits, expert workshops and industry interactions.
               </p>
 
               {(() => {
                 const current = ecosystemPillars[activeEcosystemPillar] ?? ecosystemPillars[0]!;
                 return (
-                  <div className="space-y-4 pt-4 p-6 bg-white shadow-xl border-2 border-[#9E2339]">
+                  <div className="space-y-4 pt-4 p-6 bg-page-bg shadow-sm border border-primary/30 rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-extrabold px-2.5 py-1 bg-[#9E2339] text-white">
+                      <span className="text-xs font-extrabold px-2.5 py-1 bg-primary text-white rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs font-oswald uppercase">
                         Pillar {current.num}
                       </span>
-                      <h3 className="text-base font-bold text-[#9E2339] font-oswald">
+                      <h3 className="text-base font-bold text-primary font-oswald">
                         {current.title} — {current.subtitle}
                       </h3>
                     </div>
 
-                    <p className="text-sm text-slate-700 leading-relaxed">
+                    <p className="text-sm text-muted-foreground leading-relaxed font-sans">
                       {current.description}
                     </p>
 
                     <div className="space-y-2.5 pt-1">
                       {current.bulletins.map((b, bIdx) => (
                         <div key={bIdx} className="flex items-start gap-3">
-                          <CheckCircle2 className="w-4 h-4 text-[#123E33] shrink-0 mt-0.5" />
-                          <span className="text-sm text-slate-800 font-medium">{b}</span>
+                          <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                          <span className="text-sm text-foreground font-medium font-sans">{b}</span>
                         </div>
                       ))}
                     </div>
@@ -716,23 +583,20 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                 const current = destinations[activeDestination] ?? destinations[0]!;
                 const DestinationIcon = current.icon;
                 return (
-                  <div className="relative w-full max-w-[320px] sm:max-w-[360px] h-[480px] sm:h-[560px] rounded-[180px] sm:rounded-[210px] overflow-hidden shadow-2xl border-4 border-border bg-slate-900 group">
+                  <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[440px] sm:h-[500px] rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden shadow-xl border border-border bg-card group">
                     <img 
                       src={current.image} 
                       alt={current.heading} 
-                      className="w-full h-full object-cover brightness-95" 
+                      className="w-full h-full object-cover brightness-90" 
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#9E2339]/95 via-[#9E2339]/25 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                     
-                    <div className="absolute top-8 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-md shadow-lg flex items-center justify-center">
-                      <DestinationIcon className="w-6 h-6" style={{ color: current.color }} />
+                    <div className="absolute top-6 left-6 w-12 h-12 rounded-md bg-primary text-white shadow-lg flex items-center justify-center border border-white/20">
+                      <DestinationIcon className="w-6 h-6 text-white" />
                     </div>
 
-                    <div className="absolute bottom-8 left-5 right-5 text-center text-white space-y-2">
-                      <span 
-                        className="inline-block px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white shadow-xs"
-                        style={{ backgroundColor: current.color }}
-                      >
+                    <div className="absolute bottom-6 left-5 right-5 text-center text-white space-y-2">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-primary inline-block font-oswald mb-1">
                         {current.badge}
                       </span>
                       <p className="text-xs sm:text-sm font-bold text-white/95 leading-snug px-2 font-oswald">
@@ -747,17 +611,17 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
             <div className="lg:col-span-7 space-y-6">
               
               <div className="space-y-3">
-                <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight font-oswald leading-tight">
+                <h2 className="text-3xl sm:text-5xl font-black text-primary tracking-tight font-oswald leading-tight">
                   WHERE YOUR JOURNEY CAN TAKE YOU
                 </h2>
               </div>
 
-              <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-1">
+              <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal pt-1 font-sans">
                 Engineering education at Mohamed Sathak A.J. College of Engineering opens multi-dimensional pathways. Whether your aspiration is immediate corporate leadership, launching a tech venture, diving into global postgraduate research, or continuous specialization.
               </p>
 
               <div className="space-y-2 pt-1">
-                <p className="text-[11px] font-extrabold text-muted-foreground uppercase tracking-wider">
+                <p className="text-[11px] font-extrabold text-muted-foreground uppercase tracking-wider font-oswald">
                   SELECT A DESTINATION PATHWAY:
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -768,10 +632,10 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                       <button
                         key={dest.id}
                         onClick={() => setActiveDestination(idx)}
-                        className={`px-3.5 py-2 rounded-none border text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-2 shadow-xs ${
+                        className={`px-3.5 py-2 rounded-sm border text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-2 shadow-xs font-oswald ${
                           isActive
-                            ? 'bg-primary text-primary-foreground border-primary'
-                            : 'bg-card text-foreground border-border hover:bg-primary hover:text-primary-foreground'
+                            ? 'bg-primary text-white border-primary'
+                            : 'bg-card text-foreground border-border hover:bg-primary hover:text-white'
                         }`}
                       >
                         <Icon className="w-3.5 h-3.5" />
@@ -786,23 +650,23 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                 const current = destinations[activeDestination] ?? destinations[0]!;
                 return (
                   <div className="space-y-4 pt-2">
-                    <div className="space-y-1 border-l-4 pl-4" style={{ borderColor: current.color }}>
+                    <div className="space-y-1 border-l-4 border-primary pl-4">
                       <h3 className="text-xl sm:text-2xl font-black text-foreground font-oswald tracking-tight">
                         {current.heading}
                       </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
+                      <p className="text-muted-foreground text-sm leading-relaxed font-sans">
                         {current.paragraph}
                       </p>
                     </div>
 
                     <div className="space-y-2 pt-2">
-                      <p className="text-xs font-extrabold text-foreground uppercase tracking-wider">
+                      <p className="text-xs font-extrabold text-foreground uppercase tracking-wider font-oswald">
                         Key Highlights for {current.heading}:
                       </p>
                       {current.bulletins.map((item, bIdx) => (
                         <div key={bIdx} className="flex items-start gap-3">
                           <span className="mt-2 h-2 w-2 rounded-full bg-primary shrink-0" aria-hidden="true" />
-                          <p className="text-sm text-foreground/80 font-medium">{item}</p>
+                          <p className="text-sm text-foreground/80 font-medium font-sans">{item}</p>
                         </div>
                       ))}
                     </div>
@@ -813,7 +677,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                       </span>
                       {current.steps.map((step, sIdx) => (
                         <React.Fragment key={sIdx}>
-                          <span className="px-2.5 py-1 bg-muted/50 border border-border text-foreground shadow-xs">
+                          <span className="px-2.5 py-1 bg-muted border border-border text-foreground shadow-xs rounded-sm">
                             {step}
                           </span>
                           {sIdx < current.steps.length - 1 && (
@@ -829,7 +693,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
               <div className="pt-2">
                 <button
                   onClick={() => onNavigate((destinations[activeDestination] ?? destinations[0]!).navTarget)}
-                  className="px-6 py-3.5 rounded-none border border-border bg-card hover:bg-primary hover:text-primary-foreground text-foreground text-xs font-extrabold tracking-wider uppercase transition-all duration-200 shadow-xs cursor-pointer inline-flex items-center gap-2"
+                  className="px-6 py-3.5 rounded-sm border border-border bg-card hover:bg-primary hover:text-primary-foreground text-foreground text-xs font-extrabold tracking-wider uppercase transition-all duration-200 shadow-xs cursor-pointer inline-flex items-center gap-2 font-oswald"
                 >
                   <span>{(destinations[activeDestination] ?? destinations[0]!).btnLabel}</span>
                   <ChevronRight className="w-4 h-4" />
@@ -844,62 +708,57 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
       </section>
 
       {/* SECTION 4 — THE JOURNEY DOESN'T END AT PLACEMENT */}
-      <section className="w-full py-20 sm:py-28 bg-[#9E2339] text-white relative overflow-hidden" id="journey-continues-section">
+      <section className="w-full py-20 sm:py-28 bg-primary text-white relative overflow-hidden" id="journey-continues-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             <div className="lg:col-span-6 flex flex-col items-center justify-center">
-              <div className="relative w-80 h-80 sm:w-[440px] sm:h-[440px] lg:w-[500px] lg:h-[500px] flex items-center justify-center">
+              <div className="relative w-full max-w-[480px] h-[340px] sm:h-[400px] rounded-md overflow-hidden shadow-2xl border border-white/20">
+                <img 
+                  src="https://images.unsplash.com/photo-1562774053-701939374585?w=1200&auto=format&fit=crop&q=90" 
+                  alt="Mohamed Sathak A.J. College of Engineering Campus Building" 
+                  className="w-full h-full object-cover object-center"
+                />
                 
-                <div className="relative z-10 w-72 h-72 sm:w-[380px] sm:h-[380px] lg:w-[440px] lg:h-[440px] rounded-full overflow-hidden shadow-2xl border-4 border-white">
-                  <img 
-                    src="https://images.unsplash.com/photo-1562774053-701939374585?w=1200&auto=format&fit=crop&q=90" 
-                    alt="Mohamed Sathak A.J. College of Engineering Campus Building" 
-                    className="w-full h-full object-cover object-center"
-                  />
-                  <div className="absolute inset-0 rounded-full shadow-inner pointer-events-none" />
-                </div>
-
-                <div className="absolute bottom-4 right-6 z-20 bg-white text-[#9E2339] px-4 py-2 shadow-2xl border-2 border-white text-center">
-                  <p className="text-xs font-black uppercase tracking-wider">
+                <div className="absolute bottom-4 right-6 z-20 bg-background text-foreground px-4 py-2 shadow-2xl border border-border text-center rounded-sm">
+                  <p className="text-xs font-black uppercase tracking-wider font-oswald">
                     MSAJCE MAIN CAMPUS
                   </p>
                 </div>
-
               </div>
             </div>
 
             <div className="lg:col-span-6 space-y-6">
               
               <div className="space-y-3">
-                <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight font-['Outfit',sans-serif] leading-tight">
+                <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight font-oswald leading-tight">
                   THE JOURNEY DOESN'T END AT PLACEMENT
                 </h2>
               </div>
 
-              <p className="text-white/90 text-base sm:text-lg leading-relaxed font-normal pt-2">
+              <p className="text-white/90 text-base sm:text-lg leading-relaxed font-normal pt-2 font-sans">
                 Placement is only the first step in a lifelong professional journey. The skills, habits and curiosity developed at Mohamed Sathak A.J. College of Engineering continue to guide graduates as they take on new challenges, adapt to changing industries and create meaningful impact in their careers.
               </p>
 
               <div className="space-y-4 pt-4">
                 <div className="flex items-start gap-3.5">
                   <span className="mt-2 h-2 w-2 rounded-full bg-white shrink-0" aria-hidden="true" />
-                  <p className="text-sm sm:text-base text-white/95 leading-normal">
+                  <p className="text-sm sm:text-base text-white/95 leading-normal font-sans">
                     <strong className="text-white font-bold">Lifelong Alumni Network:</strong> Strong alumni chapters spanning India, Singapore, Middle East, and USA.
                   </p>
                 </div>
 
                 <div className="flex items-start gap-3.5">
                   <span className="mt-2 h-2 w-2 rounded-full bg-white shrink-0" aria-hidden="true" />
-                  <p className="text-sm sm:text-base text-white/95 leading-normal">
+                  <p className="text-sm sm:text-base text-white/95 leading-normal font-sans">
                     <strong className="text-white font-bold">Continuous Upskilling:</strong> Lifetime access to webinars, research publications, and career counseling.
                   </p>
                 </div>
 
                 <div className="flex items-start gap-3.5">
                   <span className="mt-2 h-2 w-2 rounded-full bg-white shrink-0" aria-hidden="true" />
-                  <p className="text-sm sm:text-base text-white/95 leading-normal">
+                  <p className="text-sm sm:text-base text-white/95 leading-normal font-sans">
                     <strong className="text-white font-bold">Corporate Mentorship:</strong> Returning as recruiters and mentors to guide junior engineering cohorts.
                   </p>
                 </div>
@@ -908,14 +767,14 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
               <div className="pt-6 flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => onNavigate('contact')}
-                  className="px-6 py-3.5 rounded-none border border-white bg-transparent hover:bg-white text-white hover:text-[#082B5C] text-xs font-extrabold tracking-wider uppercase transition-all duration-200 shadow-xs cursor-pointer inline-flex items-center gap-2"
+                  className="px-6 py-3.5 rounded-sm border border-white bg-transparent hover:bg-white text-white hover:text-primary text-xs font-extrabold tracking-wider uppercase transition-all duration-200 shadow-xs cursor-pointer inline-flex items-center gap-2 font-oswald"
                 >
                   <Mail className="w-4 h-4" />
                   <span>Connect with Placement Cell</span>
                 </button>
                 <button
                   onClick={() => onNavigate('journey')}
-                  className="px-6 py-3.5 rounded-none border border-white bg-transparent hover:bg-white text-white hover:text-[#082B5C] text-xs font-extrabold tracking-wider uppercase transition-all duration-200 shadow-xs cursor-pointer inline-flex items-center gap-2"
+                  className="px-6 py-3.5 rounded-sm border border-white bg-transparent hover:bg-white text-white hover:text-primary text-xs font-extrabold tracking-wider uppercase transition-all duration-200 shadow-xs cursor-pointer inline-flex items-center gap-2 font-oswald"
                 >
                   <span>Student Career Pathways</span>
                   <ChevronRight className="w-4 h-4" />
@@ -930,27 +789,27 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
       </section>
 
       {/* QUICK FOOTER CTA BAR */}
-      <section className="w-full py-12 bg-primary text-primary-foreground">
+      <section className="w-full py-12 bg-card border-t border-border text-card-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold font-['Outfit',sans-serif]">
+            <h3 className="text-xl sm:text-2xl font-bold font-oswald uppercase text-foreground">
               Ready to Hire Top Engineering Talent?
             </h3>
-            <p className="text-xs sm:text-sm text-primary-foreground/80 mt-1">
+            <p className="text-xs sm:text-sm text-muted-foreground mt-1 font-sans">
               Invite Mohamed Sathak A J College of Engineering for on-campus & virtual recruitment drives.
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => onNavigate('recruiters')}
-              className="px-6 py-3 rounded-none border border-primary-foreground/20 bg-background text-foreground hover:bg-accent text-xs font-extrabold tracking-wider uppercase transition-all duration-200 cursor-pointer inline-flex items-center gap-2"
+              className="px-6 py-3 rounded-sm border border-border bg-primary text-white hover:bg-primary/90 text-xs font-extrabold tracking-wider uppercase transition-all duration-200 cursor-pointer inline-flex items-center gap-2 font-oswald"
             >
               <Building2 className="w-4 h-4" />
               <span>For Recruiters</span>
             </button>
             <button
               onClick={() => onNavigate('contact')}
-              className="px-6 py-3 rounded-none border border-primary-foreground/20 bg-background text-foreground hover:bg-accent text-xs font-extrabold tracking-wider uppercase transition-all duration-200 cursor-pointer inline-flex items-center gap-2"
+              className="px-6 py-3 rounded-sm border border-border bg-background text-foreground hover:bg-muted text-xs font-extrabold tracking-wider uppercase transition-all duration-200 cursor-pointer inline-flex items-center gap-2 font-oswald"
             >
               <Phone className="w-4 h-4" />
               <span>Contact Cell</span>

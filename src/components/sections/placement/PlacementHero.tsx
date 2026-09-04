@@ -19,9 +19,9 @@ const HERO_CONFIG: Record<string, {
 }> = {
   overview: {
     badge: 'MSAJCE PLACEMENT CELL',
-    headingLine1: 'EXCELLENCE.',
-    headingLine2: 'TRAINING.',
-    headingLine3: 'CAREERS.',
+    headingLine1: 'EXCELLENCE',
+    headingLine2: 'TRAINING',
+    headingLine3: 'CAREERS',
     subtitle: "Consistently delivering high placement rates, premium corporate networks, and career launchpads for engineering graduates at Mohamed Sathak A.J. College of Engineering.",
     primaryBtnText: 'EXPLORE PLACEMENT MATRIX',
     secondaryBtnText: 'VIEW RECRUITERS',
@@ -29,9 +29,9 @@ const HERO_CONFIG: Record<string, {
   },
   recruiters: {
     badge: 'MSAJCE CORPORATE ECOSYSTEM',
-    headingLine1: 'RECRUITERS.',
-    headingLine2: 'NETWORKS.',
-    headingLine3: 'TIERS.',
+    headingLine1: 'RECRUITERS',
+    headingLine2: 'NETWORKS',
+    headingLine3: 'TIERS',
     subtitle: "Over 120+ leading global IT corporations, Fortune 500 enterprises, and core engineering industries recruit top engineering talent from our Chennai campus.",
     primaryBtnText: 'EXPLORE RECRUITER TIERS',
     secondaryBtnText: 'SELECTION PATHWAY',
@@ -39,8 +39,8 @@ const HERO_CONFIG: Record<string, {
   },
   training: {
     badge: 'MSAJCE PLACEMENT CELL',
-    headingLine1: 'SKILLS. TRAINING.',
-    headingLine2: 'READINESS.',
+    headingLine1: 'SKILLS TRAINING',
+    headingLine2: 'READINESS',
     headingLine3: '',
     subtitle: "In a competitive job market, professional readiness requires more than academic knowledge. MSAJCE's Placement Cell supports students in developing the skills, experience and confidence required to approach professional opportunities.",
     primaryBtnText: 'EXPLORE SKILL ECOSYSTEM',
@@ -49,9 +49,9 @@ const HERO_CONFIG: Record<string, {
   },
   internships: {
     badge: 'MSAJCE INDUSTRY EXPERIENTIAL',
-    headingLine1: 'INTERNSHIPS.',
-    headingLine2: 'PPO ACHIEVEMENTS.',
-    headingLine3: 'COHORTS.',
+    headingLine1: 'INTERNSHIPS',
+    headingLine2: 'PPO ACHIEVEMENTS',
+    headingLine3: 'COHORTS',
     subtitle: "Bridging campus learning with live corporate environments through paid stipends, industry projects, and pre-placement offer conversions.",
     primaryBtnText: 'VIEW INTERNSHIP RECORDS',
     secondaryBtnText: 'STUDENT SUCCESS STORIES',
@@ -59,9 +59,9 @@ const HERO_CONFIG: Record<string, {
   },
   mous: {
     badge: 'MSAJCE BILATERAL COVENANTS',
-    headingLine1: 'ALLIANCES.',
-    headingLine2: 'MoUs.',
-    headingLine3: 'PARTNERSHIPS.',
+    headingLine1: 'ALLIANCES',
+    headingLine2: 'MoUs',
+    headingLine3: 'PARTNERSHIPS',
     subtitle: "Strategic bilateral memorandums of understanding with global technology leaders, corporate R&D centers, and government technology institutes.",
     primaryBtnText: 'VIEW ACTIVE AGREEMENTS',
     secondaryBtnText: 'CEREMONY ARCHIVES',
@@ -69,9 +69,9 @@ const HERO_CONFIG: Record<string, {
   },
   journey: {
     badge: 'MSAJCE HIGHER EDUCATION CELL',
-    headingLine1: 'GLOBAL TRACK.',
-    headingLine2: 'HIGHER STUDIES.',
-    headingLine3: 'FELLOWSHIPS.',
+    headingLine1: 'GLOBAL TRACK',
+    headingLine2: 'HIGHER STUDIES',
+    headingLine3: 'FELLOWSHIPS',
     subtitle: "Guiding engineering graduates toward Master's degrees, doctoral research, and standardized exam preparation (GRE, IELTS, GATE, CAT) for global universities.",
     primaryBtnText: 'THE 5-STAGE JOURNEY',
     secondaryBtnText: 'EXAM SUPPORT MATRIX',
@@ -103,13 +103,7 @@ export const PlacementHero: React.FC<PlacementHeroProps> = ({
       {/* Hero Content Container */}
       <div className="relative z-10 max-w-4xl mx-auto space-y-6 pt-10 pb-14 flex flex-col items-center">
         
-        {/* Top Badge matching screenshot */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary/90 border border-white/20 rounded-sm text-[11px] font-black uppercase tracking-[0.2em] text-white backdrop-blur-md shadow-md font-oswald">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>{config.badge}</span>
-        </div>
-
-        {/* 3-Line Big Bold Heading matching screenshot */}
+        {/* 3-Line Big Bold Heading */}
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight uppercase leading-[1.05] font-oswald drop-shadow-lg">
           {config.headingLine1} {config.headingLine2}
           {config.headingLine3 && (
@@ -120,11 +114,11 @@ export const PlacementHero: React.FC<PlacementHeroProps> = ({
           )}
         </h1>
 
-        {/* Action Buttons matching screenshot */}
+        {/* Action Buttons with boxy asymmetrical shape */}
         <div className="pt-2 flex flex-wrap items-center justify-center gap-4 font-oswald">
           <button
             onClick={onExploreClick}
-            className="px-6 py-3 bg-primary hover:bg-primary/90 text-white text-xs sm:text-sm font-bold tracking-wider uppercase rounded-md transition-all duration-200 shadow-lg flex items-center gap-2 cursor-pointer border border-white/20"
+            className="px-6 py-3 bg-primary hover:bg-primary/90 text-white text-xs sm:text-sm font-bold tracking-wider uppercase rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs transition-all duration-200 shadow-lg flex items-center gap-2 cursor-pointer border border-white/20"
           >
             <span>{config.primaryBtnText}</span>
             <ArrowRight className="w-4 h-4" />
@@ -132,18 +126,18 @@ export const PlacementHero: React.FC<PlacementHeroProps> = ({
 
           <button
             onClick={onSecondaryClick}
-            className="px-6 py-3 bg-background/80 hover:bg-background text-foreground text-xs sm:text-sm font-bold tracking-wider uppercase rounded-md transition-all duration-200 shadow-lg flex items-center gap-2 cursor-pointer border border-border backdrop-blur-sm"
+            className="px-6 py-3 bg-background/80 hover:bg-background text-foreground text-xs sm:text-sm font-bold tracking-wider uppercase rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs transition-all duration-200 shadow-lg flex items-center gap-2 cursor-pointer border border-border backdrop-blur-sm"
           >
             <span>{config.secondaryBtnText}</span>
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Thin Divider Line matching screenshot */}
+        {/* Thin Divider Line */}
         <div className="w-full max-w-lg border-t border-white/20 pt-2" />
 
-        {/* Subtitle Paragraph matching screenshot */}
-        <p className="max-w-2xl text-xs sm:text-sm lg:text-base text-white/90 font-medium leading-relaxed tracking-wide font-['Switzer',sans-serif]">
+        {/* Subtitle Paragraph */}
+        <p className="max-w-2xl text-xs sm:text-sm lg:text-base text-white/90 font-medium leading-relaxed tracking-wide font-sans">
           {config.subtitle}
         </p>
 
