@@ -23,6 +23,7 @@ import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offer
 import { Route as SocialMediaRouteImport } from './routes/social-media'
 import { Route as StudentHousingRouteImport } from './routes/student-housing'
 import { Route as AboutAccreditationsRouteImport } from './routes/about_.accreditations'
+import { Route as AboutGoverningCouncilRouteImport } from './routes/about_.governing-council'
 import { Route as AboutGroupInstitutionsRouteImport } from './routes/about_.group-institutions'
 import { Route as AboutLeadershipRouteImport } from './routes/about_.leadership'
 import { Route as AboutOverviewRouteImport } from './routes/about_.overview'
@@ -106,6 +107,11 @@ const StudentHousingRoute = StudentHousingRouteImport.update({
 const AboutAccreditationsRoute = AboutAccreditationsRouteImport.update({
   id: '/about_/accreditations',
   path: '/about/accreditations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutGoverningCouncilRoute = AboutGoverningCouncilRouteImport.update({
+  id: '/about_/governing-council',
+  path: '/about/governing-council',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutGroupInstitutionsRoute = AboutGroupInstitutionsRouteImport.update({
@@ -194,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
+  '/about/governing-council': typeof AboutGoverningCouncilRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about/leadership': typeof AboutLeadershipRoute
   '/about/overview': typeof AboutOverviewRoute
@@ -223,6 +230,7 @@ export interface FileRoutesByTo {
   '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
+  '/about/governing-council': typeof AboutGoverningCouncilRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about/leadership': typeof AboutLeadershipRoute
   '/about/overview': typeof AboutOverviewRoute
@@ -254,6 +262,7 @@ export interface FileRoutesById {
   '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
   '/about_/accreditations': typeof AboutAccreditationsRoute
+  '/about_/governing-council': typeof AboutGoverningCouncilRoute
   '/about_/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about_/leadership': typeof AboutLeadershipRoute
   '/about_/overview': typeof AboutOverviewRoute
@@ -286,6 +295,7 @@ export interface FileRouteTypes {
     | '/social-media'
     | '/student-housing'
     | '/about/accreditations'
+    | '/about/governing-council'
     | '/about/group-institutions'
     | '/about/leadership'
     | '/about/overview'
@@ -315,6 +325,7 @@ export interface FileRouteTypes {
     | '/social-media'
     | '/student-housing'
     | '/about/accreditations'
+    | '/about/governing-council'
     | '/about/group-institutions'
     | '/about/leadership'
     | '/about/overview'
@@ -345,6 +356,7 @@ export interface FileRouteTypes {
     | '/social-media'
     | '/student-housing'
     | '/about_/accreditations'
+    | '/about_/governing-council'
     | '/about_/group-institutions'
     | '/about_/leadership'
     | '/about_/overview'
@@ -376,6 +388,7 @@ export interface RootRouteChildren {
   SocialMediaRoute: typeof SocialMediaRoute
   StudentHousingRoute: typeof StudentHousingRoute
   AboutAccreditationsRoute: typeof AboutAccreditationsRoute
+  AboutGoverningCouncilRoute: typeof AboutGoverningCouncilRoute
   AboutGroupInstitutionsRoute: typeof AboutGroupInstitutionsRoute
   AboutLeadershipRoute: typeof AboutLeadershipRoute
   AboutOverviewRoute: typeof AboutOverviewRoute
@@ -488,6 +501,13 @@ declare module '@tanstack/react-router' {
       path: '/about/accreditations'
       fullPath: '/about/accreditations'
       preLoaderRoute: typeof AboutAccreditationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about_/governing-council': {
+      id: '/about_/governing-council'
+      path: '/about/governing-council'
+      fullPath: '/about/governing-council'
+      preLoaderRoute: typeof AboutGoverningCouncilRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about_/group-institutions': {
@@ -618,6 +638,7 @@ const rootRouteChildren: RootRouteChildren = {
   SocialMediaRoute: SocialMediaRoute,
   StudentHousingRoute: StudentHousingRoute,
   AboutAccreditationsRoute: AboutAccreditationsRoute,
+  AboutGoverningCouncilRoute: AboutGoverningCouncilRoute,
   AboutGroupInstitutionsRoute: AboutGroupInstitutionsRoute,
   AboutLeadershipRoute: AboutLeadershipRoute,
   AboutOverviewRoute: AboutOverviewRoute,

@@ -1,25 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { AboutSubNav } from "@/components/layout/AboutSubNav";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import {
   ArrowRight,
-  Compass,
   MapPin,
   Building2,
-  Users,
-  BookOpen,
-  Zap,
-  Sparkles,
-  Globe,
-  Briefcase,
-  Languages,
-  Layers,
-  Award,
-  Rocket,
   Cpu,
   Wifi,
   Library,
   Bus,
   CheckCircle2,
+  Award,
+  BookOpen,
 } from "lucide-react";
 
 const title = "Institution Overview — M.S.A.J. College of Engineering, Chennai";
@@ -145,36 +137,39 @@ const whyJoinPoints = [
 
 export function InstitutionOverviewPage() {
   return (
-    <main className="bg-page-bg text-foreground min-h-screen">
-      {/* Editorial Hero Header — Cardless Design */}
-      <section className="relative border-b border-border pt-16 pb-16 md:pt-24 md:pb-20">
+    <main className="bg-page-bg text-foreground min-h-screen pt-0 md:pt-1">
+      {/* Secondary Sticky Sub-Nav Header */}
+      <AboutSubNav />
+
+      {/* SFCM Full-Bleed Hero Showcase Section */}
+      <section className="relative border-b border-border bg-gradient-to-b from-primary/10 via-background to-page-bg pt-8 pb-16 md:pt-12 md:pb-20">
         <div className="mx-auto max-w-[1440px] px-6 md:px-12">
           <div className="flex flex-col gap-5 max-w-4xl">
-            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
+            <span className="inline-flex items-center gap-2 px-3 py-1 bg-foreground/10 border border-foreground/20 text-foreground text-xs font-mono font-bold uppercase rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs w-max">
               About MSAJCE // Institution Overview
             </span>
 
-            <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-foreground font-display leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-foreground font-oswald leading-none">
               Mohamed Sathak A.J. <br />
               <span className="text-primary">College of Engineering</span>
             </h1>
 
-            <p className="text-base md:text-xl leading-relaxed text-muted-foreground mt-2 font-normal">
-              The Mohamed Sathak A.J. College of Engineering (MSAJCE), established on <strong>5th July 2001</strong> under the aegis of Mohamed Sathak Trust, is approved by AICTE New Delhi, affiliated to Anna University Chennai and Government of Tamil Nadu. MSAJCE strives to continuously upgrade its facilities to provide quality technical education to meet industrial and societal needs, by providing skill-based training with state-of-the-art facilities.
+            <p className="text-base md:text-lg leading-relaxed text-muted-foreground font-libre mt-2">
+              The Mohamed Sathak A.J. College of Engineering (MSAJCE), established on <strong>5th July 2001</strong> under the aegis of Mohamed Sathak Trust, is approved by AICTE New Delhi, affiliated to Anna University Chennai and Government of Tamil Nadu. MSAJCE strives to continuously upgrade its facilities to provide quality technical education to meet industrial and societal needs by providing skill-based training with state-of-the-art facilities.
             </p>
           </div>
 
-          {/* Cardless Key Stats Row */}
-          <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-border pt-8">
+          {/* High-Impact Stat Highlights Row */}
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-border pt-8">
             {overviewStats.map((stat, idx) => (
               <div key={stat.label} className={`flex flex-col ${idx > 0 ? "md:border-l md:border-border md:pl-8" : ""}`}>
-                <span className="text-2xl md:text-4xl font-bold tracking-tight text-primary font-display">
+                <span className="text-2xl md:text-4xl font-black font-oswald tracking-tight text-primary">
                   {stat.value}
                 </span>
-                <span className="text-xs font-bold uppercase tracking-wider text-foreground mt-2">
+                <span className="text-xs font-bold font-oswald uppercase text-foreground mt-2">
                   {stat.label}
                 </span>
-                <span className="text-[11px] text-muted-foreground mt-0.5">
+                <span className="text-[11px] font-libre text-muted-foreground mt-0.5">
                   {stat.sub}
                 </span>
               </div>
@@ -183,22 +178,22 @@ export function InstitutionOverviewPage() {
         </div>
       </section>
 
-      {/* Main Overview Narrative & 70-Acre Campus — Minimal Editorial Columns */}
-      <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-24">
+      {/* Main Overview Narrative & 70-Acre Campus Showcase */}
+      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-7 flex flex-col gap-6">
+          <div className="lg:col-span-7 flex flex-col gap-6 font-libre">
             <Reveal variant="slide-right">
-              <span className="text-[11px] font-mono font-bold tracking-widest text-primary uppercase">
+              <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase">
                 // Campus Snapshot & Ecosystem
               </span>
-              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-foreground mt-2">
+              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-foreground font-oswald mt-2">
                 Sprawling 70-Acre Campus in Siruseri IT Park
               </h2>
             </Reveal>
 
             <Reveal variant="slide-right" delay={0.1}>
-              <div className="pl-6 border-l-2 border-primary my-2">
-                <p className="text-lg font-semibold leading-relaxed text-foreground">
+              <div className="pl-6 border-l-4 border-primary my-2 bg-primary/5 py-4 pr-4 rounded-r-md">
+                <p className="text-base sm:text-lg font-semibold leading-relaxed text-foreground font-libre">
                   The college campus, sprawling over 70 acres of greenery located inside the SIPCOT IT Park, Siruseri, is surrounded by multinational IT companies such as TCS, CTS, Intellect, Aspire, Steria, Polaris, FSS, etc.
                 </p>
               </div>
@@ -219,15 +214,15 @@ export function InstitutionOverviewPage() {
             <div className="pt-4 flex flex-wrap gap-4">
               <Link
                 to="/about/vision-mission"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 text-xs font-bold uppercase tracking-widest rounded-md hover:bg-primary/90 transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 text-xs font-oswald font-bold uppercase tracking-widest rounded-sm hover:bg-primary/90 transition-colors shadow-xs"
               >
                 Vision & Mission <ArrowRight size={14} />
               </Link>
               <Link
-                to="/about/leadership"
-                className="inline-flex items-center gap-2 border border-border bg-transparent text-foreground px-6 py-3 text-xs font-bold uppercase tracking-widest rounded-md hover:bg-muted transition-colors"
+                to="/about/governing-council"
+                className="inline-flex items-center gap-2 border border-border bg-card text-foreground px-6 py-3 text-xs font-oswald font-bold uppercase tracking-widest rounded-sm hover:bg-muted transition-colors"
               >
-                Leadership Messages
+                Governing Council &raquo;
               </Link>
             </div>
           </div>
@@ -241,10 +236,10 @@ export function InstitutionOverviewPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
                 <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold">
-                  Campus Snapshot
+                  Campus Ecosystem
                 </span>
-                <span className="text-white text-base font-bold tracking-tight mt-1">
-                  70 Acres of Greenery inside SIPCOT IT Park Siruseri, Chennai
+                <span className="text-white text-base font-bold font-oswald tracking-tight mt-1">
+                  70 Acres of Greenery inside SIPCOT IT Park Siruseri, OMR Chennai
                 </span>
               </div>
             </Reveal>
@@ -252,33 +247,32 @@ export function InstitutionOverviewPage() {
         </div>
       </section>
 
-      {/* Cardless Infrastructure Facilities List */}
-      <section className="border-y border-border py-16 md:py-24">
+      {/* Infrastructure Facilities List */}
+      <section className="border-y border-border py-12 md:py-20 bg-muted/20">
         <div className="mx-auto max-w-[1440px] px-6 md:px-12">
           <div className="max-w-2xl mb-12">
-            <span className="text-[11px] font-mono font-bold tracking-widest text-primary uppercase block mb-2">
+            <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase block mb-2">
               Infrastructure & Facilities
             </span>
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-foreground">
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-foreground font-oswald">
               State-of-the-Art Institutional Facilities
             </h2>
           </div>
 
-          {/* Minimal Border-Divided Grid — NO CARDS */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 divide-y md:divide-y-0 divide-border">
-            {infrastructureItems.map((item, idx) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {infrastructureItems.map((item) => {
               const Icon = item.icon;
               return (
                 <div
                   key={item.title}
-                  className="py-6 border-b border-border flex items-start gap-4"
+                  className="p-6 border border-border rounded-lg bg-card hover:border-primary/50 transition-colors flex items-start gap-4"
                 >
-                  <div className="w-10 h-10 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-1">
+                  <div className="w-10 h-10 rounded-sm bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-1">
                     <Icon size={20} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-foreground mb-1">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                    <h3 className="text-lg font-oswald font-bold uppercase text-foreground mb-1">{item.title}</h3>
+                    <p className="text-sm font-libre text-muted-foreground leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               );
@@ -287,27 +281,26 @@ export function InstitutionOverviewPage() {
         </div>
       </section>
 
-      {/* Why Join MSAJCE ? — Pristine Cardless Editorial List */}
+      {/* Why Join MSAJCE ? — SFCM 12 Pillars List */}
       <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-24">
         <div className="max-w-3xl mb-16">
-          <span className="text-[11px] font-mono font-bold tracking-widest text-primary uppercase block mb-2">
+          <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase block mb-2">
             Key Advantages // Why Join MSAJCE ?
           </span>
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-foreground">
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-foreground font-oswald">
             12 Pillars of Student Transformation
           </h2>
-          <p className="text-base text-muted-foreground mt-3">
+          <p className="text-base font-libre text-muted-foreground mt-3">
             Explore the key reasons why Mohamed Sathak A.J. College of Engineering is the preferred destination for ambitious engineering aspirants.
           </p>
         </div>
 
-        {/* Pure Cardless Editorial Bordered List */}
-        <Stagger gap={0.04} className="flex flex-col divide-y divide-border border-y border-border">
+        <Stagger gap={0.04} className="flex flex-col divide-y divide-border border-y border-border bg-card rounded-lg overflow-hidden border">
           {whyJoinPoints.map((point) => (
             <StaggerItem
               key={point.num}
               variant="rise"
-              className="py-6 md:py-8 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline hover:bg-foreground/[0.02] transition-colors px-2"
+              className="py-6 px-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline hover:bg-foreground/[0.02] transition-colors"
             >
               <div className="md:col-span-1">
                 <span className="text-xs font-mono font-black text-primary tracking-widest uppercase">
@@ -315,12 +308,12 @@ export function InstitutionOverviewPage() {
                 </span>
               </div>
               <div className="md:col-span-4">
-                <h3 className="text-lg font-bold text-foreground leading-snug">
+                <h3 className="text-lg font-oswald font-bold uppercase text-foreground leading-snug">
                   {point.title}
                 </h3>
               </div>
               <div className="md:col-span-7">
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm font-libre text-muted-foreground leading-relaxed">
                   {point.desc}
                 </p>
               </div>
@@ -329,34 +322,40 @@ export function InstitutionOverviewPage() {
         </Stagger>
       </section>
 
-      {/* Quick Navigation Footer Row */}
+      {/* Navigation Footer */}
       <section className="border-t border-border bg-page-bg py-12">
         <div className="mx-auto max-w-[1440px] px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="text-sm font-semibold text-muted-foreground">
+          <span className="text-sm font-libre font-semibold text-muted-foreground">
             Explore Vision & Mission, Leadership, and Trust History
           </span>
           <div className="flex flex-wrap gap-3">
             <Link
               to="/about/vision-mission"
-              className="px-4 py-2 text-xs font-bold uppercase tracking-wider border border-border rounded-md hover:bg-muted transition-colors"
+              className="px-4 py-2 text-xs font-oswald font-bold uppercase tracking-wider border border-border rounded-sm hover:bg-muted transition-colors"
             >
               Vision & Mission &raquo;
             </Link>
             <Link
               to="/about/leadership"
-              className="px-4 py-2 text-xs font-bold uppercase tracking-wider border border-border rounded-md hover:bg-muted transition-colors"
+              className="px-4 py-2 text-xs font-oswald font-bold uppercase tracking-wider border border-border rounded-sm hover:bg-muted transition-colors"
             >
               Leadership Messages &raquo;
             </Link>
             <Link
               to="/about/trust"
-              className="px-4 py-2 text-xs font-bold uppercase tracking-wider border border-border rounded-md hover:bg-muted transition-colors"
+              className="px-4 py-2 text-xs font-oswald font-bold uppercase tracking-wider border border-border rounded-sm hover:bg-muted transition-colors"
             >
               The Trust &raquo;
             </Link>
             <Link
+              to="/about/governing-council"
+              className="px-4 py-2 text-xs font-oswald font-bold uppercase tracking-wider border border-border rounded-sm hover:bg-muted transition-colors"
+            >
+              Governing Council &raquo;
+            </Link>
+            <Link
               to="/about/group-institutions"
-              className="px-4 py-2 text-xs font-bold uppercase tracking-wider border border-border rounded-md hover:bg-muted transition-colors"
+              className="px-4 py-2 text-xs font-oswald font-bold uppercase tracking-wider border border-border rounded-sm hover:bg-muted transition-colors"
             >
               Group of Institutions &raquo;
             </Link>

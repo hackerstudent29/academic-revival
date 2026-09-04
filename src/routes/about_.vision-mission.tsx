@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { AboutSubNav } from "@/components/layout/AboutSubNav";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { Target, Compass, ShieldCheck, Lightbulb, Users, Leaf, ArrowRight } from "lucide-react";
+import { Target, Compass, Award, ShieldCheck, HeartHandshake, CheckCircle2 } from "lucide-react";
 
-const title = "Vision & Mission — M.S.A.J. College of Engineering, Chennai";
+const title = "Vision, Mission & Quality Policy — M.S.A.J. College of Engineering";
 const description =
-  "Official Vision, Mission, Core Values, and Quality Policy of Mohamed Sathak A.J. College of Engineering.";
+  "Official Vision, Mission statements (M1, M2, M3), Quality Policy, and Core Educational Values of Mohamed Sathak A.J. College of Engineering (MSAJCE), Chennai.";
 
 export const Route = createFileRoute("/about_/vision-mission")({
   head: () => ({
@@ -20,150 +21,167 @@ export const Route = createFileRoute("/about_/vision-mission")({
   component: VisionMissionPage,
 });
 
-const missions = [
+const missionStatements = [
   {
-    num: "01",
-    title: "Academic Excellence & Rigor",
-    description: "Provide high-quality technical education, robust academic mentorship, and industry-aligned curricula to prepare students for real-world engineering challenges.",
+    code: "M1",
+    tag: "Quality Technical Education",
+    title: "To Impart Quality Technical Education",
+    desc: "Transforming students into professionally competent technocrats with deep conceptual understanding and practical problem-solving capabilities.",
   },
   {
-    num: "02",
-    title: "Research & Innovation",
-    description: "Foster an environment of curiosity and innovation through state-of-the-art research laboratories, interdisciplinary projects, and AICTE IDEA Lab initiatives.",
+    code: "M2",
+    tag: "Sustainable Career Growth",
+    title: "To Nurture Sustainable Development",
+    desc: "Nurturing students in all-round sustainable development for long-term professional careers, lifelong learning, and self-employability.",
   },
   {
-    num: "03",
-    title: "Ethical & Responsible Leadership",
-    description: "Instill ethical standards, professional integrity, and social responsibility in students, empowering them to become principled leaders in society.",
+    code: "M3",
+    tag: "Ethics & Values",
+    title: "To Inculcate Ethics & Civic Responsibilities",
+    desc: "Inculcating critical thinking, high professional ethics, and active civic responsibilities by instilling strong human values.",
   },
-  {
-    num: "04",
-    title: "Global Employability & Entrepreneurship",
-    description: "Cultivate entrepreneurial mindsets and core technical competencies to ensure outstanding career outcomes and global industry readiness.",
-  },
-];
-
-const coreValues = [
-  { icon: ShieldCheck, title: "Integrity & Ethics", text: "Upholding highest moral standards in academics, research, and governance." },
-  { icon: Target, title: "Excellence", text: "Striving for continuous improvement across all educational and institutional endeavors." },
-  { icon: Lightbulb, title: "Innovation", text: "Encouraging creative problem-solving, patent generation, and product development." },
-  { icon: Users, title: "Inclusivity & Diversity", text: "Providing equal opportunities and supporting students from diverse backgrounds." },
-  { icon: Leaf, title: "Sustainability", text: "Promoting green technology, clean energy research, and environmental stewardship." },
 ];
 
 export function VisionMissionPage() {
   return (
-    <main className="bg-page-bg text-foreground min-h-screen">
-      {/* Page Hero */}
-      <section className="relative border-b border-border bg-page-bg py-16 md:py-24">
+    <main className="bg-page-bg text-foreground min-h-screen pt-0 md:pt-1">
+      {/* Secondary Sticky Sub-Nav */}
+      <AboutSubNav />
+
+      {/* Hero Showcase Section — SFCM Style Full-Bleed Editorial */}
+      <section className="relative border-b border-border bg-gradient-to-b from-primary/10 via-background to-page-bg pt-8 pb-16 md:pt-12 md:pb-20">
         <div className="mx-auto max-w-[1440px] px-6 md:px-12">
-          <div className="flex flex-col gap-4 max-w-3xl">
-            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
-              About MSAJCE // Guiding Principles
+          <div className="flex flex-col gap-4 max-w-4xl">
+            <span className="inline-flex items-center gap-2 px-3 py-1 bg-foreground/10 border border-foreground/20 text-foreground text-xs font-mono font-bold uppercase rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs w-max">
+              Institutional Strategy & Foundations
             </span>
-            <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-foreground">
-              Vision & Mission
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-foreground font-oswald leading-none">
+              Vision, Mission & <span className="text-primary">Quality Policy</span>
             </h1>
-            <p className="text-lg leading-relaxed text-muted-foreground mt-2">
-              Our institutional vision and mission guide our commitment to nurturing world-class engineers, researchers, and ethical leaders.
+            <p className="text-base sm:text-lg leading-relaxed text-muted-foreground font-libre mt-2 max-w-3xl">
+              Defining our commitment to academic excellence, innovative research, sustainable student transformation, and ethical societal contributions.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Vision Statement Section */}
-      <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-24">
-        <div className="bg-card border border-border rounded-lg p-8 md:p-14 shadow-xs relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-8 opacity-5 text-primary pointer-events-none">
-            <Compass size={220} />
-          </div>
-          <div className="max-w-4xl relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest rounded-md mb-6">
-              <Compass size={14} /> Institutional Vision
+      {/* Vision Statement Section — SFCM Editorial Quote Block */}
+      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div className="lg:col-span-4 flex flex-col gap-3">
+            <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase">
+              // Foundational Aspirations
+            </span>
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center justify-center px-4 py-1.5 text-lg font-oswald font-black uppercase text-foreground bg-foreground/10 border border-foreground/20 rounded-sm">
+                V
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground">
+                Vision of MSAJCE
+              </h2>
             </div>
-            <blockquote className="text-2xl md:text-4xl font-bold tracking-tight leading-snug text-foreground font-display">
-              “To be a benchmark institution producing globally competent engineers and technological leaders who solve real-world problems with integrity, innovation, and social commitment.”
+          </div>
+
+          <div className="lg:col-span-8 bg-card border-l-4 border-primary border-y border-r border-border p-8 rounded-r-lg shadow-xs">
+            <blockquote className="text-xl sm:text-2xl md:text-3xl font-bold font-oswald leading-snug text-foreground">
+              "To be an eminent institute for higher education and research through innovative teaching-learning and sustainable practices to meet the industrial and societal needs."
             </blockquote>
+            <span className="block text-xs font-mono uppercase tracking-widest text-primary font-bold mt-6">
+              — Mohamed Sathak A.J. College of Engineering
+            </span>
           </div>
         </div>
       </section>
 
-      {/* Mission Pillars */}
-      <section className="bg-page-bg border-y border-border py-16 md:py-24">
+      {/* Mission Statements Section — Cards Grid */}
+      <section className="border-t border-border bg-muted/20 py-12 md:py-20">
         <div className="mx-auto max-w-[1440px] px-6 md:px-12">
-          <div className="max-w-2xl mb-14">
-            <span className="text-[11px] font-mono font-bold tracking-widest text-primary uppercase block mb-2">
-              Our Four Pillars // Mission
+          <div className="flex flex-col gap-3 mb-12 max-w-3xl">
+            <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase">
+              // Core Strategic Pillars
             </span>
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-foreground">
-              How We Fulfill Our Vision
+            <h2 className="text-3xl md:text-4xl font-black font-oswald uppercase text-foreground">
+              Mission Statements of MSAJCE
             </h2>
+            <p className="text-sm md:text-base font-libre text-muted-foreground">
+              Our triple-action mission framework guiding curriculum design, student development, research priorities, and community service.
+            </p>
           </div>
 
-          <Stagger gap={0.1} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {missions.map((m) => (
-              <StaggerItem
-                key={m.num}
-                variant="rise"
-                className="bg-card border border-border p-8 rounded-md shadow-xs flex flex-col justify-between"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {missionStatements.map((mission) => (
+              <div
+                key={mission.code}
+                className="p-8 border border-border rounded-lg bg-card hover:border-primary/40 transition-colors flex flex-col justify-between"
               >
                 <div>
-                  <span className="text-xs font-mono font-black text-primary/80 uppercase tracking-widest block mb-3">
-                    Mission {m.num}
-                  </span>
-                  <h3 className="text-xl font-bold text-foreground mb-3">{m.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {m.description}
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="px-4 py-1 text-lg font-oswald font-black uppercase text-foreground bg-foreground/10 border border-foreground/20 rounded-sm">
+                      {mission.code}
+                    </span>
+                    <span className="text-xs font-mono font-bold tracking-wider uppercase text-primary">
+                      {mission.tag}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-oswald font-bold uppercase text-foreground mb-3 leading-snug">
+                    {mission.title}
+                  </h3>
+                  <p className="text-sm font-libre text-muted-foreground leading-relaxed">
+                    {mission.desc}
                   </p>
                 </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
 
-      {/* Core Values Grid */}
-      <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-24">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-[11px] font-mono font-bold tracking-widest text-primary uppercase block mb-2">
-            Institutional Ethos // Core Values
-          </span>
-          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-foreground">
-            The Principles That Define Us
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {coreValues.map((val) => {
-            const Icon = val.icon;
-            return (
-              <div
-                key={val.title}
-                className="bg-card border border-border p-6 rounded-md shadow-xs flex flex-col items-start"
-              >
-                <div className="w-9 h-9 rounded-md bg-primary/10 text-primary flex items-center justify-center mb-4">
-                  <Icon size={18} />
+                <div className="mt-8 pt-4 border-t border-border/60 flex items-center gap-2 text-xs font-libre font-semibold text-primary">
+                  <CheckCircle2 size={16} /> Institutional Standard
                 </div>
-                <h3 className="text-base font-bold text-foreground mb-1.5">{val.title}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">{val.text}</p>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Next Navigation */}
+      {/* Quality Policy Section — SFCM Large Feature Block */}
+      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-20">
+        <div className="border border-border rounded-xl bg-gradient-to-r from-primary/10 via-card to-background p-8 md:p-12 relative overflow-hidden shadow-xs">
+          <div className="max-w-3xl flex flex-col gap-4">
+            <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase">
+              // Quality Assurance Framework
+            </span>
+            <h2 className="text-3xl md:text-4xl font-black font-oswald uppercase text-foreground">
+              Quality Policy of MSAJCE
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl font-libre font-semibold leading-relaxed text-foreground">
+              MSAJCE is committed to creating quality professionals through innovative teaching, research, industrial relations, and nurturing human values & ethics to meet industrial and societal needs on a continual improvement basis.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Navigation Footer */}
       <section className="border-t border-border bg-page-bg py-12">
         <div className="mx-auto max-w-[1440px] px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="text-sm font-semibold text-muted-foreground">
-            Explore Leadership Messages & Trust History
+          <span className="text-sm font-libre font-semibold text-muted-foreground">
+            Explore Trust History, Leadership Messages, and Governing Council
           </span>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-3">
+            <Link
+              to="/about/trust"
+              className="px-4 py-2 text-xs font-oswald font-bold uppercase tracking-wider border border-border rounded-sm hover:bg-muted transition-colors"
+            >
+              The Trust &raquo;
+            </Link>
             <Link
               to="/about/leadership"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 text-xs font-bold uppercase tracking-widest rounded-md hover:bg-primary/90 transition-colors"
+              className="px-4 py-2 text-xs font-oswald font-bold uppercase tracking-wider border border-border rounded-sm hover:bg-muted transition-colors"
             >
-              Leadership Message <ArrowRight size={14} />
+              Leadership Messages &raquo;
+            </Link>
+            <Link
+              to="/about/governing-council"
+              className="px-4 py-2 text-xs font-oswald font-bold uppercase tracking-wider border border-border rounded-sm hover:bg-muted transition-colors"
+            >
+              Governing Council &raquo;
             </Link>
           </div>
         </div>
