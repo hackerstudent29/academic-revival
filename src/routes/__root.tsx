@@ -15,6 +15,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SmoothScroll } from "@/components/shared/SmoothScroll";
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
 import { HeaderProvider } from "@/context/HeaderContext";
+import { ChatbotWidget } from "@/components/widgets/ChatbotWidget";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -143,6 +144,7 @@ function RootComponent() {
       <HeaderProvider>
         <SmoothScroll />
         <ScrollToTop />
+        <ChatbotWidget />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <div className="bg-background text-foreground max-w-full w-full">
             <div 

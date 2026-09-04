@@ -104,14 +104,17 @@ export function AccreditationsPage() {
   const Icon = activeData.icon;
 
   return (
-    <main className="bg-page-bg text-foreground min-h-screen">
+    <main className="bg-page-bg text-foreground min-h-screen pt-0 md:pt-1">
       {/* Integrated Header & Tabs */}
-      <section className="relative border-b border-border bg-page-bg pt-10 md:pt-12">
+      <section className="relative border-b border-border bg-page-bg pt-4 md:pt-6">
         <div className="mx-auto max-w-[1440px] px-6 md:px-12">
           
-          <div className="flex flex-col mb-8">
-            <h1 className="text-[11px] sm:text-xs font-black uppercase tracking-widest text-primary font-oswald">
-              ACCREDITATION & RANKINGS
+          <div className="flex flex-col mb-6">
+            <span className="text-sm sm:text-base md:text-lg xl:text-xl font-black font-oswald uppercase text-primary tracking-wider mb-2">
+              ABOUT MSAJCE // QUALITY ASSURANCE
+            </span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-foreground font-oswald">
+              Accreditation & Rankings
             </h1>
           </div>
 
@@ -139,7 +142,7 @@ export function AccreditationsPage() {
       </section>
 
       {/* Main Content Sections */}
-      <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-24">
+      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-20">
         <Reveal key={activeData.id} variant="rise">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start min-h-[500px]">
             
@@ -150,7 +153,7 @@ export function AccreditationsPage() {
                   <Icon size={32} />
                 </div>
                 <div>
-                  <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-foreground font-oswald text-primary">
+                  <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight font-oswald text-primary">
                     {activeData.title}
                   </h2>
                   <span className="text-sm font-bold uppercase tracking-widest text-muted-foreground mt-2 block font-mono">
@@ -187,7 +190,7 @@ export function AccreditationsPage() {
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
                 {activeData.highlights.map((highlight, idx) => (
-                  <div key={idx} className="flex items-start gap-4 p-5 border border-border bg-card rounded-sm shadow-sm transition-colors hover:border-primary/50">
+                  <div key={idx} className="flex items-start gap-4 p-5 border border-border bg-card rounded-sm shadow-xs transition-colors hover:border-primary/50">
                     <CheckCircle2 className="w-6 h-6 text-primary shrink-0" />
                     <span className="text-sm md:text-base text-foreground font-medium font-sans">{highlight}</span>
                   </div>
@@ -210,3 +213,4 @@ export function AccreditationsPage() {
     </main>
   );
 }
+

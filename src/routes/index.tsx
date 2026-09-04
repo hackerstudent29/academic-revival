@@ -15,7 +15,6 @@ import { NewsAndEventsSection } from "@/components/sections/home/NewsAndEventsSe
 import { ContactSection } from "@/components/sections/contact/ContactSection";
 import { SocialMediaSection } from "@/components/sections/home/SocialMediaSection";
 import { CampusVideoReveal } from "@/components/widgets/CampusVideoReveal";
-import { ChatbotWidget } from "@/components/widgets/ChatbotWidget";
 
 const title = "MSAJCE — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -191,7 +190,6 @@ export function HomePage() {
       <SocialMediaSection />
 
       <ContactSection />
-      <ChatbotWidget />
     </motion.main>
   );
 }
