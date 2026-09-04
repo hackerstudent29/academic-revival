@@ -298,7 +298,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
     }
   ];
 
-  const activeNodeData = mindMapNodes.find(n => n.id === activeMindNode) || mindMapNodes[0];
+  const activeNodeData = mindMapNodes.find(n => n.id === activeMindNode) ?? mindMapNodes[0]!;
 
   const trainingBeltItems = [
     {
@@ -400,7 +400,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
     }
   ];
 
-  const activeHotspot = facilityHotspots.find(h => h.id === activeHotspotId) || facilityHotspots[0];
+  const activeHotspot = facilityHotspots.find(h => h.id === activeHotspotId) ?? facilityHotspots[0]!;
 
   const galleryRow1 = [
     { title: 'COMPUTER LABORATORY', tag: 'ACADEMIC', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&auto=format&fit=crop&q=80' },
@@ -523,17 +523,17 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                 <div className="flex items-center justify-between gap-2 mb-2">
                   <div className="inline-flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-primary" />
-                    <span className="text-xs font-black uppercase tracking-widest text-foreground font-oswald">{(activeNodeData || mindMapNodes[0]).category}</span>
+                    <span className="text-xs font-black uppercase tracking-widest text-foreground font-oswald">{(activeNodeData ?? mindMapNodes[0]!).category}</span>
                   </div>
                   <span className="text-[10px] font-black uppercase text-white bg-primary px-2.5 py-0.5 font-oswald rounded-sm">
-                    {(activeNodeData || mindMapNodes[0]).name}
+                    {(activeNodeData ?? mindMapNodes[0]!).name}
                   </span>
                 </div>
                 <p className="text-xs font-bold text-foreground mb-3 font-sans">
-                  {(activeNodeData || mindMapNodes[0]).desc}
+                  {(activeNodeData ?? mindMapNodes[0]!).desc}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  {(activeNodeData || mindMapNodes[0]).details.map((detail, dIdx) => (
+                  {(activeNodeData ?? mindMapNodes[0]!).details.map((detail: string, dIdx: number) => (
                     <div key={dIdx} className="p-2.5 bg-card border border-border flex items-start gap-2 text-[11px] text-foreground/80 font-medium font-sans rounded-sm">
                       <CheckCircle className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
                       <span>{detail}</span>
@@ -585,28 +585,33 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
           </div>
 
           <div className="mt-8 max-w-4xl mx-auto bg-card border border-border p-6 sm:p-8 shadow-xl text-card-foreground rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs">
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
-              <div className="sm:col-span-8 space-y-2">
-                <span className="text-xs font-black uppercase tracking-widest text-primary font-oswald">
-                  PIPELINE STAGE {activeBeltIdx + 1} OF {trainingBeltItems.length}
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-black text-primary font-oswald">
-                  {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).title}
-                </h3>
-                <p className="text-sm sm:text-base text-muted-foreground font-medium font-sans">
-                  {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).tagline}
-                </p>
+          {(() => {
+            const activeBelt = trainingBeltItems[activeBeltIdx] ?? trainingBeltItems[0]!;
+            return (
+              <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
+                <div className="sm:col-span-8 space-y-2">
+                  <span className="text-xs font-black uppercase tracking-widest text-primary font-oswald">
+                    PIPELINE STAGE {activeBeltIdx + 1} OF {trainingBeltItems.length}
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-black text-primary font-oswald">
+                    {activeBelt.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-muted-foreground font-medium font-sans">
+                    {activeBelt.tagline}
+                  </p>
+                </div>
+                <div className="sm:col-span-4 flex flex-col items-start sm:items-end justify-center border-t sm:border-t-0 sm:border-l border-border pt-4 sm:pt-0 sm:pl-6 space-y-1">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground font-oswald">CURRICULUM VOLUME</span>
+                  <span className="text-xl sm:text-2xl font-black text-primary font-oswald">
+                    {activeBelt.metric}
+                  </span>
+                  <span className="text-xs text-primary font-bold font-oswald">
+                    {activeBelt.focus}
+                  </span>
+                </div>
               </div>
-              <div className="sm:col-span-4 flex flex-col items-start sm:items-end justify-center border-t sm:border-t-0 sm:border-l border-border pt-4 sm:pt-0 sm:pl-6 space-y-1">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground font-oswald">CURRICULUM VOLUME</span>
-                <span className="text-xl sm:text-2xl font-black text-primary font-oswald">
-                  {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).metric}
-                </span>
-                <span className="text-xs text-primary font-bold font-oswald">
-                  {(trainingBeltItems[activeBeltIdx] || trainingBeltItems[0]).focus}
-                </span>
-              </div>
-            </div>
+            );
+          })()}
           </div>
 
           <div className="mt-20 pt-12 border-t border-border">
@@ -669,8 +674,8 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
 
           <div className="relative w-full h-[420px] sm:h-[520px] lg:h-[580px] bg-card border border-border overflow-hidden shadow-2xl rounded-md">
             <img 
-              src={(activeHotspot || facilityHotspots[0]).image} 
-              alt={(activeHotspot || facilityHotspots[0]).name} 
+              src={activeHotspot.image} 
+              alt={activeHotspot.name} 
               className="w-full h-full object-cover brightness-[0.7] contrast-105 transition-all duration-700" 
             />
             
@@ -708,18 +713,18 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                 <div className="lg:col-span-8 space-y-2">
                   <div className="inline-flex items-center gap-2">
                     <span className="text-xs font-black text-primary uppercase tracking-widest font-oswald">
-                      FACILITY {(activeHotspot || facilityHotspots[0]).num}
+                      FACILITY {(activeHotspot ?? facilityHotspots[0]!).num}
                     </span>
                     <span className="text-xs text-muted-foreground">•</span>
                     <span className="text-xs font-bold text-muted-foreground uppercase font-sans">
-                      {(activeHotspot || facilityHotspots[0]).sub}
+                      {(activeHotspot ?? facilityHotspots[0]!).sub}
                     </span>
                   </div>
                   <h3 className="text-xl sm:text-3xl font-black text-foreground font-oswald uppercase">
-                    {(activeHotspot || facilityHotspots[0]).name}
+                    {(activeHotspot ?? facilityHotspots[0]!).name}
                   </h3>
                   <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-medium">
-                    {(activeHotspot || facilityHotspots[0]).desc}
+                    {activeHotspot.desc}
                   </p>
                 </div>
 
@@ -728,7 +733,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                     KEY EQUIPMENT & SPECIFICATIONS:
                   </span>
                   <div className="grid grid-cols-1 gap-1.5">
-                    {(activeHotspot || facilityHotspots[0]).specs.map((spec, sIdx) => (
+                    {activeHotspot.specs.map((spec, sIdx) => (
                       <div key={sIdx} className="flex items-center gap-2 text-xs text-foreground font-semibold">
                         <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                         <span>{spec}</span>

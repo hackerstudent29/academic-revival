@@ -1,303 +1,216 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
-const levels = [
-  { label: "Undergraduates", to: "/admissions", search: { level: "Undergraduate" } },
-  { label: "Postgraduates", to: "/admissions", search: { level: "Postgraduate" } },
-  { label: "Doctorate", to: "/admissions", search: { level: "Doctorate" } },
-] as const;
+const EASE_APPLE = [0.16, 1, 0.3, 1] as const;
 
-const EASE = [0.22, 1, 0.36, 1] as const;
-
-const container: Variants = {
+// Header Container Stagger
+const headerContainerVariants: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
+    },
+  },
 };
 
-const rise: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.85, ease: EASE } },
+// Header Text Items Reveal (Slide up + Fade + Blur reveal)
+const headerTextVariants: Variants = {
+  hidden: { opacity: 0, y: 28, filter: "blur(6px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: EASE_APPLE },
+  },
 };
 
-const sequence = [
+// Card Grid Container Stagger
+const cardGridVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.14,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+// Individual Card Reveal (Scale 0.96 -> 1 + Slide up 44px -> 0 + Blur 8px -> 0)
+const cardItemVariants: Variants = {
+  hidden: { opacity: 0, y: 44, scale: 0.96, filter: "blur(8px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: EASE_APPLE },
+  },
+};
+
+const degreeLevels = [
   {
     id: "ug",
-    subtitle: "Bachelor's Degrees",
     title: "UG Programmes",
-    content: (
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 list-disc pl-5 text-[0.95rem] leading-snug">
-        <li>Civil Engineering</li>
-        <li>Computer Science and Engineering</li>
-        <li>Electronics and Communication Engineering</li>
-        <li>Electrical and Electronics Engineering</li>
-        <li>Mechanical Engineering</li>
-        <li>Information Technology</li>
-        <li>Artificial Intelligence and Data Science</li>
-        <li>Computer Science and Business Systems</li>
-        <li>CSE (Cyber Security)</li>
-        <li>Artificial Intelligence and Machine Learning</li>
-        <li>Electronics and Communication Engineering (VLSI)</li>
-        <li>Electronics and Communication Engineering (ACT)</li>
-        <li>Bachelor of Architecture</li>
-        <li>Bachelor of Design</li>
-      </ul>
-    ),
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80&auto=format&fit=crop",
+    description: "Industry-aligned B.E., B.Tech & B.Arch degrees in AI, Data Science, Cyber Security, CSE, ECE & Mechanical.",
+    depts: [
+      "Civil Engineering",
+      "Computer Science & Engineering",
+      "Electronics & Comm. Engineering",
+      "Electrical & Electronics Engineering",
+      "Mechanical Engineering",
+      "Information Technology",
+      "AI & Data Science",
+      "CS & Business Systems",
+      "CSE (Cyber Security)",
+      "AI & Machine Learning",
+      "ECE (VLSI Design)",
+      "ECE (Adv. Communication)",
+      "Bachelor of Architecture",
+      "Bachelor of Design",
+    ],
+    search: { level: "Undergraduate", view: "table" },
+    cta: "Explore UG Degrees",
   },
   {
     id: "pg",
-    subtitle: "Master's Degrees",
     title: "PG Programmes",
-    content: (
-      <ul className="list-disc pl-5 space-y-1.5 text-[0.95rem]">
-        <li>M.E. Computer Science and Engineering</li>
-        <li>M.E. Structural Engineering</li>
-        <li>Master of Architecture (M.Arch)</li>
-      </ul>
-    ),
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80&auto=format&fit=crop",
+    description: "Advanced Master of Engineering and Architecture programs tailored for technical leadership & research.",
+    depts: [
+      "M.E. Computer Science & Engg",
+      "M.E. Structural Engineering",
+      "Master of Architecture",
+    ],
+    search: { level: "Postgraduate", view: "table" },
+    cta: "Explore PG Degrees",
   },
   {
     id: "phd",
-    subtitle: "Research & Innovation",
-    title: "Doctorate",
-    content: (
-      <ul className="list-disc pl-5 space-y-1.5 text-[0.95rem]">
-        <li>Ph.D. in Mechanical Engineering</li>
-      </ul>
-    ),
+    title: "Doctorate (Ph.D)",
+    image: "https://images.unsplash.com/photo-1507668077129-56e32842fceb?w=800&q=80&auto=format&fit=crop",
+    description: "Anna University recognized research center advancing doctoral research in Mechanical Engineering.",
+    depts: [
+      "Mechanical Engineering (Ph.D)",
+    ],
+    search: { level: "Research (Ph.D)", view: "table" },
+    cta: "Explore Ph.D Research",
   },
 ];
 
 export function AcademicProgrammesSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  const rawY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
-  const imageY = rawY;
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.14, 1.06, 1.14]);
-
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setActiveIndex((prev) => (prev + 1) % sequence.length);
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, [activeIndex]);
 
   return (
-    <>
-      <section
-        ref={sectionRef}
-        id="academic-programmes"
-        className="relative w-full bg-page-bg border-b border-border min-h-[100svh] flex flex-col justify-center py-16 text-foreground"
-      >
-        <div className="mx-auto w-full max-w-[1440px] px-8 md:px-16">
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-            className="flex w-full flex-col items-center gap-10 lg:flex-row lg:items-stretch lg:gap-16 xl:gap-20"
+    <section
+      ref={sectionRef}
+      id="academic-programmes"
+      className="relative w-full bg-page-bg border-b border-border py-14 lg:py-20 text-foreground overflow-hidden"
+    >
+      <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-16">
+        
+        {/* Section Header with Famous Blur & Slide Reveal */}
+        <motion.div
+          variants={headerContainerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-foreground/10 gap-4"
+        >
+          <motion.div variants={headerTextVariants} className="flex flex-col">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight text-primary font-oswald leading-none">
+              Programmes Offered
+            </h2>
+          </motion.div>
+          <motion.p
+            variants={headerTextVariants}
+            className="max-w-md text-xs sm:text-sm leading-relaxed text-muted-foreground font-sans"
           >
-            {/* Left image */}
-            <motion.div
-              variants={rise}
-              className="relative h-[300px] w-full shrink-0 overflow-hidden rounded-[4px] lg:h-auto lg:w-[44%]"
-            >
-              <motion.img
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
-                alt="MSAJCE students collaborating in a classroom"
-                loading="lazy"
-                style={{ y: imageY, scale: imageScale }}
-                className="absolute inset-0 h-full w-full object-cover will-change-transform"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  if (target.src !== '/images/eligibility_hero.jpg') {
-                    target.src = '/images/eligibility_hero.jpg';
-                  }
-                }}
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:bg-foreground/5" />
-              
-              {/* Mobile image overlay text */}
-              <div className="absolute bottom-6 left-6 right-6 text-white text-shadow-sm lg:hidden">
-                <h3 className="text-2xl font-bold font-display leading-tight mb-2">Global Innovators</h3>
-                <p className="text-sm font-medium text-white/90">Experience hands-on learning with an innovative curriculum designed to solve real-world challenges.</p>
-              </div>
-            </motion.div>
+            AICTE-approved & Anna University-affiliated degree pathways built for technical excellence and global careers.
+          </motion.p>
+        </motion.div>
 
-            {/* Right content - Desktop Slider */}
-            <div className="hidden lg:flex w-full flex-col justify-center lg:w-[56%]">
-              <motion.div variants={rise} className="relative w-full">
-                {/* Ghost element to reserve max height dynamically */}
-                <div className="invisible pointer-events-none opacity-0 select-none" aria-hidden="true">
-                  <span className="text-sm font-bold tracking-wide">
-                    {sequence[0]!.subtitle}
-                  </span>
-                  <h2 className="mt-4 text-4xl font-medium leading-[1.1] tracking-tight md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem]">
-                    {sequence[0]!.title}
-                  </h2>
-                  <div className="mt-5 max-w-xl text-lg leading-relaxed">
-                    {sequence[0]!.content}
+        {/* 3-Column Degree Cards with Famous Framer Motion Staggered Scale-Blur Reveal */}
+        <motion.div 
+          variants={cardGridVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch"
+        >
+          {degreeLevels.map((lvl) => {
+            return (
+              <motion.div
+                key={lvl.id}
+                variants={cardItemVariants}
+                className="relative flex flex-col justify-between bg-[#F3F3F2] dark:bg-[#121214] border border-border rounded-[4px] shadow-xs hover:border-foreground/30 transition-shadow duration-300 hover:shadow-xl overflow-hidden h-[485px]"
+              >
+                {/* Upper Card Container (Hover Trigger for overlay, stops ABOVE button) */}
+                <div className="group/upper relative flex-1 flex flex-col justify-between overflow-hidden">
+                  {/* 1. Default Top Half (Prominent Image Showcase) */}
+                  <div className="relative w-full h-[265px] overflow-hidden bg-muted border-b border-border shrink-0">
+                    <img
+                      src={lvl.image}
+                      alt={lvl.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  {/* Ghost Buttons */}
-                  <div className="mt-8 flex flex-wrap gap-3">
-                    <div className="px-6 py-3.5 text-sm font-bold">Find a Programme &raquo;</div>
-                    <div className="px-6 py-3.5 text-sm font-bold">Admissions Information &raquo;</div>
+
+                  {/* 2. Default Content Above Button */}
+                  <div className="flex-1 p-5 flex flex-col justify-start bg-[#F3F3F2] dark:bg-[#121214]">
+                    <h3 className="text-2xl font-bold uppercase tracking-tight text-foreground font-oswald mb-1.5 group-hover/upper:text-primary transition-colors">
+                      {lvl.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground font-sans leading-relaxed">
+                      {lvl.description}
+                    </p>
+                  </div>
+
+                  {/* 3. Smooth Slide-Up Overlay on Hover */}
+                  <div className="absolute inset-0 bg-[#F3F3F2] dark:bg-[#121214] text-foreground dark:text-white p-5 flex flex-col justify-between z-20 translate-y-full group-hover/upper:translate-y-0 transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] border-b border-border shadow-xl overflow-hidden">
+                    <div className="flex-1 flex flex-col overflow-hidden">
+                      <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-primary font-oswald mb-3 border-b border-foreground/10 pb-2 shrink-0">
+                        {lvl.title}
+                      </h3>
+
+                      {/* Department Names List (Clean single column, Libre Franklin secondary font) */}
+                      <div className="flex-1 flex flex-col justify-start gap-2.5 py-1 overflow-hidden font-sans text-xs sm:text-[12.5px] font-semibold text-foreground dark:text-white/90">
+                        {lvl.depts.map((dept, idx) => (
+                          <div
+                            key={idx}
+                            className="flex items-center gap-2.5 truncate"
+                            title={dept}
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                            <span className="truncate leading-tight">{dept}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <AnimatePresence initial={false}>
-                  <motion.div
-                    key={sequence[activeIndex]!.id}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.4, ease: EASE }}
-                    className="absolute inset-x-0 top-0 flex flex-col"
-                  >
-                    <span className="text-xs font-bold tracking-widest text-primary uppercase font-oswald block">
-                      {sequence[activeIndex]!.subtitle}
-                    </span>
-
-                    <h2 className="mt-2 text-4xl font-bold uppercase leading-[1.1] tracking-tight text-primary font-oswald md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem]">
-                      {sequence[activeIndex]!.title}
-                    </h2>
-
-                    <div className="mt-5 max-w-xl text-base md:text-lg leading-relaxed text-muted-foreground font-sans">
-                      {sequence[activeIndex]!.content}
-                    </div>
-
-                    <div className="mt-8 flex flex-wrap gap-3">
-                      {[
-                        { to: "/programmes", label: "Find a Programme" },
-                        { to: "/admissions", label: "Admissions Information" },
-                      ].map((cta) => (
-                        <motion.div
-                          key={cta.label}
-                          whileHover={{ y: -3 }}
-                          whileTap={{ scale: 0.97 }}
-                          transition={{ type: "spring", stiffness: 420, damping: 26 }}
-                        >
-                          <Link
-                            to={cta.to}
-                            className="group relative overflow-hidden inline-flex items-center justify-center bg-primary px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-primary-foreground font-oswald shadow-md transition-colors hover:text-white after:absolute after:inset-0 after:top-full after:bg-foreground after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
-                          >
-                            <span className="relative z-10">{cta.label} &raquo;</span>
-                          </Link>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </motion.div>
-            </div>
-
-            {/* Right content - Mobile Static Cards */}
-            <div className="flex w-full flex-col justify-center lg:hidden">
-              <motion.div variants={rise} className="mb-10">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-primary mb-3 block">
-                  Studying at MSAJCE
-                </span>
-                <h2 className="text-3xl font-bold leading-[1.1] tracking-tight text-foreground md:text-4xl font-display">
-                  Academic Excellence <br/> Across Disciplines
-                </h2>
-                <p className="mt-4 max-w-xl text-[0.95rem] leading-relaxed text-foreground/70">
-                  Our innovative curriculum equips students with critical thinking, leadership skills, and a global perspective, preparing them to excel in rapidly evolving industries.
-                </p>
-              </motion.div>
-
-              <div className="flex flex-col gap-4">
-                <motion.div variants={rise} className="group relative overflow-hidden rounded-[4px] border border-foreground/10 bg-background/50 p-5 transition-colors hover:bg-background">
-                  <h3 className="text-[1.15rem] font-bold text-primary mb-1.5">UG Programmes</h3>
-                  <p className="text-[13px] text-foreground/70 mb-3 line-clamp-2">
-                    14 specialized programs including Artificial Intelligence, Cyber Security, and core engineering disciplines.
-                  </p>
-                  <Link to="/programmes" className="inline-flex items-center text-[13px] font-bold text-primary group-hover:underline">
-                    Explore UG Degrees <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
-                  </Link>
-                </motion.div>
-
-                <motion.div variants={rise} className="group relative overflow-hidden rounded-[4px] border border-foreground/10 bg-background/50 p-5 transition-colors hover:bg-background">
-                  <h3 className="text-[1.15rem] font-bold text-primary mb-1.5">PG Programmes</h3>
-                  <p className="text-[13px] text-foreground/70 mb-3 line-clamp-2">
-                    Advanced technical education and specialized master's programs in Computer Science, Structural Engineering, and Architecture.
-                  </p>
-                  <Link to="/programmes" className="inline-flex items-center text-[13px] font-bold text-primary group-hover:underline">
-                    Explore PG Degrees <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
-                  </Link>
-                </motion.div>
-
-                <motion.div variants={rise} className="group relative overflow-hidden rounded-[4px] border border-foreground/10 bg-background/50 p-5 transition-colors hover:bg-background">
-                  <h3 className="text-[1.15rem] font-bold text-primary mb-1.5">Doctorate</h3>
-                  <p className="text-[13px] text-foreground/70 mb-3 line-clamp-2">
-                    Push the boundaries of knowledge and innovation with our dedicated research centers and expert faculty.
-                  </p>
-                  <Link to="/programmes" className="inline-flex items-center text-[13px] font-bold text-primary group-hover:underline">
-                    Explore Ph.D Programmes <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
-                  </Link>
-                </motion.div>
-              </div>
-
-              <motion.div variants={rise} className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  to="/programmes"
-                  className="inline-flex items-center justify-center bg-primary px-6 py-3 text-[12px] font-bold uppercase tracking-wide text-primary-foreground shadow-sm transition-all hover:bg-primary/90"
-                >
-                  All Programmes
-                </Link>
-                <Link
-                  to="/admissions"
-                  search={{} as any}
-                  className="inline-flex items-center justify-center border border-foreground/20 bg-transparent px-6 py-3 text-[12px] font-bold uppercase tracking-wide text-foreground transition-all hover:bg-foreground/5"
-                >
-                  Admissions Info
-                </Link>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.9, ease: EASE }}
-          className="mx-auto mt-12 flex w-full max-w-[1440px] justify-start px-8 md:px-16 lg:mt-16"
-        >
-          <div className="flex w-full flex-col items-start justify-between gap-6 border-t-[6px] border-foreground/40 bg-foreground/[0.07] p-6 text-foreground md:p-8 lg:p-10 xl:flex-row xl:items-center">
-            <h3 className="max-w-sm text-xl font-bold leading-tight md:text-2xl">
-              Explore programmes by academic levels
-            </h3>
-
-            <motion.div
-              variants={container}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.5 }}
-              className="flex flex-wrap items-center gap-3"
-            >
-              {levels.map((l) => (
-                <motion.div
-                  key={l.label}
-                  variants={rise}
-                >
+                {/* Permanent Bottom Button */}
+                <div className="p-5 pt-3 z-30 bg-[#F3F3F2] dark:bg-[#121214] border-t border-border">
                   <Link
-                    to={l.to}
-                    search={l.search}
-                    className="group relative overflow-hidden inline-flex w-full items-center justify-center border border-primary px-5 py-2.5 text-sm font-medium text-primary transition-colors hover:text-background after:absolute after:inset-0 after:top-full after:bg-primary after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0"
+                    to="/programmes-offered"
+                    search={lvl.search as any}
+                    className="group/btn relative overflow-hidden inline-flex items-center justify-center border border-border hover:border-primary/60 px-5 py-3 text-xs font-bold uppercase tracking-wider text-primary font-oswald shadow-xs transition-colors hover:text-primary-foreground after:absolute after:inset-0 after:top-full after:bg-primary after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0 rounded-xs w-full text-center"
                   >
-                    <span className="relative z-10">{l.label} &raquo;</span>
+                    <span className="relative z-10 flex items-center justify-center gap-1.5">
+                      {lvl.cta} &raquo;
+                    </span>
                   </Link>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
-      </section>
-    </>
+
+      </div>
+    </section>
   );
 }

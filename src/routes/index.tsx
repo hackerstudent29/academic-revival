@@ -13,6 +13,7 @@ import { RotatingWord } from "@/components/typography/RotatingWord";
 import { TestimonialSection } from "@/components/sections/home/TestimonialSection";
 import { NewsAndEventsSection } from "@/components/sections/home/NewsAndEventsSection";
 import { ContactSection } from "@/components/sections/contact/ContactSection";
+import { SocialMediaSection } from "@/components/sections/home/SocialMediaSection";
 import { CampusVideoReveal } from "@/components/widgets/CampusVideoReveal";
 import { ChatbotWidget } from "@/components/widgets/ChatbotWidget";
 
@@ -186,6 +187,8 @@ export function HomePage() {
       <CampusVideoReveal />
 
       <TestimonialSection />
+
+      <SocialMediaSection />
 
       <ContactSection />
       <ChatbotWidget />

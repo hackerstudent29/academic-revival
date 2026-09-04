@@ -27,7 +27,7 @@ function CriterionDetail() {
       {/* HEADER */}
       <div className="bg-card border-b border-border py-8 md:py-12">
         <div className="mx-auto max-w-[1000px] px-6 md:px-12 w-full">
-          <Reveal variant="slide-up">
+          <Reveal variant="rise">
             <Link to="/naac" className="inline-flex items-center text-sm font-bold uppercase tracking-widest font-mono text-muted-foreground hover:text-primary transition-colors mb-8">
               <ArrowLeft className="w-4 h-4 mr-2" /> NAAC / CRITERIA / {criterion.number}
             </Link>
@@ -65,7 +65,7 @@ function CriterionDetail() {
 
         <div className="space-y-6">
           {criterion.metrics.map((metric, idx) => (
-            <Reveal key={idx} variant="slide-up" delay={idx * 0.05}>
+            <Reveal key={idx} variant="rise" delay={idx * 0.05}>
               <div className="bg-card border border-border p-6 md:p-8 rounded-sm hover:border-primary/50 transition-colors shadow-sm">
                 
                 {/* Metric Header */}

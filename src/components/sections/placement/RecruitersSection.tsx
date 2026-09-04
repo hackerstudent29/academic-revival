@@ -152,7 +152,7 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
     }
   ];
 
-  const activeEcosystem = ecosystemItems.find(item => item.id === activeEcosystemId) || ecosystemItems[0];
+  const activeEcosystem = ecosystemItems.find(item => item.id === activeEcosystemId) ?? ecosystemItems[0]!;
 
   const pathwayStages = [
     {
@@ -205,6 +205,8 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
       icon: Briefcase
     }
   ];
+
+  const activeStage = pathwayStages[activeStageIdx] ?? pathwayStages[0]!;
 
   const majorRecruiters = [
     { name: 'Tata Consultancy Services', category: 'IT & Consulting' },
@@ -637,10 +639,10 @@ export const RecruitersSection: React.FC<RecruitersSectionProps> = ({ onNavigate
           <div className="mt-8 p-6 bg-page-bg border border-border flex flex-col sm:flex-row items-center justify-between gap-4 rounded-md">
             <div className="space-y-1 text-center sm:text-left">
               <span className="text-xs font-bold text-primary uppercase tracking-wider font-oswald">
-                STAGE {(pathwayStages[activeStageIdx] || pathwayStages[0]).num} — {(pathwayStages[activeStageIdx] || pathwayStages[0]).word} ({(pathwayStages[activeStageIdx] || pathwayStages[0]).title})
+                STAGE {(activeStage ?? pathwayStages[0]!).num} — {(activeStage ?? pathwayStages[0]!).word} ({(activeStage ?? pathwayStages[0]!).title})
               </span>
               <p className="text-sm font-medium text-foreground font-sans">
-                {(pathwayStages[activeStageIdx] || pathwayStages[0]).text}
+                {(activeStage ?? pathwayStages[0]!).text}
               </p>
             </div>
 

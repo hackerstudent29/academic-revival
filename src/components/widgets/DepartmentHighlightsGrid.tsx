@@ -18,7 +18,7 @@ const itemVariants = {
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { type: "spring", stiffness: 300, damping: 24 }
+    transition: { type: "spring" as const, stiffness: 300, damping: 24 }
   }
 };
 
@@ -53,7 +53,7 @@ export function DepartmentHighlightsGrid({ course }: { course?: Course }) {
         animate="visible"
       >
         {/* Duration */}
-        <motion.div variants={itemVariants} className="col-span-1 md:col-span-2 border-r border-b border-border/60 p-6 md:p-8 flex flex-col justify-center bg-transparent group hover:bg-foreground/[0.02] transition-colors">
+        <motion.div variants={itemVariants} className="col-span-1 md:col-span-2 border-r border-b border-border/60 p-4 sm:p-6 md:p-8 flex flex-col justify-center bg-transparent group hover:bg-foreground/[0.02] transition-colors">
           <div className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-primary mb-3">Duration</div>
           <div className="text-lg md:text-xl font-bold text-foreground leading-tight">
             {isPG ? (
@@ -65,7 +65,7 @@ export function DepartmentHighlightsGrid({ course }: { course?: Course }) {
         </motion.div>
 
         {/* Semesters */}
-        <motion.div variants={itemVariants} className="col-span-1 md:col-span-1 border-r border-b border-border/60 p-6 md:p-8 flex flex-col justify-center bg-transparent group hover:bg-foreground/[0.02] transition-colors">
+        <motion.div variants={itemVariants} className="col-span-1 md:col-span-1 border-r border-b border-border/60 p-4 sm:p-6 md:p-8 flex flex-col justify-center bg-transparent group hover:bg-foreground/[0.02] transition-colors">
           <div className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-primary mb-3">Semesters</div>
           <div className="text-lg md:text-xl font-bold text-foreground leading-tight">
             {isPG ? (
@@ -77,14 +77,14 @@ export function DepartmentHighlightsGrid({ course }: { course?: Course }) {
         </motion.div>
 
         {/* Intake */}
-        <motion.div variants={itemVariants} className="col-span-1 md:col-span-1 border-r border-b border-border/60 p-6 md:p-8 flex flex-col justify-center bg-transparent group hover:bg-foreground/[0.02] transition-colors">
+        <motion.div variants={itemVariants} className="col-span-1 md:col-span-1 border-r border-b border-border/60 p-4 sm:p-6 md:p-8 flex flex-col justify-center bg-transparent group hover:bg-foreground/[0.02] transition-colors">
           <div className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-primary mb-3">Intake / Seats</div>
           <div className="text-3xl md:text-4xl font-black text-foreground mb-1">{intakeTotal}</div>
           <div className="text-sm font-medium text-muted-foreground leading-tight">Government - {intakeGovt}<br/>Management - {intakeMgmt}</div>
         </motion.div>
 
         {/* Eligibility */}
-        <motion.div variants={itemVariants} className="col-span-1 md:col-span-4 border-r border-b border-border/60 p-6 md:p-8 bg-transparent group hover:bg-foreground/[0.02] transition-colors">
+        <motion.div variants={itemVariants} className="col-span-1 md:col-span-4 border-r border-b border-border/60 p-4 sm:p-6 md:p-8 bg-transparent group hover:bg-foreground/[0.02] transition-colors">
           <div className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-primary mb-3">Eligibility</div>
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-4xl">
             {eligibilityText}
@@ -92,7 +92,7 @@ export function DepartmentHighlightsGrid({ course }: { course?: Course }) {
         </motion.div>
 
         {/* Curriculum & Syllabus */}
-        <motion.div variants={itemVariants} className="col-span-1 md:col-span-2 border-r border-b border-border/60 p-6 md:p-8 bg-transparent group hover:bg-foreground/[0.02] transition-colors">
+        <motion.div variants={itemVariants} className="col-span-1 md:col-span-2 border-r border-b border-border/60 p-4 sm:p-6 md:p-8 bg-transparent group hover:bg-foreground/[0.02] transition-colors">
           <div className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-primary mb-4">Curriculum & Syllabus</div>
           <div className="flex flex-col sm:flex-row gap-4">
             <a href="https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-between px-4 py-3 border border-border/60 rounded-sm hover:border-primary text-sm font-bold transition-all group/link">

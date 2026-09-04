@@ -207,12 +207,13 @@ export function ScrollReelTestimonials({
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartY.current = e.touches[0].clientY;
+    touchStartY.current = e.touches[0]?.clientY ?? null;
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (touchStartY.current === null) return;
-    const touchEndY = e.changedTouches[0].clientY;
+    const touchEndY = e.changedTouches[0]?.clientY;
+    if (touchEndY === undefined) return;
     const deltaY = touchStartY.current - touchEndY;
 
     if (Math.abs(deltaY) > 40) {
@@ -238,17 +239,18 @@ export function ScrollReelTestimonials({
   }, [isHovered, paginate]);
 
   const middleItems = React.useMemo(() => {
-    const items: Array<{ type: "cell", src: string } | { type: "featured"; i: number }> = [];
+    const items: Array<{ type: "cell"; src: string } | { type: "featured"; i: number }> = [];
     let imgIdx = 0;
-    for (let i = 0; i < 3; i++) items.push({ type: "cell", src: testimonials[imgIdx++ % count].image });
+    const getItem = (idx: number) => testimonials[idx % count] ?? testimonials[0]!;
+    for (let i = 0; i < 3; i++) items.push({ type: "cell", src: getItem(imgIdx++).image });
     testimonials.forEach((_, i) => {
       items.push({ type: "featured", i });
       if (i < count - 1) {
-        items.push({ type: "cell", src: testimonials[imgIdx++ % count].image });
-        items.push({ type: "cell", src: testimonials[imgIdx++ % count].image });
+        items.push({ type: "cell", src: getItem(imgIdx++).image });
+        items.push({ type: "cell", src: getItem(imgIdx++).image });
       }
     });
-    for (let i = 0; i < 3; i++) items.push({ type: "cell", src: testimonials[imgIdx++ % count].image });
+    for (let i = 0; i < 3; i++) items.push({ type: "cell", src: getItem(imgIdx++).image });
     return items;
   }, [testimonials, count]);
 
@@ -262,7 +264,7 @@ export function ScrollReelTestimonials({
     transition: mounted ? `transform ${SLIDE_MS}ms ${EASE_INOUT}` : "none",
   });
 
-  const current = testimonials[displayIndex];
+  const current = testimonials[displayIndex] ?? testimonials[0]!;
 
   return (
     <div
@@ -299,7 +301,7 @@ export function ScrollReelTestimonials({
             style={colStyle(sideY)}
           >
             {Array.from({ length: sideCellCount }).map((_, i) => (
-              <Cell key={`l-${i}`} src={testimonials[(i * 3) % count].image} />
+              <Cell key={`l-${i}`} src={(testimonials[(i * 3) % count] ?? testimonials[0]!).image} />
             ))}
           </div>
 
@@ -307,17 +309,19 @@ export function ScrollReelTestimonials({
             className="flex shrink-0 flex-col gap-3 will-change-transform motion-reduce:[transition:none!important]"
             style={colStyle(middleY)}
           >
-            {middleItems.map((item, i) =>
-              item.type === "featured" ? (
-                <Featured
-                  key={`m-${i}`}
-                  src={testimonials[item.i].image}
-                  alt={testimonials[item.i].alt}
-                />
-              ) : (
-                <Cell key={`mc-${i}`} src={item.src} />
-              )
-            )}
+            {middleItems.map((item, i) => {
+              if (item.type === "featured") {
+                const feat = testimonials[item.i] ?? testimonials[0]!;
+                return (
+                  <Featured
+                    key={`m-${i}`}
+                    src={feat.image}
+                    alt={feat.alt ?? ""}
+                  />
+                );
+              }
+              return <Cell key={`mc-${i}`} src={item.src} />;
+            })}
           </div>
 
           <div
@@ -325,7 +329,7 @@ export function ScrollReelTestimonials({
             style={colStyle(sideY)}
           >
             {Array.from({ length: sideCellCount }).map((_, i) => (
-              <Cell key={`r-${i}`} src={testimonials[(i * 5 + 7) % count].image} />
+              <Cell key={`r-${i}`} src={(testimonials[(i * 5 + 7) % count] ?? testimonials[0]!).image} />
             ))}
           </div>
         </div>

@@ -105,7 +105,7 @@ function AdmissionsProcedurePage() {
 
       <section className="mx-auto max-w-[1200px] px-6 py-24 md:px-12 md:py-32">
         {/* Before you apply note */}
-        <Reveal variant="rise" viewport={{ once: true }}>
+        <Reveal variant="rise">
           <div className="mb-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 py-8 border-y border-border">
             <div className="flex flex-col gap-2">
               <h3 className="text-lg md:text-xl font-black uppercase tracking-tight text-foreground flex items-center gap-2">
@@ -128,7 +128,7 @@ function AdmissionsProcedurePage() {
           </div>
         </Reveal>
 
-        <Stagger gap={0.09} className="flex flex-col gap-0 border-t border-border" viewport={{ once: true }}>
+        <Stagger gap={0.09} className="flex flex-col gap-0 border-t border-border">
           {procedureSteps.map((step) => (
             <StaggerItem key={step.index}>
               <a 
@@ -163,7 +163,7 @@ function AdmissionsProcedurePage() {
         </Stagger>
 
         {/* Helpdesk / contact block */}
-        <Reveal variant="rise" viewport={{ once: true }}>
+        <Reveal variant="rise">
           <div className="mt-24 grid md:grid-cols-2 gap-12 pt-12">
             <div>
               <h3 className="text-3xl font-black uppercase tracking-tight text-foreground mb-4">Need Help?</h3>
@@ -201,7 +201,7 @@ function AdmissionsProcedurePage() {
         </Reveal>
 
         {/* Closing CTA row */}
-        <Reveal variant="rise" viewport={{ once: true }}>
+        <Reveal variant="rise">
           <div className="mt-16 flex flex-col sm:flex-row items-center gap-6 pt-12 border-t border-border">
             <Magnetic>
               <a 

@@ -79,7 +79,7 @@ const accreditationsData = [
 ];
 
 export function AccreditationsPage() {
-  const [activeTab, setActiveTab] = useState(accreditationsData[0].id);
+  const [activeTab, setActiveTab] = useState(accreditationsData[0]!.id);
 
   useEffect(() => {
     // Read the hash on mount
@@ -100,7 +100,7 @@ export function AccreditationsPage() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const activeData = accreditationsData.find(a => a.id === activeTab) || accreditationsData[0];
+  const activeData = (accreditationsData.find(a => a.id === activeTab) || accreditationsData[0])!;
   const Icon = activeData.icon;
 
   return (
@@ -140,7 +140,7 @@ export function AccreditationsPage() {
 
       {/* Main Content Sections */}
       <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-24">
-        <Reveal key={activeData.id} variant="slide-up">
+        <Reveal key={activeData.id} variant="rise">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start min-h-[500px]">
             
             {/* Left Column: Title, Icon, and Image */}

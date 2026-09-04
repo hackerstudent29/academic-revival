@@ -1,4 +1,6 @@
 import { Outlet, createFileRoute, Link, useLocation } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import { useHeader } from "@/context/HeaderContext";
 
 export const Route = createFileRoute("/naac")({
   component: NaacLayout,
@@ -6,6 +8,7 @@ export const Route = createFileRoute("/naac")({
 
 function NaacSecondaryNav() {
   const { pathname } = useLocation();
+  const { isHeaderHidden, isScrolled } = useHeader();
   
   const navItems = [
     { label: "Overview", path: "/naac" },
@@ -18,8 +21,17 @@ function NaacSecondaryNav() {
     { label: "IQAC", path: "/naac/iqac" },
   ];
 
+  const shouldShiftDown = !isHeaderHidden && isScrolled;
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const shiftAmount = isMobile ? 57 : 65;
+
   return (
-    <div className="sticky top-[64px] lg:top-[80px] z-40 w-full bg-background/95 backdrop-blur-md border-b border-border/40 shadow-sm">
+    <motion.div
+      initial={false}
+      animate={{ y: shouldShiftDown ? shiftAmount : 0 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      className="sticky top-0 z-40 w-full bg-background/80 backdrop-blur-xl border-b border-foreground/10 shadow-sm"
+    >
       <div className="mx-auto max-w-[1440px] px-6 md:px-12 h-14 flex items-center overflow-x-auto no-scrollbar">
         <div className="flex items-center gap-6 md:gap-8 min-w-max">
           <Link to="/naac" className="font-oswald font-black text-primary tracking-wider uppercase text-sm md:text-base border-r-[3px] border-primary/20 pr-6 mr-2 transition-opacity hover:opacity-80">
@@ -38,7 +50,7 @@ function NaacSecondaryNav() {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

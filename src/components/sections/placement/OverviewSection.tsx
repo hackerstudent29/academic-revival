@@ -349,28 +349,28 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
                 
                 <div className="relative h-[280px] sm:h-[340px] rounded-md overflow-hidden shadow-md border border-border group">
                   <img 
-                    src={archedTrioImages[0].url} 
-                    alt={archedTrioImages[0].title}
+                    src={(archedTrioImages[0] ?? archedTrioImages[0]!).url} 
+                    alt={(archedTrioImages[0] ?? archedTrioImages[0]!).title}
                     className="w-full h-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-3 left-2 right-2 text-center text-white">
                     <p className="text-[11px] font-bold leading-tight font-oswald">
-                      {archedTrioImages[0].title}
+                      {(archedTrioImages[0] ?? archedTrioImages[0]!).title}
                     </p>
                   </div>
                 </div>
 
                 <div className="relative h-[320px] sm:h-[380px] rounded-md overflow-hidden shadow-lg border border-primary/40 group">
                   <img 
-                    src={archedTrioImages[1].url} 
-                    alt={archedTrioImages[1].title}
+                    src={(archedTrioImages[1] ?? archedTrioImages[0]!).url} 
+                    alt={(archedTrioImages[1] ?? archedTrioImages[0]!).title}
                     className="w-full h-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-4 left-2 right-2 text-center text-white">
                     <p className="text-xs font-black leading-tight font-oswald">
-                      {archedTrioImages[1].title}
+                      {(archedTrioImages[1] ?? archedTrioImages[0]!).title}
                     </p>
                     <p className="text-[10px] text-white/80 font-medium mt-0.5 font-sans">
                       MSAJCE Excellence
@@ -380,14 +380,14 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
 
                 <div className="relative h-[280px] sm:h-[340px] rounded-md overflow-hidden shadow-md border border-border group">
                   <img 
-                    src={archedTrioImages[2].url} 
-                    alt={archedTrioImages[2].title}
+                    src={(archedTrioImages[2] ?? archedTrioImages[0]!).url} 
+                    alt={(archedTrioImages[2] ?? archedTrioImages[0]!).title}
                     className="w-full h-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-3 left-2 right-2 text-center text-white">
                     <p className="text-[11px] font-bold leading-tight font-oswald">
-                      {archedTrioImages[2].title}
+                      {(archedTrioImages[2] ?? archedTrioImages[0]!).title}
                     </p>
                   </div>
                 </div>
@@ -537,7 +537,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
               </p>
 
               {(() => {
-                const current = ecosystemPillars[activeEcosystemPillar] || ecosystemPillars[0];
+                const current = ecosystemPillars[activeEcosystemPillar] ?? ecosystemPillars[0]!;
                 return (
                   <div className="space-y-4 pt-4 p-6 bg-page-bg shadow-sm border border-primary/30 rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs">
                     <div className="flex items-center gap-2">
@@ -580,7 +580,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
             
             <div className="lg:col-span-5 flex justify-center items-center">
               {(() => {
-                const current = destinations[activeDestination] || destinations[0];
+                const current = destinations[activeDestination] ?? destinations[0]!;
                 const DestinationIcon = current.icon;
                 return (
                   <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[440px] sm:h-[500px] rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden shadow-xl border border-border bg-card group">
@@ -647,7 +647,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
               </div>
 
               {(() => {
-                const current = destinations[activeDestination] || destinations[0];
+                const current = destinations[activeDestination] ?? destinations[0]!;
                 return (
                   <div className="space-y-4 pt-2">
                     <div className="space-y-1 border-l-4 border-primary pl-4">
@@ -692,10 +692,10 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
 
               <div className="pt-2">
                 <button
-                  onClick={() => onNavigate((destinations[activeDestination] || destinations[0]).navTarget)}
-                  className="px-6 py-3.5 rounded-sm border border-border bg-card hover:bg-primary hover:text-white text-foreground text-xs font-extrabold tracking-wider uppercase transition-all duration-200 shadow-xs cursor-pointer inline-flex items-center gap-2 font-oswald"
+                  onClick={() => onNavigate((destinations[activeDestination] ?? destinations[0]!).navTarget)}
+                  className="px-6 py-3.5 rounded-sm border border-border bg-card hover:bg-primary hover:text-primary-foreground text-foreground text-xs font-extrabold tracking-wider uppercase transition-all duration-200 shadow-xs cursor-pointer inline-flex items-center gap-2 font-oswald"
                 >
-                  <span>{(destinations[activeDestination] || destinations[0]).btnLabel}</span>
+                  <span>{(destinations[activeDestination] ?? destinations[0]!).btnLabel}</span>
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </div>

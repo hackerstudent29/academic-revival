@@ -4,13 +4,14 @@ import { AnimatePresence, motion, useScroll, useMotionValueEvent, useTransform }
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
 import { Logo } from "@/components/shared/Logo";
 import { MoreHorizontal, X, ChevronDown } from "lucide-react";
+import { useHeader } from "@/context/HeaderContext";
 
 type RoutePath = any;
 
 type Col = { title: string; links: { label: string; to?: RoutePath; href?: string; hash?: string; search?: any }[] };
 type NavItem = { id: string; label: string; to: RoutePath; cols?: Col[] };
 
-const APPLE_EASE = [0.32, 0.72, 0, 1] as const;
+const APPLE_EASE = [0.22, 1, 0.36, 1] as const;
 
 const nav: NavItem[] = [
   {
@@ -168,6 +169,7 @@ const nav: NavItem[] = [
           { label: "Our Alumni", to: "/campus-life" },
           { label: "Convocation", to: "/campus-life" },
           { label: "Campus Happenings", to: "/campus-life" },
+          { label: "Social Media Directory", to: "/social-media" },
         ],
       },
     ],
@@ -246,11 +248,16 @@ const moreMenuData = [
 ];
 
 export function SiteHeader() {
+  const { setHeaderHidden, setIsScrolled: setHeaderScrolled } = useHeader();
   const [active, setActive] = useState<string | null>(null);
   const [moreOpen, setMoreOpen] = useState(false);
   const [activePanel, setActivePanel] = useState<string>("main");
   const [hidden, setHidden] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    setHeaderHidden(hidden);
+  }, [hidden, setHeaderHidden]);
 
   const { scrollY } = useScroll();
 
@@ -269,21 +276,30 @@ export function SiteHeader() {
   const lastScrollY = useRef(0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 80);
+    const scrolled = latest > 60;
+    setIsScrolled(scrolled);
+    setHeaderScrolled(scrolled);
     
-    if (latest < 150) {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const minScroll = isMobile ? 35 : 50;
+    const delta = isMobile ? 4 : 8;
+
+    if (latest < minScroll) {
       setHidden(false);
+      setHeaderHidden(false);
       lastScrollY.current = latest;
       return;
     }
 
-    if (latest > lastScrollY.current + 15) {
+    if (latest > lastScrollY.current + delta) {
       if (!moreOpen && !active) {
         setHidden(true);
+        setHeaderHidden(true);
       }
       lastScrollY.current = latest;
-    } else if (latest < lastScrollY.current - 15) {
+    } else if (latest < lastScrollY.current - delta) {
       setHidden(false);
+      setHeaderHidden(false);
       lastScrollY.current = latest;
     }
   });
@@ -328,7 +344,7 @@ export function SiteHeader() {
           hidden: { y: "-100%", opacity: 0 }
         }}
         animate={hidden ? "hidden" : "visible"}
-        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.35, ease: APPLE_EASE }}
         className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
           active || moreOpen || isScrolled 
             ? "border-foreground/10 bg-background/80 backdrop-blur-xl" 
@@ -390,30 +406,10 @@ export function SiteHeader() {
             <Link
               to="/admissions"
               search={{} as any}
-              className={`group relative hidden overflow-hidden whitespace-nowrap rounded-none shadow sm:inline-flex items-center justify-center border border-primary transition-colors duration-500 ${showCode ? "bg-background" : "bg-primary"}`}
+              className="group relative hidden overflow-hidden whitespace-nowrap sm:inline-flex items-center justify-center border border-primary px-5 py-2.5 text-[11px] xl:text-[13px] font-bold uppercase tracking-wide text-primary transition-colors hover:text-primary-foreground after:absolute after:inset-0 after:top-full after:bg-primary after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0 rounded-xs shadow-xs"
               onClick={closeAll}
             >
-              {/* Invisible placeholder dictates the original button size */}
-              <span className="invisible px-5 py-2.5 text-[11px] xl:text-[13px] font-bold uppercase tracking-wide">
-                Apply 2026-27
-              </span>
-              
-              <motion.div 
-                className="absolute inset-x-0 top-0 flex flex-col"
-                animate={{ y: showCode ? "-50%" : "0%" }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <div className="flex w-full items-center justify-center px-5 py-2.5">
-                  <span className={`text-[11px] xl:text-[13px] font-bold uppercase tracking-wide transition-colors duration-500 ${showCode ? "text-primary" : "text-primary-foreground"}`}>
-                    Apply 2026-27
-                  </span>
-                </div>
-                <div className="flex w-full items-center justify-center px-5 py-2.5">
-                  <span className={`text-[11px] xl:text-[13px] font-bold uppercase tracking-wide transition-colors duration-500 ${showCode ? "text-primary" : "text-primary-foreground"}`}>
-                    TNEA 1301
-                  </span>
-                </div>
-              </motion.div>
+              <span className="relative z-10 font-oswald tracking-wider">Apply Now &raquo;</span>
             </Link>
             <button
               type="button"

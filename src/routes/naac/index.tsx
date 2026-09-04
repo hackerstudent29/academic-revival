@@ -32,7 +32,7 @@ function NaacPortal() {
 
         {/* Hero Content Panel */}
         <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-12 w-full pt-16">
-          <Reveal variant="slide-up">
+          <Reveal variant="rise">
             <div className="max-w-2xl bg-background/95 backdrop-blur-md p-8 md:p-12 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border-l-4 border-primary shadow-2xl">
               <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block font-mono">
                 Quality & Accreditation
@@ -75,7 +75,7 @@ function NaacPortal() {
             { title: "Quality Assurance", desc: "Continuous internal quality enhancement.", icon: CheckCircle2 },
             { title: "Institutional Excellence", desc: "Showcasing distinctiveness and best practices.", icon: Award }
           ].map((block, idx) => (
-            <Reveal key={idx} variant="slide-up" delay={idx * 0.1}>
+            <Reveal key={idx} variant="rise" delay={idx * 0.1}>
               <div className="group relative bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-8 transition-all hover:shadow-lg hover:border-primary/50 flex flex-col h-full">
                 <div className="w-12 h-12 bg-primary/10 text-primary rounded-sm flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
                   <block.icon className="w-6 h-6" />
@@ -101,7 +101,7 @@ function NaacPortal() {
             </h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 text-base md:text-[17px] text-foreground font-sans leading-relaxed text-justify">
-            <Reveal variant="fade">
+            <Reveal variant="blur">
               <p className="mb-6">
                 India has one of the largest and diverse education systems in the world. Privatization, widespread expansion, increased autonomy and introduction of Programmes in new and emerging areas have improved access to higher education. At the same time, it has also led to widespread concern on the quality and relevance of the higher education.
               </p>
@@ -109,7 +109,7 @@ function NaacPortal() {
                 To address these concerns, the National Policy on Education (NPE, 1986) and the Programme of Action (PoA, 1992) spelt out strategic plans for the policies, advocated the establishment of an independent National accreditation agency. Consequently, the National Assessment and Accreditation Council (NAAC) was established in 1994 as an autonomous institution of the University Grants Commission (UGC) with its Head Quarter in Bengaluru.
               </p>
             </Reveal>
-            <Reveal variant="fade" delay={0.2}>
+            <Reveal variant="blur" delay={0.2}>
               <p className="mb-6">
                 The mandate of NAAC as reflected in its vision statement is in making quality assurance an integral part of the functioning of Higher Education Institutions (HEIs).
               </p>
@@ -134,7 +134,7 @@ function NaacPortal() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {mainCriteria.map((criterion, idx) => (
-            <Reveal key={criterion.id} variant="slide-up" delay={idx * 0.05}>
+            <Reveal key={criterion.id} variant="rise" delay={idx * 0.05}>
               <Link 
                 to={`/naac/criteria/$id`}
                 params={{ id: criterion.id }}
@@ -214,7 +214,7 @@ function NaacPortal() {
             { title: "Stakeholder Feedback", link: "#" },
             { title: "IQAC", link: "/naac/iqac" },
           ].map((doc, idx) => (
-            <Reveal key={idx} variant="slide-up" delay={idx * 0.03}>
+            <Reveal key={idx} variant="rise" delay={idx * 0.03}>
               <Link to={doc.link} className="flex items-center gap-3 p-4 bg-card border border-border rounded-sm hover:border-primary hover:bg-primary/5 transition-colors group">
                 <FileText className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 <span className="font-sans font-medium text-sm md:text-base text-foreground group-hover:text-primary transition-colors">{doc.title}</span>
