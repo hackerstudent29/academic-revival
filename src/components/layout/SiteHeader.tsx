@@ -17,7 +17,7 @@ const nav: NavItem[] = [
   {
     id: "about",
     label: "The Institution",
-    to: "/",
+    to: "/about/overview",
     cols: [
       {
         title: "About MSAJCE",
@@ -25,6 +25,7 @@ const nav: NavItem[] = [
           { label: "Institution Overview", to: "/about/overview" },
           { label: "Vision & Mission", to: "/about/vision-mission" },
           { label: "Leadership Message", to: "/about/leadership" },
+          { label: "Governing Council", to: "/about/governing-council" },
           { label: "The Trust", to: "/about/trust" },
           { label: "Group of Institutions", to: "/about/group-institutions" },
         ],
@@ -32,27 +33,26 @@ const nav: NavItem[] = [
       {
         title: "Welfare committees",
         links: [
-          { label: "Grievance Cell", to: "/about", hash: "leadership" },
-          { label: "Statutory Committees", to: "/about", hash: "leadership" },
-          { label: "Functional Committees", to: "/about", hash: "leadership" },
-          { label: "Anti-Ragging Committee", to: "/about", hash: "leadership" },
-          { label: "Women's Empowerment Cell", to: "/about", hash: "leadership" },
+          { label: "Committees & Cells", to: "/about/committees" },
+          { label: "Grievance Cell", to: "/about/committees" },
+          { label: "Statutory Committees", to: "/about/governing-council" },
+          { label: "Anti-Ragging Committee", to: "/about/committees" },
+          { label: "Women's Empowerment Cell", to: "/about/committees" },
         ],
       },
       {
         title: "Policies & Compliance",
         links: [
-          { label: "Compliance", to: "/about", hash: "leadership" },
-          { label: "Code of Conduct", to: "/campus-life", hash: "code-of-conduct" },
-          { label: "Mandatory Disclosure", to: "/about", hash: "leadership" },
-          { label: "Institutional Policies", to: "/about", hash: "leadership" },
+          { label: "Institutional Policies", to: "/about/policies" },
+          { label: "Code of Conduct", to: "/about/policies" },
+          { label: "Mandatory Disclosure", to: "/about/mandatory-disclosure" },
         ],
       },
       {
         title: "Accreditation & Rankings",
         links: [
           { label: "NAAC Portal", to: "/naac" },
-          { label: "IQAC", to: "/naac", hash: "iqac" },
+          { label: "IQAC", to: "/about/accreditations", hash: "iqac" },
           { label: "NIRF", to: "/about/accreditations", hash: "nirf" },
           { label: "ARIIA", to: "/about/accreditations", hash: "ariia" },
         ],

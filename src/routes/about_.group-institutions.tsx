@@ -1,11 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { AboutSubNav } from "@/components/layout/AboutSubNav";
-import { Reveal } from "@/components/motion";
-import { Building2, MapPin, GraduationCap, School, BookOpen, ExternalLink, Award } from "lucide-react";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
+import { Building2, GraduationCap, Stethoscope, BookOpen, MapPin, ExternalLink } from "lucide-react";
 
 const title = "Group of Institutions — Mohamed Sathak Trust";
 const description =
-  "Comprehensive directory of 18 educational institutions operated by Mohamed Sathak Trust across Chennai, Kilakarai, and Ramanathapuram.";
+  "Complete directory of the 18 educational institutions managed by Mohamed Sathak Trust across Chennai, Kilakarai, and Ramanathapuram.";
 
 export const Route = createFileRoute("/about_/group-institutions")({
   head: () => ({
@@ -18,264 +17,243 @@ export const Route = createFileRoute("/about_/group-institutions")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: GroupInstitutionsPage,
+  component: GroupOfInstitutionsPage,
 });
 
 const chennaiInstitutions = [
   {
-    name: "Mohamed Sathak A.J. College of Engineering",
-    category: "Engineering & Technology",
-    desc: "AICTE approved, Anna University affiliated 70-acre engineering campus inside Siruseri IT Park.",
-    badge: "Flagship Engineering",
+    name: "Mohamed Sathak A.J. College of Engineering (MSAJCE)",
+    location: "Siruseri IT Park, OMR, Chennai",
+    desc: "Autonomous engineering institution offering UG, PG, and PhD research programmes in Engineering, AI, and Technology.",
+    isCurrent: true,
   },
   {
     name: "Mohamed Sathak A.J. Academy of Architecture",
-    category: "Architecture & Design",
-    desc: "Council of Architecture approved B.Arch degree program.",
-    badge: "Architecture",
+    location: "Chennai",
+    desc: "Council of Architecture (CoA) approved institution delivering premier B.Arch degree programmes.",
   },
   {
     name: "Mohamed Sathak College of Arts And Science",
-    category: "Arts & Science",
-    desc: "Established in 1991, offering UG/PG degrees in computer science, commerce, and humanities.",
-    badge: "Arts & Science",
+    location: "Sholinganallur, OMR, Chennai",
+    desc: "NAAC accredited co-educational institution offering 20+ UG and PG programmes in Science, Commerce, and Humanities.",
   },
   {
     name: "Mohamed Sathak A.J. College of Nursing",
-    category: "Healthcare & Nursing",
-    desc: "Indian Nursing Council approved B.Sc. Nursing & Postgraduate nursing studies.",
-    badge: "Nursing",
+    location: "Chennai",
+    desc: "Modern nursing education center with clinical affiliations to top multispecialty hospitals in Chennai.",
   },
   {
     name: "Mohamed Sathak A.J. College of Pharmacy",
-    category: "Pharmacy Sciences",
-    desc: "Pharmacy Council of India (PCI) approved B.Pharm & M.Pharm programs.",
-    badge: "Pharmacy",
+    location: "Sholinganallur, Chennai",
+    desc: "PCI approved campus providing B.Pharm, M.Pharm, and Pharm.D doctoral pharmaceutical programmes.",
   },
   {
     name: "Mohamed Sathak A.J. College of Physiotherapy",
-    category: "Physiotherapy & Health",
-    desc: "Bachelor & Master of Physiotherapy (BPT & MPT) professional clinical training.",
-    badge: "Physiotherapy",
+    location: "Chennai",
+    desc: "Delivering Bachelor of Physiotherapy (BPT) with hands-on clinical training and rehabilitation practice.",
   },
   {
     name: "Mohamed Sathak Teacher Training College",
-    category: "Teacher Education",
-    desc: "NCTE recognized B.Ed & Diploma in Elementary Education.",
-    badge: "Education",
+    location: "Chennai",
+    desc: "NCTE recognized teacher training institution shaping future educators.",
   },
   {
     name: "Mohamed Sathak Matric & Hr. Sec. School",
-    category: "K-12 Schooling",
-    desc: "State Board secondary & higher secondary school education.",
-    badge: "Matriculation",
+    location: "Chennai",
+    desc: "Providing holistic K-12 schooling with focus on academic excellence, sports, and value education.",
   },
 ];
 
 const kilakaraiInstitutions = [
   {
-    name: "Mohamed Sathak Engineering College",
-    category: "Engineering (Est. 1984)",
-    desc: "First self-financing engineering college in Tamil Nadu, established at Kilakarai in 1984.",
-    badge: "Pioneer College (1984)",
+    name: "Mohamed Sathak Engineering College (MSEC)",
+    location: "Kilakarai, Ramanathapuram",
+    desc: "Established in 1984 — the first self-financing engineering college in Tamil Nadu.",
   },
   {
-    name: "Mohamed Sathak Hamid College of Arts and Science for Women",
-    category: "Women's Higher Education",
-    desc: "Empowering women scholars in arts, science, and commerce disciplines.",
-    badge: "Women's College",
+    name: "Mohamed Sathak Hamid College of Arts & Science for Women",
+    location: "Ramanathapuram",
+    desc: "Empowering women with quality higher education in Arts, Science, Commerce, and Computer Applications.",
   },
   {
     name: "Syed Hameedha Arts & Science College",
-    category: "Arts & Science",
-    desc: "Co-educational undergraduate and postgraduate higher education in Kilakarai.",
-    badge: "Arts & Science",
+    location: "Kilakarai, Ramanathapuram",
+    desc: "Offering degree programmes in management, computer applications, and basic sciences.",
   },
   {
     name: "Mohamed Sathak Polytechnic College",
-    category: "Diploma Polytechnic",
-    desc: "DOTE & AICTE approved 3-year technical diploma programs.",
-    badge: "Polytechnic",
+    location: "Kilakarai, Ramanathapuram",
+    desc: "Diploma technical education across Mechanical, Civil, ECE, EEE, and Computer Engineering.",
   },
   {
-    name: "Mohamed Sathak I.T.I.",
-    category: "Industrial Training",
-    desc: "NCVT approved trade certifications and technical skill development.",
-    badge: "Vocational ITI",
+    name: "Mohamed Sathak I.T.I. (Industrial Training Institute)",
+    location: "Kilakarai, Ramanathapuram",
+    desc: "Vocational trade training empowering youth with immediate technical self-employability.",
   },
   {
     name: "Syed Hameedha Arabic College",
-    category: "Arabic & Islamic Studies",
-    desc: "Specialized language, cultural, and theological studies.",
-    badge: "Languages",
+    location: "Kilakarai, Ramanathapuram",
+    desc: "Specialized institution dedicated to Oriental languages, literature, and Islamic studies.",
   },
   {
     name: "Mohamed Sathak Dastagir Matriculation Hr. Sec. School",
-    category: "Schooling",
-    desc: "Premier matriculation higher secondary school in Ramanathapuram.",
-    badge: "Matriculation",
+    location: "Kilakarai, Ramanathapuram",
+    desc: "Holistic secondary and higher secondary education for rural and semi-urban students.",
   },
   {
     name: "Mohamed Sathak Kabeer Public School (CBSE)",
-    category: "CBSE Schooling",
-    desc: "Central Board of Secondary Education affiliated modern school.",
-    badge: "CBSE",
+    location: "Kilakarai, Ramanathapuram",
+    desc: "CBSE curriculum school delivering modern digital learning and sports facilities.",
   },
   {
     name: "Mohamed Sathak Dasthagir Teacher Training College",
-    category: "Teacher Education",
-    desc: "NCTE approved teacher development institute.",
-    badge: "Teacher Training",
+    location: "Ramanathapuram",
+    desc: "NCTE approved institution preparing skilled teaching professionals.",
   },
 ];
 
-export function GroupInstitutionsPage() {
+const groupStats = [
+  { value: "18", label: "Educational Institutions" },
+  { value: "25,000+", label: "Active Students" },
+  { value: "100,000+", label: "Global Alumni Network" },
+  { value: "50+ Years", label: "Educational Service" },
+];
+
+export function GroupOfInstitutionsPage() {
   return (
     <main className="bg-page-bg text-foreground min-h-screen pt-0 md:pt-1">
-      {/* Secondary Sticky Sub-Nav Header */}
-      <AboutSubNav />
-
-      {/* Hero Showcase Section */}
-      <section className="relative border-b border-border bg-gradient-to-b from-primary/10 via-background to-page-bg pt-8 pb-16 md:pt-12 md:pb-20">
+      {/* Header & Sub-Nav Title */}
+      <section className="relative border-b border-border bg-page-bg pt-4 md:pt-6 pb-12 md:pb-16">
         <div className="mx-auto max-w-[1440px] px-6 md:px-12">
-          <div className="flex flex-col gap-4 max-w-4xl">
-            <span className="inline-flex items-center gap-2 px-3 py-1 bg-foreground/10 border border-foreground/20 text-foreground text-xs font-mono font-bold uppercase rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs w-max">
-              Network of Educational Excellence
+          {/* Secondary Sub-Nav Header */}
+          <div className="mb-4">
+            <span className="text-sm sm:text-base md:text-lg xl:text-xl font-black font-oswald uppercase text-primary tracking-wider">
+              ABOUT MSAJCE // NETWORK OF EXCELLENCE
             </span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-foreground font-oswald leading-none">
-              Group of <span className="text-primary">Institutions</span>
+          </div>
+
+          <div className="flex flex-col gap-3 max-w-4xl">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-foreground font-oswald leading-none">
+              Group of Institutions <br />
+              <span className="text-primary font-oswald">Mohamed Sathak Trust</span>
             </h1>
-            <p className="text-base sm:text-lg leading-relaxed text-muted-foreground font-libre mt-2 max-w-3xl">
-              Mohamed Sathak Trust operates <strong>18 educational institutions</strong> across Tamil Nadu, spanning Engineering, Architecture, Arts & Science, Pharmacy, Nursing, Physiotherapy, Vocational ITI, and K-12 Schooling.
+            <p className="text-base sm:text-lg md:text-xl leading-relaxed text-muted-foreground font-sans mt-2">
+              Mohamed Sathak Trust operates 18 premier educational institutions across Tamil Nadu, serving thousands of students across Engineering, Architecture, Health Sciences, Arts & Science, and Schooling.
             </p>
           </div>
 
-          {/* Quick Regional Counts */}
+          {/* Key Group Stats */}
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-border pt-8">
-            <div className="flex flex-col">
-              <span className="text-3xl md:text-4xl font-black font-oswald text-primary">18</span>
-              <span className="text-xs font-bold font-oswald uppercase text-foreground mt-1">Total Institutions</span>
-              <span className="text-[11px] font-libre text-muted-foreground">Managed by Mohamed Sathak Trust</span>
-            </div>
-            <div className="flex flex-col md:border-l md:border-border md:pl-6">
-              <span className="text-3xl md:text-4xl font-black font-oswald text-primary">8</span>
-              <span className="text-xs font-bold font-oswald uppercase text-foreground mt-1">Chennai Cluster</span>
-              <span className="text-[11px] font-libre text-muted-foreground">Engineering, Architecture, Health</span>
-            </div>
-            <div className="flex flex-col md:border-l md:border-border md:pl-6">
-              <span className="text-3xl md:text-4xl font-black font-oswald text-primary">9</span>
-              <span className="text-xs font-bold font-oswald uppercase text-foreground mt-1">Kilakarai & Ramnad</span>
-              <span className="text-[11px] font-libre text-muted-foreground">Engineering, Polytechnic, Schools</span>
-            </div>
-            <div className="flex flex-col md:border-l md:border-border md:pl-6">
-              <span className="text-3xl md:text-4xl font-black font-oswald text-primary">1984</span>
-              <span className="text-xs font-bold font-oswald uppercase text-foreground mt-1">Historic Legacy</span>
-              <span className="text-[11px] font-libre text-muted-foreground">1st Self-Financing Engg. College</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Chennai Institutions Grid */}
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-16 font-libre">
-        <div className="flex flex-col gap-3 mb-10">
-          <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase">
-            // Capital Region Campus Cluster
-          </span>
-          <h2 className="text-3xl md:text-4xl font-black font-oswald uppercase text-foreground">
-            Institutions in Chennai (8)
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {chennaiInstitutions.map((inst) => (
-            <div
-              key={inst.name}
-              className="p-6 border border-border rounded-lg bg-card hover:border-primary/50 transition-colors flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="px-2.5 py-1 text-xs font-oswald font-bold uppercase text-foreground bg-foreground/10 border border-foreground/20 rounded-sm">
-                    {inst.badge}
-                  </span>
-                </div>
-                <h3 className="text-lg font-oswald font-bold uppercase text-foreground mb-2 leading-snug">
-                  {inst.name}
-                </h3>
-                <p className="text-xs font-libre text-muted-foreground leading-relaxed">
-                  {inst.desc}
-                </p>
-              </div>
-              <div className="mt-6 pt-3 border-t border-border/60 text-xs font-mono font-bold text-primary uppercase">
-                Location: Chennai
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Kilakarai & Ramanathapuram Institutions Grid */}
-      <section className="border-t border-border bg-muted/20 py-12 md:py-16 font-libre">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12">
-          <div className="flex flex-col gap-3 mb-10">
-            <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase">
-              // Southern Heritage Campus Cluster
-            </span>
-            <h2 className="text-3xl md:text-4xl font-black font-oswald uppercase text-foreground">
-              Institutions in Kilakarai & Ramanathapuram (9)
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {kilakaraiInstitutions.map((inst) => (
-              <div
-                key={inst.name}
-                className="p-6 border border-border rounded-lg bg-card hover:border-primary/50 transition-colors flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="px-2.5 py-1 text-xs font-oswald font-bold uppercase text-foreground bg-foreground/10 border border-foreground/20 rounded-sm">
-                      {inst.badge}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-oswald font-bold uppercase text-foreground mb-2 leading-snug">
-                    {inst.name}
-                  </h3>
-                  <p className="text-xs font-libre text-muted-foreground leading-relaxed">
-                    {inst.desc}
-                  </p>
-                </div>
-                <div className="mt-6 pt-3 border-t border-border/60 text-xs font-mono font-bold text-primary uppercase">
-                  Location: Kilakarai / Ramanathapuram
-                </div>
+            {groupStats.map((st) => (
+              <div key={st.label} className="flex flex-col">
+                <span className="text-3xl md:text-4xl font-bold tracking-tight text-primary font-oswald">
+                  {st.value}
+                </span>
+                <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground font-sans mt-1">
+                  {st.label}
+                </span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Navigation Footer */}
-      <section className="border-t border-border bg-page-bg py-12">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="text-sm font-libre font-semibold text-muted-foreground">
-            Explore Governing Council and Mandatory Disclosures
-          </span>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              to="/about/governing-council"
-              className="px-4 py-2 text-xs font-oswald font-bold uppercase tracking-wider border border-border rounded-sm hover:bg-muted transition-colors"
-            >
-              Governing Council &raquo;
-            </Link>
-            <Link
-              to="/about/accreditations"
-              className="px-4 py-2 text-xs font-oswald font-bold uppercase tracking-wider bg-primary text-primary-foreground rounded-sm hover:bg-primary/90 transition-colors"
-            >
-              Mandatory Disclosure &raquo;
-            </Link>
+      {/* Institutions in Chennai */}
+      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-16">
+        <div className="flex items-center gap-3 border-b border-border pb-4 mb-8">
+          <div className="w-10 h-10 rounded-sm bg-primary/10 text-primary flex items-center justify-center">
+            <Building2 size={20} />
           </div>
+          <div>
+            <span className="text-xs font-mono font-bold text-primary uppercase tracking-widest">Chennai Region</span>
+            <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-foreground font-oswald">
+              Institutions in Chennai (8)
+            </h2>
+          </div>
+        </div>
+
+        <Stagger gap={0.06} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {chennaiInstitutions.map((inst) => (
+            <StaggerItem
+              key={inst.name}
+              variant="rise"
+              className={`bg-card border rounded-sm p-6 shadow-xs flex flex-col justify-between ${
+                inst.isCurrent ? "border-primary ring-1 ring-primary/20" : "border-border"
+              }`}
+            >
+              <div>
+                {inst.isCurrent && (
+                  <span className="inline-block px-2.5 py-0.5 bg-primary text-primary-foreground text-[10px] font-mono font-bold uppercase tracking-widest rounded-xs mb-3">
+                    Current Campus
+                  </span>
+                )}
+                <h3 className="text-base font-bold text-foreground font-oswald uppercase mb-2 leading-snug">
+                  {inst.name}
+                </h3>
+                <div className="flex items-center gap-1.5 text-xs text-primary font-medium font-sans mb-3">
+                  <MapPin size={13} /> {inst.location}
+                </div>
+                <p className="text-xs text-muted-foreground font-sans leading-relaxed">
+                  {inst.desc}
+                </p>
+              </div>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </section>
+
+      {/* Institutions in Kilakarai & Ramanathapuram */}
+      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-16 border-t border-border">
+        <div className="flex items-center gap-3 border-b border-border pb-4 mb-8">
+          <div className="w-10 h-10 rounded-sm bg-primary/10 text-primary flex items-center justify-center">
+            <GraduationCap size={20} />
+          </div>
+          <div>
+            <span className="text-xs font-mono font-bold text-primary uppercase tracking-widest">Southern Region</span>
+            <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-foreground font-oswald">
+              Institutions in Kilakarai & Ramanathapuram (9)
+            </h2>
+          </div>
+        </div>
+
+        <Stagger gap={0.06} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {kilakaraiInstitutions.map((inst) => (
+            <StaggerItem
+              key={inst.name}
+              variant="rise"
+              className="bg-card border border-border rounded-sm p-6 shadow-xs flex flex-col justify-between"
+            >
+              <div>
+                <h3 className="text-base font-bold text-foreground font-oswald uppercase mb-2 leading-snug">
+                  {inst.name}
+                </h3>
+                <div className="flex items-center gap-1.5 text-xs text-primary font-medium font-sans mb-3">
+                  <MapPin size={13} /> {inst.location}
+                </div>
+                <p className="text-xs text-muted-foreground font-sans leading-relaxed">
+                  {inst.desc}
+                </p>
+              </div>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </section>
+
+      {/* Footer CTA */}
+      <section className="border-t border-border bg-page-bg py-10">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <span className="text-sm font-semibold text-muted-foreground font-sans">
+            Have questions about admissions or campus visits across Mohamed Sathak institutions?
+          </span>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 text-xs font-bold uppercase tracking-widest rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors font-oswald"
+          >
+            Contact Admissions &raquo;
+          </Link>
         </div>
       </section>
     </main>
   );
 }
+
