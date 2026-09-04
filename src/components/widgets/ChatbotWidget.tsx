@@ -158,7 +158,7 @@ export function ChatbotWidget() {
   };
 
   return (
-    <div className="absolute bottom-6 right-6 z-50 select-none font-sans">
+    <div className="fixed bottom-6 right-6 z-[9999] select-none font-sans pointer-events-auto">
       <AnimatePresence>
         {isOpen && (
           <motion.div
