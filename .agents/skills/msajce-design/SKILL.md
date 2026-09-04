@@ -21,6 +21,7 @@ description: Design system rules and guidelines for MSAJCE website, using Oswald
     - **Component Remounting & Fallback**: Images must use `key={item.id}` or `key={course.slug}` to force fresh element remounting and specify a local fallback (`/images/eligibility_hero.jpg`) in `onError`.
 *   **Image Radii & Animation Constraints**: Use minimal edge curves (`rounded-lg` or `rounded-md`, `0.25rem` radius). Strictly avoid image zoom/popup hover effects (`scale-105`/`scale-110`). Images must stay flat and static on hover.
 *   **Typography Section Titles**: Never add trailing dots `.` to section headings or tab titles (e.g. `CAMPUS FACILITIES`, NOT `CAMPUS FACILITIES.`).
+*   **Tight Header & Content Spacing**: When creating new pages or section layouts, enforce tight top padding between the header and main content (`pt-0 md:pt-1` on main container and `pt-2 md:pt-4` on top section wrapper). Strictly prevent excessive top margins or dead whitespace under the top navigation header.
 
 ### Mandatory Typography System (Applied Across All Pages & Components)
 

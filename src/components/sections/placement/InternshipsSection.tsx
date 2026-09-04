@@ -181,7 +181,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
   const [selectedMode, setSelectedMode] = useState<string>('all');
 
   const activeSpotlight = useMemo(() => {
-    return COHORT_CARDS.find(c => c.id === spotlightId) || COHORT_CARDS[2];
+    return (COHORT_CARDS.find(c => c.id === spotlightId) || COHORT_CARDS[0])!;
   }, [spotlightId]);
 
   const filteredCohorts = useMemo(() => {

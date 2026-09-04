@@ -125,6 +125,8 @@ const TESTIMONIALS = [
   }
 ];
 
+const EASE_APPLE = [0.16, 1, 0.3, 1] as const;
+
 export function TestimonialSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   // null = no card playing, 1 = reel 1, 2 = reel 2
@@ -140,25 +142,26 @@ export function TestimonialSection() {
   }, [playingCard]);
 
   return (
-    <section className="relative z-10 w-full bg-page-bg border-b border-border pt-16 pb-24 md:pt-20 md:pb-32 overflow-hidden scroll-mt-24" id="alumni">
+    <section className="relative z-10 w-full bg-[#EAEAEA] dark:bg-[#121214] border-b border-border pt-16 pb-24 md:pt-20 md:pb-32 overflow-hidden scroll-mt-24" id="alumni">
 
       {/* Large Typography Watermark to fill background space */}
       <div className="absolute right-[-2%] bottom-[5%] text-[18vw] font-black text-foreground/[0.02] select-none pointer-events-none uppercase leading-none font-sans tracking-tighter">
         ALUMNI
       </div>
 
-      {/* Title Elements */}
+      {/* Title Elements with GPU Hardware Acceleration */}
       <motion.div 
-        initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.65, ease: [0.215, 0.61, 0.355, 1] }}
+        initial={{ opacity: 0, y: 28, scale: 0.98 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.6, ease: EASE_APPLE }}
+        style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
         className="relative z-10 w-full text-center px-6 mb-10 md:mb-12"
       >
-        <p className="text-muted-foreground text-[11px] md:text-sm font-bold uppercase tracking-[0.16em] mb-4">
-          3940+ Happy Alumni
+        <p className="text-muted-foreground text-[11px] md:text-sm font-bold uppercase tracking-[0.16em] mb-4 font-mono">
+          3940+ Happy Alumni //
         </p>
-        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-primary">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-primary font-oswald">
           Testimonials
         </h2>
       </motion.div>
@@ -170,17 +173,18 @@ export function TestimonialSection() {
           
           {/* Left 60% (7 Columns): Featured Alumni Block */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.75, delay: 0.1, ease: [0.215, 0.61, 0.355, 1] }}
+            initial={{ opacity: 0, y: 32, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.65, ease: EASE_APPLE }}
+            style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
             className="col-span-1 lg:col-span-7 w-full flex flex-col gap-6"
           >
             <span className="text-[10px] font-mono font-bold tracking-widest text-muted-foreground uppercase block">
               Featured Alumni Spotlight //
             </span>
             
-            <div className="w-full bg-card/40 backdrop-blur-md border border-foreground/10 p-6 md:p-8 rounded-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center min-h-[380px] sm:min-h-[420px] shadow-sm">
+            <div className="w-full bg-card border border-foreground/10 p-6 md:p-8 rounded-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center min-h-[380px] sm:min-h-[420px] shadow-sm">
               {/* Portrait Photo (Static on hover) */}
               <div className="col-span-1 md:col-span-5 aspect-[4/5] w-full rounded-sm overflow-hidden border border-foreground/10 relative bg-muted shadow-sm shrink-0">
                 <AnimatePresence mode="wait">
@@ -191,14 +195,14 @@ export function TestimonialSection() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.4 }}
+                    transition={{ duration: 0.3 }}
                     className="w-full h-full object-cover"
                   />
                 </AnimatePresence>
                 
                 {/* Company Logo Badge */}
                 {TESTIMONIALS[activeIndex]?.companyLogo && (
-                  <div className="absolute bottom-4 right-4 bg-background/95 backdrop-blur px-3 py-1 rounded-sm border border-foreground/10 shadow-sm shrink-0">
+                  <div className="absolute bottom-4 right-4 bg-background/95 px-3 py-1 rounded-sm border border-foreground/10 shadow-sm shrink-0">
                     <img
                       src={TESTIMONIALS[activeIndex]?.companyLogo}
                       alt="Company Logo"
@@ -208,17 +212,17 @@ export function TestimonialSection() {
                 )}
               </div>
 
-              {/* Editorial Serif Pull-quote (Fixed Height Container to prevent card jumping) */}
+              {/* Editorial Serif Pull-quote */}
               <div className="col-span-1 md:col-span-7 flex flex-col justify-between h-full min-h-[260px] sm:min-h-[300px]">
                 <div className="min-h-[170px] sm:min-h-[200px] flex flex-col justify-center">
                   <span className="text-4xl md:text-5xl font-serif text-primary leading-none block -mb-1">“</span>
                   <AnimatePresence mode="wait">
                     <motion.blockquote
                       key={activeIndex}
-                      initial={{ opacity: 0, y: 8 }}
+                      initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      transition={{ duration: 0.3 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.25 }}
                       className="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug text-foreground tracking-tight font-sans line-clamp-4"
                     >
                       {TESTIMONIALS[activeIndex]?.quote}
@@ -233,7 +237,7 @@ export function TestimonialSection() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.25 }}
                     >
                       <span className="text-lg font-black text-primary font-oswald uppercase tracking-wide block">
                         {TESTIMONIALS[activeIndex]?.author}
@@ -247,16 +251,34 @@ export function TestimonialSection() {
               </div>
             </div>
 
-            {/* Thumbnail Navigation Row & Absolute Principal Note */}
-            <div className="relative mt-2 w-full">
-              <div className="flex flex-wrap items-center gap-3">
+            {/* Thumbnail Navigation Row (15 photo icons optimized for GPU 120fps) */}
+            <div className="relative mt-3 w-full">
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ staggerChildren: 0.03, delayChildren: 0.1 }}
+                className="flex flex-wrap items-center gap-3"
+              >
                 {TESTIMONIALS.map((t, idx) => (
-                  <button
+                  <motion.button
                     key={idx}
                     onClick={() => setActiveIndex(idx)}
-                    className={`relative w-12 h-12 rounded-full overflow-hidden border-2 transition-all duration-300 ${
+                    variants={{
+                      hidden: { scale: 0, opacity: 0, y: 12 },
+                      visible: { 
+                        scale: 1, 
+                        opacity: 1, 
+                        y: 0, 
+                        transition: { duration: 0.35, ease: EASE_APPLE } 
+                      }
+                    }}
+                    style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 transition-all duration-200 shadow-sm ${
                       activeIndex === idx
-                        ? "border-primary scale-105"
+                        ? "border-primary ring-2 ring-primary/30 scale-105"
                         : "border-transparent opacity-60 hover:opacity-100"
                     }`}
                   >
@@ -264,19 +286,21 @@ export function TestimonialSection() {
                       src={t.image}
                       alt={t.author}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
-                  </button>
+                  </motion.button>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </motion.div>
 
-          {/* Right 40% (5 Columns): Vertical Video Reels with matching top alignment header */}
+          {/* Right 40% (5 Columns): Vertical Video Reels & Principal Quote */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.75, delay: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
+            initial={{ opacity: 0, y: 32, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.65, ease: EASE_APPLE }}
+            style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
             className="col-span-1 lg:col-span-5 w-full flex flex-col gap-6"
           >
             <span className="text-[10px] font-mono font-bold tracking-widest text-muted-foreground uppercase block">
@@ -286,7 +310,7 @@ export function TestimonialSection() {
             <div className="w-full grid grid-cols-2 gap-4 sm:gap-6 justify-center items-stretch">
               
               {/* Reel 1 */}
-              <div className="group/video flex flex-col w-full rounded-md overflow-hidden bg-card border border-foreground/10 shadow-md cursor-pointer transition-all duration-300 hover:border-[#004b87]/40">
+              <div className="group/video flex flex-col w-full rounded-md overflow-hidden bg-card border border-foreground/10 shadow-md cursor-pointer transition-all duration-300 hover:border-[#004b87]/40 [transform:translateZ(0)]">
                 {/* Video Thumbnail or Inline Player */}
                 <div className="relative aspect-[4/5] w-full bg-black overflow-hidden">
                   {playingCard === 1 ? (
@@ -303,9 +327,10 @@ export function TestimonialSection() {
                         src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&q=80&auto=format&fit=crop&aspect=4/5"
                         alt="Alumni Video Feedback 1"
                         className="w-full h-full object-cover opacity-80"
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 flex items-center justify-center z-20" onClick={() => setPlayingCard(1)}>
-                        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-md group-hover/video:scale-110 transition-transform duration-300">
+                        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-md transition-transform duration-300">
                           <Play className="h-5 w-5 text-white fill-white ml-0.5" />
                         </div>
                       </div>
@@ -319,12 +344,12 @@ export function TestimonialSection() {
                 <div className="p-4 flex flex-col gap-1 bg-card text-left">
                   <span className="text-[9px] font-oswald font-bold uppercase tracking-wider text-primary">ALUMNI PLACEMENTS</span>
                   <h4 className="text-xs font-bold leading-snug text-foreground group-hover/video:text-primary transition-colors">Alumni Placement Journey</h4>
-                  <p className="text-[10px] text-muted-foreground leading-normal line-clamp-2 mt-0.5">Class of 2024 graduates share their interview prep & campus placement success.</p>
+                  <p className="text-[10px] text-muted-foreground leading-normal line-clamp-2 mt-0.5 font-sans">Class of 2024 graduates share their interview prep & campus placement success.</p>
                 </div>
               </div>
 
               {/* Reel 2 */}
-              <div className="group/video flex flex-col w-full rounded-md overflow-hidden bg-card border border-foreground/10 shadow-md cursor-pointer transition-all duration-300 hover:border-[#004b87]/40">
+              <div className="group/video flex flex-col w-full rounded-md overflow-hidden bg-card border border-foreground/10 shadow-md cursor-pointer transition-all duration-300 hover:border-[#004b87]/40 [transform:translateZ(0)]">
                 <div className="relative aspect-[4/5] w-full bg-black overflow-hidden">
                   {playingCard === 2 ? (
                     <iframe
@@ -340,9 +365,10 @@ export function TestimonialSection() {
                         src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=80&auto=format&fit=crop&aspect=4/5"
                         alt="Alumni Video Feedback 2"
                         className="w-full h-full object-cover opacity-80"
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 flex items-center justify-center z-20" onClick={() => setPlayingCard(2)}>
-                        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-md group-hover/video:scale-110 transition-transform duration-300">
+                        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-md transition-transform duration-300">
                           <Play className="h-5 w-5 text-white fill-white ml-0.5" />
                         </div>
                       </div>
@@ -356,32 +382,63 @@ export function TestimonialSection() {
                 <div className="p-4 flex flex-col gap-1 bg-card text-left">
                   <span className="text-[9px] font-oswald font-bold uppercase tracking-wider text-primary">CAMPUS LIFE</span>
                   <h4 className="text-xs font-bold leading-snug text-foreground group-hover/video:text-primary transition-colors">Campus Life & Growth</h4>
-                  <p className="text-[10px] text-muted-foreground leading-normal line-clamp-2 mt-0.5">Engineering leads share details about student research opportunities and campus growth.</p>
+                  <p className="text-[10px] text-muted-foreground leading-normal line-clamp-2 mt-0.5 font-sans">Engineering leads share details about student research opportunities and campus growth.</p>
                 </div>
               </div>
             </div>
 
-            {/* Principal's Note (Handwritten, slanted) */}
-            <div className="hidden lg:flex flex-col items-center justify-center shrink-0 -rotate-3 opacity-80 pointer-events-none mt-10 w-full pl-6">
-              <div className="flex flex-col items-start">
-                <span 
-                  className="text-2xl md:text-[28px] text-foreground/90 leading-tight" 
-                  style={{ fontFamily: "'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive" }}
+            {/* Principal's Note with GPU-Accelerated Handwriting Reveal & Signature Animation */}
+            <div className="flex flex-col items-center sm:items-start justify-center shrink-0 -rotate-2 opacity-95 mt-6 w-full px-2 sm:pl-6">
+              <div className="flex flex-col items-start relative max-w-full">
+                {/* Line 1 Quote */}
+                <motion.p 
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.5, ease: EASE_APPLE, delay: 0.1 }}
+                  style={{ willChange: "transform, opacity", transform: "translateZ(0)", fontFamily: "'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive" }}
+                  className="text-2xl md:text-[26px] xl:text-[28px] text-foreground font-semibold leading-tight tracking-wide block" 
                 >
                   "Our students don't just build careers,
-                </span>
-                <span 
-                  className="text-2xl md:text-[28px] text-foreground/90 leading-tight ml-8" 
-                  style={{ fontFamily: "'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive" }}
+                </motion.p>
+                
+                {/* Line 2 Quote */}
+                <motion.p 
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.5, ease: EASE_APPLE, delay: 0.2 }}
+                  style={{ willChange: "transform, opacity", transform: "translateZ(0)", fontFamily: "'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive" }}
+                  className="text-2xl md:text-[26px] xl:text-[28px] text-foreground font-semibold leading-tight ml-6 sm:ml-8 block" 
                 >
                   they shape the future."
-                </span>
-                <span 
-                  className="text-xl md:text-2xl text-primary font-bold mt-4 ml-12" 
-                  style={{ fontFamily: "'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive" }}
+                </motion.p>
+                
+                {/* Signature Line */}
+                <motion.p 
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.5, ease: EASE_APPLE, delay: 0.35 }}
+                  style={{ willChange: "transform, opacity", transform: "translateZ(0)", fontFamily: "'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive" }}
+                  className="text-xl md:text-2xl text-primary font-bold mt-2 ml-8 sm:ml-12 block" 
                 >
                   – Dr. K.S. Srinivasan, Principal
-                </span>
+                </motion.p>
+
+                {/* SVG Handwritten Signature Underline Stroke */}
+                <svg className="w-48 sm:w-56 h-6 ml-8 sm:ml-12 -mt-1 pointer-events-none" viewBox="0 0 220 24" fill="none">
+                  <motion.path
+                    d="M 5 12 Q 55 4 110 12 T 215 8"
+                    stroke="#005DA6"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    whileInView={{ pathLength: 1, opacity: 1 }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
+                  />
+                </svg>
               </div>
             </div>
 
@@ -391,40 +448,42 @@ export function TestimonialSection() {
 
         {/* Horizontal scroll-snap carousel of smaller testimonials below the fold */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.75, ease: [0.215, 0.61, 0.355, 1] }}
+          initial={{ opacity: 0, y: 32, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.65, ease: EASE_APPLE }}
+          style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
           className="w-full -mt-2 md:-mt-6"
         >
           <div className="flex items-center justify-between border-b border-foreground/10 pb-4 mb-8">
             <div className="flex flex-col">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground">// Legacy Spotlights</span>
-              <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight mt-1 text-primary">Alumni Network Feed</h3>
+              <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight mt-1 text-primary font-oswald">Alumni Network Feed</h3>
             </div>
           </div>
           
           <div className="relative w-full overflow-hidden py-4">
             {/* Gradient masks to fade edges */}
-            <div className="absolute top-0 left-0 bottom-0 w-16 bg-gradient-to-r from-page-bg to-transparent z-10 pointer-events-none" />
-            <div className="absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-page-bg to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 left-0 bottom-0 w-16 bg-gradient-to-r from-[#EAEAEA] dark:from-[#121214] to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-[#EAEAEA] dark:from-[#121214] to-transparent z-10 pointer-events-none" />
             
             <style>{`
               @keyframes horizontal-marquee {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-50%); }
+                0% { transform: translate3d(0, 0, 0); }
+                100% { transform: translate3d(-50%, 0, 0); }
               }
               .animate-horizontal-marquee {
                 display: flex;
                 width: max-content;
                 animation: horizontal-marquee 40s linear infinite;
+                will-change: transform;
               }
               .animate-horizontal-marquee:hover {
                 animation-play-state: paused;
               }
             `}</style>
             
-            <div className="animate-horizontal-marquee flex gap-6 py-2 px-8">
+            <div className="animate-horizontal-marquee flex gap-6 py-2 px-8 [transform:translateZ(0)]">
               {[...TESTIMONIALS.slice(11), ...TESTIMONIALS.slice(11)].map((t, idx) => (
                 <div 
                   key={idx} 
@@ -432,7 +491,7 @@ export function TestimonialSection() {
                 >
                   <div className="flex flex-col">
                     <Quote className="h-5 w-5 text-primary/30 mb-4" />
-                    <p className="text-sm text-foreground/80 leading-relaxed font-medium mb-4 line-clamp-4">
+                    <p className="text-sm text-foreground/80 leading-relaxed font-medium mb-4 line-clamp-4 font-sans">
                       "{t.quote}"
                     </p>
                   </div>
@@ -445,7 +504,7 @@ export function TestimonialSection() {
                       loading="lazy"
                     />
                     <div className="flex flex-col min-w-0">
-                      <span className="text-sm font-bold text-foreground truncate">{t.author}</span>
+                      <span className="text-sm font-bold text-foreground truncate font-oswald uppercase">{t.author}</span>
                       <span className="text-[10px] font-mono tracking-widest text-muted-foreground uppercase truncate mt-0.5">
                         {t.position}
                       </span>

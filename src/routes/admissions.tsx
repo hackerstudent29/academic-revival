@@ -30,7 +30,7 @@ function Admissions() {
   const { level } = Route.useSearch();
 
   return (
-    <main className="bg-background min-h-screen pt-4 md:pt-6">
+    <main className="bg-background min-h-screen pt-0 md:pt-1">
       <section className="mx-auto max-w-[1440px] px-6 py-6 md:px-12 md:py-10">
         <Stagger gap={0.1} className="grid md:grid-cols-3 gap-6">
           <StaggerItem>

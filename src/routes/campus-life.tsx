@@ -102,7 +102,7 @@ function CampusLife() {
                 />
               </div>
               <div className="p-8">
-                <h2 className="text-2xl font-bold text-foreground">{f.t}</h2>
+                <h2 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">{f.t}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-foreground/60">{f.d}</p>
               </div>
             </StaggerItem>

@@ -20,6 +20,7 @@ import { Route as CurriculumRouteImport } from './routes/curriculum'
 import { Route as NaacRouteImport } from './routes/naac'
 import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offered'
+import { Route as SocialMediaRouteImport } from './routes/social-media'
 import { Route as StudentHousingRouteImport } from './routes/student-housing'
 import { Route as AboutAccreditationsRouteImport } from './routes/about_.accreditations'
 import { Route as AboutGroupInstitutionsRouteImport } from './routes/about_.group-institutions'
@@ -30,6 +31,7 @@ import { Route as AboutVisionMissionRouteImport } from './routes/about_.vision-m
 import { Route as AdmissionsEligibilityRouteImport } from './routes/admissions_.eligibility'
 import { Route as AdmissionsProcedureRouteImport } from './routes/admissions_.procedure'
 import { Route as AdmissionsScholarshipsRouteImport } from './routes/admissions_.scholarships'
+import { Route as CampusLifeSocialMediaRouteImport } from './routes/campus-life_.social-media'
 import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
 import { Route as NaacIndexRouteImport } from './routes/naac/index'
 import { Route as ProgrammesIndexRouteImport } from './routes/programmes.index'
@@ -91,6 +93,11 @@ const ProgrammesOfferedRoute = ProgrammesOfferedRouteImport.update({
   path: '/programmes-offered',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SocialMediaRoute = SocialMediaRouteImport.update({
+  id: '/social-media',
+  path: '/social-media',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudentHousingRoute = StudentHousingRouteImport.update({
   id: '/student-housing',
   path: '/student-housing',
@@ -141,6 +148,11 @@ const AdmissionsScholarshipsRoute = AdmissionsScholarshipsRouteImport.update({
   path: '/admissions/scholarships',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CampusLifeSocialMediaRoute = CampusLifeSocialMediaRouteImport.update({
+  id: '/campus-life_/social-media',
+  path: '/campus-life/social-media',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventsEventIdRoute = EventsEventIdRouteImport.update({
   id: '/events/$eventId',
   path: '/events/$eventId',
@@ -179,6 +191,7 @@ export interface FileRoutesByFullPath {
   '/naac': typeof NaacRouteWithChildren
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
+  '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -189,6 +202,7 @@ export interface FileRoutesByFullPath {
   '/admissions/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions/procedure': typeof AdmissionsProcedureRoute
   '/admissions/scholarships': typeof AdmissionsScholarshipsRoute
+  '/campus-life/social-media': typeof CampusLifeSocialMediaRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
   '/naac/': typeof NaacIndexRoute
@@ -206,6 +220,7 @@ export interface FileRoutesByTo {
   '/curriculum': typeof CurriculumRoute
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
+  '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -216,6 +231,7 @@ export interface FileRoutesByTo {
   '/admissions/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions/procedure': typeof AdmissionsProcedureRoute
   '/admissions/scholarships': typeof AdmissionsScholarshipsRoute
+  '/campus-life/social-media': typeof CampusLifeSocialMediaRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
   '/naac': typeof NaacIndexRoute
@@ -235,6 +251,7 @@ export interface FileRoutesById {
   '/naac': typeof NaacRouteWithChildren
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
+  '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
   '/about_/accreditations': typeof AboutAccreditationsRoute
   '/about_/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -245,6 +262,7 @@ export interface FileRoutesById {
   '/admissions_/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions_/procedure': typeof AdmissionsProcedureRoute
   '/admissions_/scholarships': typeof AdmissionsScholarshipsRoute
+  '/campus-life_/social-media': typeof CampusLifeSocialMediaRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
   '/naac/': typeof NaacIndexRoute
@@ -265,6 +283,7 @@ export interface FileRouteTypes {
     | '/naac'
     | '/placements'
     | '/programmes-offered'
+    | '/social-media'
     | '/student-housing'
     | '/about/accreditations'
     | '/about/group-institutions'
@@ -275,6 +294,7 @@ export interface FileRouteTypes {
     | '/admissions/eligibility'
     | '/admissions/procedure'
     | '/admissions/scholarships'
+    | '/campus-life/social-media'
     | '/events/$eventId'
     | '/programmes/$courseId'
     | '/naac/'
@@ -292,6 +312,7 @@ export interface FileRouteTypes {
     | '/curriculum'
     | '/placements'
     | '/programmes-offered'
+    | '/social-media'
     | '/student-housing'
     | '/about/accreditations'
     | '/about/group-institutions'
@@ -302,6 +323,7 @@ export interface FileRouteTypes {
     | '/admissions/eligibility'
     | '/admissions/procedure'
     | '/admissions/scholarships'
+    | '/campus-life/social-media'
     | '/events/$eventId'
     | '/programmes/$courseId'
     | '/naac'
@@ -320,6 +342,7 @@ export interface FileRouteTypes {
     | '/naac'
     | '/placements'
     | '/programmes-offered'
+    | '/social-media'
     | '/student-housing'
     | '/about_/accreditations'
     | '/about_/group-institutions'
@@ -330,6 +353,7 @@ export interface FileRouteTypes {
     | '/admissions_/eligibility'
     | '/admissions_/procedure'
     | '/admissions_/scholarships'
+    | '/campus-life_/social-media'
     | '/events/$eventId'
     | '/programmes/$courseId'
     | '/naac/'
@@ -349,6 +373,7 @@ export interface RootRouteChildren {
   NaacRoute: typeof NaacRouteWithChildren
   PlacementsRoute: typeof PlacementsRoute
   ProgrammesOfferedRoute: typeof ProgrammesOfferedRoute
+  SocialMediaRoute: typeof SocialMediaRoute
   StudentHousingRoute: typeof StudentHousingRoute
   AboutAccreditationsRoute: typeof AboutAccreditationsRoute
   AboutGroupInstitutionsRoute: typeof AboutGroupInstitutionsRoute
@@ -359,6 +384,7 @@ export interface RootRouteChildren {
   AdmissionsEligibilityRoute: typeof AdmissionsEligibilityRoute
   AdmissionsProcedureRoute: typeof AdmissionsProcedureRoute
   AdmissionsScholarshipsRoute: typeof AdmissionsScholarshipsRoute
+  CampusLifeSocialMediaRoute: typeof CampusLifeSocialMediaRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
   ProgrammesCourseIdRoute: typeof ProgrammesCourseIdRoute
   ProgrammesIndexRoute: typeof ProgrammesIndexRoute
@@ -443,6 +469,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgrammesOfferedRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/social-media': {
+      id: '/social-media'
+      path: '/social-media'
+      fullPath: '/social-media'
+      preLoaderRoute: typeof SocialMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/student-housing': {
       id: '/student-housing'
       path: '/student-housing'
@@ -513,6 +546,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdmissionsScholarshipsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/campus-life_/social-media': {
+      id: '/campus-life_/social-media'
+      path: '/campus-life/social-media'
+      fullPath: '/campus-life/social-media'
+      preLoaderRoute: typeof CampusLifeSocialMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events/$eventId': {
       id: '/events/$eventId'
       path: '/events/$eventId'
@@ -575,6 +615,7 @@ const rootRouteChildren: RootRouteChildren = {
   NaacRoute: NaacRouteWithChildren,
   PlacementsRoute: PlacementsRoute,
   ProgrammesOfferedRoute: ProgrammesOfferedRoute,
+  SocialMediaRoute: SocialMediaRoute,
   StudentHousingRoute: StudentHousingRoute,
   AboutAccreditationsRoute: AboutAccreditationsRoute,
   AboutGroupInstitutionsRoute: AboutGroupInstitutionsRoute,
@@ -585,6 +626,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdmissionsEligibilityRoute: AdmissionsEligibilityRoute,
   AdmissionsProcedureRoute: AdmissionsProcedureRoute,
   AdmissionsScholarshipsRoute: AdmissionsScholarshipsRoute,
+  CampusLifeSocialMediaRoute: CampusLifeSocialMediaRoute,
   EventsEventIdRoute: EventsEventIdRoute,
   ProgrammesCourseIdRoute: ProgrammesCourseIdRoute,
   ProgrammesIndexRoute: ProgrammesIndexRoute,

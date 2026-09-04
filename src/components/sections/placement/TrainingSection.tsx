@@ -608,6 +608,7 @@ export const TrainingSection: React.FC<TrainingSectionProps> = ({ onOpenFacility
                   <span className="text-xs text-primary font-bold font-oswald">
                     {activeBelt.focus}
                   </span>
+                </div>
               </div>
             );
           })()}

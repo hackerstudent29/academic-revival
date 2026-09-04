@@ -14,6 +14,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SmoothScroll } from "@/components/shared/SmoothScroll";
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
+import { HeaderProvider } from "@/context/HeaderContext";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -139,24 +140,26 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SmoothScroll />
-      <ScrollToTop />
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <div className="bg-background text-foreground overflow-x-clip w-full">
-          <div 
-            className="relative z-10 isolate flex min-h-screen flex-col shadow-2xl w-full"
-            style={{ marginBottom: "var(--footer-height, 0px)" }}
-          >
-            {!isCreditsPage && <SiteHeader />}
-            <div className="msajce-page-blur flex flex-1 flex-col">
-              <Outlet />
+      <HeaderProvider>
+        <SmoothScroll />
+        <ScrollToTop />
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <div className="bg-background text-foreground max-w-full w-full">
+            <div 
+              className="relative z-10 isolate flex min-h-screen flex-col shadow-2xl w-full"
+              style={{ marginBottom: "var(--footer-height, 0px)" }}
+            >
+              {!isCreditsPage && <SiteHeader />}
+              <div className="msajce-page-blur flex flex-1 flex-col">
+                <Outlet />
+              </div>
+            </div>
+            
+            <div className="fixed bottom-0 left-0 w-full z-0 msajce-page-blur">
+              <SiteFooter />
             </div>
           </div>
-          
-          <div className="fixed bottom-0 left-0 w-full z-0 msajce-page-blur">
-            <SiteFooter />
-          </div>
-        </div>
+      </HeaderProvider>
     </QueryClientProvider>
   );
 }
