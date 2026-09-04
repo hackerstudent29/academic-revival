@@ -17,9 +17,11 @@ import { Route as CampusLifeRouteImport } from './routes/campus-life'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreditsRouteImport } from './routes/credits'
 import { Route as CurriculumRouteImport } from './routes/curriculum'
+import { Route as NaacRouteImport } from './routes/naac'
 import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offered'
 import { Route as StudentHousingRouteImport } from './routes/student-housing'
+import { Route as AboutAccreditationsRouteImport } from './routes/about_.accreditations'
 import { Route as AboutGroupInstitutionsRouteImport } from './routes/about_.group-institutions'
 import { Route as AboutLeadershipRouteImport } from './routes/about_.leadership'
 import { Route as AboutOverviewRouteImport } from './routes/about_.overview'
@@ -29,8 +31,10 @@ import { Route as AdmissionsEligibilityRouteImport } from './routes/admissions_.
 import { Route as AdmissionsProcedureRouteImport } from './routes/admissions_.procedure'
 import { Route as AdmissionsScholarshipsRouteImport } from './routes/admissions_.scholarships'
 import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
+import { Route as NaacIndexRouteImport } from './routes/naac/index'
 import { Route as ProgrammesIndexRouteImport } from './routes/programmes.index'
 import { Route as ProgrammesCourseIdRouteImport } from './routes/programmes.$courseId'
+import { Route as NaacCriteriaIdRouteImport } from './routes/naac/criteria.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -72,6 +76,11 @@ const CurriculumRoute = CurriculumRouteImport.update({
   path: '/curriculum',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NaacRoute = NaacRouteImport.update({
+  id: '/naac',
+  path: '/naac',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlacementsRoute = PlacementsRouteImport.update({
   id: '/placements',
   path: '/placements',
@@ -85,6 +94,11 @@ const ProgrammesOfferedRoute = ProgrammesOfferedRouteImport.update({
 const StudentHousingRoute = StudentHousingRouteImport.update({
   id: '/student-housing',
   path: '/student-housing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutAccreditationsRoute = AboutAccreditationsRouteImport.update({
+  id: '/about_/accreditations',
+  path: '/about/accreditations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutGroupInstitutionsRoute = AboutGroupInstitutionsRouteImport.update({
@@ -132,6 +146,11 @@ const EventsEventIdRoute = EventsEventIdRouteImport.update({
   path: '/events/$eventId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NaacIndexRoute = NaacIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => NaacRoute,
+} as any)
 const ProgrammesIndexRoute = ProgrammesIndexRouteImport.update({
   id: '/programmes/',
   path: '/programmes/',
@@ -141,6 +160,11 @@ const ProgrammesCourseIdRoute = ProgrammesCourseIdRouteImport.update({
   id: '/programmes/$courseId',
   path: '/programmes/$courseId',
   getParentRoute: () => rootRouteImport,
+} as any)
+const NaacCriteriaIdRoute = NaacCriteriaIdRouteImport.update({
+  id: '/criteria/$id',
+  path: '/criteria/$id',
+  getParentRoute: () => NaacRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -152,9 +176,11 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
   '/curriculum': typeof CurriculumRoute
+  '/naac': typeof NaacRouteWithChildren
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/student-housing': typeof StudentHousingRoute
+  '/about/accreditations': typeof AboutAccreditationsRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about/leadership': typeof AboutLeadershipRoute
   '/about/overview': typeof AboutOverviewRoute
@@ -165,7 +191,9 @@ export interface FileRoutesByFullPath {
   '/admissions/scholarships': typeof AdmissionsScholarshipsRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
+  '/naac/': typeof NaacIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
+  '/naac/criteria/$id': typeof NaacCriteriaIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -179,6 +207,7 @@ export interface FileRoutesByTo {
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/student-housing': typeof StudentHousingRoute
+  '/about/accreditations': typeof AboutAccreditationsRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about/leadership': typeof AboutLeadershipRoute
   '/about/overview': typeof AboutOverviewRoute
@@ -189,7 +218,9 @@ export interface FileRoutesByTo {
   '/admissions/scholarships': typeof AdmissionsScholarshipsRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
+  '/naac': typeof NaacIndexRoute
   '/programmes': typeof ProgrammesIndexRoute
+  '/naac/criteria/$id': typeof NaacCriteriaIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -201,9 +232,11 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
   '/curriculum': typeof CurriculumRoute
+  '/naac': typeof NaacRouteWithChildren
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/student-housing': typeof StudentHousingRoute
+  '/about_/accreditations': typeof AboutAccreditationsRoute
   '/about_/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about_/leadership': typeof AboutLeadershipRoute
   '/about_/overview': typeof AboutOverviewRoute
@@ -214,7 +247,9 @@ export interface FileRoutesById {
   '/admissions_/scholarships': typeof AdmissionsScholarshipsRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
+  '/naac/': typeof NaacIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
+  '/naac/criteria/$id': typeof NaacCriteriaIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -227,9 +262,11 @@ export interface FileRouteTypes {
     | '/contact'
     | '/credits'
     | '/curriculum'
+    | '/naac'
     | '/placements'
     | '/programmes-offered'
     | '/student-housing'
+    | '/about/accreditations'
     | '/about/group-institutions'
     | '/about/leadership'
     | '/about/overview'
@@ -240,7 +277,9 @@ export interface FileRouteTypes {
     | '/admissions/scholarships'
     | '/events/$eventId'
     | '/programmes/$courseId'
+    | '/naac/'
     | '/programmes/'
+    | '/naac/criteria/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -254,6 +293,7 @@ export interface FileRouteTypes {
     | '/placements'
     | '/programmes-offered'
     | '/student-housing'
+    | '/about/accreditations'
     | '/about/group-institutions'
     | '/about/leadership'
     | '/about/overview'
@@ -264,7 +304,9 @@ export interface FileRouteTypes {
     | '/admissions/scholarships'
     | '/events/$eventId'
     | '/programmes/$courseId'
+    | '/naac'
     | '/programmes'
+    | '/naac/criteria/$id'
   id:
     | '__root__'
     | '/'
@@ -275,9 +317,11 @@ export interface FileRouteTypes {
     | '/contact'
     | '/credits'
     | '/curriculum'
+    | '/naac'
     | '/placements'
     | '/programmes-offered'
     | '/student-housing'
+    | '/about_/accreditations'
     | '/about_/group-institutions'
     | '/about_/leadership'
     | '/about_/overview'
@@ -288,7 +332,9 @@ export interface FileRouteTypes {
     | '/admissions_/scholarships'
     | '/events/$eventId'
     | '/programmes/$courseId'
+    | '/naac/'
     | '/programmes/'
+    | '/naac/criteria/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -300,9 +346,11 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CreditsRoute: typeof CreditsRoute
   CurriculumRoute: typeof CurriculumRoute
+  NaacRoute: typeof NaacRouteWithChildren
   PlacementsRoute: typeof PlacementsRoute
   ProgrammesOfferedRoute: typeof ProgrammesOfferedRoute
   StudentHousingRoute: typeof StudentHousingRoute
+  AboutAccreditationsRoute: typeof AboutAccreditationsRoute
   AboutGroupInstitutionsRoute: typeof AboutGroupInstitutionsRoute
   AboutLeadershipRoute: typeof AboutLeadershipRoute
   AboutOverviewRoute: typeof AboutOverviewRoute
@@ -374,6 +422,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CurriculumRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/naac': {
+      id: '/naac'
+      path: '/naac'
+      fullPath: '/naac'
+      preLoaderRoute: typeof NaacRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/placements': {
       id: '/placements'
       path: '/placements'
@@ -393,6 +448,13 @@ declare module '@tanstack/react-router' {
       path: '/student-housing'
       fullPath: '/student-housing'
       preLoaderRoute: typeof StudentHousingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about_/accreditations': {
+      id: '/about_/accreditations'
+      path: '/about/accreditations'
+      fullPath: '/about/accreditations'
+      preLoaderRoute: typeof AboutAccreditationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about_/group-institutions': {
@@ -458,6 +520,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsEventIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/naac/': {
+      id: '/naac/'
+      path: '/'
+      fullPath: '/naac/'
+      preLoaderRoute: typeof NaacIndexRouteImport
+      parentRoute: typeof NaacRoute
+    }
     '/programmes/': {
       id: '/programmes/'
       path: '/programmes'
@@ -472,8 +541,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgrammesCourseIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/naac/criteria/$id': {
+      id: '/naac/criteria/$id'
+      path: '/criteria/$id'
+      fullPath: '/naac/criteria/$id'
+      preLoaderRoute: typeof NaacCriteriaIdRouteImport
+      parentRoute: typeof NaacRoute
+    }
   }
 }
+
+interface NaacRouteChildren {
+  NaacIndexRoute: typeof NaacIndexRoute
+  NaacCriteriaIdRoute: typeof NaacCriteriaIdRoute
+}
+
+const NaacRouteChildren: NaacRouteChildren = {
+  NaacIndexRoute: NaacIndexRoute,
+  NaacCriteriaIdRoute: NaacCriteriaIdRoute,
+}
+
+const NaacRouteWithChildren = NaacRoute._addFileChildren(NaacRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -484,9 +572,11 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CreditsRoute: CreditsRoute,
   CurriculumRoute: CurriculumRoute,
+  NaacRoute: NaacRouteWithChildren,
   PlacementsRoute: PlacementsRoute,
   ProgrammesOfferedRoute: ProgrammesOfferedRoute,
   StudentHousingRoute: StudentHousingRoute,
+  AboutAccreditationsRoute: AboutAccreditationsRoute,
   AboutGroupInstitutionsRoute: AboutGroupInstitutionsRoute,
   AboutLeadershipRoute: AboutLeadershipRoute,
   AboutOverviewRoute: AboutOverviewRoute,

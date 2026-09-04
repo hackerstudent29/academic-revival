@@ -50,10 +50,10 @@ const nav: NavItem[] = [
       {
         title: "Accreditation & Rankings",
         links: [
-          { label: "NAAC", to: "/about", hash: "accreditations" },
-          { label: "IQAC", to: "/about", hash: "accreditations" },
-          { label: "NIRF", to: "/about", hash: "accreditations" },
-          { label: "ARIIA", to: "/about", hash: "accreditations" },
+          { label: "NAAC Portal", to: "/naac" },
+          { label: "IQAC", to: "/naac", hash: "iqac" },
+          { label: "NIRF", to: "/about/accreditations", hash: "nirf" },
+          { label: "ARIIA", to: "/about/accreditations", hash: "ariia" },
         ],
       },
     ],
