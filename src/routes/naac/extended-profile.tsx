@@ -11,13 +11,17 @@ function ExtendedProfile() {
   return (
     <div className="flex flex-col min-h-screen bg-[#F7F7F5] dark:bg-[#121214]">
       {/* HEADER SECTION */}
-      <section className="bg-primary pt-12 md:pt-24 pb-12 px-6 md:px-12 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+      <section 
+        className="pt-16 md:pt-32 pb-16 px-6 md:px-12 relative overflow-hidden bg-cover bg-center"
+        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1555601568-c9e6f328489b?q=80&w=2000&auto=format&fit=crop')` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-black/30"></div>
         <div className="mx-auto max-w-[1440px] relative z-10">
           <Reveal>
-            <div className="flex flex-col gap-2">
-              <span className="text-primary-foreground/80 font-bold uppercase tracking-widest text-sm font-mono">NAAC Document Centre</span>
-              <h1 className="text-4xl md:text-6xl font-black font-oswald uppercase text-primary-foreground">Extended Profile</h1>
+            <div className="flex flex-col gap-3 max-w-3xl">
+              <span className="text-white/90 font-bold uppercase tracking-widest text-sm font-mono border-l-2 border-primary pl-3 drop-shadow-sm">NAAC Document Centre</span>
+              <h1 className="text-4xl md:text-6xl font-black font-oswald uppercase text-white drop-shadow-md">Extended Profile</h1>
             </div>
           </Reveal>
         </div>
