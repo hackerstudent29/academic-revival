@@ -186,14 +186,14 @@ Job opportunities for VLSI Design & Technology account for over 50% of all avail
 
 ---
 
-### Employment Growth in VLSI Design & Technology (2025–2030)
-The employment opportunities for VLSI Design & Technology (ECE (VLSI)) in India over the next five years (2025–2030) are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in ECE (VLSI) job openings.
+### Employment Growth in VLSI Design & Technology
+The employment opportunities for VLSI Design & Technology (ECE (VLSI)) in India are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in ECE (VLSI) job openings.
 
 [KEY_DRIVERS_ACCORDION]
 
 ---
 
-### Employment Opportunities in High Demand (2025–2030)
+### Employment Opportunities in High Demand
 
 | Role | Specializations | Key Skills |
 | :--- | :--- | :--- |

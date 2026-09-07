@@ -4,6 +4,29 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+html,
+body,
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+
 @font-face {
   font-family: 'Roboto';
   src: url('/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
@@ -183,14 +206,7 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
     font-family: var(--font-libre);
-  }
-
-  html::-webkit-scrollbar {
-    display: none;
   }
 
   * {
@@ -296,9 +312,6 @@
 }
 
 /* Blur page content behind an open menu */
-body.dropdown-open {
-  overflow: hidden;
-}
 body.dropdown-open .msajce-page-blur {
   filter: blur(8px) brightness(0.8);
   will-change: filter;
@@ -479,4 +492,25 @@ body.dropdown-open .msajce-page-blur {
   opacity: 0;
   transform: translateY(-8px);
   transition: opacity 0.2s, transform 0.2s;
+}
+
+/* Ocean Wave Liquid Fill Effect Keyframes */
+@keyframes ocean-wave-ripple {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-20%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-ocean-wave {
+  animation: ocean-wave-ripple 3.2s ease-in-out infinite;
+}
+
+.animate-ocean-wave-reverse {
+  animation: ocean-wave-ripple 2.4s ease-in-out infinite reverse;
 }

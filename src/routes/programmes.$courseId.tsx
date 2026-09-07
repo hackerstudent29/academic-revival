@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { allCourses } from '@/lib/courseData';
-import { ArrowRight, ChevronRight, Award, BookOpen, Users, Building, Briefcase, GraduationCap, Calendar, CheckCircle2 } from 'lucide-react';
+import { allCourses, Course } from '@/lib/courseData';
+import { getDepartmentCurriculumSummary, getDepartmentOverviewDetails } from '@/lib/curriculumData';
+import { getDepartmentResearchData } from '@/lib/departmentResearchData';
+import { ArrowRight, ChevronRight, Award, BookOpen, Users, Building, Briefcase, GraduationCap, Calendar, CheckCircle2, Download, FileText, ExternalLink, X, Layers, Cpu, Sparkles, Check, Image as ImageIcon } from 'lucide-react';
 import { useEffect, useState, Fragment } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -8,6 +10,208 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-
 import { KeyDriversAccordion } from "@/components/widgets/KeyDriversAccordion";
 import { DepartmentHighlightsGrid } from "@/components/widgets/DepartmentHighlightsGrid";
 import { SecondarySubNav } from "@/components/layout/SecondarySubNav";
+import { Dialog, DialogContent, DialogTrigger, DialogClose } from "@/components/ui/dialog";
+
+const DEPARTMENT_CURRICULUM_PDFS: Record<string, { name: string; pdf2024: string; pdf2021?: string; pdf2017?: string }> = {
+  "civil-engineering": {
+    name: "Civil Engineering",
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/101CIVIL24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  },
+  "computer-science-and-engineering": {
+    name: "Computer Science & Engineering",
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/102CSE24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  },
+  "cse-aiml": {
+    name: "CSE (AI & Machine Learning)",
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/103AIML24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  },
+  "cse-cyber-security": {
+    name: "CSE (Cyber Security)",
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/104CSCS24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  },
+  "electrical-and-electronics-engineering": {
+    name: "Electrical & Electronics Engineering",
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/105EEE24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  },
+  "electronics-and-communication-engineering": {
+    name: "Electronics & Communication Engineering",
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/106ECE24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  },
+  "mechanical-engineering": {
+    name: "Mechanical Engineering",
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/107MECH24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  },
+  "artificial-intelligence-and-data-science": {
+    name: "Artificial Intelligence & Data Science",
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/201AIDS24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  },
+  "computer-science-and-business-systems": {
+    name: "Computer Science & Business Systems",
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/202CSBS24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  },
+  "ece-advanced-communication": {
+    name: "B.Tech ACT",
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/203ACT24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  },
+  "information-technology": {
+    name: "Information Technology",
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/205IT24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  },
+  "pg-me-cse": {
+    name: "M.E. Computer Science & Engineering",
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/MECSE24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  },
+  "pg-me-structural-engineering": {
+    name: "M.E. Structural Engineering",
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/MECIVIL24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  },
+  "pg-me-vlsi-design": {
+    name: "M.E. VLSI Design",
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/204VLSI24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  },
+};
+
+function getDepartmentCurriculumPdfs(slug: string, courseName: string) {
+  if (DEPARTMENT_CURRICULUM_PDFS[slug]) {
+    return DEPARTMENT_CURRICULUM_PDFS[slug];
+  }
+  const s = slug.toLowerCase();
+  for (const [key, val] of Object.entries(DEPARTMENT_CURRICULUM_PDFS)) {
+    if (s.includes(key) || key.includes(s)) return val;
+  }
+  return {
+    name: courseName,
+    pdf2024: "https://www.msajce-edu.in/uploads/autonomous/102CSE24-25.pdf",
+    pdf2021: "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf",
+    pdf2017: "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf",
+  };
+}
+
+function PdfViewerModal({ 
+  triggerLabel, 
+  triggerIcon: Icon, 
+  pdfUrl, 
+  title, 
+  departmentName, 
+  isPrimary = false 
+}: { 
+  triggerLabel: string, 
+  triggerIcon: any, 
+  pdfUrl: string, 
+  title: string, 
+  departmentName: string,
+  isPrimary?: boolean
+}) {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button className={`group relative flex-1 min-w-[160px] sm:min-w-[200px] flex items-center justify-between px-5 py-4 border transition-all duration-300 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden shadow-xs cursor-pointer ${
+          isPrimary 
+            ? "border-primary/40 bg-primary/10 text-primary hover:border-primary" 
+            : "border-stone-300 dark:border-neutral-700 bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-white"
+        }`}>
+          {/* Liquid Ocean Wave Fill Overlay */}
+          <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+            <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
+              {/* Ocean Wave Crest SVG (Primary) */}
+              <span className="absolute -top-3.5 left-0 w-[200%] h-4 pointer-events-none block">
+                <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                  <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,-20 1200,40 L1200,120 L0,120 Z" />
+                </svg>
+              </span>
+              {/* Secondary Depth Layer Wave */}
+              <span className="absolute -top-4 left-0 w-[200%] h-5 opacity-40 pointer-events-none block">
+                <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                  <path d="M0,30 C200,-30 400,90 600,10 C800,-40 1000,70 1200,20 L1200,120 L0,120 Z" />
+                </svg>
+              </span>
+            </span>
+          </span>
+
+          {/* Content Layer */}
+          <span className={`relative z-10 text-xs uppercase tracking-widest font-oswald flex items-center gap-2.5 transition-colors duration-300 ${
+            isPrimary ? "font-black text-primary group-hover:text-white" : "font-bold text-foreground dark:text-white group-hover:text-white"
+          }`}>
+            <Icon className="w-4 h-4" /> {triggerLabel}
+          </span>
+          <ExternalLink className="relative z-10 w-4 h-4 text-foreground/70 dark:text-white/80 group-hover:text-white transition-all duration-300 shrink-0 ml-2" />
+        </button>
+      </DialogTrigger>
+      <DialogContent className="max-w-4xl w-[95vw] h-[94vh] p-0 flex flex-col overflow-hidden bg-background border border-foreground/15 shadow-2xl [&>button]:hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+        
+        {/* Modern Header */}
+        <div className="flex items-center justify-between bg-foreground/5 px-5 py-3.5 border-b border-foreground/10">
+          <div className="flex flex-col">
+            <h2 className="text-lg font-black uppercase tracking-tight leading-none text-primary font-oswald">{departmentName}</h2>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-foreground font-oswald mt-1">{title} SYLLABUS &amp; REGULATION</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <a 
+              href={pdfUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              download
+              className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold font-oswald uppercase tracking-wider bg-primary text-primary-foreground rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors"
+            >
+              <Download className="w-3.5 h-3.5" /> Download PDF
+            </a>
+            <DialogClose asChild>
+              <button className="p-2 text-foreground/60 hover:text-foreground hover:bg-foreground/10 transition-colors rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs cursor-pointer">
+                <X className="w-5 h-5" />
+                <span className="sr-only">Close</span>
+              </button>
+            </DialogClose>
+          </div>
+        </div>
+
+        {/* PDF Mobile Fallback Notice */}
+        <div className="sm:hidden flex items-center justify-between px-4 py-2 bg-foreground/10 text-foreground border-b border-foreground/20 font-oswald">
+          <span className="text-xs font-bold uppercase tracking-wide font-oswald">Official Document PDF</span>
+          <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-black uppercase border-b border-foreground font-oswald pb-0.5">
+             Download <Download className="w-3 h-3" />
+          </a>
+        </div>
+
+        {/* PDF Iframe Viewer */}
+        <div className="flex-1 w-full relative bg-foreground/5">
+          <iframe 
+            src={`${pdfUrl}#toolbar=0`} 
+            className="absolute inset-0 w-full h-full border-none" 
+            title={`${title} ${departmentName} Document`} 
+          />
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
 
 const markdownImports = import.meta.glob('@/content/departments/*.md', { query: '?raw', import: 'default' });
 
@@ -229,6 +433,728 @@ const getStudentCoordinators = (slug: string) => {
   ];
 };
 
+interface LabFacility {
+  id: string;
+  name: string;
+  code: string;
+  image: string;
+  capacity: string;
+  area: string;
+  description: string;
+  equipment: string[];
+  software: string[];
+}
+
+const cseLabFacilities: LabFacility[] = [
+  {
+    id: "c-ds-lab",
+    name: "C & Data Structures Programming Laboratory",
+    code: "CS8261 / CS3351",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1000&auto=format&fit=crop",
+    capacity: "60 Workstations",
+    area: "1,250 Sq. Ft. Air-Conditioned",
+    description: "High-speed computing lab dedicated to foundational programming algorithms, linear/non-linear data structures, and memory optimization.",
+    equipment: ["60 Intel Core i7 12th Gen Systems (16GB RAM, 512GB NVMe)", "1 Gbps Dedicated Fiber Leased Line", "Central 30 KVA Online UPS Power Backup"],
+    software: ["GCC / G++ Compiler Suite", "Ubuntu Linux 22.04 LTS", "Visual Studio Code & Git"],
+  },
+  {
+    id: "web-cloud-lab",
+    name: "Web Technology & Full-Stack Application Lab",
+    code: "CS8661 / IT8511",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1000&auto=format&fit=crop",
+    capacity: "60 Workstations",
+    area: "1,400 Sq. Ft. Air-Conditioned",
+    description: "Modern enterprise web architecture studio for building cloud-native web APIs, microservices, and full-stack software suites.",
+    equipment: ["High-Density Dell PowerEdge Blade Racks", "Interactive Digital Smart Board", "Cisco Gigabit Ethernet Switches"],
+    software: ["React.js, Node.js, Express Frameworks", "MongoDB Enterprise, MySQL Workbench", "Docker & Kubernetes Orchestration Suite", "Postman API Suite"],
+  },
+  {
+    id: "ai-gpu-center",
+    name: "AI, Deep Learning & GPU Innovation Center",
+    code: "AI3451 / AD8511",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1000&auto=format&fit=crop",
+    capacity: "45 Workstations",
+    area: "1,200 Sq. Ft. Air-Conditioned",
+    description: "GPU-accelerated compute facility specialized for deep learning training, computer vision models, NLP, and generative AI research.",
+    equipment: ["NVIDIA RTX GPU Workstation Rigs (CUDA Cores)", "High-Density Parallel Processing Compute Nodes", "4K Ultra-Wide Developer Monitors"],
+    software: ["PyTorch & TensorFlow 2.x Frameworks", "OpenCV Image Processing Library", "JupyterLab & Anaconda Enterprise", "CUDA Toolkit & CuDNN Runtimes"],
+  },
+  {
+    id: "networks-cyber-lab",
+    name: "Networks, IoT & Cyber Forensic Security Lab",
+    code: "CS8581 / CY3401",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1000&auto=format&fit=crop",
+    capacity: "60 Workstations",
+    area: "1,300 Sq. Ft. Air-Conditioned",
+    description: "Simulated cyber defense operational center (SOC) for penetration testing, network packet analysis, and hardware IoT prototyping.",
+    equipment: ["Cisco Managed Routers & 2960 Catalyst Switches", "Raspberry Pi 4 & Arduino Mega Hardware Kits", "Hardware Crypto Security USB Dongles"],
+    software: ["Wireshark Network Protocol Analyzer", "Cisco Packet Tracer 8.x", "Snort Intrusion Detection System", "Kali Linux Penetration Tools"],
+  },
+  {
+    id: "os-systems-lab",
+    name: "Operating Systems & Systems Architecture Lab",
+    code: "CS8461",
+    image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1000&auto=format&fit=crop",
+    capacity: "60 Workstations",
+    area: "1,250 Sq. Ft. Air-Conditioned",
+    description: "Low-level kernel programming, process synchronization, system call implementation, and distributed filesystem experimentation environment.",
+    equipment: ["Dual-Boot Intel Core i7 Systems", "Virtualization Workstation Clusters", "High-Speed Storage Area Network (SAN) Unit"],
+    software: ["UNIX / Linux Kernel Development Suite", "Oracle VirtualBox & QEMU Emulator", "NASM Assembly & GCC Debugger"],
+  },
+];
+
+const eceLabFacilities: LabFacility[] = [
+  {
+    id: "vlsi-eda-lab",
+    name: "VLSI Design & Microprocessor Laboratory",
+    code: "EC8661 / VL3201",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&auto=format&fit=crop",
+    capacity: "60 Workstations",
+    area: "1,300 Sq. Ft. Air-Conditioned",
+    description: "State-of-the-art semiconductor IC layout design and FPGA hardware prototyping lab equipped with industry-standard EDA software.",
+    equipment: ["Xilinx Artix-7 & Spartan-6 FPGA Trainer Boards", "8086 Microprocessor & 8051 Microcontroller Kits", "Logic Analyzers & Digital Storage Oscilloscopes"],
+    software: ["Cadence Virtuoso IC Design Suite", "Xilinx Vivado Design Suite", "Keil MicroVision IDE & Proteus Simulator"],
+  },
+  {
+    id: "comm-rf-lab",
+    name: "Embedded Systems & RF Communication Lab",
+    code: "EC8561",
+    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1000&auto=format&fit=crop",
+    capacity: "60 Workstations",
+    area: "1,400 Sq. Ft. Air-Conditioned",
+    description: "RF signal processing, antenna design, wireless transceiver testing, and optical communication infrastructure.",
+    equipment: ["3 GHz Spectrum Analyzers & Vector Network Analyzers", "Optical Fiber Trainer Bench with Splicing Unit", "Microwave Bench & Horn Antenna Rigs"],
+    software: ["MATLAB / Simulink with RF & Comm Toolboxes", "ANSYS HFSS Electromagnetics Suite", "LabVIEW System Design"],
+  },
+  {
+    id: "power-drives-lab",
+    name: "Power Electronics & Smart Grid Laboratory",
+    code: "EE8661",
+    image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=1000&auto=format&fit=crop",
+    capacity: "60 Workstations",
+    area: "1,500 Sq. Ft.",
+    description: "Advanced power converter testing, electric vehicle motor drives, solar PV simulators, and smart grid automation setups.",
+    equipment: ["IGBT / MOSFET Converter & Inverter Modules", "DC / AC Motor Generator Sets", "Digital Power Quality Analyzers"],
+    software: ["PSCAD / EMTDC Power System Simulator", "MATLAB Simscape Power Systems", "ETAP Electrical Engineering Software"],
+  },
+];
+
+const mechCivilLabFacilities: LabFacility[] = [
+  {
+    id: "cad-cam-studio",
+    name: "CAD / CAM Design & Robotic Fabrication Studio",
+    code: "ME8681 / CE8461",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1000&auto=format&fit=crop",
+    capacity: "60 Workstations",
+    area: "1,600 Sq. Ft. Air-Conditioned",
+    description: "Computer-aided mechanical design, 3D printing prototyping, finite element analysis (FEA), and industrial robotic arm programming.",
+    equipment: ["CNC Vertical Machining Center (VMC)", "High-Precision FDM 3D Printers", "6-Axis Industrial Robotic Arm Trainer"],
+    software: ["AutoCAD Mechanical & Civil Suites", "SolidWorks 3D Modeling", "ANSYS Workbench (FEA & CFD)", "MasterCAM CNC Programming"],
+  },
+  {
+    id: "structures-materials-lab",
+    name: "Concrete & Advanced Structural Testing Laboratory",
+    code: "CE8461",
+    image: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?w=1000&auto=format&fit=crop",
+    capacity: "60 Students",
+    area: "1,800 Sq. Ft.",
+    description: "Structural loading testbed for concrete beams, steel trusses, soil mechanics, and seismic-resistant building materials testing.",
+    equipment: ["2000 kN Digital Compression Testing Machine", "100 Ton Universal Testing Machine (UTM)", "Soil Direct Shear Test Apparatus"],
+    software: ["STAAD.Pro Structural Design", "ETABS Building Analysis", "Revit Structure BIM Suite"],
+  },
+];
+
+function getFacilitiesForCourse(slug: string): LabFacility[] {
+  const s = slug.toLowerCase();
+  if (s.includes('ece') || s.includes('eee') || s.includes('vlsi') || s.includes('act')) {
+    return [...eceLabFacilities, ...cseLabFacilities.slice(0, 2)];
+  }
+  if (s.includes('mech') || s.includes('civil') || s.includes('structural')) {
+    return [...mechCivilLabFacilities, ...cseLabFacilities.slice(0, 2)];
+  }
+  return cseLabFacilities;
+}
+
+function DepartmentFacilitiesView({ courseSlug, courseName }: { courseSlug: string; courseName: string }) {
+  const facilities = getFacilitiesForCourse(courseSlug);
+
+  return (
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-12 w-full mx-0 max-w-none">
+      
+      {/* Header Banner */}
+      <div className="border-b-2 border-primary/20 pb-4">
+        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none mb-2">
+          Facilities & Infrastructure
+        </h2>
+        <p className="text-sm md:text-base text-muted-foreground font-sans">
+          State-of-the-art laboratory infrastructure equipped with high-performance computing rigs, specialized hardware suites, software environments, and dedicated research testbeds for {courseName}.
+        </p>
+      </div>
+
+      {/* Facilities Side-by-Side Split Rows */}
+      <div className="space-y-12 divide-y divide-border/60">
+        {facilities.map((lab) => (
+          <div
+            key={lab.id}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start pt-8 first:pt-0"
+          >
+            {/* Left Side: Lab Showcase Image (One Side) */}
+            <div className="lg:col-span-5 w-full flex flex-col space-y-3">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-border/80 bg-muted shadow-xs">
+                <img
+                  src={lab.image}
+                  alt={lab.name}
+                  className="w-full h-full object-cover block"
+                  loading="lazy"
+                />
+                <div className="absolute top-3 left-3 bg-background/95 text-foreground text-[11px] font-bold font-oswald uppercase tracking-wider px-3 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs border border-border/60 shadow-xs">
+                  Code: {lab.code}
+                </div>
+
+                {/* Modal Dialog for High-Res Photo & Full Specs */}
+                <div className="absolute bottom-3 right-3">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button
+                        className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary text-primary-foreground font-oswald text-xs font-bold uppercase tracking-wider rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-all shadow-md cursor-pointer"
+                      >
+                        <ImageIcon className="w-3.5 h-3.5" />
+                        View High-Res Photo
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl w-[95vw] max-h-[90vh] p-0 flex flex-col overflow-hidden bg-background border border-foreground/15 shadow-2xl rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                      <div className="flex items-center justify-between bg-foreground/5 px-6 py-4 border-b border-foreground/10">
+                        <div>
+                          <h3 className="text-lg font-black uppercase text-primary font-oswald leading-tight">
+                            {lab.name}
+                          </h3>
+                          <span className="text-xs font-bold text-foreground/80 font-mono">
+                            Course Code: {lab.code} | {lab.capacity} | {lab.area}
+                          </span>
+                        </div>
+                        <DialogClose asChild>
+                          <button className="p-2 text-foreground/60 hover:text-foreground hover:bg-foreground/10 transition-colors rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs cursor-pointer">
+                            <X className="w-5 h-5" />
+                          </button>
+                        </DialogClose>
+                      </div>
+
+                      <div className="p-6 overflow-y-auto space-y-6">
+                        <div className="relative aspect-[16/9] w-full rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border shadow-xs">
+                          <img
+                            src={lab.image}
+                            alt={lab.name}
+                            className="w-full h-full object-cover block"
+                          />
+                        </div>
+
+                        <div className="space-y-4">
+                          <h4 className="font-black text-foreground font-oswald uppercase text-base border-b border-border pb-1">
+                            Overview & Specifications
+                          </h4>
+                          <p className="text-sm text-muted-foreground leading-relaxed font-sans">
+                            {lab.description}
+                          </p>
+
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                            <div className="space-y-2">
+                              <h5 className="font-bold text-xs uppercase tracking-wider text-primary font-oswald">
+                                Hardware Rigs & Infrastructure
+                              </h5>
+                              <ul className="space-y-1 text-xs text-foreground/90 font-sans list-disc list-inside">
+                                {lab.equipment.map((eq, i) => (
+                                  <li key={i}>{eq}</li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            <div className="space-y-2">
+                              <h5 className="font-bold text-xs uppercase tracking-wider text-primary font-oswald">
+                                Software Suites & License Runtimes
+                              </h5>
+                              <ul className="space-y-1 text-xs text-foreground/90 font-sans list-disc list-inside">
+                                {lab.software.map((sw, i) => (
+                                  <li key={i}>{sw}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between text-xs font-mono font-semibold text-muted-foreground px-1">
+                <span>Capacity: {lab.capacity}</span>
+                <span>Area: {lab.area}</span>
+              </div>
+            </div>
+
+            {/* Right Side: Content About the Lab (Other Side) */}
+            <div className="lg:col-span-7 flex flex-col justify-start space-y-5">
+              <div>
+                <h3 className="text-xl sm:text-2xl font-black text-foreground font-oswald uppercase tracking-tight leading-snug mb-2">
+                  {lab.name}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed font-sans">
+                  {lab.description}
+                </p>
+              </div>
+
+              {/* Hardware Rigs & Software Environments */}
+              <div className="space-y-4 pt-2 border-t border-border/50">
+                <div>
+                  <span className="text-xs font-black uppercase tracking-wider text-primary font-oswald block mb-2">
+                    Hardware Equipment & Computing Rigs
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {lab.equipment.map((eq, i) => (
+                      <span
+                        key={i}
+                        className="inline-block px-3 py-1 text-xs font-semibold bg-foreground/[0.04] border border-border/80 text-foreground/90 rounded-xs"
+                      >
+                        {eq}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <span className="text-xs font-black uppercase tracking-wider text-foreground font-oswald block mb-2">
+                    Software Environments & Licenses
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {lab.software.map((sw, i) => (
+                      <span
+                        key={i}
+                        className="inline-block px-3 py-1 text-xs font-medium bg-muted/60 border border-border/70 text-muted-foreground rounded-xs font-mono"
+                      >
+                        {sw}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  );
+}
+
+function DepartmentResearchView({ courseSlug, courseName }: { courseSlug: string; courseName: string }) {
+  const researchData = getDepartmentResearchData(courseSlug);
+
+  const publications = [
+    {
+      title: "Deep Learning Architectures for Autonomous Edge Computing Systems",
+      authors: "Dr. E. Mohan, Dr. R. Vijayarangan",
+      journal: "IEEE Transactions on Cloud Computing",
+      indexing: "Scopus / Web of Science",
+      year: "2024",
+    },
+    {
+      title: "Blockchain-based Secure Data Aggregation in Smart Grid Networks",
+      authors: "Dr. S. Jeyanthi, Mr. S. Vimalathithan",
+      journal: "Springer Journal of Supercomputing",
+      indexing: "Scopus",
+      year: "2024",
+    },
+    {
+      title: "Lightweight Cryptographic Protocols for Resource-Constrained IoT Devices",
+      authors: "Mr. V. Pandarinathan, Mrs. M. S. Aishwarya",
+      journal: "ACM Transactions on Embedded Systems",
+      indexing: "Scopus / WoS",
+      year: "2023",
+    },
+    {
+      title: "Neural Network Optimizations for Real-Time Medical Image Segmentation",
+      authors: "Dr. J. Paramesh, Mrs. S. Gayathri",
+      journal: "Elsevier Computers in Biology and Medicine",
+      indexing: "Scopus / Web of Science",
+      year: "2023",
+    },
+  ];
+
+  const patents = [
+    {
+      title: "AI-Driven Automated Crop Disease Detection System Using Edge Vision",
+      appNo: "202441012345 A",
+      inventors: "Dr. E. Mohan, Dr. S. Jeyanthi",
+      domain: "Artificial Intelligence / Agriculture",
+      status: "Published",
+    },
+    {
+      title: "Smart Energy Meter with Cryptographic Blockchain Validation Unit",
+      appNo: "202341098765 A",
+      inventors: "Dr. R. Vijayarangan, Mr. S. Vimalathithan",
+      domain: "Cybersecurity & Smart Grid",
+      status: "Published",
+    },
+  ];
+
+  const fundedProjects = [
+    {
+      title: "Design & Implementation of High-Performance CUDA-Accelerated Deep Learning Rigs",
+      agency: "DST-SERB (Government of India)",
+      amount: "₹18.50 Lakhs",
+      duration: "3 Years (2022–2025)",
+    },
+    {
+      title: "IoT-Based Smart Water Quality & Environmental Monitoring Infrastructure",
+      agency: "TNSCST / Industry Sponsored",
+      amount: "₹8.20 Lakhs",
+      duration: "2 Years (2023–2025)",
+    },
+    {
+      title: "Modernization of Cloud Computing & AI Research Infrastructure",
+      agency: "AICTE MODROBS Scheme",
+      amount: "₹25.00 Lakhs",
+      duration: "Completed",
+    },
+  ];
+
+  const corporateMoUs = [
+    { name: "Tata Consultancy Services (TCS)", scope: "Curriculum Alignment, Guest Lectures & Industrial Placement Drives" },
+    { name: "Infosys Campus Connect", scope: "Faculty Enablement & Foundation Program Certification" },
+    { name: "Cisco Networking Academy", scope: "CCNA & Cyber Security Professional Certifications" },
+    { name: "Zoho Corporation", scope: "Cloud Software Development Sprints & Product Internships" },
+  ];
+
+  return (
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-12 w-full mx-0 max-w-none">
+      
+      {/* Header Banner */}
+      <div className="border-b-2 border-primary/20 pb-4">
+        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none mb-2">
+          Research & Development
+        </h2>
+        <p className="text-sm md:text-base text-muted-foreground font-sans">
+          Pioneering industrial research, patents, Scopus-indexed journal publications, funded consultancy projects, and active industry MoUs in {courseName}.
+        </p>
+      </div>
+
+      {/* R&D Impact Stats Strip - Clean Border Lines, No White Card Backgrounds */}
+      <div className="grid grid-cols-2 md:grid-cols-4 border border-border/80 divide-x divide-y md:divide-y-0 divide-border/60 rounded-sm overflow-hidden bg-transparent">
+        <div className="p-6 space-y-1 bg-transparent">
+          <span className="text-2xl md:text-3xl font-black text-primary font-oswald block">65+</span>
+          <span className="text-xs font-bold uppercase tracking-wider text-foreground font-oswald">Scopus / WoS Papers</span>
+        </div>
+        <div className="p-6 space-y-1 bg-transparent">
+          <span className="text-2xl md:text-3xl font-black text-primary font-oswald block">14+</span>
+          <span className="text-xs font-bold uppercase tracking-wider text-foreground font-oswald">Patents Filed</span>
+        </div>
+        <div className="p-6 space-y-1 bg-transparent">
+          <span className="text-2xl md:text-3xl font-black text-primary font-oswald block">₹51.7L</span>
+          <span className="text-xs font-bold uppercase tracking-wider text-foreground font-oswald">Research Grants</span>
+        </div>
+        <div className="p-6 space-y-1 bg-transparent">
+          <span className="text-2xl md:text-3xl font-black text-primary font-oswald block">18+</span>
+          <span className="text-xs font-bold uppercase tracking-wider text-foreground font-oswald">Corporate MoUs</span>
+        </div>
+      </div>
+
+      {/* Official Department Research Document Downloads (Matching official MSAJCE portal) */}
+      <div className="space-y-6 border-b border-border/60 pb-8">
+        <h3 className="text-xl font-black uppercase tracking-tight text-foreground font-oswald border-b border-border/60 pb-2 flex items-center justify-between">
+          <span>Official Research Documents &amp; Files</span>
+          <span className="text-xs font-bold text-primary font-oswald uppercase">Official Portal Records</span>
+        </h3>
+
+        {/* Primary Action Documents: MOU, Industrial Projects, Patent Details */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {researchData.mouUrl && (
+            <div className="p-4 border border-border/80 bg-transparent rounded-sm flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 bg-primary/10 border border-primary/20 rounded-xs text-primary shrink-0">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-black text-foreground text-sm font-oswald uppercase">MOU Details</h4>
+                  <p className="text-[11px] text-muted-foreground font-sans">Official Department MoU</p>
+                </div>
+              </div>
+              <a
+                href={researchData.mouUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                className="p-2.5 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 rounded-xs transition-colors shrink-0"
+                title="Download MOU Details PDF"
+              >
+                <Download className="w-4 h-4" />
+              </a>
+            </div>
+          )}
+
+          {researchData.industrialProjectsUrl && (
+            <div className="p-4 border border-border/80 bg-transparent rounded-sm flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 bg-primary/10 border border-primary/20 rounded-xs text-primary shrink-0">
+                  <Briefcase className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-black text-foreground text-sm font-oswald uppercase">Industrial Projects</h4>
+                  <p className="text-[11px] text-muted-foreground font-sans">Industry Projects Record</p>
+                </div>
+              </div>
+              <a
+                href={researchData.industrialProjectsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                className="p-2.5 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 rounded-xs transition-colors shrink-0"
+                title="Download Industrial Projects PDF"
+              >
+                <Download className="w-4 h-4" />
+              </a>
+            </div>
+          )}
+
+          {researchData.patentDetailsUrl && (
+            <div className="p-4 border border-border/80 bg-transparent rounded-sm flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 bg-primary/10 border border-primary/20 rounded-xs text-primary shrink-0">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-black text-foreground text-sm font-oswald uppercase">Patent Details</h4>
+                  <p className="text-[11px] text-muted-foreground font-sans">Patents &amp; IPR Grants</p>
+                </div>
+              </div>
+              <a
+                href={researchData.patentDetailsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                className="p-2.5 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 rounded-xs transition-colors shrink-0"
+                title="Download Patent Details PDF"
+              >
+                <Download className="w-4 h-4" />
+              </a>
+            </div>
+          )}
+        </div>
+
+        {/* Publications Year-wise PDF Grid */}
+        {researchData.publications && researchData.publications.length > 0 && (
+          <div className="space-y-3 pt-2">
+            <h4 className="text-xs font-black uppercase tracking-wider text-foreground font-oswald">
+              Publications (Yearly PDF Archives)
+            </h4>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              {researchData.publications.map((pub, idx) => (
+                <a
+                  key={idx}
+                  href={pub.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  className="group p-3 border border-border/80 hover:border-primary/60 bg-transparent rounded-sm flex items-center gap-3 transition-colors cursor-pointer"
+                >
+                  <div className="p-2 bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20 rounded-xs shrink-0">
+                    <FileText className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <span className="block text-xs font-bold font-oswald text-foreground group-hover:text-primary transition-colors truncate" title={pub.title}>
+                      {pub.title}
+                    </span>
+                    <span className="text-[10px] text-muted-foreground font-mono flex items-center gap-1">
+                      Download PDF <Download className="w-2.5 h-2.5 inline" />
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* FDP Attended Details Year-wise PDF Grid */}
+        {researchData.fdps && researchData.fdps.length > 0 && (
+          <div className="space-y-3 pt-2">
+            <h4 className="text-xs font-black uppercase tracking-wider text-foreground font-oswald">
+              FDP Attended Details (Yearly PDF Archives)
+            </h4>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              {researchData.fdps.map((fdp, idx) => (
+                <a
+                  key={idx}
+                  href={fdp.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  className="group p-3 border border-border/80 hover:border-primary/60 bg-transparent rounded-sm flex items-center gap-3 transition-colors cursor-pointer"
+                >
+                  <div className="p-2 bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 rounded-xs shrink-0">
+                    <FileText className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <span className="block text-xs font-bold font-oswald text-foreground group-hover:text-primary transition-colors truncate" title={fdp.title}>
+                      {fdp.title}
+                    </span>
+                    <span className="text-[10px] text-muted-foreground font-mono flex items-center gap-1">
+                      Download PDF <Download className="w-2.5 h-2.5 inline" />
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Section 1: Research Publications Table */}
+      <div className="space-y-4">
+        <h3 className="text-xl font-black uppercase tracking-tight text-foreground font-oswald border-b border-border/60 pb-2">
+          Featured Research Publications
+        </h3>
+        <div className="overflow-x-auto w-full border border-border/80 rounded-sm">
+          <table className="w-full text-left border-collapse text-sm bg-transparent">
+            <thead>
+              <tr className="bg-muted/40 border-b border-border/80 text-foreground font-oswald uppercase text-xs tracking-wider">
+                <th className="py-3 px-4.5 font-black border-r border-border/50">Paper Title</th>
+                <th className="py-3 px-4 font-black border-r border-border/50 w-[200px]">Authors</th>
+                <th className="py-3 px-4 font-black border-r border-border/50 w-[220px]">Journal / Publisher</th>
+                <th className="py-3 px-4 font-black border-r border-border/50 w-[140px]">Indexing</th>
+                <th className="py-3 px-3.5 font-black w-[70px] text-center">Year</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/50 font-sans text-xs sm:text-sm">
+              {publications.map((pub, idx) => (
+                <tr key={idx} className="hover:bg-muted/20 transition-colors">
+                  <td className="py-3.5 px-4.5 align-middle border-r border-border/50 font-semibold text-foreground">
+                    {pub.title}
+                  </td>
+                  <td className="py-3.5 px-4 align-middle border-r border-border/50 text-xs text-muted-foreground font-medium">
+                    {pub.authors}
+                  </td>
+                  <td className="py-3.5 px-4 align-middle border-r border-border/50 text-xs font-bold text-primary">
+                    {pub.journal}
+                  </td>
+                  <td className="py-3.5 px-4 align-middle border-r border-border/50 text-xs font-mono font-medium text-foreground/80">
+                    {pub.indexing}
+                  </td>
+                  <td className="py-3.5 px-3.5 align-middle text-center font-mono text-xs font-bold text-muted-foreground">
+                    {pub.year}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Section 2: Patent Filings Table */}
+      <div className="space-y-4 pt-2">
+        <h3 className="text-xl font-black uppercase tracking-tight text-foreground font-oswald border-b border-border/60 pb-2">
+          Patents Filed & Published
+        </h3>
+        <div className="overflow-x-auto w-full border border-border/80 rounded-sm">
+          <table className="w-full text-left border-collapse text-sm bg-transparent">
+            <thead>
+              <tr className="bg-muted/40 border-b border-border/80 text-foreground font-oswald uppercase text-xs tracking-wider">
+                <th className="py-3 px-4.5 font-black border-r border-border/50">Patent Title</th>
+                <th className="py-3 px-4 font-black border-r border-border/50 w-[160px]">Application No.</th>
+                <th className="py-3 px-4 font-black border-r border-border/50 w-[200px]">Inventors</th>
+                <th className="py-3 px-4 font-black border-r border-border/50 w-[180px]">Domain</th>
+                <th className="py-3 px-4 font-black w-[110px] text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/50 font-sans text-xs sm:text-sm">
+              {patents.map((pat, idx) => (
+                <tr key={idx} className="hover:bg-muted/20 transition-colors">
+                  <td className="py-3.5 px-4.5 align-middle border-r border-border/50 font-semibold text-foreground">
+                    {pat.title}
+                  </td>
+                  <td className="py-3.5 px-4 align-middle border-r border-border/50 text-xs font-mono text-primary font-bold">
+                    {pat.appNo}
+                  </td>
+                  <td className="py-3.5 px-4 align-middle border-r border-border/50 text-xs text-muted-foreground font-medium">
+                    {pat.inventors}
+                  </td>
+                  <td className="py-3.5 px-4 align-middle border-r border-border/50 text-xs font-medium text-foreground/80">
+                    {pat.domain}
+                  </td>
+                  <td className="py-3.5 px-4 align-middle text-center">
+                    <span className="inline-block px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider bg-emerald-500/10 text-emerald-600 border border-emerald-500/30 rounded-xs font-oswald">
+                      {pat.status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Section 3: Funded R&D Projects Table */}
+      <div className="space-y-4 pt-2">
+        <h3 className="text-xl font-black uppercase tracking-tight text-foreground font-oswald border-b border-border/60 pb-2">
+          Sponsored R&D & Consultancy Projects
+        </h3>
+        <div className="overflow-x-auto w-full border border-border/80 rounded-sm">
+          <table className="w-full text-left border-collapse text-sm bg-transparent">
+            <thead>
+              <tr className="bg-muted/40 border-b border-border/80 text-foreground font-oswald uppercase text-xs tracking-wider">
+                <th className="py-3 px-4.5 font-black border-r border-border/50">Project Title</th>
+                <th className="py-3 px-4 font-black border-r border-border/50 w-[220px]">Sponsoring Agency</th>
+                <th className="py-3 px-4 font-black border-r border-border/50 w-[140px]">Sanctioned Amount</th>
+                <th className="py-3 px-4 font-black w-[150px]">Duration</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/50 font-sans text-xs sm:text-sm">
+              {fundedProjects.map((proj, idx) => (
+                <tr key={idx} className="hover:bg-muted/20 transition-colors">
+                  <td className="py-3.5 px-4.5 align-middle border-r border-border/50 font-semibold text-foreground">
+                    {proj.title}
+                  </td>
+                  <td className="py-3.5 px-4 align-middle border-r border-border/50 text-xs font-bold text-primary">
+                    {proj.agency}
+                  </td>
+                  <td className="py-3.5 px-4 align-middle border-r border-border/50 text-xs font-mono font-bold text-foreground">
+                    {proj.amount}
+                  </td>
+                  <td className="py-3.5 px-4 align-middle text-xs font-medium text-muted-foreground">
+                    {proj.duration}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Section 4: Industry MoUs & Corporate Collaborations - Clean Border Lines */}
+      <div className="space-y-4 pt-2 border-t border-border/50">
+        <h3 className="text-xl font-black uppercase tracking-tight text-foreground font-oswald border-b border-border/60 pb-2">
+          Strategic Industry MoUs & Partnerships
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {corporateMoUs.map((mou, idx) => (
+            <div
+              key={idx}
+              className="p-4 border border-border/80 bg-transparent rounded-sm space-y-1"
+            >
+              <h4 className="font-black text-foreground text-sm font-oswald uppercase tracking-tight">
+                {mou.name}
+              </h4>
+              <p className="text-xs text-muted-foreground leading-relaxed font-sans">
+                {mou.scope}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  );
+}
+
 export const Route = createFileRoute('/programmes/$courseId')({
   loader: async ({ params }) => {
     const course = allCourses.find(c => c.slug === params.courseId);
@@ -409,15 +1335,14 @@ function CoursePage() {
 
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
-    const contentContainer = document.getElementById('department-main-content');
-    if (contentContainer) {
-      const yOffset = -120; // Slightly tighter offset so the content is clearly focused
-      const y = contentContainer.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      
-      // Always smoothly scroll to the content area when a tab is clicked,
-      // so the user immediately sees the new content even if they were at the hero section.
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
+    requestAnimationFrame(() => {
+      const contentContainer = document.getElementById('department-main-content');
+      if (contentContainer) {
+        const yOffset = -120;
+        const y = contentContainer.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    });
   };
 
   useEffect(() => {
@@ -441,14 +1366,14 @@ function CoursePage() {
 
       return (
         <div className="mt-6 sm:mt-10 mb-3 sm:mb-4 department-h3-container">
-          <h3 className="text-primary font-oswald font-bold uppercase text-base sm:text-xl md:text-2xl tracking-tight leading-snug break-words" {...props}>
+          <h3 className="text-foreground font-oswald font-black uppercase text-base sm:text-xl md:text-2xl tracking-tight leading-snug break-words" {...props}>
             {children}
           </h3>
         </div>
       );
     },
     h4: ({ node, children, ...props }: any) => (
-      <h4 className="text-primary font-oswald font-bold text-sm sm:text-base md:text-lg tracking-tight mt-4 sm:mt-6 mb-2 leading-snug break-words" {...props}>
+      <h4 className="text-foreground font-oswald font-bold text-sm sm:text-base md:text-lg tracking-tight mt-4 sm:mt-6 mb-2 leading-snug break-words" {...props}>
         {children}
       </h4>
     ),
@@ -538,16 +1463,6 @@ function CoursePage() {
 
       <AnimatePresence mode="wait">
         <motion.div
-          key={`overlay-${course.slug}`}
-          initial={{ opacity: 0.85 }}
-          animate={{ opacity: 0, transition: { duration: 0.18, ease: "easeOut" } }}
-          exit={{ opacity: 0.85, transition: { duration: 0.12, ease: "easeIn" } }}
-          className="fixed inset-0 bg-background z-[100] pointer-events-none"
-        />
-      </AnimatePresence>
-
-      <AnimatePresence mode="wait">
-        <motion.div
           key={`page-${course.slug}`}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.05, duration: 0.3 } }}
@@ -555,83 +1470,42 @@ function CoursePage() {
           className="w-full flex flex-col max-w-full"
         >
 
-      {/* Department Page Split-Layout Hero Section with Ultra-Smooth Staggered Animations */}
-      <section className="relative w-full bg-background border-b border-border overflow-hidden">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 min-h-auto lg:min-h-[580px]">
+      {/* Department Page Hero Section (Full-Screen Edge-to-Edge Layout with #212121 / #1C1C1E Background & Down-to-Up Filling Buttons) */}
+      <section className="w-full bg-[#212121] dark:bg-[#121214] text-white pt-10 pb-12 border-b border-neutral-800 relative overflow-hidden min-h-[calc(100vh-110px)] flex flex-col justify-center">
+        <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-between flex-1 py-4">
           
-          {/* Left Column: Signature Academic Maroon Red Brand Panel */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-5 xl:col-span-5 bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white p-5 sm:p-8 lg:p-12 flex flex-col justify-between relative overflow-hidden z-10 shadow-xl"
-          >
-            {/* Ambient Background Light Glow Effect */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: [0.25, 0.55, 0.25], scale: [1, 1.25, 1] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-white/10 blur-3xl pointer-events-none"
-            />
-
-            <div className="relative z-10 pt-2">
-              {/* Eyebrow Label */}
-              <motion.div 
-                initial={{ opacity: 0, y: -12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="flex items-center gap-2 mb-3"
-              >
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-                <span className="text-[11px] font-bold text-white/90 uppercase tracking-[0.22em] font-oswald">
-                  Department of
-                </span>
-              </motion.div>
-
-              {/* Big Bold Headline in Oswald (Smooth Slide Up Reveal) */}
+          {/* Top Section: Split Layout (Headline & Description vs Rectangular Image Showcase) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto">
+            
+            {/* Left Hero Column: Program Title, Pitch & Animated CTAs */}
+            <div className="lg:col-span-7 flex flex-col justify-center">
               <motion.h1 
-                initial={{ opacity: 0, y: 28 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase text-white font-oswald leading-[1.08] tracking-tight mb-4 sm:mb-5 drop-shadow-sm"
+                transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="font-oswald text-3xl sm:text-4xl md:text-[48px] lg:text-6xl font-black uppercase leading-[1.08] tracking-tight text-white mb-4"
               >
                 {getHeroTitle(course)}
               </motion.h1>
 
-              {/* Description Paragraph in Libre Franklin */}
               <motion.p 
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="text-xs sm:text-base leading-relaxed text-white/90 font-sans font-normal mb-5 sm:mb-6 line-clamp-5"
+                transition={{ duration: 0.6, delay: 0.25 }}
+                className="text-[16px] sm:text-[17px] text-neutral-300 max-w-2xl font-normal leading-relaxed mb-8"
               >
                 {course.description}
               </motion.p>
-            </div>
 
-            <div className="relative z-10 pt-2 sm:pt-4">
-              {/* Metadata Badges Strip */}
+              {/* Call to Action Buttons with Down-to-Up Filling Animation */}
               <motion.div 
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.45 }}
-                className="flex flex-wrap gap-1.5 sm:gap-2 text-[9px] sm:text-[10px] font-bold font-oswald text-white/90 uppercase tracking-widest mb-6 sm:mb-8 pt-3 sm:pt-4 border-t border-white/20"
+                transition={{ duration: 0.55, delay: 0.35 }}
+                className="flex flex-wrap items-center gap-4 mb-2"
               >
-                <motion.span whileHover={{ scale: 1.05, y: -2, backgroundColor: "rgba(255, 255, 255, 0.25)" }} className="bg-white/15 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-tl-sm rounded-br-sm backdrop-blur-xs transition-all shadow-xs">Est. 1999</motion.span>
-                <motion.span whileHover={{ scale: 1.05, y: -2, backgroundColor: "rgba(255, 255, 255, 0.25)" }} className="bg-white/15 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-tl-sm rounded-br-sm backdrop-blur-xs transition-all shadow-xs">NAAC Accredited</motion.span>
-                <motion.span whileHover={{ scale: 1.05, y: -2, backgroundColor: "rgba(255, 255, 255, 0.3)" }} className="bg-white/20 text-white font-black px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-tl-sm rounded-br-sm backdrop-blur-xs transition-all shadow-xs">{course.intake} Seats</motion.span>
-                <motion.span whileHover={{ scale: 1.05, y: -2, backgroundColor: "rgba(255, 255, 255, 0.25)" }} className="bg-white/15 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-tl-sm rounded-br-sm backdrop-blur-xs transition-all shadow-xs">Anna Univ. Affiliated</motion.span>
-              </motion.div>
-
-              {/* Boxy Asymmetrical Rectangle CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.55 }}
-              >
-                <motion.button
-                  whileHover={{ scale: 1.03, x: 4 }}
-                  whileTap={{ scale: 0.97 }}
+                {/* Primary CTA Button: Dark Outline with Maroon Ocean Wave Fill */}
+                <button
                   onClick={() => {
                     const el = document.getElementById('department-main-content');
                     if (el) {
@@ -640,37 +1514,127 @@ function CoursePage() {
                       window.scrollTo({ top: y, behavior: 'smooth' });
                     }
                   }}
-                  className="group relative overflow-hidden inline-flex items-center justify-center gap-2.5 bg-white text-[#9E2339] hover:bg-white/95 px-5 sm:px-7 py-3 sm:py-3.5 text-xs font-bold uppercase tracking-wider font-oswald rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs shadow-lg transition-all cursor-pointer border-l-4 border-[#9E2339] w-full sm:w-auto text-center"
+                  className="group relative overflow-hidden bg-neutral-900/80 text-white font-bold font-oswald text-xs uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs px-7 py-3 shadow-md border border-neutral-600 transition-all cursor-pointer select-none inline-flex items-center"
                 >
-                  <span>Explore Department Curriculum</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1.5" />
-                </motion.button>
+                  {/* Liquid Ocean Wave Fill Overlay */}
+                  <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                    <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                      {/* Ocean Wave Crest SVG (Primary) */}
+                      <span className="absolute -top-3.5 left-0 w-[200%] h-4 pointer-events-none block">
+                        <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                          <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,-20 1200,40 L1200,120 L0,120 Z" />
+                        </svg>
+                      </span>
+                      {/* Secondary Depth Layer Wave */}
+                      <span className="absolute -top-4 left-0 w-[200%] h-5 opacity-40 pointer-events-none block">
+                        <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                          <path d="M0,30 C200,-30 400,90 600,10 C800,-40 1000,70 1200,20 L1200,120 L0,120 Z" />
+                        </svg>
+                      </span>
+                    </span>
+                  </span>
+                  
+                  {/* Button Content */}
+                  <span className="relative z-10 flex items-center justify-center gap-2 text-white group-hover:text-white transition-colors duration-300">
+                    <span>Explore Curriculum</span>
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </button>
+
+                {/* Secondary CTA Button: Dark Outline with Maroon Ocean Wave Fill */}
+                <Link
+                  to="/admissions"
+                  search={{ level: undefined }}
+                  className="group relative overflow-hidden bg-neutral-900/80 text-white font-bold font-oswald text-xs uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs px-7 py-3 shadow-md border border-neutral-600 transition-all cursor-pointer select-none inline-flex items-center"
+                >
+                  {/* Liquid Ocean Wave Fill Overlay */}
+                  <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                    <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                      {/* Ocean Wave Crest SVG (Primary) */}
+                      <span className="absolute -top-3.5 left-0 w-[200%] h-4 pointer-events-none block">
+                        <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                          <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,-20 1200,40 L1200,120 L0,120 Z" />
+                        </svg>
+                      </span>
+                      {/* Secondary Depth Layer Wave */}
+                      <span className="absolute -top-4 left-0 w-[200%] h-5 opacity-40 pointer-events-none block">
+                        <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                          <path d="M0,30 C200,-30 400,90 600,10 C800,-40 1000,70 1200,20 L1200,120 L0,120 Z" />
+                        </svg>
+                      </span>
+                    </span>
+                  </span>
+                  
+                  {/* Button Content */}
+                  <span className="relative z-10 flex items-center justify-center gap-2 text-white group-hover:text-white transition-colors duration-300">
+                    <span>Apply Now</span>
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </Link>
               </motion.div>
             </div>
-          </motion.div>
 
-          {/* Right Column: High-End Zoom Reveal Image Showcase */}
-          <div className="lg:col-span-7 xl:col-span-7 relative min-h-[220px] sm:min-h-[360px] lg:min-h-full overflow-hidden bg-slate-950 flex items-center justify-center">
-            <motion.img 
-              key={course.slug}
-              initial={{ scale: 1.15, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              src={course.image} 
-              alt={getHeroTitle(course)} 
-              className="w-full h-full object-cover brightness-[0.95]"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                if (!target.src.endsWith('/images/eligibility_hero.jpg')) {
-                  target.src = '/images/eligibility_hero.jpg';
-                }
-              }}
-            />
+            {/* Right Hero Column: Executive Photo Reference Card */}
+            <div className="lg:col-span-5 w-full">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative overflow-hidden rounded-sm shadow-2xl border border-neutral-700 bg-neutral-800 aspect-[16/10] w-full max-w-[520px] lg:ml-auto"
+              >
+                <img 
+                  key={course.slug}
+                  alt={getHeroTitle(course)} 
+                  className="w-full h-full object-cover block"
+                  src={course.image}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (!target.src.endsWith('/images/eligibility_hero.jpg')) {
+                      target.src = '/images/eligibility_hero.jpg';
+                    }
+                  }}
+                />
+              </motion.div>
+            </div>
 
-            {/* Subtle Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent pointer-events-none" />
           </div>
+
+          {/* Bottom Section: Full-Width Key Metadata Grid */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.45 }}
+            className="border-t border-neutral-700/80 pt-6 mt-8"
+          >
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-6 gap-x-6 text-[12.5px] mb-4">
+              <div>
+                <span className="block text-neutral-400 uppercase text-[10.5px] font-bold tracking-wider mb-1 font-oswald">Format</span>
+                <p className="font-medium text-white flex items-center">
+                  Full Time ({course.slug.startsWith('pg-') ? '2 Yrs' : '4 Yrs'})
+                </p>
+              </div>
+              <div>
+                <span className="block text-neutral-400 uppercase text-[10.5px] font-bold tracking-wider mb-1 font-oswald">Campus</span>
+                <p className="font-medium text-white">MSAJCE Chennai</p>
+              </div>
+              <div>
+                <span className="block text-neutral-400 uppercase text-[10.5px] font-bold tracking-wider mb-1 font-oswald">Intake Seats</span>
+                <p className="font-medium text-white">{course.intake} Seats</p>
+              </div>
+              <div>
+                <span className="block text-neutral-400 uppercase text-[10.5px] font-bold tracking-wider mb-1 font-oswald">Affiliation</span>
+                <p className="font-medium text-white">Anna University</p>
+              </div>
+              <div className="col-span-2 sm:col-span-3 lg:col-span-1">
+                <span className="block text-neutral-400 uppercase text-[10.5px] font-bold tracking-wider mb-1 font-oswald">Accreditation</span>
+                <p className="font-medium text-white">NAAC &amp; AICTE Approved</p>
+              </div>
+            </div>
+
+            <p className="text-[11px] text-neutral-400 italic font-sans pt-2 border-t border-neutral-800">
+              The degree program is affiliated to Anna University, Chennai and recognized by AICTE, New Delhi.
+            </p>
+          </motion.div>
 
         </div>
       </section>
@@ -679,51 +1643,102 @@ function CoursePage() {
       <div id="department-main-content" className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-4 sm:pt-6 md:pt-8 pb-16 sm:pb-24 overflow-x-hidden">
         
         {/* Main Column: Clean Tab Content Area */}
-        <div className="min-h-[500px] w-full max-w-full overflow-x-hidden">
-          <AnimatePresence mode="wait">
+        <div className="min-h-[75vh] w-full max-w-full overflow-x-hidden">
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, y: 20, scale: 0.98, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: -10, scale: 0.99, filter: "blur(2px)" }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
               className="space-y-8"
             >
               {/* Tab 1: About Department */}
-              {activeTab === 'about' && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  {parsedContent['about'] ? (
-                    (() => {
-                      const aboutSections = parsedContent['about'].split('[DEPARTMENT_HIGHLIGHTS]');
-                      return (
-                        <>
-                          {aboutSections.map((section, idx) => (
-                            <Fragment key={idx}>
-                              <article className="w-full mx-0 max-w-none">
-                                <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
-                                  {section}
-                                </ReactMarkdown>
-                              </article>
-                              {idx === 0 && aboutSections.length > 1 && (
-                                <DepartmentHighlightsGrid course={course} />
-                              )}
-                            </Fragment>
-                          ))}
-                        </>
-                      );
-                    })()
-                  ) : (
-                    <article className="w-full mx-0 max-w-none">
-                      <div>
-                        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Overview</h2>
-                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-wrap">
-                          {course.details.overview}
-                        </p>
+              {activeTab === 'about' && (() => {
+                const overviewData = getDepartmentOverviewDetails(course.slug, course.name);
+                return (
+                  <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-10">
+                    
+                    {/* 2-Column Overview Layout: Image on Left, Overview & Key Features on Right */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                      
+                      {/* Left Column: Image Section (Matches text height on desktop) */}
+                      <div className="lg:col-span-5 w-full flex flex-col">
+                        <div className="relative w-full h-full min-h-[320px] lg:min-h-[440px] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border shadow-md bg-muted">
+                          <img 
+                            src={course.image} 
+                            alt={`${course.name} Overview`} 
+                            className="w-full h-full object-cover block"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              if (!target.src.endsWith('/images/eligibility_hero.jpg')) {
+                                target.src = '/images/eligibility_hero.jpg';
+                              }
+                            }}
+                          />
+                        </div>
                       </div>
-                    </article>
-                  )}
-                </div>
-              )}
+
+                      {/* Right Column: Overview Content (Broad Content Paragraphs Only) */}
+                      <div className="lg:col-span-7 flex flex-col justify-start space-y-4">
+                        <div className="border-b border-border pb-2">
+                          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-primary font-oswald leading-none">
+                            Overview
+                          </h2>
+                        </div>
+
+                        {overviewData.description.map((p, pIdx) => (
+                          <p key={pIdx} className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                            {p}
+                          </p>
+                        ))}
+                      </div>
+
+                    </div>
+
+                    {/* Vision & Mission Section (Clean Flat List without Cards) */}
+                    <div className="pt-6 border-t border-border space-y-6">
+                      {/* Vision Block */}
+                      <div>
+                        <h3 className="text-2xl font-black uppercase tracking-tight text-primary font-oswald mb-3">
+                          Vision
+                        </h3>
+                        <div className="flex items-start gap-4 py-1">
+                          <span className="w-9 h-9 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-xs shrink-0 font-mono">
+                            V
+                          </span>
+                          <p className="text-sm md:text-base text-foreground/90 font-medium leading-relaxed pt-1">
+                            {overviewData.vision}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Mission Block */}
+                      <div>
+                        <h3 className="text-2xl font-black uppercase tracking-tight text-primary font-oswald mb-3">
+                          Mission
+                        </h3>
+                        <div className="space-y-4">
+                          {overviewData.missions.map((m, idx) => (
+                            <div key={idx} className="flex items-start gap-4 py-1">
+                              <span className="w-9 h-9 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-xs shrink-0 font-mono">
+                                M{idx + 1}
+                              </span>
+                              <p className="text-sm md:text-base text-foreground/90 font-medium leading-relaxed pt-1">
+                                {m}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Department Highlights Grid (Lastly) */}
+                    <DepartmentHighlightsGrid course={course} />
+
+                  </div>
+                );
+              })()}
 
               {/* Tab 2: OBE (Outcome Based Education) */}
               {activeTab === 'obe' && (
@@ -752,7 +1767,121 @@ function CoursePage() {
                 </article>
               )}
 
-              {/* Tab 3: JOB PROFILE */}
+              {/* Tab 3: Curriculum & Syllabi (Autonomous Academic Standards) */}
+              {activeTab === 'academics' && (() => {
+                const summary = getDepartmentCurriculumSummary(course.slug, course.name);
+                const regPdfs = DEPARTMENT_CURRICULUM_PDFS[course.slug] || DEPARTMENT_CURRICULUM_PDFS['computer-science-and-engineering']!;
+                const regPdf2024 = regPdfs.pdf2024 || "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf";
+                const regPdf2021 = regPdfs.pdf2021 || "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf";
+                const regPdf2017 = regPdfs.pdf2017 || "https://www.msajce-edu.in/uploads/academics/2017Regulation.pdf";
+
+                return (
+                  <div className="w-full space-y-10 md:space-y-12 mx-0 max-w-none animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    
+                    {/* Header Banner */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-primary/20 pb-5 md:pb-6 gap-4">
+                      <div>
+                        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none mb-3">
+                          {course.name} Curriculum & Syllabi
+                        </h2>
+                        <p className="text-sm md:text-base text-muted-foreground font-sans leading-relaxed">
+                          Autonomous Choice Based Credit System (CBCS) curriculum under Anna University standards.
+                        </p>
+                      </div>
+                      <Link
+                        to="/academics"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 border border-primary/40 bg-primary/10 text-primary text-xs font-bold font-oswald uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary hover:text-white transition-all shrink-0 w-fit"
+                      >
+                        <BookOpen className="w-4 h-4" />
+                        <span>All Dept Regulations Directory &raquo;</span>
+                      </Link>
+                    </div>
+
+                    {/* Official Regulation Downloads */}
+                    <div className="flex flex-wrap items-center gap-4 sm:gap-6 py-2">
+                      <a
+                        href={regPdf2024}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-center justify-between gap-4 px-6 py-3.5 bg-primary text-primary-foreground font-oswald font-bold text-xs sm:text-sm uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-all shadow-xs min-w-[210px]"
+                      >
+                        <span className="flex items-center gap-2.5">
+                          <Download className="w-4 h-4 shrink-0" />
+                          <span>Regulation 2024 PDF</span>
+                        </span>
+                        <ExternalLink className="w-4 h-4 opacity-80 group-hover:translate-x-1 transition-transform shrink-0 ml-2" />
+                      </a>
+
+                      <a
+                        href={regPdf2021}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-center justify-between gap-4 px-6 py-3.5 border border-border bg-muted/30 text-foreground font-oswald font-bold text-xs sm:text-sm uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:border-primary hover:text-primary transition-all shadow-xs min-w-[190px]"
+                      >
+                        <span className="flex items-center gap-2.5">
+                          <FileText className="w-4 h-4 text-primary shrink-0" />
+                          <span>Regulation 2021 PDF</span>
+                        </span>
+                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform shrink-0 ml-2" />
+                      </a>
+
+                      <a
+                        href={regPdf2017}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-center gap-4 px-6 py-3.5 border border-border bg-muted/30 text-foreground font-oswald font-bold text-xs sm:text-sm uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:border-primary hover:text-primary transition-all shadow-xs min-w-[190px]"
+                      >
+                        <span className="flex items-center gap-2.5">
+                          <FileText className="w-4 h-4 text-primary shrink-0" />
+                          <span>Regulation 2017 PDF</span>
+                        </span>
+                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform shrink-0 ml-2" />
+                      </a>
+                    </div>
+
+                    {/* Spacious Academic Journey Table */}
+                    {summary.semesterPhases && summary.semesterPhases.length > 0 && (
+                      <div className="overflow-x-auto w-full border border-border/80 rounded-sm mt-4">
+                        <table className="w-full text-left border-collapse text-sm bg-transparent">
+                          <thead>
+                            <tr className="bg-muted/50 border-b border-border/80 text-foreground font-oswald uppercase text-xs md:text-sm tracking-wider">
+                              <th className="py-4 px-6 font-black border-r border-border/50 w-[220px] md:w-[240px]">Semester Phase</th>
+                              <th className="py-4 px-6 font-black border-r border-border/50">Core Academic Focus</th>
+                              <th className="py-4 px-6 font-black">Key Modules</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border/60 font-sans">
+                            {summary.semesterPhases.map((phase, pIdx) => (
+                              <tr key={pIdx} className="hover:bg-muted/20 transition-colors">
+                                <td className="py-6 px-6 align-top border-r border-border/50 space-y-1">
+                                  <h4 className="font-black text-foreground font-oswald text-sm md:text-base uppercase tracking-tight">{phase.phase}</h4>
+                                  <span className="text-xs text-primary font-bold font-mono block pt-0.5">{phase.semesters}</span>
+                                </td>
+                                <td className="py-6 px-6 align-top border-r border-border/50 text-sm text-muted-foreground leading-relaxed">
+                                  {phase.focus}
+                                </td>
+                                <td className="py-6 px-6 align-top">
+                                  <div className="flex flex-wrap gap-2.5 gap-y-3">
+                                    {phase.keySubjects.map((sub, sIdx) => (
+                                      <span 
+                                        key={sIdx} 
+                                        className="inline-block px-3.5 py-1.5 text-xs font-semibold bg-foreground/[0.04] border border-border/80 text-foreground/90 rounded-sm shadow-2xs hover:bg-foreground/[0.08] transition-colors"
+                                      >
+                                        {sub}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
+
+                  </div>
+                );
+              })()}
               {activeTab === 'job-profile' && (
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                   
@@ -779,20 +1908,20 @@ function CoursePage() {
                   ) : (
                     <div className="space-y-12">
                       <div className="max-w-3xl mb-12">
-                        <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-4 text-foreground">Careers & Outcomes</h2>
-                        <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                        <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-4 text-primary font-oswald">Careers & Outcomes</h2>
+                        <p className="text-sm md:text-base text-muted-foreground leading-relaxed font-sans">
                           Graduates from the {course.name} department are highly sought after by top-tier global companies. The comprehensive curriculum equips you with the exact technical and professional skills needed to excel in these premier career roles.
                         </p>
                       </div>
 
                       {/* Career Roles - Compact Grid */}
                       <div className="mb-16">
-                        <h3 className="text-lg font-black uppercase tracking-tighter mb-6 text-foreground border-b border-border/50 pb-2">Key Career Paths</h3>
+                        <h3 className="text-lg font-black uppercase tracking-tighter mb-6 text-foreground font-oswald border-b border-border/50 pb-2">Key Career Paths</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
                           {course.details.careers.map((role) => (
                             <div key={role} className="flex items-center gap-3 py-2 border-b border-border/30 last:border-0 sm:last:border-b lg:last:border-b">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary shrink-0"><path d="m9 18 6-6-6-6"/></svg>
-                              <h4 className="font-bold text-sm md:text-base text-foreground/90">{role}</h4>
+                              <h4 className="font-bold text-sm md:text-base text-foreground/90 font-sans">{role}</h4>
                             </div>
                           ))}
                         </div>
@@ -838,73 +1967,69 @@ function CoursePage() {
                 });
 
                 return (
-                  <div className="w-full space-y-8 mx-0 max-w-none">
-                    <div>
-                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2 text-primary">Faculty</h2>
-                      <p className="text-sm text-muted-foreground">The department is powered by accomplished professors, doctorates, and researchers committed to student mentoring and outcome-based engineering education.</p>
+                  <div className="w-full space-y-6 mx-0 max-w-none">
+                    <div className="border-b border-border pb-4">
+                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-primary font-oswald">Faculty Directory</h2>
+                      <p className="text-sm text-muted-foreground mt-1 font-sans">The department is powered by accomplished professors, doctorates, and researchers committed to outcome-based engineering education.</p>
                     </div>
 
-                    <div className="overflow-x-auto rounded-sm border border-border bg-card shadow-sm">
-                      <table className="w-full text-left border-collapse text-sm">
-                        <thead className="bg-muted/50 border-b border-border">
-                          <tr>
-                            <th className="py-4 px-4 font-black uppercase tracking-widest text-[11px] text-foreground w-[80px] md:w-[100px] text-center">Profile</th>
-                            <th className="py-4 px-4 font-black uppercase tracking-widest text-[11px] text-foreground">Name & Designation</th>
-                            <th className="py-4 px-4 font-black uppercase tracking-widest text-[11px] text-foreground hidden md:table-cell">Details</th>
-                            <th className="py-4 px-4 font-black uppercase tracking-widest text-[11px] text-foreground hidden lg:table-cell">Biography</th>
-                            <th className="py-4 px-4 font-black uppercase tracking-widest text-[11px] text-foreground">Contact</th>
+                    <div className="overflow-x-auto w-full">
+                      <table className="w-full text-left border-collapse border border-border/80 text-sm bg-transparent">
+                        <thead>
+                          <tr className="bg-muted/40 border-b border-border/80 text-foreground font-oswald uppercase text-xs tracking-wider">
+                            <th className="py-3 px-3.5 font-black border-r border-border/50 text-center w-[50px]">S.No</th>
+                            <th className="py-3 px-4 font-black border-r border-border/50">Name</th>
+                            <th className="py-3 px-4 font-black border-r border-border/50">Designation</th>
+                            <th className="py-3 px-4 font-black border-r border-border/50">Joined Date</th>
+                            <th className="py-3 px-4 font-black border-r border-border/50">Employment</th>
+                            <th className="py-3 px-4 font-black">Contact Details</th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-border">
+                        <tbody className="divide-y divide-border/50">
                           {sortedFaculty.map((faculty, idx) => {
                             const isHod = faculty.designation.toLowerCase().includes('head');
+                            const email = `${faculty.name.split(' ').pop()?.toLowerCase() || 'faculty'}@msajce-edu.in`;
                             return (
-                              <tr key={faculty.id} className={`group hover:bg-muted/30 transition-colors ${isHod ? 'bg-primary/5' : ''}`}>
-                                <td className="py-4 px-4 align-top">
-                                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-background shadow-sm mx-auto">
-                                    <img 
-                                      src={faculty.photo} 
-                                      alt={faculty.name} 
-                                      className="w-full h-full object-cover" 
-                                      loading="lazy" 
-                                    />
+                              <tr key={faculty.id} className={`transition-colors hover:bg-muted/30 ${isHod ? 'bg-primary/5' : ''}`}>
+                                {/* 1. S.No */}
+                                <td className="py-3.5 px-3.5 align-middle border-r border-border/50 text-center text-xs font-bold font-mono text-muted-foreground">
+                                  {idx + 1}
+                                </td>
+
+                                {/* 2. Name (ALL CAPITAL LETTERS ONLY) */}
+                                <td className="py-3.5 px-4 align-middle border-r border-border/50">
+                                  <div className="flex items-center gap-2">
+                                    <h4 className="font-black text-foreground text-sm font-oswald uppercase tracking-tight">{faculty.name.toUpperCase()}</h4>
+                                    {isHod && (
+                                      <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[9px] font-black uppercase tracking-widest font-oswald shrink-0">HOD</span>
+                                    )}
                                   </div>
                                 </td>
-                                <td className="py-4 px-4 align-top">
-                                  <div className="flex flex-col gap-1">
-                                    <div className="flex items-center gap-2">
-                                      <h4 className="font-bold text-foreground text-[15px]">{faculty.name}</h4>
-                                      {isHod && (
-                                        <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[9px] font-black uppercase tracking-widest">HOD</span>
-                                      )}
-                                    </div>
-                                    <p className="text-[11px] font-bold uppercase tracking-widest text-primary/80">{faculty.designation}</p>
-                                    {/* Mobile only details */}
-                                    <div className="md:hidden mt-3 flex flex-col gap-1 text-[12px]">
-                                      <p className="text-muted-foreground"><span className="font-semibold text-foreground/80">Joined:</span> {faculty.dateOfJoining}</p>
-                                      <p className="text-muted-foreground"><span className="font-semibold text-foreground/80">Type:</span> {faculty.association}</p>
-                                    </div>
-                                  </div>
+
+                                {/* 3. Designation (Normal Case) */}
+                                <td className="py-3.5 px-4 align-middle border-r border-border/50">
+                                  <span className="text-xs font-bold text-primary font-sans">{faculty.designation}</span>
                                 </td>
-                                <td className="py-4 px-4 align-top hidden md:table-cell">
-                                  <div className="flex flex-col gap-1.5 text-[12px]">
-                                    <p className="text-muted-foreground"><span className="font-semibold text-foreground/80 block mb-0.5">Joined</span> {faculty.dateOfJoining}</p>
-                                    <p className="text-muted-foreground mt-2"><span className="font-semibold text-foreground/80 block mb-0.5">Employment</span> {faculty.association}</p>
-                                  </div>
+
+                                {/* 4. Joined Date */}
+                                <td className="py-3.5 px-4 align-middle border-r border-border/50 text-xs text-muted-foreground font-medium font-mono">
+                                  {faculty.dateOfJoining}
                                 </td>
-                                <td className="py-4 px-4 align-top hidden lg:table-cell max-w-[300px]">
-                                  <p className="text-[12px] text-muted-foreground leading-relaxed italic line-clamp-4">
-                                    "{faculty.bio}"
-                                  </p>
-                                  <p className="text-[11px] mt-3">
-                                    <span className="font-semibold text-foreground/80">Courses:</span> Data Structures, Machine Learning
-                                  </p>
+
+                                {/* 5. Employment (Normal Case) */}
+                                <td className="py-3.5 px-4 align-middle border-r border-border/50 text-xs text-foreground font-semibold font-sans">
+                                  {faculty.association}
                                 </td>
-                                <td className="py-4 px-4 align-top">
-                                  <div className="flex items-center gap-2 text-[12px] font-semibold text-foreground/70 group-hover:text-primary transition-colors cursor-pointer w-fit mt-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                                    <span className="break-all">{faculty.name.split(' ').pop()?.toLowerCase() || 'faculty'}@msajce-edu.in</span>
-                                  </div>
+
+                                {/* 6. Contact Details (Clickable Black Color Mail Link) */}
+                                <td className="py-3.5 px-4 align-middle">
+                                  <a 
+                                    href={`mailto:${email}`}
+                                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-foreground dark:text-white hover:text-primary hover:underline transition-colors cursor-pointer font-mono"
+                                  >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-foreground dark:text-white shrink-0"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                    <span className="break-all">{email}</span>
+                                  </a>
                                 </td>
                               </tr>
                             );
@@ -918,42 +2043,7 @@ function CoursePage() {
 
               {/* Tab 5: Department Facilities */}
               {activeTab === 'facilities' && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <article className="w-full mx-0 max-w-none">
-                    {parsedContent['facilities'] ? (
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
-                        {parsedContent['facilities']}
-                      </ReactMarkdown>
-                    ) : (
-                      <div className="space-y-6">
-                        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Facilities</h2>
-                        <p className="text-base text-muted-foreground leading-relaxed">
-                          State-of-the-art laboratory infrastructure equipped with the latest software suites, hardware rigs, computing workstations, and industry-grade testing apparatus.
-                        </p>
-                      </div>
-                    )}
-                  </article>
-                </div>
-              )}
-
-              {/* Tab 6: Academics */}
-              {activeTab === 'academics' && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <article className="w-full mx-0 max-w-none">
-                    {parsedContent['academics'] ? (
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
-                        {parsedContent['academics']}
-                      </ReactMarkdown>
-                    ) : (
-                      <div className="space-y-6">
-                        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-foreground">Curriculum & Syllabus</h2>
-                        <div className="text-base text-muted-foreground leading-relaxed whitespace-pre-wrap">
-                          {course.details.courseUnits}
-                        </div>
-                      </div>
-                    )}
-                  </article>
-                </div>
+                <DepartmentFacilitiesView courseSlug={course.slug} courseName={course.name} />
               )}
 
               {/* Tab 7: News and Events */}
@@ -1125,66 +2215,203 @@ function CoursePage() {
               );})()}
 
               {/* Tab 8: Student Activities */}
-              {activeTab === 'student-activities' && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-10">
-                  {parsedContent['student-activities'] ? (
-                    <article className="mx-0 max-w-none">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
-                        {parsedContent['student-activities']}
-                      </ReactMarkdown>
-                    </article>
-                  ) : (
-                    <div>
-                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2 text-foreground">Activities</h2>
-                      <p className="text-sm text-muted-foreground">Active student-led technical chapters, national symposiums, hackathons, and industrial immersions.</p>
-                    </div>
-                  )}
+              {activeTab === 'student-activities' && (() => {
+                const samplePdf = "https://www.msajce-edu.in/uploads/academics/2021Regulation.pdf";
 
-                  {/* Editorial Activities Layout */}
-                  <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 pt-8">
+                const coCurricularActivities = [
+                  {
+                    name: "Internship Details & Industry Certifications",
+                    date: "2024 – 2025",
+                    place: "MSAJCE Campus / Partner Companies",
+                    link: samplePdf,
+                  },
+                  {
+                    name: "Industrial Visits & Field Expeditions",
+                    date: "2024 – 2025",
+                    place: "TCS Siruseri / Infosys Mahindra World City / Zoho",
+                    link: samplePdf,
+                  },
+                  {
+                    name: "Professional Society Activities (CSI / IEEE / ISTE)",
+                    date: "2024 – 2025",
+                    place: "MSAJCE Auditorium & Advanced Computing Labs",
+                    link: samplePdf,
+                  },
+                ];
+
+                const extraCurricularActivities = [
+                  {
+                    name: "Extra Curricular Activities, Cultural & Sports Meets",
+                    date: "2024 – 2025",
+                    place: "MSAJCE Sports Complex & Campus Grounds",
+                    link: samplePdf,
+                  },
+                ];
+
+                const activityPhotos = [
+                  {
+                    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop",
+                    location: "Chennai, Tamil Nadu, India",
+                    title: "Academic & Industrial Segment Visit",
+                    description: "Students visiting advanced engineering research labs and corporate tech parks.",
+                  },
+                  {
+                    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop",
+                    location: "Space & Research Centre",
+                    title: "Aerospace & Rocketry Expedition",
+                    description: "Experiential learning trip studying space propulsion and high-performance computing.",
+                  },
+                  {
+                    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop",
+                    location: "MSAJCE Auditorium",
+                    title: "National Technical Symposium & Hackathon",
+                    description: "Inter-college project expos, competitive programming sprints, and tech symposiums.",
+                  },
+                ];
+
+                return (
+                  <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-12 w-full mx-0 max-w-none">
                     
-                    {/* Left Column: Chapters & Placements */}
-                    <div className="flex-1 space-y-12">
-                      <div className="space-y-6">
-                        <h3 className="text-xl md:text-2xl font-serif tracking-tight text-foreground border-b border-border pb-4">Student Chapters & Clubs</h3>
-                        <div className="space-y-6">
-                          {course.details.activities?.chapters?.map((chapter, idx) => (
-                            <div key={idx}>
-                              <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">{chapter.title}</h4>
-                              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{chapter.description}</p>
-                            </div>
-                          )) || <p className="text-muted-foreground italic text-sm">Activities data not configured.</p>}
-                        </div>
-                      </div>
+                    {/* Header Banner */}
+                    <div className="border-b-2 border-primary/20 pb-4">
+                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none mb-2">
+                        Student Activities
+                      </h2>
+                      <p className="text-sm text-muted-foreground font-sans">
+                        Co-curricular accomplishments, industrial immersion field visits, extra-curricular events, and activity reports.
+                      </p>
+                    </div>
 
-                      <div className="space-y-6">
-                        <h3 className="text-xl md:text-2xl font-serif tracking-tight text-foreground border-b border-border pb-4">Industrial Visits & Placements</h3>
-                        <div className="space-y-6">
-                          {course.details.activities?.placements?.map((placement, idx) => (
-                            <div key={idx}>
-                              <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">{placement.title}</h4>
-                              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{placement.description}</p>
-                            </div>
-                          )) || <p className="text-muted-foreground italic text-sm">Placement data not configured.</p>}
-                        </div>
+                    {/* Section 1: Co-Curricular Activities Table */}
+                    <div className="space-y-4">
+                      <h3 className="text-xl font-black uppercase tracking-tight text-foreground font-oswald border-b border-border/60 pb-2">
+                        Co Curricular Activities
+                      </h3>
+                      <div className="overflow-x-auto w-full border border-border/80 rounded-sm">
+                        <table className="w-full text-left border-collapse text-sm bg-transparent">
+                          <thead>
+                            <tr className="bg-muted/40 border-b border-border/80 text-foreground font-oswald uppercase text-xs tracking-wider">
+                              <th className="py-3 px-4.5 font-black border-r border-border/50">Activity Name</th>
+                              <th className="py-3 px-4 font-black border-r border-border/50 w-[140px]">Timeline / Date</th>
+                              <th className="py-3 px-4 font-black border-r border-border/50 w-[240px]">Venue / Location</th>
+                              <th className="py-3 px-4 font-black w-[130px] text-center">Report</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border/50 font-sans">
+                            {coCurricularActivities.map((act, idx) => (
+                              <tr key={idx} className="hover:bg-muted/20 transition-colors">
+                                <td className="py-3.5 px-4.5 align-middle border-r border-border/50">
+                                  <h4 className="font-bold text-foreground text-sm font-sans">{act.name}</h4>
+                                </td>
+                                <td className="py-3.5 px-4 align-middle border-r border-border/50 text-xs font-mono text-primary font-semibold">
+                                  {act.date}
+                                </td>
+                                <td className="py-3.5 px-4 align-middle border-r border-border/50 text-xs text-muted-foreground font-medium">
+                                  {act.place}
+                                </td>
+                                <td className="py-3.5 px-4 align-middle text-center">
+                                  <a
+                                    href={act.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    title="Download Activity Report"
+                                    className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/30 hover:bg-emerald-500 hover:text-white transition-all duration-300 shadow-2xs group"
+                                  >
+                                    <Download className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                                  </a>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
                       </div>
                     </div>
 
-                    {/* Right Column: Numbered Highlights (No Cards) */}
-                    <div className="flex-1 space-y-10 border-l-0 lg:border-l border-border lg:pl-12">
-                      {course.details.activities?.highlights?.map((highlight, idx) => (
-                        <div key={idx} className="flex gap-6 items-start group cursor-default">
-                          <div className="text-3xl md:text-4xl font-black text-muted-foreground/30 group-hover:text-primary transition-colors font-mono pt-1">
-                            {String(idx + 1).padStart(2, '0')}
-                          </div>
-                          <div>
-                            <h4 className="text-lg md:text-xl font-bold text-foreground mb-2">{highlight.title.replace(/^\d+\s*/, '')}</h4>
-                            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{highlight.description}</p>
-                          </div>
-                        </div>
-                      )) || <p className="text-muted-foreground italic text-sm">Highlights data not configured.</p>}
+                    {/* Section 2: Extra-Curricular Activities Table */}
+                    <div className="space-y-4 pt-2">
+                      <h3 className="text-xl font-black uppercase tracking-tight text-foreground font-oswald border-b border-border/60 pb-2">
+                        Extra Curricular Activities
+                      </h3>
+                      <div className="overflow-x-auto w-full border border-border/80 rounded-sm">
+                        <table className="w-full text-left border-collapse text-sm bg-transparent">
+                          <thead>
+                            <tr className="bg-muted/40 border-b border-border/80 text-foreground font-oswald uppercase text-xs tracking-wider">
+                              <th className="py-3 px-4.5 font-black border-r border-border/50">Activity Name</th>
+                              <th className="py-3 px-4 font-black border-r border-border/50 w-[140px]">Timeline / Date</th>
+                              <th className="py-3 px-4 font-black border-r border-border/50 w-[240px]">Venue / Location</th>
+                              <th className="py-3 px-4 font-black w-[130px] text-center">Report</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border/50 font-sans">
+                            {extraCurricularActivities.map((act, idx) => (
+                              <tr key={idx} className="hover:bg-muted/20 transition-colors">
+                                <td className="py-3.5 px-4.5 align-middle border-r border-border/50">
+                                  <h4 className="font-bold text-foreground text-sm font-sans">{act.name}</h4>
+                                </td>
+                                <td className="py-3.5 px-4 align-middle border-r border-border/50 text-xs font-mono text-primary font-semibold">
+                                  {act.date}
+                                </td>
+                                <td className="py-3.5 px-4 align-middle border-r border-border/50 text-xs text-muted-foreground font-medium">
+                                  {act.place}
+                                </td>
+                                <td className="py-3.5 px-4 align-middle text-center">
+                                  <a
+                                    href={act.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    title="Download Activity Report"
+                                    className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/30 hover:bg-emerald-500 hover:text-white transition-all duration-300 shadow-2xs group"
+                                  >
+                                    <Download className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                                  </a>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
-                  </div>
+
+                    {/* Section 3: Activity Photo Showcase Gallery */}
+                    <div className="space-y-6 pt-4 border-t border-border/50">
+                      <div>
+                        <h3 className="text-xl font-black uppercase tracking-tight text-foreground font-oswald border-b border-border/60 pb-2">
+                          Activity Showcase & Field Visits
+                        </h3>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Photographic glimpses of MSAJCE students participating in industrial field visits, research tours, and campus events.
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {activityPhotos.map((photo, pIdx) => (
+                          <div
+                            key={pIdx}
+                            className="flex flex-col rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border bg-card shadow-xs"
+                          >
+                            <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
+                              <img
+                                src={photo.image}
+                                alt={photo.title}
+                                className="w-full h-full object-cover block"
+                                loading="lazy"
+                              />
+                              <div className="absolute bottom-2 left-2 bg-background/90 text-foreground text-[10px] font-bold font-mono px-2 py-0.5 rounded-xs border border-border/50 shadow-xs">
+                                {photo.location}
+                              </div>
+                            </div>
+                            <div className="p-4 space-y-1.5 flex-1 flex flex-col justify-start">
+                              <h4 className="font-bold text-foreground text-sm font-oswald uppercase tracking-tight">
+                                {photo.title}
+                              </h4>
+                              <p className="text-xs text-muted-foreground leading-relaxed font-sans">
+                                {photo.description}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
 
                   {/* Student Coordinator Profiles */}
                   {(() => {
@@ -1242,63 +2469,13 @@ function CoursePage() {
                       </div>
                     );
                   })()}
-                </div>
-              )}
+                  </div>
+                );
+              })()}
 
               {/* Tab 9: Research */}
               {activeTab === 'research' && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-10">
-                  {parsedContent['research'] ? (
-                    <article className="mx-0 max-w-none">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
-                        {parsedContent['research']}
-                      </ReactMarkdown>
-                    </article>
-                  ) : (
-                    <div>
-                      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2 text-foreground">Research & Development</h2>
-                      <p className="text-sm text-muted-foreground mb-8">Pioneering innovations, strategic partnerships, and academic excellence.</p>
-                      
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-                        <div className="space-y-12">
-                          <div className="space-y-6">
-                            <h3 className="text-xl md:text-2xl font-serif tracking-tight text-foreground border-b border-border pb-4">Publications & Patents</h3>
-                            <div className="space-y-6">
-                              <div>
-                                <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">Research Publications</h4>
-                                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">Our faculty and students actively publish in high-impact international journals and top-tier IEEE/ACM conferences.</p>
-                              </div>
-                              <div>
-                                <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">Patent Details</h4>
-                                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">Fostering a culture of innovation with multiple patents filed and published in emerging technological domains.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="space-y-12">
-                          <div className="space-y-6">
-                            <h3 className="text-xl md:text-2xl font-serif tracking-tight text-foreground border-b border-border pb-4">Collaborations & Projects</h3>
-                            <div className="space-y-6">
-                              <div>
-                                <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">MoU & Partnerships</h4>
-                                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">Strategic Memorandums of Understanding (MoUs) with leading industries and academic institutions for knowledge exchange.</p>
-                              </div>
-                              <div>
-                                <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">Industrial Projects</h4>
-                                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">Solving real-world challenges through government-funded and industry-sponsored consultancy projects.</p>
-                              </div>
-                              <div>
-                                <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">FDPs Attended & Organized</h4>
-                                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">Continuous learning via Faculty Development Programs (FDPs) to stay abreast with state-of-the-art technological advancements.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                <DepartmentResearchView courseSlug={course.slug} courseName={course.name} />
               )}
             </motion.div>
           </AnimatePresence>

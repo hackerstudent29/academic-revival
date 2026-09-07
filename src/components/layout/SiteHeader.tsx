@@ -108,17 +108,17 @@ const nav: NavItem[] = [
         title: "Academic Resources",
         links: [
           { label: "Academic Calendar", to: "/academics" },
-          { label: "Curriculum & Syllabus", to: "/curriculum" },
+          { label: "Curriculum & Syllabus", to: "/academics" },
         ],
       },
       {
         title: "Research & Innovation",
         links: [
-          { label: "Research", to: "/academics" },
-          { label: "Publications", to: "/academics" },
-          { label: "Patents", to: "/academics" },
-          { label: "Innovation Council (IIC)", to: "/academics" },
-          { label: "Startup Ecosystem", to: "/academics" },
+          { label: "Research", to: "/research", search: { tab: "overview" } },
+          { label: "Publications", to: "/research", search: { tab: "publications" } },
+          { label: "Patents", to: "/research", search: { tab: "patents" } },
+          { label: "Innovation Council (IIC)", to: "/research", search: { tab: "iic" } },
+          { label: "Startup Ecosystem", to: "/research", search: { tab: "startup-ecosystem" } },
         ],
       },
       {
@@ -254,6 +254,29 @@ export function SiteHeader() {
   const [activePanel, setActivePanel] = useState<string>("main");
   const [hidden, setHidden] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const leaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnterItem = (id: string) => {
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+      leaveTimeoutRef.current = null;
+    }
+    const item = nav.find((n) => n.id === id);
+    if (item && item.cols) {
+      setActive(id);
+    } else {
+      setActive(null);
+    }
+  };
+
+  const handleMouseLeaveNav = () => {
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+    }
+    leaveTimeoutRef.current = setTimeout(() => {
+      setActive(null);
+    }, 150);
+  };
 
   useEffect(() => {
     setHeaderHidden(hidden);
@@ -308,10 +331,10 @@ export function SiteHeader() {
 
   useEffect(() => {
     const cls = "dropdown-open";
-    if (active || moreOpen) document.body.classList.add(cls);
+    if (activeItem || moreOpen) document.body.classList.add(cls);
     else document.body.classList.remove(cls);
     return () => document.body.classList.remove(cls);
-  }, [active, moreOpen]);
+  }, [activeItem, moreOpen]);
 
   // Lock body scroll while the mobile sidebar is open.
   useEffect(() => {
@@ -331,6 +354,10 @@ export function SiteHeader() {
   }, [moreOpen]);
 
   const closeAll = () => {
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+      leaveTimeoutRef.current = null;
+    }
     setActive(null);
     setActivePanel("main");
     setMoreOpen(false);
@@ -350,18 +377,22 @@ export function SiteHeader() {
             ? "border-foreground/10 bg-background/80 backdrop-blur-xl" 
             : "border-transparent bg-background backdrop-blur-none"
         }`}
-        onMouseLeave={() => setActive(null)}
+        onMouseLeave={handleMouseLeaveNav}
+        onMouseEnter={() => {
+          if (leaveTimeoutRef.current) {
+            clearTimeout(leaveTimeoutRef.current);
+            leaveTimeoutRef.current = null;
+          }
+        }}
       >
         <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 lg:gap-6 px-4 py-2.5 md:px-8 xl:px-12 md:py-3">
           <div className="flex-1 lg:flex-none flex items-center min-w-[140px]">
-            <Link to="/" className="flex items-center min-h-[36px] md:min-h-[40px] w-full">
+            <Link to="/" className="flex items-center min-h-[36px] md:min-h-[40px] w-full" onClick={closeAll}>
               {(!isHome || isScrolled) && (
-                <motion.img
-                  layoutId="msajce-logo"
+                <img
                   src="/logos/clg-logo.png"
                   alt="MSAJCE Logo"
                   className="h-9 md:h-10 w-auto object-contain origin-left"
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 />
               )}
             </Link>
@@ -373,7 +404,7 @@ export function SiteHeader() {
                 <button
                   key={item.id}
                   type="button"
-                  onMouseEnter={() => setActive(item.id)}
+                  onMouseEnter={() => handleMouseEnterItem(item.id)}
                   onClick={() => setActive((c) => (c === item.id ? null : item.id))}
                   aria-expanded={active === item.id}
                   className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] font-oswald transition-colors duration-200 ${
@@ -431,7 +462,16 @@ export function SiteHeader() {
         </div>
 
         {/* Apple-style dropdown overlay */}
-        <div className="absolute left-0 top-full hidden w-full lg:block">
+        <div 
+          className="absolute left-0 top-full hidden w-full lg:block"
+          onMouseEnter={() => {
+            if (leaveTimeoutRef.current) {
+              clearTimeout(leaveTimeoutRef.current);
+              leaveTimeoutRef.current = null;
+            }
+          }}
+          onMouseLeave={handleMouseLeaveNav}
+        >
           <AnimatePresence initial={false}>
             {activeItem && (
               <motion.div
@@ -439,14 +479,15 @@ export function SiteHeader() {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.42, ease: APPLE_EASE }}
+                transition={{ duration: 0.28, ease: APPLE_EASE }}
                 className="bg-background/80 backdrop-blur-3xl overflow-hidden border-b border-foreground/10 w-full"
               >
                 <motion.div
                   key={activeItem.id}
-                  initial="hidden"
-                  animate="show"
-                  variants={{ hidden: {}, show: { transition: { staggerChildren: 0.05, delayChildren: 0.08 } } }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
                   className="mx-auto grid max-w-[1440px] grid-cols-[0.8fr_2.2fr] xl:grid-cols-[0.5fr_2.5fr] gap-12 px-12 py-12"
                 >
                   <motion.div

@@ -186,14 +186,14 @@ Job opportunities for Artificial Intelligence & Machine Learning account for ove
 
 ---
 
-### Employment Growth in Artificial Intelligence & Machine Learning (2025–2030)
-The employment opportunities for Artificial Intelligence & Machine Learning (AI & ML) in India over the next five years (2025–2030) are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in AI & ML job openings.
+### Employment Growth in Artificial Intelligence & Machine Learning
+The employment opportunities for Artificial Intelligence & Machine Learning (AI & ML) in India are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in AI & ML job openings.
 
 [KEY_DRIVERS_ACCORDION]
 
 ---
 
-### Employment Opportunities in High Demand (2025–2030)
+### Employment Opportunities in High Demand
 
 | Role | Specializations | Key Skills |
 | :--- | :--- | :--- |

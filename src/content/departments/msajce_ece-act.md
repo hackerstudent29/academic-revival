@@ -186,14 +186,14 @@ Job opportunities for Advanced Communication Technology account for over 50% of 
 
 ---
 
-### Employment Growth in Advanced Communication Technology (2025–2030)
-The employment opportunities for Advanced Communication Technology (ECE (ACT)) in India over the next five years (2025–2030) are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in ECE (ACT) job openings.
+### Employment Growth in Advanced Communication Technology
+The employment opportunities for Advanced Communication Technology (ECE (ACT)) in India are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in ECE (ACT) job openings.
 
 [KEY_DRIVERS_ACCORDION]
 
 ---
 
-### Employment Opportunities in High Demand (2025–2030)
+### Employment Opportunities in High Demand
 
 | Role | Specializations | Key Skills |
 | :--- | :--- | :--- |
