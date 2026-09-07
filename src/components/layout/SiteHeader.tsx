@@ -4,19 +4,20 @@ import { AnimatePresence, motion, useScroll, useMotionValueEvent, useTransform }
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
 import { Logo } from "@/components/shared/Logo";
 import { MoreHorizontal, X, ChevronDown } from "lucide-react";
+import { useHeader } from "@/context/HeaderContext";
 
 type RoutePath = any;
 
 type Col = { title: string; links: { label: string; to?: RoutePath; href?: string; hash?: string; search?: any }[] };
 type NavItem = { id: string; label: string; to: RoutePath; cols?: Col[] };
 
-const APPLE_EASE = [0.32, 0.72, 0, 1] as const;
+const APPLE_EASE = [0.22, 1, 0.36, 1] as const;
 
 const nav: NavItem[] = [
   {
     id: "about",
     label: "The Institution",
-    to: "/",
+    to: "/about/overview",
     cols: [
       {
         title: "About MSAJCE",
@@ -24,6 +25,7 @@ const nav: NavItem[] = [
           { label: "Institution Overview", to: "/about/overview" },
           { label: "Vision & Mission", to: "/about/vision-mission" },
           { label: "Leadership Message", to: "/about/leadership" },
+          { label: "Governing Council", to: "/about/governing-council" },
           { label: "The Trust", to: "/about/trust" },
           { label: "Group of Institutions", to: "/about/group-institutions" },
         ],
@@ -31,29 +33,28 @@ const nav: NavItem[] = [
       {
         title: "Welfare committees",
         links: [
-          { label: "Grievance Cell", to: "/about", hash: "leadership" },
-          { label: "Statutory Committees", to: "/about", hash: "leadership" },
-          { label: "Functional Committees", to: "/about", hash: "leadership" },
-          { label: "Anti-Ragging Committee", to: "/about", hash: "leadership" },
-          { label: "Women's Empowerment Cell", to: "/about", hash: "leadership" },
+          { label: "Committees & Cells", to: "/about/committees" },
+          { label: "Grievance Cell", to: "/about/committees" },
+          { label: "Statutory Committees", to: "/about/governing-council" },
+          { label: "Anti-Ragging Committee", to: "/about/committees" },
+          { label: "Women's Empowerment Cell", to: "/about/committees" },
         ],
       },
       {
         title: "Policies & Compliance",
         links: [
-          { label: "Compliance", to: "/about", hash: "leadership" },
-          { label: "Code of Conduct", to: "/campus-life", hash: "code-of-conduct" },
-          { label: "Mandatory Disclosure", to: "/about", hash: "leadership" },
-          { label: "Institutional Policies", to: "/about", hash: "leadership" },
+          { label: "Institutional Policies", to: "/about/policies" },
+          { label: "Code of Conduct", to: "/about/policies" },
+          { label: "Mandatory Disclosure", to: "/about/mandatory-disclosure" },
         ],
       },
       {
         title: "Accreditation & Rankings",
         links: [
-          { label: "NAAC", to: "/about", hash: "accreditations" },
-          { label: "IQAC", to: "/about", hash: "accreditations" },
-          { label: "NIRF", to: "/about", hash: "accreditations" },
-          { label: "ARIIA", to: "/about", hash: "accreditations" },
+          { label: "NAAC", to: "/naac" },
+          { label: "IQAC", to: "/naac/iqac" },
+          { label: "NIRF", to: "/about/accreditations", hash: "nirf" },
+          { label: "ARIIA", to: "/about/accreditations", hash: "ariia" },
         ],
       },
     ],
@@ -107,17 +108,17 @@ const nav: NavItem[] = [
         title: "Academic Resources",
         links: [
           { label: "Academic Calendar", to: "/academics" },
-          { label: "Curriculum & Syllabus", to: "/curriculum" },
+          { label: "Curriculum & Syllabus", to: "/academics" },
         ],
       },
       {
         title: "Research & Innovation",
         links: [
-          { label: "Research", to: "/academics" },
-          { label: "Publications", to: "/academics" },
-          { label: "Patents", to: "/academics" },
-          { label: "Innovation Council (IIC)", to: "/academics" },
-          { label: "Startup Ecosystem", to: "/academics" },
+          { label: "Research", to: "/research", search: { tab: "overview" } },
+          { label: "Publications", to: "/research", search: { tab: "publications" } },
+          { label: "Patents", to: "/research", search: { tab: "patents" } },
+          { label: "Innovation Council (IIC)", to: "/research", search: { tab: "iic" } },
+          { label: "Startup Ecosystem", to: "/research", search: { tab: "startup-ecosystem" } },
         ],
       },
       {
@@ -168,6 +169,7 @@ const nav: NavItem[] = [
           { label: "Our Alumni", to: "/campus-life" },
           { label: "Convocation", to: "/campus-life" },
           { label: "Campus Happenings", to: "/campus-life" },
+          { label: "Social Media Directory", to: "/social-media" },
         ],
       },
     ],
@@ -246,11 +248,39 @@ const moreMenuData = [
 ];
 
 export function SiteHeader() {
+  const { setHeaderHidden, setIsScrolled: setHeaderScrolled } = useHeader();
   const [active, setActive] = useState<string | null>(null);
   const [moreOpen, setMoreOpen] = useState(false);
   const [activePanel, setActivePanel] = useState<string>("main");
   const [hidden, setHidden] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const leaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnterItem = (id: string) => {
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+      leaveTimeoutRef.current = null;
+    }
+    const item = nav.find((n) => n.id === id);
+    if (item && item.cols) {
+      setActive(id);
+    } else {
+      setActive(null);
+    }
+  };
+
+  const handleMouseLeaveNav = () => {
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+    }
+    leaveTimeoutRef.current = setTimeout(() => {
+      setActive(null);
+    }, 150);
+  };
+
+  useEffect(() => {
+    setHeaderHidden(hidden);
+  }, [hidden, setHeaderHidden]);
 
   const { scrollY } = useScroll();
 
@@ -269,21 +299,30 @@ export function SiteHeader() {
   const lastScrollY = useRef(0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 80);
+    const scrolled = latest > 60;
+    setIsScrolled(scrolled);
+    setHeaderScrolled(scrolled);
     
-    if (latest < 150) {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const minScroll = isMobile ? 35 : 50;
+    const delta = isMobile ? 4 : 8;
+
+    if (latest < minScroll) {
       setHidden(false);
+      setHeaderHidden(false);
       lastScrollY.current = latest;
       return;
     }
 
-    if (latest > lastScrollY.current + 15) {
+    if (latest > lastScrollY.current + delta) {
       if (!moreOpen && !active) {
         setHidden(true);
+        setHeaderHidden(true);
       }
       lastScrollY.current = latest;
-    } else if (latest < lastScrollY.current - 15) {
+    } else if (latest < lastScrollY.current - delta) {
       setHidden(false);
+      setHeaderHidden(false);
       lastScrollY.current = latest;
     }
   });
@@ -292,10 +331,10 @@ export function SiteHeader() {
 
   useEffect(() => {
     const cls = "dropdown-open";
-    if (active || moreOpen) document.body.classList.add(cls);
+    if (activeItem || moreOpen) document.body.classList.add(cls);
     else document.body.classList.remove(cls);
     return () => document.body.classList.remove(cls);
-  }, [active, moreOpen]);
+  }, [activeItem, moreOpen]);
 
   // Lock body scroll while the mobile sidebar is open.
   useEffect(() => {
@@ -315,6 +354,10 @@ export function SiteHeader() {
   }, [moreOpen]);
 
   const closeAll = () => {
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+      leaveTimeoutRef.current = null;
+    }
     setActive(null);
     setActivePanel("main");
     setMoreOpen(false);
@@ -328,24 +371,28 @@ export function SiteHeader() {
           hidden: { y: "-100%", opacity: 0 }
         }}
         animate={hidden ? "hidden" : "visible"}
-        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.35, ease: APPLE_EASE }}
         className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
           active || moreOpen || isScrolled 
             ? "border-foreground/10 bg-background/80 backdrop-blur-xl" 
             : "border-transparent bg-background backdrop-blur-none"
         }`}
-        onMouseLeave={() => setActive(null)}
+        onMouseLeave={handleMouseLeaveNav}
+        onMouseEnter={() => {
+          if (leaveTimeoutRef.current) {
+            clearTimeout(leaveTimeoutRef.current);
+            leaveTimeoutRef.current = null;
+          }
+        }}
       >
         <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 lg:gap-6 px-4 py-2.5 md:px-8 xl:px-12 md:py-3">
           <div className="flex-1 lg:flex-none flex items-center min-w-[140px]">
-            <Link to="/" className="flex items-center min-h-[36px] md:min-h-[40px] w-full">
+            <Link to="/" className="flex items-center min-h-[36px] md:min-h-[40px] w-full" onClick={closeAll}>
               {(!isHome || isScrolled) && (
-                <motion.img
-                  layoutId="msajce-logo"
+                <img
                   src="/logos/clg-logo.png"
                   alt="MSAJCE Logo"
                   className="h-9 md:h-10 w-auto object-contain origin-left"
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 />
               )}
             </Link>
@@ -357,7 +404,7 @@ export function SiteHeader() {
                 <button
                   key={item.id}
                   type="button"
-                  onMouseEnter={() => setActive(item.id)}
+                  onMouseEnter={() => handleMouseEnterItem(item.id)}
                   onClick={() => setActive((c) => (c === item.id ? null : item.id))}
                   aria-expanded={active === item.id}
                   className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] font-oswald transition-colors duration-200 ${
@@ -390,30 +437,10 @@ export function SiteHeader() {
             <Link
               to="/admissions"
               search={{} as any}
-              className={`group relative hidden overflow-hidden whitespace-nowrap rounded-none shadow sm:inline-flex items-center justify-center border border-primary transition-colors duration-500 ${showCode ? "bg-background" : "bg-primary"}`}
+              className="group relative hidden overflow-hidden whitespace-nowrap sm:inline-flex items-center justify-center border border-primary px-5 py-2.5 text-[11px] xl:text-[13px] font-bold uppercase tracking-wide text-primary transition-colors hover:text-primary-foreground after:absolute after:inset-0 after:top-full after:bg-primary after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0 rounded-xs shadow-xs"
               onClick={closeAll}
             >
-              {/* Invisible placeholder dictates the original button size */}
-              <span className="invisible px-5 py-2.5 text-[11px] xl:text-[13px] font-bold uppercase tracking-wide">
-                Apply 2026-27
-              </span>
-              
-              <motion.div 
-                className="absolute inset-x-0 top-0 flex flex-col"
-                animate={{ y: showCode ? "-50%" : "0%" }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <div className="flex w-full items-center justify-center px-5 py-2.5">
-                  <span className={`text-[11px] xl:text-[13px] font-bold uppercase tracking-wide transition-colors duration-500 ${showCode ? "text-primary" : "text-primary-foreground"}`}>
-                    Apply 2026-27
-                  </span>
-                </div>
-                <div className="flex w-full items-center justify-center px-5 py-2.5">
-                  <span className={`text-[11px] xl:text-[13px] font-bold uppercase tracking-wide transition-colors duration-500 ${showCode ? "text-primary" : "text-primary-foreground"}`}>
-                    TNEA 1301
-                  </span>
-                </div>
-              </motion.div>
+              <span className="relative z-10 font-oswald tracking-wider">Apply Now &raquo;</span>
             </Link>
             <button
               type="button"
@@ -435,7 +462,16 @@ export function SiteHeader() {
         </div>
 
         {/* Apple-style dropdown overlay */}
-        <div className="absolute left-0 top-full hidden w-full lg:block">
+        <div 
+          className="absolute left-0 top-full hidden w-full lg:block"
+          onMouseEnter={() => {
+            if (leaveTimeoutRef.current) {
+              clearTimeout(leaveTimeoutRef.current);
+              leaveTimeoutRef.current = null;
+            }
+          }}
+          onMouseLeave={handleMouseLeaveNav}
+        >
           <AnimatePresence initial={false}>
             {activeItem && (
               <motion.div
@@ -443,14 +479,15 @@ export function SiteHeader() {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.42, ease: APPLE_EASE }}
+                transition={{ duration: 0.28, ease: APPLE_EASE }}
                 className="bg-background/80 backdrop-blur-3xl overflow-hidden border-b border-foreground/10 w-full"
               >
                 <motion.div
                   key={activeItem.id}
-                  initial="hidden"
-                  animate="show"
-                  variants={{ hidden: {}, show: { transition: { staggerChildren: 0.05, delayChildren: 0.08 } } }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
                   className="mx-auto grid max-w-[1440px] grid-cols-[0.8fr_2.2fr] xl:grid-cols-[0.5fr_2.5fr] gap-12 px-12 py-12"
                 >
                   <motion.div

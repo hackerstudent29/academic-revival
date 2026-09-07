@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SecondarySubNav } from "@/components/layout/SecondarySubNav";
 import { PlacementHero } from "@/components/sections/placement/PlacementHero";
@@ -18,7 +18,6 @@ import { PlacementContactModal } from "@/components/modals/placement/PlacementCo
 import { PulseEventModal } from "@/components/modals/placement/PulseEventModal";
 
 import { Facility, MouPartner, FeaturedAchievement, PlacementPulseEvent } from "@/types/placement";
-import { ArrowUp, Mail, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const title = "Placements at MSAJCE — 95% Track Record";
@@ -50,7 +49,6 @@ const PLACEMENT_TABS = [
 
 function Placements() {
   const [activeSection, setActiveSection] = useState<string>("overview");
-  const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
 
   // Modal states
   const [selectedFacility, setSelectedFacility] = useState<Facility | null>(null);
@@ -59,18 +57,6 @@ function Placements() {
   const [selectedEvent, setSelectedEvent] = useState<PlacementPulseEvent | null>(null);
   const [isBrochureOpen, setIsBrochureOpen] = useState<boolean>(false);
   const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleSelectSection = (sectionId: string) => {
     setActiveSection(sectionId);
@@ -153,38 +139,6 @@ function Placements() {
           </motion.div>
         </AnimatePresence>
       </main>
-
-      {/* Floating Action Controls */}
-      <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-2.5">
-        {showScrollTop && (
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="w-12 h-12 rounded-full bg-card hover:bg-muted text-foreground shadow-xl flex items-center justify-center transition-colors group cursor-pointer border border-border"
-            title="Scroll to top"
-            aria-label="Scroll to top"
-          >
-            <ArrowUp className="w-5 h-5 transition-transform" />
-          </button>
-        )}
-
-        <button
-          onClick={() => setIsContactOpen(true)}
-          className="w-12 h-12 rounded-full bg-primary hover:bg-primary/90 text-white shadow-xl flex items-center justify-center transition-colors group cursor-pointer border border-white/20"
-          title="Contact Placement Cell"
-          aria-label="Contact Placement Cell"
-        >
-          <Mail className="w-5 h-5 transition-transform" />
-        </button>
-
-        <button
-          onClick={() => setIsBrochureOpen(true)}
-          className="w-12 h-12 rounded-full bg-primary hover:bg-primary/90 text-white shadow-xl flex items-center justify-center transition-colors group cursor-pointer border border-white/20"
-          title="Download Placement Dossier"
-          aria-label="Download Placement Dossier"
-        >
-          <Download className="w-5 h-5 transition-transform" />
-        </button>
-      </div>
 
       {/* MODAL DIALOGS */}
       <FacilityLightbox

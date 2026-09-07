@@ -236,8 +236,8 @@ const CrowdCanvas = () => {
 
       const peep: Peep = {
         image,
-        name: image.dataset.name || "",
-        isSpecial: image.dataset.special === "true",
+        name: image.dataset['name'] || "",
+        isSpecial: image.dataset['special'] === "true",
         width,
         height,
         x: 0,
@@ -457,8 +457,8 @@ const CrowdCanvas = () => {
     // Load dev peeps
     devNames.forEach((name) => {
       const img = document.createElement("img");
-      img.dataset.name = name;
-      img.dataset.special = "true";
+      img.dataset['name'] = name;
+      img.dataset['special'] = "true";
       img.onload = () => checkLoaded(true, img);
       img.onerror = () => checkLoaded(false, img);
       img.src = `/images/peeps/${name}.png`;
@@ -467,8 +467,8 @@ const CrowdCanvas = () => {
     // Load regular peeps
     for (let i = 1; i <= regularImageCount; i++) {
       const img = document.createElement("img");
-      img.dataset.name = `peep-${i}`;
-      img.dataset.special = "false";
+      img.dataset['name'] = `peep-${i}`;
+      img.dataset['special'] = "false";
       img.onload = () => checkLoaded(true, img);
       img.onerror = () => checkLoaded(false, img);
       img.src = `/images/peeps/peep-${i}.png`;
@@ -502,7 +502,7 @@ const CrowdCanvas = () => {
       let found: string | null = null;
       for (let i = crowd.length - 1; i >= 0; i--) {
         const peep = crowd[i];
-        if (!peep.isSpecial) continue;
+        if (!peep || !peep.isSpecial) continue;
         
         const minX = peep.scaleX === 1 ? peep.x : peep.x - peep.width;
         const maxX = peep.scaleX === 1 ? peep.x + peep.width : peep.x;
@@ -516,11 +516,12 @@ const CrowdCanvas = () => {
       }
 
       if (found && devMapping[found]) {
+        const devName = devMapping[found]!;
         canvas.style.cursor = "pointer";
-        if (hoveredNameRef.current !== devMapping[found]) {
+        if (hoveredNameRef.current !== devName) {
           isHoveringRef.current = true;
-          hoveredNameRef.current = devMapping[found];
-          setHoveredName(devMapping[found]);
+          hoveredNameRef.current = devName;
+          setHoveredName(devName);
           setIsHovering(true);
         }
       } else {

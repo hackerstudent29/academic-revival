@@ -16,10 +16,15 @@ import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as CampusLifeRouteImport } from './routes/campus-life'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreditsRouteImport } from './routes/credits'
-import { Route as CurriculumRouteImport } from './routes/curriculum'
+import { Route as CurriculumAndSyllabusRouteImport } from './routes/curriculum-and-syllabus'
+import { Route as NaacRouteImport } from './routes/naac'
 import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offered'
+import { Route as ResearchRouteImport } from './routes/research'
+import { Route as SocialMediaRouteImport } from './routes/social-media'
 import { Route as StudentHousingRouteImport } from './routes/student-housing'
+import { Route as AboutAccreditationsRouteImport } from './routes/about_.accreditations'
+import { Route as AboutGoverningCouncilRouteImport } from './routes/about_.governing-council'
 import { Route as AboutGroupInstitutionsRouteImport } from './routes/about_.group-institutions'
 import { Route as AboutLeadershipRouteImport } from './routes/about_.leadership'
 import { Route as AboutOverviewRouteImport } from './routes/about_.overview'
@@ -28,9 +33,22 @@ import { Route as AboutVisionMissionRouteImport } from './routes/about_.vision-m
 import { Route as AdmissionsEligibilityRouteImport } from './routes/admissions_.eligibility'
 import { Route as AdmissionsProcedureRouteImport } from './routes/admissions_.procedure'
 import { Route as AdmissionsScholarshipsRouteImport } from './routes/admissions_.scholarships'
+import { Route as CampusLifeSocialMediaRouteImport } from './routes/campus-life_.social-media'
 import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
+import { Route as NaacIndexRouteImport } from './routes/naac/index'
+import { Route as NaacBestPracticesRouteImport } from './routes/naac/best-practices'
+import { Route as NaacCodeOfConductRouteImport } from './routes/naac/code-of-conduct'
+import { Route as NaacDistinctivenessRouteImport } from './routes/naac/distinctiveness'
+import { Route as NaacDvvRouteImport } from './routes/naac/dvv'
+import { Route as NaacExtendedProfileRouteImport } from './routes/naac/extended-profile'
+import { Route as NaacIqacRouteImport } from './routes/naac/iqac'
 import { Route as ProgrammesIndexRouteImport } from './routes/programmes.index'
 import { Route as ProgrammesCourseIdRouteImport } from './routes/programmes.$courseId'
+import { Route as ResearchIicRouteImport } from './routes/research_.iic'
+import { Route as ResearchPatentsRouteImport } from './routes/research_.patents'
+import { Route as ResearchPublicationsRouteImport } from './routes/research_.publications'
+import { Route as ResearchStartupEcosystemRouteImport } from './routes/research_.startup-ecosystem'
+import { Route as NaacCriteriaIdRouteImport } from './routes/naac/criteria.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -67,9 +85,14 @@ const CreditsRoute = CreditsRouteImport.update({
   path: '/credits',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CurriculumRoute = CurriculumRouteImport.update({
-  id: '/curriculum',
-  path: '/curriculum',
+const CurriculumAndSyllabusRoute = CurriculumAndSyllabusRouteImport.update({
+  id: '/curriculum-and-syllabus',
+  path: '/curriculum-and-syllabus',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NaacRoute = NaacRouteImport.update({
+  id: '/naac',
+  path: '/naac',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlacementsRoute = PlacementsRouteImport.update({
@@ -82,9 +105,29 @@ const ProgrammesOfferedRoute = ProgrammesOfferedRouteImport.update({
   path: '/programmes-offered',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocialMediaRoute = SocialMediaRouteImport.update({
+  id: '/social-media',
+  path: '/social-media',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudentHousingRoute = StudentHousingRouteImport.update({
   id: '/student-housing',
   path: '/student-housing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutAccreditationsRoute = AboutAccreditationsRouteImport.update({
+  id: '/about_/accreditations',
+  path: '/about/accreditations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutGoverningCouncilRoute = AboutGoverningCouncilRouteImport.update({
+  id: '/about_/governing-council',
+  path: '/about/governing-council',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutGroupInstitutionsRoute = AboutGroupInstitutionsRouteImport.update({
@@ -127,10 +170,50 @@ const AdmissionsScholarshipsRoute = AdmissionsScholarshipsRouteImport.update({
   path: '/admissions/scholarships',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CampusLifeSocialMediaRoute = CampusLifeSocialMediaRouteImport.update({
+  id: '/campus-life_/social-media',
+  path: '/campus-life/social-media',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventsEventIdRoute = EventsEventIdRouteImport.update({
   id: '/events/$eventId',
   path: '/events/$eventId',
   getParentRoute: () => rootRouteImport,
+} as any)
+const NaacIndexRoute = NaacIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => NaacRoute,
+} as any)
+const NaacBestPracticesRoute = NaacBestPracticesRouteImport.update({
+  id: '/best-practices',
+  path: '/best-practices',
+  getParentRoute: () => NaacRoute,
+} as any)
+const NaacCodeOfConductRoute = NaacCodeOfConductRouteImport.update({
+  id: '/code-of-conduct',
+  path: '/code-of-conduct',
+  getParentRoute: () => NaacRoute,
+} as any)
+const NaacDistinctivenessRoute = NaacDistinctivenessRouteImport.update({
+  id: '/distinctiveness',
+  path: '/distinctiveness',
+  getParentRoute: () => NaacRoute,
+} as any)
+const NaacDvvRoute = NaacDvvRouteImport.update({
+  id: '/dvv',
+  path: '/dvv',
+  getParentRoute: () => NaacRoute,
+} as any)
+const NaacExtendedProfileRoute = NaacExtendedProfileRouteImport.update({
+  id: '/extended-profile',
+  path: '/extended-profile',
+  getParentRoute: () => NaacRoute,
+} as any)
+const NaacIqacRoute = NaacIqacRouteImport.update({
+  id: '/iqac',
+  path: '/iqac',
+  getParentRoute: () => NaacRoute,
 } as any)
 const ProgrammesIndexRoute = ProgrammesIndexRouteImport.update({
   id: '/programmes/',
@@ -142,6 +225,32 @@ const ProgrammesCourseIdRoute = ProgrammesCourseIdRouteImport.update({
   path: '/programmes/$courseId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResearchIicRoute = ResearchIicRouteImport.update({
+  id: '/research_/iic',
+  path: '/research/iic',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchPatentsRoute = ResearchPatentsRouteImport.update({
+  id: '/research_/patents',
+  path: '/research/patents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchPublicationsRoute = ResearchPublicationsRouteImport.update({
+  id: '/research_/publications',
+  path: '/research/publications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchStartupEcosystemRoute =
+  ResearchStartupEcosystemRouteImport.update({
+    id: '/research_/startup-ecosystem',
+    path: '/research/startup-ecosystem',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const NaacCriteriaIdRoute = NaacCriteriaIdRouteImport.update({
+  id: '/criteria/$id',
+  path: '/criteria/$id',
+  getParentRoute: () => NaacRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -151,10 +260,15 @@ export interface FileRoutesByFullPath {
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
-  '/curriculum': typeof CurriculumRoute
+  '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
+  '/naac': typeof NaacRouteWithChildren
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
+  '/research': typeof ResearchRoute
+  '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
+  '/about/accreditations': typeof AboutAccreditationsRoute
+  '/about/governing-council': typeof AboutGoverningCouncilRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about/leadership': typeof AboutLeadershipRoute
   '/about/overview': typeof AboutOverviewRoute
@@ -163,9 +277,23 @@ export interface FileRoutesByFullPath {
   '/admissions/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions/procedure': typeof AdmissionsProcedureRoute
   '/admissions/scholarships': typeof AdmissionsScholarshipsRoute
+  '/campus-life/social-media': typeof CampusLifeSocialMediaRoute
   '/events/$eventId': typeof EventsEventIdRoute
+  '/naac/best-practices': typeof NaacBestPracticesRoute
+  '/naac/code-of-conduct': typeof NaacCodeOfConductRoute
+  '/naac/distinctiveness': typeof NaacDistinctivenessRoute
+  '/naac/dvv': typeof NaacDvvRoute
+  '/naac/extended-profile': typeof NaacExtendedProfileRoute
+  '/naac/iqac': typeof NaacIqacRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
+  '/research/iic': typeof ResearchIicRoute
+  '/research/patents': typeof ResearchPatentsRoute
+  '/research/publications': typeof ResearchPublicationsRoute
+  '/research/startup-ecosystem': typeof ResearchStartupEcosystemRoute
+  '/naac/': typeof NaacIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
+  '/naac/criteria/$id': typeof NaacCriteriaIdRoute
+  '/naac/criteria/': typeof NaacCriteriaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -175,10 +303,14 @@ export interface FileRoutesByTo {
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
-  '/curriculum': typeof CurriculumRoute
+  '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
+  '/research': typeof ResearchRoute
+  '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
+  '/about/accreditations': typeof AboutAccreditationsRoute
+  '/about/governing-council': typeof AboutGoverningCouncilRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about/leadership': typeof AboutLeadershipRoute
   '/about/overview': typeof AboutOverviewRoute
@@ -187,9 +319,23 @@ export interface FileRoutesByTo {
   '/admissions/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions/procedure': typeof AdmissionsProcedureRoute
   '/admissions/scholarships': typeof AdmissionsScholarshipsRoute
+  '/campus-life/social-media': typeof CampusLifeSocialMediaRoute
   '/events/$eventId': typeof EventsEventIdRoute
+  '/naac/best-practices': typeof NaacBestPracticesRoute
+  '/naac/code-of-conduct': typeof NaacCodeOfConductRoute
+  '/naac/distinctiveness': typeof NaacDistinctivenessRoute
+  '/naac/dvv': typeof NaacDvvRoute
+  '/naac/extended-profile': typeof NaacExtendedProfileRoute
+  '/naac/iqac': typeof NaacIqacRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
+  '/research/iic': typeof ResearchIicRoute
+  '/research/patents': typeof ResearchPatentsRoute
+  '/research/publications': typeof ResearchPublicationsRoute
+  '/research/startup-ecosystem': typeof ResearchStartupEcosystemRoute
+  '/naac': typeof NaacIndexRoute
   '/programmes': typeof ProgrammesIndexRoute
+  '/naac/criteria/$id': typeof NaacCriteriaIdRoute
+  '/naac/criteria': typeof NaacCriteriaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -200,10 +346,15 @@ export interface FileRoutesById {
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
-  '/curriculum': typeof CurriculumRoute
+  '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
+  '/naac': typeof NaacRouteWithChildren
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
+  '/research': typeof ResearchRoute
+  '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
+  '/about_/accreditations': typeof AboutAccreditationsRoute
+  '/about_/governing-council': typeof AboutGoverningCouncilRoute
   '/about_/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about_/leadership': typeof AboutLeadershipRoute
   '/about_/overview': typeof AboutOverviewRoute
@@ -212,9 +363,23 @@ export interface FileRoutesById {
   '/admissions_/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions_/procedure': typeof AdmissionsProcedureRoute
   '/admissions_/scholarships': typeof AdmissionsScholarshipsRoute
+  '/campus-life_/social-media': typeof CampusLifeSocialMediaRoute
   '/events/$eventId': typeof EventsEventIdRoute
+  '/naac/best-practices': typeof NaacBestPracticesRoute
+  '/naac/code-of-conduct': typeof NaacCodeOfConductRoute
+  '/naac/distinctiveness': typeof NaacDistinctivenessRoute
+  '/naac/dvv': typeof NaacDvvRoute
+  '/naac/extended-profile': typeof NaacExtendedProfileRoute
+  '/naac/iqac': typeof NaacIqacRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
+  '/research_/iic': typeof ResearchIicRoute
+  '/research_/patents': typeof ResearchPatentsRoute
+  '/research_/publications': typeof ResearchPublicationsRoute
+  '/research_/startup-ecosystem': typeof ResearchStartupEcosystemRoute
+  '/naac/': typeof NaacIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
+  '/naac/criteria/$id': typeof NaacCriteriaIdRoute
+  '/naac/criteria/': typeof NaacCriteriaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -226,10 +391,15 @@ export interface FileRouteTypes {
     | '/campus-life'
     | '/contact'
     | '/credits'
-    | '/curriculum'
+    | '/curriculum-and-syllabus'
+    | '/naac'
     | '/placements'
     | '/programmes-offered'
+    | '/research'
+    | '/social-media'
     | '/student-housing'
+    | '/about/accreditations'
+    | '/about/governing-council'
     | '/about/group-institutions'
     | '/about/leadership'
     | '/about/overview'
@@ -238,9 +408,23 @@ export interface FileRouteTypes {
     | '/admissions/eligibility'
     | '/admissions/procedure'
     | '/admissions/scholarships'
+    | '/campus-life/social-media'
     | '/events/$eventId'
+    | '/naac/best-practices'
+    | '/naac/code-of-conduct'
+    | '/naac/distinctiveness'
+    | '/naac/dvv'
+    | '/naac/extended-profile'
+    | '/naac/iqac'
     | '/programmes/$courseId'
+    | '/research/iic'
+    | '/research/patents'
+    | '/research/publications'
+    | '/research/startup-ecosystem'
+    | '/naac/'
     | '/programmes/'
+    | '/naac/criteria/$id'
+    | '/naac/criteria/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -250,10 +434,14 @@ export interface FileRouteTypes {
     | '/campus-life'
     | '/contact'
     | '/credits'
-    | '/curriculum'
+    | '/curriculum-and-syllabus'
     | '/placements'
     | '/programmes-offered'
+    | '/research'
+    | '/social-media'
     | '/student-housing'
+    | '/about/accreditations'
+    | '/about/governing-council'
     | '/about/group-institutions'
     | '/about/leadership'
     | '/about/overview'
@@ -262,9 +450,23 @@ export interface FileRouteTypes {
     | '/admissions/eligibility'
     | '/admissions/procedure'
     | '/admissions/scholarships'
+    | '/campus-life/social-media'
     | '/events/$eventId'
+    | '/naac/best-practices'
+    | '/naac/code-of-conduct'
+    | '/naac/distinctiveness'
+    | '/naac/dvv'
+    | '/naac/extended-profile'
+    | '/naac/iqac'
     | '/programmes/$courseId'
+    | '/research/iic'
+    | '/research/patents'
+    | '/research/publications'
+    | '/research/startup-ecosystem'
+    | '/naac'
     | '/programmes'
+    | '/naac/criteria/$id'
+    | '/naac/criteria'
   id:
     | '__root__'
     | '/'
@@ -274,10 +476,15 @@ export interface FileRouteTypes {
     | '/campus-life'
     | '/contact'
     | '/credits'
-    | '/curriculum'
+    | '/curriculum-and-syllabus'
+    | '/naac'
     | '/placements'
     | '/programmes-offered'
+    | '/research'
+    | '/social-media'
     | '/student-housing'
+    | '/about_/accreditations'
+    | '/about_/governing-council'
     | '/about_/group-institutions'
     | '/about_/leadership'
     | '/about_/overview'
@@ -286,9 +493,23 @@ export interface FileRouteTypes {
     | '/admissions_/eligibility'
     | '/admissions_/procedure'
     | '/admissions_/scholarships'
+    | '/campus-life_/social-media'
     | '/events/$eventId'
+    | '/naac/best-practices'
+    | '/naac/code-of-conduct'
+    | '/naac/distinctiveness'
+    | '/naac/dvv'
+    | '/naac/extended-profile'
+    | '/naac/iqac'
     | '/programmes/$courseId'
+    | '/research_/iic'
+    | '/research_/patents'
+    | '/research_/publications'
+    | '/research_/startup-ecosystem'
+    | '/naac/'
     | '/programmes/'
+    | '/naac/criteria/$id'
+    | '/naac/criteria/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -299,10 +520,15 @@ export interface RootRouteChildren {
   CampusLifeRoute: typeof CampusLifeRoute
   ContactRoute: typeof ContactRoute
   CreditsRoute: typeof CreditsRoute
-  CurriculumRoute: typeof CurriculumRoute
+  CurriculumAndSyllabusRoute: typeof CurriculumAndSyllabusRoute
+  NaacRoute: typeof NaacRouteWithChildren
   PlacementsRoute: typeof PlacementsRoute
   ProgrammesOfferedRoute: typeof ProgrammesOfferedRoute
+  ResearchRoute: typeof ResearchRoute
+  SocialMediaRoute: typeof SocialMediaRoute
   StudentHousingRoute: typeof StudentHousingRoute
+  AboutAccreditationsRoute: typeof AboutAccreditationsRoute
+  AboutGoverningCouncilRoute: typeof AboutGoverningCouncilRoute
   AboutGroupInstitutionsRoute: typeof AboutGroupInstitutionsRoute
   AboutLeadershipRoute: typeof AboutLeadershipRoute
   AboutOverviewRoute: typeof AboutOverviewRoute
@@ -311,8 +537,13 @@ export interface RootRouteChildren {
   AdmissionsEligibilityRoute: typeof AdmissionsEligibilityRoute
   AdmissionsProcedureRoute: typeof AdmissionsProcedureRoute
   AdmissionsScholarshipsRoute: typeof AdmissionsScholarshipsRoute
+  CampusLifeSocialMediaRoute: typeof CampusLifeSocialMediaRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
   ProgrammesCourseIdRoute: typeof ProgrammesCourseIdRoute
+  ResearchIicRoute: typeof ResearchIicRoute
+  ResearchPatentsRoute: typeof ResearchPatentsRoute
+  ResearchPublicationsRoute: typeof ResearchPublicationsRoute
+  ResearchStartupEcosystemRoute: typeof ResearchStartupEcosystemRoute
   ProgrammesIndexRoute: typeof ProgrammesIndexRoute
 }
 
@@ -367,11 +598,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreditsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/curriculum': {
-      id: '/curriculum'
-      path: '/curriculum'
-      fullPath: '/curriculum'
-      preLoaderRoute: typeof CurriculumRouteImport
+    '/curriculum-and-syllabus': {
+      id: '/curriculum-and-syllabus'
+      path: '/curriculum-and-syllabus'
+      fullPath: '/curriculum-and-syllabus'
+      preLoaderRoute: typeof CurriculumAndSyllabusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/naac': {
+      id: '/naac'
+      path: '/naac'
+      fullPath: '/naac'
+      preLoaderRoute: typeof NaacRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/placements': {
@@ -388,11 +626,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgrammesOfferedRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/social-media': {
+      id: '/social-media'
+      path: '/social-media'
+      fullPath: '/social-media'
+      preLoaderRoute: typeof SocialMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/student-housing': {
       id: '/student-housing'
       path: '/student-housing'
       fullPath: '/student-housing'
       preLoaderRoute: typeof StudentHousingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about_/accreditations': {
+      id: '/about_/accreditations'
+      path: '/about/accreditations'
+      fullPath: '/about/accreditations'
+      preLoaderRoute: typeof AboutAccreditationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about_/governing-council': {
+      id: '/about_/governing-council'
+      path: '/about/governing-council'
+      fullPath: '/about/governing-council'
+      preLoaderRoute: typeof AboutGoverningCouncilRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about_/group-institutions': {
@@ -451,12 +717,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdmissionsScholarshipsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/campus-life_/social-media': {
+      id: '/campus-life_/social-media'
+      path: '/campus-life/social-media'
+      fullPath: '/campus-life/social-media'
+      preLoaderRoute: typeof CampusLifeSocialMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events/$eventId': {
       id: '/events/$eventId'
       path: '/events/$eventId'
       fullPath: '/events/$eventId'
       preLoaderRoute: typeof EventsEventIdRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/naac/': {
+      id: '/naac/'
+      path: '/'
+      fullPath: '/naac/'
+      preLoaderRoute: typeof NaacIndexRouteImport
+      parentRoute: typeof NaacRoute
+    }
+    '/naac/best-practices': {
+      id: '/naac/best-practices'
+      path: '/best-practices'
+      fullPath: '/naac/best-practices'
+      preLoaderRoute: typeof NaacBestPracticesRouteImport
+      parentRoute: typeof NaacRoute
+    }
+    '/naac/code-of-conduct': {
+      id: '/naac/code-of-conduct'
+      path: '/code-of-conduct'
+      fullPath: '/naac/code-of-conduct'
+      preLoaderRoute: typeof NaacCodeOfConductRouteImport
+      parentRoute: typeof NaacRoute
+    }
+    '/naac/distinctiveness': {
+      id: '/naac/distinctiveness'
+      path: '/distinctiveness'
+      fullPath: '/naac/distinctiveness'
+      preLoaderRoute: typeof NaacDistinctivenessRouteImport
+      parentRoute: typeof NaacRoute
+    }
+    '/naac/dvv': {
+      id: '/naac/dvv'
+      path: '/dvv'
+      fullPath: '/naac/dvv'
+      preLoaderRoute: typeof NaacDvvRouteImport
+      parentRoute: typeof NaacRoute
+    }
+    '/naac/extended-profile': {
+      id: '/naac/extended-profile'
+      path: '/extended-profile'
+      fullPath: '/naac/extended-profile'
+      preLoaderRoute: typeof NaacExtendedProfileRouteImport
+      parentRoute: typeof NaacRoute
+    }
+    '/naac/iqac': {
+      id: '/naac/iqac'
+      path: '/iqac'
+      fullPath: '/naac/iqac'
+      preLoaderRoute: typeof NaacIqacRouteImport
+      parentRoute: typeof NaacRoute
     }
     '/programmes/': {
       id: '/programmes/'
@@ -472,8 +794,69 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgrammesCourseIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/research_/iic': {
+      id: '/research_/iic'
+      path: '/research/iic'
+      fullPath: '/research/iic'
+      preLoaderRoute: typeof ResearchIicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research_/patents': {
+      id: '/research_/patents'
+      path: '/research/patents'
+      fullPath: '/research/patents'
+      preLoaderRoute: typeof ResearchPatentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research_/publications': {
+      id: '/research_/publications'
+      path: '/research/publications'
+      fullPath: '/research/publications'
+      preLoaderRoute: typeof ResearchPublicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research_/startup-ecosystem': {
+      id: '/research_/startup-ecosystem'
+      path: '/research/startup-ecosystem'
+      fullPath: '/research/startup-ecosystem'
+      preLoaderRoute: typeof ResearchStartupEcosystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/naac/criteria/$id': {
+      id: '/naac/criteria/$id'
+      path: '/criteria/$id'
+      fullPath: '/naac/criteria/$id'
+      preLoaderRoute: typeof NaacCriteriaIdRouteImport
+      parentRoute: typeof NaacRoute
+    }
   }
 }
+
+interface NaacRouteChildren {
+  NaacBestPracticesRoute: typeof NaacBestPracticesRoute
+  NaacCodeOfConductRoute: typeof NaacCodeOfConductRoute
+  NaacDistinctivenessRoute: typeof NaacDistinctivenessRoute
+  NaacDvvRoute: typeof NaacDvvRoute
+  NaacExtendedProfileRoute: typeof NaacExtendedProfileRoute
+  NaacIqacRoute: typeof NaacIqacRoute
+  NaacIndexRoute: typeof NaacIndexRoute
+  NaacCriteriaIdRoute: typeof NaacCriteriaIdRoute
+  NaacCriteriaIndexRoute: typeof NaacCriteriaIndexRoute
+}
+
+const NaacRouteChildren: NaacRouteChildren = {
+  NaacBestPracticesRoute: NaacBestPracticesRoute,
+  NaacCodeOfConductRoute: NaacCodeOfConductRoute,
+  NaacDistinctivenessRoute: NaacDistinctivenessRoute,
+  NaacDvvRoute: NaacDvvRoute,
+  NaacExtendedProfileRoute: NaacExtendedProfileRoute,
+  NaacIqacRoute: NaacIqacRoute,
+  NaacIndexRoute: NaacIndexRoute,
+  NaacCriteriaIdRoute: NaacCriteriaIdRoute,
+  NaacCriteriaIndexRoute: NaacCriteriaIndexRoute,
+}
+
+const NaacRouteWithChildren = NaacRoute._addFileChildren(NaacRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -483,10 +866,15 @@ const rootRouteChildren: RootRouteChildren = {
   CampusLifeRoute: CampusLifeRoute,
   ContactRoute: ContactRoute,
   CreditsRoute: CreditsRoute,
-  CurriculumRoute: CurriculumRoute,
+  CurriculumAndSyllabusRoute: CurriculumAndSyllabusRoute,
+  NaacRoute: NaacRouteWithChildren,
   PlacementsRoute: PlacementsRoute,
   ProgrammesOfferedRoute: ProgrammesOfferedRoute,
+  ResearchRoute: ResearchRoute,
+  SocialMediaRoute: SocialMediaRoute,
   StudentHousingRoute: StudentHousingRoute,
+  AboutAccreditationsRoute: AboutAccreditationsRoute,
+  AboutGoverningCouncilRoute: AboutGoverningCouncilRoute,
   AboutGroupInstitutionsRoute: AboutGroupInstitutionsRoute,
   AboutLeadershipRoute: AboutLeadershipRoute,
   AboutOverviewRoute: AboutOverviewRoute,
@@ -495,8 +883,13 @@ const rootRouteChildren: RootRouteChildren = {
   AdmissionsEligibilityRoute: AdmissionsEligibilityRoute,
   AdmissionsProcedureRoute: AdmissionsProcedureRoute,
   AdmissionsScholarshipsRoute: AdmissionsScholarshipsRoute,
+  CampusLifeSocialMediaRoute: CampusLifeSocialMediaRoute,
   EventsEventIdRoute: EventsEventIdRoute,
   ProgrammesCourseIdRoute: ProgrammesCourseIdRoute,
+  ResearchIicRoute: ResearchIicRoute,
+  ResearchPatentsRoute: ResearchPatentsRoute,
+  ResearchPublicationsRoute: ResearchPublicationsRoute,
+  ResearchStartupEcosystemRoute: ResearchStartupEcosystemRoute,
   ProgrammesIndexRoute: ProgrammesIndexRoute,
 }
 export const routeTree = rootRouteImport

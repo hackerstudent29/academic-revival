@@ -77,7 +77,7 @@ const cardVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }
+    transition: { duration: 0.8, ease: [0.215, 0.61, 0.355, 1] as const }
   }
 };
 
@@ -103,7 +103,7 @@ export function AboutBannerSection() {
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.65, ease: [0.215, 0.61, 0.355, 1] }}
+          transition={{ duration: 0.65, ease: [0.215, 0.61, 0.355, 1] as const }}
           className="w-full flex flex-col pt-8"
         >
           <div className="flex flex-col">
@@ -137,13 +137,13 @@ export function AboutBannerSection() {
                 {/* Always-on bottom gradient for text readability */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                 
-                {/* Hover overlay with Academic Maroon Red accent */}
-                <div className="absolute inset-0 bg-[#9E2339]/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Hover overlay with smooth backdrop blur (No red tint) */}
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-500" />
                 
                 {/* Content Overlay */}
                 <div className="absolute inset-0 p-5 md:p-6 flex flex-col justify-end">
                   <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
-                    <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight font-oswald mb-2 drop-shadow-sm">
+                    <h3 className="text-2xl md:text-3xl font-black text-white group-hover:text-primary transition-colors duration-300 uppercase tracking-tight font-oswald mb-2 drop-shadow-sm">
                       {facility.name}
                     </h3>
                     

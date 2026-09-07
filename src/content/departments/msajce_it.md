@@ -184,14 +184,14 @@ Job opportunities for Information Technology account for over 50% of all availab
 
 ---
 
-### Employment Growth in Information Technology (2025–2030)
-The employment opportunities for Information Technology (IT) in India over the next five years (2025–2030) are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in IT job openings.
+### Employment Growth in Information Technology
+The employment opportunities for Information Technology (IT) in India are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in IT job openings.
 
 [KEY_DRIVERS_ACCORDION]
 
 ---
 
-### Employment Opportunities in High Demand (2025–2030)
+### Employment Opportunities in High Demand
 
 | Role | Specializations | Key Skills |
 | :--- | :--- | :--- |

@@ -12,6 +12,15 @@ export const Route = createFileRoute('/events/$eventId')({
     if (!event) throw notFound();
     return { event };
   },
+  notFoundComponent: () => (
+    <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 py-20">
+      <h2 className="text-3xl font-black font-oswald text-primary mb-2 uppercase">Event Not Found</h2>
+      <p className="text-muted-foreground mb-6">The requested event could not be found.</p>
+      <Link to="/" className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">
+        Back to Home
+      </Link>
+    </div>
+  ),
   component: EventDetailPage,
 });
 
@@ -111,7 +120,7 @@ function EventDetailPage() {
                     </div>
                     <div>
                       <h4 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-1">Venue</h4>
-                      <p className="font-bold text-foreground">{event.venue}</p>
+                      <p className="font-bold text-black dark:text-white">{event.venue}</p>
                     </div>
                   </div>
                 )}

@@ -16,7 +16,7 @@ const ITEMS = [
 
 export default function InteractiveHeadlineDock() {
   const [activeId, setActiveId] = useState("1");
-  const activeItem = ITEMS.find((item) => item.id === activeId) || ITEMS[0];
+  const activeItem = ITEMS.find((item) => item.id === activeId) ?? ITEMS[0]!;
 
   return (
     <div className="relative min-h-screen bg-[#0F0F0F] flex flex-col justify-between items-center p-8 overflow-hidden select-none">

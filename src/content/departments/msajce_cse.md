@@ -186,14 +186,14 @@ Job opportunities for computer science and engineering account for over 50% of a
 
 ---
 
-### Employment Growth in Computer Science and Engineering (2025–2030)
-The employment opportunities for Computer Science and Engineering (CSE) in India over the next five years (2025–2030) are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in CSE job openings.
+### Employment Growth in Computer Science and Engineering
+The employment opportunities for Computer Science and Engineering (CSE) in India are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in CSE job openings.
 
 [KEY_DRIVERS_ACCORDION]
 
 ---
 
-### Employment Opportunities in High Demand (2025–2030)
+### Employment Opportunities in High Demand
 
 | Role | Specializations | Key Skills |
 | :--- | :--- | :--- |

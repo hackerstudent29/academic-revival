@@ -15,3 +15,4 @@
 > **Universal #121214 Dark Theme Background**: In Dark Mode (`.dark`), all pages and sections use **`#121214` (Neutral Dark Charcoal)** with zero blue tint. NEVER touch Light Mode colors (`#F9F9F8` / `#F3F3F2`).
 > **Vision & Mission Badges**: Badges for `V`, `V1`, `M1`, `M2`, `M3` must use **Black / High-Contrast Dark font** (`text-foreground font-oswald font-black bg-foreground/10 border-foreground/20`).
 > **Secondary Sub-Nav Headers**: Concise department titles must render in a larger, prominent font size (`text-sm sm:text-base md:text-lg xl:text-xl font-black font-oswald uppercase text-primary`).
+> **Tight Header Spacing**: When creating new pages or section layouts, keep spacing between the top sticky header and main content minimal (`pt-0 md:pt-1` on `<main>` / `pt-2 md:pt-4` on section wrapper). NEVER leave large dead padding or empty gaps above page content.

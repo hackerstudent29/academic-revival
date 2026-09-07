@@ -1,0 +1,243 @@
+{
+  "2022-2023": [
+    {
+      "Name": "Dr. K.S. Srinivasan",
+      "Designation": "Principal",
+      "Composition": "Chairperson-HOI"
+    },
+    {
+      "Name": "Mr. Mohamed Sathak",
+      "Designation": "Director",
+      "Composition": "Management"
+    },
+    {
+      "Name": "Mr. A. Abdul Gafoor",
+      "Designation": "Admission Officer",
+      "Composition": "Administrative Officer"
+    },
+    {
+      "Name": "Dr. G. Ramesh",
+      "Designation": "Head \u2013 Administration",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Dr. A. Balakrishnan",
+      "Designation": "Head- Academics",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Dr. A. Kamalaselvan",
+      "Designation": "Head \u2013 TC",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Dr. J. Jeha",
+      "Designation": "HoD \u2013 EEE",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Mr. D. Weslin",
+      "Designation": "Assistant Professor \u2013 IT",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Mr. M. Kamarajan",
+      "Designation": "Assistant Professor - ECE",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Mr.K.K.Vinothkumar",
+      "Designation": "Assistant Professor \u2013 MECH",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Mr. C. Venkatesh",
+      "Designation": "Assistant Professor EEE",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Mr. Veerakumar",
+      "Designation": "Hathway Broadband",
+      "Composition": "Alumni"
+    },
+    {
+      "Name": "Mr. E. Mohamed Sathak",
+      "Designation": "Project Engineer, Hitachi Energy Ltd. Chennai",
+      "Composition": "Alumni"
+    },
+    {
+      "Name": "Ms. K. Shahidha",
+      "Designation": "IV Year / CSE",
+      "Composition": "Student Representative"
+    },
+    {
+      "Name": "Mr. L. Chandrasekaran",
+      "Designation": "Managing Director - Precision Instruments & Electronics Pvt. Ltd",
+      "Composition": "Industrialist"
+    },
+    {
+      "Name": "Mr. Mohamed Arshath Ahmed",
+      "Designation": "Senior Tech Lead, Tech Mahindra XDS",
+      "Composition": "Local Society"
+    },
+    {
+      "Name": "Dr. I. Manju",
+      "Designation": "Professor \u2013 ECE",
+      "Composition": "Head - IQAC"
+    }
+  ],
+  "2020-2021": [
+    {
+      "Name": "Dr. K.S. Srinivasan",
+      "Designation": "Principal",
+      "Composition": "Chairperson-HOI"
+    },
+    {
+      "Name": "Mr. Mohamed Sathak",
+      "Designation": "Director",
+      "Composition": "Management"
+    },
+    {
+      "Name": "Dr. S. Vijayakumar",
+      "Designation": "AO",
+      "Composition": "Senior Administrative Officer"
+    },
+    {
+      "Name": "Dr. I. Manju",
+      "Designation": "Head \u2013 TC & IR",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Dr. R. Senthilkumar",
+      "Designation": "Head - Student Affairs",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Dr. E. Dhiravidachelvi",
+      "Designation": "Head- Academics",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Dr. B. Muthukumar",
+      "Designation": "Professor - CSE",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Mr. S. Senthil pondy",
+      "Designation": "AP - IT",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Mr. M.B. Shanmuharajan",
+      "Designation": "HoD - Civil",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Mr. G. Ramesh",
+      "Designation": "Professor \u2013 MECH.",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Mr. Veerakumar",
+      "Designation": "Hathway Broadband",
+      "Composition": "Alumni"
+    },
+    {
+      "Name": "Mr. E. Mohamed Sathak",
+      "Designation": "Hitachi Energy Ltd. Chennai",
+      "Composition": "Alumni"
+    },
+    {
+      "Name": "G. Chandrasekar",
+      "Designation": "III Year /MECH.",
+      "Composition": "Student representative"
+    },
+    {
+      "Name": "Mr. L. Chandrasekaran",
+      "Designation": "Managing Director - Precision Instruments & Electronics Pvt. Ltd",
+      "Composition": "Industrialist"
+    },
+    {
+      "Name": "Dr. G. Premalatha",
+      "Designation": "Associate Professor - CSE",
+      "Composition": "IQAC Coordinator"
+    }
+  ],
+  "2019-2020": [
+    {
+      "Name": "Dr. K.S. Srinivasan",
+      "Designation": "Principal",
+      "Composition": "Chairperson-HOI"
+    },
+    {
+      "Name": "Mr. Mohamed Sathak",
+      "Designation": "Director",
+      "Composition": "Management"
+    },
+    {
+      "Name": "Dr. S. Vijayakumar",
+      "Designation": "AO",
+      "Composition": "Senior Administrative Officer"
+    },
+    {
+      "Name": "Dr. I. Manju",
+      "Designation": "Head \u2013 TC & IR",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Dr. R. Senthilkumar",
+      "Designation": "Head - Student Affairs",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Dr. E. Dhiravidachelvi",
+      "Designation": "Head- Academics",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Dr. B. Muthukumar",
+      "Designation": "Professor - CSE",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Mr. S. Senthil pondy",
+      "Designation": "AP - IT",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Mr. M.B. Shanmuharajan",
+      "Designation": "HoD - Civil",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Mr. G. Ramesh",
+      "Designation": "Professor \u2013 MECH.",
+      "Composition": "Faculty member"
+    },
+    {
+      "Name": "Mr. Veerakumar",
+      "Designation": "Hathway Broadband",
+      "Composition": "Alumni"
+    },
+    {
+      "Name": "Mr. E. Mohamed Sathak",
+      "Designation": "Hitachi Energy Ltd. Chennai",
+      "Composition": "Alumni"
+    },
+    {
+      "Name": "G. Chandrasekar",
+      "Designation": "III Year /MECH.",
+      "Composition": "Student representative"
+    },
+    {
+      "Name": "Mr. L. Chandrasekaran",
+      "Designation": "Managing Director - Precision Instruments & Electronics Pvt. Ltd",
+      "Composition": "Industrialist"
+    },
+    {
+      "Name": "Dr.B.Sridhar",
+      "Designation": "Professor",
+      "Composition": "Senior Teacher As Coordinator"
+    }
+  ]
+}

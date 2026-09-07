@@ -184,14 +184,14 @@ Job opportunities for Electrical & Electronics Engineering account for over 50% 
 
 ---
 
-### Employment Growth in Electrical & Electronics Engineering (2025–2030)
-The employment opportunities for Electrical & Electronics Engineering (EEE) in India over the next five years (2025–2030) are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in EEE job openings.
+### Employment Growth in Electrical & Electronics Engineering
+The employment opportunities for Electrical & Electronics Engineering (EEE) in India are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in EEE job openings.
 
 [KEY_DRIVERS_ACCORDION]
 
 ---
 
-### Employment Opportunities in High Demand (2025–2030)
+### Employment Opportunities in High Demand
 
 | Role | Specializations | Key Skills |
 | :--- | :--- | :--- |

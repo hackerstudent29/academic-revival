@@ -172,7 +172,7 @@ function ScholarshipsPage() {
       </div>
 
       <section className="mx-auto max-w-[1200px] px-6 py-24 md:px-12 md:py-32">
-        <Reveal variant="rise" viewport={{ once: true }}>
+        <Reveal variant="rise">
           <p className="text-base text-muted-foreground leading-relaxed max-w-[80ch] mb-16">
             MSAJCE students can access AICTE, Ministry of Minority Affairs, MHRD, and Ministry of Labour scholarship schemes based on category, income, and academic eligibility.
           </p>
@@ -186,7 +186,7 @@ function ScholarshipsPage() {
             <div className="w-[15%]">Amount</div>
             <div className="w-[10%]">TN Quota</div>
           </div>
-          <Stagger gap={0.1} viewport={{ once: true }}>
+          <Stagger gap={0.1}>
             {scholarshipMatrix.map((row) => (
               <StaggerItem key={row.scheme}>
                 <div className="flex flex-col lg:flex-row px-4 py-6 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group gap-4 lg:gap-0">
@@ -215,7 +215,7 @@ function ScholarshipsPage() {
           </Stagger>
         </div>
 
-        <Reveal variant="mask" viewport={{ once: true }}>
+        <Reveal variant="mask">
           <div className="mb-16">
             <h2 className="text-[8vw] font-black uppercase leading-[0.95] tracking-tighter text-foreground md:text-[4vw] mb-4">
               Scheme Details
@@ -227,7 +227,7 @@ function ScholarshipsPage() {
         </Reveal>
 
         {/* Note block */}
-        <Reveal variant="rise" viewport={{ once: true }}>
+        <Reveal variant="rise">
           <div className="flex flex-col md:flex-row items-start justify-between gap-6 py-8 border-y border-border">
             <div className="flex items-start gap-4">
               <Info className="h-6 w-6 text-primary shrink-0 mt-0.5" />
@@ -239,7 +239,7 @@ function ScholarshipsPage() {
         </Reveal>
 
         {/* Closing CTA row */}
-        <Reveal variant="rise" viewport={{ once: true }}>
+        <Reveal variant="rise">
           <div className="mt-16 flex flex-col sm:flex-row items-center gap-6 border-t border-border pt-12">
             <Magnetic>
               <a 

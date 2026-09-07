@@ -155,7 +155,7 @@ function AdmissionsEligibility() {
       </div>
 
       <section className="mx-auto max-w-[1200px] px-6 py-24 md:px-12 md:py-32">
-        <Reveal variant="rise" viewport={{ once: true }}>
+        <Reveal variant="rise">
           <Tabs defaultValue="ug" className="w-full">
             <TabsList className="mb-12 flex flex-wrap h-auto gap-8 bg-transparent border-b border-border w-full justify-start rounded-none p-0">
               <TabsTrigger value="ug" className="data-[state=active]:border-foreground data-[state=active]:text-foreground border-b-2 border-transparent px-0 py-4 text-sm font-black uppercase tracking-widest text-muted-foreground transition-all shadow-none rounded-none bg-transparent hover:text-foreground">
@@ -182,7 +182,7 @@ function AdmissionsEligibility() {
                     <div className="w-1/2">Community</div>
                     <div className="w-1/2">Minimum Average Marks (Maths, Physics, Chemistry Combined)</div>
                   </div>
-                  <Stagger gap={0.1} viewport={{ once: true }}>
+                  <Stagger gap={0.1}>
                     {hscAcademicCutoffs.map((row) => (
                       <StaggerItem key={row.community}>
                         <div className="flex px-4 py-6 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group">
@@ -205,7 +205,7 @@ function AdmissionsEligibility() {
                     <div className="w-1/2">Community</div>
                     <div className="w-1/2">Minimum Average Marks (Vocational Theory, Practicals & Related Subjects Combined)</div>
                   </div>
-                  <Stagger gap={0.1} viewport={{ once: true }}>
+                  <Stagger gap={0.1}>
                     {hscVocationalCutoffs.map((row) => (
                       <StaggerItem key={row.community}>
                         <div className="flex px-4 py-6 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group">
@@ -244,7 +244,7 @@ function AdmissionsEligibility() {
                     <div className="w-1/2">Community</div>
                     <div className="w-1/2">Minimum Cutoff Marks (Lateral Entry)</div>
                   </div>
-                  <Stagger gap={0.1} viewport={{ once: true }}>
+                  <Stagger gap={0.1}>
                     {lateralEntryCutoffs.map((row) => (
                       <StaggerItem key={row.community}>
                         <div className="flex px-4 py-6 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group">
@@ -317,7 +317,7 @@ function AdmissionsEligibility() {
                     <div className="w-1/3">Category</div>
                     <div className="w-2/3">Requirement</div>
                   </div>
-                  <Stagger gap={0.1} viewport={{ once: true }}>
+                  <Stagger gap={0.1}>
                     {phdCutoffs.map((row) => (
                       <StaggerItem key={row.category}>
                         <div className="flex px-4 py-6 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group">
@@ -346,18 +346,18 @@ function AdmissionsEligibility() {
         </Reveal>
 
         {/* Programmes reference list */}
-        <Reveal variant="rise" viewport={{ once: true }}>
+        <Reveal variant="rise">
           <div className="mt-24 pt-12 border-t border-border">
             <h4 className="text-sm font-black uppercase tracking-widest text-foreground mb-8">Related Programmes</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
               <div className="flex flex-col border-t border-border/50 divide-y divide-border/50">
-                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes/artificial-intelligence-data-science">B.Tech Artificial Intelligence and Data Science</Link></div>
-                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes/computer-science">B.E. Computer Science & Engineering</Link></div>
-                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes/civil-engineering">B.E. Civil Engineering</Link></div>
+                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes/$courseId" params={{ courseId: "artificial-intelligence-data-science" }}>B.Tech Artificial Intelligence and Data Science</Link></div>
+                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes/$courseId" params={{ courseId: "computer-science" }}>B.E. Computer Science & Engineering</Link></div>
+                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes/$courseId" params={{ courseId: "civil-engineering" }}>B.E. Civil Engineering</Link></div>
               </div>
               <div className="flex flex-col border-t border-border/50 divide-y divide-border/50">
-                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes/computer-science-pg">M.E. Computer Science & Engineering</Link></div>
-                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes/structural-engineering">M.E. Structural Engineering</Link></div>
+                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes/$courseId" params={{ courseId: "computer-science-pg" }}>M.E. Computer Science & Engineering</Link></div>
+                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes/$courseId" params={{ courseId: "structural-engineering" }}>M.E. Structural Engineering</Link></div>
                 <div className="py-3 text-sm text-foreground hover:text-primary transition-colors">Ph.D Research Programmes</div>
               </div>
             </div>
@@ -365,7 +365,7 @@ function AdmissionsEligibility() {
         </Reveal>
 
         {/* Closing CTA row */}
-        <Reveal variant="rise" viewport={{ once: true }}>
+        <Reveal variant="rise">
           <div className="mt-16 flex flex-col sm:flex-row items-center gap-6 border-t border-border pt-12">
             <Magnetic>
               <a 
@@ -381,6 +381,7 @@ function AdmissionsEligibility() {
             <Magnetic>
               <Link 
                 to="/programmes"
+                search={{ level: "UG" }}
                 className="group flex w-full sm:w-auto items-center justify-between gap-4 border border-foreground/20 bg-background px-8 py-5 text-sm font-bold uppercase tracking-widest text-foreground transition-all hover:bg-foreground hover:text-background"
               >
                 <span>View Programmes Offered</span>

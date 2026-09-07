@@ -42,7 +42,7 @@ const socials = [
   { label: "YouTube",   href: "https://youtube.com",   Icon: Youtube   },
 ];
 
-export function SiteFooter() {
+export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
   const footerRef   = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [footerHeight, setFooterHeight] = useState(0);
@@ -75,7 +75,8 @@ export function SiteFooter() {
     return () => ro.disconnect();
   }, []);
 
-  const a = on ? "visible" : "hidden";
+  const active = revealed ?? on;
+  const a = active ? "visible" : "hidden";
 
   return (
     <div className="relative w-full bg-[#222222]" style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}>
