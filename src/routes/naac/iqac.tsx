@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/motion";
 import { FileText, Users, Info, ChevronRight, Download } from "lucide-react";
-import iqacDocs from "@/data/iqac-documents.json";
 import iqacMembers from "@/data/iqac-members.json";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { useHeader } from "@/context/HeaderContext";
 
 export const Route = createFileRoute("/naac/iqac")({
   component: IQAC,
@@ -16,11 +17,44 @@ function IQAC() {
   const tabs = [
     { id: "overview", label: "Overview", icon: Info },
     { id: "members", label: "Members", icon: Users },
-    { id: "documents", label: "Documents", icon: FileText },
+    { id: "aqar-report", label: "AQAR Report", icon: FileText },
+    { id: "minutes", label: "Minutes of Meeting", icon: FileText },
+    { id: "feedback", label: "Feedback Forms", icon: FileText },
   ];
+
+  const { isHeaderHidden, isScrolled } = useHeader();
+  const shouldShiftDown = !isHeaderHidden && isScrolled;
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const shiftAmount = isMobile ? 57 : 65;
 
   return (
     <div className="flex flex-col min-h-screen bg-[#F7F7F5] dark:bg-[#121214]">
+      {/* SECONDARY HORIZONTAL NAV */}
+      <motion.div
+        initial={false}
+        animate={{ y: shouldShiftDown ? shiftAmount : 0 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        className="sticky top-0 z-40 w-full bg-background/80 backdrop-blur-xl border-b border-foreground/10 shadow-sm"
+      >
+        <div className="mx-auto max-w-[1440px] px-6 md:px-12 h-14 flex items-center overflow-x-auto no-scrollbar">
+          <div className="flex items-center gap-6 md:gap-8 min-w-max">
+            <span className="font-oswald font-black text-primary tracking-wider uppercase text-sm md:text-base border-r-[3px] border-primary/20 pr-6 mr-2 transition-opacity">
+              IQAC
+            </span>
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`text-xs md:text-sm font-oswald uppercase tracking-wider whitespace-nowrap transition-colors hover:text-primary ${
+                  activeTab === tab.id ? "text-primary font-black" : "text-foreground/80 font-bold"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </motion.div>
       {/* HEADER SECTION */}
       <section className="relative pt-12 pb-8 bg-background border-b border-border">
         <div className="mx-auto max-w-[1440px] px-6 md:px-12 w-full">
@@ -37,32 +71,9 @@ function IQAC() {
       </section>
 
       {/* CONTENT SECTION */}
-      <section className="mx-auto max-w-[1440px] px-6 md:px-12 py-12 w-full flex-grow flex flex-col md:flex-row gap-8 lg:gap-12">
-        {/* SIDEBAR TABS */}
-        <div className="w-full md:w-64 shrink-0">
-          <div className="sticky top-24 bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-2 shadow-sm">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`w-full flex items-center justify-between p-4 rounded-sm transition-all font-oswald uppercase tracking-wide font-bold text-sm md:text-base ${
-                  activeTab === tab.id
-                    ? "bg-primary text-primary-foreground shadow-md"
-                    : "text-foreground hover:bg-muted hover:text-primary"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <tab.icon className="w-5 h-5" />
-                  {tab.label}
-                </div>
-                <ChevronRight className={`w-4 h-4 transition-transform ${activeTab === tab.id ? "translate-x-1" : "opacity-0 -translate-x-2"}`} />
-              </button>
-            ))}
-          </div>
-        </div>
-
+      <section className="mx-auto max-w-[1440px] px-6 md:px-12 py-12 w-full flex-grow flex flex-col gap-8 lg:gap-12">
         {/* MAIN CONTENT AREA */}
-        <div className="flex-1 min-w-0">
+        <div className="w-full">
           <Reveal key={activeTab} variant="blur">
             <div className="bg-card border border-border p-8 md:p-12 rounded-sm shadow-sm space-y-12">
               
@@ -173,40 +184,120 @@ function IQAC() {
                 </div>
               )}
 
-              {/* DOCUMENTS TAB */}
-              {activeTab === "documents" && (
+              {/* AQAR REPORT TAB */}
+              {activeTab === "aqar-report" && (
                 <div>
-                  <h2 className="text-3xl font-black font-oswald uppercase text-foreground mb-6">IQAC Documents & Reports</h2>
-                  <p className="text-foreground/80 mb-8 font-sans">
-                    Browse our comprehensive repository of AQAR reports, Meeting Minutes, Feedback forms, and various audits.
-                  </p>
-                  
-                  {iqacDocs && iqacDocs.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {iqacDocs.map((doc, idx) => (
-                        <a 
-                          key={idx} 
-                          href={doc.url.startsWith('http') ? doc.url : `https://www.msajce-edu.in/${doc.url}`} 
-                          target="_blank" 
-                          rel="noreferrer"
-                          className="group flex flex-row items-center bg-background border border-border rounded-sm p-4 transition-all hover:shadow-md hover:border-primary/50 gap-3"
-                        >
-                          <div className="w-10 h-10 shrink-0 bg-primary/10 text-primary rounded-sm flex items-center justify-center">
-                            <Download className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h3 className="font-bold text-sm text-foreground line-clamp-2 group-hover:text-primary transition-colors">
-                              {doc.title}
-                            </h3>
-                          </div>
-                        </a>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="bg-background border border-border p-12 text-center rounded-sm">
-                      <p className="text-muted-foreground font-sans">Documents are currently being compiled.</p>
-                    </div>
-                  )}
+                  <h2 className="text-3xl font-black font-oswald uppercase text-foreground mb-6">AQAR Report</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <a 
+                      href="https://www.msajce-edu.in/uploads/naac/AQAR-PDF-2022-23.pdf" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="group flex flex-col items-center bg-background border border-border rounded-sm p-8 transition-all hover:shadow-md hover:border-primary text-center gap-4"
+                    >
+                      <div className="w-16 h-16 shrink-0 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-2">
+                        <FileText className="w-8 h-8 group-hover:scale-110 transition-transform" />
+                      </div>
+                      <h3 className="font-bold text-lg font-oswald uppercase text-foreground group-hover:text-primary transition-colors">
+                        AQAR 2022-2023
+                      </h3>
+                      <span className="text-sm font-bold text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
+                        View Report <ChevronRight className="w-4 h-4" />
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              {/* MINUTES TAB */}
+              {activeTab === "minutes" && (
+                <div>
+                  <h2 className="text-3xl font-black font-oswald uppercase text-foreground mb-6">Minutes of Meeting</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <a 
+                      href="https://www.msajce-edu.in/uploads/iqac/IQAC-MoM-2023-2024.pdf" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="group flex flex-col items-center bg-background border border-border rounded-sm p-8 transition-all hover:shadow-md hover:border-primary text-center gap-4"
+                    >
+                      <div className="w-16 h-16 shrink-0 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-2">
+                        <Users className="w-8 h-8 group-hover:scale-110 transition-transform" />
+                      </div>
+                      <h3 className="font-bold text-lg font-oswald uppercase text-foreground group-hover:text-primary transition-colors">
+                        2023 - 2024
+                      </h3>
+                      <span className="text-sm font-bold text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
+                        View Minutes <ChevronRight className="w-4 h-4" />
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              {/* FEEDBACK TAB */}
+              {activeTab === "feedback" && (
+                <div>
+                  <h2 className="text-3xl font-black font-oswald uppercase text-foreground mb-6">Stake Holders Feedback Forms</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    {[
+                      { title: "Students Feedback", url: "https://forms.gle/oxdZFbPsBTFKDKTY8" },
+                      { title: "Faculty Feedback", url: "https://docs.google.com/forms/d/13Q9AcCiqDfGdk2mrWn_11ozXoC7ROxrwcLkYEy2C8QA/edit?ts=6630864f&pli=1" },
+                      { title: "Alumni Feedback", url: "https://docs.google.com/forms/d/1oTQjEnbQnbRnBAct8-N-zG-Wk4I69v0R5s2H31KUr_8/edit?ts=6630866d" },
+                      { title: "Employer Feedback", url: "https://docs.google.com/forms/d/1Xj_FHninA55U6DWlWVvTzKl6wQdXOoUCr2-VjhufM7c/edit?ts=66308691" },
+                    ].map((item, idx) => (
+                      <a 
+                        key={idx} 
+                        href={item.url} 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="group flex flex-row items-center bg-background border border-border rounded-sm p-4 transition-all hover:shadow-md hover:border-primary/50 gap-4"
+                      >
+                        <div className="w-12 h-12 shrink-0 bg-primary/10 text-primary rounded-sm flex items-center justify-center">
+                          <FileText className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-bold font-oswald text-lg uppercase tracking-wide text-foreground group-hover:text-primary transition-colors">
+                            {item.title}
+                          </h3>
+                        </div>
+                        <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors group-hover:translate-x-1" />
+                      </a>
+                    ))}
+                  </div>
+
+                  <h3 className="text-2xl font-black font-oswald uppercase text-primary mb-6">Action Taken Reports</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a 
+                      href="https://www.msajce-edu.in/uploads/aqar/2022/1.4.1/1.4.1ActiontakenReport.pdf" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="group flex flex-row items-center bg-background border border-border rounded-sm p-4 transition-all hover:shadow-md hover:border-primary/50 gap-4"
+                    >
+                      <div className="w-12 h-12 shrink-0 bg-primary/10 text-primary rounded-sm flex items-center justify-center">
+                        <Download className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-sm text-foreground line-clamp-2 group-hover:text-primary transition-colors">
+                          Action Taken Report (2022)
+                        </h3>
+                      </div>
+                    </a>
+                    <a 
+                      href="http://msajce-edu.in/uploads/naac/1.4.2/Action.pdf" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="group flex flex-row items-center bg-background border border-border rounded-sm p-4 transition-all hover:shadow-md hover:border-primary/50 gap-4"
+                    >
+                      <div className="w-12 h-12 shrink-0 bg-primary/10 text-primary rounded-sm flex items-center justify-center">
+                        <Download className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-sm text-foreground line-clamp-2 group-hover:text-primary transition-colors">
+                          Action Taken Report (Alternative)
+                        </h3>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               )}
               
