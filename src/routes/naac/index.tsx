@@ -43,54 +43,17 @@ function NaacPortal() {
               <h2 className="text-xl md:text-3xl font-oswald text-foreground/80 mb-6">
                 National Assessment & Accreditation Council
               </h2>
-              <p className="text-base md:text-lg text-muted-foreground font-sans mb-8">
+              <p className="text-base md:text-lg text-muted-foreground font-sans">
                 Academic quality. Continuous improvement. Institutional excellence.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="#criteria" className="inline-flex items-center justify-center bg-primary text-primary-foreground px-6 py-3 rounded-sm font-bold text-sm uppercase tracking-wide hover:bg-primary/90 transition-colors">
-                  Explore Criteria
-                </a>
-                <a href="#resources" className="inline-flex items-center justify-center bg-transparent border-2 border-primary text-primary px-6 py-3 rounded-sm font-bold text-sm uppercase tracking-wide hover:bg-primary hover:text-primary-foreground transition-colors">
-                  NAAC Resources
-                </a>
-              </div>
+
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* 2. NAAC HIGHLIGHTS */}
-      <section className="mx-auto max-w-[1440px] px-6 md:px-12 py-16 md:py-24 w-full">
-        <Reveal>
-          <div className="flex items-center gap-4 mb-12">
-            <div className="h-[2px] w-12 bg-primary"></div>
-            <h2 className="text-2xl md:text-3xl font-black font-oswald uppercase text-foreground">NAAC Highlights</h2>
-          </div>
-        </Reveal>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            { title: "NAAC Framework", desc: "Explore the seven criteria of assessment.", icon: Target },
-            { title: "Quality Assurance", desc: "Continuous internal quality enhancement.", icon: CheckCircle2 },
-            { title: "Institutional Excellence", desc: "Showcasing distinctiveness and best practices.", icon: Award }
-          ].map((block, idx) => (
-            <Reveal key={idx} variant="rise" delay={idx * 0.1}>
-              <div className="group relative bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-8 transition-all hover:shadow-lg hover:border-primary/50 flex flex-col h-full">
-                <div className="w-12 h-12 bg-primary/10 text-primary rounded-sm flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
-                  <block.icon className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-bold font-oswald text-foreground uppercase mb-3">{block.title}</h3>
-                <p className="text-muted-foreground font-sans mb-8 flex-1">{block.desc}</p>
-                <div className="flex items-center text-primary font-bold text-sm uppercase tracking-wide">
-                  Explore <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-                </div>
-                <a href="#criteria" className="absolute inset-0 z-10"><span className="sr-only">Explore {block.title}</span></a>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+
 
       {/* 4. NAAC OVERVIEW */}
       <section className="bg-background py-16 md:py-24 border-y border-border">
@@ -121,109 +84,96 @@ function NaacPortal() {
         </div>
       </section>
 
-      {/* 5. NAAC CRITERIA */}
-      <section id="criteria" className="mx-auto max-w-[1440px] px-6 md:px-12 py-16 md:py-24 w-full">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+
+
+
+      {/* 5. NAAC DOCUMENT CENTRE */}
+      <section className="bg-[#F7F7F5] dark:bg-[#121214] py-16 md:py-24">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-12 w-full">
           <Reveal>
-            <div className="flex flex-col gap-2">
-              <span className="text-primary font-bold uppercase tracking-widest text-sm font-mono">Dimensions of Institutional Quality</span>
-              <h2 className="text-4xl md:text-6xl font-black font-oswald uppercase text-foreground">NAAC Criteria</h2>
+            <div className="flex flex-col mb-12">
+              <span className="text-primary font-bold tracking-widest uppercase text-sm mb-2 block font-mono">
+                Downloads & Reports
+              </span>
+              <h2 className="text-3xl md:text-5xl font-black font-oswald uppercase text-foreground">
+                NAAC Document Centre
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <Reveal variant="slide-up" delay={0.1}>
+              <Link to="/naac/dvv" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 transition-all hover:shadow-lg hover:border-primary/50">
+                <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
+                  DVV Clarification
+                </h3>
+                <span className="text-sm text-primary flex items-center gap-1 font-bold">
+                  View Documents <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </Reveal>
+            <Reveal variant="slide-up" delay={0.2}>
+              <Link to="/naac/extended-profile" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 transition-all hover:shadow-lg hover:border-primary/50">
+                <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
+                  Extended Profile
+                </h3>
+                <span className="text-sm text-primary flex items-center gap-1 font-bold">
+                  View Documents <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </Reveal>
+            <Reveal variant="slide-up" delay={0.3}>
+              <Link to="/naac/best-practices" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 transition-all hover:shadow-lg hover:border-primary/50">
+                <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
+                  Best Practices
+                </h3>
+                <span className="text-sm text-primary flex items-center gap-1 font-bold">
+                  View Guidelines <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </Reveal>
+            <Reveal variant="slide-up" delay={0.4}>
+              <Link to="/naac/distinctiveness" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 transition-all hover:shadow-lg hover:border-primary/50">
+                <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
+                  Institutional Distinctiveness
+                </h3>
+                <span className="text-sm text-primary flex items-center gap-1 font-bold">
+                  View Documents <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </Reveal>
+            <Reveal variant="slide-up" delay={0.5}>
+              <Link to="/naac/code-of-conduct" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 transition-all hover:shadow-lg hover:border-primary/50">
+                <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
+                  Code of Conduct
+                </h3>
+                <span className="text-sm text-primary flex items-center gap-1 font-bold">
+                  View Guidelines <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </Reveal>
+          </div>
+
+          <Reveal>
+            <h3 className="text-2xl font-bold font-oswald uppercase text-foreground mb-6">Additional Reports & Initiatives</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <a href="https://www.msajce-edu.in/uploads/naac/DisabledFriendlyCampus.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 bg-card border border-border rounded-sm hover:border-primary/50 transition-colors group">
+                <FileText className="text-primary w-5 h-5 shrink-0" />
+                <span className="font-bold text-sm group-hover:text-primary transition-colors">Disabled Friendly Campus</span>
+              </a>
+              <a href="https://www.msajce-edu.in/uploads/naac/Environmentalpromotionalactivitiesbeyondthecampus.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 bg-card border border-border rounded-sm hover:border-primary/50 transition-colors group">
+                <FileText className="text-primary w-5 h-5 shrink-0" />
+                <span className="font-bold text-sm group-hover:text-primary transition-colors">Environmental Promotional Activities</span>
+              </a>
+              <a href="https://www.msajce-edu.in/uploads/naac/AnnualReport20-21.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 bg-card border border-border rounded-sm hover:border-primary/50 transition-colors group">
+                <FileText className="text-primary w-5 h-5 shrink-0" />
+                <span className="font-bold text-sm group-hover:text-primary transition-colors">Annual Report (Latest)</span>
+              </a>
             </div>
           </Reveal>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {mainCriteria.map((criterion, idx) => (
-            <Reveal key={criterion.id} variant="rise" delay={idx * 0.05}>
-              <Link 
-                to={`/naac/criteria/$id`}
-                params={{ id: criterion.id }}
-                className="group flex flex-col justify-between bg-card border border-border p-8 rounded-sm hover:border-primary transition-colors h-full"
-              >
-                <div>
-                  <div className="flex justify-between items-start mb-6">
-                    <span className="text-4xl font-black font-oswald text-muted-foreground/30 group-hover:text-primary/20 transition-colors">
-                      {criterion.number}
-                    </span>
-                    <span className="bg-primary/10 text-primary font-bold font-mono px-3 py-1 rounded-sm text-sm">
-                      {criterion.score} Marks
-                    </span>
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-black font-oswald uppercase text-foreground mb-4 line-clamp-2">
-                    {criterion.title}
-                  </h3>
-                </div>
-                
-                <div className="mt-8 flex items-center justify-between border-t border-border pt-4">
-                  <span className="text-sm font-bold text-muted-foreground group-hover:text-primary transition-colors uppercase tracking-wide">
-                    View Criteria
-                  </span>
-                  <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors group-hover:translate-x-1" />
-                </div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
       </section>
 
-      {/* 6. QUALITY JOURNEY */}
-      <section className="bg-primary text-primary-foreground py-20 overflow-hidden relative">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12 relative z-10 text-center">
-          <Reveal>
-            <h2 className="text-sm font-bold uppercase tracking-widest font-mono mb-12 text-primary-foreground/80">The Quality Journey</h2>
-          </Reveal>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 font-black font-oswald text-3xl md:text-5xl lg:text-7xl uppercase">
-            <Reveal delay={0.1}><span>Assess</span></Reveal>
-            <Reveal delay={0.2}><ChevronRight className="w-8 h-8 md:w-12 md:h-12 hidden md:block opacity-50" /></Reveal>
-            <Reveal delay={0.3}><span>Analyse</span></Reveal>
-            <Reveal delay={0.4}><ChevronRight className="w-8 h-8 md:w-12 md:h-12 hidden md:block opacity-50" /></Reveal>
-            <Reveal delay={0.5}><span>Improve</span></Reveal>
-            <Reveal delay={0.6}><ChevronRight className="w-8 h-8 md:w-12 md:h-12 hidden md:block opacity-50" /></Reveal>
-            <Reveal delay={0.7}><span>Review</span></Reveal>
-          </div>
-          <Reveal delay={0.8}>
-            <p className="mt-12 text-lg md:text-xl font-sans text-primary-foreground/90 max-w-2xl mx-auto">
-              Quality is a continuous journey. At MSAJCE, we are committed to institutional excellence through rigorous assessment and continuous improvement.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 7. NAAC DOCUMENT CENTRE */}
-      <section id="resources" className="mx-auto max-w-[1440px] px-6 md:px-12 py-16 md:py-24 w-full">
-        <Reveal>
-          <div className="flex items-center gap-4 mb-12">
-            <div className="h-[2px] w-12 bg-primary"></div>
-            <h2 className="text-2xl md:text-3xl font-black font-oswald uppercase text-foreground">NAAC Document Centre</h2>
-          </div>
-        </Reveal>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            { title: "Accreditation", link: "#" },
-            { title: "DVV Clarification", link: "/naac/dvv" },
-            { title: "Extended Profile", link: "/naac/extended-profile" },
-            { title: "Best Practices", link: "/naac/best-practices" },
-            { title: "Institutional Distinctiveness", link: "/naac/distinctiveness" },
-            { title: "Code of Conduct", link: "/naac/code-of-conduct" },
-            { title: "Disabled Friendly Campus", link: "#" },
-            { title: "Environmental Activities", link: "#" },
-            { title: "Annual Reports", link: "#" },
-            { title: "Capacity Building", link: "#" },
-            { title: "Stakeholder Feedback", link: "#" },
-            { title: "IQAC", link: "/naac/iqac" },
-          ].map((doc, idx) => (
-            <Reveal key={idx} variant="rise" delay={idx * 0.03}>
-              <Link to={doc.link} className="flex items-center gap-3 p-4 bg-card border border-border rounded-sm hover:border-primary hover:bg-primary/5 transition-colors group">
-                <FileText className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                <span className="font-sans font-medium text-sm md:text-base text-foreground group-hover:text-primary transition-colors">{doc.title}</span>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-      
     </div>
   );
 }

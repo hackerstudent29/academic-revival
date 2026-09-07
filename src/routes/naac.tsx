@@ -18,7 +18,6 @@ function NaacSecondaryNav() {
     { label: "Best Practices", path: "/naac/best-practices" },
     { label: "Institutional Distinctiveness", path: "/naac/distinctiveness" },
     { label: "Code of Conduct", path: "/naac/code-of-conduct" },
-    { label: "IQAC", path: "/naac/iqac" },
   ];
 
   const shouldShiftDown = !isHeaderHidden && isScrolled;
