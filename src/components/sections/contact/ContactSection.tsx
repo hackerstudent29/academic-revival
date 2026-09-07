@@ -135,10 +135,28 @@ export function ContactSection() {
             <motion.div variants={inputVariants}>
               <button
                 type="submit"
-                className="group relative overflow-hidden inline-flex w-full md:w-auto items-center justify-center gap-2 border border-primary px-7 py-4 text-xs font-bold uppercase tracking-widest text-primary font-oswald transition-colors hover:text-primary-foreground after:absolute after:inset-0 after:top-full after:bg-primary after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0 rounded-xs shadow-xs"
+                className="group relative overflow-hidden inline-flex w-full md:w-auto items-center justify-center gap-2 border border-stone-300 dark:border-neutral-700 bg-stone-200/90 dark:bg-neutral-800 px-7 py-4 text-xs font-bold uppercase tracking-widest text-foreground dark:text-white font-oswald shadow-xs transition-colors rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs cursor-pointer"
               >
-                <span className="relative z-10 flex items-center gap-2">Send Message &raquo;</span>
-                <ArrowRight size={16} className="relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
+                {/* Liquid Ocean Wave Fill Overlay */}
+                <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                  <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    {/* Ocean Wave Crest SVG (Primary) */}
+                    <span className="absolute -top-3.5 left-0 w-[200%] h-4 pointer-events-none block">
+                      <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,-20 1200,40 L1200,120 L0,120 Z" />
+                      </svg>
+                    </span>
+                    {/* Secondary Depth Layer Wave */}
+                    <span className="absolute -top-4 left-0 w-[200%] h-5 opacity-40 pointer-events-none block">
+                      <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M0,30 C200,-30 400,90 600,10 C800,-40 1000,70 1200,20 L1200,120 L0,120 Z" />
+                      </svg>
+                    </span>
+                  </span>
+                </span>
+
+                <span className="relative z-10 flex items-center gap-2 text-foreground dark:text-white group-hover:text-white transition-colors duration-300">Send Message &raquo;</span>
+                <ArrowRight size={16} className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 text-foreground dark:text-white group-hover:text-white" />
               </button>
             </motion.div>
           </motion.form>

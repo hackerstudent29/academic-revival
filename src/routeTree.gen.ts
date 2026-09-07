@@ -16,10 +16,11 @@ import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as CampusLifeRouteImport } from './routes/campus-life'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreditsRouteImport } from './routes/credits'
-import { Route as CurriculumRouteImport } from './routes/curriculum'
+import { Route as CurriculumAndSyllabusRouteImport } from './routes/curriculum-and-syllabus'
 import { Route as NaacRouteImport } from './routes/naac'
 import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offered'
+import { Route as ResearchRouteImport } from './routes/research'
 import { Route as SocialMediaRouteImport } from './routes/social-media'
 import { Route as StudentHousingRouteImport } from './routes/student-housing'
 import { Route as AboutAccreditationsRouteImport } from './routes/about_.accreditations'
@@ -37,6 +38,10 @@ import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
 import { Route as NaacIndexRouteImport } from './routes/naac/index'
 import { Route as ProgrammesIndexRouteImport } from './routes/programmes.index'
 import { Route as ProgrammesCourseIdRouteImport } from './routes/programmes.$courseId'
+import { Route as ResearchIicRouteImport } from './routes/research_.iic'
+import { Route as ResearchPatentsRouteImport } from './routes/research_.patents'
+import { Route as ResearchPublicationsRouteImport } from './routes/research_.publications'
+import { Route as ResearchStartupEcosystemRouteImport } from './routes/research_.startup-ecosystem'
 import { Route as NaacCriteriaIdRouteImport } from './routes/naac/criteria.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -74,9 +79,9 @@ const CreditsRoute = CreditsRouteImport.update({
   path: '/credits',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CurriculumRoute = CurriculumRouteImport.update({
-  id: '/curriculum',
-  path: '/curriculum',
+const CurriculumAndSyllabusRoute = CurriculumAndSyllabusRouteImport.update({
+  id: '/curriculum-and-syllabus',
+  path: '/curriculum-and-syllabus',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NaacRoute = NaacRouteImport.update({
@@ -92,6 +97,11 @@ const PlacementsRoute = PlacementsRouteImport.update({
 const ProgrammesOfferedRoute = ProgrammesOfferedRouteImport.update({
   id: '/programmes-offered',
   path: '/programmes-offered',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SocialMediaRoute = SocialMediaRouteImport.update({
@@ -179,6 +189,27 @@ const ProgrammesCourseIdRoute = ProgrammesCourseIdRouteImport.update({
   path: '/programmes/$courseId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResearchIicRoute = ResearchIicRouteImport.update({
+  id: '/research_/iic',
+  path: '/research/iic',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchPatentsRoute = ResearchPatentsRouteImport.update({
+  id: '/research_/patents',
+  path: '/research/patents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchPublicationsRoute = ResearchPublicationsRouteImport.update({
+  id: '/research_/publications',
+  path: '/research/publications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchStartupEcosystemRoute =
+  ResearchStartupEcosystemRouteImport.update({
+    id: '/research_/startup-ecosystem',
+    path: '/research/startup-ecosystem',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const NaacCriteriaIdRoute = NaacCriteriaIdRouteImport.update({
   id: '/criteria/$id',
   path: '/criteria/$id',
@@ -193,10 +224,11 @@ export interface FileRoutesByFullPath {
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
-  '/curriculum': typeof CurriculumRoute
+  '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
   '/naac': typeof NaacRouteWithChildren
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
+  '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
@@ -212,6 +244,10 @@ export interface FileRoutesByFullPath {
   '/campus-life/social-media': typeof CampusLifeSocialMediaRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
+  '/research/iic': typeof ResearchIicRoute
+  '/research/patents': typeof ResearchPatentsRoute
+  '/research/publications': typeof ResearchPublicationsRoute
+  '/research/startup-ecosystem': typeof ResearchStartupEcosystemRoute
   '/naac/': typeof NaacIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
   '/naac/criteria/$id': typeof NaacCriteriaIdRoute
@@ -224,9 +260,10 @@ export interface FileRoutesByTo {
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
-  '/curriculum': typeof CurriculumRoute
+  '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
+  '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
@@ -242,6 +279,10 @@ export interface FileRoutesByTo {
   '/campus-life/social-media': typeof CampusLifeSocialMediaRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
+  '/research/iic': typeof ResearchIicRoute
+  '/research/patents': typeof ResearchPatentsRoute
+  '/research/publications': typeof ResearchPublicationsRoute
+  '/research/startup-ecosystem': typeof ResearchStartupEcosystemRoute
   '/naac': typeof NaacIndexRoute
   '/programmes': typeof ProgrammesIndexRoute
   '/naac/criteria/$id': typeof NaacCriteriaIdRoute
@@ -255,10 +296,11 @@ export interface FileRoutesById {
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
-  '/curriculum': typeof CurriculumRoute
+  '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
   '/naac': typeof NaacRouteWithChildren
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
+  '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
   '/about_/accreditations': typeof AboutAccreditationsRoute
@@ -274,6 +316,10 @@ export interface FileRoutesById {
   '/campus-life_/social-media': typeof CampusLifeSocialMediaRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/programmes/$courseId': typeof ProgrammesCourseIdRoute
+  '/research_/iic': typeof ResearchIicRoute
+  '/research_/patents': typeof ResearchPatentsRoute
+  '/research_/publications': typeof ResearchPublicationsRoute
+  '/research_/startup-ecosystem': typeof ResearchStartupEcosystemRoute
   '/naac/': typeof NaacIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
   '/naac/criteria/$id': typeof NaacCriteriaIdRoute
@@ -288,10 +334,11 @@ export interface FileRouteTypes {
     | '/campus-life'
     | '/contact'
     | '/credits'
-    | '/curriculum'
+    | '/curriculum-and-syllabus'
     | '/naac'
     | '/placements'
     | '/programmes-offered'
+    | '/research'
     | '/social-media'
     | '/student-housing'
     | '/about/accreditations'
@@ -307,6 +354,10 @@ export interface FileRouteTypes {
     | '/campus-life/social-media'
     | '/events/$eventId'
     | '/programmes/$courseId'
+    | '/research/iic'
+    | '/research/patents'
+    | '/research/publications'
+    | '/research/startup-ecosystem'
     | '/naac/'
     | '/programmes/'
     | '/naac/criteria/$id'
@@ -319,9 +370,10 @@ export interface FileRouteTypes {
     | '/campus-life'
     | '/contact'
     | '/credits'
-    | '/curriculum'
+    | '/curriculum-and-syllabus'
     | '/placements'
     | '/programmes-offered'
+    | '/research'
     | '/social-media'
     | '/student-housing'
     | '/about/accreditations'
@@ -337,6 +389,10 @@ export interface FileRouteTypes {
     | '/campus-life/social-media'
     | '/events/$eventId'
     | '/programmes/$courseId'
+    | '/research/iic'
+    | '/research/patents'
+    | '/research/publications'
+    | '/research/startup-ecosystem'
     | '/naac'
     | '/programmes'
     | '/naac/criteria/$id'
@@ -349,10 +405,11 @@ export interface FileRouteTypes {
     | '/campus-life'
     | '/contact'
     | '/credits'
-    | '/curriculum'
+    | '/curriculum-and-syllabus'
     | '/naac'
     | '/placements'
     | '/programmes-offered'
+    | '/research'
     | '/social-media'
     | '/student-housing'
     | '/about_/accreditations'
@@ -368,6 +425,10 @@ export interface FileRouteTypes {
     | '/campus-life_/social-media'
     | '/events/$eventId'
     | '/programmes/$courseId'
+    | '/research_/iic'
+    | '/research_/patents'
+    | '/research_/publications'
+    | '/research_/startup-ecosystem'
     | '/naac/'
     | '/programmes/'
     | '/naac/criteria/$id'
@@ -381,10 +442,11 @@ export interface RootRouteChildren {
   CampusLifeRoute: typeof CampusLifeRoute
   ContactRoute: typeof ContactRoute
   CreditsRoute: typeof CreditsRoute
-  CurriculumRoute: typeof CurriculumRoute
+  CurriculumAndSyllabusRoute: typeof CurriculumAndSyllabusRoute
   NaacRoute: typeof NaacRouteWithChildren
   PlacementsRoute: typeof PlacementsRoute
   ProgrammesOfferedRoute: typeof ProgrammesOfferedRoute
+  ResearchRoute: typeof ResearchRoute
   SocialMediaRoute: typeof SocialMediaRoute
   StudentHousingRoute: typeof StudentHousingRoute
   AboutAccreditationsRoute: typeof AboutAccreditationsRoute
@@ -400,6 +462,10 @@ export interface RootRouteChildren {
   CampusLifeSocialMediaRoute: typeof CampusLifeSocialMediaRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
   ProgrammesCourseIdRoute: typeof ProgrammesCourseIdRoute
+  ResearchIicRoute: typeof ResearchIicRoute
+  ResearchPatentsRoute: typeof ResearchPatentsRoute
+  ResearchPublicationsRoute: typeof ResearchPublicationsRoute
+  ResearchStartupEcosystemRoute: typeof ResearchStartupEcosystemRoute
   ProgrammesIndexRoute: typeof ProgrammesIndexRoute
 }
 
@@ -454,11 +520,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreditsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/curriculum': {
-      id: '/curriculum'
-      path: '/curriculum'
-      fullPath: '/curriculum'
-      preLoaderRoute: typeof CurriculumRouteImport
+    '/curriculum-and-syllabus': {
+      id: '/curriculum-and-syllabus'
+      path: '/curriculum-and-syllabus'
+      fullPath: '/curriculum-and-syllabus'
+      preLoaderRoute: typeof CurriculumAndSyllabusRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/naac': {
@@ -480,6 +546,13 @@ declare module '@tanstack/react-router' {
       path: '/programmes-offered'
       fullPath: '/programmes-offered'
       preLoaderRoute: typeof ProgrammesOfferedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/social-media': {
@@ -601,6 +674,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgrammesCourseIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/research_/iic': {
+      id: '/research_/iic'
+      path: '/research/iic'
+      fullPath: '/research/iic'
+      preLoaderRoute: typeof ResearchIicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research_/patents': {
+      id: '/research_/patents'
+      path: '/research/patents'
+      fullPath: '/research/patents'
+      preLoaderRoute: typeof ResearchPatentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research_/publications': {
+      id: '/research_/publications'
+      path: '/research/publications'
+      fullPath: '/research/publications'
+      preLoaderRoute: typeof ResearchPublicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research_/startup-ecosystem': {
+      id: '/research_/startup-ecosystem'
+      path: '/research/startup-ecosystem'
+      fullPath: '/research/startup-ecosystem'
+      preLoaderRoute: typeof ResearchStartupEcosystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/naac/criteria/$id': {
       id: '/naac/criteria/$id'
       path: '/criteria/$id'
@@ -631,10 +732,11 @@ const rootRouteChildren: RootRouteChildren = {
   CampusLifeRoute: CampusLifeRoute,
   ContactRoute: ContactRoute,
   CreditsRoute: CreditsRoute,
-  CurriculumRoute: CurriculumRoute,
+  CurriculumAndSyllabusRoute: CurriculumAndSyllabusRoute,
   NaacRoute: NaacRouteWithChildren,
   PlacementsRoute: PlacementsRoute,
   ProgrammesOfferedRoute: ProgrammesOfferedRoute,
+  ResearchRoute: ResearchRoute,
   SocialMediaRoute: SocialMediaRoute,
   StudentHousingRoute: StudentHousingRoute,
   AboutAccreditationsRoute: AboutAccreditationsRoute,
@@ -650,6 +752,10 @@ const rootRouteChildren: RootRouteChildren = {
   CampusLifeSocialMediaRoute: CampusLifeSocialMediaRoute,
   EventsEventIdRoute: EventsEventIdRoute,
   ProgrammesCourseIdRoute: ProgrammesCourseIdRoute,
+  ResearchIicRoute: ResearchIicRoute,
+  ResearchPatentsRoute: ResearchPatentsRoute,
+  ResearchPublicationsRoute: ResearchPublicationsRoute,
+  ResearchStartupEcosystemRoute: ResearchStartupEcosystemRoute,
   ProgrammesIndexRoute: ProgrammesIndexRoute,
 }
 export const routeTree = rootRouteImport

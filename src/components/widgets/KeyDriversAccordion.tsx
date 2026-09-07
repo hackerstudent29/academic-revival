@@ -82,7 +82,7 @@ export function KeyDriversAccordion({ drivers = keyDrivers }: KeyDriversAccordio
   return (
     <div className="my-12">
       <h3 className="text-2xl md:text-3xl font-serif tracking-tight mb-6 text-foreground">
-        Key Drivers of Employment Growth (2025–2030)
+        Key Drivers of Employment Growth
       </h3>
       <div 
         className="w-full flex flex-col"

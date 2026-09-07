@@ -186,14 +186,14 @@ Job opportunities for Computer Science & Business Systems account for over 50% o
 
 ---
 
-### Employment Growth in Computer Science & Business Systems (2025–2030)
-The employment opportunities for Computer Science & Business Systems (CSBS) in India over the next five years (2025–2030) are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in CSBS job openings.
+### Employment Growth in Computer Science & Business Systems
+The employment opportunities for Computer Science & Business Systems (CSBS) in India are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in CSBS job openings.
 
 [KEY_DRIVERS_ACCORDION]
 
 ---
 
-### Employment Opportunities in High Demand (2025–2030)
+### Employment Opportunities in High Demand
 
 | Role | Specializations | Key Skills |
 | :--- | :--- | :--- |

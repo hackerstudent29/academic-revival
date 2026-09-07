@@ -1,0 +1,131 @@
+### Research and Development
+### Goals Objectives
+
+--- TABLE ---
+ | To encourage the students and faculty members to carry out research in the fields of Engineering, Technology, 
+													Science and Humanities by providing necessary facilities and infrastructures required for carrying out research
+ | To create zeal among the students and faculty towards research and innovation and to encourage them to publish 
+													their findings in conferences and journals
+ | To assist the students to apply funding for conducting research under student project scheme to various funding 
+													agencies like TNSCST, MSME, IEI (I) etc
+ | To work closely with the industry to understand their needs that eventually will result in new or improved products,
+													processes, systems or services that can increase the company's productivity and also promote Institute- Industry Collaboration
+ | To support the government in serving the society by taking up sponsored projects offered by agencies such as TNSCST, DST, 
+													AICTE, UGC, ISRO, DRDO, CSIR, DBT etc
+ | To enhance the general research capability of budding engineers by way of participating in conferences, seminars, 
+													workshops, project competition, etc.
+ | To organize various workshops/ seminar/ trainings related to promotion of research
+ | To encourage both students and faculty to apply copyrights and patents
+### Research Advisory Committee
+
+--- TABLE ---
+S.No | Name | Designation
+1 | Dr.B.Janarthanan,Head-Research, MSAJCE, Chennai. | Convener
+2 | Dr.Srinivasan, Secretary TNSCST, Chennai.044-22301428, ms.tanscst@nic.in | Advisor
+3 | Dr.Parthiban, Asso.Prof/ Prod. NIT,    Trichy.9443430246, parthiban@nitt.edu | Advisor
+4 | Dr.B.Sheela Rani, Dean Research,    Sathyabama University, Chennai.9840941389, directorresearch@sathyabama.ac.in | Advisor
+5 | Dr.Sabitha Ramakrishnan, Professor, Dept of    Instrumentation MIT, Chennai.9789977989, sabitha.ramakrishnan@gmail.com | Advisor
+6 | All Ph.D qualified faculty | Members
+### Innovation Cell Activities
+### About the council
+
+--- TABLE ---
+ | Identify and reward innovations and share success stories
+ | Organize periodic workshops/ seminars/ interactions with entrepreneurs, investors, professionals and 
+															create a mentor pool for student innovators
+ | Network with peers and national entrepreneurship development organizations
+ | Create an Institution’s Innovation portal to highlight innovative projects carried out by institution’s faculty and students
+ | Organize Hackathons, idea competition, mini-challenges etc. with the involvement of industries
+
+--- TABLE ---
+1 | Dr. K. S. Srinivasan, Principal | Head of the Institution
+2 | Dr. B. Janarthanan, Professor, MSAJCE | President
+3 | Dr. I. Manju, Professor, MSAJCE | Vice President
+4 | Dr.M. Kanthababu, Professor, Anna University | External Member
+5 | Dr. N. Alagumurthi, Professor, Pondichery Engineering College | External Member
+6 | Mr. N. S. Srinivasan, DGM, L & T Infrastructure Development Projects Ltd | External Member
+7 | Venkatakrishnan sankaran, Vice-President, Levergent Technologies | External Member
+8 | Mr D Gowri Shankar, Asst.Professor, New Prince Shri Bhanavani College of Engineering | External Member from Mentor Institute
+9 | Dr.R.Senthilkumar, Associate Professor | Member
+
+--- TABLE ---
+S.No. | Name of the Event | Type of Activity
+1 | Design of Flexible Pavement using IRC | Self-Driven Activity | 
+2 | Computer Architecture | Self-Driven Activity | 
+3 | Virtual Workshop on Machine Learning | Self-Driven Activity | 
+4 | Online Workshop on Programming Skills | Self-Driven Activity | 
+5 | Technological Innovation and Academia Industry Collaboration under Self-Reliant India | Self-Driven Activity | 
+6 | FDP on Kinematics if Machinery | Self-Driven Activity | 
+7 | FDP on Teaching Engineering Graphics using ICT Tools | Self-Driven Activity | 
+8 | Virtual Workshop on Research Methodologies | Self-Driven Activity | 
+9 | Basic Refrigeration and Airconditioning | Self-Driven Activity | 
+10 | Converting Ideas to Entrepreneurship | Self-Driven Activity | 
+11 | National Webinar on Research, Innovation and Ranking/td>MIC Driven Activity | MIC Driven Activity | 
+12 | Orientation session for all students & faculties of Institute by Innovation Ambassador(s). | IIC Calendar Activity | 
+13 | Session on “How to plan for Start-up and legal & amp; Ethical Steps” | IIC Calendar Activity | 
+14 | IIC Council Meeting- Review of Q2 progress and Planning of Q3 | IIC Calendar Activity | 
+15 | IIC Annual Report | MIC Driven Activity | 
+16 | Concrete Technology | Self-Driven Activity | 
+17 | National Level Awareness Programme on Entrepreneurship | Self-Driven Activity | 
+18 | Workshop on Design Thinking, Critical thinking and Innovation Design | IIC Calendar Activity | 
+19 | AKAM | MIC Driven Activity | 
+20 | Workshop on “Entrepreneurship and Innovation as Career Opportunity" | IIC Calendar Activity | 
+21 | Orientation Session on IIC4.0 & Features | MIC Driven Activity | 
+22 | Awareness Programme on IPR | Self-Driven Activity | 
+23 | Session on Problem Solving and Ideation Workshop | IIC Calendar Activity | 
+24 | Workshop on Entrepreneurship Skill, Attitude and Behaviour Development | IIC Calendar Activity | 
+25 | Alumni Talk and Interaction | Self-Driven Activity | 
+26 | Internal Hackathon to select team for SIH-2022 | Self-Driven Activity | 
+
+--- TABLE ---
+Head of the Institution | Dr. K.S. SrinivasanPrincipalMohamed Sathak A.J. College of EngineeringChennai- 603103Email: principal@msajce-edu.in
+President | Dr. B. JanarthananProfessorDepartment of Mechanical EngineeringMohamed Sathak A.J. College of EngineeringChennai- 603103Email: mech.janarthanan@msajce-edu.in
+Vice President | Dr.I. ManjuProfessor and HeadDepartment of Electrical and Electronics EngineeringMohamed Sathak A.J. College of EngineeringChennai- 603103Email: headir@msajce-edu.in
+### List of Supervisors
+
+--- TABLE ---
+S.No | Name | Anna University Ref. No | Research Area
+1 | Dr. K.S. Srinivasan | 1440364 | VLSI Design, Digital Signal and Image Processing
+2 | Dr. I. Manju | 3040008 | VLSI Design , Video Processing
+3 | Dr. B. Janarthanan | 2620054 | Machine Design, Mechanical Vibrations, Vehicle Dynamics
+4 | Dr. G. Ramesh | 4120175 | Natural Fiber, Composite Material, Mathematical Modeling
+5 | Dr. S. Prasath | 4220015 | Welding Technology, Materials Engineering, Manufacturing Engineering
+6 | Dr. A. Suvitha | 2070720 | Inorganic Chemistry
+7 | Dr.M.Vigneshkumar | 3910019 | Remote Sening, GIS, Survey & Geology, Environmental Engineering
+### Publications Faculty & Students
+### Books/Book Chapter/Patent Filed/Copy Right
+
+--- TABLE ---
+S.No | Name | Title of the Book/Chapters/Patent/Copy Right | ISBN/ISSN/Patent Number
+1 | Dr.R.SenthilkumarG. Ramesh | Engineering Practices Lab | L - 78730 / 2018
+2 | Dr. E. Dhiravidachelvi | Fundamentals of Electrical Measuring Instruments | ISBN -978-93-83409-35-8
+3 | Dr. E.Dhiravidachelvi | Design And Implementation Of A Disaster Management System Using IOT And Cloud Computing Techniques For A 
+											Connected Buildings To Save Lives With Early Warnings | 2020101867
+4 | Dr. E.DhiravidachelviMrs. E. JayanthiMrs. I. SuganthiMr. J. RajaMr.S. Naveenkumar | Vehicular Edge Computing Using A Smart Embedded System For Intelligent Transportation | 202041033273
+5 | Mr. K. Vairaperumal | Battery Swapping Smart Station for Future E-Vehicle Transportation | 202141021897 A
+6 | Mr.Chintala Venkatesh | A Vehicle Tire Control System at curved roads using intelligent interfaces and support vector machines | 202141025111 A
+7 | Mrs.D.Hema Sumitha | Real time based IOT Enabled Smart Metering System. | 202141026200 A
+8 | Dr.B.Janarthanam | Unmanned Aerial Vehicle | 202041047806 A
+9 | Mrs.G. PremalathaDr.E.Dhiravidachelvi | Fundamentals of Electrical Measuring Instruments | 202141014294 A
+10 | Mr. S.Senthil PandiSankareswaran | Computer implemented method of image classification with extreme learning machine | 201941054497 A
+11 | Mr. S.R. MohanMr. V. VigneshwaranMr. D. Sakthivel | Study on Mechanical Characterization of Graphene reinforced Aluminium Metal Matrix Composites | 202141012155 A
+12 | Dr. E. Dhiaravidachelvi | Data Science for COVID -19 (Elsevier) | 978-0-12-824536-1
+13 | Dr. E. Dhiravidachelvi | Applications of Big Data in Health Care | 978-0-820203-6
+14 | Mr. S.Senthil Pandi | Machine Learning | 978-93-91373-85-6
+15 | Mr. S.Senthil Pandi | Computer Networks | 202041033273
+16 | Mr. C. Daniel | Impact of Lockdown for Research Scholars | 978-93-90853-50-2
+17 | Dr.K.S.SrinivasanDr.P.SubramanianMr.D.Weslin | Wireless Sensor Networks | 978-81-954927-4-9
+18 | Dr.K.S.Srinivasan | Communication Theory | 978-81-89638-43-6
+19 | Dr.K.S.Srinivasan | Principles of Communication Engineering | 978-81-87721-95-6
+20 | Dr.K.S.Srinivasan | Electric Circuits and Electronic Devices | 978-81-8472-085-3
+21 | Dr.K.S.Srinivasan | Basic Electrical and Electronics Engineering | 978-81-8472-086-0
+22 | Dr.K.S.Srinivasan | Digital Communication | 978-81-89638-19-1
+23 | Dr.K.S.Srinivasan | Electronic Devices | 978-81-8472-254-3
+24 | Dr.K.S.Srinivasan | Electronic Devices and Circuits | 978-81-8472-101-0
+25 | Dr.K.S.Srinivasan | Electronic Circuits  I | 978-81-8472-100-3
+26 | Dr.K.S.Srinivasan | Electronic Circuits  II | 978-81-89638-16-0
+27 | Dr.K.S.Srinivasan | Electronics and Microprocessors | 978-81-89638-19-1
+28 | Dr.K.S.Srinivasan | Digital Signal Processing | 81-87721-46-4
+29 | Dr.K.S.Srinivasan | Electric Circuit Theory | 978-81-938894-2-8
+30 | Dr.K.S.Srinivasan | Electronic Devices and Circuits (As per the JNTU Syllabus) | 978-81-89638-08-5
+31 | Dr.E.Dhiravidachelvi | Monograph on Fundamentals of electrical measuring instruments | 978-93-83409-35-8
