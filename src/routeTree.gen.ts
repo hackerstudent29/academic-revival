@@ -50,6 +50,7 @@ import { Route as ResearchIicRouteImport } from './routes/research_.iic'
 import { Route as ResearchPatentsRouteImport } from './routes/research_.patents'
 import { Route as ResearchPublicationsRouteImport } from './routes/research_.publications'
 import { Route as ResearchStartupEcosystemRouteImport } from './routes/research_.startup-ecosystem'
+import { Route as NaacCriteriaIndexRouteImport } from './routes/naac/criteria.index'
 import { Route as NaacCriteriaIdRouteImport } from './routes/naac/criteria.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -258,6 +259,11 @@ const ResearchStartupEcosystemRoute =
     path: '/research/startup-ecosystem',
     getParentRoute: () => rootRouteImport,
   } as any)
+const NaacCriteriaIndexRoute = NaacCriteriaIndexRouteImport.update({
+  id: '/criteria/',
+  path: '/criteria/',
+  getParentRoute: () => NaacRoute,
+} as any)
 const NaacCriteriaIdRoute = NaacCriteriaIdRouteImport.update({
   id: '/criteria/$id',
   path: '/criteria/$id',
@@ -861,6 +867,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/research/startup-ecosystem'
       preLoaderRoute: typeof ResearchStartupEcosystemRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/naac/criteria/': {
+      id: '/naac/criteria/'
+      path: '/criteria'
+      fullPath: '/naac/criteria/'
+      preLoaderRoute: typeof NaacCriteriaIndexRouteImport
+      parentRoute: typeof NaacRoute
     }
     '/naac/criteria/$id': {
       id: '/naac/criteria/$id'
