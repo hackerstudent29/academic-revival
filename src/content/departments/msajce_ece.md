@@ -184,14 +184,14 @@ Job opportunities for Electronics & Communication Engineering account for over 5
 
 ---
 
-### Employment Growth in Electronics & Communication Engineering (2025–2030)
-The employment opportunities for Electronics & Communication Engineering (ECE) in India over the next five years (2025–2030) are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in ECE job openings.
+### Employment Growth in Electronics & Communication Engineering
+The employment opportunities for Electronics & Communication Engineering (ECE) in India are expected to be highly promising. The growing demand for technological innovation across multiple industries, digitalization, adoption of advanced technologies, and the country's strong position as a global IT hub will contribute to a significant increase in ECE job openings.
 
 [KEY_DRIVERS_ACCORDION]
 
 ---
 
-### Employment Opportunities in High Demand (2025–2030)
+### Employment Opportunities in High Demand
 
 | Role | Specializations | Key Skills |
 | :--- | :--- | :--- |
