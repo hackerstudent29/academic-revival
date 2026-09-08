@@ -75,7 +75,7 @@ function IQAC() {
         {/* MAIN CONTENT AREA */}
         <div className="w-full">
           <Reveal key={activeTab} variant="blur">
-            <div className="bg-card border border-border p-8 md:p-12 rounded-sm shadow-sm space-y-12">
+            <div className="space-y-12">
               
               {/* OVERVIEW TAB */}
               {activeTab === "overview" && (
@@ -193,9 +193,9 @@ function IQAC() {
                       href="https://www.msajce-edu.in/uploads/naac/AQAR-PDF-2022-23.pdf" 
                       target="_blank" 
                       rel="noreferrer"
-                      className="group flex flex-col items-center bg-background border border-border rounded-sm p-8 transition-all hover:shadow-md hover:border-primary text-center gap-4"
+                      className="group flex flex-col items-center bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-8 transition-all hover:shadow-md hover:-translate-y-1 hover:border-primary/50 text-center gap-4"
                     >
-                      <div className="w-16 h-16 shrink-0 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-2">
+                      <div className="w-16 h-16 shrink-0 bg-primary/10 text-primary rounded-sm flex items-center justify-center mb-2">
                         <FileText className="w-8 h-8 group-hover:scale-110 transition-transform" />
                       </div>
                       <h3 className="font-bold text-lg font-oswald uppercase text-foreground group-hover:text-primary transition-colors">
@@ -250,7 +250,7 @@ function IQAC() {
                         href={item.url} 
                         target="_blank" 
                         rel="noreferrer"
-                        className="group flex flex-row items-center bg-background border border-border rounded-sm p-4 transition-all hover:shadow-md hover:border-primary/50 gap-4"
+                        className="group flex flex-row items-center bg-card border border-border rounded-sm p-4 transition-all hover:shadow-sm hover:border-primary/50 gap-4"
                       >
                         <div className="w-12 h-12 shrink-0 bg-primary/10 text-primary rounded-sm flex items-center justify-center">
                           <FileText className="w-5 h-5 group-hover:scale-110 transition-transform" />
@@ -271,7 +271,7 @@ function IQAC() {
                       href="https://www.msajce-edu.in/uploads/aqar/2022/1.4.1/1.4.1ActiontakenReport.pdf" 
                       target="_blank" 
                       rel="noreferrer"
-                      className="group flex flex-row items-center bg-background border border-border rounded-sm p-4 transition-all hover:shadow-md hover:border-primary/50 gap-4"
+                      className="group flex flex-row items-center bg-card border border-border rounded-sm p-4 transition-all hover:shadow-sm hover:border-primary/50 gap-4"
                     >
                       <div className="w-12 h-12 shrink-0 bg-primary/10 text-primary rounded-sm flex items-center justify-center">
                         <Download className="w-5 h-5 group-hover:scale-110 transition-transform" />
@@ -286,7 +286,7 @@ function IQAC() {
                       href="http://msajce-edu.in/uploads/naac/1.4.2/Action.pdf" 
                       target="_blank" 
                       rel="noreferrer"
-                      className="group flex flex-row items-center bg-background border border-border rounded-sm p-4 transition-all hover:shadow-md hover:border-primary/50 gap-4"
+                      className="group flex flex-row items-center py-4 transition-all hover:translate-x-2 gap-4"
                     >
                       <div className="w-12 h-12 shrink-0 bg-primary/10 text-primary rounded-sm flex items-center justify-center">
                         <Download className="w-5 h-5 group-hover:scale-110 transition-transform" />

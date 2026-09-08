@@ -13,11 +13,13 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AcademicsRouteImport } from './routes/academics'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
+import { Route as AriiaRouteImport } from './routes/ariia'
 import { Route as CampusLifeRouteImport } from './routes/campus-life'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreditsRouteImport } from './routes/credits'
 import { Route as CurriculumAndSyllabusRouteImport } from './routes/curriculum-and-syllabus'
 import { Route as NaacRouteImport } from './routes/naac'
+import { Route as NirfRouteImport } from './routes/nirf'
 import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offered'
 import { Route as ResearchRouteImport } from './routes/research'
@@ -48,6 +50,7 @@ import { Route as ResearchIicRouteImport } from './routes/research_.iic'
 import { Route as ResearchPatentsRouteImport } from './routes/research_.patents'
 import { Route as ResearchPublicationsRouteImport } from './routes/research_.publications'
 import { Route as ResearchStartupEcosystemRouteImport } from './routes/research_.startup-ecosystem'
+import { Route as NaacCriteriaIndexRouteImport } from './routes/naac/criteria.index'
 import { Route as NaacCriteriaIdRouteImport } from './routes/naac/criteria.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -68,6 +71,11 @@ const AcademicsRoute = AcademicsRouteImport.update({
 const AdmissionsRoute = AdmissionsRouteImport.update({
   id: '/admissions',
   path: '/admissions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AriiaRoute = AriiaRouteImport.update({
+  id: '/ariia',
+  path: '/ariia',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CampusLifeRoute = CampusLifeRouteImport.update({
@@ -93,6 +101,11 @@ const CurriculumAndSyllabusRoute = CurriculumAndSyllabusRouteImport.update({
 const NaacRoute = NaacRouteImport.update({
   id: '/naac',
   path: '/naac',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NirfRoute = NirfRouteImport.update({
+  id: '/nirf',
+  path: '/nirf',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlacementsRoute = PlacementsRouteImport.update({
@@ -246,6 +259,11 @@ const ResearchStartupEcosystemRoute =
     path: '/research/startup-ecosystem',
     getParentRoute: () => rootRouteImport,
   } as any)
+const NaacCriteriaIndexRoute = NaacCriteriaIndexRouteImport.update({
+  id: '/criteria/',
+  path: '/criteria/',
+  getParentRoute: () => NaacRoute,
+} as any)
 const NaacCriteriaIdRoute = NaacCriteriaIdRouteImport.update({
   id: '/criteria/$id',
   path: '/criteria/$id',
@@ -257,11 +275,13 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/academics': typeof AcademicsRoute
   '/admissions': typeof AdmissionsRoute
+  '/ariia': typeof AriiaRoute
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
   '/naac': typeof NaacRouteWithChildren
+  '/nirf': typeof NirfRoute
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
@@ -300,10 +320,12 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/academics': typeof AcademicsRoute
   '/admissions': typeof AdmissionsRoute
+  '/ariia': typeof AriiaRoute
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
+  '/nirf': typeof NirfRoute
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
@@ -343,11 +365,13 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/academics': typeof AcademicsRoute
   '/admissions': typeof AdmissionsRoute
+  '/ariia': typeof AriiaRoute
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
   '/naac': typeof NaacRouteWithChildren
+  '/nirf': typeof NirfRoute
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
@@ -388,11 +412,13 @@ export interface FileRouteTypes {
     | '/about'
     | '/academics'
     | '/admissions'
+    | '/ariia'
     | '/campus-life'
     | '/contact'
     | '/credits'
     | '/curriculum-and-syllabus'
     | '/naac'
+    | '/nirf'
     | '/placements'
     | '/programmes-offered'
     | '/research'
@@ -431,10 +457,12 @@ export interface FileRouteTypes {
     | '/about'
     | '/academics'
     | '/admissions'
+    | '/ariia'
     | '/campus-life'
     | '/contact'
     | '/credits'
     | '/curriculum-and-syllabus'
+    | '/nirf'
     | '/placements'
     | '/programmes-offered'
     | '/research'
@@ -473,11 +501,13 @@ export interface FileRouteTypes {
     | '/about'
     | '/academics'
     | '/admissions'
+    | '/ariia'
     | '/campus-life'
     | '/contact'
     | '/credits'
     | '/curriculum-and-syllabus'
     | '/naac'
+    | '/nirf'
     | '/placements'
     | '/programmes-offered'
     | '/research'
@@ -517,11 +547,13 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AcademicsRoute: typeof AcademicsRoute
   AdmissionsRoute: typeof AdmissionsRoute
+  AriiaRoute: typeof AriiaRoute
   CampusLifeRoute: typeof CampusLifeRoute
   ContactRoute: typeof ContactRoute
   CreditsRoute: typeof CreditsRoute
   CurriculumAndSyllabusRoute: typeof CurriculumAndSyllabusRoute
   NaacRoute: typeof NaacRouteWithChildren
+  NirfRoute: typeof NirfRoute
   PlacementsRoute: typeof PlacementsRoute
   ProgrammesOfferedRoute: typeof ProgrammesOfferedRoute
   ResearchRoute: typeof ResearchRoute
@@ -577,6 +609,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdmissionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ariia': {
+      id: '/ariia'
+      path: '/ariia'
+      fullPath: '/ariia'
+      preLoaderRoute: typeof AriiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/campus-life': {
       id: '/campus-life'
       path: '/campus-life'
@@ -610,6 +649,13 @@ declare module '@tanstack/react-router' {
       path: '/naac'
       fullPath: '/naac'
       preLoaderRoute: typeof NaacRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nirf': {
+      id: '/nirf'
+      path: '/nirf'
+      fullPath: '/nirf'
+      preLoaderRoute: typeof NirfRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/placements': {
@@ -822,6 +868,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchStartupEcosystemRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/naac/criteria/': {
+      id: '/naac/criteria/'
+      path: '/criteria'
+      fullPath: '/naac/criteria/'
+      preLoaderRoute: typeof NaacCriteriaIndexRouteImport
+      parentRoute: typeof NaacRoute
+    }
     '/naac/criteria/$id': {
       id: '/naac/criteria/$id'
       path: '/criteria/$id'
@@ -863,11 +916,13 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AcademicsRoute: AcademicsRoute,
   AdmissionsRoute: AdmissionsRoute,
+  AriiaRoute: AriiaRoute,
   CampusLifeRoute: CampusLifeRoute,
   ContactRoute: ContactRoute,
   CreditsRoute: CreditsRoute,
   CurriculumAndSyllabusRoute: CurriculumAndSyllabusRoute,
   NaacRoute: NaacRouteWithChildren,
+  NirfRoute: NirfRoute,
   PlacementsRoute: PlacementsRoute,
   ProgrammesOfferedRoute: ProgrammesOfferedRoute,
   ResearchRoute: ResearchRoute,

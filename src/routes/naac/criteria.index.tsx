@@ -32,13 +32,13 @@ function NaacCriteria() {
 
       {/* CONTENT SECTION */}
       <section className="mx-auto max-w-[1440px] px-6 md:px-12 py-16 md:py-24 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {mainCriteria.map((criterion, idx) => (
             <Reveal key={criterion.id} variant="rise" delay={idx * 0.05}>
               <Link 
                 to={`/naac/criteria/$id`}
                 params={{ id: criterion.id }}
-                className="group flex flex-col justify-between bg-card border border-border p-8 rounded-sm hover:border-primary transition-colors h-full"
+                className="group flex flex-col justify-between bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 hover:shadow-lg hover:border-primary/50 transition-all hover:-translate-y-1 h-full"
               >
                 <div>
                   <div className="flex justify-between items-start mb-6">

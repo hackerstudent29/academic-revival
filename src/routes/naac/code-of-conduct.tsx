@@ -32,7 +32,7 @@ function CodeOfConduct() {
       {/* CONTENT SECTION */}
       <section className="mx-auto max-w-[1440px] px-6 md:px-12 py-16 md:py-24 w-full flex-grow">
         <Reveal>
-          <div className="bg-card border border-border p-8 md:p-12 rounded-sm shadow-sm">
+          <div className="space-y-12">
             <p className="text-foreground/80 mb-8 font-sans leading-relaxed text-justify">
               This code of conduct specifies the responsibilities expected from each employee in carrying out their day-to-day duties as well as general ethical and moral behaviors. Employees must adhere to this code of conduct with utmost integrity. This code serves as a reference and guideline for all employees whether full-time, part-time or contract basis. Employees must work with public authorities established by the law and uphold our country’s constitution. Employees must strive to attain institutions goals.
             </p>

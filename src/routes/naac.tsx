@@ -20,6 +20,10 @@ function NaacSecondaryNav() {
     { label: "Code of Conduct", path: "/naac/code-of-conduct" },
   ];
 
+  if (pathname.startsWith("/naac/iqac")) {
+    return null;
+  }
+
   const shouldShiftDown = !isHeaderHidden && isScrolled;
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const shiftAmount = isMobile ? 57 : 65;
