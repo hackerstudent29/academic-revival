@@ -13,11 +13,13 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AcademicsRouteImport } from './routes/academics'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
+import { Route as AriiaRouteImport } from './routes/ariia'
 import { Route as CampusLifeRouteImport } from './routes/campus-life'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreditsRouteImport } from './routes/credits'
 import { Route as CurriculumRouteImport } from './routes/curriculum'
 import { Route as NaacRouteImport } from './routes/naac'
+import { Route as NirfRouteImport } from './routes/nirf'
 import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offered'
 import { Route as SocialMediaRouteImport } from './routes/social-media'
@@ -66,6 +68,11 @@ const AdmissionsRoute = AdmissionsRouteImport.update({
   path: '/admissions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AriiaRoute = AriiaRouteImport.update({
+  id: '/ariia',
+  path: '/ariia',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CampusLifeRoute = CampusLifeRouteImport.update({
   id: '/campus-life',
   path: '/campus-life',
@@ -89,6 +96,11 @@ const CurriculumRoute = CurriculumRouteImport.update({
 const NaacRoute = NaacRouteImport.update({
   id: '/naac',
   path: '/naac',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NirfRoute = NirfRouteImport.update({
+  id: '/nirf',
+  path: '/nirf',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlacementsRoute = PlacementsRouteImport.update({
@@ -232,11 +244,13 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/academics': typeof AcademicsRoute
   '/admissions': typeof AdmissionsRoute
+  '/ariia': typeof AriiaRoute
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
   '/curriculum': typeof CurriculumRoute
   '/naac': typeof NaacRouteWithChildren
+  '/nirf': typeof NirfRoute
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/social-media': typeof SocialMediaRoute
@@ -270,10 +284,12 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/academics': typeof AcademicsRoute
   '/admissions': typeof AdmissionsRoute
+  '/ariia': typeof AriiaRoute
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
   '/curriculum': typeof CurriculumRoute
+  '/nirf': typeof NirfRoute
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/social-media': typeof SocialMediaRoute
@@ -308,11 +324,13 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/academics': typeof AcademicsRoute
   '/admissions': typeof AdmissionsRoute
+  '/ariia': typeof AriiaRoute
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
   '/curriculum': typeof CurriculumRoute
   '/naac': typeof NaacRouteWithChildren
+  '/nirf': typeof NirfRoute
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/social-media': typeof SocialMediaRoute
@@ -348,11 +366,13 @@ export interface FileRouteTypes {
     | '/about'
     | '/academics'
     | '/admissions'
+    | '/ariia'
     | '/campus-life'
     | '/contact'
     | '/credits'
     | '/curriculum'
     | '/naac'
+    | '/nirf'
     | '/placements'
     | '/programmes-offered'
     | '/social-media'
@@ -386,10 +406,12 @@ export interface FileRouteTypes {
     | '/about'
     | '/academics'
     | '/admissions'
+    | '/ariia'
     | '/campus-life'
     | '/contact'
     | '/credits'
     | '/curriculum'
+    | '/nirf'
     | '/placements'
     | '/programmes-offered'
     | '/social-media'
@@ -423,11 +445,13 @@ export interface FileRouteTypes {
     | '/about'
     | '/academics'
     | '/admissions'
+    | '/ariia'
     | '/campus-life'
     | '/contact'
     | '/credits'
     | '/curriculum'
     | '/naac'
+    | '/nirf'
     | '/placements'
     | '/programmes-offered'
     | '/social-media'
@@ -462,11 +486,13 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AcademicsRoute: typeof AcademicsRoute
   AdmissionsRoute: typeof AdmissionsRoute
+  AriiaRoute: typeof AriiaRoute
   CampusLifeRoute: typeof CampusLifeRoute
   ContactRoute: typeof ContactRoute
   CreditsRoute: typeof CreditsRoute
   CurriculumRoute: typeof CurriculumRoute
   NaacRoute: typeof NaacRouteWithChildren
+  NirfRoute: typeof NirfRoute
   PlacementsRoute: typeof PlacementsRoute
   ProgrammesOfferedRoute: typeof ProgrammesOfferedRoute
   SocialMediaRoute: typeof SocialMediaRoute
@@ -517,6 +543,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdmissionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ariia': {
+      id: '/ariia'
+      path: '/ariia'
+      fullPath: '/ariia'
+      preLoaderRoute: typeof AriiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/campus-life': {
       id: '/campus-life'
       path: '/campus-life'
@@ -550,6 +583,13 @@ declare module '@tanstack/react-router' {
       path: '/naac'
       fullPath: '/naac'
       preLoaderRoute: typeof NaacRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nirf': {
+      id: '/nirf'
+      path: '/nirf'
+      fullPath: '/nirf'
+      preLoaderRoute: typeof NirfRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/placements': {
@@ -775,11 +815,13 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AcademicsRoute: AcademicsRoute,
   AdmissionsRoute: AdmissionsRoute,
+  AriiaRoute: AriiaRoute,
   CampusLifeRoute: CampusLifeRoute,
   ContactRoute: ContactRoute,
   CreditsRoute: CreditsRoute,
   CurriculumRoute: CurriculumRoute,
   NaacRoute: NaacRouteWithChildren,
+  NirfRoute: NirfRoute,
   PlacementsRoute: PlacementsRoute,
   ProgrammesOfferedRoute: ProgrammesOfferedRoute,
   SocialMediaRoute: SocialMediaRoute,

@@ -53,8 +53,8 @@ const nav: NavItem[] = [
         links: [
           { label: "NAAC", to: "/naac" },
           { label: "IQAC", to: "/naac/iqac" },
-          { label: "NIRF", to: "/about/accreditations", hash: "nirf" },
-          { label: "ARIIA", to: "/about/accreditations", hash: "ariia" },
+          { label: "NIRF", to: "/nirf" },
+          { label: "ARIIA", to: "/ariia" },
         ],
       },
     ],

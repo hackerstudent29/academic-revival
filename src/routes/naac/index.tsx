@@ -90,87 +90,89 @@ function NaacPortal() {
       {/* 5. NAAC DOCUMENT CENTRE */}
       <section className="bg-[#F7F7F5] dark:bg-[#121214] py-16 md:py-24">
         <div className="mx-auto max-w-[1440px] px-6 md:px-12 w-full">
-          <Reveal>
-            <div className="flex flex-col mb-12">
-              <span className="text-primary font-bold tracking-widest uppercase text-sm mb-2 block font-mono">
-                Downloads & Reports
-              </span>
-              <h2 className="text-3xl md:text-5xl font-black font-oswald uppercase text-foreground">
-                NAAC Document Centre
-              </h2>
-            </div>
-          </Reveal>
+          <div className="mb-16">
+            <Reveal>
+              <div className="flex flex-col mb-12">
+                <span className="text-primary font-bold tracking-widest uppercase text-sm mb-2 block font-mono">
+                  Downloads & Reports
+                </span>
+                <h2 className="text-3xl md:text-5xl font-black font-oswald uppercase text-foreground">
+                  NAAC Document Centre
+                </h2>
+              </div>
+            </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            <Reveal variant="slide-up" delay={0.1}>
-              <Link to="/naac/dvv" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 transition-all hover:shadow-lg hover:border-primary/50">
-                <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
-                  DVV Clarification
-                </h3>
-                <span className="text-sm text-primary flex items-center gap-1 font-bold">
-                  View Documents <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Link>
-            </Reveal>
-            <Reveal variant="slide-up" delay={0.2}>
-              <Link to="/naac/extended-profile" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 transition-all hover:shadow-lg hover:border-primary/50">
-                <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
-                  Extended Profile
-                </h3>
-                <span className="text-sm text-primary flex items-center gap-1 font-bold">
-                  View Documents <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Link>
-            </Reveal>
-            <Reveal variant="slide-up" delay={0.3}>
-              <Link to="/naac/best-practices" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 transition-all hover:shadow-lg hover:border-primary/50">
-                <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
-                  Best Practices
-                </h3>
-                <span className="text-sm text-primary flex items-center gap-1 font-bold">
-                  View Guidelines <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Link>
-            </Reveal>
-            <Reveal variant="slide-up" delay={0.4}>
-              <Link to="/naac/distinctiveness" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 transition-all hover:shadow-lg hover:border-primary/50">
-                <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
-                  Institutional Distinctiveness
-                </h3>
-                <span className="text-sm text-primary flex items-center gap-1 font-bold">
-                  View Documents <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Link>
-            </Reveal>
-            <Reveal variant="slide-up" delay={0.5}>
-              <Link to="/naac/code-of-conduct" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 transition-all hover:shadow-lg hover:border-primary/50">
-                <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
-                  Code of Conduct
-                </h3>
-                <span className="text-sm text-primary flex items-center gap-1 font-bold">
-                  View Guidelines <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Link>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              <Reveal variant="rise" delay={0.1}>
+                <Link to="/naac/dvv" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 hover:shadow-lg hover:border-primary/50 transition-all hover:-translate-y-1">
+                  <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
+                    DVV Clarification
+                  </h3>
+                  <span className="text-sm text-primary flex items-center gap-1 font-bold">
+                    View Documents <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+              </Reveal>
+              <Reveal variant="rise" delay={0.2}>
+                <Link to="/naac/extended-profile" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 hover:shadow-lg hover:border-primary/50 transition-all hover:-translate-y-1">
+                  <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
+                    Extended Profile
+                  </h3>
+                  <span className="text-sm text-primary flex items-center gap-1 font-bold">
+                    View Documents <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+              </Reveal>
+              <Reveal variant="rise" delay={0.3}>
+                <Link to="/naac/best-practices" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 hover:shadow-lg hover:border-primary/50 transition-all hover:-translate-y-1">
+                  <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
+                    Best Practices
+                  </h3>
+                  <span className="text-sm text-primary flex items-center gap-1 font-bold">
+                    View Guidelines <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+              </Reveal>
+              <Reveal variant="rise" delay={0.4}>
+                <Link to="/naac/distinctiveness" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 hover:shadow-lg hover:border-primary/50 transition-all hover:-translate-y-1">
+                  <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
+                    Institutional Distinctiveness
+                  </h3>
+                  <span className="text-sm text-primary flex items-center gap-1 font-bold">
+                    View Documents <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+              </Reveal>
+              <Reveal variant="rise" delay={0.5}>
+                <Link to="/naac/code-of-conduct" className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 hover:shadow-lg hover:border-primary/50 transition-all hover:-translate-y-1">
+                  <h3 className="font-bold text-lg md:text-xl font-oswald uppercase text-foreground mb-2 group-hover:text-primary transition-colors">
+                    Code of Conduct
+                  </h3>
+                  <span className="text-sm text-primary flex items-center gap-1 font-bold">
+                    View Guidelines <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+              </Reveal>
+            </div>
+
+            <Reveal>
+              <h3 className="text-2xl font-bold font-oswald uppercase text-foreground mb-6">Additional Reports & Initiatives</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <a href="https://www.msajce-edu.in/uploads/naac/DisabledFriendlyCampus.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 bg-card border border-border rounded-sm p-4 hover:border-primary/50 transition-all hover:-translate-y-1 group">
+                <FileText className="text-primary w-5 h-5 shrink-0" />
+                  <span className="font-bold text-sm group-hover:text-primary transition-colors">Disabled Friendly Campus</span>
+                </a>
+              <a href="https://www.msajce-edu.in/uploads/naac/Environmentalpromotionalactivitiesbeyondthecampus.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 bg-card border border-border rounded-sm p-4 hover:border-primary/50 transition-all hover:-translate-y-1 group">
+                <FileText className="text-primary w-5 h-5 shrink-0" />
+                  <span className="font-bold text-sm group-hover:text-primary transition-colors">Environmental Promotional Activities</span>
+                </a>
+              <a href="https://www.msajce-edu.in/uploads/naac/AnnualReport20-21.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 bg-card border border-border rounded-sm p-4 hover:border-primary/50 transition-all hover:-translate-y-1 group">
+                <FileText className="text-primary w-5 h-5 shrink-0" />
+                  <span className="font-bold text-sm group-hover:text-primary transition-colors">Annual Report (Latest)</span>
+                </a>
+              </div>
             </Reveal>
           </div>
-
-          <Reveal>
-            <h3 className="text-2xl font-bold font-oswald uppercase text-foreground mb-6">Additional Reports & Initiatives</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <a href="https://www.msajce-edu.in/uploads/naac/DisabledFriendlyCampus.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 bg-card border border-border rounded-sm hover:border-primary/50 transition-colors group">
-                <FileText className="text-primary w-5 h-5 shrink-0" />
-                <span className="font-bold text-sm group-hover:text-primary transition-colors">Disabled Friendly Campus</span>
-              </a>
-              <a href="https://www.msajce-edu.in/uploads/naac/Environmentalpromotionalactivitiesbeyondthecampus.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 bg-card border border-border rounded-sm hover:border-primary/50 transition-colors group">
-                <FileText className="text-primary w-5 h-5 shrink-0" />
-                <span className="font-bold text-sm group-hover:text-primary transition-colors">Environmental Promotional Activities</span>
-              </a>
-              <a href="https://www.msajce-edu.in/uploads/naac/AnnualReport20-21.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 bg-card border border-border rounded-sm hover:border-primary/50 transition-colors group">
-                <FileText className="text-primary w-5 h-5 shrink-0" />
-                <span className="font-bold text-sm group-hover:text-primary transition-colors">Annual Report (Latest)</span>
-              </a>
-            </div>
-          </Reveal>
         </div>
       </section>
 

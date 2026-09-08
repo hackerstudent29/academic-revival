@@ -31,30 +31,30 @@ function DVVClarification() {
       <section className="mx-auto max-w-[1440px] px-6 md:px-12 py-16 md:py-24 w-full flex-grow">
         <Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {naacDocs["DVV Clarification"].map((doc, idx) => (
-              <a 
-                key={idx} 
-                href={`https://www.msajce-edu.in/${doc.url}`} 
-                target="_blank" 
-                rel="noreferrer"
-                className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 transition-all hover:shadow-lg hover:border-primary/50"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 shrink-0 bg-primary/10 text-primary rounded-sm flex items-center justify-center">
-                    <FileText className="w-5 h-5" />
+              {naacDocs["DVV Clarification"].map((doc, idx) => (
+                <a 
+                  key={idx} 
+                  href={`https://www.msajce-edu.in/${doc.url}`} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="group flex flex-col bg-card border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 transition-all hover:shadow-lg hover:-translate-y-1 hover:border-primary/50"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 shrink-0 bg-primary/10 text-primary rounded-sm flex items-center justify-center">
+                      <FileText className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-sm md:text-base text-foreground line-clamp-3 mb-2 group-hover:text-primary transition-colors">
+                        {doc.title}
+                      </h3>
+                      <span className="text-xs font-bold uppercase tracking-wide text-primary flex items-center gap-1">
+                        <Download className="w-3 h-3" /> Download
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-sm md:text-base text-foreground line-clamp-3 mb-2 group-hover:text-primary transition-colors">
-                      {doc.title}
-                    </h3>
-                    <span className="text-xs font-bold uppercase tracking-wide text-primary flex items-center gap-1">
-                      <Download className="w-3 h-3" /> Download
-                    </span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
+                </a>
+              ))}
+            </div>
         </Reveal>
       </section>
     </div>

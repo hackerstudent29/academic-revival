@@ -30,7 +30,7 @@ function BestPractices() {
       {/* CONTENT SECTION */}
       <section className="mx-auto max-w-[1440px] px-6 md:px-12 py-16 md:py-24 w-full flex-grow">
         <Reveal>
-          <div className="bg-card border border-border p-8 md:p-12 rounded-sm shadow-sm space-y-12">
+          <div className="space-y-12">
             
             {/* BEST PRACTICE 1 */}
             <div>
@@ -46,21 +46,19 @@ function BestPractices() {
                 To have a focussed and stress-free involvement of students both in academics and training, the activities are split into two separate sessions such as Forenoon – Academics only and Afternoon – Training & Practices, within the college regular working hours. MSAJCE encourages students towards research and innovation practices by involving them in various hackathons and consultancy works.
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                <div>
-                  <h4 className="text-xl font-bold font-oswald uppercase text-primary mb-4">Objectives</h4>
-                  <ul className="space-y-2 list-disc list-inside text-foreground/80 font-sans">
-                    <li>To provide hands-on training through experiential learning</li>
-                    <li>To enable them to get certification from appropriate training agencies in the cutting edge technologies</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold font-oswald uppercase text-primary mb-4">Context</h4>
-                  <ul className="space-y-2 list-disc list-inside text-foreground/80 font-sans">
-                    <li>To make the students deployable, they are trained in multi-disciplinary skills apart from their core domain through our technology centres within regular college hours as per their interest</li>
-                    <li>The students appearing for placement selection were earlier found to lag in skills required and expected by the employer in their domain</li>
-                  </ul>
-                </div>
+              <div className="mt-8">
+                <h4 className="text-xl font-bold font-oswald uppercase text-primary mb-4">Objectives</h4>
+                <ul className="space-y-2 list-disc list-inside text-foreground/80 font-sans">
+                  <li>To provide hands-on training through experiential learning</li>
+                  <li>To enable them to get certification from appropriate training agencies in the cutting edge technologies</li>
+                </ul>
+              </div>
+              <div className="mt-8">
+                <h4 className="text-xl font-bold font-oswald uppercase text-primary mb-4">Context</h4>
+                <ul className="space-y-2 list-disc list-inside text-foreground/80 font-sans">
+                  <li>To make the students deployable, they are trained in multi-disciplinary skills apart from their core domain through our technology centres within regular college hours as per their interest</li>
+                  <li>The students appearing for placement selection were earlier found to lag in skills required and expected by the employer in their domain</li>
+                </ul>
               </div>
 
               <div className="mt-8">
@@ -94,21 +92,19 @@ function BestPractices() {
                 <h2 className="text-3xl font-black font-oswald uppercase text-foreground">Title: Afternoon Laboratory Classes</h2>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                <div>
-                  <h4 className="text-xl font-bold font-oswald uppercase text-primary mb-4">Objectives</h4>
-                  <ul className="space-y-2 list-disc list-inside text-foreground/80 font-sans">
-                    <li>To become an eminent institute for higher education through innovative teaching- learning and sustainable practices to meet the industrial and societal needs by offering all practical courses in the afternoon session to learn by experience</li>
-                    <li>To provide problem solving and critical thinking skills and inculcate innovation and entrepreneurial abilities, so that the students are well groomed to face the challenges in the industry and the society</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold font-oswald uppercase text-primary mb-4">Context</h4>
-                  <ul className="space-y-2 list-disc list-inside text-foreground/80 font-sans">
-                    <li>If practical courses are offered in between theory courses, students may feel fatigued and may not be able to concentrate on theory classes</li>
-                    <li>To teach content beyond the syllabus theory classes may not be sufficient, but these afternoon sessions will be utilised for this purpose</li>
-                  </ul>
-                </div>
+              <div className="mt-8">
+                <h4 className="text-xl font-bold font-oswald uppercase text-primary mb-4">Objectives</h4>
+                <ul className="space-y-2 list-disc list-inside text-foreground/80 font-sans">
+                  <li>To become an eminent institute for higher education through innovative teaching- learning and sustainable practices to meet the industrial and societal needs by offering all practical courses in the afternoon session to learn by experience</li>
+                  <li>To provide problem solving and critical thinking skills and inculcate innovation and entrepreneurial abilities, so that the students are well groomed to face the challenges in the industry and the society</li>
+                </ul>
+              </div>
+              <div className="mt-8">
+                <h4 className="text-xl font-bold font-oswald uppercase text-primary mb-4">Context</h4>
+                <ul className="space-y-2 list-disc list-inside text-foreground/80 font-sans">
+                  <li>If practical courses are offered in between theory courses, students may feel fatigued and may not be able to concentrate on theory classes</li>
+                  <li>To teach content beyond the syllabus theory classes may not be sufficient, but these afternoon sessions will be utilised for this purpose</li>
+                </ul>
               </div>
 
               <div className="mt-8">
