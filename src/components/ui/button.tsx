@@ -60,16 +60,25 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const Comp = asChild ? Slot : "button";
+    if (asChild) {
+      return (
+        <Slot
+          className={cn(buttonVariants({ variant, size, className }))}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </Slot>
+      );
+    }
 
     const hasWave =
-      !asChild &&
       !disableWave &&
       variant !== "ghost" &&
       variant !== "link";
 
     return (
-      <Comp
+      <button
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
@@ -109,7 +118,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <span className="relative z-10 flex items-center justify-center gap-2 group-hover:text-white transition-colors duration-300">
           {children}
         </span>
-      </Comp>
+      </button>
     );
   }
 );

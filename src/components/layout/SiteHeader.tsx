@@ -139,7 +139,7 @@ const nav: NavItem[] = [
       {
         title: "Campus Facilities",
         links: [
-          { label: "Central Library", to: "/campus-life", hash: "facilities" },
+          { label: "Central Library", to: "/library" },
           { label: "Hostel", to: "/student-housing" },
           { label: "Transport", to: "/campus-life", hash: "facilities" },
           { label: "Sports & Gym", to: "/campus-life", hash: "facilities" },
