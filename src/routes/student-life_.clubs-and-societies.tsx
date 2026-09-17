@@ -5,11 +5,9 @@ import {
   ArrowRight,
   Trophy,
   Target,
-  Heart,
   Users,
   Award,
   CheckCircle2,
-  ChevronRight,
   Activity,
   Dumbbell
 } from "lucide-react";
@@ -36,7 +34,6 @@ export const Route = createFileRoute("/student-life_/clubs-and-societies")({
 function ClubsAndSocietiesPage() {
   const navigate = useNavigate();
   const [clubFilter, setClubFilter] = useState<string>("all");
-  const [selectedClubId, setSelectedClubId] = useState<string | null>(null);
 
   const filteredClubs = clubFilter === "all"
     ? studentClubs
@@ -86,6 +83,25 @@ function ClubsAndSocietiesPage() {
 
       {/* Main Content Area */}
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 py-10 space-y-12">
+        {/* COMMON STOCK IMAGE BANNER FOR CLUBS & CULTURAL SOCIETIES */}
+        <div className="relative aspect-[21/9] sm:aspect-[24/9] rounded-sm overflow-hidden bg-muted border border-foreground/10 shadow-xs">
+          <img
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80"
+            alt="Clubs and Cultural Societies Showcase"
+            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-6 sm:p-8">
+            <div className="text-white max-w-2xl">
+              <span className="text-xs font-bold font-oswald uppercase tracking-wider text-amber-300">
+                Mohamed Sathak A.J. College of Engineering
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-white mt-1">
+                Student Activities &amp; Cultural Heritage
+              </h2>
+            </div>
+          </div>
+        </div>
+
         {/* SPECIAL FEATURED SECTION: SPORTS CLUB */}
         {sportsClub && (
           <section id="sports-club-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
@@ -120,7 +136,7 @@ function ClubsAndSocietiesPage() {
             </div>
 
             {/* Introduction & Overview */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2 space-y-4">
                 <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2">
                   <Activity className="w-5 h-5 text-primary" />
@@ -180,29 +196,6 @@ function ClubsAndSocietiesPage() {
                 </div>
               </div>
             </div>
-
-            {/* Sports Stock Images Gallery */}
-            {sportsClub.images && (
-              <div>
-                <h4 className="text-sm font-bold font-oswald uppercase text-foreground tracking-wider mb-4">
-                  Sports &amp; Games Action Gallery
-                </h4>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  {sportsClub.images.map((imgUrl, i) => (
-                    <div key={i} className="aspect-[4/3] rounded-sm overflow-hidden bg-muted border border-foreground/10">
-                      <img
-                        src={imgUrl}
-                        alt={`Sports action ${i + 1}`}
-                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                        onError={(e) => {
-                          e.currentTarget.src = "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80";
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </section>
         )}
 
