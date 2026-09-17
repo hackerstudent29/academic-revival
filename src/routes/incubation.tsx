@@ -4,128 +4,31 @@ import { useState } from "react";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { Lightbulb, Rocket, ShieldCheck, TrendingUp, HandCoins, Microscope, ArrowRight } from "lucide-react";
 import { SecondarySubNav } from "@/components/layout/SecondarySubNav";
-
-const title = "Innovation & Incubation Cell — M.S.A.J. College of Engineering";
-const description =
-  "Build your startup prototype inside the MSAJCE Innovation & Incubation Cell with dedicated mentor support and seed grant funding.";
+const description = "Empowering student entrepreneurs, startups, and innovation ecosystems at MSAJCE through SIIF, NISP, EDC, and IIC initiatives.";
 
 export const Route = createFileRoute("/incubation")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "website" },
-    ],
-  }),
   component: IncubationPage,
 });
 
 function SiifContent() {
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-24">
       <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div className="flex flex-col gap-6">
-            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-foreground">
-              Foundation Objectives
-            </span>
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald">
-              Sathak Innovation and Incubation Foundation
-            </h2>
-            <p className="text-lg leading-relaxed text-muted-foreground font-sans">
-              The main objects to be pursued by the company upon its incorporation are:
-            </p>
-            <ul className="space-y-6 mt-2">
-              <li className="flex gap-4">
-                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground flex items-center justify-center font-bold font-oswald text-sm">A</span>
-                <p className="text-base text-muted-foreground leading-relaxed font-sans pt-1">
-                  To promote commerce, science, education and research by helping, establishing and incubating startups, individuals, teams with innovative ideas to make prototypes and to convert them into Products.
-                </p>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground flex items-center justify-center font-bold font-oswald text-sm">B</span>
-                <p className="text-base text-muted-foreground leading-relaxed font-sans pt-1">
-                  To promote a culture of innovation driven entrepreneurship in the fields of science, engineering, technology, commerce, agriculture, health care, medicine, pharmacy, education, arts, sports and other various fields.
-                </p>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground flex items-center justify-center font-bold font-oswald text-sm">C</span>
-                <p className="text-base text-muted-foreground leading-relaxed font-sans pt-1">
-                  To establish, help establish and or manage infrastructure, laboratories, to make and test prototypes/products, pilot plant production facilities, software development facilities, training and human resource development centre, propogate new scientific and technologies development and innovation from idea stage to full scale commercial production or any part of this chain. For the above purposes to assist, co-operate or collaborates with any establishment, laboratory, technology business incubators centre, organisation or institution in India or abroad.
-                </p>
-              </li>
-            </ul>
-          </div>
-          <div className="relative rounded-lg overflow-hidden border border-border bg-muted shadow-xs aspect-[4/3] lg:aspect-auto lg:h-full">
-            <img
-              src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1200&auto=format&fit=crop"
-              alt="Incubation Workspace"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Incubation Cell Initiatives */}
-      <section className="bg-card border-y border-border py-16 md:py-24">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-[11px] font-mono font-bold tracking-widest text-foreground uppercase block mb-2">
-              Incubation Cell
-            </span>
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald">
-              Programs and Initiatives
-            </h2>
-            <p className="text-base leading-relaxed text-muted-foreground font-sans mt-4">
-              Various programs and initiatives to support aspiring entrepreneurs and early-stage startups.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-page-bg border border-border p-8 rounded-md shadow-xs">
-              <h3 className="text-lg font-bold text-primary mb-3 font-oswald uppercase">Incubation Services</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed font-sans">
-                Typically include 5000 sqft. physical office space, several 100, 400, 700 seater halls for conducting events in Entrepreneurship, infrastructure, and shared resources for startups.
-              </p>
-            </div>
-            <div className="bg-page-bg border border-border p-8 rounded-md shadow-xs">
-              <h3 className="text-lg font-bold text-primary mb-3 font-oswald uppercase">Funding Opportunities</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed font-sans">
-                Funding opportunities to startups through grants, seed funding, or connections to potential investors.
-              </p>
-            </div>
-            <div className="bg-page-bg border border-border p-8 rounded-md shadow-xs">
-              <h3 className="text-lg font-bold text-primary mb-3 font-oswald uppercase">Mentorship Programs</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed font-sans">
-                Mentorship programs where experienced professionals and industry experts provide guidance and support to entrepreneurs and startups.
-              </p>
-            </div>
-            <div className="bg-page-bg border border-border p-8 rounded-md shadow-xs">
-              <h3 className="text-lg font-bold text-primary mb-3 font-oswald uppercase">Investor Network</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed font-sans">
-                Access to a network of investors, venture capitalists, and angel investors who are interested in supporting innovative ideas and startups.
-              </p>
-            </div>
-            <div className="bg-page-bg border border-border p-8 rounded-md shadow-xs">
-              <h3 className="text-lg font-bold text-primary mb-3 font-oswald uppercase">Events & Workshops</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed font-sans">
-                Organizes events, workshops, and training programs to foster innovation, entrepreneurial skills, and knowledge sharing.
-              </p>
-            </div>
-            <div className="bg-page-bg border border-border p-8 rounded-md shadow-xs">
-              <h3 className="text-lg font-bold text-primary mb-3 font-oswald uppercase">Strategic Partnerships</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed font-sans">
-                Facilitates partnerships with academic institutions, industry bodies, and government agencies to create synergies and opportunities for startups.
-              </p>
-            </div>
-          </div>
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-foreground">
+            Incubation Hub
+          </span>
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-primary font-oswald mt-4">
+            Sathak Innovation &amp; Incubation Foundation (SIIF)
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground font-sans leading-relaxed">
+            SIIF is registered under Section 8 of the Companies Act, 2013, created to foster technology-based entrepreneurship and provide seed support, mentoring, and physical infrastructure for student and faculty startups.
+          </p>
         </div>
       </section>
 
       {/* Incubation Lead */}
-      <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-24">
+      <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-24 border-t border-border">
         <div className="max-w-3xl">
           <span className="text-[11px] font-mono font-bold tracking-widest text-foreground uppercase block mb-4">Incubation Lead</span>
           <div className="border-l-4 border-primary pl-6">

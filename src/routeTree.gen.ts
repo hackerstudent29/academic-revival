@@ -27,6 +27,7 @@ import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offer
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as SocialMediaRouteImport } from './routes/social-media'
 import { Route as StudentHousingRouteImport } from './routes/student-housing'
+import { Route as StudentLifeRouteImport } from './routes/student-life'
 import { Route as AboutAccreditationsRouteImport } from './routes/about_.accreditations'
 import { Route as AboutGoverningCouncilRouteImport } from './routes/about_.governing-council'
 import { Route as AboutGroupInstitutionsRouteImport } from './routes/about_.group-institutions'
@@ -143,6 +144,11 @@ const SocialMediaRoute = SocialMediaRouteImport.update({
 const StudentHousingRoute = StudentHousingRouteImport.update({
   id: '/student-housing',
   path: '/student-housing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentLifeRoute = StudentLifeRouteImport.update({
+  id: '/student-life',
+  path: '/student-life',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutAccreditationsRoute = AboutAccreditationsRouteImport.update({
@@ -301,6 +307,7 @@ export interface FileRoutesByFullPath {
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
+  '/student-life': typeof StudentLifeRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
   '/about/governing-council': typeof AboutGoverningCouncilRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -347,6 +354,7 @@ export interface FileRoutesByTo {
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
+  '/student-life': typeof StudentLifeRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
   '/about/governing-council': typeof AboutGoverningCouncilRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -395,6 +403,7 @@ export interface FileRoutesById {
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
   '/student-housing': typeof StudentHousingRoute
+  '/student-life': typeof StudentLifeRoute
   '/about_/accreditations': typeof AboutAccreditationsRoute
   '/about_/governing-council': typeof AboutGoverningCouncilRoute
   '/about_/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -444,6 +453,7 @@ export interface FileRouteTypes {
     | '/research'
     | '/social-media'
     | '/student-housing'
+    | '/student-life'
     | '/about/accreditations'
     | '/about/governing-council'
     | '/about/group-institutions'
@@ -490,6 +500,7 @@ export interface FileRouteTypes {
     | '/research'
     | '/social-media'
     | '/student-housing'
+    | '/student-life'
     | '/about/accreditations'
     | '/about/governing-council'
     | '/about/group-institutions'
@@ -537,6 +548,7 @@ export interface FileRouteTypes {
     | '/research'
     | '/social-media'
     | '/student-housing'
+    | '/student-life'
     | '/about_/accreditations'
     | '/about_/governing-council'
     | '/about_/group-institutions'
@@ -585,6 +597,7 @@ export interface RootRouteChildren {
   ResearchRoute: typeof ResearchRoute
   SocialMediaRoute: typeof SocialMediaRoute
   StudentHousingRoute: typeof StudentHousingRoute
+  StudentLifeRoute: typeof StudentLifeRoute
   AboutAccreditationsRoute: typeof AboutAccreditationsRoute
   AboutGoverningCouncilRoute: typeof AboutGoverningCouncilRoute
   AboutGroupInstitutionsRoute: typeof AboutGroupInstitutionsRoute
@@ -731,6 +744,13 @@ declare module '@tanstack/react-router' {
       path: '/student-housing'
       fullPath: '/student-housing'
       preLoaderRoute: typeof StudentHousingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-life': {
+      id: '/student-life'
+      path: '/student-life'
+      fullPath: '/student-life'
+      preLoaderRoute: typeof StudentLifeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about_/accreditations': {
@@ -970,6 +990,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResearchRoute: ResearchRoute,
   SocialMediaRoute: SocialMediaRoute,
   StudentHousingRoute: StudentHousingRoute,
+  StudentLifeRoute: StudentLifeRoute,
   AboutAccreditationsRoute: AboutAccreditationsRoute,
   AboutGoverningCouncilRoute: AboutGoverningCouncilRoute,
   AboutGroupInstitutionsRoute: AboutGroupInstitutionsRoute,
