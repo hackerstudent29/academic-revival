@@ -53,6 +53,10 @@ import { Route as ResearchIicRouteImport } from './routes/research_.iic'
 import { Route as ResearchPatentsRouteImport } from './routes/research_.patents'
 import { Route as ResearchPublicationsRouteImport } from './routes/research_.publications'
 import { Route as ResearchStartupEcosystemRouteImport } from './routes/research_.startup-ecosystem'
+import { Route as StudentLifeClubsAndSocietiesRouteImport } from './routes/student-life_.clubs-and-societies'
+import { Route as StudentLifeProfessionalSocietiesRouteImport } from './routes/student-life_.professional-societies'
+import { Route as StudentLifeStudentHubRouteImport } from './routes/student-life_.student-hub'
+import { Route as StudentLifeTedxRouteImport } from './routes/student-life_.tedx'
 import { Route as NaacCriteriaIndexRouteImport } from './routes/naac/criteria.index'
 import { Route as NaacCriteriaIdRouteImport } from './routes/naac/criteria.$id'
 
@@ -277,6 +281,28 @@ const ResearchStartupEcosystemRoute =
     path: '/research/startup-ecosystem',
     getParentRoute: () => rootRouteImport,
   } as any)
+const StudentLifeClubsAndSocietiesRoute =
+  StudentLifeClubsAndSocietiesRouteImport.update({
+    id: '/student-life_/clubs-and-societies',
+    path: '/student-life/clubs-and-societies',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const StudentLifeProfessionalSocietiesRoute =
+  StudentLifeProfessionalSocietiesRouteImport.update({
+    id: '/student-life_/professional-societies',
+    path: '/student-life/professional-societies',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const StudentLifeStudentHubRoute = StudentLifeStudentHubRouteImport.update({
+  id: '/student-life_/student-hub',
+  path: '/student-life/student-hub',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentLifeTedxRoute = StudentLifeTedxRouteImport.update({
+  id: '/student-life_/tedx',
+  path: '/student-life/tedx',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NaacCriteriaIndexRoute = NaacCriteriaIndexRouteImport.update({
   id: '/criteria/',
   path: '/criteria/',
@@ -331,6 +357,10 @@ export interface FileRoutesByFullPath {
   '/research/patents': typeof ResearchPatentsRoute
   '/research/publications': typeof ResearchPublicationsRoute
   '/research/startup-ecosystem': typeof ResearchStartupEcosystemRoute
+  '/student-life/clubs-and-societies': typeof StudentLifeClubsAndSocietiesRoute
+  '/student-life/professional-societies': typeof StudentLifeProfessionalSocietiesRoute
+  '/student-life/student-hub': typeof StudentLifeStudentHubRoute
+  '/student-life/tedx': typeof StudentLifeTedxRoute
   '/naac/': typeof NaacIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
   '/naac/criteria/$id': typeof NaacCriteriaIdRoute
@@ -378,6 +408,10 @@ export interface FileRoutesByTo {
   '/research/patents': typeof ResearchPatentsRoute
   '/research/publications': typeof ResearchPublicationsRoute
   '/research/startup-ecosystem': typeof ResearchStartupEcosystemRoute
+  '/student-life/clubs-and-societies': typeof StudentLifeClubsAndSocietiesRoute
+  '/student-life/professional-societies': typeof StudentLifeProfessionalSocietiesRoute
+  '/student-life/student-hub': typeof StudentLifeStudentHubRoute
+  '/student-life/tedx': typeof StudentLifeTedxRoute
   '/naac': typeof NaacIndexRoute
   '/programmes': typeof ProgrammesIndexRoute
   '/naac/criteria/$id': typeof NaacCriteriaIdRoute
@@ -427,6 +461,10 @@ export interface FileRoutesById {
   '/research_/patents': typeof ResearchPatentsRoute
   '/research_/publications': typeof ResearchPublicationsRoute
   '/research_/startup-ecosystem': typeof ResearchStartupEcosystemRoute
+  '/student-life_/clubs-and-societies': typeof StudentLifeClubsAndSocietiesRoute
+  '/student-life_/professional-societies': typeof StudentLifeProfessionalSocietiesRoute
+  '/student-life_/student-hub': typeof StudentLifeStudentHubRoute
+  '/student-life_/tedx': typeof StudentLifeTedxRoute
   '/naac/': typeof NaacIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
   '/naac/criteria/$id': typeof NaacCriteriaIdRoute
@@ -477,6 +515,10 @@ export interface FileRouteTypes {
     | '/research/patents'
     | '/research/publications'
     | '/research/startup-ecosystem'
+    | '/student-life/clubs-and-societies'
+    | '/student-life/professional-societies'
+    | '/student-life/student-hub'
+    | '/student-life/tedx'
     | '/naac/'
     | '/programmes/'
     | '/naac/criteria/$id'
@@ -524,6 +566,10 @@ export interface FileRouteTypes {
     | '/research/patents'
     | '/research/publications'
     | '/research/startup-ecosystem'
+    | '/student-life/clubs-and-societies'
+    | '/student-life/professional-societies'
+    | '/student-life/student-hub'
+    | '/student-life/tedx'
     | '/naac'
     | '/programmes'
     | '/naac/criteria/$id'
@@ -572,6 +618,10 @@ export interface FileRouteTypes {
     | '/research_/patents'
     | '/research_/publications'
     | '/research_/startup-ecosystem'
+    | '/student-life_/clubs-and-societies'
+    | '/student-life_/professional-societies'
+    | '/student-life_/student-hub'
+    | '/student-life_/tedx'
     | '/naac/'
     | '/programmes/'
     | '/naac/criteria/$id'
@@ -615,6 +665,10 @@ export interface RootRouteChildren {
   ResearchPatentsRoute: typeof ResearchPatentsRoute
   ResearchPublicationsRoute: typeof ResearchPublicationsRoute
   ResearchStartupEcosystemRoute: typeof ResearchStartupEcosystemRoute
+  StudentLifeClubsAndSocietiesRoute: typeof StudentLifeClubsAndSocietiesRoute
+  StudentLifeProfessionalSocietiesRoute: typeof StudentLifeProfessionalSocietiesRoute
+  StudentLifeStudentHubRoute: typeof StudentLifeStudentHubRoute
+  StudentLifeTedxRoute: typeof StudentLifeTedxRoute
   ProgrammesIndexRoute: typeof ProgrammesIndexRoute
 }
 
@@ -928,6 +982,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchStartupEcosystemRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/student-life_/clubs-and-societies': {
+      id: '/student-life_/clubs-and-societies'
+      path: '/student-life/clubs-and-societies'
+      fullPath: '/student-life/clubs-and-societies'
+      preLoaderRoute: typeof StudentLifeClubsAndSocietiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-life_/professional-societies': {
+      id: '/student-life_/professional-societies'
+      path: '/student-life/professional-societies'
+      fullPath: '/student-life/professional-societies'
+      preLoaderRoute: typeof StudentLifeProfessionalSocietiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-life_/student-hub': {
+      id: '/student-life_/student-hub'
+      path: '/student-life/student-hub'
+      fullPath: '/student-life/student-hub'
+      preLoaderRoute: typeof StudentLifeStudentHubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-life_/tedx': {
+      id: '/student-life_/tedx'
+      path: '/student-life/tedx'
+      fullPath: '/student-life/tedx'
+      preLoaderRoute: typeof StudentLifeTedxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/naac/criteria/': {
       id: '/naac/criteria/'
       path: '/criteria'
@@ -1008,6 +1090,10 @@ const rootRouteChildren: RootRouteChildren = {
   ResearchPatentsRoute: ResearchPatentsRoute,
   ResearchPublicationsRoute: ResearchPublicationsRoute,
   ResearchStartupEcosystemRoute: ResearchStartupEcosystemRoute,
+  StudentLifeClubsAndSocietiesRoute: StudentLifeClubsAndSocietiesRoute,
+  StudentLifeProfessionalSocietiesRoute: StudentLifeProfessionalSocietiesRoute,
+  StudentLifeStudentHubRoute: StudentLifeStudentHubRoute,
+  StudentLifeTedxRoute: StudentLifeTedxRoute,
   ProgrammesIndexRoute: ProgrammesIndexRoute,
 }
 export const routeTree = rootRouteImport
