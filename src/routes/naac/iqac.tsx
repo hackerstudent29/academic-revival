@@ -5,6 +5,7 @@ import iqacMembers from "@/data/iqac-members.json";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useHeader } from "@/context/HeaderContext";
+import { SecondarySubNav } from "@/components/layout/SecondarySubNav";
 
 export const Route = createFileRoute("/naac/iqac")({
   component: IQAC,
@@ -22,59 +23,86 @@ function IQAC() {
     { id: "feedback", label: "Feedback Forms", icon: FileText },
   ];
 
-  const { isHeaderHidden, isScrolled } = useHeader();
-  const shouldShiftDown = !isHeaderHidden && isScrolled;
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const shiftAmount = isMobile ? 57 : 65;
-
   return (
     <div className="flex flex-col min-h-screen bg-[#F7F7F5] dark:bg-[#121214]">
       {/* SECONDARY HORIZONTAL NAV */}
-      <motion.div
-        initial={false}
-        animate={{ y: shouldShiftDown ? shiftAmount : 0 }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        className="sticky top-0 z-40 w-full bg-background/80 backdrop-blur-xl border-b border-foreground/10 shadow-sm"
-      >
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12 h-14 flex items-center overflow-x-auto no-scrollbar">
-          <div className="flex items-center gap-6 md:gap-8 min-w-max">
-            <span className="font-oswald font-black text-primary tracking-wider uppercase text-sm md:text-base border-r-[3px] border-primary/20 pr-6 mr-2 transition-opacity">
-              IQAC
-            </span>
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`text-xs md:text-sm font-oswald uppercase tracking-wider whitespace-nowrap transition-colors hover:text-primary ${
-                  activeTab === tab.id ? "text-primary font-black" : "text-foreground/80 font-bold"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+      <SecondarySubNav
+        title="IQAC"
+        tabs={tabs}
+        activeTab={activeTab}
+        onSelectTab={(id) => {
+          setActiveTab(id);
+          const contentContainer = document.getElementById('iqac-main-content');
+          if (contentContainer) {
+            const yOffset = -120;
+            const y = contentContainer.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        }}
+      />
+      {/* HERO SECTION */}
+      {activeTab === "overview" ? (
+        <section className="relative w-full h-[60vh] min-h-[500px] flex items-center">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <img 
+              src="/images/accreditations_campus.jpg" 
+              alt="MSAJCE Campus" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/60 mix-blend-multiply" />
           </div>
-        </div>
-      </motion.div>
-      {/* HEADER SECTION */}
-      <section className="relative pt-12 pb-8 bg-background border-b border-border">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12 w-full">
-          <Reveal>
-            <div className="flex flex-col max-w-4xl">
-              <span className="text-primary font-bold uppercase tracking-wider text-sm mb-2">Quality Assurance</span>
-              <h1 className="text-4xl md:text-6xl font-black font-oswald uppercase text-foreground">IQAC</h1>
-              <p className="mt-4 text-muted-foreground font-sans text-base md:text-lg max-w-2xl">
-                Internal Quality Assurance Cell
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+
+          {/* Hero Content Panel */}
+          <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-12 w-full pt-16">
+            <Reveal variant="rise">
+              <div className="max-w-2xl bg-background/95 backdrop-blur-md p-8 md:p-12 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border-l-4 border-primary shadow-2xl">
+                <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block font-mono">
+                  Quality Assurance
+                </span>
+                <h1 className="text-5xl md:text-7xl font-black font-oswald text-foreground mb-2">
+                  IQAC
+                </h1>
+                <h2 className="text-xl md:text-3xl font-oswald text-foreground/80 mb-6">
+                  Internal Quality Assurance Cell
+                </h2>
+                <p className="text-base md:text-lg text-muted-foreground font-sans">
+                  Conscious, consistent, and catalytic improvement in institutional performance.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      ) : (
+        <section className="pt-16 md:pt-24 pb-12 md:pb-16 px-6 md:px-12 relative overflow-hidden bg-cover bg-center">
+          <div className="absolute inset-0 z-0">
+            <img 
+              src="/images/accreditations_campus.jpg" 
+              alt="MSAJCE Campus" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/40" />
+          </div>
+          <div className="mx-auto max-w-[1440px] relative z-10 pt-6">
+            <Reveal>
+              <div className="flex flex-col gap-2 max-w-3xl">
+                <span className="text-white/90 font-bold uppercase tracking-widest text-sm font-mono border-l-2 border-primary pl-3 drop-shadow-sm">
+                  Internal Quality Assurance Cell (IQAC)
+                </span>
+                <h1 className="text-4xl md:text-6xl font-black font-oswald uppercase text-white drop-shadow-md">
+                  {tabs.find((t) => t.id === activeTab)?.label}
+                </h1>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* CONTENT SECTION */}
-      <section className="mx-auto max-w-[1440px] px-6 md:px-12 py-12 w-full flex-grow flex flex-col gap-8 lg:gap-12">
+      {/* CONTENT SECTION */}
+      <section id="iqac-main-content" className="mx-auto max-w-[1440px] px-6 md:px-12 py-12 w-full flex-grow flex flex-col gap-8 lg:gap-12">
         {/* MAIN CONTENT AREA */}
         <div className="w-full">
-          <Reveal key={activeTab} variant="blur">
             <div className="space-y-12">
               
               {/* OVERVIEW TAB */}
@@ -302,7 +330,6 @@ function IQAC() {
               )}
               
             </div>
-          </Reveal>
         </div>
       </section>
     </div>
