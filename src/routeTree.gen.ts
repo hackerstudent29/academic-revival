@@ -18,6 +18,7 @@ import { Route as CampusLifeRouteImport } from './routes/campus-life'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreditsRouteImport } from './routes/credits'
 import { Route as CurriculumAndSyllabusRouteImport } from './routes/curriculum-and-syllabus'
+import { Route as IncubationRouteImport } from './routes/incubation'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as NaacRouteImport } from './routes/naac'
 import { Route as NirfRouteImport } from './routes/nirf'
@@ -97,6 +98,11 @@ const CreditsRoute = CreditsRouteImport.update({
 const CurriculumAndSyllabusRoute = CurriculumAndSyllabusRouteImport.update({
   id: '/curriculum-and-syllabus',
   path: '/curriculum-and-syllabus',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IncubationRoute = IncubationRouteImport.update({
+  id: '/incubation',
+  path: '/incubation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LibraryRoute = LibraryRouteImport.update({
@@ -286,6 +292,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
+  '/incubation': typeof IncubationRoute
   '/library': typeof LibraryRoute
   '/naac': typeof NaacRouteWithChildren
   '/nirf': typeof NirfRoute
@@ -332,6 +339,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
+  '/incubation': typeof IncubationRoute
   '/library': typeof LibraryRoute
   '/nirf': typeof NirfRoute
   '/placements': typeof PlacementsRoute
@@ -378,6 +386,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
+  '/incubation': typeof IncubationRoute
   '/library': typeof LibraryRoute
   '/naac': typeof NaacRouteWithChildren
   '/nirf': typeof NirfRoute
@@ -426,6 +435,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/credits'
     | '/curriculum-and-syllabus'
+    | '/incubation'
     | '/library'
     | '/naac'
     | '/nirf'
@@ -472,6 +482,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/credits'
     | '/curriculum-and-syllabus'
+    | '/incubation'
     | '/library'
     | '/nirf'
     | '/placements'
@@ -517,6 +528,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/credits'
     | '/curriculum-and-syllabus'
+    | '/incubation'
     | '/library'
     | '/naac'
     | '/nirf'
@@ -564,6 +576,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CreditsRoute: typeof CreditsRoute
   CurriculumAndSyllabusRoute: typeof CurriculumAndSyllabusRoute
+  IncubationRoute: typeof IncubationRoute
   LibraryRoute: typeof LibraryRoute
   NaacRoute: typeof NaacRouteWithChildren
   NirfRoute: typeof NirfRoute
@@ -655,6 +668,13 @@ declare module '@tanstack/react-router' {
       path: '/curriculum-and-syllabus'
       fullPath: '/curriculum-and-syllabus'
       preLoaderRoute: typeof CurriculumAndSyllabusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/incubation': {
+      id: '/incubation'
+      path: '/incubation'
+      fullPath: '/incubation'
+      preLoaderRoute: typeof IncubationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/library': {
@@ -941,6 +961,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CreditsRoute: CreditsRoute,
   CurriculumAndSyllabusRoute: CurriculumAndSyllabusRoute,
+  IncubationRoute: IncubationRoute,
   LibraryRoute: LibraryRoute,
   NaacRoute: NaacRouteWithChildren,
   NirfRoute: NirfRoute,
