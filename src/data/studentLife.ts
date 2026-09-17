@@ -14,6 +14,12 @@ export interface StudentClub {
   category: "technical" | "cultural" | "sports" | "media" | "eco";
   tagline: string;
   description: string;
+  motto?: string;
+  vision?: string;
+  objectives?: string[];
+  outdoorGames?: string[];
+  indoorGames?: string[];
+  images?: string[];
   activities: string[];
   membersCount: string;
   iconName: string;
@@ -120,12 +126,44 @@ export const studentClubs: StudentClub[] = [
     name: "Sports Club",
     category: "sports",
     tagline: "Athletic Excellence & Team Spirit",
-    description: "Fostering physical fitness, competitive sportsmanship, athletic training, and representing MSAJCE in inter-collegiate, state, and zonal tournaments.",
+    motto: "Teamwork Makes The Dream Work",
+    vision: "To encourage and motivate students to involve in various sports activities at both inter and intra college level.",
+    description: "This club maintains records of sports and games events attended by students within the college, within the university, and outside at the region/state/national level and their achievements/awards. We submit annual reports on sports events, budget allocations, and organize competitive sports events, rewarding winners with trophies and medals 🏅. All kinds of sports events take place in this club.",
+    objectives: [
+      "To build up sportsmanship.",
+      "To foster intimate friendships.",
+      "To reduce stress and improve health.",
+      "To improve skills and enhance employability.",
+      "To support in developing positive attitude, self-confidence, courage and patience.",
+      "To get opportunities to see the community closely and thus gets an experience of human nature in relation to his / her environment.",
+      "To avail the opportunity to meet the people from different walks of life."
+    ],
+    outdoorGames: [
+      "Cricket",
+      "Football",
+      "Volleyball",
+      "Basketball",
+      "Rugby",
+      "Badminton",
+      "Kho Kho",
+      "Throwball"
+    ],
+    indoorGames: [
+      "Carrom",
+      "Table Tennis",
+      "Chess"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80"
+    ],
     activities: [
-      "Annual Intra-College Sports Championship",
+      "Annual Intra-College Sports Championship & Medals Ceremony",
       "Inter-Collegiate Anna University Zone Tournaments",
-      "Daily Coaching & Fitness Conditioning Sessions",
-      "Cricket, Football, Basketball & Track Athletics Events"
+      "Daily Athletic Coaching & Fitness Conditioning Sessions",
+      "Cricket, Football, Basketball & Track Athletics Leagues"
     ],
     membersCount: "450+ Athletes",
     iconName: "Trophy",

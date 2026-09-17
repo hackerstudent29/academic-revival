@@ -1,11 +1,23 @@
 import { useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Sparkles, ArrowRight } from "lucide-react";
+import {
+  Sparkles,
+  ArrowRight,
+  Trophy,
+  Target,
+  Heart,
+  Users,
+  Award,
+  CheckCircle2,
+  ChevronRight,
+  Activity,
+  Dumbbell
+} from "lucide-react";
 import { studentClubs } from "@/data/studentLife";
 
 const title = "Clubs & Cultural Societies | Student Life | MSAJCE";
 const description =
-  "Explore the 8 official student clubs at Mohamed Sathak A.J. College of Engineering: Sports Club, Fine Arts Club, Science Club, Tamil Mandram, Coding Club, Robotic Club, Energy & Eco Club, and Photography Club.";
+  "Explore official student clubs at Mohamed Sathak A.J. College of Engineering: Sports Club, Fine Arts Club, Science Club, Tamil Mandram, Coding Club, Robotic Club, Energy & Eco Club, and Photography Club.";
 
 export const Route = createFileRoute("/student-life_/clubs-and-societies")({
   head: () => ({
@@ -24,10 +36,13 @@ export const Route = createFileRoute("/student-life_/clubs-and-societies")({
 function ClubsAndSocietiesPage() {
   const navigate = useNavigate();
   const [clubFilter, setClubFilter] = useState<string>("all");
+  const [selectedClubId, setSelectedClubId] = useState<string | null>(null);
 
   const filteredClubs = clubFilter === "all"
     ? studentClubs
     : studentClubs.filter(c => c.category === clubFilter);
+
+  const sportsClub = studentClubs.find(c => c.id === "sports-club");
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
@@ -43,7 +58,7 @@ function ClubsAndSocietiesPage() {
               Clubs &amp; Cultural Societies
             </h1>
             <p className="mt-4 text-base sm:text-lg text-white/90 font-sans leading-relaxed">
-              Student-led forums driving technical innovation, fine arts, sports excellence, literary heritage, robotics, green energy, and visual photojournalism.
+              Student-led forums driving athletic excellence, technical innovation, fine arts, Tamil literary heritage, robotics, green sustainability, and visual photojournalism.
             </p>
           </div>
 
@@ -70,14 +85,135 @@ function ClubsAndSocietiesPage() {
       </section>
 
       {/* Main Content Area */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 py-10 space-y-8">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 py-10 space-y-12">
+        {/* SPECIAL FEATURED SECTION: SPORTS CLUB */}
+        {sportsClub && (
+          <section id="sports-club-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-black font-oswald uppercase text-white bg-primary px-2.5 py-0.5 rounded-xs flex items-center gap-1">
+                    <Trophy className="w-3.5 h-3.5 text-amber-300" />
+                    Featured Official Club
+                  </span>
+                  <span className="text-xs font-bold font-oswald text-primary uppercase">
+                    {sportsClub.membersCount}
+                  </span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-black font-oswald uppercase text-foreground">
+                  {sportsClub.name}
+                </h2>
+                <p className="text-base font-bold font-oswald text-primary uppercase tracking-wider mt-1">
+                  Motto: "{sportsClub.motto}"
+                </p>
+              </div>
+
+              {/* Vision Box */}
+              <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-4 rounded-sm max-w-xl">
+                <span className="text-xs font-bold font-oswald uppercase text-primary tracking-wider block mb-1">
+                  Club Vision:
+                </span>
+                <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed italic">
+                  "{sportsClub.vision}"
+                </p>
+              </div>
+            </div>
+
+            {/* Introduction & Overview */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+              <div className="lg:col-span-2 space-y-4">
+                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2">
+                  <Activity className="w-5 h-5 text-primary" />
+                  Introduction &amp; Mandate
+                </h3>
+                <p className="text-sm font-sans text-muted-foreground leading-relaxed">
+                  {sportsClub.description}
+                </p>
+
+                {/* Objectives */}
+                {sportsClub.objectives && (
+                  <div className="mt-6 pt-6 border-t border-foreground/10">
+                    <h4 className="text-sm font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                      <Target className="w-4 h-4" />
+                      Club Objectives:
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {sportsClub.objectives.map((obj, i) => (
+                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-background/60 p-2.5 rounded-sm border border-foreground/5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                          <span>{obj}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Outdoor & Indoor Games Card */}
+              <div className="bg-background dark:bg-[#121214] border border-foreground/10 rounded-sm p-6 space-y-6">
+                <div>
+                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                    <Dumbbell className="w-4 h-4" />
+                    Outdoor Games (8 Discipline Arenas)
+                  </h4>
+                  <div className="flex flex-wrap gap-1.5">
+                    {sportsClub.outdoorGames?.map((game, idx) => (
+                      <span key={idx} className="text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-xs">
+                        ⚽ {game}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-foreground/10">
+                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                    <Award className="w-4 h-4 text-amber-500" />
+                    Indoor Games (3 Tournament Arenas)
+                  </h4>
+                  <div className="flex flex-wrap gap-1.5">
+                    {sportsClub.indoorGames?.map((game, idx) => (
+                      <span key={idx} className="text-xs font-bold font-oswald uppercase bg-foreground/10 text-foreground border border-foreground/20 px-2.5 py-1 rounded-xs">
+                        ♟️ {game}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Sports Stock Images Gallery */}
+            {sportsClub.images && (
+              <div>
+                <h4 className="text-sm font-bold font-oswald uppercase text-foreground tracking-wider mb-4">
+                  Sports &amp; Games Action Gallery
+                </h4>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  {sportsClub.images.map((imgUrl, i) => (
+                    <div key={i} className="aspect-[4/3] rounded-sm overflow-hidden bg-muted border border-foreground/10">
+                      <img
+                        src={imgUrl}
+                        alt={`Sports action ${i + 1}`}
+                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                        onError={(e) => {
+                          e.currentTarget.src = "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80";
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
+        )}
+
+        {/* Directory Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-foreground/10 pb-4">
           <div>
             <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground">
-              Official Student Clubs
+              Official Student Clubs Directory
             </h2>
             <p className="text-sm text-muted-foreground font-sans mt-1">
-              Explore our 8 specialized student clubs across sports, technical, arts, literary, eco, and media categories.
+              Explore all 8 specialized student clubs across sports, technical, arts, literary, eco, and media categories.
             </p>
           </div>
 
@@ -130,7 +266,7 @@ function ClubsAndSocietiesPage() {
                 <p className="text-xs font-bold font-oswald uppercase text-primary/90 mt-1">
                   "{club.tagline}"
                 </p>
-                <p className="text-sm font-sans text-muted-foreground mt-3 leading-relaxed">
+                <p className="text-sm font-sans text-muted-foreground mt-3 leading-relaxed line-clamp-3">
                   {club.description}
                 </p>
 
