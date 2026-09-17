@@ -5,7 +5,7 @@ import { studentClubs } from "@/data/studentLife";
 
 const title = "Clubs & Cultural Societies | Student Life | MSAJCE";
 const description =
-  "Explore 24+ student-driven clubs and cultural societies at Mohamed Sathak A.J. College of Engineering. TechCraft, Kala-Kriti, Rhythm & Beats, Orators Debating, NSS & YRC.";
+  "Explore the 8 official student clubs at Mohamed Sathak A.J. College of Engineering: Sports Club, Fine Arts Club, Science Club, Tamil Mandram, Coding Club, Robotic Club, Energy & Eco Club, and Photography Club.";
 
 export const Route = createFileRoute("/student-life_/clubs-and-societies")({
   head: () => ({
@@ -43,18 +43,18 @@ function ClubsAndSocietiesPage() {
               Clubs &amp; Cultural Societies
             </h1>
             <p className="mt-4 text-base sm:text-lg text-white/90 font-sans leading-relaxed">
-              Student-led forums driving technical innovation, cultural arts, media production, debaters, and community social impact.
+              Student-led forums driving technical innovation, fine arts, sports excellence, literary heritage, robotics, green energy, and visual photojournalism.
             </p>
           </div>
 
           {/* Quick Metrics */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-white/15">
             <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">24+ Clubs</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Active Student Forums</span>
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">8 Clubs</span>
+              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Official Student Forums</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">1,500+</span>
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">2,400+</span>
               <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Active Student Members</span>
             </div>
             <div className="flex flex-col">
@@ -74,21 +74,22 @@ function ClubsAndSocietiesPage() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-foreground/10 pb-4">
           <div>
             <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground">
-              Student Clubs Directory
+              Official Student Clubs
             </h2>
             <p className="text-sm text-muted-foreground font-sans mt-1">
-              Explore student clubs across engineering, arts, performing, and social welfare categories.
+              Explore our 8 specialized student clubs across sports, technical, arts, literary, eco, and media categories.
             </p>
           </div>
 
           {/* Filter Pills */}
           <div className="flex flex-wrap gap-2">
             {[
-              { id: "all", label: "All Clubs" },
-              { id: "technical", label: "Technical" },
-              { id: "cultural", label: "Cultural & Arts" },
+              { id: "all", label: "All 8 Clubs" },
+              { id: "technical", label: "Technical & Science" },
+              { id: "cultural", label: "Cultural & Literary" },
+              { id: "sports", label: "Sports" },
               { id: "media", label: "Media" },
-              { id: "social", label: "Social Service" },
+              { id: "eco", label: "Eco & Green" },
             ].map(f => (
               <button
                 key={f.id}
@@ -135,7 +136,7 @@ function ClubsAndSocietiesPage() {
 
                 <div className="mt-4 pt-4 border-t border-foreground/10">
                   <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2">
-                    Key Initiatives:
+                    Key Initiatives &amp; Activities:
                   </h4>
                   <ul className="space-y-1.5">
                     {club.activities.map((act, i) => (
@@ -157,28 +158,28 @@ function ClubsAndSocietiesPage() {
             Annual Flagship Festivals
           </h3>
           <p className="text-sm text-muted-foreground font-sans mb-6">
-            Major state-level annual college conventions hosted on MSAJCE campus.
+            Major state-level annual college conventions driven by our student clubs on MSAJCE campus.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="p-4 border border-foreground/10 rounded-sm bg-background">
               <span className="text-xs font-black font-oswald uppercase text-primary">Annual Cultural Fest</span>
               <h4 className="text-lg font-black font-oswald uppercase text-foreground mt-1">TAKSHASHILA</h4>
               <p className="text-xs text-muted-foreground font-sans mt-2">
-                3-day inter-collegiate cultural extravaganza featuring music battles, dance troupes, drama, and celebrity star nights.
+                3-day inter-collegiate cultural extravaganza featuring music battles, dance troupes, drama, Fine Arts exhibitions, and Tamil Mandram galas.
               </p>
             </div>
             <div className="p-4 border border-foreground/10 rounded-sm bg-background">
               <span className="text-xs font-black font-oswald uppercase text-primary">Technical Symposium</span>
               <h4 className="text-lg font-black font-oswald uppercase text-foreground mt-1">INNOVIX</h4>
               <p className="text-xs text-muted-foreground font-sans mt-2">
-                National level technical symposium with paper presentations, hackathons, robotics racing, and CAD modeling contests.
+                National level technical symposium organized by Coding Club, Robotic Club, and Science Club with code sprints, robo-soccer, and science paper presentations.
               </p>
             </div>
             <div className="p-4 border border-foreground/10 rounded-sm bg-background">
               <span className="text-xs font-black font-oswald uppercase text-primary">Sports Championship</span>
               <h4 className="text-lg font-black font-oswald uppercase text-foreground mt-1">SPORTS FIESTA</h4>
               <p className="text-xs text-muted-foreground font-sans mt-2">
-                Annual athletic meet and inter-department sports tournament spanning cricket, football, basketball, and athletics.
+                Annual athletic meet and inter-department sports tournament organized by Sports Club spanning cricket, football, basketball, and track athletics.
               </p>
             </div>
           </div>

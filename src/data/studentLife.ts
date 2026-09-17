@@ -11,7 +11,7 @@ export interface StudentHubAmenity {
 export interface StudentClub {
   id: string;
   name: string;
-  category: "technical" | "cultural" | "social" | "sports" | "media";
+  category: "technical" | "cultural" | "sports" | "media" | "eco";
   tagline: string;
   description: string;
   activities: string[];
@@ -48,7 +48,7 @@ export const studentLifeOverview = {
   subtitle: "Empowering Curiosity, Creativity, Leadership & Global Connections",
   description: "At Mohamed Sathak A.J. College of Engineering, life beyond the classroom is vibrant, inclusive, and transformative. From state-of-the-art recreation hubs and student-led clubs to prestigious international professional society chapters and our official TEDx chapter, we foster a rich ecosystem for holistic development.",
   stats: [
-    { label: "Active Student Clubs", value: "24+" },
+    { label: "Active Student Clubs", value: "8 Flagship Clubs" },
     { label: "Professional Chapters", value: "8" },
     { label: "Annual Campus Events", value: "50+" },
     { label: "TEDx Talks Delivered", value: "18+" },
@@ -116,100 +116,132 @@ export const studentHubAmenities: StudentHubAmenity[] = [
 
 export const studentClubs: StudentClub[] = [
   {
-    id: "techcraft",
-    name: "TechCraft Innovation Club",
-    category: "technical",
-    tagline: "Coding, Hackathons & Future Technologies",
-    description: "Platform for tech enthusiasts to collaborate on open-source projects, build full-stack apps, solve algorithmic challenges, and participate in national hackathons.",
+    id: "sports-club",
+    name: "Sports Club",
+    category: "sports",
+    tagline: "Athletic Excellence & Team Spirit",
+    description: "Fostering physical fitness, competitive sportsmanship, athletic training, and representing MSAJCE in inter-collegiate, state, and zonal tournaments.",
     activities: [
-      "Weekly 24-hour hackathons & code sprints",
-      "Hands-on workshops on React, AI/ML, and DevOps",
-      "Annual Inter-College Code Wars Competition",
-      "GitHub & Open-Source contribution mentorship"
+      "Annual Intra-College Sports Championship",
+      "Inter-Collegiate Anna University Zone Tournaments",
+      "Daily Coaching & Fitness Conditioning Sessions",
+      "Cricket, Football, Basketball & Track Athletics Events"
     ],
-    membersCount: "350+ Active Members",
+    membersCount: "450+ Athletes",
+    iconName: "Trophy",
+    badge: "Sports & Fitness"
+  },
+  {
+    id: "fine-arts-club",
+    name: "Fine Arts Club",
+    category: "cultural",
+    tagline: "Unleashing Creativity & Artistic Expression",
+    description: "Nurturing creative visual expression through sketching, painting, digital art, poster design, clay sculpting, and campus wall mural installations.",
+    activities: [
+      "Annual Campus Art Exhibition & Live Painting Showcase",
+      "Digital Illustration & UI/UX Design Masterclasses",
+      "Inter-Collegiate Rangoli & Poster Making Contests",
+      "Cultural Festival Stage Set Designing"
+    ],
+    membersCount: "250+ Artists",
+    iconName: "Palette",
+    badge: "Fine Arts"
+  },
+  {
+    id: "science-club",
+    name: "Science Club",
+    category: "technical",
+    tagline: "Exploring Scientific Frontiers & Innovation",
+    description: "Igniting curiosity in fundamental science, physics/chemistry experiments, scientific quizzes, astronomy observation nights, and research paper presentations.",
+    activities: [
+      "National Science Day Exhibition & Model Competition",
+      "State-Level Science Quiz & Poster Contest",
+      "Applied Physics & Green Chemistry Experiments",
+      "Astronomy & Telescope Stargazing Workshops"
+    ],
+    membersCount: "200+ Researchers",
+    iconName: "Microscope",
+    badge: "Science & Research"
+  },
+  {
+    id: "tamil-mandram",
+    name: "Tamil Mandram",
+    category: "cultural",
+    tagline: "தமிழ் மொழி, பண்பாடு மற்றும் கலை வளர்ச்சி",
+    description: "Promoting rich Tamil language heritage, classical literature, debates (Pattimandram), poetry (Kavithai), traditional folk arts, and celebrating Tamil festivals.",
+    activities: [
+      "Muthamizh Vizha Annual Cultural Extravaganza",
+      "Inter-College Pattimandram (Debate) & Kavithai Contests",
+      "Traditional Folk Arts & Villu Paattu Performances",
+      "Thirukkural Recitation & Tamil Essay Writing Competitions"
+    ],
+    membersCount: "300+ Members",
+    iconName: "BookOpen",
+    badge: "Literary & Cultural"
+  },
+  {
+    id: "coding-club",
+    name: "Coding Club",
+    category: "technical",
+    tagline: "Code, Build & Solve Real-World Problems",
+    description: "Dedicated to competitive programming, full-stack software development, open-source projects, LeetCode sprints, and hackathons.",
+    activities: [
+      "Weekly 24-Hour CodeWars Hackathons",
+      "DSA & Algorithmic Problem Solving Bootcamps",
+      "Open Source & GitHub Contribution Drives",
+      "Web3, AI & Full-Stack Application Tech Sprints"
+    ],
+    membersCount: "500+ Coders",
     iconName: "Code",
     badge: "Technical"
   },
   {
-    id: "kalakriti",
-    name: "Kala-Kriti Fine Arts & Creative Club",
-    category: "cultural",
-    tagline: "Expressing Imagination Through Art & Design",
-    description: "Nurturing creative visual expression through painting, digital art, poster design, clay modeling, and artistic installations for college festivals.",
+    id: "robotic-club",
+    name: "Robotic Club",
+    category: "technical",
+    tagline: "Engineering Autonomous & Intelligent Machines",
+    description: "Hands-on design, circuit assembly, microcontrollers (Arduino, Raspberry Pi, STM32), ROS, Line Followers, Robo-Wars, and Autonomous Drones.",
     activities: [
-      "Annual Art Exhibition & Live Painting Showcase",
-      "Digital illustration & UI/UX design masterclasses",
-      "Campus wall mural painting initiatives",
-      "Inter-collegiate Rangoli & Poster Making contests"
+      "Robo-Soccer & Line Follower Robot Races",
+      "Drone Fabrication & Flight Control Workshops",
+      "IoT & Embedded Systems Circuit Design Bootcamps",
+      "National Robotics League Competition Entry"
     ],
-    membersCount: "200+ Artists",
-    iconName: "Palette",
-    badge: "Arts & Design"
+    membersCount: "220+ Roboticists",
+    iconName: "Cpu",
+    badge: "Robotics & IoT"
   },
   {
-    id: "rhythm-beats",
-    name: "Rhythm & Beats Music & Performing Arts",
-    category: "cultural",
-    tagline: "The Soul of MSAJCE Culture",
-    description: "Bringing together vocalists, instrumentalists, classical dancers, and theatrical artists to perform at major college galas, state-level fests, and cultural showcases.",
+    id: "energy-eco-club",
+    name: "Energy & Eco Club",
+    category: "eco",
+    tagline: "Green Energy, Sustainability & Environmental Care",
+    description: "Driving renewable solar energy awareness, campus tree plantation, zero-plastic initiatives, e-waste recycling, and energy audit campaigns.",
     activities: [
-      "Annual College Band Competitions",
-      "Street Play (Nukkad Natak) for social awareness",
-      "Classical & Fusion Dance Ensembles",
-      "Acoustic music jam sessions at SAC amphitheatre"
+      "Annual Campus Tree Plantation & Green Cover Drives",
+      "Renewable Solar Energy Awareness Seminars",
+      "Campus Plastic-Free & Coastal Beach Cleanups",
+      "E-Waste Collection & Recycling Campaigns"
     ],
-    membersCount: "180+ Performers",
-    iconName: "Music",
-    badge: "Performing Arts"
+    membersCount: "350+ Eco Warriors",
+    iconName: "Leaf",
+    badge: "Eco & Sustainability"
   },
   {
-    id: "the-orators",
-    name: "The Orators Debating & Literary Society",
-    category: "cultural",
-    tagline: "Voice, Vision & Eloquence",
-    description: "Honing public speaking, parliamentary debating, creative writing, Model United Nations (MUN) simulation, and editing the annual college magazine.",
-    activities: [
-      "MSAJCE Model United Nations (MUN) Conference",
-      "Turncoat & Parliamentary Debate Tournaments",
-      "Poetry Slams & Creative Writing Competitions",
-      "College Annual Magazine 'KALEIDOSCOPE' Editing"
-    ],
-    membersCount: "150+ Debaters",
-    iconName: "Mic",
-    badge: "Literary"
-  },
-  {
-    id: "shutterbugs",
-    name: "ShutterBugs Media & Photography Club",
+    id: "photography-club",
+    name: "Photography Club",
     category: "media",
-    tagline: "Capturing Moments, Telling Stories",
-    description: "The official visual media wing of MSAJCE responsible for event photojournalism, short filmmaking, videography, and social media content creation.",
+    tagline: "Capturing Moments, Framing Stories",
+    description: "The official visual media and photojournalism wing of MSAJCE responsible for event coverage, photowalks, short film making, and digital video editing.",
     activities: [
-      "Photowalks & Landscape photography trips",
-      "Short film making & editing workshops (Premiere/DaVinci)",
-      "Official coverage of all institutional fests & sports",
-      "Monthly photography contests with guest judging"
+      "Campus Photowalks & Outdoor Photography Trips",
+      "Short Film Making & Video Editing (Premiere/DaVinci)",
+      "Official Media Coverage for College Fests & Sports",
+      "Monthly Theme Photography Contests with Guest Judging"
     ],
-    membersCount: "120+ Creators",
+    membersCount: "180+ Photographers",
     iconName: "Camera",
-    badge: "Media"
-  },
-  {
-    id: "nss-yrc",
-    name: "National Service Scheme (NSS) & YRC",
-    category: "social",
-    tagline: "Not Me, But You — Community Service",
-    description: "Organizing blood donation drives, village adoption camps, environmental sustainability campaigns, literacy awareness, and disaster relief operations.",
-    activities: [
-      "Mega Annual Blood Donation Drive (500+ units collected)",
-      "7-Day Special Rural Community Service Camp",
-      "Tree Plantation & Plastic-Free Beach Cleanups",
-      "First Aid & Disaster Management Certification"
-    ],
-    membersCount: "500+ Volunteers",
-    iconName: "HeartHandshake",
-    badge: "Social Service"
+    badge: "Media & Visuals"
   }
 ];
 
