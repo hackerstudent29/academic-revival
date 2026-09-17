@@ -7,18 +7,23 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+# Local Scratch & Ingestion Dumps
+_raw_data/
+scratch/
+
+# Build & Cache Outputs
+.nitro
+.output
+.tanstack/**
+.vinxi
 dist
 dist-ssr
-.output
-.vinxi
-.tanstack/**
-.nitro
+node_modules
 *.local
 
 # Wrangler / Cloudflare
-.wrangler/
 .dev.vars
+.wrangler/
 
 # Editor directories and files
 .vscode/*
