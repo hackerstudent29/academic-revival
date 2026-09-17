@@ -1,5 +1,4 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { motion } from "framer-motion";
 import {
   Sparkles,
   ArrowRight,
@@ -12,7 +11,6 @@ import {
   Award,
   BookOpen
 } from "lucide-react";
-import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
 import { professionalSocieties } from "@/data/studentLife";
 
 const title = "Professional Societies | Student Life | MSAJCE";
@@ -33,32 +31,11 @@ export const Route = createFileRoute("/student-life_/professional-societies")({
   component: ProfessionalSocietiesPage,
 });
 
-const subNavTabs: SubNavTab[] = [
-  { id: "student-hub", label: "Student Hub" },
-  { id: "clubs-and-societies", label: "Clubs & Societies" },
-  { id: "professional-societies", label: "Professional Societies" },
-  { id: "tedx", label: "Our TEDx Chapter" },
-];
-
 function ProfessionalSocietiesPage() {
   const navigate = useNavigate();
 
-  const handleSelectTab = (tabId: string) => {
-    if (tabId === "professional-societies") return;
-    navigate({ to: `/student-life/${tabId}` });
-  };
-
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
-      {/* Secondary Sticky Sub-Nav Header */}
-      <SecondarySubNav
-        title="STUDENT LIFE"
-        tabs={subNavTabs}
-        activeTab="professional-societies"
-        onSelectTab={handleSelectTab}
-        onTitleClick={() => navigate({ to: "/student-life/professional-societies" })}
-      />
-
       {/* Page Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-10 pb-16 px-4 sm:px-6 md:px-12 border-b border-primary/20">
         <div className="max-w-[1440px] mx-auto relative z-10">
@@ -87,7 +64,7 @@ function ProfessionalSocietiesPage() {
             </div>
             <div className="flex flex-col">
               <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">BAJA SAE</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">ATV & Go-Kart Racing</span>
+              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">ATV &amp; Go-Kart Racing</span>
             </div>
             <div className="flex flex-col">
               <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">100% Industry</span>

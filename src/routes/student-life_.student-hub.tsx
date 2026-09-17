@@ -1,5 +1,4 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { motion } from "framer-motion";
 import {
   Users,
   Utensils,
@@ -8,11 +7,9 @@ import {
   Sparkles,
   ArrowRight,
   CheckCircle2,
-  ShieldCheck,
   Heart,
   BookOpen
 } from "lucide-react";
-import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
 import { studentLifeOverview, studentHubAmenities } from "@/data/studentLife";
 
 const title = "Student Hub & Campus Amenities | Student Life | MSAJCE";
@@ -33,39 +30,18 @@ export const Route = createFileRoute("/student-life_/student-hub")({
   component: StudentHubPage,
 });
 
-const subNavTabs: SubNavTab[] = [
-  { id: "student-hub", label: "Student Hub" },
-  { id: "clubs-and-societies", label: "Clubs & Societies" },
-  { id: "professional-societies", label: "Professional Societies" },
-  { id: "tedx", label: "Our TEDx Chapter" },
-];
-
 function StudentHubPage() {
   const navigate = useNavigate();
 
-  const handleSelectTab = (tabId: string) => {
-    if (tabId === "student-hub") return;
-    navigate({ to: `/student-life/${tabId}` });
-  };
-
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
-      {/* Secondary Sticky Sub-Nav Header */}
-      <SecondarySubNav
-        title="STUDENT LIFE"
-        tabs={subNavTabs}
-        activeTab="student-hub"
-        onSelectTab={handleSelectTab}
-        onTitleClick={() => navigate({ to: "/student-life/student-hub" })}
-      />
-
       {/* Page Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-10 pb-16 px-4 sm:px-6 md:px-12 border-b border-primary/20">
         <div className="max-w-[1440px] mx-auto relative z-10">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-sm text-xs font-bold font-oswald uppercase tracking-wider text-white border border-white/20 mb-4">
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              Campus Recreation & Welfare
+              Campus Recreation &amp; Welfare
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-oswald uppercase tracking-tight leading-[1.05]">
               Student Hub &amp; Campus Amenities
@@ -87,7 +63,7 @@ function StudentHubPage() {
             </div>
             <div className="flex flex-col">
               <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">15+ Arenas</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Sports & Fitness Complex</span>
+              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Sports &amp; Fitness Complex</span>
             </div>
             <div className="flex flex-col">
               <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">24/7 Security</span>
@@ -171,7 +147,7 @@ function StudentHubPage() {
                 <Heart className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-xl font-black font-oswald uppercase text-foreground">Health & Wellness Clinic</h3>
+                <h3 className="text-xl font-black font-oswald uppercase text-foreground">Health &amp; Wellness Clinic</h3>
                 <span className="text-xs text-muted-foreground font-sans">24/7 On-Campus Medical Support</span>
               </div>
             </div>
@@ -186,8 +162,8 @@ function StudentHubPage() {
                 <BookOpen className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-xl font-black font-oswald uppercase text-foreground">Stationery & Reprographic Hub</h3>
-                <span className="text-xs text-muted-foreground font-sans">Academic Supplies & Project Printing</span>
+                <h3 className="text-xl font-black font-oswald uppercase text-foreground">Stationery &amp; Reprographic Hub</h3>
+                <span className="text-xs text-muted-foreground font-sans">Academic Supplies &amp; Project Printing</span>
               </div>
             </div>
             <p className="text-sm text-muted-foreground font-sans leading-relaxed">

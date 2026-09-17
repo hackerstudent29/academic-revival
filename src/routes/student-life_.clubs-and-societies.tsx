@@ -1,20 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import {
-  Sparkles,
-  ArrowRight,
-  Code,
-  Palette,
-  Music,
-  Mic,
-  Camera,
-  HeartHandshake,
-  Trophy,
-  Calendar,
-  Users
-} from "lucide-react";
-import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
+import { Sparkles, ArrowRight } from "lucide-react";
 import { studentClubs } from "@/data/studentLife";
 
 const title = "Clubs & Cultural Societies | Student Life | MSAJCE";
@@ -35,21 +21,9 @@ export const Route = createFileRoute("/student-life_/clubs-and-societies")({
   component: ClubsAndSocietiesPage,
 });
 
-const subNavTabs: SubNavTab[] = [
-  { id: "student-hub", label: "Student Hub" },
-  { id: "clubs-and-societies", label: "Clubs & Societies" },
-  { id: "professional-societies", label: "Professional Societies" },
-  { id: "tedx", label: "Our TEDx Chapter" },
-];
-
 function ClubsAndSocietiesPage() {
   const navigate = useNavigate();
   const [clubFilter, setClubFilter] = useState<string>("all");
-
-  const handleSelectTab = (tabId: string) => {
-    if (tabId === "clubs-and-societies") return;
-    navigate({ to: `/student-life/${tabId}` });
-  };
 
   const filteredClubs = clubFilter === "all"
     ? studentClubs
@@ -57,15 +31,6 @@ function ClubsAndSocietiesPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
-      {/* Secondary Sticky Sub-Nav Header */}
-      <SecondarySubNav
-        title="STUDENT LIFE"
-        tabs={subNavTabs}
-        activeTab="clubs-and-societies"
-        onSelectTab={handleSelectTab}
-        onTitleClick={() => navigate({ to: "/student-life/clubs-and-societies" })}
-      />
-
       {/* Page Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-10 pb-16 px-4 sm:px-6 md:px-12 border-b border-primary/20">
         <div className="max-w-[1440px] mx-auto relative z-10">

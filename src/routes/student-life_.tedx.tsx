@@ -1,7 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { motion } from "framer-motion";
 import { Sparkles, Video, ArrowRight } from "lucide-react";
-import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
 import { tedxData } from "@/data/studentLife";
 
 const title = "Our TEDx Chapter | TEDxMSAJCE | Student Life | MSAJCE";
@@ -22,32 +20,11 @@ export const Route = createFileRoute("/student-life_/tedx")({
   component: TedxChapterPage,
 });
 
-const subNavTabs: SubNavTab[] = [
-  { id: "student-hub", label: "Student Hub" },
-  { id: "clubs-and-societies", label: "Clubs & Societies" },
-  { id: "professional-societies", label: "Professional Societies" },
-  { id: "tedx", label: "Our TEDx Chapter" },
-];
-
 function TedxChapterPage() {
   const navigate = useNavigate();
 
-  const handleSelectTab = (tabId: string) => {
-    if (tabId === "tedx") return;
-    navigate({ to: `/student-life/${tabId}` });
-  };
-
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
-      {/* Secondary Sticky Sub-Nav Header */}
-      <SecondarySubNav
-        title="STUDENT LIFE"
-        tabs={subNavTabs}
-        activeTab="tedx"
-        onSelectTab={handleSelectTab}
-        onTitleClick={() => navigate({ to: "/student-life/tedx" })}
-      />
-
       {/* Page Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-10 pb-16 px-4 sm:px-6 md:px-12 border-b border-primary/20">
         <div className="max-w-[1440px] mx-auto relative z-10">
