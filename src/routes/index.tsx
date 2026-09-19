@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "framer-motion";
 import { WhyJoinSection } from "@/components/sections/home/WhyJoinSection";
 import { AcademicProgrammesSection } from "@/components/sections/home/AcademicProgrammesSection";
-import { AboutBannerSection } from "@/components/sections/about/AboutBannerSection";
 import { DynamicText } from "@/components/typography/DynamicText";
 import { HeroReel } from "@/components/widgets/HeroReel";
 import { RecruiterMarquee } from "@/components/widgets/RecruiterMarquee";
@@ -180,8 +179,6 @@ export function HomePage() {
       <NewsAndEventsSection />
 
       <WhyJoinSection />
-
-      <AboutBannerSection />
 
       <CampusVideoReveal />
 

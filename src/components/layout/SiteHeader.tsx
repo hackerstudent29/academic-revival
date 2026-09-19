@@ -28,6 +28,7 @@ const nav: NavItem[] = [
           { label: "Governing Council", to: "/about/governing-council" },
           { label: "The Trust", to: "/about/trust" },
           { label: "Group of Institutions", to: "/about/group-institutions" },
+          { label: "Institutional Policies", to: "/about/policies" },
         ],
       },
       {
@@ -38,14 +39,6 @@ const nav: NavItem[] = [
           { label: "Statutory Committees", to: "/about/governing-council" },
           { label: "Anti-Ragging Committee", to: "/about/committees" },
           { label: "Women's Empowerment Cell", to: "/about/committees" },
-        ],
-      },
-      {
-        title: "Policies & Compliance",
-        links: [
-          { label: "Institutional Policies", to: "/about/policies" },
-          { label: "Code of Conduct", to: "/about/policies" },
-          { label: "Mandatory Disclosure", to: "/about/mandatory-disclosure" },
         ],
       },
       {

@@ -145,7 +145,7 @@ export function AcademicProgrammesSection() {
               <motion.div
                 key={lvl.id}
                 variants={cardItemVariants}
-                className="relative flex flex-col justify-between bg-[#F3F3F2] dark:bg-[#121214] border border-border rounded-[4px] shadow-xs hover:border-foreground/30 transition-shadow duration-300 hover:shadow-xl overflow-hidden h-[485px]"
+                className="relative flex flex-col justify-between bg-white dark:bg-[#121214] border border-border rounded-[4px] shadow-xs hover:border-foreground/30 transition-shadow duration-300 hover:shadow-xl overflow-hidden h-[485px]"
               >
                 {/* Upper Card Container (Hover Trigger for overlay, stops ABOVE button) */}
                 <div className="group/upper relative flex-1 flex flex-col justify-between overflow-hidden">
@@ -160,7 +160,7 @@ export function AcademicProgrammesSection() {
                   </div>
 
                   {/* 2. Default Content Above Button */}
-                  <div className="flex-1 p-5 flex flex-col justify-start bg-[#F3F3F2] dark:bg-[#121214]">
+                  <div className="flex-1 p-5 flex flex-col justify-start bg-white dark:bg-[#121214]">
                     <h3 className="text-2xl font-bold uppercase tracking-tight text-foreground font-oswald mb-1.5 group-hover/upper:text-primary transition-colors">
                       {lvl.title}
                     </h3>
@@ -170,7 +170,7 @@ export function AcademicProgrammesSection() {
                   </div>
 
                   {/* 3. Smooth Slide-Up Overlay on Hover */}
-                  <div className="absolute inset-0 bg-[#F3F3F2] dark:bg-[#121214] text-foreground dark:text-white p-5 flex flex-col justify-between z-20 translate-y-full group-hover/upper:translate-y-0 transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] border-b border-border shadow-xl overflow-hidden">
+                  <div className="absolute inset-0 bg-white dark:bg-[#121214] text-foreground dark:text-white p-5 flex flex-col justify-between z-20 translate-y-full group-hover/upper:translate-y-0 transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] border-b border-border shadow-xl overflow-hidden">
                     <div className="flex-1 flex flex-col overflow-hidden">
                       <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-primary font-oswald mb-3 border-b border-foreground/10 pb-2 shrink-0">
                         {lvl.title}
@@ -194,7 +194,7 @@ export function AcademicProgrammesSection() {
                 </div>
 
                 {/* Permanent Bottom Button */}
-                <div className="p-5 pt-3 z-30 bg-[#F3F3F2] dark:bg-[#121214] border-t border-border">
+                <div className="p-5 pt-3 z-30 bg-white dark:bg-[#121214] border-t border-border">
                   <Link
                     to="/programmes-offered"
                     search={lvl.search as any}
