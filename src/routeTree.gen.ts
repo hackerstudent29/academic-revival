@@ -32,6 +32,7 @@ import { Route as AboutGoverningCouncilRouteImport } from './routes/about_.gover
 import { Route as AboutGroupInstitutionsRouteImport } from './routes/about_.group-institutions'
 import { Route as AboutLeadershipRouteImport } from './routes/about_.leadership'
 import { Route as AboutOverviewRouteImport } from './routes/about_.overview'
+import { Route as AboutPoliciesRouteImport } from './routes/about_.policies'
 import { Route as AboutTrustRouteImport } from './routes/about_.trust'
 import { Route as AboutVisionMissionRouteImport } from './routes/about_.vision-mission'
 import { Route as AdmissionsEligibilityRouteImport } from './routes/admissions_.eligibility'
@@ -163,6 +164,11 @@ const AboutOverviewRoute = AboutOverviewRouteImport.update({
   path: '/about/overview',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutPoliciesRoute = AboutPoliciesRouteImport.update({
+  id: '/about_/policies',
+  path: '/about/policies',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutTrustRoute = AboutTrustRouteImport.update({
   id: '/about_/trust',
   path: '/about/trust',
@@ -264,6 +270,7 @@ export interface FileRoutesByFullPath {
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about/leadership': typeof AboutLeadershipRoute
   '/about/overview': typeof AboutOverviewRoute
+  '/about/policies': typeof AboutPoliciesRoute
   '/about/trust': typeof AboutTrustRoute
   '/about/vision-mission': typeof AboutVisionMissionRoute
   '/admissions/eligibility': typeof AdmissionsEligibilityRoute
@@ -303,6 +310,7 @@ export interface FileRoutesByTo {
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about/leadership': typeof AboutLeadershipRoute
   '/about/overview': typeof AboutOverviewRoute
+  '/about/policies': typeof AboutPoliciesRoute
   '/about/trust': typeof AboutTrustRoute
   '/about/vision-mission': typeof AboutVisionMissionRoute
   '/admissions/eligibility': typeof AdmissionsEligibilityRoute
@@ -344,6 +352,7 @@ export interface FileRoutesById {
   '/about_/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about_/leadership': typeof AboutLeadershipRoute
   '/about_/overview': typeof AboutOverviewRoute
+  '/about_/policies': typeof AboutPoliciesRoute
   '/about_/trust': typeof AboutTrustRoute
   '/about_/vision-mission': typeof AboutVisionMissionRoute
   '/admissions_/eligibility': typeof AdmissionsEligibilityRoute
@@ -386,6 +395,7 @@ export interface FileRouteTypes {
     | '/about/group-institutions'
     | '/about/leadership'
     | '/about/overview'
+    | '/about/policies'
     | '/about/trust'
     | '/about/vision-mission'
     | '/admissions/eligibility'
@@ -425,6 +435,7 @@ export interface FileRouteTypes {
     | '/about/group-institutions'
     | '/about/leadership'
     | '/about/overview'
+    | '/about/policies'
     | '/about/trust'
     | '/about/vision-mission'
     | '/admissions/eligibility'
@@ -465,6 +476,7 @@ export interface FileRouteTypes {
     | '/about_/group-institutions'
     | '/about_/leadership'
     | '/about_/overview'
+    | '/about_/policies'
     | '/about_/trust'
     | '/about_/vision-mission'
     | '/admissions_/eligibility'
@@ -506,6 +518,7 @@ export interface RootRouteChildren {
   AboutGroupInstitutionsRoute: typeof AboutGroupInstitutionsRoute
   AboutLeadershipRoute: typeof AboutLeadershipRoute
   AboutOverviewRoute: typeof AboutOverviewRoute
+  AboutPoliciesRoute: typeof AboutPoliciesRoute
   AboutTrustRoute: typeof AboutTrustRoute
   AboutVisionMissionRoute: typeof AboutVisionMissionRoute
   AdmissionsEligibilityRoute: typeof AdmissionsEligibilityRoute
@@ -684,6 +697,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutOverviewRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about_/policies': {
+      id: '/about_/policies'
+      path: '/about/policies'
+      fullPath: '/about/policies'
+      preLoaderRoute: typeof AboutPoliciesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about_/trust': {
       id: '/about_/trust'
       path: '/about/trust'
@@ -828,6 +848,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutGroupInstitutionsRoute: AboutGroupInstitutionsRoute,
   AboutLeadershipRoute: AboutLeadershipRoute,
   AboutOverviewRoute: AboutOverviewRoute,
+  AboutPoliciesRoute: AboutPoliciesRoute,
   AboutTrustRoute: AboutTrustRoute,
   AboutVisionMissionRoute: AboutVisionMissionRoute,
   AdmissionsEligibilityRoute: AdmissionsEligibilityRoute,
