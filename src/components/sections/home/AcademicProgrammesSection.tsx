@@ -107,7 +107,7 @@ export function AcademicProgrammesSection() {
     <section
       ref={sectionRef}
       id="academic-programmes"
-      className="relative w-full bg-page-bg border-b border-border py-14 lg:py-20 text-foreground overflow-hidden"
+      className="relative w-full bg-page-bg py-14 lg:py-20 text-foreground overflow-hidden"
     >
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-16">
         
@@ -117,7 +117,7 @@ export function AcademicProgrammesSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-foreground/10 gap-4"
+          className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4"
         >
           <motion.div variants={headerTextVariants} className="flex flex-col">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight text-primary font-oswald leading-none">
@@ -150,7 +150,7 @@ export function AcademicProgrammesSection() {
                 {/* Upper Card Container (Hover Trigger for overlay, stops ABOVE button) */}
                 <div className="group/upper relative flex-1 flex flex-col justify-between overflow-hidden">
                   {/* 1. Default Top Half (Prominent Image Showcase) */}
-                  <div className="relative w-full h-[265px] overflow-hidden bg-muted border-b border-border shrink-0">
+                  <div className="relative w-full h-[265px] overflow-hidden bg-muted shrink-0">
                     <img
                       src={lvl.image}
                       alt={lvl.title}
@@ -194,7 +194,7 @@ export function AcademicProgrammesSection() {
                 </div>
 
                 {/* Permanent Bottom Button */}
-                <div className="p-5 pt-3 z-30 bg-white dark:bg-[#121214] border-t border-border">
+                <div className="p-5 pt-3 z-30 bg-white dark:bg-[#121214]">
                   <Link
                     to="/programmes-offered"
                     search={lvl.search as any}
