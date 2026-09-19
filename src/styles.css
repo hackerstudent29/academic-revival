@@ -26,6 +26,21 @@ body::-webkit-scrollbar,
   background: transparent !important;
 }
 
+/* Universal Button Cursor Pointer */
+button,
+[role="button"],
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  cursor: pointer;
+}
+
+button:disabled,
+[role="button"][aria-disabled="true"],
+[disabled] {
+  cursor: not-allowed;
+}
+
 
 @font-face {
   font-family: 'Roboto';

@@ -148,7 +148,7 @@ function RootComponent() {
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <div className="bg-background text-foreground max-w-full w-full">
             <div 
-              className="relative z-10 isolate flex min-h-screen flex-col shadow-2xl w-full"
+              className="relative z-10 isolate flex min-h-screen flex-col shadow-2xl w-full bg-background"
               style={{ marginBottom: "var(--footer-height, 0px)" }}
             >
               {!isCreditsPage && <SiteHeader />}

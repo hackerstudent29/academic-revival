@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 import {
   Library as LibraryIcon,
   GraduationCap,
@@ -12,8 +13,6 @@ import {
   ArrowRight,
   ShieldCheck,
   Layers,
-  Sparkles,
-  Calculator,
   Monitor,
   Database,
   Globe2,
@@ -21,7 +20,25 @@ import {
   BookOpen,
   RotateCcw,
   ArrowUpRight,
+  FileText,
 } from "lucide-react";
+import {
+  useReactTable,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  type ColumnDef,
+  type PaginationState,
+  type SortingState,
+} from "@tanstack/react-table";
+import {
+  DataGrid,
+  DataGridContainer,
+  DataGridTable,
+  DataGridPagination,
+  DataGridColumnHeader,
+} from "@/components/ui/data-grid-table";
 import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
 import {
   libraryOverview,
@@ -68,16 +85,71 @@ const subNavTabs: SubNavTab[] = [
   { id: "committee", label: "Committee" },
 ];
 
+const overviewGallery = [
+  {
+    title: "Central Reading Hall",
+    subtitle: "8,978 Sq.Ft Academic Space",
+    src: "/images/library_reading_hall_real.jpg",
+    span: "col-span-2 md:col-span-4",
+    height: "h-[180px] sm:h-[215px] md:h-[245px]",
+  },
+  {
+    title: "Physical Stack Wing",
+    subtitle: "29,853+ Volumes & Holdings",
+    src: "/images/library_stacks_real.jpg",
+    span: "col-span-1 md:col-span-3",
+    height: "h-[180px] sm:h-[215px] md:h-[245px]",
+  },
+  {
+    title: "Reference & Research",
+    subtitle: "1,885+ Standard Works",
+    src: "https://images.unsplash.com/photo-1507842229451-7f01be7fe7ab?auto=format&fit=crop&w=1200&q=80",
+    span: "col-span-1 md:col-span-3",
+    height: "h-[180px] sm:h-[215px] md:h-[245px]",
+  },
+  {
+    title: "Digital Access Hub",
+    subtitle: "DELNET & J-Gate Terminals",
+    src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
+    span: "col-span-2 md:col-span-2",
+    height: "h-[180px] sm:h-[215px] md:h-[245px]",
+  },
+  {
+    title: "Periodical & Journal Lounge",
+    subtitle: "37 Subscribed Print Journals",
+    src: "https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=1200&q=80",
+    span: "col-span-2 md:col-span-2",
+    height: "h-[180px] sm:h-[215px] md:h-[245px]",
+  },
+  {
+    title: "Koha ILMS Circulation",
+    subtitle: "Automated Barcode Counter",
+    src: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
+    span: "col-span-1 md:col-span-3",
+    height: "h-[180px] sm:h-[215px] md:h-[245px]",
+  },
+  {
+    title: "Monograph & Thesis Archives",
+    subtitle: "Project Dissertations",
+    src: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80",
+    span: "col-span-1 md:col-span-3",
+    height: "h-[180px] sm:h-[215px] md:h-[245px]",
+  },
+  {
+    title: "Scholarly Study Pods",
+    subtitle: "Focused Learning Chambers",
+    src: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1200&q=80",
+    span: "col-span-2 md:col-span-4",
+    height: "h-[180px] sm:h-[215px] md:h-[245px]",
+  },
+];
+
 function CentralLibraryPage() {
   const [activeTab, setActiveTab] = useState<string>("overview");
   const [statFilter, setStatFilter] = useState<string>("all");
   const [digitalCategory, setDigitalCategory] = useState<string>("all");
   const [digitalSearch, setDigitalSearch] = useState<string>("");
   const [committeeSearch, setCommitteeSearch] = useState<string>("");
-
-  // Interactive Fine Calculator State
-  const [calcDays, setCalcDays] = useState<number>(3);
-  const [calcBooks, setCalcBooks] = useState<number>(1);
 
   // Dynamic Open/Close status based on IST time
   const [isOpenNow, setIsOpenNow] = useState<{ open: boolean; statusText: string }>({
@@ -107,10 +179,18 @@ function CentralLibraryPage() {
 
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
-    const el = document.getElementById("library-main-content");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    setTimeout(() => {
+      const el = document.getElementById("library-main-content");
+      if (el) {
+        // Offset accounts for main sticky header (~65px) + sticky subnav (~50px)
+        const headerOffset = window.innerWidth < 768 ? 110 : 118;
+        const elementTop = el.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: Math.max(0, elementTop - headerOffset),
+          behavior: "smooth",
+        });
+      }
+    }, 40);
   };
 
   // Filtered collection stats
@@ -158,6 +238,134 @@ function CentralLibraryPage() {
     return [...result].sort((a, b) => a.name.length - b.name.length);
   }, [allDigitalResources, digitalCategory, digitalSearch]);
 
+  // Digital Library DataGrid Pagination & Sorting State
+  const [digitalPagination, setDigitalPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+  const [digitalSorting, setDigitalSorting] = useState<SortingState>([]);
+
+  useEffect(() => {
+    setDigitalPagination((prev) => ({ ...prev, pageIndex: 0 }));
+  }, [digitalCategory, digitalSearch]);
+
+  // Auto-scroll to table top when pagination page changes
+  useEffect(() => {
+    const el = document.getElementById("digital-library-table-top");
+    if (el && activeTab === "digital-library") {
+      const headerOffset = window.innerWidth < 768 ? 110 : 120;
+      const elementTop = el.getBoundingClientRect().top + window.pageYOffset;
+      if (window.pageYOffset > elementTop) {
+        window.scrollTo({
+          top: Math.max(0, elementTop - headerOffset),
+          behavior: "smooth",
+        });
+      }
+    }
+  }, [digitalPagination.pageIndex, activeTab]);
+
+  const digitalColumns = useMemo<ColumnDef<(DigitalPortal & { portalType: string })>[]>(
+    () => [
+      {
+        id: "sno",
+        header: ({ column }) => (
+          <div className="w-[60px] text-center whitespace-nowrap">
+            <DataGridColumnHeader column={column} title="S.No" className="justify-center whitespace-nowrap" />
+          </div>
+        ),
+        cell: ({ row }) => (
+          <div className="text-center font-mono font-bold text-muted-foreground text-xs w-[60px] whitespace-nowrap">
+            {String(row.index + 1 + digitalPagination.pageIndex * digitalPagination.pageSize).padStart(2, "0")}
+          </div>
+        ),
+        size: 70,
+      },
+      {
+        accessorKey: "name",
+        header: ({ column }) => <DataGridColumnHeader column={column} title="Resource / Provider Name" className="whitespace-nowrap" />,
+        cell: ({ row }) => {
+          const item = row.original;
+          return (
+            <div className="py-1">
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm sm:text-base font-bold font-oswald uppercase tracking-wide text-foreground hover:text-primary transition-colors block leading-snug whitespace-nowrap"
+              >
+                {item.name}
+              </a>
+            </div>
+          );
+        },
+      },
+      {
+        accessorKey: "description",
+        header: ({ column }) => <DataGridColumnHeader column={column} title="Description & Discipline Coverage" className="whitespace-nowrap" />,
+        cell: ({ row }) => (
+          <p className="text-muted-foreground leading-relaxed text-xs sm:text-sm font-sans max-w-2xl py-1">
+            {row.original.description || "Peer-reviewed scholarly electronic database"}
+          </p>
+        ),
+      },
+      {
+        id: "portalLink",
+        header: () => (
+          <div className="text-right font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap">
+            Portal Link
+          </div>
+        ),
+        cell: ({ row }) => (
+          <div className="text-right py-1">
+            <a
+              href={row.original.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center justify-center overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-primary/40 bg-stone-200/90 dark:bg-neutral-800 px-4 py-2 text-xs font-bold uppercase tracking-wider font-oswald text-foreground dark:text-white transition-all duration-300 shadow-2xs hover:text-white cursor-pointer select-none shrink-0"
+            >
+              <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                  <span className="absolute -top-3.5 left-0 w-[200%] h-4 pointer-events-none block">
+                    <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                      <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,-20 1200,40 L1200,120 L0,120 Z" />
+                    </svg>
+                  </span>
+                  <span className="absolute -top-4 left-0 w-[200%] h-5 opacity-40 pointer-events-none block">
+                    <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                      <path d="M0,30 C200,-30 400,90 600,10 C800,-40 1000,70 1200,20 L1200,120 L0,120 Z" />
+                    </svg>
+                  </span>
+                </span>
+              </span>
+              <span className="relative z-10 flex items-center justify-center gap-1.5 group-hover:text-white transition-colors duration-300">
+                <span>Access</span>
+                <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
+            </a>
+          </div>
+        ),
+        size: 150,
+      },
+    ],
+    [digitalPagination]
+  );
+
+  const digitalTable = useReactTable({
+    columns: digitalColumns,
+    data: filteredDigital,
+    pageCount: Math.ceil((filteredDigital.length || 0) / digitalPagination.pageSize),
+    state: {
+      pagination: digitalPagination,
+      sorting: digitalSorting,
+    },
+    onPaginationChange: setDigitalPagination,
+    onSortingChange: setDigitalSorting,
+    getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+  });
+
   // Filtered Committee Members
   const filteredCommittee = useMemo(() => {
     if (!committeeSearch.trim()) return libraryCommittee;
@@ -171,25 +379,113 @@ function CentralLibraryPage() {
     );
   }, [committeeSearch]);
 
-  // Interactive Fine Calculator Output
-  const calculatedFine = useMemo(() => {
-    const days = Math.max(0, calcDays);
-    const books = Math.max(1, calcBooks);
-    let finePerBook = 0;
-    if (days <= 0) {
-      finePerBook = 0;
-    } else if (days <= 7) {
-      finePerBook = days * 1;
-    } else if (days <= 14) {
-      finePerBook = 7 * 1 + (days - 7) * 2;
-    } else {
-      finePerBook = 7 * 1 + 7 * 2 + (days - 14) * 5;
+  // Committee DataGrid Pagination & Sorting State
+  const [committeePagination, setCommitteePagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+  const [committeeSorting, setCommitteeSorting] = useState<SortingState>([]);
+
+  useEffect(() => {
+    setCommitteePagination((prev) => ({ ...prev, pageIndex: 0 }));
+  }, [committeeSearch]);
+
+  useEffect(() => {
+    const el = document.getElementById("committee-table-top");
+    if (el && activeTab === "committee") {
+      const headerOffset = window.innerWidth < 768 ? 110 : 120;
+      const elementTop = el.getBoundingClientRect().top + window.pageYOffset;
+      if (window.pageYOffset > elementTop) {
+        window.scrollTo({
+          top: Math.max(0, elementTop - headerOffset),
+          behavior: "smooth",
+        });
+      }
     }
-    return finePerBook * books;
-  }, [calcDays, calcBooks]);
+  }, [committeePagination.pageIndex, activeTab]);
+
+  const committeeColumns = useMemo<ColumnDef<(typeof libraryCommittee)[0]>[]>(
+    () => [
+      {
+        id: "sno",
+        header: ({ column }) => (
+          <div className="w-[60px] text-center whitespace-nowrap">
+            <DataGridColumnHeader column={column} title="S.No" className="justify-center whitespace-nowrap" />
+          </div>
+        ),
+        cell: ({ row }) => (
+          <div className="text-center font-mono font-bold text-muted-foreground text-xs w-[60px] whitespace-nowrap">
+            {String(row.index + 1 + committeePagination.pageIndex * committeePagination.pageSize).padStart(2, "0")}
+          </div>
+        ),
+        size: 70,
+      },
+      {
+        accessorKey: "name",
+        header: ({ column }) => <DataGridColumnHeader column={column} title="Name of the Member" className="whitespace-nowrap" />,
+        cell: ({ row }) => (
+          <div className="font-sans font-semibold text-foreground text-sm whitespace-nowrap">
+            {row.original.name}
+          </div>
+        ),
+      },
+      {
+        accessorKey: "designation",
+        header: ({ column }) => <DataGridColumnHeader column={column} title="Designation / Affiliation" className="whitespace-nowrap" />,
+        cell: ({ row }) => (
+          <span className="text-xs text-muted-foreground font-medium font-sans">
+            {row.original.designation}
+          </span>
+        ),
+      },
+      {
+        accessorKey: "role",
+        header: ({ column }) => (
+          <div className="text-right whitespace-nowrap">
+            <DataGridColumnHeader column={column} title="Committee Role" className="justify-end whitespace-nowrap" />
+          </div>
+        ),
+        cell: ({ row }) => {
+          const role = row.original.role;
+          return (
+            <div className="text-right">
+              <span
+                className={`inline-flex items-center px-2.5 py-0.5 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-[11px] font-oswald uppercase ${
+                  role === "Chairman"
+                    ? "bg-primary text-white font-black tracking-wider px-3 py-1 text-xs shadow-xs border border-primary"
+                    : role === "Secretary" || role === "Member Secretary"
+                    ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 font-bold"
+                    : "border border-border text-muted-foreground font-bold"
+                }`}
+              >
+                {role}
+              </span>
+            </div>
+          );
+        },
+      },
+    ],
+    [committeePagination]
+  );
+
+  const committeeTable = useReactTable({
+    columns: committeeColumns,
+    data: filteredCommittee,
+    pageCount: Math.ceil((filteredCommittee.length || 0) / committeePagination.pageSize),
+    state: {
+      pagination: committeePagination,
+      sorting: committeeSorting,
+    },
+    onPaginationChange: setCommitteePagination,
+    onSortingChange: setCommitteeSorting,
+    getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+  });
 
   return (
-    <div className="min-h-screen bg-page-bg text-foreground font-sans max-w-full">
+    <div className="min-h-screen bg-white dark:bg-[#121214] text-foreground font-sans max-w-full">
       {/* MINIMAL SECONDARY SUB-NAV (Official Component matching Department & Research pages) */}
       <SecondarySubNav
         title="CENTRAL LIBRARY"
@@ -219,23 +515,6 @@ function CentralLibraryPage() {
                 
                 {/* Left Hero Column */}
                 <div className="lg:col-span-7 flex flex-col justify-center">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span
-                      className={`inline-flex items-center px-3 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-[11px] font-oswald font-bold uppercase tracking-wider border ${
-                        isOpenNow.open
-                          ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
-                          : "bg-amber-500/15 text-amber-300 border-amber-500/30"
-                      }`}
-                    >
-                      <span
-                        className={`w-2 h-2 rounded-full mr-2 animate-pulse ${
-                          isOpenNow.open ? "bg-emerald-400" : "bg-amber-400"
-                        }`}
-                      />
-                      {isOpenNow.statusText}
-                    </span>
-                  </div>
-
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -413,848 +692,638 @@ function CentralLibraryPage() {
             </div>
           </section>
 
-          {/* Main Content Layout with Transparent Background Tables with Border Lines */}
-          <div id="library-main-content" className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-6 sm:pt-8 md:pt-10 pb-16 sm:pb-24 overflow-x-hidden">
-            <div className="min-h-[75vh] w-full max-w-full overflow-x-hidden">
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.18, ease: "easeOut" }}
-                  className="space-y-12"
-                >
-                  
-                  {/* ========================================================= */}
-                  {/* TAB 1: OVERVIEW */}
-                  {/* ========================================================= */}
-                  {activeTab === "overview" && (
-                    <div className="space-y-10">
-                      {/* 2-Column Overview Layout */}
-                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-                        
-                        {/* Left Column: 2-Image Architectural Collage (Different Shapes) */}
-                        <div className="lg:col-span-5 w-full flex flex-col justify-between gap-4">
-                          {/* Image 1: Central Reading Hall (Shape 1: rounded-tl-3xl rounded-br-xl rounded-tr-xs rounded-bl-xs) */}
-                          <div className="group overflow-hidden rounded-tl-3xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-border bg-transparent flex flex-col shadow-2xs">
-                            <div className="relative h-[180px] sm:h-[210px] w-full overflow-hidden bg-muted/20">
-                              <img
-                                src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=800&q=80"
-                                alt="Central Reading Hall - Students"
-                                className="w-full h-full object-cover block"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
-                                }}
-                              />
-                            </div>
-                            <div className="p-3 bg-foreground/[0.02] border-t border-border flex items-center justify-between">
-                              <div>
-                                <h4 className="text-xs font-oswald font-bold uppercase tracking-wider text-foreground">
-                                  Central Reading Hall
-                                </h4>
-                                <p className="text-[11px] text-muted-foreground font-sans">
-                                  Air-conditioned quiet study &amp; research hall
-                                </p>
-                              </div>
-                              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-primary border border-primary/30 px-2 py-0.5 rounded-xs">
-                                Ground Floor
-                              </span>
-                            </div>
-                          </div>
-
-                          {/* Image 2: Stack Section (Shape 2: rounded-tl-xs rounded-br-3xl rounded-tr-xl rounded-bl-xs) */}
-                          <div className="group overflow-hidden rounded-tl-xs rounded-br-3xl rounded-tr-xl rounded-bl-xs border border-border bg-transparent flex flex-col shadow-2xs">
-                            <div className="relative h-[180px] sm:h-[210px] w-full overflow-hidden bg-muted/20">
-                              <img
-                                src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80"
-                                alt="Library Stack Section & Book Aisles"
-                                className="w-full h-full object-cover block"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).src = "/images/eligibility_hero.jpg";
-                                }}
-                              />
-                            </div>
-                            <div className="p-3 bg-foreground/[0.02] border-t border-border flex items-center justify-between">
-                              <div>
-                                <h4 className="text-xs font-oswald font-bold uppercase tracking-wider text-foreground">
-                                  Stack Section &amp; Reference Aisle
-                                </h4>
-                                <p className="text-[11px] text-muted-foreground font-sans">
-                                  29,853+ catalogued engineering volumes
-                                </p>
-                              </div>
-                              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-primary border border-primary/30 px-2 py-0.5 rounded-xs">
-                                First Floor
-                              </span>
-                            </div>
-                          </div>
+          {/* Main Content Layout with Responsive Full-Width Backdrops */}
+          <div id="library-main-content" className="w-full min-h-[75vh] overflow-x-hidden scroll-mt-[115px] md:scroll-mt-[120px]">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.18, ease: "easeOut" }}
+                className="w-full"
+              >
+                
+                {/* ========================================================= */}
+                {/* TAB 1: OVERVIEW (Wavy Background Color Split Sections) */}
+                {/* ========================================================= */}
+                {activeTab === "overview" && (
+                  <div className="w-full">
+                    {/* SECTION 1: Overview Narrative & Interactive Layout Grid (White / #121214 Canvas) */}
+                    <section className="w-full bg-white dark:bg-[#121214] pt-6 sm:pt-8 md:pt-10 pb-12 sm:pb-16">
+                      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 space-y-8 sm:space-y-10">
+                        {/* Tab Header: Direct Overview Title */}
+                        <div className="border-b border-border pb-4">
+                          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
+                            Overview
+                          </h2>
                         </div>
 
-                        {/* Right Column: Narrative Content */}
-                        <div className="lg:col-span-7 flex flex-col justify-start space-y-4">
-                          <div className="border-b border-border pb-3">
-                            <div className="flex items-center gap-2 text-xs font-oswald font-bold uppercase tracking-wider text-primary mb-1">
-                              <Sparkles className="w-4 h-4" />
-                              Welcome to the Learning Centre
-                            </div>
-                            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                              The Intellectual Heart of MSAJCE
-                            </h2>
-                          </div>
-
-                          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                        {/* Full-Width Editorial Academic Narrative */}
+                        <div className="w-full space-y-4 text-sm sm:text-base md:text-lg text-muted-foreground font-sans leading-relaxed text-justify">
+                          <p>
                             {libraryOverview.description}
                           </p>
-                          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                          <p>
                             {libraryOverview.extendedDescription}
                           </p>
-                          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                            Our library regularly features the addition of new titles and volumes in all subject areas. Every effort has been made to acquire all of the titles that the faculty have recommended. Reputable newspapers, weekly, and fortnightly publications are subscribed to so that the students can stay up to date on current events. Bar-coded technology, open source software called <strong>Koha</strong>, dedicated internet connectivity, and campus-wide Wi-Fi are fully accessible to all scholars.
+                          <p>
+                            Regular additions ensure new titles recommended by faculty are constantly acquired. Reputable newspapers, weekly, and fortnightly publications are subscribed to so that students stay up to date. Bar-coded technology, open-source software called <strong className="text-foreground font-semibold">Koha</strong>, dedicated internet connectivity, and campus-wide Wi-Fi are fully accessible to all scholars.
                           </p>
+                        </div>
 
-                          {/* Transparent Working Hours Banner */}
-                          <div className="p-4 bg-transparent border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-2">
-                            <div className="flex items-center gap-3">
-                              <div className="p-2.5 bg-primary/10 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs border border-primary/20">
-                                <Clock className="w-5 h-5 text-primary" />
-                              </div>
-                              <div>
-                                <p className="text-xs font-oswald font-bold uppercase text-foreground">
-                                  Operational Timings
-                                </p>
-                                <p className="text-xs text-muted-foreground">
-                                  Mon–Sat: 8:00 AM – 7:00 PM | Sun: 10:00 AM – 4:00 PM
-                                </p>
-                              </div>
-                            </div>
-                            <span
-                              className={`inline-flex items-center px-3 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-[11px] font-oswald font-bold uppercase border self-start sm:self-auto ${
-                                isOpenNow.open
-                                  ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30"
-                                  : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30"
-                              }`}
-                            >
-                              <span
-                                className={`w-2 h-2 rounded-full mr-1.5 animate-pulse ${
-                                  isOpenNow.open ? "bg-emerald-500" : "bg-amber-500"
-                                }`}
-                              />
-                              {isOpenNow.open ? "Open Now" : "Closed Now"}
+                        {/* 2-Row Fixed Photographic Showcase (4 Columns, Signature Boxy Asymmetrical Borders, No Popup) */}
+                        <div className="pt-2 space-y-4">
+                          <div className="border-b border-border pb-3 flex items-center justify-between gap-4">
+                            <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
+                              Library Spaces &amp; Facilities
+                            </h3>
+                            <span className="text-xs font-oswald uppercase tracking-wider text-muted-foreground hidden sm:inline">
+                              8 Campus Facilities · 8,978 Sq.Ft
                             </span>
                           </div>
-                        </div>
 
-                      </div>
-
-                      {/* Institutional Memberships Table (Transparent style with border lines) */}
-                      <div className="pt-8 border-t border-border space-y-4">
-                        <div className="border-b border-border pb-3">
-                          <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                            Institutional Memberships &amp; Consortia
-                          </h3>
-                          <p className="text-xs sm:text-sm text-muted-foreground mt-1 font-sans">
-                            Direct national and international network subscriptions providing Inter-Library Loan (ILL) and indexed research literature.
-                          </p>
-                        </div>
-
-                        <div className="overflow-x-auto border border-border bg-transparent">
-                          <table className="w-full text-left border-collapse bg-transparent text-xs sm:text-sm">
-                            <thead>
-                              <tr className="border-b-2 border-border bg-foreground/[0.03] text-xs font-black uppercase font-oswald text-foreground">
-                                <th className="py-3.5 px-4 w-[60px]">S.No</th>
-                                <th className="py-3.5 px-4 min-w-[200px]">Network Name</th>
-                                <th className="py-3.5 px-4 w-[160px]">Scope</th>
-                                <th className="py-3.5 px-4">Entitlements &amp; Research Privileges</th>
-                                <th className="py-3.5 px-4 text-right w-[140px]">Access Link</th>
-                              </tr>
-                            </thead>
-                            <tbody className="divide-y divide-border font-sans">
-                              {institutionalMemberships.map((membership, idx) => (
-                                <tr key={membership.id} className="hover:bg-foreground/[0.02] transition-colors">
-                                  <td className="py-4 px-4 font-bold font-oswald text-muted-foreground">
-                                    {String(idx + 1).padStart(2, "0")}
-                                  </td>
-                                  <td className="py-4 px-4 font-bold font-oswald text-foreground">
-                                    <span className="text-primary text-base block">{membership.name}</span>
-                                    <span className="text-[10px] text-muted-foreground font-mono font-normal uppercase tracking-wider">
-                                      {membership.badge}
-                                    </span>
-                                  </td>
-                                  <td className="py-4 px-4 font-oswald font-bold text-xs uppercase text-muted-foreground">
-                                    {membership.scope}
-                                  </td>
-                                  <td className="py-4 px-4">
-                                    <ul className="space-y-1.5">
-                                      {membership.features.map((f, i) => (
-                                        <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
-                                          <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
-                                          <span>{f}</span>
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </td>
-                                  <td className="py-4 px-4 text-right">
-                                    <a
-                                      href={membership.website}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="group relative inline-flex items-center justify-center overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-primary/40 bg-stone-200/90 dark:bg-neutral-800 px-4 py-2 text-xs font-bold uppercase tracking-wider font-oswald text-foreground dark:text-white transition-all duration-300 shadow-2xs hover:text-white cursor-pointer select-none shrink-0"
-                                    >
-                                      <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                                        <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                                          <span className="absolute -top-3.5 left-0 w-[200%] h-4 pointer-events-none block">
-                                            <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                                              <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,-20 1200,40 L1200,120 L0,120 Z" />
-                                            </svg>
-                                          </span>
-                                          <span className="absolute -top-4 left-0 w-[200%] h-5 opacity-40 pointer-events-none block">
-                                            <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                                              <path d="M0,30 C200,-30 400,90 600,10 C800,-40 1000,70 1200,20 L1200,120 L0,120 Z" />
-                                            </svg>
-                                          </span>
-                                        </span>
-                                      </span>
-                                      <span className="relative z-10 flex items-center justify-center gap-1.5 group-hover:text-white transition-colors duration-300">
-                                        <span>Launch Portal</span>
-                                        <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                                      </span>
-                                    </a>
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* ========================================================= */}
-                  {/* TAB 2: COLLECTIONS (Stack Holdings & Printed Journals Tables) */}
-                  {/* ========================================================= */}
-                  {activeTab === "collections" && (
-                    <div className="space-y-10">
-                      {/* Stack Holdings Table (Transparent with border lines) */}
-                      <div className="space-y-4">
-                        <div className="border-b border-border pb-3 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                          <div>
-                            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                              Stack Collection Details &amp; Holdings
-                            </h2>
-                            <p className="text-xs sm:text-sm text-muted-foreground mt-1 font-sans">
-                              Physical volumes, distinct titles, reference books, periodicals, and multimedia assets.
-                            </p>
-                          </div>
-
-                          {/* Filter Pills */}
-                          <div className="flex flex-wrap items-center gap-1.5 p-1 border border-border bg-transparent rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs">
-                            {[
-                              { id: "all", label: "All Holdings (12)" },
-                              { id: "physical", label: "Physical Stack" },
-                              { id: "digital", label: "Digital Repositories" },
-                              { id: "periodicals", label: "Periodicals" },
-                            ].map((f) => (
-                              <button
-                                key={f.id}
-                                onClick={() => setStatFilter(f.id)}
-                                className={`px-3 py-1.5 text-xs font-oswald font-bold uppercase tracking-wider transition-all rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs ${
-                                  statFilter === f.id
-                                    ? "bg-primary text-white shadow-xs"
-                                    : "text-muted-foreground hover:text-foreground"
-                                }`}
+                          <div className="grid grid-cols-2 md:grid-cols-12 gap-1 sm:gap-1.5">
+                            {overviewGallery.map((item) => (
+                              <div
+                                key={item.title}
+                                className={cn(
+                                  item.span,
+                                  item.height,
+                                  "relative overflow-hidden rounded-md sm:rounded-lg border border-border/80 dark:border-white/15 shadow-xs bg-muted/20"
+                                )}
                               >
-                                {f.label}
-                              </button>
+                                <img
+                                  src={item.src}
+                                  alt={item.title}
+                                  className="w-full h-full object-cover block"
+                                  onError={(e) => {
+                                    (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+                                  }}
+                                />
+                              </div>
                             ))}
                           </div>
                         </div>
-
-                        <div className="overflow-x-auto border border-border bg-transparent">
-                          <table className="w-full text-left border-collapse bg-transparent text-xs sm:text-sm">
-                            <thead>
-                              <tr className="border-b-2 border-border bg-foreground/[0.03] text-xs font-black uppercase font-oswald text-foreground">
-                                <th className="py-3.5 px-4 w-[60px]">S.No</th>
-                                <th className="py-3.5 px-4 min-w-[220px]">Resource Classification</th>
-                                <th className="py-3.5 px-4 w-[140px]">Collection Type</th>
-                                <th className="py-3.5 px-4 text-right w-[160px]">Quantity / Holdings</th>
-                                <th className="py-3.5 px-4">Collection Scope &amp; Details</th>
-                              </tr>
-                            </thead>
-                            <tbody className="divide-y divide-border font-sans">
-                              {filteredStats.map((item, idx) => (
-                                <tr key={item.label} className="hover:bg-foreground/[0.02] transition-colors">
-                                  <td className="py-3.5 px-4 font-bold font-oswald text-muted-foreground">
-                                    {String(idx + 1).padStart(2, "0")}
-                                  </td>
-                                  <td className="py-3.5 px-4 font-bold font-oswald text-foreground text-sm uppercase tracking-wide">
-                                    {item.label}
-                                  </td>
-                                  <td className="py-3.5 px-4">
-                                    <span className="inline-block px-2.5 py-0.5 text-[10px] font-oswald font-bold uppercase tracking-wider border border-border text-muted-foreground">
-                                      {item.category}
-                                    </span>
-                                  </td>
-                                  <td className="py-3.5 px-4 text-right font-black font-oswald text-primary text-lg sm:text-xl">
-                                    {item.count}{item.suffix ? ` ${item.suffix}` : ""}
-                                  </td>
-                                  <td className="py-3.5 px-4 text-muted-foreground leading-relaxed text-xs sm:text-sm">
-                                    {item.description}
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
                       </div>
+                    </section>
 
-                      {/* Printed Journals by Department Table (Transparent with border lines) */}
-                      <div className="pt-8 border-t border-border space-y-4">
-                        <div className="border-b border-border pb-3">
-                          <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                            List of Printed Journals by Department
-                          </h3>
-                          <p className="text-xs sm:text-sm text-muted-foreground mt-1 font-sans">
-                            Subscribed specialized print research journals directly aligned with Anna University engineering streams.
-                          </p>
-                        </div>
-
-                        <div className="overflow-x-auto border border-border bg-transparent">
-                          <table className="w-full text-left border-collapse bg-transparent text-xs sm:text-sm">
-                            <thead>
-                              <tr className="border-b-2 border-border bg-foreground/[0.03] text-xs font-black uppercase font-oswald text-foreground">
-                                <th className="py-3.5 px-4 w-[60px]">S.No</th>
-                                <th className="py-3.5 px-4 min-w-[280px]">Name of the Department</th>
-                                <th className="py-3.5 px-4 w-[120px]">Code</th>
-                                <th className="py-3.5 px-4 text-right w-[180px]">No of Printed Journals</th>
-                              </tr>
-                            </thead>
-                            <tbody className="divide-y divide-border font-sans">
-                              {departmentJournals.map((dept) => (
-                                <tr key={dept.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                                  <td className="py-3.5 px-4 font-bold font-oswald text-muted-foreground">
-                                    {String(dept.sno).padStart(2, "0")}
-                                  </td>
-                                  <td className="py-3.5 px-4 font-bold font-oswald uppercase text-foreground text-sm">
-                                    {dept.department}
-                                  </td>
-                                  <td className="py-3.5 px-4 font-oswald font-bold text-xs uppercase text-primary">
-                                    {dept.code}
-                                  </td>
-                                  <td className="py-3.5 px-4 text-right font-black font-oswald text-foreground text-base">
-                                    {String(dept.count).padStart(2, "0")}
-                                  </td>
-                                </tr>
-                              ))}
-                              {/* Total Row */}
-                              <tr className="border-t-2 border-primary/40 bg-foreground/[0.04]">
-                                <td colSpan={3} className="py-4 px-4 font-oswald font-black uppercase text-foreground tracking-wider text-sm">
-                                  TOTAL PRINTED JOURNALS SUBSCRIBED
-                                </td>
-                                <td className="py-4 px-4 text-right font-oswald font-black text-primary text-xl">
-                                  37
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
-                      {/* Collections Visual Showcase (Images Section with Different Shapes) */}
-                      <div className="pt-8 border-t border-border space-y-4">
-                        <div className="border-b border-border pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-                          <div>
-                            <div className="flex items-center gap-2 text-xs font-oswald font-bold uppercase tracking-wider text-primary mb-1">
-                              <LibraryIcon className="w-4 h-4" />
-                              Physical Infrastructure
-                            </div>
-                            <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                              Stack &amp; Periodicals Visual Gallery
-                            </h3>
-                            <p className="text-xs sm:text-sm text-muted-foreground mt-1 font-sans">
-                              Architectural views of the primary stack room, reference archives, and periodical reading lounges.
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                          {/* Image 1: Shape 1 (rounded-tl-2xl rounded-br-md rounded-tr-xs rounded-bl-xs) */}
-                          <div className="group overflow-hidden rounded-tl-2xl rounded-br-md rounded-tr-xs rounded-bl-xs border border-border bg-transparent flex flex-col shadow-2xs">
-                            <div className="relative h-[200px] w-full overflow-hidden bg-muted/20">
-                              <img
-                                src="https://images.unsplash.com/photo-1507842229451-7f01be88a0d4?auto=format&fit=crop&w=800&q=80"
-                                alt="Main Stack Wing"
-                                className="w-full h-full object-cover block"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
-                                }}
-                              />
-                            </div>
-                            <div className="p-3 bg-foreground/[0.02] border-t border-border flex items-center justify-between">
-                              <div>
-                                <h4 className="text-xs font-oswald font-bold uppercase tracking-wider text-foreground">
-                                  Main Stack Wing
-                                </h4>
-                                <p className="text-[11px] text-muted-foreground font-sans">
-                                  29,853+ engineering volumes
-                                </p>
-                              </div>
-                              <span className="text-[10px] font-mono font-bold uppercase text-primary border border-primary/30 px-1.5 py-0.5 rounded-xs">
-                                Ground Fl.
-                              </span>
-                            </div>
-                          </div>
-
-                          {/* Image 2: Shape 2 (rounded-tl-xs rounded-br-2xl rounded-tr-md rounded-bl-xs) */}
-                          <div className="group overflow-hidden rounded-tl-xs rounded-br-2xl rounded-tr-md rounded-bl-xs border border-border bg-transparent flex flex-col shadow-2xs">
-                            <div className="relative h-[200px] w-full overflow-hidden bg-muted/20">
-                              <img
-                                src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=800&q=80"
-                                alt="Reference Collection"
-                                className="w-full h-full object-cover block"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).src = "/images/eligibility_hero.jpg";
-                                }}
-                              />
-                            </div>
-                            <div className="p-3 bg-foreground/[0.02] border-t border-border flex items-center justify-between">
-                              <div>
-                                <h4 className="text-xs font-oswald font-bold uppercase tracking-wider text-foreground">
-                                  Reference Section
-                                </h4>
-                                <p className="text-[11px] text-muted-foreground font-sans">
-                                  Encyclopedias, Codes &amp; Standards
-                                </p>
-                              </div>
-                              <span className="text-[10px] font-mono font-bold uppercase text-primary border border-primary/30 px-1.5 py-0.5 rounded-xs">
-                                1st Floor
-                              </span>
-                            </div>
-                          </div>
-
-                          {/* Image 3: Shape 3 (rounded-tl-md rounded-br-xs rounded-tr-2xl rounded-bl-xs) */}
-                          <div className="group overflow-hidden rounded-tl-md rounded-br-xs rounded-tr-2xl rounded-bl-xs border border-border bg-transparent flex flex-col shadow-2xs">
-                            <div className="relative h-[200px] w-full overflow-hidden bg-muted/20">
-                              <img
-                                src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80"
-                                alt="Periodicals Lounge"
-                                className="w-full h-full object-cover block"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).src = "/images/procedure_hero.jpg";
-                                }}
-                              />
-                            </div>
-                            <div className="p-3 bg-foreground/[0.02] border-t border-border flex items-center justify-between">
-                              <div>
-                                <h4 className="text-xs font-oswald font-bold uppercase tracking-wider text-foreground">
-                                  Periodicals Lounge
-                                </h4>
-                                <p className="text-[11px] text-muted-foreground font-sans">
-                                  37 Subscribed Print Journals
-                                </p>
-                              </div>
-                              <span className="text-[10px] font-mono font-bold uppercase text-primary border border-primary/30 px-1.5 py-0.5 rounded-xs">
-                                Reading Hall
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    {/* Wave Divider 1 (White -> #F3F3F2 / #121214 -> #18181B) */}
+                    <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+                      <svg
+                        viewBox="0 0 1440 72"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+                        preserveAspectRatio="none"
+                      >
+                        <path
+                          d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+                          className="fill-[#F3F3F2] dark:fill-[#18181B]"
+                        />
+                      </svg>
                     </div>
-                  )}
 
-                  {/* ========================================================= */}
-                  {/* TAB 3: DIGITAL LIBRARY (Unified Architectural Table Console) */}
-                  {/* ========================================================= */}
-                  {activeTab === "digital-library" && (
-                    <div className="space-y-6">
-                      {/* Section Title & Description */}
-                      <div className="border-b border-border pb-3 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                        <div>
-                          <div className="inline-flex items-center gap-2 text-xs font-oswald uppercase tracking-widest text-primary font-bold mb-1">
-                            <Database className="w-3.5 h-3.5" />
-                            <span>Accredited E-Resources Consortia</span>
-                          </div>
-                          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                            Digital Library &amp; E-Resources Directory
-                          </h2>
-                          <p className="text-xs sm:text-sm text-muted-foreground mt-1 font-sans">
-                            Tabulated directory of 75+ accredited online gateways, peer-reviewed open access journals, e-books, and courseware.
+                    {/* SECTION 2: Library Working Hours (#F3F3F2 / #18181B Canvas) */}
+                    <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-16 pb-20 sm:pb-24">
+                      <div id="library-working-hours" className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 space-y-4 scroll-mt-[120px]">
+                        <div className="flex items-center gap-3">
+                          <Clock className="w-6 h-6 sm:w-7 sm:h-7 text-foreground shrink-0 stroke-[2.2]" />
+                          <h3 className="text-2xl sm:text-3xl font-black font-oswald text-foreground tracking-tight">
+                            Library Working Hours
+                          </h3>
+                        </div>
+                        <div className="space-y-2 text-sm sm:text-base md:text-lg font-sans text-foreground">
+                          <p className="font-medium">
+                            Monday to Saturday - 8.00 A.M. to 7.00 P.M
+                          </p>
+                          <p className="font-medium">
+                            All Sunday - 10.00 A.M. to 4.00 P.M
                           </p>
                         </div>
                       </div>
+                    </section>
+                  </div>
+                )}
 
-                      {/* Unified Architectural Table Console */}
-                      <div className="border border-border bg-transparent rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden shadow-2xs">
-                        {/* Tier 1: Category Filter Buttons Bar */}
-                        <div className="border-b border-border bg-foreground/[0.02] p-2.5 flex items-center gap-2 overflow-x-auto no-scrollbar">
-                          {[
-                            { id: "all", label: "All Repositories", count: allDigitalResources.length },
-                            { id: "e-library", label: "E-Library Gateways", count: eLibraryGateways.length },
-                            { id: "e-journal", label: "Open Access E-Journals", count: openAccessJournals.length },
-                            { id: "e-book", label: "E-Books Databases", count: eBooksDirectory.length },
-                            { id: "course", label: "Online Courseware", count: freeCourseMaterials.length },
-                          ].map((cat) => {
-                            const isActive = digitalCategory === cat.id;
-                            return (
-                              <button
-                                key={cat.id}
-                                onClick={() => setDigitalCategory(cat.id)}
-                                className={`group relative flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-oswald uppercase tracking-wider font-bold transition-all shrink-0 rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs border ${
-                                  isActive
-                                    ? "bg-primary text-white border-primary shadow-xs"
-                                    : "bg-background dark:bg-[#18181b] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04] border-border"
-                                }`}
-                              >
-                                <span>{cat.label}</span>
-                                <span
-                                  className={`px-1.5 py-0.5 text-[11px] font-mono font-bold rounded-xs transition-colors ${
-                                    isActive
-                                      ? "bg-white/20 text-white"
-                                      : "bg-foreground/[0.05] text-muted-foreground group-hover:text-foreground border border-border/80"
+                  {/* ========================================================= */}
+                  {/* TAB 2: COLLECTIONS (Wavy Background Color Split Sections) */}
+                  {/* ========================================================= */}
+                  {activeTab === "collections" && (
+                    <div className="w-full">
+                      {/* SECTION 1: Stack Holdings Table (White / #121214 Canvas) */}
+                      <section className="w-full bg-white dark:bg-[#121214] pt-6 sm:pt-8 md:pt-10 pb-8 sm:pb-12">
+                        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 space-y-6">
+                          {/* Collections Header with Filter Pills */}
+                          <div className="border-b border-border pb-3 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                            <div>
+                              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
+                                Collections
+                              </h2>
+                            </div>
+
+                            {/* Filter Pills */}
+                            <div className="flex flex-wrap items-center gap-1.5 p-1 border border-border bg-transparent rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs">
+                              {[
+                                { id: "all", label: "All Holdings (12)" },
+                                { id: "physical", label: "Physical Stack" },
+                                { id: "digital", label: "Digital Repositories" },
+                                { id: "periodicals", label: "Periodicals" },
+                              ].map((f) => (
+                                <button
+                                  key={f.id}
+                                  onClick={() => setStatFilter(f.id)}
+                                  className={`px-3 py-1.5 text-xs font-oswald font-bold uppercase tracking-wider transition-all rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs cursor-pointer select-none ${
+                                    statFilter === f.id
+                                      ? "bg-primary text-white shadow-xs"
+                                      : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
                                   }`}
                                 >
-                                  {cat.count}
-                                </span>
-                              </button>
-                            );
-                          })}
-                        </div>
-
-                        {/* Tier 2: Search Command Bar */}
-                        <div className="border-b border-border bg-foreground/[0.015] px-4 sm:px-6 py-3">
-                          {/* Search Input */}
-                          <div className="relative w-full">
-                            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-primary pointer-events-none" />
-                            <input
-                              type="text"
-                              placeholder="Search by title, publisher, or subject (e.g. DELNET, arXiv, MIT, Python, IEEE)..."
-                              value={digitalSearch}
-                              onChange={(e) => setDigitalSearch(e.target.value)}
-                              className="w-full pl-10 pr-16 py-2.5 text-xs sm:text-sm bg-background dark:bg-[#18181b] border border-border rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all font-sans"
-                            />
-                            {digitalSearch && (
-                              <button
-                                onClick={() => setDigitalSearch("")}
-                                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-oswald font-bold uppercase tracking-wider text-muted-foreground hover:text-foreground px-2 py-0.5 rounded-xs bg-foreground/[0.06] hover:bg-foreground/[0.1] border border-border"
-                              >
-                                Clear
-                              </button>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* Tier 3: Spacious, Neat Transparent Table (Category Column REMOVED) */}
-                        <div className="overflow-x-auto bg-transparent">
-                          <table className="w-full text-left border-collapse bg-transparent text-xs sm:text-sm">
-                            <thead>
-                              <tr className="border-b-2 border-border bg-foreground/[0.04] text-xs font-black uppercase font-oswald text-foreground tracking-wider">
-                                <th className="py-4 px-4 w-[70px] text-center">S.No</th>
-                                <th className="py-4 px-6 min-w-[280px] sm:w-[340px] lg:w-[380px]">Resource / Provider Name</th>
-                                <th className="py-4 px-6 min-w-[320px]">Description &amp; Discipline Coverage</th>
-                                <th className="py-4 px-6 text-right w-[160px]">Portal Link</th>
-                              </tr>
-                            </thead>
-                            <tbody className="divide-y divide-border font-sans">
-                              {filteredDigital.map((item, idx) => (
-                                <tr
-                                  key={`${item.category}-${item.sno}-${item.name}`}
-                                  className="hover:bg-primary/[0.02] even:bg-foreground/[0.01] transition-colors group/row"
-                                >
-                                  <td className="py-5 px-4 text-center font-bold font-oswald text-muted-foreground">
-                                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-foreground/[0.04] border border-border text-xs font-mono font-bold text-muted-foreground">
-                                      {String(idx + 1).padStart(2, "0")}
-                                    </span>
-                                  </td>
-                                  <td className="py-5 px-6 font-bold font-oswald text-foreground">
-                                    <a
-                                      href={item.url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="text-sm sm:text-base font-bold font-oswald uppercase tracking-wide text-foreground group-hover/row:text-primary transition-colors block leading-snug"
-                                    >
-                                      {item.name}
-                                    </a>
-                                    <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground/80 font-mono font-normal mt-1">
-                                      <Globe2 className="w-3 h-3 text-primary/70 shrink-0" />
-                                      <span className="truncate">{item.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}</span>
-                                    </div>
-                                  </td>
-                                  <td className="py-5 px-6 text-muted-foreground leading-relaxed text-xs sm:text-sm font-sans max-w-2xl">
-                                    {item.description || "Peer-reviewed scholarly electronic database"}
-                                  </td>
-                                  <td className="py-5 px-6 text-right">
-                                    <a
-                                      href={item.url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="group relative inline-flex items-center justify-center overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-primary/40 bg-stone-200/90 dark:bg-neutral-800 px-4 py-2 text-xs font-bold uppercase tracking-wider font-oswald text-foreground dark:text-white transition-all duration-300 shadow-2xs hover:text-white cursor-pointer select-none shrink-0"
-                                    >
-                                      <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                                        <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                                          <span className="absolute -top-3.5 left-0 w-[200%] h-4 pointer-events-none block">
-                                            <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                                              <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,-20 1200,40 L1200,120 L0,120 Z" />
-                                            </svg>
-                                          </span>
-                                          <span className="absolute -top-4 left-0 w-[200%] h-5 opacity-40 pointer-events-none block">
-                                            <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                                              <path d="M0,30 C200,-30 400,90 600,10 C800,-40 1000,70 1200,20 L1200,120 L0,120 Z" />
-                                            </svg>
-                                          </span>
-                                        </span>
-                                      </span>
-                                      <span className="relative z-10 flex items-center justify-center gap-1.5 group-hover:text-white transition-colors duration-300">
-                                        <span>Access</span>
-                                        <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                                      </span>
-                                    </a>
-                                  </td>
-                                </tr>
+                                  {f.label}
+                                </button>
                               ))}
-                            </tbody>
-                          </table>
-                        </div>
-
-                        {/* Empty State */}
-                        {filteredDigital.length === 0 && (
-                          <div className="text-center py-16 px-6 bg-transparent">
-                            <Search className="w-10 h-10 text-muted-foreground mx-auto mb-3 opacity-40" />
-                            <h3 className="text-lg font-black font-oswald uppercase text-foreground">
-                              No matching digital resources found
-                            </h3>
-                            <p className="text-sm text-muted-foreground mt-1 max-w-md mx-auto">
-                              {digitalSearch
-                                ? `We couldn't find any resources matching "${digitalSearch}". Try checking your query or resetting category filters.`
-                                : "No resources found in this category."}
-                            </p>
-                            <button
-                              onClick={() => {
-                                setDigitalSearch("");
-                                setDigitalCategory("all");
-                              }}
-                              className="mt-4 inline-flex items-center gap-2 px-4 py-2 text-xs font-oswald font-bold uppercase tracking-wider text-white bg-primary rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-all"
-                            >
-                              <RotateCcw className="w-3.5 h-3.5" />
-                              <span>Reset Search &amp; Show All 75 Resources</span>
-                            </button>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Digital Resource Centre Images Section (Different Shapes) */}
-                      <div className="pt-8 border-t border-border space-y-4">
-                        <div className="border-b border-border pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-                          <div>
-                            <div className="flex items-center gap-2 text-xs font-oswald font-bold uppercase tracking-wider text-primary mb-1">
-                              <Monitor className="w-4 h-4" />
-                              High-Speed Computing Facilities
-                            </div>
-                            <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                              Digital Resource Centre &amp; E-Learning Labs
-                            </h3>
-                            <p className="text-xs sm:text-sm text-muted-foreground mt-1 font-sans">
-                              Networked computing terminals providing seamless access to DELNET, J-Gate, NPTEL, and national consortia.
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          {/* Image 1: Shape 1 (rounded-tl-2xl rounded-br-sm rounded-tr-xs rounded-bl-xl) */}
-                          <div className="group overflow-hidden rounded-tl-2xl rounded-br-sm rounded-tr-xs rounded-bl-xl border border-border bg-transparent flex flex-col shadow-2xs">
-                            <div className="relative h-[220px] w-full overflow-hidden bg-muted/20">
-                              <img
-                                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
-                                alt="Digital Access Workstations"
-                                className="w-full h-full object-cover block"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
-                                }}
-                              />
-                            </div>
-                            <div className="p-3 bg-foreground/[0.02] border-t border-border flex items-center justify-between">
-                              <div>
-                                <h4 className="text-xs font-oswald font-bold uppercase tracking-wider text-foreground">
-                                  Digital Access Terminals
-                                </h4>
-                                <p className="text-[11px] text-muted-foreground font-sans">
-                                  High-speed 1 Gbps LAN &amp; digital research terminals
-                                </p>
-                              </div>
-                              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-primary border border-primary/30 px-2 py-0.5 rounded-xs">
-                                30+ Systems
-                              </span>
                             </div>
                           </div>
 
-                          {/* Image 2: Shape 2 (rounded-tl-xs rounded-br-2xl rounded-tr-xl rounded-bl-sm) */}
-                          <div className="group overflow-hidden rounded-tl-xs rounded-br-2xl rounded-tr-xl rounded-bl-sm border border-border bg-transparent flex flex-col shadow-2xs">
-                            <div className="relative h-[220px] w-full overflow-hidden bg-muted/20">
-                              <img
-                                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
-                                alt="E-Resource Discovery Node"
-                                className="w-full h-full object-cover block"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).src = "/images/eligibility_hero.jpg";
-                                }}
-                              />
-                            </div>
-                            <div className="p-3 bg-foreground/[0.02] border-t border-border flex items-center justify-between">
-                              <div>
-                                <h4 className="text-xs font-oswald font-bold uppercase tracking-wider text-foreground">
-                                  Koha ILMS &amp; OPAC Kiosks
-                                </h4>
-                                <p className="text-[11px] text-muted-foreground font-sans">
-                                  Instant bibliographic search &amp; electronic thesis retrieval
-                                </p>
-                              </div>
-                              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-primary border border-primary/30 px-2 py-0.5 rounded-xs">
-                                24/7 OPAC
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* ========================================================= */}
-                  {/* TAB 4: SERVICES & RULES (Transparent Tables with Border Lines) */}
-                  {/* ========================================================= */}
-                  {activeTab === "services-rules" && (
-                    <div className="space-y-12">
-                      {/* Services Table (Replaces cards) */}
-                      <div className="space-y-4">
-                        <div className="border-b border-border pb-3">
-                          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                            Comprehensive Library Services (10 Facilities)
-                          </h2>
-                          <p className="text-xs sm:text-sm text-muted-foreground mt-1 font-sans">
-                            Lending, OPAC catalog search, digital workstations, discussion rooms, and Inter-Library Loans.
-                          </p>
-                        </div>
-
-                        <div className="overflow-x-auto border border-border bg-transparent">
-                          <table className="w-full text-left border-collapse bg-transparent text-xs sm:text-sm">
-                            <thead>
-                              <tr className="border-b-2 border-border bg-foreground/[0.03] text-xs font-black uppercase font-oswald text-foreground">
-                                <th className="py-3.5 px-4 w-[60px]">S.No</th>
-                                <th className="py-3.5 px-4 min-w-[240px]">Service Facility</th>
-                                <th className="py-3.5 px-4 w-[140px]">Category</th>
-                                <th className="py-3.5 px-4">Operational Scope &amp; Facilities</th>
-                                <th className="py-3.5 px-4 text-right w-[120px]">Availability</th>
-                              </tr>
-                            </thead>
-                            <tbody className="divide-y divide-border font-sans">
-                              {libraryServices.map((svc, idx) => (
-                                <tr key={svc.id} className="hover:bg-foreground/[0.02] transition-colors">
-                                  <td className="py-3.5 px-4 font-bold font-oswald text-muted-foreground">
-                                    {String(idx + 1).padStart(2, "0")}
-                                  </td>
-                                  <td className="py-3.5 px-4">
-                                    <span className="font-bold font-oswald uppercase text-foreground text-sm block">
-                                      {svc.title}
-                                    </span>
-                                  </td>
-                                  <td className="py-3.5 px-4">
-                                    <span className="inline-block px-2.5 py-0.5 text-[10px] font-oswald font-bold uppercase tracking-wider border border-primary/30 text-primary">
-                                      {svc.badge || "Core Service"}
-                                    </span>
-                                  </td>
-                                  <td className="py-3.5 px-4 text-muted-foreground leading-relaxed text-xs sm:text-sm">
-                                    {svc.description}
-                                  </td>
-                                  <td className="py-3.5 px-4 text-right font-oswald font-bold uppercase text-xs text-emerald-600 dark:text-emerald-400">
-                                    Active
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
-                      {/* Borrowing Eligibility Table (Transparent with border lines) */}
-                      <div className="pt-8 border-t border-border space-y-4">
-                        <div className="border-b border-border pb-3">
-                          <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                            Membership Borrowing Entitlements
-                          </h3>
-                          <p className="text-xs sm:text-sm text-muted-foreground mt-1 font-sans">
-                            Official loan book limits and borrowing periods for students and faculty.
-                          </p>
-                        </div>
-
-                        <div className="overflow-x-auto border border-border bg-transparent">
-                          <table className="w-full text-left border-collapse bg-transparent text-xs sm:text-sm">
-                            <thead>
-                              <tr className="border-b-2 border-border bg-foreground/[0.03] text-xs font-black uppercase font-oswald text-foreground">
-                                <th className="py-3.5 px-4 min-w-[200px]">Membership Category</th>
-                                <th className="py-3.5 px-4 w-[180px]">Borrowing Entitlements</th>
-                                <th className="py-3.5 px-4 w-[140px]">Loan Period</th>
-                                <th className="py-3.5 px-4">Privilege Scope</th>
-                              </tr>
-                            </thead>
-                            <tbody className="divide-y divide-border font-sans">
-                              {borrowingEligibility.map((item) => (
-                                <tr key={item.category} className="hover:bg-foreground/[0.02] transition-colors">
-                                  <td className="py-3.5 px-4 font-bold font-oswald text-foreground text-sm">
-                                    {item.category}
-                                  </td>
-                                  <td className="py-3.5 px-4">
-                                    <span className="inline-flex items-center px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs font-oswald font-black text-sm">
-                                      {item.entitlement}
-                                    </span>
-                                  </td>
-                                  <td className="py-3.5 px-4 font-oswald font-semibold text-foreground text-sm">
-                                    {item.loanPeriod}
-                                  </td>
-                                  <td className="py-3.5 px-4 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                                    {item.description}
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
-                      {/* Overdue Fine Slabs Table & Estimator */}
-                      <div className="pt-8 border-t border-border space-y-4">
-                        <div className="border-b border-border pb-3">
-                          <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                            Overdue Fine Slabs &amp; Interactive Estimator
-                          </h3>
-                          <p className="text-xs sm:text-sm text-muted-foreground mt-1 font-sans">
-                            Transparent tiered late fee charges applied beyond the 30-day loan period.
-                          </p>
-                        </div>
-
-                        <div className="grid gap-6 lg:grid-cols-12 items-start">
-                          <div className="lg:col-span-7">
-                            <div className="overflow-x-auto border border-border bg-transparent">
+                          <DataGridContainer>
+                            <div className="overflow-x-auto bg-transparent">
                               <table className="w-full text-left border-collapse bg-transparent text-xs sm:text-sm">
                                 <thead>
                                   <tr className="border-b-2 border-border bg-foreground/[0.03] text-xs font-black uppercase font-oswald text-foreground">
-                                    <th className="py-3.5 px-4">Overdue Elapsed Period</th>
-                                    <th className="py-3.5 px-4">Slab Duration</th>
-                                    <th className="py-3.5 px-4 text-right">Fine Rate</th>
-                                    <th className="py-3.5 px-4 text-right">Billing Unit</th>
+                                    <th className="py-3.5 px-4 w-[60px] whitespace-nowrap">S.No</th>
+                                    <th className="py-3.5 px-4 min-w-[220px] whitespace-nowrap">Resource Classification</th>
+                                    <th className="py-3.5 px-4 min-w-[170px] whitespace-nowrap">Collection Type</th>
+                                    <th className="py-3.5 px-4 text-right min-w-[190px] whitespace-nowrap">Quantity / Holdings</th>
+                                    <th className="py-3.5 px-4 min-w-[300px] whitespace-nowrap">Collection Scope &amp; Details</th>
                                   </tr>
                                 </thead>
                                 <tbody className="divide-y divide-border font-sans">
-                                  {overdueFineSlabs.map((slab) => (
-                                    <tr key={slab.slab} className="hover:bg-foreground/[0.02] transition-colors">
-                                      <td className="py-3.5 px-4 font-black font-oswald uppercase text-foreground">
-                                        {slab.period}
+                                  {filteredStats.map((item, idx) => (
+                                    <tr key={item.label} className="hover:bg-foreground/[0.02] transition-colors">
+                                      <td className="py-3.5 px-4 font-bold font-oswald text-muted-foreground">
+                                        {String(idx + 1).padStart(2, "0")}
                                       </td>
-                                      <td className="py-3.5 px-4 text-muted-foreground">
+                                      <td className="py-3.5 px-4 font-bold font-oswald text-foreground text-sm uppercase tracking-wide">
+                                        {item.label}
+                                      </td>
+                                      <td className="py-3.5 px-4">
+                                        <span className="inline-block px-2.5 py-0.5 text-[10px] font-oswald font-bold uppercase tracking-wider border border-border text-muted-foreground">
+                                          {item.category}
+                                        </span>
+                                      </td>
+                                      <td className="py-3.5 px-4 text-right font-black font-oswald text-primary text-lg sm:text-xl">
+                                        {item.count}{item.suffix ? ` ${item.suffix}` : ""}
+                                      </td>
+                                      <td className="py-3.5 px-4 text-muted-foreground leading-relaxed text-xs sm:text-sm">
+                                        {item.description}
+                                      </td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
+                          </DataGridContainer>
+                        </div>
+                      </section>
+
+                      {/* Wave Divider 1 (White -> #F3F3F2 / #121214 -> #18181B) */}
+                      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+                        <svg
+                          viewBox="0 0 1440 72"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+                          preserveAspectRatio="none"
+                        >
+                          <path
+                            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+                            className="fill-[#F3F3F2] dark:fill-[#18181B]"
+                          />
+                        </svg>
+                      </div>
+
+                      {/* SECTION 2: List of Printed Journals by Department Table (#F3F3F2 / #18181B Canvas) */}
+                      <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] pt-10 sm:pt-14 pb-16 sm:pb-20 md:pb-24">
+                        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 space-y-6">
+                          <div className="border-b border-border pb-3">
+                            <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
+                              List of Printed Journals by Department
+                            </h3>
+                          </div>
+
+                          <DataGridContainer>
+                            <div className="overflow-x-auto bg-transparent">
+                              <table className="w-full text-left border-collapse bg-transparent text-xs sm:text-sm">
+                                <thead>
+                                  <tr className="border-b-2 border-border bg-foreground/[0.03] text-xs font-black uppercase font-oswald text-foreground">
+                                    <th className="py-3.5 px-4 w-[60px] whitespace-nowrap">S.No</th>
+                                    <th className="py-3.5 px-4 min-w-[280px] whitespace-nowrap">Name of the Department</th>
+                                    <th className="py-3.5 px-4 w-[120px] whitespace-nowrap">Code</th>
+                                    <th className="py-3.5 px-4 text-right min-w-[220px] whitespace-nowrap">No of Printed Journals</th>
+                                  </tr>
+                                </thead>
+                                <tbody className="divide-y divide-border font-sans">
+                                  {departmentJournals.map((dept) => (
+                                    <tr key={dept.sno} className="hover:bg-foreground/[0.02] transition-colors">
+                                      <td className="py-3.5 px-4 font-bold font-oswald text-muted-foreground">
+                                        {String(dept.sno).padStart(2, "0")}
+                                      </td>
+                                      <td className="py-3.5 px-4 font-bold font-oswald uppercase text-foreground text-sm">
+                                        {dept.department}
+                                      </td>
+                                      <td className="py-3.5 px-4 font-oswald font-bold text-xs uppercase text-primary">
+                                        {dept.code}
+                                      </td>
+                                      <td className="py-3.5 px-4 text-right font-black font-oswald text-foreground text-base">
+                                        {String(dept.count).padStart(2, "0")}
+                                      </td>
+                                    </tr>
+                                  ))}
+                                  {/* Total Row */}
+                                  <tr className="border-t-2 border-primary/40 bg-foreground/[0.04]">
+                                    <td colSpan={3} className="py-4 px-4 font-oswald font-black uppercase text-foreground tracking-wider text-sm">
+                                      TOTAL PRINTED JOURNALS SUBSCRIBED
+                                    </td>
+                                    <td className="py-4 px-4 text-right font-oswald font-black text-primary text-xl">
+                                      37
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </DataGridContainer>
+                        </div>
+                      </section>
+                    </div>
+                  )}
+
+                  {/* ========================================================= */}
+                  {/* TAB 3: DIGITAL LIBRARY (Wavy Background Color Split Sections) */}
+                  {/* ========================================================= */}
+                  {activeTab === "digital-library" && (
+                    <div className="w-full">
+                      {/* SECTION 1: Digital Library Console (White / #121214 Canvas) */}
+                      <section className="w-full bg-white dark:bg-[#121214] pt-6 sm:pt-8 md:pt-10 pb-16 sm:pb-20 md:pb-24">
+                        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 space-y-6">
+                          {/* Section Title */}
+                          <div className="border-b border-border pb-3">
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
+                              Digital Library
+                            </h2>
+                          </div>
+
+                          {/* DataGrid Console */}
+                          <div id="digital-library-table-top" className="space-y-4 scroll-mt-[120px]">
+                            {/* Category Filter Pills & Search Bar */}
+                            <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+                              <div className="flex flex-wrap items-center gap-2 overflow-x-auto pb-1 md:pb-0">
+                                {[
+                                  { id: "all", label: "All Gateways", count: allDigitalResources.length },
+                                  { id: "e-library", label: "DELNET & Databases", count: eLibraryGateways.length },
+                                  { id: "e-journal", label: "Open Access Journals", count: openAccessJournals.length },
+                                  { id: "e-book", label: "E-Books Directory", count: eBooksDirectory.length },
+                                  { id: "course", label: "Courseware & NPTEL", count: freeCourseMaterials.length },
+                                ].map((cat) => {
+                                  const isActive = digitalCategory === cat.id;
+                                  return (
+                                    <button
+                                      key={cat.id}
+                                      onClick={() => {
+                                        setDigitalCategory(cat.id);
+                                        setDigitalPagination((prev) => ({ ...prev, pageIndex: 0 }));
+                                        setTimeout(() => {
+                                          const el = document.getElementById("digital-library-table-top");
+                                          if (el) {
+                                            const headerOffset = window.innerWidth < 768 ? 110 : 120;
+                                            const elementTop = el.getBoundingClientRect().top + window.pageYOffset;
+                                            window.scrollTo({
+                                              top: Math.max(0, elementTop - headerOffset),
+                                              behavior: "smooth",
+                                            });
+                                          }
+                                        }, 20);
+                                      }}
+                                      className={`group relative flex items-center gap-2 px-3.5 py-1.5 text-xs font-oswald uppercase tracking-wider font-bold transition-all shrink-0 rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs border ${
+                                        isActive
+                                          ? "bg-primary text-white border-primary shadow-xs"
+                                          : "bg-background dark:bg-[#18181b] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04] border-border"
+                                      }`}
+                                    >
+                                      <span>{cat.label}</span>
+                                      <span
+                                        className={`px-1.5 py-0.5 text-[10px] font-mono font-bold rounded-xs transition-colors ${
+                                          isActive
+                                            ? "bg-white/20 text-white"
+                                            : "bg-foreground/[0.05] text-muted-foreground group-hover:text-foreground border border-border/80"
+                                        }`}
+                                      >
+                                        {cat.count}
+                                      </span>
+                                    </button>
+                                  );
+                                })}
+                              </div>
+
+                              <div className="relative w-full md:w-80 shrink-0">
+                                <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-primary pointer-events-none" />
+                                <input
+                                  type="text"
+                                  placeholder="Search by title, publisher, subject..."
+                                  value={digitalSearch}
+                                  onChange={(e) => setDigitalSearch(e.target.value)}
+                                  className="w-full pl-9 pr-14 py-2 text-xs bg-background dark:bg-[#18181b] border border-border rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all font-sans"
+                                />
+                                {digitalSearch && (
+                                  <button
+                                    onClick={() => setDigitalSearch("")}
+                                    className="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] font-oswald font-bold uppercase tracking-wider text-muted-foreground hover:text-foreground px-1.5 py-0.5 rounded-xs bg-foreground/[0.06] hover:bg-foreground/[0.1] border border-border"
+                                  >
+                                    Clear
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* DataGrid Component */}
+                            <DataGrid table={digitalTable} recordCount={filteredDigital.length}>
+                              <div className="w-full space-y-0">
+                                <DataGridContainer>
+                                  <div className="overflow-x-auto">
+                                    <DataGridTable />
+                                  </div>
+                                </DataGridContainer>
+                                <DataGridPagination sizes={[10, 20, 50]} />
+                              </div>
+                            </DataGrid>
+
+                            {/* Empty State */}
+                            {filteredDigital.length === 0 && (
+                              <div className="text-center py-12 px-6 bg-transparent border border-border border-t-0 rounded-bl-xl rounded-br-xl">
+                                <Search className="w-8 h-8 text-muted-foreground mx-auto mb-2 opacity-40" />
+                                <h3 className="text-base font-black font-oswald uppercase text-foreground">
+                                  No matching digital resources found
+                                </h3>
+                                <p className="text-xs text-muted-foreground mt-1 max-w-md mx-auto font-sans">
+                                  {digitalSearch
+                                    ? `No resources matching "${digitalSearch}". Try adjusting your search or clearing filters.`
+                                    : "No resources found in this category."}
+                                </p>
+                                <button
+                                  onClick={() => {
+                                    setDigitalSearch("");
+                                    setDigitalCategory("all");
+                                  }}
+                                  className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-oswald font-bold uppercase tracking-wider text-white bg-primary rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-all"
+                                >
+                                  <RotateCcw className="w-3 h-3" />
+                                  <span>Reset Search</span>
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  )}
+
+                  {/* ========================================================= */}
+                  {/* TAB 4: SERVICES & RULES (Wavy Background Color Split Sections) */}
+                  {/* ========================================================= */}
+                  {activeTab === "services-rules" && (
+                    <div className="w-full">
+                      {/* SECTION 1: Services Directory (White / #121214 Canvas) */}
+                      <section className="w-full bg-white dark:bg-[#121214] pt-8 sm:pt-10 md:pt-12 pb-12 sm:pb-16">
+                        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 space-y-8">
+                          {/* Services & Rules Header */}
+                          <div className="border-b border-border pb-5 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                            <div>
+                              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
+                                Services &amp; Rules
+                              </h2>
+                            </div>
+                            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-oswald uppercase tracking-wider text-muted-foreground">
+                              <div>
+                                <span className="text-primary font-black">10</span> Active Services
+                              </div>
+                              <span className="text-border hidden sm:inline">|</span>
+                              <div>
+                                <span className="text-primary font-black">18 Books</span> Student Quota
+                              </div>
+                              <span className="text-border hidden sm:inline">|</span>
+                              <div>
+                                <span className="text-primary font-black">30 Days</span> Loan Period
+                              </div>
+                              <span className="text-border hidden sm:inline">|</span>
+                              <div>
+                                <span className="text-primary font-black">Koha</span> Automated
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Library Services Directory Table */}
+                          <DataGridContainer>
+                            <div className="overflow-x-auto bg-transparent">
+                              <table className="w-full text-left border-collapse bg-transparent text-xs sm:text-sm">
+                                <thead>
+                                  <tr className="border-b-2 border-border bg-foreground/[0.03] text-xs font-black uppercase font-oswald text-foreground">
+                                    <th className="py-3.5 px-4 w-[60px] whitespace-nowrap">S.No</th>
+                                    <th className="py-3.5 px-4 min-w-[260px] whitespace-nowrap">Service Facility</th>
+                                    <th className="py-3.5 px-4 w-[160px] whitespace-nowrap">Classification</th>
+                                    <th className="py-3.5 px-4 min-w-[380px] whitespace-nowrap">Scope &amp; Operational Details</th>
+                                  </tr>
+                                </thead>
+                                <tbody className="divide-y divide-border font-sans">
+                                  {libraryServices.map((svc, idx) => (
+                                    <tr key={svc.id} className="hover:bg-foreground/[0.02] transition-colors">
+                                      <td className="py-3.5 px-4 font-bold font-oswald text-muted-foreground">
+                                        {String(idx + 1).padStart(2, "0")}
+                                      </td>
+                                      <td className="py-3.5 px-4 font-bold font-oswald uppercase text-foreground text-sm tracking-wide">
+                                        {svc.title}
+                                      </td>
+                                      <td className="py-3.5 px-4">
+                                        <span className="inline-block px-2.5 py-0.5 text-[10px] font-oswald font-bold uppercase tracking-wider border border-primary/20 bg-primary/10 text-primary rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                                          {svc.badge || "Core Service"}
+                                        </span>
+                                      </td>
+                                      <td className="py-3.5 px-4 text-muted-foreground leading-relaxed text-xs sm:text-sm font-sans">
+                                        {svc.description}
+                                      </td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
+                          </DataGridContainer>
+                        </div>
+                      </section>
+
+                      {/* Wave Divider 1 (White -> #F3F3F2 / #121214 -> #18181B) */}
+                      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+                        <svg
+                          viewBox="0 0 1440 72"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+                          preserveAspectRatio="none"
+                        >
+                          <path
+                            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+                            className="fill-[#F3F3F2] dark:fill-[#18181B]"
+                          />
+                        </svg>
+                      </div>
+
+                      {/* SECTION 2: Rules & Regulations (#F3F3F2 / #18181B Canvas) */}
+                      <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-12 sm:py-16">
+                        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 space-y-6">
+                          <div className="flex items-center justify-between gap-4 pb-4 border-b border-border">
+                            <div className="flex items-center gap-3">
+                              <FileText className="w-6 h-6 text-primary stroke-[2.2] shrink-0" />
+                              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black font-oswald uppercase text-primary tracking-tight leading-none">
+                                Rules &amp; Regulations
+                              </h3>
+                            </div>
+                            <span className="text-xs font-oswald uppercase tracking-wider text-muted-foreground hidden sm:inline">
+                              16 Institutional Guidelines
+                            </span>
+                          </div>
+
+                          <div className="divide-y divide-border border-b border-border font-sans">
+                            {libraryRules.map((r, idx) => (
+                              <div
+                                key={r.id}
+                                className="py-4 px-2 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors"
+                              >
+                                <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
+                                  {idx + 1}
+                                </span>
+                                <p className="text-xs sm:text-sm text-foreground/90 font-sans leading-relaxed flex-1 pt-0.5 sm:pt-1">
+                                  {r.rule}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </section>
+
+                      {/* Wave Divider 2 (#F3F3F2 -> White / #18181B -> #121214) */}
+                      <div className="w-full overflow-hidden leading-none select-none bg-[#F3F3F2] dark:bg-[#18181B]">
+                        <svg
+                          viewBox="0 0 1440 72"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+                          preserveAspectRatio="none"
+                        >
+                          <path
+                            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+                            className="fill-white dark:fill-[#121214]"
+                          />
+                        </svg>
+                      </div>
+
+                      {/* SECTION 3: Membership Borrowing Entitlements (White / #121214 Canvas) */}
+                      <section className="w-full bg-white dark:bg-[#121214] py-10 sm:py-14">
+                        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 space-y-4">
+                          <div className="border-b border-border pb-3">
+                            <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
+                              Membership Borrowing Entitlements
+                            </h3>
+                          </div>
+
+                          <DataGridContainer>
+                            <div className="overflow-x-auto bg-transparent">
+                              <table className="w-full text-left border-collapse bg-transparent text-xs sm:text-sm">
+                                <thead>
+                                  <tr className="border-b-2 border-border bg-foreground/[0.03] text-xs font-black uppercase font-oswald text-foreground">
+                                    <th className="py-3.5 px-4 w-[60px] whitespace-nowrap">S.No</th>
+                                    <th className="py-3.5 px-4 min-w-[220px] whitespace-nowrap">Membership Category</th>
+                                    <th className="py-3.5 px-4 text-center min-w-[160px] whitespace-nowrap">Eligible Books Quota</th>
+                                    <th className="py-3.5 px-4 text-center min-w-[140px] whitespace-nowrap">Loan Duration</th>
+                                    <th className="py-3.5 px-4 min-w-[340px] whitespace-nowrap">Entitlement Scope &amp; Guidelines</th>
+                                  </tr>
+                                </thead>
+                                <tbody className="divide-y divide-border font-sans">
+                                  {borrowingEligibility.map((item, idx) => (
+                                    <tr key={item.category} className="hover:bg-foreground/[0.02] transition-colors">
+                                      <td className="py-3.5 px-4 font-bold font-oswald text-muted-foreground">
+                                        {String(idx + 1).padStart(2, "0")}
+                                      </td>
+                                      <td className="py-3.5 px-4 font-bold font-oswald uppercase text-foreground text-sm">
+                                        {item.category}
+                                      </td>
+                                      <td className="py-3.5 px-4 text-center font-black font-oswald text-primary text-lg sm:text-xl">
+                                        {item.entitlement}
+                                      </td>
+                                      <td className="py-3.5 px-4 text-center font-bold font-oswald uppercase text-foreground text-xs sm:text-sm">
+                                        {item.loanPeriod}
+                                      </td>
+                                      <td className="py-3.5 px-4 text-muted-foreground leading-relaxed text-xs sm:text-sm">
+                                        {item.description}
+                                      </td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
+                          </DataGridContainer>
+                        </div>
+                      </section>
+
+                      {/* Wave Divider 3 (White -> #F3F3F2 / #121214 -> #18181B) */}
+                      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+                        <svg
+                          viewBox="0 0 1440 72"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+                          preserveAspectRatio="none"
+                        >
+                          <path
+                            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+                            className="fill-[#F3F3F2] dark:fill-[#18181B]"
+                          />
+                        </svg>
+                      </div>
+
+                      {/* SECTION 4: Overdue Fine Slabs (#F3F3F2 / #18181B Canvas) */}
+                      <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14">
+                        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 space-y-4">
+                          <div className="border-b border-border pb-3">
+                            <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
+                              Overdue Fine Slabs
+                            </h3>
+                          </div>
+
+                          <DataGridContainer>
+                            <div className="overflow-x-auto bg-transparent">
+                              <table className="w-full text-left border-collapse bg-transparent text-xs sm:text-sm">
+                                <thead>
+                                  <tr className="border-b-2 border-border bg-foreground/[0.03] text-xs font-black uppercase font-oswald text-foreground">
+                                    <th className="py-3.5 px-4 w-[90px] whitespace-nowrap">Tier</th>
+                                    <th className="py-3.5 px-4 min-w-[200px] whitespace-nowrap">Overdue Duration Window</th>
+                                    <th className="py-3.5 px-4 min-w-[220px] whitespace-nowrap">Assessment Tier</th>
+                                    <th className="py-3.5 px-4 text-right min-w-[150px] whitespace-nowrap">Daily Fine Rate</th>
+                                    <th className="py-3.5 px-4 min-w-[220px] whitespace-nowrap">Assessment Scope</th>
+                                  </tr>
+                                </thead>
+                                <tbody className="divide-y divide-border font-sans">
+                                  {overdueFineSlabs.map((slab, idx) => (
+                                    <tr key={slab.slab} className="hover:bg-foreground/[0.02] transition-colors">
+                                      <td className="py-3.5 px-4 font-mono font-bold text-primary text-xs">
+                                        Tier 0{idx + 1}
+                                      </td>
+                                      <td className="py-3.5 px-4 font-bold font-oswald text-foreground text-sm uppercase">
                                         {slab.slab}
                                       </td>
-                                      <td className="py-3.5 px-4 text-right font-black font-oswald text-primary text-lg">
+                                      <td className="py-3.5 px-4 text-xs font-sans text-muted-foreground">
+                                        {slab.period}
+                                      </td>
+                                      <td className="py-3.5 px-4 text-right font-black font-oswald text-primary text-lg sm:text-xl">
                                         {slab.rate}
                                       </td>
-                                      <td className="py-3.5 px-4 text-right text-xs text-muted-foreground uppercase font-medium">
+                                      <td className="py-3.5 px-4 text-xs font-sans text-muted-foreground uppercase">
                                         {slab.unit}
                                       </td>
                                     </tr>
@@ -1262,439 +1331,180 @@ function CentralLibraryPage() {
                                 </tbody>
                               </table>
                             </div>
-                          </div>
-
-                          {/* Transparent Fine Estimator */}
-                          <div className="lg:col-span-5 p-5 border border-border bg-transparent rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-4">
-                            <div className="flex items-center gap-2 border-b border-border pb-2.5">
-                              <Calculator className="w-5 h-5 text-primary" />
-                              <h4 className="font-black font-oswald uppercase text-foreground text-base">
-                                Interactive Late Fee Estimator
-                              </h4>
-                            </div>
-
-                            <div className="space-y-3">
-                              <div>
-                                <div className="flex items-center justify-between text-xs font-oswald font-bold uppercase mb-1">
-                                  <span>Days Overdue: {calcDays} Day(s)</span>
-                                  <span className="text-primary font-black">
-                                    {calcDays <= 7 ? "₹1.00 / day" : calcDays <= 14 ? "₹2.00 / day" : "₹5.00 / day"}
-                                  </span>
-                                </div>
-                                <input
-                                  type="range"
-                                  min={1}
-                                  max={30}
-                                  value={calcDays}
-                                  onChange={(e) => setCalcDays(Number(e.target.value))}
-                                  className="w-full accent-primary cursor-pointer h-2 bg-muted rounded-lg"
-                                />
-                                <div className="flex justify-between text-[10px] text-muted-foreground font-mono mt-1">
-                                  <span>1 Day</span>
-                                  <span>7 Days (₹7)</span>
-                                  <span>14 Days (₹21)</span>
-                                  <span>30 Days (₹101)</span>
-                                </div>
-                              </div>
-
-                              <div>
-                                <div className="flex items-center justify-between text-xs font-oswald font-bold uppercase mb-1">
-                                  <span>Number of Overdue Books: {calcBooks}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  {[1, 2, 3, 5, 10].map((b) => (
-                                    <button
-                                      key={b}
-                                      onClick={() => setCalcBooks(b)}
-                                      className={`flex-1 py-1 text-xs font-oswald font-bold uppercase rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs border transition-all ${
-                                        calcBooks === b
-                                          ? "bg-primary text-white border-primary"
-                                          : "bg-transparent text-muted-foreground border-border hover:bg-foreground/[0.04]"
-                                      }`}
-                                    >
-                                      {b} {b === 1 ? "Book" : "Books"}
-                                    </button>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="p-3.5 border border-border bg-foreground/[0.02] rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs flex items-center justify-between">
-                              <div>
-                                <p className="text-[11px] font-oswald font-bold uppercase text-muted-foreground">
-                                  Total Calculated Fine
-                                </p>
-                                <p className="text-xs text-muted-foreground mt-0.5">
-                                  {calcBooks} book(s) overdue by {calcDays} day(s)
-                                </p>
-                              </div>
-                              <div className="text-right">
-                                <p className="text-3xl font-black font-oswald text-primary">
-                                  ₹ {calculatedFine.toFixed(2)}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
+                          </DataGridContainer>
+                          <p className="text-xs text-muted-foreground font-sans leading-relaxed">
+                            * All overdue charges must be cleared prior to subsequent renewals or checkouts. Continuous default exceeding 30 days results in borrowing privileges suspension.
+                          </p>
                         </div>
+                      </section>
+
+                      {/* Wave Divider 4 (#F3F3F2 -> White / #18181B -> #121214) */}
+                      <div className="w-full overflow-hidden leading-none select-none bg-[#F3F3F2] dark:bg-[#18181B]">
+                        <svg
+                          viewBox="0 0 1440 72"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+                          preserveAspectRatio="none"
+                        >
+                          <path
+                            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+                            className="fill-white dark:fill-[#121214]"
+                          />
+                        </svg>
                       </div>
 
-                      {/* 12 Core Rules (Transparent Table with Border Lines) */}
-                      <div className="pt-8 border-t border-border space-y-4">
-                        <div className="border-b border-border pb-3">
-                          <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                            Library Code of Conduct &amp; Guidelines (12 Rules)
-                          </h3>
-                        </div>
-
-                        <div className="overflow-x-auto border border-border bg-transparent">
-                          <table className="w-full text-left border-collapse bg-transparent text-xs sm:text-sm">
-                            <thead>
-                              <tr className="border-b-2 border-border bg-foreground/[0.03] text-xs font-black uppercase font-oswald text-foreground">
-                                <th className="py-3 px-4 w-[90px]">Rule #</th>
-                                <th className="py-3 px-4">Regulation &amp; Code of Conduct Specification</th>
-                              </tr>
-                            </thead>
-                            <tbody className="divide-y divide-border font-sans">
-                              {libraryRules.map((r) => (
-                                <tr key={r.id} className="hover:bg-foreground/[0.02] transition-colors">
-                                  <td className="py-3 px-4 font-black font-oswald text-primary text-sm">
-                                    #{String(r.id).padStart(2, "0")}
-                                  </td>
-                                  <td className="py-3 px-4 text-muted-foreground leading-relaxed text-xs sm:text-sm">
-                                    {r.rule}
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
-                      {/* Facilities & Services Visual Showcase (Images Section with Different Shapes) */}
-                      <div className="pt-8 border-t border-border space-y-4">
-                        <div className="border-b border-border pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-                          <div>
-                            <div className="flex items-center gap-2 text-xs font-oswald font-bold uppercase tracking-wider text-primary mb-1">
-                              <ShieldCheck className="w-4 h-4" />
-                              Library Facilities &amp; Study Areas
-                            </div>
-                            <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                              Circulation Desks &amp; Quiet Study Environments
+                      {/* SECTION 5: Resource Sharing & Consortia Networks (White / #121214 Canvas) */}
+                      <section className="w-full bg-white dark:bg-[#121214] py-10 sm:py-16 pb-20 sm:pb-24">
+                        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 space-y-4">
+                          <div className="border-b border-border pb-3">
+                            <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
+                              Resource Sharing &amp; Consortia Networks
                             </h3>
-                            <p className="text-xs sm:text-sm text-muted-foreground mt-1 font-sans">
-                              Automated barcode scanning counters, reference consultation rooms, and individual study pods.
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          {/* Image 1: Shape 1 (rounded-tl-xl rounded-br-2xl rounded-tr-xs rounded-bl-xs) */}
-                          <div className="group overflow-hidden rounded-tl-xl rounded-br-2xl rounded-tr-xs rounded-bl-xs border border-border bg-transparent flex flex-col shadow-2xs">
-                            <div className="relative h-[220px] w-full overflow-hidden bg-muted/20">
-                              <img
-                                src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80"
-                                alt="Circulation & Return Desk"
-                                className="w-full h-full object-cover block"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
-                                }}
-                              />
-                            </div>
-                            <div className="p-3 bg-foreground/[0.02] border-t border-border flex items-center justify-between">
-                              <div>
-                                <h4 className="text-xs font-oswald font-bold uppercase tracking-wider text-foreground">
-                                  Circulation &amp; Reference Help Desk
-                                </h4>
-                                <p className="text-[11px] text-muted-foreground font-sans">
-                                  Barcoded check-out, renewal, and inter-library loan processing
-                                </p>
-                              </div>
-                              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-primary border border-primary/30 px-2 py-0.5 rounded-xs">
-                                Ground Floor
-                              </span>
-                            </div>
                           </div>
 
-                          {/* Image 2: Shape 2 (rounded-tl-xs rounded-br-xl rounded-tr-2xl rounded-bl-xs) */}
-                          <div className="group overflow-hidden rounded-tl-xs rounded-br-xl rounded-tr-2xl rounded-bl-xs border border-border bg-transparent flex flex-col shadow-2xs">
-                            <div className="relative h-[220px] w-full overflow-hidden bg-muted/20">
-                              <img
-                                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80"
-                                alt="Collaborative Seminar Space"
-                                className="w-full h-full object-cover block"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).src = "/images/procedure_hero.jpg";
-                                }}
-                              />
+                          <DataGridContainer>
+                            <div className="overflow-x-auto bg-transparent">
+                              <table className="w-full text-left border-collapse bg-transparent text-xs sm:text-sm">
+                                <thead>
+                                  <tr className="border-b-2 border-border bg-foreground/[0.03] text-xs font-black uppercase font-oswald text-foreground">
+                                    <th className="py-3.5 px-4 w-[60px] whitespace-nowrap">S.No</th>
+                                    <th className="py-3.5 px-4 min-w-[240px] whitespace-nowrap">Consortia / Network</th>
+                                    <th className="py-3.5 px-4 w-[180px] whitespace-nowrap">Classification</th>
+                                    <th className="py-3.5 px-4 min-w-[380px] whitespace-nowrap">Scope &amp; Key Privileges</th>
+                                    <th className="py-3.5 px-4 w-[150px] text-right whitespace-nowrap">Access Portal</th>
+                                  </tr>
+                                </thead>
+                                <tbody className="divide-y divide-border font-sans">
+                                  {institutionalMemberships.map((inst, idx) => (
+                                    <tr key={inst.id} className="hover:bg-foreground/[0.02] transition-colors">
+                                      <td className="py-3 px-4 font-bold font-oswald text-muted-foreground align-middle">
+                                        {String(idx + 1).padStart(2, "0")}
+                                      </td>
+                                      <td className="py-3 px-4 align-middle">
+                                        <div className="font-bold font-oswald uppercase text-foreground text-sm tracking-wide">
+                                          {inst.name}
+                                        </div>
+                                      </td>
+                                      <td className="py-3 px-4 align-middle">
+                                        <span className="inline-block px-2.5 py-0.5 text-[10px] font-oswald font-bold uppercase tracking-wider border border-border bg-foreground/[0.03] text-foreground rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                                          {inst.badge}
+                                        </span>
+                                      </td>
+                                      <td className="py-3 px-4 align-middle text-muted-foreground leading-relaxed text-xs sm:text-sm font-sans">
+                                        {inst.summary || inst.features.join(" · ")}
+                                      </td>
+                                      <td className="py-3 px-4 align-middle text-right">
+                                        <a
+                                          href={inst.website}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="group relative inline-flex items-center justify-center overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-stone-300 dark:border-neutral-700 bg-stone-200/90 dark:bg-neutral-800 px-4 py-2 text-xs font-bold uppercase tracking-wider font-oswald text-foreground dark:text-white transition-all duration-300 shadow-2xs hover:text-white cursor-pointer select-none shrink-0 whitespace-nowrap"
+                                        >
+                                          <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                                            <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                                              {/* Ocean Wave Crest SVG (Primary) */}
+                                              <span className="absolute -top-3.5 left-0 w-[200%] h-4 pointer-events-none block">
+                                                <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                                                  <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,-20 1200,40 L1200,120 L0,120 Z" />
+                                                </svg>
+                                              </span>
+                                              {/* Secondary Depth Layer Wave */}
+                                              <span className="absolute -top-4 left-0 w-[200%] h-5 opacity-40 pointer-events-none block">
+                                                <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                                                  <path d="M0,30 C200,-30 400,90 600,10 C800,-40 1000,70 1200,20 L1200,120 L0,120 Z" />
+                                                </svg>
+                                              </span>
+                                            </span>
+                                          </span>
+                                          <span className="relative z-10 flex items-center justify-center gap-1.5 group-hover:text-white transition-colors duration-300">
+                                            <span>Visit Portal</span>
+                                            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                          </span>
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
                             </div>
-                            <div className="p-3 bg-foreground/[0.02] border-t border-border flex items-center justify-between">
-                              <div>
-                                <h4 className="text-xs font-oswald font-bold uppercase tracking-wider text-foreground">
-                                  Collaborative Seminar &amp; Discussion Pod
-                                </h4>
-                                <p className="text-[11px] text-muted-foreground font-sans">
-                                  Multi-disciplinary project work and group technical research
-                                </p>
-                              </div>
-                              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-primary border border-primary/30 px-2 py-0.5 rounded-xs">
-                                Audio-Visual Hall
-                              </span>
-                            </div>
-                          </div>
+                          </DataGridContainer>
                         </div>
-                      </div>
+                      </section>
                     </div>
                   )}
 
                   {/* ========================================================= */}
-                  {/* TAB 5: COMMITTEE (Transparent Table with Border Lines) */}
+                  {/* TAB 5: COMMITTEE (Wavy Background Color Split Sections) */}
                   {/* ========================================================= */}
                   {activeTab === "committee" && (
-                    <div className="space-y-8">
-                      <div className="border-b border-border pb-3 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                        <div>
-                          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                            Library Committee (21 Members)
-                          </h2>
-                          <p className="text-xs sm:text-sm text-muted-foreground mt-1 font-sans">
-                            Institutional advisory body formulating procurement policies and representing departmental literature needs.
-                          </p>
-                        </div>
+                    <div className="w-full">
+                      {/* SECTION 1: Committee Directory Table & Search (White / #121214 Canvas) */}
+                      <section className="w-full bg-white dark:bg-[#121214] pt-6 sm:pt-8 md:pt-10 pb-16 sm:pb-20 md:pb-24">
+                        <div id="committee-table-top" className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 space-y-6 scroll-mt-[120px]">
+                          <div className="border-b border-border pb-3 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                            <div>
+                              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
+                                Committee
+                              </h2>
+                            </div>
 
-                        {/* Minimal Search Bar */}
-                        <div className="relative w-full sm:w-64 shrink-0">
-                          <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-primary pointer-events-none" />
-                          <input
-                            type="text"
-                            placeholder="Search committee member, role..."
-                            value={committeeSearch}
-                            onChange={(e) => setCommitteeSearch(e.target.value)}
-                            className="w-full pl-9 pr-8 py-2 text-xs bg-background dark:bg-[#18181b] border border-border rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all font-sans"
-                          />
-                          {committeeSearch && (
-                            <button
-                              onClick={() => setCommitteeSearch("")}
-                              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-oswald font-bold uppercase text-muted-foreground hover:text-foreground px-1.5 py-0.5 rounded-xs bg-foreground/[0.06] hover:bg-foreground/[0.1] border border-border"
-                            >
-                              Clear
-                            </button>
+                            {/* Minimal Search Bar */}
+                            <div className="relative w-full sm:w-64 shrink-0">
+                              <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-primary pointer-events-none" />
+                              <input
+                                type="text"
+                                placeholder="Search committee member, role..."
+                                value={committeeSearch}
+                                onChange={(e) => setCommitteeSearch(e.target.value)}
+                                className="w-full pl-9 pr-8 py-2 text-xs bg-background dark:bg-[#18181b] border border-border rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all font-sans"
+                              />
+                              {committeeSearch && (
+                                <button
+                                  onClick={() => setCommitteeSearch("")}
+                                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-oswald font-bold uppercase text-muted-foreground hover:text-foreground px-1.5 py-0.5 rounded-xs bg-foreground/[0.06] hover:bg-foreground/[0.1] border border-border"
+                                >
+                                  Clear
+                                </button>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* DataGrid Committee Table */}
+                          <DataGrid table={committeeTable} recordCount={filteredCommittee.length}>
+                            <div className="w-full space-y-0">
+                              <DataGridContainer>
+                                <div className="overflow-x-auto">
+                                  <DataGridTable />
+                                </div>
+                              </DataGridContainer>
+                              <DataGridPagination sizes={[10, 25]} />
+                            </div>
+                          </DataGrid>
+
+                          {filteredCommittee.length === 0 && (
+                            <div className="py-10 text-center border border-border border-t-0 bg-foreground/[0.01]">
+                              <p className="text-xs font-oswald uppercase tracking-wider text-muted-foreground">
+                                No committee members match "{committeeSearch}"
+                              </p>
+                              <button
+                                onClick={() => setCommitteeSearch("")}
+                                className="mt-2.5 px-3 py-1 text-xs font-oswald font-bold uppercase tracking-wider text-primary border border-primary/30 hover:bg-primary/5 rounded-xs"
+                              >
+                                Clear Search
+                              </button>
+                            </div>
                           )}
                         </div>
-                      </div>
-
-                      {/* Committee Table (Transparent with border lines - Minimal 4-Column Architecture) */}
-                      <div className="overflow-x-auto border border-border bg-transparent">
-                        <table className="w-full text-left border-collapse bg-transparent text-xs sm:text-sm">
-                          <thead>
-                            <tr className="border-b-2 border-border bg-foreground/[0.03] text-xs font-black uppercase font-oswald text-foreground">
-                              <th className="py-3.5 px-4 w-[60px]">S.No</th>
-                              <th className="py-3.5 px-4 min-w-[240px]">Name of the Member</th>
-                              <th className="py-3.5 px-4 min-w-[240px]">Designation / Affiliation</th>
-                              <th className="py-3.5 px-4 text-right w-[180px]">Committee Role</th>
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y divide-border font-sans">
-                            {filteredCommittee.map((member) => (
-                              <tr key={member.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                                <td className="py-3.5 px-4 font-bold font-oswald text-muted-foreground">
-                                  {String(member.sno).padStart(2, "0")}
-                                </td>
-                                <td className="py-3.5 px-4 font-bold font-oswald text-foreground text-sm">
-                                  <div className="flex items-center gap-2">
-                                    <span>{member.name}</span>
-                                    {member.role === "Chairman" && (
-                                      <span className="px-1.5 py-0.5 text-[9px] font-oswald font-bold uppercase bg-primary text-white rounded-xs">
-                                        Principal
-                                      </span>
-                                    )}
-                                  </div>
-                                </td>
-                                <td className="py-3.5 px-4 text-xs text-muted-foreground font-medium">
-                                  {member.designation}
-                                </td>
-                                <td className="py-3.5 px-4 text-right">
-                                  <span
-                                    className={`inline-flex items-center px-2.5 py-0.5 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-[11px] font-oswald font-bold uppercase ${
-                                      member.role === "Chairman"
-                                        ? "bg-primary/10 text-primary border border-primary/20 font-black"
-                                        : member.role === "Secretary" || member.role === "Member Secretary"
-                                        ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20"
-                                        : "border border-border text-muted-foreground"
-                                    }`}
-                                  >
-                                    {member.role}
-                                  </span>
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-
-                      {filteredCommittee.length === 0 && (
-                        <div className="py-10 text-center border border-border border-t-0 bg-foreground/[0.01]">
-                          <p className="text-xs font-oswald uppercase tracking-wider text-muted-foreground">
-                            No committee members match "{committeeSearch}"
-                          </p>
-                          <button
-                            onClick={() => setCommitteeSearch("")}
-                            className="mt-2.5 px-3 py-1 text-xs font-oswald font-bold uppercase tracking-wider text-primary border border-primary/30 hover:bg-primary/5 rounded-xs"
-                          >
-                            Clear Search
-                          </button>
-                        </div>
-                      )}
-
-                      {/* Governance Visual Showcase (Images Section with Different Shapes) */}
-                      <div className="pt-8 border-t border-border space-y-4">
-                        <div className="border-b border-border pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-                          <div>
-                            <div className="flex items-center gap-2 text-xs font-oswald font-bold uppercase tracking-wider text-primary mb-1">
-                              <Users className="w-4 h-4" />
-                              Institutional Oversight
-                            </div>
-                            <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                              Governance &amp; Quality Assurance Council
-                            </h3>
-                            <p className="text-xs sm:text-sm text-muted-foreground mt-1 font-sans">
-                              Convening committee meetings to audit acquisitions, enhance digital infrastructure, and enrich academic collections.
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          {/* Image 1: Shape 1 (rounded-tl-2xl rounded-br-xl rounded-tr-xs rounded-bl-xs) */}
-                          <div className="group overflow-hidden rounded-tl-2xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-border bg-transparent flex flex-col shadow-2xs">
-                            <div className="relative h-[220px] w-full overflow-hidden bg-muted/20">
-                              <img
-                                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80"
-                                alt="Advisory Council Boardroom"
-                                className="w-full h-full object-cover block"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
-                                }}
-                              />
-                            </div>
-                            <div className="p-3 bg-foreground/[0.02] border-t border-border flex items-center justify-between">
-                              <div>
-                                <h4 className="text-xs font-oswald font-bold uppercase tracking-wider text-foreground">
-                                  Advisory Council Boardroom
-                                </h4>
-                                <p className="text-[11px] text-muted-foreground font-sans">
-                                  Quarterly policy formulation and annual budget allocation
-                                </p>
-                              </div>
-                              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-primary border border-primary/30 px-2 py-0.5 rounded-xs">
-                                Executive Council
-                              </span>
-                            </div>
-                          </div>
-
-                          {/* Image 2: Shape 2 (rounded-tl-xs rounded-br-2xl rounded-tr-xl rounded-bl-sm) */}
-                          <div className="group overflow-hidden rounded-tl-xs rounded-br-2xl rounded-tr-xl rounded-bl-sm border border-border bg-transparent flex flex-col shadow-2xs">
-                            <div className="relative h-[220px] w-full overflow-hidden bg-muted/20">
-                              <img
-                                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
-                                alt="Academic Review Forum"
-                                className="w-full h-full object-cover block"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).src = "/images/procedure_hero.jpg";
-                                }}
-                              />
-                            </div>
-                            <div className="p-3 bg-foreground/[0.02] border-t border-border flex items-center justify-between">
-                              <div>
-                                <h4 className="text-xs font-oswald font-bold uppercase tracking-wider text-foreground">
-                                  Academic Review &amp; Student Feedback
-                                </h4>
-                                <p className="text-[11px] text-muted-foreground font-sans">
-                                  Ensuring high student satisfaction and title acquisition
-                                </p>
-                              </div>
-                              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-primary border border-primary/30 px-2 py-0.5 rounded-xs">
-                                Quality Audit
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Information Desk & Contact Footer (Transparent style) */}
-                      <div className="p-6 border border-border bg-transparent rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-                        <div className="space-y-1.5">
-                          <p className="text-xs font-oswald font-bold uppercase tracking-wider text-primary">
-                            Circulation &amp; Reference Desk
-                          </p>
-                          <h4 className="text-xl font-black font-oswald uppercase text-foreground">
-                            Connect with Chief Librarian &amp; Team
-                          </h4>
-                          <p className="text-xs sm:text-sm text-muted-foreground">
-                            Main Academic Block, Ground Floor. Monday to Saturday: 8:00 AM – 7:00 PM | Sunday: 10:00 AM – 4:00 PM
-                          </p>
-                        </div>
-                        <div className="flex items-center gap-3 shrink-0">
-                          <a
-                            href="https://delnet.in/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group relative inline-flex items-center justify-center overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-primary/40 bg-stone-200/90 dark:bg-neutral-800 px-5 py-2.5 text-xs font-bold uppercase tracking-wider font-oswald text-foreground dark:text-white transition-all duration-300 shadow-2xs hover:text-white cursor-pointer select-none"
-                          >
-                            <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                              <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                                <span className="absolute -top-3.5 left-0 w-[200%] h-4 pointer-events-none block">
-                                  <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                                    <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,-20 1200,40 L1200,120 L0,120 Z" />
-                                  </svg>
-                                </span>
-                                <span className="absolute -top-4 left-0 w-[200%] h-5 opacity-40 pointer-events-none block">
-                                  <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                                    <path d="M0,30 C200,-30 400,90 600,10 C800,-40 1000,70 1200,20 L1200,120 L0,120 Z" />
-                                  </svg>
-                                </span>
-                              </span>
-                            </span>
-                            <span className="relative z-10 flex items-center justify-center gap-1.5 group-hover:text-white transition-colors duration-300">
-                              <span>DELNET Portal</span>
-                              <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                            </span>
-                          </a>
-
-                          <a
-                            href="https://jgateplus.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group relative inline-flex items-center justify-center overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-border bg-stone-200/90 dark:bg-neutral-800 px-5 py-2.5 text-xs font-bold uppercase tracking-wider font-oswald text-foreground dark:text-white transition-all duration-300 shadow-2xs hover:text-white cursor-pointer select-none"
-                          >
-                            <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                              <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                                <span className="absolute -top-3.5 left-0 w-[200%] h-4 pointer-events-none block">
-                                  <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                                    <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,-20 1200,40 L1200,120 L0,120 Z" />
-                                  </svg>
-                                </span>
-                                <span className="absolute -top-4 left-0 w-[200%] h-5 opacity-40 pointer-events-none block">
-                                  <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                                    <path d="M0,30 C200,-30 400,90 600,10 C800,-40 1000,70 1200,20 L1200,120 L0,120 Z" />
-                                  </svg>
-                                </span>
-                              </span>
-                            </span>
-                            <span className="relative z-10 flex items-center justify-center gap-1.5 group-hover:text-white transition-colors duration-300">
-                              <span>J-Gate Database</span>
-                              <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                            </span>
-                          </a>
-                        </div>
-                      </div>
+                      </section>
                     </div>
                   )}
 
                 </motion.div>
               </AnimatePresence>
             </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-    </div>
-  );
-}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    );
+  }
