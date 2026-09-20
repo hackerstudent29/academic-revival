@@ -391,7 +391,7 @@ export function SiteHeader() {
             </Link>
           </div>
 
-          <nav className="hidden items-center gap-3 lg:gap-4 xl:gap-7 lg:flex" aria-label="Main navigation">
+          <nav className="hidden items-center gap-2 lg:gap-2.5 xl:gap-5 2xl:gap-7 lg:flex" aria-label="Main navigation">
             {nav.map((item) =>
               item.cols ? (
                 <button
@@ -400,7 +400,7 @@ export function SiteHeader() {
                   onMouseEnter={() => handleMouseEnterItem(item.id)}
                   onClick={() => setActive((c) => (c === item.id ? null : item.id))}
                   aria-expanded={active === item.id}
-                  className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] font-oswald transition-colors duration-200 ${
+                  className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.03em] xl:tracking-[0.04em] font-oswald transition-colors duration-200 ${
                     active === item.id ? "text-primary" : "text-foreground hover:text-primary"
                   }`}
                 >
@@ -416,7 +416,7 @@ export function SiteHeader() {
                   key={item.id}
                   to={item.to}
                   onMouseEnter={() => setActive(null)}
-                  className="relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] font-oswald text-foreground transition-colors duration-200 hover:text-primary"
+                  className="relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.03em] xl:tracking-[0.04em] font-oswald text-foreground transition-colors duration-200 hover:text-primary"
                   activeProps={{ className: "text-primary font-bold" }}
                 >
                   {item.label}
@@ -430,7 +430,7 @@ export function SiteHeader() {
             <Link
               to="/admissions"
               search={{} as any}
-              className="group relative hidden overflow-hidden whitespace-nowrap sm:inline-flex items-center justify-center border border-primary px-5 py-2.5 text-[11px] xl:text-[13px] font-bold uppercase tracking-wide text-primary transition-colors hover:text-primary-foreground after:absolute after:inset-0 after:top-full after:bg-primary after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0 rounded-xs shadow-xs"
+              className="group relative hidden overflow-hidden whitespace-nowrap sm:inline-flex lg:hidden xl:inline-flex items-center justify-center border border-primary px-4 xl:px-5 py-2 xl:py-2.5 text-[11px] xl:text-[13px] font-bold uppercase tracking-wide text-primary transition-colors hover:text-primary-foreground after:absolute after:inset-0 after:top-full after:bg-primary after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0 rounded-xs shadow-xs"
               onClick={closeAll}
             >
               <span className="relative z-10 font-oswald tracking-wider">Apply Now &raquo;</span>

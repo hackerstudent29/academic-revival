@@ -105,12 +105,12 @@ export function InstitutionOverviewPage() {
         </div>
 
         {/* Title Container: Fading Translucent Backdrop, Institution Title Only */}
-        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-6 sm:pb-8">
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-12 sm:pt-16 md:pt-20 pb-4 sm:pb-6 md:pb-8">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.05, ease: smoothEase }}
-            className="inline-block bg-black/60 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 shadow-2xl max-w-2xl lg:max-w-3xl rounded-none border-y border-r border-white/10"
+            className="inline-block bg-black/60 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl rounded-none border-y border-r border-white/10"
           >
             <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-white tracking-tight leading-[1.1]">
               The Institution
@@ -119,30 +119,30 @@ export function InstitutionOverviewPage() {
         </div>
 
         {/* Fading Facts & Figures Docked Stats Strip (Smooth Gradient Fade, No Harsh Line, Maroon Figures) */}
-        <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-10 pb-6 sm:pt-14 sm:pb-8">
+        <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-8 sm:pt-10 md:pt-14 pb-5 sm:pb-6 md:pb-8">
           <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
-            <div className="flex items-center justify-between gap-4 mb-4">
-              <h2 className="text-lg sm:text-xl md:text-2xl font-black font-oswald uppercase tracking-wide text-primary">
+            <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4">
+              <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-black font-oswald uppercase tracking-wide text-primary">
                 Facts & Figures
               </h2>
-              <span className="text-[11px] sm:text-xs font-oswald uppercase tracking-widest text-white/50 hidden sm:inline">
+              <span className="text-[10px] sm:text-[11px] md:text-xs font-oswald uppercase tracking-widest text-white/50 hidden sm:inline">
                 Institutional Benchmark Metrics
               </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8 lg:divide-x lg:divide-white/15">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8 md:divide-x md:divide-white/15">
               {heroStats.map((stat, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: 0.15 + idx * 0.06, ease: smoothEase }}
-                  className="first:pl-0 lg:pl-6 space-y-1"
+                  className="first:pl-0 md:pl-4 lg:pl-6 space-y-0.5 sm:space-y-1"
                 >
-                  <div className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-primary dark:text-[#E11D48] tracking-tight leading-none">
+                  <div className="font-oswald text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-primary dark:text-[#E11D48] tracking-tight leading-none">
                     {stat.value}
                   </div>
-                  <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-1">
+                  <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-0.5 sm:pt-1">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -155,7 +155,7 @@ export function InstitutionOverviewPage() {
       {/* ========================================================================= */}
       {/* 2. INTRODUCTORY SECTION: Canvas A (White / #121214)                       */}
       {/* ========================================================================= */}
-      <section className="py-16 md:py-20 bg-white dark:bg-[#121214] transition-colors">
+      <section className="py-10 sm:py-14 md:py-18 lg:py-20 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           {/* Section Header: Direct Institutional Title Aligned with Page & Content */}
           <motion.div
@@ -163,7 +163,7 @@ export function InstitutionOverviewPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.55, ease: smoothEase }}
-            className="mb-6 sm:mb-8"
+            className="mb-5 sm:mb-8"
           >
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               Institution Overview &amp; Academic Excellence
@@ -179,7 +179,7 @@ export function InstitutionOverviewPage() {
               transition={{ duration: 0.55, ease: smoothEase }}
               className="lg:col-span-5 flex flex-col"
             >
-              <div className="relative w-full h-full min-h-[300px] sm:min-h-[360px] overflow-hidden rounded-tl-2xl rounded-br-2xl rounded-tr-sm rounded-bl-sm shadow-xl bg-muted border border-border/40">
+              <div className="relative w-full h-full min-h-[240px] sm:min-h-[300px] md:min-h-[360px] aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto overflow-hidden rounded-tl-2xl rounded-br-2xl rounded-tr-sm rounded-bl-sm shadow-xl bg-muted border border-border/40">
                 <img
                   src="/images/eligibility_hero.jpg"
                   alt="Mohamed Sathak A.J. College of Engineering Academic Environment"
@@ -197,9 +197,9 @@ export function InstitutionOverviewPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.55, delay: 0.08, ease: smoothEase }}
-              className="lg:col-span-7 flex flex-col justify-between space-y-6"
+              className="lg:col-span-7 flex flex-col justify-between space-y-5 sm:space-y-6"
             >
-              <div className="space-y-4 sm:space-y-5">
+              <div className="space-y-3.5 sm:space-y-5">
                 <p className="text-sm sm:text-base font-medium text-foreground/90 font-libre leading-relaxed">
                   Established under the aegis of the Mohamed Sathak Trust, Mohamed Sathak A.J. College
                   of Engineering (MSAJCE) delivers transformative engineering education rooted in
@@ -216,8 +216,8 @@ export function InstitutionOverviewPage() {
                 </p>
               </div>
 
-              {/* Minimal 3-Pillar Highlight Grid (No Clutter, Clean & Punchy) */}
-              <div className="pt-6 border-t border-border/40 grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 font-libre">
+              {/* 3-Pillar Highlight Grid: 2 columns on top, 3rd stat centered down below */}
+              <div className="pt-5 sm:pt-6 border-t border-border/40 grid grid-cols-2 gap-y-5 gap-x-4 sm:gap-x-8 font-libre">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2 text-primary">
                     <GraduationCap className="w-5 h-5 shrink-0 stroke-[2.2]" />
@@ -225,7 +225,7 @@ export function InstitutionOverviewPage() {
                       10+
                     </span>
                   </div>
-                  <div className="font-libre text-sm sm:text-base font-medium text-foreground/90">
+                  <div className="font-libre text-[13px] sm:text-base font-medium text-foreground/90">
                     Degree Programmes
                   </div>
                 </div>
@@ -237,19 +237,19 @@ export function InstitutionOverviewPage() {
                       100+
                     </span>
                   </div>
-                  <div className="font-libre text-sm sm:text-base font-medium text-foreground/90">
+                  <div className="font-libre text-[13px] sm:text-base font-medium text-foreground/90">
                     Neighboring MNCs
                   </div>
                 </div>
 
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2 text-primary">
+                <div className="col-span-2 flex flex-col items-center text-center space-y-1 pt-1">
+                  <div className="flex items-center justify-center gap-2 text-primary">
                     <MapPin className="w-5 h-5 shrink-0 stroke-[2.2]" />
                     <span className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
                       70 Acres
                     </span>
                   </div>
-                  <div className="font-libre text-sm sm:text-base font-medium text-foreground/90">
+                  <div className="font-libre text-[13px] sm:text-base font-medium text-foreground/90">
                     Siruseri Campus
                   </div>
                 </div>
@@ -267,7 +267,7 @@ export function InstitutionOverviewPage() {
           viewBox="0 0 1440 72"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          className="w-full h-6 sm:h-10 md:h-14 lg:h-20 block preserve-3d"
           preserveAspectRatio="none"
         >
           <path
@@ -280,7 +280,7 @@ export function InstitutionOverviewPage() {
       {/* ========================================================================= */}
       {/* 3. EDITORIAL GALLERY: Canvas B (#F3F3F2 / #18181B)                        */}
       {/* ========================================================================= */}
-      <section className="py-12 sm:py-16 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+      <section className="py-10 sm:py-14 md:py-16 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           {/* Section Header: Small One-Line Title */}
           <motion.div
@@ -288,9 +288,9 @@ export function InstitutionOverviewPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.55, ease: smoothEase }}
-            className="mb-6 sm:mb-8"
+            className="mb-5 sm:mb-8"
           >
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary whitespace-nowrap">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               An artistic community on the south side
             </h2>
           </motion.div>
@@ -304,7 +304,7 @@ export function InstitutionOverviewPage() {
             className="grid grid-cols-12 gap-2 sm:gap-2.5 md:gap-3"
           >
             {/* 1. Large Editorial Landscape (col-span-7) */}
-            <div className="col-span-12 md:col-span-7 h-64 sm:h-80 md:h-[390px] rounded-lg overflow-hidden bg-muted shadow-xs">
+            <div className="col-span-12 md:col-span-7 h-48 sm:h-64 md:h-72 lg:h-[390px] rounded-lg overflow-hidden bg-muted shadow-xs">
               <img
                 src="/images/moments/moment-1-lake.jpg"
                 alt="South Side Waterfront & Cultural Promontory"
@@ -316,7 +316,7 @@ export function InstitutionOverviewPage() {
             </div>
 
             {/* 2. Complementary Medium Landscape (col-span-5) */}
-            <div className="col-span-12 md:col-span-5 h-56 sm:h-80 md:h-[390px] rounded-lg overflow-hidden bg-muted shadow-xs">
+            <div className="col-span-12 md:col-span-5 h-44 sm:h-60 md:h-72 lg:h-[390px] rounded-lg overflow-hidden bg-muted shadow-xs">
               <img
                 src="/images/moments/moment-2-dancers.jpg"
                 alt="Dance & Performing Arts Festival"
@@ -328,7 +328,7 @@ export function InstitutionOverviewPage() {
             </div>
 
             {/* 3. Compact Architectural Tile (col-span-3) */}
-            <div className="col-span-6 md:col-span-3 h-48 sm:h-60 md:h-[265px] rounded-lg overflow-hidden bg-muted shadow-xs">
+            <div className="col-span-6 md:col-span-3 h-36 sm:h-48 md:h-56 lg:h-[265px] rounded-lg overflow-hidden bg-muted shadow-xs">
               <img
                 src="/images/moments/moment-3-robie.jpg"
                 alt="Architectural Landmark & Heritage"
@@ -340,7 +340,7 @@ export function InstitutionOverviewPage() {
             </div>
 
             {/* 4. Wide Panorama Center (col-span-5) */}
-            <div className="col-span-6 md:col-span-5 h-48 sm:h-60 md:h-[265px] rounded-lg overflow-hidden bg-muted shadow-xs">
+            <div className="col-span-6 md:col-span-5 h-36 sm:h-48 md:h-56 lg:h-[265px] rounded-lg overflow-hidden bg-muted shadow-xs">
               <img
                 src="/images/moments/moment-4-singer.jpg"
                 alt="Live Performing Arts Concert"
@@ -352,7 +352,7 @@ export function InstitutionOverviewPage() {
             </div>
 
             {/* 5. Medium Athletic Grounds / Street Culture (col-span-4) */}
-            <div className="col-span-12 md:col-span-4 h-48 sm:h-60 md:h-[265px] rounded-lg overflow-hidden bg-muted shadow-xs">
+            <div className="col-span-12 md:col-span-4 h-40 sm:h-48 md:h-56 lg:h-[265px] rounded-lg overflow-hidden bg-muted shadow-xs">
               <img
                 src="/images/moments/moment-5-street.jpg"
                 alt="Vibrant Cultural Streetscape"
@@ -365,7 +365,6 @@ export function InstitutionOverviewPage() {
           </motion.div>
         </div>
       </section>
-
       {/* ========================================================================= */}
       {/* WAVE DIVIDER 2: Canvas B (#F3F3F2 / #18181B) -> Canvas A (White / #121214) */}
       {/* ========================================================================= */}
@@ -374,7 +373,7 @@ export function InstitutionOverviewPage() {
           viewBox="0 0 1440 72"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          className="w-full h-6 sm:h-10 md:h-14 lg:h-20 block preserve-3d"
           preserveAspectRatio="none"
         >
           <path
@@ -387,7 +386,7 @@ export function InstitutionOverviewPage() {
       {/* ========================================================================= */}
       {/* 4. FEATURE STORY BLOCK: Canvas A (White / #121214)                        */}
       {/* ========================================================================= */}
-      <section className="py-14 sm:py-20 bg-white dark:bg-[#121214] transition-colors">
+      <section className="py-10 sm:py-14 md:py-16 lg:py-20 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           {/* Section Header: Title Above the Content */}
           <motion.div
@@ -395,21 +394,21 @@ export function InstitutionOverviewPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.55, ease: smoothEase }}
-            className="mb-6 sm:mb-8"
+            className="mb-5 sm:mb-8"
           >
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               Leadership & Innovation
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 xl:gap-14 items-start">
             {/* Left: Narrative Paragraphs (Starting Straight with Top of Video) */}
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.55, ease: smoothEase }}
-              className="lg:col-span-7 space-y-5"
+              className="lg:col-span-7 space-y-4 sm:space-y-5"
             >
               <p className="text-sm sm:text-base font-medium text-foreground/90 leading-relaxed font-libre">
                 Under the visionary aegis of the Mohamed Sathak Trust, MSAJCE is dedicated to
@@ -427,15 +426,15 @@ export function InstitutionOverviewPage() {
               </p>
             </motion.div>
 
-            {/* Video Feature Right (Pure CSS 16:9, Zero Layout Shift, Client Guarded) */}
+            {/* Video Feature Right (Pure CSS 16:9, Zero Layout Shift, Responsive Max-Width) */}
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.55, delay: 0.08, ease: smoothEase }}
-              className="lg:col-span-5 flex items-start justify-center lg:justify-end"
+              className="lg:col-span-5 flex items-start justify-center lg:justify-end w-full"
             >
-              <div className="relative w-full aspect-video max-w-full lg:max-w-[460px] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg bg-black border border-border shrink-0">
+              <div className="relative w-full aspect-video max-w-full sm:max-w-[540px] lg:max-w-[460px] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg bg-black border border-border shrink-0">
                 {isMounted ? (
                   <iframe
                     src="https://www.youtube-nocookie.com/embed/aNVaQWh1Pp4?rel=0&modestbranding=1&controls=1&playsinline=1"
@@ -462,7 +461,7 @@ export function InstitutionOverviewPage() {
           viewBox="0 0 1440 72"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          className="w-full h-6 sm:h-10 md:h-14 lg:h-20 block preserve-3d"
           preserveAspectRatio="none"
         >
           <path
@@ -475,7 +474,7 @@ export function InstitutionOverviewPage() {
       {/* ========================================================================= */}
       {/* 5. CULTURAL OPPORTUNITIES: Canvas B (#F3F3F2 / #18181B)                   */}
       {/* ========================================================================= */}
-      <section className="py-14 sm:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+      <section className="py-10 sm:py-14 md:py-16 lg:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           {/* Full-Width One-Line Section Header: Title Only */}
           <motion.div
@@ -483,30 +482,30 @@ export function InstitutionOverviewPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.55, ease: smoothEase }}
-            className="mb-6 sm:mb-8"
+            className="mb-5 sm:mb-8"
           >
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               Cultural opportunities abound
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            {/* Left: Department List (No Full Capital Letters, Libre Franklin Font) */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 lg:gap-14 items-start">
+            {/* Department List: Responsive ordering and touch targets */}
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.55, ease: smoothEase }}
-              className="lg:col-span-6"
+              className="order-2 md:order-1 md:col-span-7 lg:col-span-6"
             >
               <ul className="divide-y divide-border/40">
                 {academicDepartments.map((dept, idx) => (
                   <li key={idx}>
                     <Link
                       to="/programmes-offered"
-                      className="flex items-center justify-between py-3.5 px-2.5 sm:px-3 hover:bg-primary/[0.04] group transition-colors"
+                      className="flex items-center justify-between min-h-[44px] py-3 sm:py-3.5 px-2 sm:px-3 hover:bg-primary/[0.04] group transition-colors"
                     >
-                      <span className="font-libre text-sm sm:text-base font-medium text-foreground/90 group-hover:text-primary group-hover:font-semibold transition-colors">
+                      <span className="font-libre text-sm sm:text-base font-medium text-foreground/90 group-hover:text-primary group-hover:font-semibold transition-colors pr-2">
                         {dept}
                       </span>
                       <ArrowUpRight className="w-4 h-4 text-primary shrink-0 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
@@ -516,15 +515,15 @@ export function InstitutionOverviewPage() {
               </ul>
             </motion.div>
 
-            {/* Right: 2x2 Square Cultural Imagery Showcase (Pure Images, No Text Overlays) */}
+            {/* 2x2 Square Cultural Imagery Showcase (Sticky on desktop/tablet, visible on top on mobile) */}
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.55, delay: 0.08, ease: smoothEase }}
-              className="lg:col-span-6 sticky top-24"
+              className="order-1 md:order-2 md:col-span-5 lg:col-span-6 md:sticky md:top-24"
             >
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:gap-4">
                 {[
                   {
                     src: "/images/moments/moment-2-dancers.jpg",
@@ -571,7 +570,7 @@ export function InstitutionOverviewPage() {
           viewBox="0 0 1440 72"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          className="w-full h-6 sm:h-10 md:h-14 lg:h-20 block preserve-3d"
           preserveAspectRatio="none"
         >
           <path
@@ -584,15 +583,15 @@ export function InstitutionOverviewPage() {
       {/* ========================================================================= */}
       {/* 6. WHY JOIN MSAJCE ?: Canvas A (White / #121214)                          */}
       {/* ========================================================================= */}
-      <section className="w-full bg-white dark:bg-[#121214] py-14 sm:py-16 transition-colors">
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12 space-y-6">
+      <section className="w-full bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16 transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           {/* Header Bar: Title Only */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.55, ease: smoothEase }}
-            className="mb-6 sm:mb-8"
+            className="mb-5 sm:mb-8"
           >
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               Why Join MSAJCE ?
@@ -609,7 +608,7 @@ export function InstitutionOverviewPage() {
             {whyJoinReasons.map((reason, idx) => (
               <div
                 key={idx}
-                className="py-4 px-2 sm:px-3 flex items-start gap-4 hover:bg-primary/[0.03] transition-colors"
+                className="py-3 sm:py-4 px-1 sm:px-3 flex items-start gap-3 sm:gap-4 hover:bg-primary/[0.03] transition-colors"
               >
                 <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                   {idx + 1}
@@ -631,7 +630,7 @@ export function InstitutionOverviewPage() {
           viewBox="0 0 1440 72"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          className="w-full h-6 sm:h-10 md:h-14 lg:h-20 block preserve-3d"
           preserveAspectRatio="none"
         >
           <path
@@ -644,7 +643,7 @@ export function InstitutionOverviewPage() {
       {/* ========================================================================= */}
       {/* 7. AT THE HEART OF SIPCOT 5-IMAGE STRIP: Canvas B (#F3F3F2 / #18181B)    */}
       {/* ========================================================================= */}
-      <section className="py-14 sm:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+      <section className="py-10 sm:py-14 md:py-16 lg:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           {/* Centered Minimal Header */}
           <motion.div
@@ -652,15 +651,15 @@ export function InstitutionOverviewPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.55, ease: smoothEase }}
-            className="text-center max-w-2xl mx-auto mb-8 sm:mb-10"
+            className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10"
           >
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold font-oswald uppercase tracking-[0.25em] text-primary">
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold font-oswald uppercase tracking-[0.18em] sm:tracking-[0.25em] text-primary">
               AT THE HEART OF SIPCOT
             </h2>
           </motion.div>
 
-          {/* 5-Column Exact Horizontal Photographic Strip (Pure Minimal Images, No Overlays) */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-2.5 md:gap-3">
+          {/* 5-Column Responsive Photographic Strip: 2 cols on mobile (5th item wide banner), 5 cols on tablet/desktop */}
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-2.5 md:gap-3">
             {[
               { src: "/images/doorstep/doorstep-1.jpg", alt: "Architectural Heritage" },
               { src: "/images/doorstep/doorstep-2.jpg", alt: "Urban Transit & Street Culture" },
@@ -674,7 +673,11 @@ export function InstitutionOverviewPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.45, delay: idx * 0.05, ease: smoothEase }}
-                className="relative w-full aspect-[3/4] overflow-hidden bg-muted shadow-2xs rounded-sm"
+                className={`relative w-full overflow-hidden bg-muted shadow-2xs rounded-sm border border-border/20 ${
+                  idx === 4
+                    ? "col-span-2 sm:col-span-1 aspect-[16/9] sm:aspect-[3/4]"
+                    : "aspect-[3/4]"
+                }`}
               >
                 <img
                   src={img.src}
