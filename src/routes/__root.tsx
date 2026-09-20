@@ -14,6 +14,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SmoothScroll } from "@/components/shared/SmoothScroll";
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
+import { RefreshSnapIndicator } from "@/components/shared/RefreshSnapIndicator";
 import { HeaderProvider } from "@/context/HeaderContext";
 import { ChatbotWidget } from "@/components/widgets/ChatbotWidget";
 
@@ -121,7 +122,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem('msajce-theme');if(t==='dark'){document.documentElement.classList.add('dark');document.documentElement.style.colorScheme='dark';}else{document.documentElement.style.colorScheme='light';} if('scrollRestoration' in history) history.scrollRestoration='manual'; window.scrollTo(0,0);}catch(e){}`,
+            __html: `try{var t=localStorage.getItem('msajce-theme');if(t==='dark'){document.documentElement.classList.add('dark');document.documentElement.style.colorScheme='dark';}else{document.documentElement.style.colorScheme='light';}if('scrollRestoration' in history)history.scrollRestoration='manual';}catch(e){}`,
           }}
         />
         <HeadContent />
@@ -144,6 +145,7 @@ function RootComponent() {
       <HeaderProvider>
         <SmoothScroll />
         <ScrollToTop />
+        <RefreshSnapIndicator />
         <ChatbotWidget />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <div className="bg-background text-foreground max-w-full w-full">
