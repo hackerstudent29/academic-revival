@@ -216,8 +216,8 @@ export function InstitutionOverviewPage() {
                 </p>
               </div>
 
-              {/* 3-Pillar Highlight Grid: 2 columns on top, 3rd stat centered down below */}
-              <div className="pt-5 sm:pt-6 border-t border-border/40 grid grid-cols-2 gap-y-5 gap-x-4 sm:gap-x-8 font-libre">
+              {/* 3-Pillar Highlight Grid: 2 columns on mobile with 3rd centered, clean 3-column row on desktop */}
+              <div className="pt-5 sm:pt-6 border-t border-border/40 grid grid-cols-2 md:grid-cols-3 gap-y-5 gap-x-4 sm:gap-x-6 lg:gap-x-8 font-libre">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2 text-primary">
                     <GraduationCap className="w-5 h-5 shrink-0 stroke-[2.2]" />
@@ -242,8 +242,8 @@ export function InstitutionOverviewPage() {
                   </div>
                 </div>
 
-                <div className="col-span-2 flex flex-col items-center text-center space-y-1 pt-1">
-                  <div className="flex items-center justify-center gap-2 text-primary">
+                <div className="col-span-2 md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left space-y-1 pt-1 md:pt-0">
+                  <div className="flex items-center justify-center md:justify-start gap-2 text-primary">
                     <MapPin className="w-5 h-5 shrink-0 stroke-[2.2]" />
                     <span className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
                       70 Acres
