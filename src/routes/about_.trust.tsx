@@ -101,8 +101,8 @@ export function TheTrustPage() {
         </div>
 
         {/* Title Container: Fading Translucent Backdrop, Direct Title Only */}
-        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-6 sm:pb-8">
-          <div className="inline-block bg-black/60 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 shadow-2xl max-w-2xl lg:max-w-3xl rounded-none border-y border-r border-white/10">
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-12 sm:pt-16 md:pt-20 pb-4 sm:pb-6 md:pb-8">
+          <div className="inline-block bg-black/60 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-8 sm:py-5 shadow-2xl max-w-full sm:max-w-2xl lg:max-w-3xl rounded-none border-y border-r border-white/10">
             <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-white tracking-tight leading-[1.1]">
               Mohamed Sathak Trust
             </h1>
@@ -110,27 +110,27 @@ export function TheTrustPage() {
         </div>
 
         {/* Fading Stats Strip (Smooth Gradient Fade, Maroon Figures) */}
-        <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-10 pb-6 sm:pt-14 sm:pb-8">
+        <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-8 pb-5 sm:pt-12 sm:pb-7">
           <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
-            <div className="flex items-center justify-between gap-4 mb-4 pb-2.5 border-b border-white/10">
-              <h2 className="text-lg sm:text-xl md:text-2xl font-black font-oswald uppercase tracking-wide text-primary">
+            <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4 pb-2 border-b border-white/10">
+              <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-black font-oswald uppercase tracking-wide text-primary">
                 Institutional Heritage
               </h2>
-              <span className="text-[11px] sm:text-xs font-oswald uppercase tracking-widest text-white/50 hidden sm:inline">
+              <span className="text-[10px] sm:text-xs font-oswald uppercase tracking-widest text-white/50 hidden sm:inline">
                 Estd. 26 October 1973 · Kilakarai
               </span>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 divide-x divide-white/15">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 md:gap-6 lg:gap-8 md:divide-x md:divide-white/15">
               {heroStats.map((stat, idx) => (
-                <div key={idx} className="first:pl-0 pl-4 sm:pl-6 space-y-1">
+                <div key={idx} className="first:pl-0 md:pl-4 lg:pl-6 space-y-0.5 sm:space-y-1">
                   <div className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-primary dark:text-[#E11D48] tracking-tight leading-none">
                     {stat.value}
                   </div>
-                  <div className="text-xs sm:text-sm text-white/90 font-libre font-bold leading-snug pt-1">
+                  <div className="text-xs sm:text-sm text-white/90 font-libre font-bold leading-snug pt-0.5 sm:pt-1">
                     {stat.label}
                   </div>
-                  <div className="text-[11px] text-white/60 font-libre leading-tight">
+                  <div className="text-[10px] sm:text-[11px] text-white/60 font-libre leading-tight">
                     {stat.sub}
                   </div>
                 </div>
@@ -210,7 +210,7 @@ export function TheTrustPage() {
           viewBox="0 0 1440 72"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          className="w-full h-6 sm:h-10 md:h-14 lg:h-20 block preserve-3d"
           preserveAspectRatio="none"
         >
           <path
@@ -223,9 +223,9 @@ export function TheTrustPage() {
       {/* ========================================================================= */}
       {/* 3. SECTION 2: Canvas B (#F3F3F2 / #18181B) — OUR FOUNDER                  */}
       {/* ========================================================================= */}
-      <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-12 sm:py-16 md:py-20 transition-colors">
+      <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-16 transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
-          <div className="mb-8 sm:mb-12">
+          <div className="mb-6 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-oswald uppercase tracking-wide text-primary">
               Our Founder
             </h2>
@@ -235,10 +235,10 @@ export function TheTrustPage() {
           </div>
 
           {/* 6 Founders Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-5 md:gap-6">
             {founders.map((founder) => (
               <div key={founder.name} className="flex flex-col items-center text-center">
-                <div className="w-full aspect-square rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border shadow-xs bg-white dark:bg-[#121214] mb-3">
+                <div className="w-full aspect-square rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border shadow-xs bg-white dark:bg-[#121214] mb-2 sm:mb-3">
                   <img
                     src={founder.image}
                     alt={founder.name}
@@ -248,7 +248,7 @@ export function TheTrustPage() {
                 <h3 className="font-oswald text-xs sm:text-sm font-bold uppercase tracking-tight text-foreground leading-snug">
                   {founder.name}
                 </h3>
-                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-primary dark:text-[#E11D48] font-bold mt-1">
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-primary dark:text-[#E11D48] font-bold mt-0.5 sm:mt-1">
                   {founder.role}
                 </span>
               </div>
@@ -265,7 +265,7 @@ export function TheTrustPage() {
           viewBox="0 0 1440 72"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          className="w-full h-6 sm:h-10 md:h-14 lg:h-20 block preserve-3d"
           preserveAspectRatio="none"
         >
           <path
@@ -278,7 +278,7 @@ export function TheTrustPage() {
       {/* ========================================================================= */}
       {/* 4. SECTION 3: Canvas A (White / #121214) — TRUSTEES & CHAIRMAN MESSAGE    */}
       {/* ========================================================================= */}
-      <section className="py-12 sm:py-16 md:py-20 bg-white dark:bg-[#121214] transition-colors">
+      <section className="py-8 sm:py-12 md:py-16 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Column: Our Trustees */}

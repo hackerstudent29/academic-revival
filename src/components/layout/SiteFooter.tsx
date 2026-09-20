@@ -79,8 +79,8 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
   const a = active ? "visible" : "hidden";
 
   return (
-    <div className="relative w-full bg-[#222222]" style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}>
-      <div ref={containerRef} className="relative w-full h-auto lg:h-[calc(100vh+var(--footer-height))] lg:mt-[-100vh]">
+    <div className="relative w-full bg-[#222222] overflow-hidden" style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}>
+      <div ref={containerRef} className="relative w-full h-auto lg:h-[calc(100vh+var(--footer-height))] lg:mt-[-100vh] overflow-hidden">
         <div className="w-full relative lg:sticky lg:top-[calc(100vh-var(--footer-height))] lg:h-[var(--footer-height)]">
           <footer ref={footerRef} className="w-full bg-[#222222] text-[#CCCCCC] relative overflow-hidden">
 

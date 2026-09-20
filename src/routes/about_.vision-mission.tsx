@@ -53,8 +53,8 @@ export function VisionMissionPage() {
         </div>
 
         {/* Title Container: Fading Translucent Backdrop, Direct Title Only */}
-        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-6 sm:pb-8">
-          <div className="inline-block bg-black/60 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 shadow-2xl max-w-2xl lg:max-w-3xl rounded-none border-y border-r border-white/10">
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-12 sm:pt-16 md:pt-20 pb-4 sm:pb-6 md:pb-8">
+          <div className="inline-block bg-black/60 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-8 sm:py-5 shadow-2xl max-w-full sm:max-w-2xl lg:max-w-3xl rounded-none border-y border-r border-white/10">
             <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-white tracking-tight leading-[1.1]">
               Vision and Mission
             </h1>
@@ -62,24 +62,24 @@ export function VisionMissionPage() {
         </div>
 
         {/* Fading Stats Strip (Smooth Gradient Fade, Maroon Figures) */}
-        <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-10 pb-6 sm:pt-14 sm:pb-8">
+        <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-8 pb-5 sm:pt-12 sm:pb-7">
           <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
-            <div className="flex items-center justify-between gap-4 mb-4 pb-2.5 border-b border-white/10">
-              <h2 className="text-lg sm:text-xl md:text-2xl font-black font-oswald uppercase tracking-wide text-primary">
+            <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4 pb-2 border-b border-white/10">
+              <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-black font-oswald uppercase tracking-wide text-primary">
                 Institutional Foundations
               </h2>
-              <span className="text-[11px] sm:text-xs font-oswald uppercase tracking-widest text-white/50 hidden sm:inline">
+              <span className="text-[10px] sm:text-xs font-oswald uppercase tracking-widest text-white/50 hidden sm:inline">
                 MSAJCE Core Principles
               </span>
             </div>
 
-            <div className="grid grid-cols-3 gap-5 sm:gap-6 lg:gap-8 divide-x divide-white/15">
+            <div className="grid grid-cols-3 gap-2 sm:gap-6 lg:gap-8 divide-x divide-white/15">
               {heroStats.map((stat, idx) => (
-                <div key={idx} className="first:pl-0 pl-4 sm:pl-6 space-y-1">
-                  <div className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-primary dark:text-[#E11D48] tracking-tight leading-none">
+                <div key={idx} className="first:pl-0 pl-2 sm:pl-4 md:pl-6 space-y-0.5 sm:space-y-1">
+                  <div className="font-oswald text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-primary dark:text-[#E11D48] tracking-tight leading-none">
                     {stat.value}
                   </div>
-                  <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-1">
+                  <div className="text-[11px] sm:text-sm text-white/85 font-libre leading-tight sm:leading-snug pt-0.5 sm:pt-1">
                     {stat.label}
                   </div>
                 </div>
@@ -92,7 +92,7 @@ export function VisionMissionPage() {
       {/* ========================================================================= */}
       {/* 2. CORE CONTENT: BALANCED, CLEAN LIST STRUCTURE (NO LINES, BALANCED GAPS) */}
       {/* ========================================================================= */}
-      <section className="py-12 sm:py-16 md:py-20 bg-white dark:bg-[#121214] transition-colors">
+      <section className="py-8 sm:py-12 md:py-16 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12 space-y-12 sm:space-y-16">
           {/* Vision Block */}
           <div className="space-y-4 sm:space-y-5">
