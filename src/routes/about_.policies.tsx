@@ -141,12 +141,9 @@ export function InstitutionalPoliciesPage() {
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           {/* Header Bar */}
           <div className="border-b border-border pb-6 mb-8 sm:mb-12">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-primary uppercase block mb-2">
-              ABOUT MSAJCE // STATUTORY GOVERNANCE
-            </span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black uppercase tracking-tight text-foreground font-oswald leading-[0.95]">
               Institutional Policies <br />
-              <span className="text-primary font-oswald">& Code of Conduct</span>
+              <span className="text-primary font-oswald">&amp; Code of Conduct</span>
             </h1>
           </div>
 
@@ -156,16 +153,22 @@ export function InstitutionalPoliciesPage() {
             <div className="lg:col-span-7 space-y-6">
               <div className="border-l-4 border-primary pl-4 sm:pl-6 py-2">
                 <p className="text-lg sm:text-xl md:text-2xl font-bold font-oswald uppercase text-foreground leading-snug tracking-tight">
-                  Mohamed Sathak A.J. College of Engineering operates under strict statutory governance frameworks that ensure academic integrity, student safety, inclusive welfare, and operational excellence.
+                  Mohamed Sathak A.J. College of Engineering operates under strict statutory
+                  governance frameworks that ensure academic integrity, student safety, inclusive
+                  welfare, and operational excellence.
                 </p>
               </div>
 
-              <div className="space-y-4 text-base sm:text-lg text-muted-foreground font-sans leading-relaxed">
+              <div className="space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
                 <p>
-                  Ratified by the Governing Council in full compliance with the All India Council for Technical Education (AICTE), University Grants Commission (UGC), and Anna University regulations, our policies govern all aspects of campus life.
+                  Ratified by the Governing Council in full compliance with the All India Council
+                  for Technical Education (AICTE), University Grants Commission (UGC), and Anna
+                  University regulations, our policies govern all aspects of campus life.
                 </p>
                 <p>
-                  From zero-tolerance anti-ragging mandates and confidential internal complaints procedures to research ethics, green campus protocols, and digital security rules, these charters maintain our reputation as a premier seat of learning.
+                  From zero-tolerance anti-ragging mandates and confidential internal complaints
+                  procedures to research ethics, green campus protocols, and digital security rules,
+                  these charters maintain our reputation as a premier seat of learning.
                 </p>
               </div>
 
@@ -265,10 +268,7 @@ export function InstitutionalPoliciesPage() {
       <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-16 lg:py-20 transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           <div className="max-w-3xl mb-8 sm:mb-12">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-primary uppercase block mb-2">
-              STATUTORY POLICIES DIRECTORY
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-foreground font-oswald leading-none">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               Institutional Regulations
             </h2>
           </div>
@@ -282,9 +282,7 @@ export function InstitutionalPoliciesPage() {
               >
                 <div className="lg:w-4/12">
                   <div className="flex items-center gap-3 mb-1">
-                    <span className="text-sm font-mono font-black text-primary">
-                      #{policy.num}
-                    </span>
+                    <span className="text-sm font-mono font-black text-primary">#{policy.num}</span>
                     <span className="text-[11px] font-mono uppercase px-2 py-0.5 bg-foreground/5 text-muted-foreground rounded-xs">
                       {policy.category}
                     </span>
@@ -305,7 +303,10 @@ export function InstitutionalPoliciesPage() {
                     </span>
                     <ul className="space-y-1">
                       {policy.directives.map((dir, idx) => (
-                        <li key={idx} className="text-xs sm:text-sm text-muted-foreground font-sans flex items-start gap-2">
+                        <li
+                          key={idx}
+                          className="text-xs sm:text-sm text-muted-foreground font-sans flex items-start gap-2"
+                        >
                           <span className="text-primary font-bold mt-0.5">•</span>
                           <span>{dir}</span>
                         </li>
@@ -344,14 +345,12 @@ export function InstitutionalPoliciesPage() {
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             <div className="lg:col-span-5 space-y-4">
-              <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-primary uppercase block">
-                COMPLIANCE HELPDESK
-              </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-foreground font-oswald leading-none">
-                Reporting & Redressal
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                Reporting &amp; Redressal
               </h2>
-              <p className="text-sm sm:text-base text-muted-foreground font-sans leading-relaxed">
-                Students, parents, and staff members may report grievances, policy violations, or seek confidential counsel through our dedicated statutory desks.
+              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                Students, parents, and staff members may report grievances, policy violations, or
+                seek confidential counsel through our dedicated statutory desks.
               </p>
             </div>
 

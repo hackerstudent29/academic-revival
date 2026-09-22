@@ -30,24 +30,132 @@ export const Route = createFileRoute("/about_/governing-council")({
 });
 
 const members = [
-  { sno: "01", name: "Alhaj. S.M. Yousuf Sahib", role: "Chairman", category: "trust", designation: "Chairman, Mohamed Sathak Trust, Chennai" },
-  { sno: "02", name: "Janaba. S.M.H. Sharmila", role: "Member", category: "trust", designation: "Secretary, Mohamed Sathak Trust, Chennai" },
-  { sno: "03", name: "Janab. P.R.L. Hamid Ibrahim", role: "Member", category: "trust", designation: "Executive Director, Mohamed Sathak Trust, Chennai" },
-  { sno: "04", name: "Mr. S.M.Y. Mohamed Sathak", role: "Member", category: "trust", designation: "Campus Director, Mohamed Sathak Trust, Chennai" },
-  { sno: "05", name: "Dr. T.V. Gopal", role: "University Nominee", category: "gov", designation: "Professor / Department of CSE, Anna University, Chennai" },
-  { sno: "06", name: "Dr. S. Murugavel", role: "DOTE Nominee", category: "gov", designation: "Professor / TPGIT, Directorate of Technical Education, Vellore" },
-  { sno: "07", name: "Dr. B. Anbu Thambi", role: "Industry Partner", category: "industry", designation: "Head - Strategy & Partnerships, L&T EduTech, Chennai" },
-  { sno: "08", name: "Mr. Arul Rajkumar", role: "Industry Partner", category: "industry", designation: "Vice President - IT Operations, Ford Motors Pvt. Ltd., Chennai" },
-  { sno: "09", name: "Dr. R. Subramani", role: "Industry Partner", category: "industry", designation: "Director, IBM India Systems Development Lab, Chennai" },
-  { sno: "10", name: "Dr. G. Kulanthaivelu", role: "Academic Expert", category: "academic", designation: "Professor & Head - ECE, NITTTR, Government of India, Chennai" },
-  { sno: "11", name: "Dr. K.S. Srinivasan", role: "Member Secretary", category: "academic", designation: "Principal, Mohamed Sathak A.J. College of Engineering, Chennai" },
-  { sno: "12", name: "Head - Administration", role: "Administrative Member", category: "academic", designation: "MSAJCE, Siruseri OMR, Chennai" },
-  { sno: "13", name: "Head - Academics", role: "Senior Faculty Member", category: "academic", designation: "MSAJCE, Siruseri OMR, Chennai" },
-  { sno: "14", name: "Head - IQAC", role: "Senior Faculty Member", category: "academic", designation: "MSAJCE, Siruseri OMR, Chennai" },
-  { sno: "15", name: "Head - Admission", role: "Senior Faculty Member", category: "academic", designation: "MSAJCE, Siruseri OMR, Chennai" },
-  { sno: "16", name: "Head – Student Affairs", role: "Senior Faculty Member", category: "academic", designation: "MSAJCE, Siruseri OMR, Chennai" },
-  { sno: "17", name: "Head - Research", role: "Senior Faculty Member", category: "academic", designation: "MSAJCE, Siruseri OMR, Chennai" },
-  { sno: "18", name: "Head - Examcell", role: "Member", category: "academic", designation: "MSAJCE, Siruseri OMR, Chennai" },
+  {
+    sno: "01",
+    name: "Alhaj. S.M. Yousuf Sahib",
+    role: "Chairman",
+    category: "trust",
+    designation: "Chairman, Mohamed Sathak Trust, Chennai",
+  },
+  {
+    sno: "02",
+    name: "Janaba. S.M.H. Sharmila",
+    role: "Member",
+    category: "trust",
+    designation: "Secretary, Mohamed Sathak Trust, Chennai",
+  },
+  {
+    sno: "03",
+    name: "Janab. P.R.L. Hamid Ibrahim",
+    role: "Member",
+    category: "trust",
+    designation: "Executive Director, Mohamed Sathak Trust, Chennai",
+  },
+  {
+    sno: "04",
+    name: "Mr. S.M.Y. Mohamed Sathak",
+    role: "Member",
+    category: "trust",
+    designation: "Campus Director, Mohamed Sathak Trust, Chennai",
+  },
+  {
+    sno: "05",
+    name: "Dr. T.V. Gopal",
+    role: "University Nominee",
+    category: "gov",
+    designation: "Professor / Department of CSE, Anna University, Chennai",
+  },
+  {
+    sno: "06",
+    name: "Dr. S. Murugavel",
+    role: "DOTE Nominee",
+    category: "gov",
+    designation: "Professor / TPGIT, Directorate of Technical Education, Vellore",
+  },
+  {
+    sno: "07",
+    name: "Dr. B. Anbu Thambi",
+    role: "Industry Partner",
+    category: "industry",
+    designation: "Head - Strategy & Partnerships, L&T EduTech, Chennai",
+  },
+  {
+    sno: "08",
+    name: "Mr. Arul Rajkumar",
+    role: "Industry Partner",
+    category: "industry",
+    designation: "Vice President - IT Operations, Ford Motors Pvt. Ltd., Chennai",
+  },
+  {
+    sno: "09",
+    name: "Dr. R. Subramani",
+    role: "Industry Partner",
+    category: "industry",
+    designation: "Director, IBM India Systems Development Lab, Chennai",
+  },
+  {
+    sno: "10",
+    name: "Dr. G. Kulanthaivelu",
+    role: "Academic Expert",
+    category: "academic",
+    designation: "Professor & Head - ECE, NITTTR, Government of India, Chennai",
+  },
+  {
+    sno: "11",
+    name: "Dr. K.S. Srinivasan",
+    role: "Member Secretary",
+    category: "academic",
+    designation: "Principal, Mohamed Sathak A.J. College of Engineering, Chennai",
+  },
+  {
+    sno: "12",
+    name: "Head - Administration",
+    role: "Administrative Member",
+    category: "academic",
+    designation: "MSAJCE, Siruseri OMR, Chennai",
+  },
+  {
+    sno: "13",
+    name: "Head - Academics",
+    role: "Senior Faculty Member",
+    category: "academic",
+    designation: "MSAJCE, Siruseri OMR, Chennai",
+  },
+  {
+    sno: "14",
+    name: "Head - IQAC",
+    role: "Senior Faculty Member",
+    category: "academic",
+    designation: "MSAJCE, Siruseri OMR, Chennai",
+  },
+  {
+    sno: "15",
+    name: "Head - Admission",
+    role: "Senior Faculty Member",
+    category: "academic",
+    designation: "MSAJCE, Siruseri OMR, Chennai",
+  },
+  {
+    sno: "16",
+    name: "Head – Student Affairs",
+    role: "Senior Faculty Member",
+    category: "academic",
+    designation: "MSAJCE, Siruseri OMR, Chennai",
+  },
+  {
+    sno: "17",
+    name: "Head - Research",
+    role: "Senior Faculty Member",
+    category: "academic",
+    designation: "MSAJCE, Siruseri OMR, Chennai",
+  },
+  {
+    sno: "18",
+    name: "Head - Examcell",
+    role: "Member",
+    category: "academic",
+    designation: "MSAJCE, Siruseri OMR, Chennai",
+  },
 ];
 
 const quorumCategories = [
@@ -75,12 +183,9 @@ export function GoverningCouncilPage() {
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           {/* Header Bar */}
           <div className="border-b border-border pb-6 mb-8 sm:mb-12">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-primary uppercase block mb-2">
-              ABOUT MSAJCE // STATUTORY GOVERNANCE
-            </span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black uppercase tracking-tight text-foreground font-oswald leading-[0.95]">
               Governing Council <br />
-              <span className="text-primary font-oswald">& Statutory Body</span>
+              <span className="text-primary font-oswald">&amp; Statutory Body</span>
             </h1>
           </div>
 
@@ -90,16 +195,23 @@ export function GoverningCouncilPage() {
             <div className="lg:col-span-7 space-y-6">
               <div className="border-l-4 border-primary pl-4 sm:pl-6 py-2">
                 <p className="text-lg sm:text-xl md:text-2xl font-bold font-oswald uppercase text-foreground leading-snug tracking-tight">
-                  The Governing Council of Mohamed Sathak A.J. College of Engineering is the apex statutory authority responsible for institutional governance, academic policies, infrastructure development, and strategic compliance.
+                  The Governing Council of Mohamed Sathak A.J. College of Engineering is the apex
+                  statutory authority responsible for institutional governance, academic policies,
+                  infrastructure development, and strategic compliance.
                 </p>
               </div>
 
-              <div className="space-y-4 text-base sm:text-lg text-muted-foreground font-sans leading-relaxed">
+              <div className="space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
                 <p>
-                  Composed in strict adherence to AICTE guidelines and Anna University statutes, the council convenes educational administrators, industry leaders from Ford Motors, IBM, and L&T EduTech, senior university nominees, and institutional executive trustees.
+                  Composed in strict adherence to AICTE guidelines and Anna University statutes, the
+                  council convenes educational administrators, industry leaders from Ford Motors,
+                  IBM, and L&T EduTech, senior university nominees, and institutional executive
+                  trustees.
                 </p>
                 <p>
-                  The council provides strategic oversight, reviews annual budgets and audit reports, sanctions new academic programmes, approves research expenditure, and ensures the college fulfills its philanthropic mandate.
+                  The council provides strategic oversight, reviews annual budgets and audit
+                  reports, sanctions new academic programmes, approves research expenditure, and
+                  ensures the college fulfills its philanthropic mandate.
                 </p>
               </div>
 
@@ -199,11 +311,8 @@ export function GoverningCouncilPage() {
       <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-16 lg:py-20 transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           <div className="max-w-3xl mb-8 sm:mb-12">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-primary uppercase block mb-2">
-              STATUTORY RESPONSIBILITIES
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-foreground font-oswald leading-none">
-              Powers & Functions of the Council
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              Powers &amp; Functions of the Council
             </h2>
           </div>
 
@@ -218,7 +327,8 @@ export function GoverningCouncilPage() {
                   Institutional Policy
                 </h3>
                 <p className="text-sm text-muted-foreground font-sans leading-relaxed">
-                  Formulates strategic long-term development plans, institutional vision, and operational policies in accordance with Anna University and AICTE norms.
+                  Formulates strategic long-term development plans, institutional vision, and
+                  operational policies in accordance with Anna University and AICTE norms.
                 </p>
               </div>
 
@@ -230,7 +340,8 @@ export function GoverningCouncilPage() {
                   Budgetary Approvals
                 </h3>
                 <p className="text-sm text-muted-foreground font-sans leading-relaxed">
-                  Scrutinizes and sanctions the annual operating budget, capital expenditures for research facilities, and audited financial balance sheets.
+                  Scrutinizes and sanctions the annual operating budget, capital expenditures for
+                  research facilities, and audited financial balance sheets.
                 </p>
               </div>
 
@@ -242,7 +353,8 @@ export function GoverningCouncilPage() {
                   Programme Sanctions
                 </h3>
                 <p className="text-sm text-muted-foreground font-sans leading-relaxed">
-                  Approves recommendations of the Academic Council regarding new UG/PG engineering branches, research centers, and intake capacity adjustments.
+                  Approves recommendations of the Academic Council regarding new UG/PG engineering
+                  branches, research centers, and intake capacity adjustments.
                 </p>
               </div>
 
@@ -254,7 +366,8 @@ export function GoverningCouncilPage() {
                   Appointments & Ethics
                 </h3>
                 <p className="text-sm text-muted-foreground font-sans leading-relaxed">
-                  Oversees faculty appointment standards, code of conduct compliance, student grievance cells, and institutional quality benchmarks.
+                  Oversees faculty appointment standards, code of conduct compliance, student
+                  grievance cells, and institutional quality benchmarks.
                 </p>
               </div>
             </div>
@@ -288,10 +401,7 @@ export function GoverningCouncilPage() {
           {/* Header & Filter Switcher */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 sm:mb-12">
             <div>
-              <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-primary uppercase block mb-2">
-                OFFICIAL STATUTORY ROSTER
-              </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-foreground font-oswald leading-none">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                 Governing Council Registry
               </h2>
             </div>

@@ -1,6 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, Youtube, ArrowUpRight } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Twitter,
+  Youtube,
+  ArrowUpRight,
+} from "lucide-react";
 import { useEffect, useRef } from "react";
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -27,10 +37,10 @@ const listItem = {
 
 const socials = [
   { label: "Instagram", href: "https://instagram.com", Icon: Instagram },
-  { label: "Facebook",  href: "https://facebook.com",  Icon: Facebook  },
-  { label: "LinkedIn",  href: "https://linkedin.com",  Icon: Linkedin  },
-  { label: "X",         href: "https://x.com",         Icon: Twitter   },
-  { label: "YouTube",   href: "https://youtube.com",   Icon: Youtube   },
+  { label: "Facebook", href: "https://facebook.com", Icon: Facebook },
+  { label: "LinkedIn", href: "https://linkedin.com", Icon: Linkedin },
+  { label: "X", href: "https://x.com", Icon: Twitter },
+  { label: "YouTube", href: "https://youtube.com", Icon: Youtube },
 ];
 
 export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
@@ -66,14 +76,20 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
       ref={footerRef}
       className="relative w-full overflow-hidden bg-[#18181B] dark:bg-[#121214] text-[#CCCCCC] border-t border-white/10 dark:border-white/5 pointer-events-auto"
     >
-      {/* ── 1. Watermark: Ambient MSAJCEA Branding ── */}
+      {/* ── 1. Architectural Campus Outline Ambient Background ── */}
       <div
         className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center select-none overflow-hidden"
         aria-hidden="true"
       >
-        <span className="font-oswald text-[18vw] font-black uppercase leading-none tracking-tighter text-primary/[0.08] dark:text-primary/[0.12]">
-          MSAJCEA
-        </span>
+        <img
+          src="/logos/msajce-campus-outline.jpeg"
+          alt="MSAJCE Architectural Campus Outline"
+          className="w-full h-full min-h-[360px] max-w-[1920px] object-cover sm:object-contain object-center mix-blend-screen opacity-20 sm:opacity-25 pointer-events-none select-none filter contrast-125 scale-105 sm:scale-100"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = "/logos/msajce%20logo%20outline%20tranparent.jpeg";
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#18181B]/80 via-transparent to-[#18181B]/60 dark:from-[#121214]/80 dark:via-transparent dark:to-[#121214]/60 pointer-events-none" />
       </div>
 
       {/* ── Main Grid ── */}
@@ -83,7 +99,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
         whileInView="visible"
         viewport={{ once: true, amount: 0.05 }}
         variants={stagger}
-        animate={revealed ? "visible" : undefined}
+        {...(revealed !== undefined ? { animate: revealed ? "visible" : "hidden" } : {})}
       >
         {/* ── Col 1: Brand ── */}
         <motion.div variants={fadeUp} className="md:col-span-12 lg:col-span-4">
@@ -94,20 +110,46 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
               xmlns="http://www.w3.org/2000/svg"
             >
               <rect x="30" y="30" width="500" height="1.5" fill="currentColor" />
-              <text x="30" y="95" fontFamily="Georgia,'Times New Roman',serif" fontWeight="700" fontSize="52" fill="currentColor" letterSpacing="4">
+              <text
+                x="30"
+                y="95"
+                fontFamily="Georgia,'Times New Roman',serif"
+                fontWeight="700"
+                fontSize="52"
+                fill="currentColor"
+                letterSpacing="4"
+              >
                 MSAJ<tspan fontSize="66">C</tspan>EA
               </text>
-              <text x="34" y="130" fontFamily="Georgia,'Times New Roman',serif" fontWeight="400" fontSize="20" fill="currentColor" letterSpacing="6">
+              <text
+                x="34"
+                y="130"
+                fontFamily="Georgia,'Times New Roman',serif"
+                fontWeight="400"
+                fontSize="20"
+                fill="currentColor"
+                letterSpacing="6"
+              >
                 MOHAMED SATHAK A.J. COLLEGE
               </text>
-              <text x="120" y="160" fontFamily="Georgia,'Times New Roman',serif" fontWeight="400" fontSize="20" fill="currentColor" letterSpacing="6">
+              <text
+                x="120"
+                y="160"
+                fontFamily="Georgia,'Times New Roman',serif"
+                fontWeight="400"
+                fontSize="20"
+                fill="currentColor"
+                letterSpacing="6"
+              >
                 OF ENGINEERING &amp; ARCHITECTURE
               </text>
             </svg>
           </Link>
 
           <p className="mt-4 max-w-md text-sm leading-relaxed text-[#CCCCCC]/80 font-sans">
-            An autonomous-spirited engineering campus on Chennai's OMR IT corridor. Empowering the next generation of innovators with industry-aligned education, cutting-edge facilities, and global perspectives.
+            An autonomous-spirited engineering campus on Chennai's OMR IT corridor. Empowering the
+            next generation of innovators with industry-aligned education, cutting-edge facilities,
+            and global perspectives.
           </p>
 
           {/* Contact Details */}
@@ -118,10 +160,15 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
               rel="noreferrer"
               className="group flex items-start gap-3 hover:text-primary transition-colors text-left"
             >
-              <MapPin size={18} className="mt-0.5 shrink-0 text-white/50 group-hover:text-primary transition-colors" />
+              <MapPin
+                size={18}
+                className="mt-0.5 shrink-0 text-white/50 group-hover:text-primary transition-colors"
+              />
               <span className="leading-relaxed">
-                34, Rajiv Gandhi Salai (OMR),<br />
-                IT Highway, Siruseri, Egattur,<br />
+                34, Rajiv Gandhi Salai (OMR),
+                <br />
+                IT Highway, Siruseri, Egattur,
+                <br />
                 Chennai, Tamil Nadu 603103
               </span>
             </a>
@@ -129,9 +176,13 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
             <div className="flex items-center gap-3">
               <Phone size={18} className="shrink-0 text-white/50" />
               <span className="flex items-center gap-2">
-                <a href="tel:+914427470000" className="hover:text-primary transition-colors">+91 44 2747 0000</a>
+                <a href="tel:+914427470000" className="hover:text-primary transition-colors">
+                  +91 44 2747 0000
+                </a>
                 <span className="text-white/25">/</span>
-                <a href="tel:+914427470001" className="hover:text-primary transition-colors">+91 44 2747 0001</a>
+                <a href="tel:+914427470001" className="hover:text-primary transition-colors">
+                  +91 44 2747 0001
+                </a>
               </span>
             </div>
 
@@ -139,7 +190,10 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
               href="mailto:admissions@msajce.edu.in"
               className="group flex items-center gap-3 hover:text-primary transition-colors"
             >
-              <Mail size={18} className="shrink-0 text-white/50 group-hover:text-primary transition-colors" />
+              <Mail
+                size={18}
+                className="shrink-0 text-white/50 group-hover:text-primary transition-colors"
+              />
               <span>admissions@msajce.edu.in</span>
             </a>
           </div>
@@ -164,7 +218,10 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
                   className="group flex items-center justify-between hover:text-primary transition-colors py-0.5"
                 >
                   <span>{label}</span>
-                  <ArrowUpRight size={14} className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-primary" />
+                  <ArrowUpRight
+                    size={14}
+                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-primary"
+                  />
                 </Link>
               </motion.li>
             ))}
@@ -189,7 +246,10 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
                   className="group flex items-center justify-between hover:text-primary transition-colors py-0.5"
                 >
                   <span>{label}</span>
-                  <ArrowUpRight size={14} className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-primary" />
+                  <ArrowUpRight
+                    size={14}
+                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-primary"
+                  />
                 </Link>
               </motion.li>
             ))}
@@ -214,7 +274,10 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
                   className="group flex items-center justify-between hover:text-primary transition-colors py-0.5"
                 >
                   <span>{label}</span>
-                  <ArrowUpRight size={14} className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-primary" />
+                  <ArrowUpRight
+                    size={14}
+                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-primary"
+                  />
                 </Link>
               </motion.li>
             ))}
@@ -239,7 +302,10 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
                 className="group relative inline-flex h-10 w-10 overflow-hidden items-center justify-center rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-white/15 text-[#CCCCCC] transition-all hover:border-primary hover:text-white"
               >
                 <span className="absolute inset-0 top-full bg-primary transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:top-0" />
-                <Icon size={17} className="relative z-10 transition-colors duration-300 group-hover:text-primary-foreground" />
+                <Icon
+                  size={17}
+                  className="relative z-10 transition-colors duration-300 group-hover:text-primary-foreground"
+                />
               </a>
             ))}
           </div>
@@ -247,9 +313,15 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
           {/* Copyright & Legal */}
           <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8 text-xs font-medium uppercase tracking-widest text-white/50">
             <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
-              <Link to="/about" className="hover:text-primary transition-colors">Privacy Policy</Link>
-              <Link to="/about" className="hover:text-primary transition-colors">Terms of Service</Link>
-              <Link to="/credits" className="hover:text-primary transition-colors">Credits</Link>
+              <Link to="/about" className="hover:text-primary transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="/about" className="hover:text-primary transition-colors">
+                Terms of Service
+              </Link>
+              <Link to="/credits" className="hover:text-primary transition-colors">
+                Credits
+              </Link>
             </div>
             <p>&copy; {new Date().getFullYear()} MSAJCE. All rights reserved.</p>
           </div>

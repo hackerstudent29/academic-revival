@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import {
-  MapPin,
-  Building2,
-  ArrowUpRight,
-  GraduationCap,
-} from "lucide-react";
+import { MapPin, Building2, ArrowUpRight, GraduationCap } from "lucide-react";
 
 // Standard Apple/luxury cubic-bezier ease-out curve for buttery smooth animations
 const smoothEase = [0.16, 1, 0.3, 1] as const;
@@ -36,7 +31,6 @@ const heroStats = [
   { value: "301", label: "Team Staff" },
   { value: "54", label: "Awards Won" },
 ];
-
 
 // Why Join MSAJCE - 12 Key Institutional Reasons (Minimal Single-Line Points)
 const whyJoinReasons = [
@@ -110,9 +104,9 @@ export function InstitutionOverviewPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.05, ease: smoothEase }}
-            className="inline-block bg-black/60 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl rounded-none border-y border-r border-white/10"
+            className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15"
           >
-            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-white tracking-tight leading-[1.1]">
+            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-[1.1]">
               The Institution
             </h1>
           </motion.div>
@@ -123,7 +117,7 @@ export function InstitutionOverviewPage() {
           <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
             <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4">
               <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-black font-oswald uppercase tracking-wide text-primary">
-                Facts & Figures
+                Facts &amp; Figures
               </h2>
               <span className="text-[10px] sm:text-[11px] md:text-xs font-oswald uppercase tracking-widest text-white/50 hidden sm:inline">
                 Institutional Benchmark Metrics
@@ -139,7 +133,7 @@ export function InstitutionOverviewPage() {
                   transition={{ duration: 0.45, delay: 0.15 + idx * 0.06, ease: smoothEase }}
                   className="first:pl-0 md:pl-4 lg:pl-6 space-y-0.5 sm:space-y-1"
                 >
-                  <div className="font-oswald text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-primary dark:text-[#E11D48] tracking-tight leading-none">
+                  <div className="font-oswald text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-primary tracking-tight leading-none">
                     {stat.value}
                   </div>
                   <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-0.5 sm:pt-1">
@@ -200,19 +194,19 @@ export function InstitutionOverviewPage() {
               className="lg:col-span-7 flex flex-col justify-between space-y-5 sm:space-y-6"
             >
               <div className="space-y-3.5 sm:space-y-5">
-                <p className="text-sm sm:text-base font-medium text-foreground/90 font-libre leading-relaxed">
-                  Established under the aegis of the Mohamed Sathak Trust, Mohamed Sathak A.J. College
-                  of Engineering (MSAJCE) delivers transformative engineering education rooted in
-                  technical innovation, hands-on inquiry, and ethical leadership. We educate and
-                  engineer to expand analytical thinking, equipping future technocrats for impactful
-                  careers across global industries.
+                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                  Established under the aegis of the Mohamed Sathak Trust, Mohamed Sathak A.J.
+                  College of Engineering (MSAJCE) delivers transformative engineering education
+                  rooted in technical innovation, hands-on inquiry, and ethical leadership. We
+                  educate and engineer to expand analytical thinking, equipping future technocrats
+                  for impactful careers across global industries.
                 </p>
-                <p className="text-sm sm:text-base font-medium text-foreground/90 font-libre leading-relaxed">
+                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
                   Directly situated inside Asia’s prominent SIPCOT IT Park in Siruseri, Chennai, our
                   students cultivate industry-ready competencies under dedicated faculty mentorship.
-                  Backed by modern research and testing laboratories, AICTE IDEA initiatives, and active
-                  collegiate chapters of IEEE, CSI, and SAE, our campus bridges academic excellence
-                  with the vibrant pulse of neighboring global tech leaders.
+                  Backed by modern research and testing laboratories, AICTE IDEA initiatives, and
+                  active collegiate chapters of IEEE, CSI, and SAE, our campus bridges academic
+                  excellence with the vibrant pulse of neighboring global tech leaders.
                 </p>
               </div>
 
@@ -418,11 +412,11 @@ export function InstitutionOverviewPage() {
                 technological education.
               </p>
               <p className="text-sm sm:text-base font-medium text-foreground/90 leading-relaxed font-libre">
-                Rooted in over 50 years of educational philanthropy, our campus integrates
-                advanced AICTE IDEA Labs, specialized computing centers, smart classrooms, and
-                research incubators. We cultivate an environment where ambitious technocrats
-                engage in hands-on exploration, bridging academic theory with the technological
-                demands of neighboring global IT enterprises.
+                Rooted in over 50 years of educational philanthropy, our campus integrates advanced
+                AICTE IDEA Labs, specialized computing centers, smart classrooms, and research
+                incubators. We cultivate an environment where ambitious technocrats engage in
+                hands-on exploration, bridging academic theory with the technological demands of
+                neighboring global IT enterprises.
               </p>
             </motion.div>
 
@@ -653,7 +647,7 @@ export function InstitutionOverviewPage() {
             transition={{ duration: 0.55, ease: smoothEase }}
             className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10"
           >
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold font-oswald uppercase tracking-[0.18em] sm:tracking-[0.25em] text-primary">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               AT THE HEART OF SIPCOT
             </h2>
           </motion.div>

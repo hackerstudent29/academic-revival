@@ -102,8 +102,8 @@ export function TheTrustPage() {
 
         {/* Title Container: Fading Translucent Backdrop, Direct Title Only */}
         <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-12 sm:pt-16 md:pt-20 pb-4 sm:pb-6 md:pb-8">
-          <div className="inline-block bg-black/60 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-8 sm:py-5 shadow-2xl max-w-full sm:max-w-2xl lg:max-w-3xl rounded-none border-y border-r border-white/10">
-            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-white tracking-tight leading-[1.1]">
+          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-8 sm:py-5 shadow-2xl max-w-full sm:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-[1.1]">
               Mohamed Sathak Trust
             </h1>
           </div>
@@ -124,7 +124,7 @@ export function TheTrustPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 md:gap-6 lg:gap-8 md:divide-x md:divide-white/15">
               {heroStats.map((stat, idx) => (
                 <div key={idx} className="first:pl-0 md:pl-4 lg:pl-6 space-y-0.5 sm:space-y-1">
-                  <div className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-primary dark:text-[#E11D48] tracking-tight leading-none">
+                  <div className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-primary tracking-tight leading-none">
                     {stat.value}
                   </div>
                   <div className="text-xs sm:text-sm text-white/90 font-libre font-bold leading-snug pt-0.5 sm:pt-1">
@@ -148,28 +148,40 @@ export function TheTrustPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Column: Official Narrative */}
             <div className="lg:col-span-7 space-y-6">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-oswald uppercase tracking-wide text-primary">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                 Mohamed Sathak Trust
               </h2>
 
-              <div className="space-y-4 text-base sm:text-lg text-foreground/90 font-libre leading-relaxed">
+              <div className="space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
                 <p>
-                  Mohamed Sathak Trust, a charitable and educational organization, was established on 26 October 1973 at Kilakarai, by the Philanthropic Mohamed Sathak Family of Kilakarai, Ramanathapuram District, Tamil Nadu, with the sole purpose of helping deprived people from rural and financially challenged background to obtain quality education.
+                  Mohamed Sathak Trust, a charitable and educational organization, was established
+                  on 26 October 1973 at Kilakarai, by the Philanthropic Mohamed Sathak Family of
+                  Kilakarai, Ramanathapuram District, Tamil Nadu, with the sole purpose of helping
+                  deprived people from rural and financially challenged background to obtain quality
+                  education.
                 </p>
 
                 <p>
-                  The first self-financing engineering college in the country was established by the Trust in 1984 at Kilakarai, and from that day onwards the Trust has been contributing to provide quality education with academic excellence to meet the requirements of industries at national and international levels.
+                  The first self-financing engineering college in the country was established by the
+                  Trust in 1984 at Kilakarai, and from that day onwards the Trust has been
+                  contributing to provide quality education with academic excellence to meet the
+                  requirements of industries at national and international levels.
                 </p>
 
                 <p>
-                  The trust has an impeccable track record of running quality educational institutions from higher secondary level to the under graduate and post graduate levels in various disciplines such as Engineering Technology, Arts and Science, Pharmacy, Physiotherapy, Nursing and Medical Sciences; It has 18 educational institutions at present in Kilakarai, Ramanathapuram and Chennai.
+                  The trust has an impeccable track record of running quality educational
+                  institutions from higher secondary level to the under graduate and post graduate
+                  levels in various disciplines such as Engineering Technology, Arts and Science,
+                  Pharmacy, Physiotherapy, Nursing and Medical Sciences; It has 18 educational
+                  institutions at present in Kilakarai, Ramanathapuram and Chennai.
                 </p>
               </div>
 
               {/* Guiding Motto Quote Block */}
               <div className="border-l-4 border-primary pl-4 sm:pl-6 py-2 my-6">
                 <blockquote className="text-lg sm:text-xl md:text-2xl font-bold font-oswald uppercase text-foreground leading-snug tracking-tight">
-                  “God will not change the condition of a people until they try to change themselves.”
+                  “God will not change the condition of a people until they try to change
+                  themselves.”
                 </blockquote>
                 <span className="text-xs font-mono uppercase text-muted-foreground block mt-1 tracking-wider">
                   Guiding Philosophy of Mohamed Sathak Trust
@@ -177,7 +189,10 @@ export function TheTrustPage() {
               </div>
 
               <p className="text-base sm:text-lg text-foreground/90 font-libre leading-relaxed">
-                We believe that "God will not change the condition of a people until they try to change themselves". We focus on doing right things without any bias and with charitable mind would strive to build an institution of academic excellence and help in building the nation.
+                We believe that "God will not change the condition of a people until they try to
+                change themselves". We focus on doing right things without any bias and with
+                charitable mind would strive to build an institution of academic excellence and help
+                in building the nation.
               </p>
             </div>
 
@@ -226,7 +241,7 @@ export function TheTrustPage() {
       <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-16 transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           <div className="mb-6 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-oswald uppercase tracking-wide text-primary">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               Our Founder
             </h2>
             <p className="text-xs sm:text-sm font-mono uppercase tracking-widest text-muted-foreground mt-1">
@@ -248,7 +263,7 @@ export function TheTrustPage() {
                 <h3 className="font-oswald text-xs sm:text-sm font-bold uppercase tracking-tight text-foreground leading-snug">
                   {founder.name}
                 </h3>
-                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-primary dark:text-[#E11D48] font-bold mt-0.5 sm:mt-1">
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-primary font-bold mt-0.5 sm:mt-1">
                   {founder.role}
                 </span>
               </div>
@@ -284,7 +299,7 @@ export function TheTrustPage() {
             {/* Left Column: Our Trustees */}
             <div className="lg:col-span-4 space-y-6">
               <div>
-                <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                   Our Trustees
                 </h2>
                 <p className="text-xs sm:text-sm font-mono uppercase tracking-widest text-muted-foreground mt-1">
@@ -295,7 +310,10 @@ export function TheTrustPage() {
               {/* Trustees Vertical Roster */}
               <div className="divide-y divide-border border-t border-b border-border">
                 {trustees.map((trustee) => (
-                  <div key={trustee.name} className="py-4 first:pt-4 last:pb-4 flex items-center gap-4">
+                  <div
+                    key={trustee.name}
+                    className="py-4 first:pt-4 last:pb-4 flex items-center gap-4"
+                  >
                     <div className="w-20 h-20 sm:w-24 sm:h-24 aspect-square rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border shadow-xs bg-muted shrink-0">
                       <img
                         src={trustee.image}
@@ -307,7 +325,7 @@ export function TheTrustPage() {
                       <h3 className="font-oswald text-sm sm:text-base font-bold uppercase tracking-tight text-foreground leading-snug">
                         {trustee.name}
                       </h3>
-                      <span className="inline-block text-xs font-mono uppercase tracking-wider text-primary dark:text-[#E11D48] font-bold">
+                      <span className="inline-block text-xs font-mono uppercase tracking-wider text-primary font-bold">
                         {trustee.role}
                       </span>
                     </div>
@@ -319,7 +337,7 @@ export function TheTrustPage() {
             {/* Right Column: Chairman Message */}
             <div className="lg:col-span-8 space-y-6">
               <div>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-oswald uppercase tracking-wide text-primary">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                   Chairman Message
                 </h2>
                 <p className="text-xs sm:text-sm font-mono uppercase tracking-widest text-muted-foreground mt-1">
@@ -333,17 +351,29 @@ export function TheTrustPage() {
                 </h3>
               </div>
 
-              <div className="space-y-4 text-base sm:text-lg text-foreground/90 font-libre leading-relaxed">
+              <div className="space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
                 <p>
-                  Welcome to Mohamed Sathak A.J. College of Engineering, Chennai. Choosing a right institute to pursue your higher studies is one of the most important decisions that you will ever make. It can be the key for the door of your lifelong opportunity for sustainable growth and service. We want you to base your choice at the right place with relevant and reliable education.
+                  Welcome to Mohamed Sathak A.J. College of Engineering, Chennai. Choosing a right
+                  institute to pursue your higher studies is one of the most important decisions
+                  that you will ever make. It can be the key for the door of your lifelong
+                  opportunity for sustainable growth and service. We want you to base your choice at
+                  the right place with relevant and reliable education.
                 </p>
 
                 <p>
-                  The success depends on the effort you invest in your own intellectual and professional development. Invest wisely and be assured that MSAJCE faculty and staff pledge their best efforts in helping you to achieve your educational goals.
+                  The success depends on the effort you invest in your own intellectual and
+                  professional development. Invest wisely and be assured that MSAJCE faculty and
+                  staff pledge their best efforts in helping you to achieve your educational goals.
                 </p>
 
                 <p>
-                  Our standards are challenging and we are dedicating ourselves in helping you to meet the standards. We will judge our institution's success by how best your succeed in realizing your potential as a student and later in professional career. I invite you to visit our magnificent campus, to witness our state-of-the facilities, including the Technology Centres, interact with students and faculty and to convince yourselves on why so many bright students have made MSAJCE as their choice of the institution.
+                  Our standards are challenging and we are dedicating ourselves in helping you to
+                  meet the standards. We will judge our institution's success by how best your
+                  succeed in realizing your potential as a student and later in professional career.
+                  I invite you to visit our magnificent campus, to witness our state-of-the
+                  facilities, including the Technology Centres, interact with students and faculty
+                  and to convince yourselves on why so many bright students have made MSAJCE as
+                  their choice of the institution.
                 </p>
 
                 <p className="font-bold text-foreground">

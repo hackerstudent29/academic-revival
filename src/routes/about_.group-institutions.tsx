@@ -191,9 +191,6 @@ export function GroupOfInstitutionsPage() {
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           {/* Header Bar */}
           <div className="border-b border-border pb-6 mb-8 sm:mb-12">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-primary uppercase block mb-2">
-              ABOUT MSAJCE // EDUCATIONAL FOOTPRINT
-            </span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black uppercase tracking-tight text-foreground font-oswald leading-[0.95]">
               Group of 18 Institutions <br />
               <span className="text-primary font-oswald">Mohamed Sathak Trust</span>
@@ -206,16 +203,23 @@ export function GroupOfInstitutionsPage() {
             <div className="lg:col-span-7 space-y-6">
               <div className="border-l-4 border-primary pl-4 sm:pl-6 py-2">
                 <p className="text-lg sm:text-xl md:text-2xl font-bold font-oswald uppercase text-foreground leading-snug tracking-tight">
-                  Over five decades, the Mohamed Sathak Trust has built a vast network of 18 premier educational institutions spanning Engineering, Architecture, Paramedical Sciences, Arts, and Schooling across Tamil Nadu.
+                  Over five decades, the Mohamed Sathak Trust has built a vast network of 18 premier
+                  educational institutions spanning Engineering, Architecture, Paramedical Sciences,
+                  Arts, and Schooling across Tamil Nadu.
                 </p>
               </div>
 
-              <div className="space-y-4 text-base sm:text-lg text-muted-foreground font-sans leading-relaxed">
+              <div className="space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
                 <p>
-                  From establishing the first self-financing engineering college in Tamil Nadu in 1984 (MSEC Kilakarai) to pioneering our 70-acre autonomous engineering and architecture campus in Chennai's Siruseri SIPCOT IT Park (MSAJCE), the Trust impacts tens of thousands of students annually.
+                  From establishing the first self-financing engineering college in Tamil Nadu in
+                  1984 (MSEC Kilakarai) to pioneering our 70-acre autonomous engineering and
+                  architecture campus in Chennai's Siruseri SIPCOT IT Park (MSAJCE), the Trust
+                  impacts tens of thousands of students annually.
                 </p>
                 <p>
-                  Each institution is built with modern laboratories, accredited academic programs, experienced faculty mentors, and comprehensive career training to ensure students emerge as competent global professionals.
+                  Each institution is built with modern laboratories, accredited academic programs,
+                  experienced faculty mentors, and comprehensive career training to ensure students
+                  emerge as competent global professionals.
                 </p>
               </div>
             </div>
@@ -276,13 +280,18 @@ export function GroupOfInstitutionsPage() {
             {/* 2-Column Editorial Intro with MSAJCE Name */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-start mb-8 sm:mb-12">
               <div className="md:col-span-5">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#7A1F2D] dark:text-[#E05A70] font-normal leading-[1.1]">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                   Live, learn, and be inspired at MSAJCE
                 </h2>
               </div>
               <div className="md:col-span-7">
-                <p className="text-sm sm:text-base text-foreground/80 font-sans leading-relaxed">
-                  MSAJCE and the Mohamed Sathak Trust network create a vibrant academic oasis with tree-lined campus avenues, state-of-the-art laboratories, expansive sports grounds, and iconic institutional facilities. Located within the Siruseri SIPCOT IT Park along Chennai's IT Corridor, MSAJCE connects students with top multinational tech giants, rich cultural traditions, and premier higher education opportunities across Tamil Nadu.
+                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                  MSAJCE and the Mohamed Sathak Trust network create a vibrant academic oasis with
+                  tree-lined campus avenues, state-of-the-art laboratories, expansive sports
+                  grounds, and iconic institutional facilities. Located within the Siruseri SIPCOT
+                  IT Park along Chennai's IT Corridor, MSAJCE connects students with top
+                  multinational tech giants, rich cultural traditions, and premier higher education
+                  opportunities across Tamil Nadu.
                 </p>
               </div>
             </div>
@@ -365,10 +374,7 @@ export function GroupOfInstitutionsPage() {
       <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-16 lg:py-20 transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           <div className="max-w-3xl mb-8 sm:mb-12">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-primary uppercase block mb-2">
-              CHENNAI IT CORRIDOR HUB // 8 INSTITUTIONS
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-foreground font-oswald leading-none">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               Chennai Campuses
             </h2>
           </div>
@@ -379,14 +385,14 @@ export function GroupOfInstitutionsPage() {
               <div
                 key={inst.code}
                 className={`py-5 sm:py-6 flex flex-col md:flex-row md:items-start justify-between gap-4 md:gap-8 transition-colors ${
-                  inst.isFlagship ? "bg-primary/5 pl-4 border-l-4 border-l-primary" : "hover:bg-foreground/[0.02]"
+                  inst.isFlagship
+                    ? "bg-primary/5 pl-4 border-l-4 border-l-primary"
+                    : "hover:bg-foreground/[0.02]"
                 }`}
               >
                 <div className="md:w-5/12">
                   <div className="flex items-center gap-3 mb-1">
-                    <span className="text-sm font-mono font-black text-primary">
-                      #{inst.code}
-                    </span>
+                    <span className="text-sm font-mono font-black text-primary">#{inst.code}</span>
                     <span className="text-[11px] font-mono uppercase px-2 py-0.5 bg-foreground/5 text-muted-foreground rounded-xs">
                       {inst.category}
                     </span>
@@ -440,10 +446,7 @@ export function GroupOfInstitutionsPage() {
       <section className="w-full bg-white dark:bg-[#121214] py-10 sm:py-16 lg:py-20 transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           <div className="max-w-3xl mb-8 sm:mb-12">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-primary uppercase block mb-2">
-              KILAKARAI & RAMANATHAPURAM HUB // 10 INSTITUTIONS
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-foreground font-oswald leading-none">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               Southern Region Campuses
             </h2>
           </div>
@@ -454,14 +457,14 @@ export function GroupOfInstitutionsPage() {
               <div
                 key={inst.code}
                 className={`py-5 sm:py-6 flex flex-col md:flex-row md:items-start justify-between gap-4 md:gap-8 transition-colors ${
-                  inst.isPioneer ? "bg-primary/5 pl-4 border-l-4 border-l-primary" : "hover:bg-foreground/[0.02]"
+                  inst.isPioneer
+                    ? "bg-primary/5 pl-4 border-l-4 border-l-primary"
+                    : "hover:bg-foreground/[0.02]"
                 }`}
               >
                 <div className="md:w-5/12">
                   <div className="flex items-center gap-3 mb-1">
-                    <span className="text-sm font-mono font-black text-primary">
-                      #{inst.code}
-                    </span>
+                    <span className="text-sm font-mono font-black text-primary">#{inst.code}</span>
                     <span className="text-[11px] font-mono uppercase px-2 py-0.5 bg-foreground/5 text-muted-foreground rounded-xs">
                       {inst.category}
                     </span>
