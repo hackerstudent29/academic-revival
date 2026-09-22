@@ -112,10 +112,10 @@ export function SocialMediaSection() {
           className="text-center max-w-2xl mx-auto mb-8"
         >
           <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-primary block mb-2">
-            Connect With Us //
+            Connect With Us
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif tracking-tight text-foreground font-normal mb-6">
-            Explore <span className="font-bold text-primary font-oswald uppercase">#MSAJCE</span> on Social Media
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-oswald uppercase tracking-wide text-foreground mb-6">
+            Explore <span className="text-primary">#MSAJCE</span> on Social Media
           </h2>
 
           {/* Social Media Directory Button */}

@@ -158,7 +158,7 @@ export function TestimonialSection() {
         style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
         className="relative z-10 w-full text-center px-6 mb-10 md:mb-12"
       >
-        <p className="text-muted-foreground text-[11px] md:text-sm font-bold uppercase tracking-[0.16em] mb-4 font-mono">
+        <p className="text-muted-foreground text-xs sm:text-sm font-bold uppercase tracking-[0.16em] mb-4 font-mono">
           3940+ Happy Alumni
         </p>
         <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-primary font-oswald">
@@ -453,16 +453,17 @@ export function TestimonialSection() {
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.65, ease: EASE_APPLE }}
           style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
-          className="w-full -mt-2 md:-mt-6"
+          className="w-full -mt-8 md:-mt-14"
         >
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-4">
             <div className="flex flex-col">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground">// Legacy Spotlights</span>
-              <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight mt-1 text-primary font-oswald">Alumni Network Feed</h3>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                Alumni Network Feed
+              </h3>
             </div>
           </div>
           
-          <div className="relative w-full overflow-hidden py-4">
+          <div className="relative w-full overflow-hidden py-3">
             {/* Gradient masks to fade edges */}
             <div className="absolute top-0 left-0 bottom-0 w-16 bg-gradient-to-r from-[#EAEAEA] dark:from-[#121214] to-transparent z-10 pointer-events-none" />
             <div className="absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-[#EAEAEA] dark:from-[#121214] to-transparent z-10 pointer-events-none" />
@@ -491,7 +492,7 @@ export function TestimonialSection() {
                 >
                   <div className="flex flex-col">
                     <Quote className="h-5 w-5 text-primary/30 mb-4" />
-                    <p className="text-sm text-foreground/80 leading-relaxed font-medium mb-4 line-clamp-4 font-sans">
+                    <p className="text-sm text-foreground/90 leading-relaxed font-libre font-medium mb-4 line-clamp-4">
                       "{t.quote}"
                     </p>
                   </div>
@@ -504,8 +505,8 @@ export function TestimonialSection() {
                       loading="lazy"
                     />
                     <div className="flex flex-col min-w-0">
-                      <span className="text-sm font-bold text-foreground truncate font-oswald uppercase">{t.author}</span>
-                      <span className="text-[10px] font-mono tracking-widest text-muted-foreground uppercase truncate mt-0.5">
+                      <span className="text-sm font-black text-foreground truncate font-oswald uppercase">{t.author}</span>
+                      <span className="text-[11px] font-sans font-semibold tracking-wider text-muted-foreground uppercase truncate mt-0.5">
                         {t.position}
                       </span>
                     </div>
