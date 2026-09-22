@@ -26,6 +26,10 @@ export interface StudentClub {
   scienceSections?: string[];
   scienceHandsOn?: string[];
   thingsToDo?: string[];
+  tamilIntro?: string;
+  tamilQuotes?: string[];
+  tamilObjectives?: string[];
+  tamilEvents?: string[];
   images?: string[];
   activities: string[];
   membersCount: string;
@@ -258,10 +262,35 @@ export const studentClubs: StudentClub[] = [
   },
   {
     id: "tamil-mandram",
-    name: "Tamil Mandram",
+    name: "Tamil Mandram (தமிழ் மன்றம்)",
     category: "cultural",
     tagline: "தமிழ் மொழி, பண்பாடு மற்றும் கலை வளர்ச்சி",
-    description: "Promoting rich Tamil language heritage, classical literature, debates (Pattimandram), poetry (Kavithai), traditional folk arts, and celebrating Tamil festivals.",
+    motto: "வாழ்க தமிழ் ! வெல்க தமிழ் !",
+    vision: "தித்திக்கும் தேன்தமிழ்மொழி என்றும் வாழ வேண்டும் ! எங்கும் வெல்ல வேண்டும் !",
+    description: "தமிழுக்கு என்றும் அழிவில்லை. அழிவில்லாத தமிழிற்காக இளந்தமிழ்ச் செல்வங்களிடத்தில் மட்டுமின்றி இச்சமுதாயத்திலும் ஓர் அற்புதமாற்றம் பெறவே இந்த தமிழ்மன்றம். அதற்கான முழுத்திறனையும் இளந்தமிழர்களிடத்தில் புதுப்பிக்கும் நம் கடமையே இது என்பதைவிட தமிழ்மேல் நாங்கள் கொண்டிருக்கும் பற்று எனக்கூறலாம். நம் முன்னோர் வாழ்ந்து, வழிபட்டு, வென்று விட்டுச்சென்ற அடையாளங்களைத்தேடி அதை மீட்டுருவாக்கும் எண்ணம் கொண்டுள்ளோம். நம் முன்னோர்கள் தமிழை பெறுமைபடுத்திச்சென்றனர், அதை பேசுவதைகாட்டிலும் இனி தமிழுக்கு நம்மாலான புகழை பெற்றுத்தரும் செயலில் இறங்குவோம்.",
+    tamilQuotes: [
+      "“தித்திக்கும் தேன்தமிழ்மொழி என்றும் வாழ வேண்டும் ! எங்கும் வெல்ல வேண்டும் !”",
+      "“வாழ்க தமிழ் ! வெல்க தமிழ் !”"
+    ],
+    tamilObjectives: [
+      "மாணவர்களிடத்தே தமிழ் ஆர்வத்தையும் அறிவையும் வளர்ப்பதே இத்தமிழ்மன்றத்தின் முக்கிய நோக்கமாகும்",
+      "இக்கால இளைஞர்களிடத்தில் பண்டைய தமிழ் பண்பாட்டையும், கலாச்சாரத்தையும் பரவச்செய்தல்",
+      "தமிழில் தொழில்நுட்ப அறிவை வளர்த்தல்",
+      "தமிழ் நிகழ்ச்சிகள் சமுதாய நிகழ்வுகளுக்கேற்ப தொடர்ந்து நடைபெறுதல்"
+    ],
+    tamilEvents: [
+      "இருமுகம் ஒரு அகம்",
+      "பேசும் படம்",
+      "ஆடு புலி",
+      "கைவண்ண காவியம்",
+      "டென்ட்கொட்டாய்",
+      "விடுகதை விளையாட்டு",
+      "பிரசங்கத்தின் தலைவன்",
+      "தமிழ்க்கோர்வை"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1200&q=80"
+    ],
     activities: [
       "Muthamizh Vizha Annual Cultural Extravaganza",
       "Inter-College Pattimandram (Debate) & Kavithai Contests",
