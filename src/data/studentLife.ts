@@ -19,12 +19,15 @@ export interface StudentClub {
   objectives?: string[];
   outdoorGames?: string[];
   indoorGames?: string[];
+  staffCoordinator?: string;
+  studentPresident?: string;
+  studentVicePresident?: string;
+  envistaNote?: string;
   images?: string[];
   activities: string[];
   membersCount: string;
   iconName: string;
   badge?: string;
-  coordinator?: string;
 }
 
 export interface ProfessionalSociety {
@@ -171,19 +174,38 @@ export const studentClubs: StudentClub[] = [
   },
   {
     id: "fine-arts-club",
-    name: "Fine Arts Club",
+    name: "Fine Arts Club (ARTFUL AESTHETICS)",
     category: "cultural",
     tagline: "Unleashing Creativity & Artistic Expression",
-    description: "Nurturing creative visual expression through sketching, painting, digital art, poster design, clay sculpting, and campus wall mural installations.",
+    motto: "To inspire and enable our students to actively participate and develop their talent and skills like Dance, Art, Singing, Music, Acting etc.",
+    vision: "To encourage students to express their thoughts, feelings, and creativity through various visual art forms from two dimensions to three dimensions. To tap the inherent talents and potentials of the student community at all levels of leadership and creative expression.",
+    envistaNote: "Inaugurated under the ENVISTA CLUB umbrella initiative at MSAJCE, where 10 active student clubs take part actively.",
+    staffCoordinator: "S. Viswajaa / AP – IT (Staff Co-ordinator)",
+    studentPresident: "Kishore. P (IV Year Mechanical)",
+    studentVicePresident: "Laksha (III Year CSE)",
+    description: "Mohamed Sathak AJ College of Engineering has successfully inaugurated the ENVISTA CLUB, in which 10 clubs actively participate. Having an art club is a great way to keep students involved throughout the year. Through this club, students can develop their skills and talents while enjoying relaxation during college life. We conduct several extra-curricular events and prepare students to participate in external college fests to showcase their talents.",
+    objectives: [
+      "Encourage the budding talent of the students.",
+      "Impart skill-based training and multi-disciplinary research activities with industry and reputed institute collaborations, providing opportunities to express oneself freely.",
+      "Educational objectives to encourage imagination, creative ability, and introduce an artistic environment.",
+      "Inspiring students to make maximum contributions as creative artists and citizens.",
+      "Organize various competitions, functions, and events in the college.",
+      "Make the student confident and competitive in the global environment.",
+      "To improve imagination skills in entertainment.",
+      "To give students an artistic outlet and help each enrich interest for art and personal experience through art."
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80"
+    ],
     activities: [
       "Annual Campus Art Exhibition & Live Painting Showcase",
-      "Digital Illustration & UI/UX Design Masterclasses",
-      "Inter-Collegiate Rangoli & Poster Making Contests",
-      "Cultural Festival Stage Set Designing"
+      "Dance, Singing, Music, Acting & Drama Competitions",
+      "External Inter-Collegiate Cultural Fest Participation",
+      "Digital Illustration, UI/UX & Wall Mural Initiatives"
     ],
     membersCount: "250+ Artists",
     iconName: "Palette",
-    badge: "Fine Arts"
+    badge: "Fine Arts & Aesthetics"
   },
   {
     id: "science-club",

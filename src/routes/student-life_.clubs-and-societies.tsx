@@ -9,13 +9,16 @@ import {
   Award,
   CheckCircle2,
   Activity,
-  Dumbbell
+  Dumbbell,
+  Palette,
+  UserCheck,
+  Star
 } from "lucide-react";
 import { studentClubs } from "@/data/studentLife";
 
 const title = "Clubs & Cultural Societies | Student Life | MSAJCE";
 const description =
-  "Explore official student clubs at Mohamed Sathak A.J. College of Engineering: Sports Club, Fine Arts Club, Science Club, Tamil Mandram, Coding Club, Robotic Club, Energy & Eco Club, and Photography Club.";
+  "Explore official student clubs at Mohamed Sathak A.J. College of Engineering: Sports Club, Fine Arts Club (ENVISTA), Science Club, Tamil Mandram, Coding Club, Robotic Club, Energy & Eco Club, and Photography Club.";
 
 export const Route = createFileRoute("/student-life_/clubs-and-societies")({
   head: () => ({
@@ -40,6 +43,7 @@ function ClubsAndSocietiesPage() {
     : studentClubs.filter(c => c.category === clubFilter);
 
   const sportsClub = studentClubs.find(c => c.id === "sports-club");
+  const fineArtsClub = studentClubs.find(c => c.id === "fine-arts-club");
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
@@ -55,7 +59,7 @@ function ClubsAndSocietiesPage() {
               Clubs &amp; Cultural Societies
             </h1>
             <p className="mt-4 text-base sm:text-lg text-white/90 font-sans leading-relaxed">
-              Student-led forums driving athletic excellence, technical innovation, fine arts, Tamil literary heritage, robotics, green sustainability, and visual photojournalism.
+              Student-led forums driving athletic excellence, fine arts, ENVISTA club initiatives, technical innovation, Tamil literary heritage, robotics, green sustainability, and visual photojournalism.
             </p>
           </div>
 
@@ -102,7 +106,7 @@ function ClubsAndSocietiesPage() {
           </div>
         </div>
 
-        {/* SPECIAL FEATURED SECTION: SPORTS CLUB */}
+        {/* FEATURED SECTION 1: SPORTS CLUB */}
         {sportsClub && (
           <section id="sports-club-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
@@ -193,6 +197,146 @@ function ClubsAndSocietiesPage() {
                       </span>
                     ))}
                   </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* FEATURED SECTION 2: FINE ARTS CLUB (ARTFUL AESTHETICS) */}
+        {fineArtsClub && (
+          <section id="fine-arts-club-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-black font-oswald uppercase text-white bg-primary px-2.5 py-0.5 rounded-xs flex items-center gap-1">
+                    <Palette className="w-3.5 h-3.5 text-amber-300" />
+                    ENVISTA CLUB Inaugurated Member
+                  </span>
+                  <span className="text-xs font-bold font-oswald text-primary uppercase">
+                    {fineArtsClub.membersCount}
+                  </span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-black font-oswald uppercase text-foreground">
+                  {fineArtsClub.name}
+                </h2>
+                <p className="text-base font-bold font-oswald text-primary uppercase tracking-wider mt-1">
+                  Motto: "{fineArtsClub.motto}"
+                </p>
+              </div>
+
+              {/* Vision Box */}
+              <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-4 rounded-sm max-w-xl">
+                <span className="text-xs font-bold font-oswald uppercase text-primary tracking-wider block mb-1">
+                  Club Vision:
+                </span>
+                <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed italic">
+                  "{fineArtsClub.vision}"
+                </p>
+              </div>
+            </div>
+
+            {/* Introduction & Leadership Details */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+              <div className="lg:col-span-2 space-y-4">
+                <div className="bg-amber-500/10 border border-amber-500/20 p-3.5 rounded-sm">
+                  <span className="text-xs font-bold font-oswald uppercase text-amber-600 dark:text-amber-400 block">
+                    ENVISTA CLUB Umbrella Initiative:
+                  </span>
+                  <p className="text-xs font-sans text-foreground/90 mt-0.5 leading-relaxed">
+                    {fineArtsClub.envistaNote}
+                  </p>
+                </div>
+
+                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2 pt-2">
+                  <Star className="w-5 h-5 text-primary" />
+                  Introduction &amp; Activities
+                </h3>
+                <p className="text-sm font-sans text-muted-foreground leading-relaxed">
+                  {fineArtsClub.description}
+                </p>
+
+                {/* 8 Objectives */}
+                {fineArtsClub.objectives && (
+                  <div className="mt-6 pt-6 border-t border-foreground/10">
+                    <h4 className="text-sm font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                      <Target className="w-4 h-4" />
+                      8 Core Objectives:
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {fineArtsClub.objectives.map((obj, i) => (
+                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-background/60 p-2.5 rounded-sm border border-foreground/5">
+                          <span className="w-4 h-4 bg-primary/20 text-primary rounded-full flex items-center justify-center text-[10px] font-bold font-oswald shrink-0 mt-0.5">
+                            {i + 1}
+                          </span>
+                          <span>{obj}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Leadership & Faculty Coordinator Card */}
+              <div className="bg-background dark:bg-[#121214] border border-foreground/10 rounded-sm p-6 space-y-6">
+                <div>
+                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                    <UserCheck className="w-4 h-4" />
+                    Faculty Coordinator
+                  </h4>
+                  <div className="bg-card p-3 border border-foreground/10 rounded-sm">
+                    <span className="text-sm font-black font-oswald uppercase text-foreground block">
+                      {fineArtsClub.staffCoordinator}
+                    </span>
+                    <span className="text-xs text-muted-foreground font-sans">
+                      Department of Information Technology, MSAJCE
+                    </span>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-foreground/10">
+                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                    <Users className="w-4 h-4" />
+                    Student Executive Leadership
+                  </h4>
+                  <div className="space-y-2.5">
+                    <div className="bg-card p-3 border border-foreground/10 rounded-sm">
+                      <span className="text-xs font-bold font-oswald uppercase text-primary block">
+                        Student President:
+                      </span>
+                      <span className="text-sm font-black font-oswald uppercase text-foreground">
+                        {fineArtsClub.studentPresident}
+                      </span>
+                    </div>
+
+                    <div className="bg-card p-3 border border-foreground/10 rounded-sm">
+                      <span className="text-xs font-bold font-oswald uppercase text-primary block">
+                        Student Vice-President:
+                      </span>
+                      <span className="text-sm font-black font-oswald uppercase text-foreground">
+                        {fineArtsClub.studentVicePresident}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Fine Arts Stock Image Banner */}
+            <div className="relative aspect-[21/9] sm:aspect-[24/7] rounded-sm overflow-hidden bg-muted border border-foreground/10 shadow-xs">
+              <img
+                src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80"
+                alt="Fine Arts Showcase"
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-4 sm:p-6">
+                <div className="text-white max-w-xl">
+                  <span className="text-xs font-bold font-oswald uppercase tracking-wider text-amber-300">
+                    Artful Aesthetics · Dance, Singing, Acting &amp; Painting
+                  </span>
+                  <h4 className="text-lg sm:text-xl font-black font-oswald uppercase text-white mt-0.5">
+                    Expressing Imagination &amp; Multi-Disciplinary Creativity
+                  </h4>
                 </div>
               </div>
             </div>
