@@ -33,6 +33,8 @@ export interface StudentClub {
   codingAims?: string[];
   codingPractices?: string[];
   roboticsActivities?: string[];
+  energyClubDetails?: string;
+  ecoClubDetails?: string;
   images?: string[];
   activities: string[];
   membersCount: string;
@@ -373,17 +375,29 @@ export const studentClubs: StudentClub[] = [
     id: "energy-eco-club",
     name: "Energy & Eco Club",
     category: "eco",
-    tagline: "Green Energy, Sustainability & Environmental Care",
-    description: "Driving renewable solar energy awareness, campus tree plantation, zero-plastic initiatives, e-waste recycling, and energy audit campaigns.",
+    tagline: "Responsible Energy Use & Environmental Health Preservation",
+    motto: "Sustaining Energy, Preserving Nature",
+    vision: "Nature imparts life lessons in its own steady ways and empowers our young to share their responsibility for upholding environmental health.",
+    description: "The Energy & Eco Club is dedicated to raising awareness about responsible energy consumption, fossil fuel conservation, and environmental protection across the campus and local community.",
+    energyClubDetails: "The goal of the Energy Club is to raise and spread knowledge about responsible and sustainable energy use. Given the limited quantity of fossil fuels available, resource management and conservation are urgently needed. Students are introduced to the concept of energy conservation through the Energy Club, as well as the necessity for it and what part they can play in guaranteeing conservation. In order to combat the ongoing energy issue, it helps the students to conserve energy. These actions would support not only the dissemination of information about energy efficiency but also its application in homes and institutions.",
+    ecoClubDetails: "The Eco Club holds that nature imparts life lessons in its own steady ways and empowers our young to share their responsibility for upholding environmental health and taking action to prevent environmental degradation both individually and collectively.",
+    objectives: [
+      "Raise and spread knowledge about responsible and sustainable energy use.",
+      "Introduce students to energy conservation concepts and efficient resource management in homes and institutions.",
+      "Empower students to uphold environmental health and prevent ecological degradation individually and collectively."
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80"
+    ],
     activities: [
-      "Annual Campus Tree Plantation & Green Cover Drives",
-      "Renewable Solar Energy Awareness Seminars",
-      "Campus Plastic-Free & Coastal Beach Cleanups",
-      "E-Waste Collection & Recycling Campaigns"
+      "Energy Conservation Awareness & Household Audit Seminars",
+      "Campus Tree Plantation & Environmental Protection Drives",
+      "Zero-Plastic Campaigns & E-Waste Recycling Initiatives",
+      "Green Energy Workshops & Ecological Sustainability Projects"
     ],
     membersCount: "350+ Eco Warriors",
     iconName: "Leaf",
-    badge: "Eco & Sustainability"
+    badge: "Energy & Sustainability"
   },
   {
     id: "photography-club",

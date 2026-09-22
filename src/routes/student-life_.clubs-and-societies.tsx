@@ -21,7 +21,10 @@ import {
   Terminal,
   Cpu,
   Bot,
-  Wrench
+  Wrench,
+  Leaf,
+  Zap,
+  Sun
 } from "lucide-react";
 import { studentClubs } from "@/data/studentLife";
 
@@ -57,6 +60,7 @@ function ClubsAndSocietiesPage() {
   const tamilMandram = studentClubs.find(c => c.id === "tamil-mandram");
   const codingClub = studentClubs.find(c => c.id === "coding-club");
   const roboticClub = studentClubs.find(c => c.id === "robotic-club");
+  const energyEcoClub = studentClubs.find(c => c.id === "energy-eco-club");
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
@@ -801,6 +805,118 @@ function ClubsAndSocietiesPage() {
                   </span>
                   <h4 className="text-lg sm:text-xl font-black font-oswald uppercase text-white mt-0.5">
                     Designing &amp; Constructing Intelligent Machines
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* FEATURED SECTION 7: ENERGY & ECO CLUB */}
+        {energyEcoClub && (
+          <section id="energy-eco-club-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-black font-oswald uppercase text-white bg-primary px-2.5 py-0.5 rounded-xs flex items-center gap-1">
+                    <Leaf className="w-3.5 h-3.5 text-emerald-300" />
+                    Green Energy &amp; Ecological Sustainability Forum
+                  </span>
+                  <span className="text-xs font-bold font-oswald text-primary uppercase">
+                    {energyEcoClub.membersCount}
+                  </span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-black font-oswald uppercase text-foreground">
+                  {energyEcoClub.name}
+                </h2>
+                <p className="text-base font-bold font-oswald text-primary uppercase tracking-wider mt-1">
+                  Motto: "{energyEcoClub.motto}"
+                </p>
+              </div>
+
+              {/* Vision Box */}
+              <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-4 rounded-sm max-w-xl">
+                <span className="text-xs font-bold font-oswald uppercase text-primary tracking-wider block mb-1">
+                  Eco Philosophy &amp; Vision:
+                </span>
+                <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed italic font-semibold">
+                  "{energyEcoClub.vision}"
+                </p>
+              </div>
+            </div>
+
+            {/* Energy Club & Eco Club Sub-sections */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+              {/* Energy Club Sub-card */}
+              <div className="bg-background dark:bg-[#121214] border border-amber-500/20 rounded-sm p-6 space-y-4">
+                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2 border-b border-foreground/10 pb-3">
+                  <Zap className="w-5 h-5 text-amber-500" />
+                  Energy Club Mandate
+                </h3>
+                <p className="text-sm font-sans text-muted-foreground leading-relaxed">
+                  {energyEcoClub.energyClubDetails}
+                </p>
+              </div>
+
+              {/* Eco Club Sub-card */}
+              <div className="bg-background dark:bg-[#121214] border border-emerald-500/20 rounded-sm p-6 space-y-4">
+                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2 border-b border-foreground/10 pb-3">
+                  <Sun className="w-5 h-5 text-emerald-500" />
+                  Eco Club Mandate
+                </h3>
+                <p className="text-sm font-sans text-muted-foreground leading-relaxed">
+                  {energyEcoClub.ecoClubDetails}
+                </p>
+              </div>
+            </div>
+
+            {/* Objectives & Key Initiatives */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+              <div className="lg:col-span-2 space-y-4">
+                <h4 className="text-sm font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                  <Target className="w-4 h-4" />
+                  Core Environmental &amp; Energy Objectives:
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {energyEcoClub.objectives?.map((obj, i) => (
+                    <div key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-background/60 p-2.5 rounded-sm border border-foreground/5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                      <span>{obj}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-background dark:bg-[#121214] border border-foreground/10 rounded-sm p-6 space-y-4">
+                <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                  <Leaf className="w-4 h-4 text-emerald-500" />
+                  Flagship Campus Initiatives
+                </h4>
+                <ul className="space-y-2">
+                  {energyEcoClub.activities.map((act, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-xs font-sans text-foreground/80">
+                      <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-1.5 shrink-0" />
+                      <span>{act}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Energy & Eco Stock Image Banner */}
+            <div className="relative aspect-[21/9] sm:aspect-[24/7] rounded-sm overflow-hidden bg-muted border border-foreground/10 shadow-xs">
+              <img
+                src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80"
+                alt="Green Renewable Energy & Nature Conservation Showcase"
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-4 sm:p-6">
+                <div className="text-white max-w-xl">
+                  <span className="text-xs font-bold font-oswald uppercase tracking-wider text-amber-300">
+                    Sustainable Energy · Environmental Health · Conservation
+                  </span>
+                  <h4 className="text-lg sm:text-xl font-black font-oswald uppercase text-white mt-0.5">
+                    Empowering Youth for Responsible Energy &amp; Ecological Stewardship
                   </h4>
                 </div>
               </div>
