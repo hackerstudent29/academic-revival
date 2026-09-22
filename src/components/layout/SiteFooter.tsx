@@ -81,18 +81,28 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
         className="pointer-events-none absolute inset-0 z-0 flex items-end justify-center select-none overflow-hidden"
         aria-hidden="true"
       >
+        {/* Mobile View Outline Logo */}
         <img
-          src="/logos/msajce-campus-outline.jpeg"
-          alt="MSAJCE Architectural Campus Outline"
-          className="w-full h-[110%] min-h-[420px] max-w-[1920px] object-cover sm:object-contain object-bottom mix-blend-screen opacity-35 sm:opacity-45 pointer-events-none select-none filter contrast-125 translate-y-4 sm:translate-y-8"
+          src="/logos/msajce%20logo%20outline%20mobbile%20view%20%20footer.png"
+          alt="MSAJCE Architectural Campus Outline Mobile"
+          className="block sm:hidden w-full h-full object-cover object-bottom mix-blend-screen opacity-55 pointer-events-none select-none filter contrast-125 brightness-110 origin-bottom"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = "/logos/msajce%20logo%20outline%20tranparent.jpeg";
+            (e.target as HTMLImageElement).src = "/logos/college%20logo%20outline%20resized%20green.png";
+          }}
+        />
+        {/* Tablet & Desktop View Outline Logo */}
+        <img
+          src="/logos/college%20logo%20outline%20resized%20green.png"
+          alt="MSAJCE Architectural Campus Outline"
+          className="hidden sm:block w-full h-auto sm:max-h-[420px] md:h-full md:max-h-none max-w-[1920px] object-contain object-bottom mix-blend-screen opacity-65 md:opacity-70 pointer-events-none select-none filter contrast-125 brightness-110 sm:scale-110 md:scale-120 lg:scale-130 origin-bottom sm:translate-y-1 md:translate-y-2"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = "/logos/msajce%20logo%20outline.jpeg";
           }}
         />
         {/* Directional gradient: darker at top behind text links, revealing building architecture across middle and bottom */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#18181B]/95 via-[#18181B]/65 to-[#18181B]/25 dark:from-[#121214]/95 dark:via-[#121214]/65 dark:to-[#121214]/25 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#18181B] via-[#18181B]/75 to-transparent sm:from-[#18181B]/95 sm:via-[#18181B]/45 sm:to-transparent dark:from-[#121214] dark:via-[#121214]/75 dark:to-transparent sm:dark:from-[#121214]/95 sm:dark:via-[#121214]/45 sm:dark:to-transparent pointer-events-none" />
         {/* Radial vignette to give extra crisp contrast directly behind the link columns */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,0,0,0.65)_0%,transparent_75%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,0,0,0.55)_0%,transparent_75%)] pointer-events-none" />
       </div>
 
       {/* ── Main Grid ── */}
@@ -149,19 +159,19 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
             </svg>
           </Link>
 
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-stone-200 font-sans drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-stone-300 font-sans drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
             An autonomous-spirited engineering campus on Chennai's OMR IT corridor. Empowering the
             next generation of innovators with industry-aligned education, cutting-edge facilities,
             and global perspectives.
           </p>
 
           {/* Contact Details */}
-          <div className="mt-8 flex flex-col items-start gap-3.5 text-sm text-stone-200 drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+          <div className="mt-8 flex flex-col items-start gap-3.5 text-sm text-stone-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
             <a
               href="https://maps.google.com/?q=Mohamed+Sathak+A.J.+College+of+Engineering"
               target="_blank"
               rel="noreferrer"
-              className="group flex items-start gap-3 hover:text-white transition-colors text-left"
+              className="group flex items-start gap-3 text-stone-300 hover:text-rose-400 dark:hover:text-rose-300 transition-colors text-left"
             >
               <MapPin
                 size={18}
@@ -179,11 +189,11 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
             <div className="flex items-center gap-3">
               <Phone size={18} className="shrink-0 text-rose-400 drop-shadow" />
               <span className="flex items-center gap-2">
-                <a href="tel:+914427470000" className="hover:text-white transition-colors">
+                <a href="tel:+914427470000" className="text-stone-300 hover:text-rose-400 dark:hover:text-rose-300 transition-colors">
                   +91 44 2747 0000
                 </a>
                 <span className="text-white/40">/</span>
-                <a href="tel:+914427470001" className="hover:text-white transition-colors">
+                <a href="tel:+914427470001" className="text-stone-300 hover:text-rose-400 dark:hover:text-rose-300 transition-colors">
                   +91 44 2747 0001
                 </a>
               </span>
@@ -191,7 +201,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
 
             <a
               href="mailto:admissions@msajce.edu.in"
-              className="group flex items-center gap-3 hover:text-white transition-colors"
+              className="group flex items-center gap-3 text-stone-300 hover:text-rose-400 dark:hover:text-rose-300 transition-colors"
             >
               <Mail
                 size={18}
@@ -207,7 +217,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
           <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
             Governance
           </h3>
-          <ul className="space-y-3 text-sm text-stone-100 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+          <ul className="space-y-3 text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
             {[
               { to: "/about", hash: "leadership", label: "Governing Council" },
               { to: "/about", hash: "leadership", label: "Planning & Monitoring Board" },
@@ -218,7 +228,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
                 <Link
                   to={to}
                   hash={hash}
-                  className="group flex items-center justify-between hover:text-rose-300 transition-colors py-0.5"
+                  className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
                 >
                   <span>{label}</span>
                   <ArrowUpRight
@@ -236,7 +246,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
           <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
             Quick Links
           </h3>
-          <ul className="space-y-3 text-sm text-stone-100 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+          <ul className="space-y-3 text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
             {[
               { to: "/about", label: "About the College" },
               { to: "/placements", label: "Placements & Career" },
@@ -246,7 +256,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
               <motion.li key={label} variants={listItem}>
                 <Link
                   to={to}
-                  className="group flex items-center justify-between hover:text-rose-300 transition-colors py-0.5"
+                  className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
                 >
                   <span>{label}</span>
                   <ArrowUpRight
@@ -264,7 +274,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
           <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
             Admissions
           </h3>
-          <ul className="space-y-3 text-sm text-stone-100 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+          <ul className="space-y-3 text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
             {[
               { to: "/admissions/procedure", label: "How to Apply" },
               { to: "/admissions/eligibility", label: "Eligibility Criteria" },
@@ -274,7 +284,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
               <motion.li key={label} variants={listItem}>
                 <Link
                   to={to}
-                  className="group flex items-center justify-between hover:text-rose-300 transition-colors py-0.5"
+                  className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
                 >
                   <span>{label}</span>
                   <ArrowUpRight
@@ -316,13 +326,13 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
           {/* Copyright & Legal */}
           <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8 text-xs font-medium uppercase tracking-widest text-stone-400 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
             <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
-              <Link to="/about" className="hover:text-rose-400 transition-colors">
+              <Link to="/about" className="text-stone-400 hover:text-rose-400 dark:hover:text-rose-300 transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/about" className="hover:text-rose-400 transition-colors">
+              <Link to="/about" className="text-stone-400 hover:text-rose-400 dark:hover:text-rose-300 transition-colors">
                 Terms of Service
               </Link>
-              <Link to="/credits" className="hover:text-rose-400 transition-colors">
+              <Link to="/credits" className="text-stone-400 hover:text-rose-400 dark:hover:text-rose-300 transition-colors">
                 Credits
               </Link>
             </div>
