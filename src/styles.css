@@ -530,28 +530,18 @@ body.dropdown-open .msajce-page-blur {
   animation: ocean-wave-ripple 2.4s ease-in-out infinite reverse;
 }
 
-/* Site Layout & Curtain Reveal Footer */
+/* Site Layout & Curtain Reveal Footer (Mobile, Tablet & Desktop) */
 .site-main-canvas {
-  margin-bottom: 0;
+  margin-bottom: var(--footer-height, 560px);
+  position: relative;
+  z-index: 10;
 }
 
 .site-footer-container {
-  position: relative;
-  z-index: 10;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
-}
-
-@media (min-width: 1024px) {
-  .site-main-canvas {
-    margin-bottom: var(--footer-height, 520px);
-  }
-
-  .site-footer-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 0;
-  }
+  z-index: 0;
 }
 

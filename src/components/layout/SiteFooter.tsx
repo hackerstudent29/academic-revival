@@ -60,14 +60,20 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
     };
 
     updateHeight();
+    const rafId = requestAnimationFrame(updateHeight);
+    const timer = setTimeout(updateHeight, 250);
 
     const ro = new ResizeObserver(updateHeight);
     ro.observe(el);
     window.addEventListener("resize", updateHeight);
+    window.addEventListener("orientationchange", updateHeight);
 
     return () => {
+      cancelAnimationFrame(rafId);
+      clearTimeout(timer);
       ro.disconnect();
       window.removeEventListener("resize", updateHeight);
+      window.removeEventListener("orientationchange", updateHeight);
     };
   }, []);
 
