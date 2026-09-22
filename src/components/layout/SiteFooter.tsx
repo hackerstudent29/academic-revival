@@ -113,7 +113,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
 
       {/* ── Main Grid ── */}
       <motion.div
-        className="relative z-10 mx-auto grid max-w-[1440px] gap-8 px-5 py-8 sm:px-8 sm:py-10 md:gap-8 md:px-12 md:py-12 lg:grid-cols-12 lg:gap-8 lg:px-16 lg:py-16"
+        className="relative z-10 mx-auto grid max-w-[1440px] grid-cols-12 gap-8 px-5 py-8 sm:px-8 sm:py-10 md:px-12 md:py-12 lg:px-16 lg:py-16"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.05 }}
@@ -121,7 +121,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
         {...(revealed !== undefined ? { animate: revealed ? "visible" : "hidden" } : {})}
       >
         {/* ── Col 1: Brand ── */}
-        <motion.div variants={fadeUp} className="lg:col-span-4">
+        <motion.div variants={fadeUp} className="col-span-12 lg:col-span-4">
           <Link to="/" className="inline-block group focus:outline-none" aria-label="MSAJCE Home">
             <svg
               className="h-14 sm:h-18 md:h-20 lg:h-24 w-auto text-white -ml-2 sm:-ml-4 transition-transform duration-300 group-hover:scale-[1.01] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
@@ -214,93 +214,90 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
           </div>
         </motion.div>
 
-        {/* ── Link Columns Container (2-cols on mobile, 3-cols on tablet & desktop) ── */}
-        <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:gap-x-8 lg:col-span-8 lg:grid-cols-3 lg:gap-8">
-          {/* ── Col 2: Governance ── */}
-          <motion.div variants={fadeUp2}>
-            <h3 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-3 sm:mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-              Governance
-            </h3>
-            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
-              {[
-                { to: "/about", hash: "leadership", label: "Governing Council" },
-                { to: "/about", hash: "leadership", label: "Planning & Monitoring Board" },
-                { to: "/about", hash: "leadership", label: "Academic Advisory Board" },
-                { to: "/about", hash: "leadership", label: "Governance Structure" },
-              ].map(({ to, hash, label }) => (
-                <motion.li key={label} variants={listItem}>
-                  <Link
-                    to={to}
-                    hash={hash}
-                    className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
-                  >
-                    <span>{label}</span>
-                    <ArrowUpRight
-                      size={13}
-                      className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
-                    />
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
+        {/* ── Col 2: Governance ── */}
+        <motion.div variants={fadeUp2} className="col-span-6 sm:col-span-4 md:col-span-4 lg:col-span-2 lg:col-start-5">
+          <h3 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-3 sm:mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+            Governance
+          </h3>
+          <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+            {[
+              { to: "/about", hash: "leadership", label: "Governing Council" },
+              { to: "/about", hash: "leadership", label: "Planning & Monitoring Board" },
+              { to: "/about", hash: "leadership", label: "Academic Advisory Board" },
+              { to: "/about", hash: "leadership", label: "Governance Structure" },
+            ].map(({ to, hash, label }) => (
+              <motion.li key={label} variants={listItem}>
+                <Link
+                  to={to}
+                  hash={hash}
+                  className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
+                >
+                  <span>{label}</span>
+                  <ArrowUpRight
+                    size={13}
+                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
+                  />
+                </Link>
+              </motion.li>
+            ))}
+          </ul>
+        </motion.div>
 
-          {/* ── Col 3: Quick Links ── */}
-          <motion.div variants={fadeUp2}>
-            <h3 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-3 sm:mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-              Quick Links
-            </h3>
-            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
-              {[
-                { to: "/about", label: "About the College" },
-                { to: "/placements", label: "Placements & Career" },
-                { to: "/campus-life", label: "Campus Life" },
-                { to: "/campus-life", label: "Alumni Network" },
-              ].map(({ to, label }) => (
-                <motion.li key={label} variants={listItem}>
-                  <Link
-                    to={to}
-                    className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
-                  >
-                    <span>{label}</span>
-                    <ArrowUpRight
-                      size={13}
-                      className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
-                    />
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
+        {/* ── Col 3: Quick Links ── */}
+        <motion.div variants={fadeUp2} className="col-span-6 sm:col-span-4 md:col-span-4 lg:col-span-2">
+          <h3 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-3 sm:mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+            Quick Links
+          </h3>
+          <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+            {[
+              { to: "/about", label: "About the College" },
+              { to: "/placements", label: "Placements & Career" },
+              { to: "/campus-life", label: "Campus Life" },
+              { to: "/campus-life", label: "Alumni Network" },
+            ].map(({ to, label }) => (
+              <motion.li key={label} variants={listItem}>
+                <Link
+                  to={to}
+                  className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
+                >
+                  <span>{label}</span>
+                  <ArrowUpRight
+                    size={13}
+                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
+                  />
+                </Link>
+              </motion.li>
+            ))}
+          </ul>
+        </motion.div>
 
-          {/* ── Col 4: Admissions ── */}
-          <motion.div variants={fadeUp2} className="col-span-2 sm:col-span-1">
-            <h3 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-3 sm:mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-              Admissions
-            </h3>
-            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
-              {[
-                { to: "/admissions/procedure", label: "How to Apply" },
-                { to: "/admissions/eligibility", label: "Eligibility Criteria" },
-                { to: "/admissions/scholarships", label: "Scholarships" },
-                { to: "/contact", label: "Talk to an Advisor" },
-              ].map(({ to, label }) => (
-                <motion.li key={label} variants={listItem}>
-                  <Link
-                    to={to}
-                    className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
-                  >
-                    <span>{label}</span>
-                    <ArrowUpRight
-                      size={13}
-                      className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
-                    />
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
+        {/* ── Col 4: Admissions ── */}
+        <motion.div variants={fadeUp2} className="col-span-12 sm:col-span-4 md:col-span-4 lg:col-span-2">
+          <h3 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-3 sm:mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+            Admissions
+          </h3>
+          <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+            {[
+              { to: "/admissions/procedure", label: "How to Apply" },
+              { to: "/admissions/eligibility", label: "Eligibility Criteria" },
+              { to: "/admissions/scholarships", label: "Scholarships" },
+              { to: "/contact", label: "Talk to an Advisor" },
+            ].map(({ to, label }) => (
+              <motion.li key={label} variants={listItem}>
+                <Link
+                  to={to}
+                  className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
+                >
+                  <span>{label}</span>
+                  <ArrowUpRight
+                    size={13}
+                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
+                  />
+                </Link>
+              </motion.li>
+            ))}
+          </ul>
+        </motion.div>
       </motion.div>
 
       {/* ── Bottom Bar ── */}
