@@ -24,7 +24,9 @@ import {
   Wrench,
   Leaf,
   Zap,
-  Sun
+  Sun,
+  Camera,
+  Film
 } from "lucide-react";
 import { studentClubs } from "@/data/studentLife";
 
@@ -61,6 +63,7 @@ function ClubsAndSocietiesPage() {
   const codingClub = studentClubs.find(c => c.id === "coding-club");
   const roboticClub = studentClubs.find(c => c.id === "robotic-club");
   const energyEcoClub = studentClubs.find(c => c.id === "energy-eco-club");
+  const photographyClub = studentClubs.find(c => c.id === "photography-club");
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
@@ -917,6 +920,123 @@ function ClubsAndSocietiesPage() {
                   </span>
                   <h4 className="text-lg sm:text-xl font-black font-oswald uppercase text-white mt-0.5">
                     Empowering Youth for Responsible Energy &amp; Ecological Stewardship
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* FEATURED SECTION 8: PHOTOGRAPHY CLUB */}
+        {photographyClub && (
+          <section id="photography-club-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-black font-oswald uppercase text-white bg-primary px-2.5 py-0.5 rounded-xs flex items-center gap-1">
+                    <Camera className="w-3.5 h-3.5 text-amber-300" />
+                    Visual Arts, Photojournalism &amp; Short Filmmaking
+                  </span>
+                  <span className="text-xs font-bold font-oswald text-primary uppercase">
+                    {photographyClub.membersCount}
+                  </span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-black font-oswald uppercase text-foreground">
+                  {photographyClub.name}
+                </h2>
+                <p className="text-base font-bold font-oswald text-primary uppercase tracking-wider mt-1">
+                  Motto: "{photographyClub.motto}"
+                </p>
+              </div>
+
+              {/* Vision Box */}
+              <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-4 rounded-sm max-w-xl">
+                <span className="text-xs font-bold font-oswald uppercase text-primary tracking-wider block mb-1">
+                  Visual Arts Philosophy:
+                </span>
+                <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed italic font-semibold">
+                  "{photographyClub.vision}"
+                </p>
+              </div>
+            </div>
+
+            {/* Introduction & Objectives */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+              <div className="lg:col-span-2 space-y-4">
+                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2">
+                  <Film className="w-5 h-5 text-primary" />
+                  Introduction &amp; Visual Expression
+                </h3>
+                <p className="text-sm sm:text-base font-sans text-muted-foreground leading-relaxed">
+                  {photographyClub.description}
+                </p>
+
+                {/* Objectives */}
+                {photographyClub.objectives && (
+                  <div className="mt-6 pt-6 border-t border-foreground/10">
+                    <h4 className="text-sm font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                      <Target className="w-4 h-4" />
+                      4 Core Photography Objectives:
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {photographyClub.objectives.map((obj, i) => (
+                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-background/60 p-2.5 rounded-sm border border-foreground/5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                          <span>{obj}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Pillars & Software Training Card */}
+              <div className="bg-background dark:bg-[#121214] border border-foreground/10 rounded-sm p-6 space-y-6">
+                <div>
+                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                    <Camera className="w-4 h-4 text-amber-500" />
+                    4 Core Pillars of Visual Arts
+                  </h4>
+                  <ul className="space-y-2">
+                    {photographyClub.photographyPillars?.map((pillar, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 p-2 rounded-xs">
+                        <span className="w-1.5 h-1.5 bg-primary rounded-full shrink-0" />
+                        <span>{pillar}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="pt-4 border-t border-foreground/10">
+                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-2">
+                    Key Media Activities
+                  </h4>
+                  <ul className="space-y-1.5">
+                    {photographyClub.activities.map((act, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-xs font-sans text-foreground/80">
+                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 shrink-0" />
+                        <span>{act}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Photography Stock Image Banner */}
+            <div className="relative aspect-[21/9] sm:aspect-[24/7] rounded-sm overflow-hidden bg-muted border border-foreground/10 shadow-xs">
+              <img
+                src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80"
+                alt="Photography & Short Filmmaking Showcase"
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-4 sm:p-6">
+                <div className="text-white max-w-xl">
+                  <span className="text-xs font-bold font-oswald uppercase tracking-wider text-amber-300">
+                    Composition · Short Filmmaking · Screenwriting · Post-Production
+                  </span>
+                  <h4 className="text-lg sm:text-xl font-black font-oswald uppercase text-white mt-0.5">
+                    Exploring &amp; Appreciating Surroundings Through Visual Arts
                   </h4>
                 </div>
               </div>

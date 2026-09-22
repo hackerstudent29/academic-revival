@@ -35,6 +35,7 @@ export interface StudentClub {
   roboticsActivities?: string[];
   energyClubDetails?: string;
   ecoClubDetails?: string;
+  photographyPillars?: string[];
   images?: string[];
   activities: string[];
   membersCount: string;
@@ -403,17 +404,34 @@ export const studentClubs: StudentClub[] = [
     id: "photography-club",
     name: "Photography Club",
     category: "media",
-    tagline: "Capturing Moments, Framing Stories",
-    description: "The official visual media and photojournalism wing of MSAJCE responsible for event coverage, photowalks, short film making, and digital video editing.",
+    tagline: "Capturing Surroundings · Short Filmmaking · Screenwriting & Visual Expression",
+    motto: "More Than Just Taking Photographs",
+    vision: "Exploring this fascinating aspect of the visual arts is welcomed and encouraged for people of all expertise levels.",
+    description: "The members of the photography club are encouraged to take images as they grow to appreciate the hobby more. It gives workers and students a venue for exploring and appreciating their surroundings through photography, short filmmaking, and screenwriting. There is much more to photography than just using a camera to take photographs. By comprehending and learning about what constitutes a successful photograph, from composition to creative expression, students in this club have the chance to develop their skills. Additionally, club members will learn how to edit and improve photography photographs using cutting-edge software for both personal use and publication. While taking pictures of sporting events and activities relevant to the school, students are encouraged to hone their talents. Exploring this fascinating aspect of the visual arts is welcomed and encouraged for people of all expertise levels.",
+    objectives: [
+      "Provide a venue for students and staff to explore and appreciate surroundings through photography, short filmmaking, and screenwriting.",
+      "Teach composition, creative expression, and what constitutes a successful, compelling photograph.",
+      "Train members in editing and improving photographs using cutting-edge post-production software for personal use and publication.",
+      "Encourage students to hone talents while covering sporting events and college activities across all expertise levels."
+    ],
+    photographyPillars: [
+      "Visual Composition & Creative Expression",
+      "Short Filmmaking & Screenwriting",
+      "Digital Photo Editing & Post-Production",
+      "Campus Sports & Event Photojournalism"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80"
+    ],
     activities: [
-      "Campus Photowalks & Outdoor Photography Trips",
-      "Short Film Making & Video Editing (Premiere/DaVinci)",
-      "Official Media Coverage for College Fests & Sports",
-      "Monthly Theme Photography Contests with Guest Judging"
+      "Campus Sports & Cultural Event Photojournalism",
+      "Short Filmmaking, Screenwriting & Digital Storytelling",
+      "Photo Editing Workshops with Cutting-Edge Post-Production Software",
+      "Composition, Lighting & Creative Expression Masterclasses"
     ],
     membersCount: "180+ Photographers",
     iconName: "Camera",
-    badge: "Media & Visuals"
+    badge: "Visual Arts & Media"
   }
 ];
 
