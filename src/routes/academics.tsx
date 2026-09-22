@@ -438,15 +438,15 @@ function AcademicsHero() {
       </section>
 
       {/* Navigation Strip Below Hero matching Curriculum Page with Black & Grey Filling Animation (Bottom to Top) */}
-      <div className="w-full bg-foreground/[0.03] border-y border-border/40 py-5">
-        <Reveal variant="rise" delay={0.3}>
-          <div className="mx-auto max-w-[1440px] px-4 md:px-8 xl:px-12 overflow-hidden">
-            <div className="flex flex-nowrap items-center gap-3 overflow-x-auto pb-4 -mb-4 scroll-smooth">
+      <div className="w-full max-w-full overflow-hidden bg-foreground/[0.03] border-y border-border/40 py-3 sm:py-4">
+        <div className="mx-auto max-w-[1440px] px-4 md:px-8 xl:px-12 w-full max-w-full overflow-hidden">
+          <div className="w-full max-w-full overflow-x-auto scrollbar-none scroll-smooth">
+            <div className="flex items-center gap-2 sm:gap-3 py-1 w-max">
               {allSections.map((dept) => (
                 <button 
                   key={dept.code}
                   onClick={() => scrollToDept(dept.code)}
-                  className="relative group flex-shrink-0 text-xs font-black uppercase tracking-wider font-oswald px-5 py-2.5 bg-foreground/10 text-foreground border border-foreground/30 transition-all duration-300 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs shadow overflow-hidden"
+                  className="relative group shrink-0 text-xs font-black uppercase tracking-wider font-oswald px-4 sm:px-5 py-2 sm:py-2.5 bg-foreground/10 text-foreground border border-foreground/30 transition-all duration-300 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs shadow-xs overflow-hidden"
                 >
                   <span className="absolute inset-0 bg-foreground translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0" />
                   <span className="relative z-10 text-foreground group-hover:text-background transition-colors duration-300">
@@ -456,7 +456,7 @@ function AcademicsHero() {
               ))}
             </div>
           </div>
-        </Reveal>
+        </div>
       </div>
     </>
   );
@@ -464,7 +464,7 @@ function AcademicsHero() {
 
 function AcademicsPage() {
   return (
-    <main className="bg-background pt-0 md:pt-1 min-h-screen">
+    <main className="w-full max-w-full overflow-x-clip bg-background pt-0 md:pt-1 min-h-screen">
       <AcademicsHero />
 
       {/* Academic Calendar & COE Section */}

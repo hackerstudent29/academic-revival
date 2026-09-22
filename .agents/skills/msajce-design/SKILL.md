@@ -12,7 +12,49 @@ description: Design system rules and guidelines for MSAJCE website, using Oswald
     - In Dark Mode (`.dark`), all page backgrounds and section blocks use **Universal Neutral Dark Charcoal (`#121214`)** (`--background: #121214` and `--page-bg: #121214`) with ZERO blue tint. Cards use elevated dark neutral (`#18181B`).
     - **Light Theme Protection**: NEVER touch or modify Light Theme colors (`#F9F9F8` warm off-white and `#F3F3F2` page background).
 *   **Design Aesthetic**: Bold, minimalist grid structure, strong margins, editorial type hierarchy (UAL style) fused with Apple-like smooth transitions, blur effects (`backdrop-filter`), and clean layouts.
-*   **No Cards / Boxy Fills**: Prefer clean typographic alignment, open white space, and grids for data rather than putting content inside colored background "cards" or boxes.
+*   **Strict Ban on Cards / Boxy Containers**:
+    - **MANDATORY**: STRICTLY DO NOT use card components or boxed card containers (`bg-card`, rounded boxed card frames, card shadows) for page components and elements unless the user explicitly and personally asks for cards.
+    - Always use clean, open editorial lists, transparent tables, and crisp divider lines (`divide-y divide-border` / `border-b border-border`) instead of cards.
+*   **Multi-Section Alternating Wave Background Design (Mandatory for All Multi-Section Pages & Tabs)**:
+    - **Rule**: Whenever creating or restructuring any page, tab, or view with **two or more sections**, you MUST use the alternating organic wave background color split design (as implemented in `/library`).
+    - **No Harsh In-Between Divider Lines**: STRICTLY DO NOT add harsh horizontal divider lines (`border-t border-border` or `<hr>`) between sections or before visual galleries. The organic wave transitions provide the natural, clean visual boundary.
+    - **Canvas Alternation**:
+      - **Section A (Primary Canvas)**: `bg-white dark:bg-[#121214]`
+      - **Wave Divider A → B**:
+        ```tsx
+        <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+          <svg
+            viewBox="0 0 1440 72"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+              className="fill-[#F3F3F2] dark:fill-[#18181B]"
+            />
+          </svg>
+        </div>
+        ```
+      - **Section B (Secondary Canvas)**: `bg-[#F3F3F2] dark:bg-[#18181B]`
+      - **Wave Divider B → A**:
+        ```tsx
+        <div className="w-full overflow-hidden leading-none select-none bg-[#F3F3F2] dark:bg-[#18181B]">
+          <svg
+            viewBox="0 0 1440 72"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+              className="fill-white dark:fill-[#121214]"
+            />
+          </svg>
+        </div>
+        ```
 *   **Hero Sections**: Do NOT use grid lines or architectural background patterns. Use signature maroon red gradient (`from-[#9E2339] via-[#861E30] to-[#671422]`).
 *   **Hero Image Showcase Rules**:
     - **No Video Overlay Icons**: Do NOT add play buttons, video play circles, or video player UI overlays over static hero images. Images must be rendered as clean static media showcases.

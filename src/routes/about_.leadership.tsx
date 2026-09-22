@@ -1,10 +1,18 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { Quote, ArrowRight, Award, ShieldCheck, Users, Building2 } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import {
+  Quote,
+  Award,
+  ShieldCheck,
+  Users,
+  GraduationCap,
+  Building2,
+  CheckCircle2,
+  BookOpen,
+} from "lucide-react";
 
-const title = "Leadership Message & Governing Council — M.S.A.J. College of Engineering, Chennai";
+const title = "Leadership Messages — M.S.A.J. College of Engineering, Chennai";
 const description =
-  "Official messages from Chairman Alhaj S.M. Yousuf Sahib, Principal Dr. K.S. Srinivasan, and complete Governing Council membership of Mohamed Sathak A.J. College of Engineering.";
+  "Official visionary messages from Chairman Alhaj S.M. Yousuf Sahib, Secretary Janaba S.M.H. Sharmila, Executive Director Janab P.R.L. Hamid Ibrahim, and Principal Dr. K.S. Srinivasan.";
 
 export const Route = createFileRoute("/about_/leadership")({
   head: () => ({
@@ -20,236 +28,326 @@ export const Route = createFileRoute("/about_/leadership")({
   component: LeadershipMessagePage,
 });
 
-const governingCouncilMembers = [
-  { sno: 1, name: "Alhaj. S.M. Yousuf Sahib", role: "Chairman", designation: "Chairman, Mohamed Sathak Trust, Chennai" },
-  { sno: 2, name: "Janaba. S.M.H. Sharmila", role: "Member", designation: "Secretary, Mohamed Sathak Trust, Chennai" },
-  { sno: 3, name: "Janab. P.R.L. Hamid Ibrahim", role: "Member", designation: "Executive Director, Mohamed Sathak Trust, Chennai" },
-  { sno: 4, name: "Mr. S.M.Y. Mohamed Sathak", role: "Member", designation: "Campus Director, Mohamed Sathak Trust, Chennai" },
-  { sno: 5, name: "Dr. T.V. Gopal", role: "University Nominee", designation: "Professor / CSE, Anna University, Chennai" },
-  { sno: 6, name: "Dr. S. Murugavel", role: "DOTE Nominee", designation: "Professor / TPGIT, Vellore" },
-  { sno: 7, name: "Dr. B. Anbu Thambi", role: "Member", designation: "Head, Strategy & Partnerships, L&T EduTech, Chennai" },
-  { sno: 8, name: "Mr. Arul Rajkumar", role: "Member", designation: "VP - IT Operations, Ford Motors Pvt. Ltd., Chennai" },
-  { sno: 9, name: "Dr. R. Subramani", role: "Member", designation: "Director, IBM Chennai" },
-  { sno: 10, name: "Dr. G. Kulanthaivelu", role: "Member", designation: "Professor & Head - ECE, NITTTR, Chennai" },
-  { sno: 11, name: "Dr. K.S. Srinivasan", role: "Member Secretary", designation: "Principal, MSAJCE, Chennai" },
-  { sno: 12, name: "Head - Administration", role: "Member", designation: "MSAJCE, Chennai" },
-  { sno: 13, name: "Head - Academics", role: "Senior Faculty Member", designation: "MSAJCE, Chennai" },
-  { sno: 14, name: "Head - IQAC", role: "Senior Faculty Member", designation: "MSAJCE, Chennai" },
-  { sno: 15, name: "Head - Admission", role: "Senior Faculty Member", designation: "MSAJCE, Chennai" },
-  { sno: 16, name: "Head – Student Affairs", role: "Senior Faculty Member", designation: "MSAJCE, Chennai" },
-  { sno: 17, name: "Head - Research", role: "Senior Faculty Member", designation: "MSAJCE, Chennai" },
-  { sno: 18, name: "Head - Examcell", role: "Member", designation: "MSAJCE, Chennai" },
+const executiveLeaders = [
+  {
+    role: "Secretary",
+    name: "Janaba S.M.H. Sharmila",
+    org: "Secretary, Mohamed Sathak Trust",
+    quote:
+      "Education is the most potent catalyst for socio-economic transformation. Our continuous investment in advanced engineering infrastructure ensures our students thrive in a competitive global landscape.",
+    message:
+      "At MSAJCE, we are committed to nurturing not only technical proficiency but also strong moral character and societal responsibility. We continually modernize our laboratories, support women in STEM, and expand industry-partnered research centers so that every student can achieve their highest potential.",
+  },
+  {
+    role: "Executive Director",
+    name: "Janab P.R.L. Hamid Ibrahim",
+    org: "Executive Director, Mohamed Sathak Trust",
+    quote:
+      "Bridging the institute-industry divide through state-of-the-art incubation and technology centers is our foremost institutional priority.",
+    message:
+      "Located inside the SIPCOT IT Park surrounded by multinational technology leaders, MSAJCE offers an unparalleled environment for experiential engineering education. We prioritize hands-on internships, patent innovation, and corporate collaborations that ensure seamless campus-to-corporate transitions.",
+  },
+  {
+    role: "Campus Director",
+    name: "Mr. S.M.Y. Mohamed Sathak",
+    org: "Campus Director, Mohamed Sathak Trust",
+    quote:
+      "A vibrant campus ecosystem balancing rigorous academics with cultural vitality, sports, and technical societies shapes well-rounded leaders.",
+    message:
+      "Our 70-acre campus is designed to foster multidisciplinary innovation, athletic achievement, and entrepreneurial mindset. We provide all kinds of training for the professional and overall transformation of our students from day one.",
+  },
+];
+
+const academicDirectives = [
+  {
+    num: "01",
+    title: "Outcome-Based Pedagogy",
+    desc: "Rigorous alignment with National Board of Accreditation (NBA) and Anna University academic frameworks ensuring conceptual mastery and continuous assessment.",
+  },
+  {
+    num: "02",
+    title: "Applied R&D & AICTE IDEA Lab",
+    desc: "Empowering students and faculty to undertake sponsored research projects, publish in indexed journals, and patent disruptive technologies.",
+  },
+  {
+    num: "03",
+    title: "Corporate Recruitment Readiness",
+    desc: "Comprehensive soft-skills, aptitude, and full-stack technical training preparing graduates for high-value placements across top-tier multinational software and core engineering firms.",
+  },
+  {
+    num: "04",
+    title: "Entrepreneurship & Higher Studies",
+    desc: "Active startup incubation, MSME venture funding support, and dedicated mentorship for students pursuing higher education abroad and competitive examinations.",
+  },
 ];
 
 export function LeadershipMessagePage() {
   return (
-    <main className="bg-page-bg text-foreground min-h-screen pt-0 md:pt-1">
-      {/* Header & Sub-Nav Title */}
-      <section className="relative border-b border-border bg-page-bg pt-4 md:pt-6 pb-12 md:pb-16">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12">
-          {/* Secondary Sub-Nav Header */}
-          <div className="mb-4">
-            <span className="text-sm sm:text-base md:text-lg xl:text-xl font-black font-oswald uppercase text-primary tracking-wider">
-              ABOUT MSAJCE // VISIONARY LEADERSHIP & GOVERNANCE
+    <main className="bg-white dark:bg-[#121214] text-foreground min-h-screen pt-0 md:pt-1 font-sans selection:bg-primary selection:text-white">
+      {/* ========================================================================= */}
+      {/* SECTION 1: Canvas A (White / #121214) — CHAIRMAN'S VISIONARY MESSAGE      */}
+      {/* ========================================================================= */}
+      <section className="w-full pt-2 md:pt-6 pb-12 sm:pb-16 lg:pb-20">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          {/* Header Bar */}
+          <div className="border-b border-border pb-6 mb-8 sm:mb-12">
+            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-primary uppercase block mb-2">
+              ABOUT MSAJCE // LEADERSHIP MESSAGES
             </span>
-          </div>
-
-          <div className="flex flex-col gap-3 max-w-4xl">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-foreground font-oswald leading-none">
-              Leadership Messages <br />
-              <span className="text-primary font-oswald">& Governing Council</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black uppercase tracking-tight text-foreground font-oswald leading-[0.95]">
+              Visionary Leadership <br />
+              <span className="text-primary font-oswald">& Institutional Guidance</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl leading-relaxed text-muted-foreground font-sans mt-2">
-              Inspiring guidance from our Founder, Executive Management, and Academic Leadership driving Mohamed Sathak A.J. College of Engineering forward.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Chairman's Message */}
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-20 border-b border-border">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          <div className="lg:col-span-4 flex flex-col gap-4">
-            <div className="relative rounded-lg overflow-hidden border border-border bg-card shadow-sm aspect-[4/5]">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop"
-                alt="Alhaj S.M. Yousuf Sahib"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase">
-                Chairman's Message
-              </span>
-              <h3 className="text-2xl font-bold text-foreground font-oswald uppercase mt-1">
-                Alhaj S.M. Yousuf Sahib
-              </h3>
-              <span className="text-xs text-muted-foreground font-sans font-medium mt-0.5">
-                Chairman, Mohamed Sathak Trust
-              </span>
-            </div>
           </div>
 
-          <div className="lg:col-span-8 flex flex-col justify-between">
-            <div>
-              <div className="flex items-start gap-4 bg-card border border-border p-6 sm:p-8 rounded-sm shadow-xs mb-6">
-                <Quote className="h-7 w-7 text-primary shrink-0 mt-1" />
-                <blockquote className="text-xl sm:text-2xl font-bold tracking-tight leading-snug text-foreground font-oswald uppercase">
+          {/* Chairman's Broadsheet (Strictly Zero Cards) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Left: Chairman Profile & Credentials */}
+            <div className="lg:col-span-4 flex flex-col gap-4">
+              <div className="relative w-full rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border shadow-md bg-muted aspect-[4/5]">
+                <img
+                  src="/images/peeps/trustee1.jpg"
+                  alt="Alhaj S.M. Yousuf Sahib"
+                  className="w-full h-full object-cover pointer-events-none select-none"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+                  }}
+                />
+              </div>
+
+              <div className="border-b border-border pb-3">
+                <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase block">
+                  Chairman's Address
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-bold text-foreground font-oswald uppercase mt-1 leading-tight">
+                  Alhaj S.M. Yousuf Sahib
+                </h2>
+                <span className="text-xs text-muted-foreground font-sans font-medium block mt-0.5">
+                  Chairman, Mohamed Sathak Trust
+                </span>
+              </div>
+            </div>
+
+            {/* Right: Chairman Narrative & Manifesto */}
+            <div className="lg:col-span-8 space-y-6">
+              {/* Highlight Quote Block */}
+              <div className="border-l-4 border-primary pl-4 sm:pl-6 py-2">
+                <blockquote className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight leading-snug text-foreground font-oswald uppercase">
                   "Choosing the right institute to pursue your higher studies is one of the most important decisions that you will ever make. It can be the key for the door of your lifelong opportunity for sustainable growth and service."
                 </blockquote>
               </div>
 
-              <div className="flex flex-col gap-4 text-foreground/90 font-sans text-base sm:text-[17px] leading-relaxed">
+              <div className="space-y-4 text-base sm:text-lg text-muted-foreground font-sans leading-relaxed">
                 <p>
-                  <strong>Dear Parents and Prospective Students,</strong>
-                </p>
-                <p>
-                  Welcome to Mohamed Sathak A.J. College of Engineering, Chennai. Choosing a right institute to pursue your higher studies is one of the most important decisions that you will ever make. It can be the key for the door of your lifelong opportunity for sustainable growth and service. We want you to base your choice at the right place with relevant and reliable education.
+                  Since the establishment of the Mohamed Sathak Trust on 26th October 1973, our sacred mission has been to extend high-quality technical education to deserving youth, bridging societal divides and empowering generations of engineering professionals.
                 </p>
                 <p>
-                  The success depends on the effort you invest in your own intellectual and professional development. Invest wisely and be assured that MSAJCE faculty and staff pledge their best efforts in helping you to achieve your educational goals.
+                  Mohamed Sathak A.J. College of Engineering (MSAJCE), founded on 5th July 2001 in Chennai's premier IT Corridor, stands as a testament to this commitment. Set within a sprawling 70-acre green campus inside SIPCOT IT Park Siruseri, surrounded by over 100 multinational IT titans, the college provides students with an immersive academic and industry ecosystem.
                 </p>
                 <p>
-                  Our standards are challenging and we are dedicating ourselves in helping you to meet the standards. We will judge our institution's success by how best you succeed in realizing your potential as a student and later in professional career.
+                  We continuously invest in state-of-the-art facilities, smart pedagogical tools, industry-collaborative technology centers, and passionate faculty mentors. Our aim is to transform every student into a competent technocrat equipped to tackle real-world global challenges with technical mastery and ethical uprightness.
                 </p>
-                <p>
-                  I invite you to visit our magnificent campus, to witness our state-of-the-art facilities, including the Technology Centres, interact with students and faculty and to convince yourselves on why so many bright students have made MSAJCE as their choice of the institution.
-                </p>
-                <p className="font-semibold text-foreground mt-2">
-                  I am confident that you will take pride in joining our college.
-                </p>
+              </div>
+
+              {/* Core Tenets Checklist (divide-x) */}
+              <div className="pt-4 border-t border-border">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 divide-y sm:divide-y-0 sm:divide-x divide-border">
+                  <div className="first:pl-0 sm:pl-4">
+                    <span className="text-[11px] font-mono uppercase text-primary font-bold block">
+                      Philanthropic Core
+                    </span>
+                    <span className="text-xs sm:text-sm text-foreground/80 font-sans block mt-1">
+                      Committed to accessible, merit-driven technical education for all social strata.
+                    </span>
+                  </div>
+                  <div className="pt-3 sm:pt-0 sm:pl-4">
+                    <span className="text-[11px] font-mono uppercase text-primary font-bold block">
+                      Industry Synergy
+                    </span>
+                    <span className="text-xs sm:text-sm text-foreground/80 font-sans block mt-1">
+                      Direct collaboration with leading technology multinational neighbors on OMR.
+                    </span>
+                  </div>
+                  <div className="pt-3 sm:pt-0 sm:pl-4">
+                    <span className="text-[11px] font-mono uppercase text-primary font-bold block">
+                      Ethical Leadership
+                    </span>
+                    <span className="text-xs sm:text-sm text-foreground/80 font-sans block mt-1">
+                      Inculcating civic responsibility, sustainable engineering, and human integrity.
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Principal's Message */}
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-20 border-b border-border">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          <div className="lg:col-span-4 flex flex-col gap-4">
-            <div className="relative rounded-lg overflow-hidden border border-border bg-card shadow-sm aspect-[4/5]">
-              <img
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop"
-                alt="Dr. K.S. Srinivasan"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase">
-                Principal's Message
-              </span>
-              <h3 className="text-2xl font-bold text-foreground font-oswald uppercase mt-1">
-                Dr. K.S. Srinivasan Ph.D
-              </h3>
-              <span className="text-xs text-muted-foreground font-sans font-medium mt-0.5">
-                Principal, Mohamed Sathak A.J. College of Engineering
-              </span>
-            </div>
+      {/* ========================================================================= */}
+      {/* WAVE DIVIDER 1: Canvas A (White / #121214) -> Canvas B (#F3F3F2 / #18181B) */}
+      {/* ========================================================================= */}
+      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-[#F3F3F2] dark:fill-[#18181B]"
+          />
+        </svg>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — EXECUTIVE MANAGEMENT MESSAGES  */}
+      {/* ========================================================================= */}
+      <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-16 lg:py-20 transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          {/* Section Header */}
+          <div className="max-w-3xl mb-8 sm:mb-12">
+            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-primary uppercase block mb-2">
+              EXECUTIVE PERSPECTIVES
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-foreground font-oswald leading-none">
+              Trust Executive Management
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground font-sans mt-3">
+              Strategic guidance from the executive trustees overseeing institutional modernization, corporate affiliations, and student welfare.
+            </p>
           </div>
 
-          <div className="lg:col-span-8 flex flex-col justify-between">
-            <div>
-              <div className="flex items-start gap-4 bg-card border border-border p-6 sm:p-8 rounded-sm shadow-xs mb-6">
-                <Quote className="h-7 w-7 text-primary shrink-0 mt-1" />
-                <blockquote className="text-xl sm:text-2xl font-bold tracking-tight leading-snug text-foreground font-oswald uppercase">
-                  "Acquiring information is no longer the main focus of education; instead the main aim of education is to build the powers of human mind and spirit."
+          {/* 3-Column Executive Broadsheet (Strictly Zero Cards, divide-y) */}
+          <div className="border-t border-b border-border">
+            <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-border">
+              {executiveLeaders.map((exec) => (
+                <div key={exec.role} className="py-6 sm:py-8 lg:px-6 first:lg:pl-0 last:lg:pr-0 flex flex-col justify-between">
+                  <div className="space-y-4">
+                    <div className="border-b border-border pb-3">
+                      <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary block">
+                        {exec.role}
+                      </span>
+                      <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-foreground font-oswald mt-0.5">
+                        {exec.name}
+                      </h3>
+                      <span className="text-xs text-muted-foreground font-sans block mt-0.5">
+                        {exec.org}
+                      </span>
+                    </div>
+
+                    <div className="border-l-2 border-primary pl-3 py-1">
+                      <p className="text-sm font-oswald uppercase font-bold text-foreground leading-snug">
+                        "{exec.quote}"
+                      </p>
+                    </div>
+
+                    <p className="text-sm text-muted-foreground font-sans leading-relaxed">
+                      {exec.message}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* WAVE DIVIDER 2: Canvas B (#F3F3F2 / #18181B) -> Canvas A (White / #121214) */}
+      {/* ========================================================================= */}
+      <div className="w-full overflow-hidden leading-none select-none bg-[#F3F3F2] dark:bg-[#18181B]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-white dark:fill-[#121214]"
+          />
+        </svg>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* SECTION 3: Canvas A (White / #121214) — PRINCIPAL'S ACADEMIC DIRECTIVE    */}
+      {/* ========================================================================= */}
+      <section className="w-full bg-white dark:bg-[#121214] py-10 sm:py-16 lg:py-20 transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Left: Principal Profile */}
+            <div className="lg:col-span-4 flex flex-col gap-4">
+              <div className="relative w-full rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border shadow-md bg-muted aspect-[4/5]">
+                <img
+                  src="/images/peeps/principal.jpg"
+                  alt="Dr. K.S. Srinivasan, Principal"
+                  className="w-full h-full object-cover pointer-events-none select-none"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+                  }}
+                />
+              </div>
+
+              <div className="border-b border-border pb-3">
+                <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase block">
+                  Principal's Message
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-bold text-foreground font-oswald uppercase mt-1 leading-tight">
+                  Dr. K.S. Srinivasan
+                </h2>
+                <span className="text-xs text-muted-foreground font-sans font-medium block mt-0.5">
+                  Principal, M.S.A.J. College of Engineering
+                </span>
+              </div>
+            </div>
+
+            {/* Right: Academic Directives Narrative */}
+            <div className="lg:col-span-8 space-y-6">
+              <div className="border-l-4 border-primary pl-4 sm:pl-6 py-2">
+                <blockquote className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight leading-snug text-foreground font-oswald uppercase">
+                  "Engineering education today must transcend textbooks to cultivate problem-solvers who can synthesize emerging technology, computational intellect, and sustainable practices."
                 </blockquote>
               </div>
 
-              <div className="flex flex-col gap-4 text-foreground/90 font-sans text-base sm:text-[17px] leading-relaxed">
+              <div className="space-y-4 text-base sm:text-lg text-muted-foreground font-sans leading-relaxed">
                 <p>
-                  <strong>Dear Parents and Prospective Students,</strong>
+                  At MSAJCE, our academic philosophy centers on outcome-based education, continuous experiential learning, and active industry participation. We believe in providing equal importance for academic rigor, co-curricular symposia, and extracurricular development.
                 </p>
                 <p>
-                  As Principal, I am impressed by the commitment of our management and the faculty for the provision of an excellent all-round education with state of the art facilities to our students so that they become multidimensional rather than uni-dimensional. Acquiring information is no longer the main focus of education; instead the main aim of education is to build the powers of human mind and spirit.
-                </p>
-                <p>
-                  MSAJCE believes in providing our students an environment which is rich in knowledge and supportive for their extra curricular interests. We evaluate our students on the basis of their physical, mental, social, emotional and intellectual development.
-                </p>
-                <p>
-                  As a result, I assure that MSAJCE is dedicated to developing skilled and outstanding students who can pursue their interest and strength to the best of their ability. Our enriched students will be able to actively face Industry 4.0 challenges as well as build a strong society for a better world.
-                </p>
-                <p>
-                  To meet these needs, we practice a holistic approach with enabled new structure that stimulates young minds in terms of innovative and creative thinking with great freedom to learn with different perspectives.
-                </p>
-                <p className="font-semibold text-foreground mt-2">
-                  I welcome you all and wish a memorable studentship. I hope you will be able to achieve greater heights and bring laurels to our Institute.
+                  With AICTE IDEA Lab facilities, international language training centers (English, German, and Japanese), hackathon incubators, and dynamic collegiate chapters of IEEE, CSI, and SAE, our students are systematically prepared for leadership roles in industry, research, and entrepreneurship.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Governing Council Members Table */}
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-20">
-        <div className="max-w-3xl mb-10">
-          <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase block mb-1">
-            Statutory Governance Body
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-foreground font-oswald">
-            Governing Council Members
-          </h2>
-          <p className="text-base text-muted-foreground font-sans mt-2">
-            The statutory Governing Council provides strategic oversight, policy direction, and academic guidance for MSAJCE.
-          </p>
-        </div>
-
-        {/* Clean Responsive Editorial Table */}
-        <div className="border border-border rounded-md overflow-hidden bg-card shadow-xs">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-muted/60 border-b border-border text-foreground font-oswald text-xs uppercase tracking-widest">
-                  <th className="py-4 px-4 sm:px-6 w-16">S.No</th>
-                  <th className="py-4 px-4 sm:px-6 font-bold">Name of Member</th>
-                  <th className="py-4 px-4 sm:px-6 font-bold">Designation in Council</th>
-                  <th className="py-4 px-4 sm:px-6 font-bold">Designation / Organization</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border text-sm font-sans">
-                {governingCouncilMembers.map((member) => (
-                  <tr key={member.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                    <td className="py-3.5 px-4 sm:px-6 font-mono font-bold text-primary">{member.sno}</td>
-                    <td className="py-3.5 px-4 sm:px-6 font-bold text-foreground">{member.name}</td>
-                    <td className="py-3.5 px-4 sm:px-6 text-foreground font-medium">
-                      <span className="inline-block px-2.5 py-1 bg-primary/10 text-primary text-xs font-mono font-bold uppercase rounded-xs">
-                        {member.role}
+              {/* 4 Academic Directives Broadsheet Grid (Zero Cards, divide-y) */}
+              <div className="pt-4 border-t border-border">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-foreground block mb-4">
+                  Institutional Academic Priorities
+                </span>
+                <div className="border-t border-b border-border divide-y divide-border">
+                  {academicDirectives.map((dir) => (
+                    <div key={dir.num} className="py-4 flex items-start gap-4">
+                      <span className="text-base sm:text-lg font-mono font-black text-primary shrink-0 mt-0.5">
+                        {dir.num}
                       </span>
-                    </td>
-                    <td className="py-3.5 px-4 sm:px-6 text-muted-foreground">{member.designation}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* Navigation Footer */}
-      <section className="border-t border-border bg-page-bg py-10">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="text-sm font-semibold text-muted-foreground font-sans">
-            Explore Mohamed Sathak Trust History and Sister Institutions
-          </span>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              to="/about/trust"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 text-xs font-bold uppercase tracking-widest rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors font-oswald"
-            >
-              The Trust &raquo;
-            </Link>
-            <Link
-              to="/about/group-institutions"
-              className="inline-flex items-center gap-2 border border-border text-foreground px-5 py-2.5 text-xs font-bold uppercase tracking-widest rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-muted transition-colors font-oswald"
-            >
-              Group of Institutions
-            </Link>
+                      <div>
+                        <h4 className="text-base sm:text-lg font-bold uppercase tracking-tight text-foreground font-oswald mb-1">
+                          {dir.title}
+                        </h4>
+                        <p className="text-xs sm:text-sm text-muted-foreground font-sans leading-relaxed">
+                          {dir.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
     </main>
   );
 }
-

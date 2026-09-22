@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "framer-motion";
 import { WhyJoinSection } from "@/components/sections/home/WhyJoinSection";
 import { AcademicProgrammesSection } from "@/components/sections/home/AcademicProgrammesSection";
-import { AboutBannerSection } from "@/components/sections/about/AboutBannerSection";
 import { DynamicText } from "@/components/typography/DynamicText";
 import { HeroReel } from "@/components/widgets/HeroReel";
 import { RecruiterMarquee } from "@/components/widgets/RecruiterMarquee";
@@ -92,7 +91,7 @@ export function HomePage() {
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
       <section
-        className="relative border-b border-foreground/12 min-h-[calc(100svh-53px)] h-auto lg:h-[calc(100svh-65px)] overflow-x-hidden lg:overflow-hidden bg-background flex flex-col"
+        className="relative min-h-[calc(100svh-53px)] h-auto lg:h-[calc(100svh-65px)] overflow-x-hidden lg:overflow-hidden bg-background flex flex-col"
         id="hero"
       >
         <div className="grid flex-1 items-stretch lg:grid-cols-[47%_53%]">
@@ -164,7 +163,7 @@ export function HomePage() {
       </section>
 
       {/* ── Top recruiters marquee ── */}
-      <section className="bg-page-bg border-b border-border flex flex-col justify-center py-6" id="top-recruiters">
+      <section className="bg-page-bg flex flex-col justify-center py-6" id="top-recruiters">
         <Reveal variant="blur">
           <h2 className="px-6 text-center text-[12px] font-bold font-oswald uppercase tracking-[0.32em] text-[#005DA6] dark:text-[#60A5FA] md:px-12">
             Top Recruiters
@@ -180,8 +179,6 @@ export function HomePage() {
       <NewsAndEventsSection />
 
       <WhyJoinSection />
-
-      <AboutBannerSection />
 
       <CampusVideoReveal />
 

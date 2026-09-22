@@ -104,22 +104,22 @@ export function AccreditationsPage() {
   const Icon = activeData.icon;
 
   return (
-    <main className="bg-page-bg text-foreground min-h-screen pt-0 md:pt-1">
+    <main className="bg-white dark:bg-[#121214] text-foreground min-h-screen font-libre antialiased pt-0 md:pt-1 transition-colors">
       {/* Integrated Header & Tabs */}
-      <section className="relative border-b border-border bg-page-bg pt-4 md:pt-6">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12">
+      <section className="relative border-b border-border bg-white dark:bg-[#121214] pt-4 md:pt-6 transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-12">
           
-          <div className="flex flex-col mb-6">
-            <span className="text-sm sm:text-base md:text-lg xl:text-xl font-black font-oswald uppercase text-primary tracking-wider mb-2">
+          <div className="flex flex-col mb-4 sm:mb-6">
+            <span className="text-sm sm:text-base md:text-lg xl:text-xl font-black font-oswald uppercase text-primary tracking-wider mb-1.5 sm:mb-2">
               ABOUT MSAJCE // QUALITY ASSURANCE
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-foreground font-oswald">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-foreground font-oswald">
               Accreditation & Rankings
             </h1>
           </div>
 
           {/* Sub Heading Tabs */}
-          <div className="flex items-center gap-8 md:gap-12 overflow-x-auto scrollbar-none">
+          <div className="flex items-center gap-5 sm:gap-8 md:gap-12 overflow-x-auto scrollbar-none">
             {accreditationsData.map((tab) => (
               <button
                 key={tab.id}
@@ -127,7 +127,7 @@ export function AccreditationsPage() {
                   setActiveTab(tab.id);
                   window.history.pushState(null, '', `#${tab.id}`);
                 }}
-                className={`text-sm md:text-lg font-black uppercase tracking-wider font-oswald transition-all whitespace-nowrap pb-4 border-b-[3px] cursor-pointer ${
+                className={`text-xs sm:text-sm md:text-base font-black uppercase tracking-wider font-oswald transition-all whitespace-nowrap pb-3 sm:pb-4 border-b-[3px] cursor-pointer min-h-[44px] flex items-center ${
                   activeTab === tab.id
                     ? "text-primary border-primary"
                     : "text-muted-foreground border-transparent hover:text-foreground hover:border-border"
@@ -142,67 +142,68 @@ export function AccreditationsPage() {
       </section>
 
       {/* Main Content Sections */}
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-20">
+      <section className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-12 py-8 sm:py-12 md:py-16">
         <Reveal key={activeData.id} variant="rise">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start min-h-[500px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start min-h-[450px]">
             
             {/* Left Column: Title, Icon, and Image */}
-            <div className="lg:col-span-5 flex flex-col gap-8">
-              <div className="flex flex-col gap-4">
-                <div className="w-16 h-16 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-primary/10 text-primary flex items-center justify-center mb-2">
-                  <Icon size={32} />
+            <div className="lg:col-span-5 flex flex-col gap-6 sm:gap-8">
+              <div className="flex flex-col gap-3 sm:gap-4">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-primary/10 text-primary flex items-center justify-center border border-primary/20 shadow-2xs">
+                  <Icon size={28} className="sm:w-8 sm:h-8" />
                 </div>
                 <div>
-                  <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight font-oswald text-primary">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight font-oswald text-primary">
                     {activeData.title}
                   </h2>
-                  <span className="text-sm font-bold uppercase tracking-widest text-muted-foreground mt-2 block font-mono">
+                  <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-muted-foreground mt-1.5 sm:mt-2 block font-mono">
                     {activeData.fullName}
                   </span>
                 </div>
               </div>
               
-              {/* Photo Section */}
-              <div className="relative w-full aspect-[4/3] rounded-sm overflow-hidden border border-border shadow-md hidden md:block">
+              {/* Photo Section (Signature Asymmetric Corners) */}
+              <div className="relative w-full aspect-[4/3] rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border shadow-md hidden md:block bg-muted">
                 <img 
                   src="/images/accreditations_campus.jpg" 
                   alt="MSAJCE Campus" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover select-none pointer-events-none"
                 />
               </div>
             </div>
 
-            {/* Right Column: Content Area */}
-            <div className="lg:col-span-7 flex flex-col gap-8 pt-2">
-              <div className="pl-6 border-l-[3px] border-primary space-y-5">
+            {/* Right Column: Content Area (No Cards, Clean Editorial Layout) */}
+            <div className="lg:col-span-7 flex flex-col gap-6 sm:gap-8 pt-1">
+              <div className="pl-4 sm:pl-6 border-l-[3px] border-primary space-y-4 sm:space-y-5">
                 {Array.isArray(activeData.description) ? (
                   activeData.description.map((paragraph, idx) => (
-                    <p key={idx} className="text-base md:text-[17px] leading-relaxed text-foreground font-sans text-justify">
+                    <p key={idx} className="text-sm sm:text-base md:text-lg leading-relaxed text-foreground/90 font-libre">
                       {paragraph}
                     </p>
                   ))
                 ) : (
-                  <p className="text-base md:text-[17px] leading-relaxed text-foreground font-sans text-justify">
+                  <p className="text-sm sm:text-base md:text-lg leading-relaxed text-foreground/90 font-libre">
                     {activeData.description}
                   </p>
                 )}
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+              {/* Clean Editorial List (Zero Cards Rule Compliant) */}
+              <div className="divide-y divide-border/40 border-y border-border/40 mt-2 sm:mt-4">
                 {activeData.highlights.map((highlight, idx) => (
-                  <div key={idx} className="flex items-start gap-4 p-5 border border-border bg-card rounded-sm shadow-xs transition-colors hover:border-primary/50">
-                    <CheckCircle2 className="w-6 h-6 text-primary shrink-0" />
-                    <span className="text-sm md:text-base text-foreground font-medium font-sans">{highlight}</span>
+                  <div key={idx} className="flex items-start gap-3.5 py-3 sm:py-3.5 px-1.5 sm:px-2 hover:bg-primary/[0.02] transition-colors">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                    <span className="text-sm sm:text-base text-foreground font-medium font-libre leading-relaxed">{highlight}</span>
                   </div>
                 ))}
               </div>
 
-              {/* Mobile Photo Section */}
-              <div className="relative w-full aspect-[4/3] rounded-sm overflow-hidden border border-border shadow-md block md:hidden mt-4">
+              {/* Mobile Photo Section (Signature Asymmetric Corners) */}
+              <div className="relative w-full aspect-[4/3] rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border shadow-md block md:hidden mt-4 bg-muted">
                 <img 
                   src="/images/accreditations_campus.jpg" 
                   alt="MSAJCE Campus" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover select-none pointer-events-none"
                 />
               </div>
             </div>

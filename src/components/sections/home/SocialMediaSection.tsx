@@ -99,7 +99,7 @@ export function SocialMediaSection() {
   return (
     <section 
       id="social-media" 
-      className="relative z-10 w-full bg-[#EAEFF5] dark:bg-[#121214] border-t border-b border-[#D8E1EC] dark:border-border py-16 md:py-24 overflow-hidden"
+      className="relative z-10 w-full bg-[#EAEFF5] dark:bg-[#121214] py-16 md:py-24 overflow-hidden"
     >
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-16 flex flex-col items-center">
         

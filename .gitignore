@@ -10,6 +10,8 @@ lerna-debug.log*
 # Local Scratch & Ingestion Dumps
 _raw_data/
 scratch/
+*.png
+!public/**
 
 # Build & Cache Outputs
 .nitro

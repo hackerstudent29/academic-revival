@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto !important;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -24,6 +24,21 @@ body::-webkit-scrollbar,
   width: 0 !important;
   height: 0 !important;
   background: transparent !important;
+}
+
+/* Universal Button Cursor Pointer */
+button,
+[role="button"],
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  cursor: pointer;
+}
+
+button:disabled,
+[role="button"][aria-disabled="true"],
+[disabled] {
+  cursor: not-allowed;
 }
 
 
@@ -514,3 +529,29 @@ body.dropdown-open .msajce-page-blur {
 .animate-ocean-wave-reverse {
   animation: ocean-wave-ripple 2.4s ease-in-out infinite reverse;
 }
+
+/* Site Layout & Curtain Reveal Footer */
+.site-main-canvas {
+  margin-bottom: 0;
+}
+
+.site-footer-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .site-main-canvas {
+    margin-bottom: var(--footer-height, 520px);
+  }
+
+  .site-footer-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+  }
+}
+

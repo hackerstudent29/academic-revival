@@ -142,7 +142,7 @@ export function TestimonialSection() {
   }, [playingCard]);
 
   return (
-    <section className="relative z-10 w-full bg-[#EAEAEA] dark:bg-[#121214] border-b border-border pt-16 pb-24 md:pt-20 md:pb-32 overflow-hidden scroll-mt-24" id="alumni">
+    <section className="relative z-10 w-full bg-[#EAEAEA] dark:bg-[#121214] pt-16 pb-24 md:pt-20 md:pb-32 overflow-hidden scroll-mt-24" id="alumni">
 
       {/* Large Typography Watermark to fill background space */}
       <div className="absolute right-[-2%] bottom-[5%] text-[18vw] font-black text-foreground/[0.02] select-none pointer-events-none uppercase leading-none font-sans tracking-tighter">
@@ -455,7 +455,7 @@ export function TestimonialSection() {
           style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
           className="w-full -mt-2 md:-mt-6"
         >
-          <div className="flex items-center justify-between border-b border-foreground/10 pb-4 mb-8">
+          <div className="flex items-center justify-between mb-8">
             <div className="flex flex-col">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground">// Legacy Spotlights</span>
               <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight mt-1 text-primary font-oswald">Alumni Network Feed</h3>
