@@ -381,13 +381,14 @@ export function SiteHeader() {
         <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 lg:gap-6 px-4 py-2.5 md:px-8 xl:px-12 md:py-3">
           <div className="flex-1 lg:flex-none flex items-center min-w-[140px]">
             <Link to="/" className="flex items-center min-h-[36px] md:min-h-[40px] w-full" onClick={closeAll}>
-              {(!isHome || isScrolled) && (
-                <img
-                  src="/logos/clg-logo.png"
-                  alt="MSAJCE Logo"
-                  className="h-9 md:h-10 w-auto object-contain origin-left"
-                />
-              )}
+              <img
+                src="/logos/MSAJC_combined_transparent_logo.png"
+                alt="MSAJCE Logo"
+                className="h-9 md:h-10 w-auto object-contain origin-left"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/logos/clg-logo.png";
+                }}
+              />
             </Link>
           </div>
 
