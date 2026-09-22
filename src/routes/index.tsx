@@ -89,7 +89,7 @@ export function HomePage() {
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
       <section
-        className="relative min-h-[calc(100svh-53px)] h-auto lg:h-[calc(100svh-65px)] overflow-x-hidden lg:overflow-hidden bg-background flex flex-col"
+        className="relative min-h-[calc(100svh-60px)] h-auto lg:h-[calc(100svh-72px)] overflow-x-hidden lg:overflow-hidden bg-background flex flex-col"
         id="hero"
       >
         <div className="grid flex-1 items-stretch lg:grid-cols-[47%_53%]">
