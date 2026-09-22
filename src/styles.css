@@ -532,7 +532,7 @@ body.dropdown-open .msajce-page-blur {
 
 /* Site Layout & Curtain Reveal Footer (Mobile, Tablet & Desktop) */
 .site-main-canvas {
-  margin-bottom: var(--footer-height, 560px);
+  margin-bottom: var(--footer-height, 90vh);
   position: relative;
   z-index: 10;
   background-color: var(--background);
