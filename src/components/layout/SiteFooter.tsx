@@ -78,18 +78,21 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
     >
       {/* ── 1. Architectural Campus Outline Ambient Background ── */}
       <div
-        className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center select-none overflow-hidden"
+        className="pointer-events-none absolute inset-0 z-0 flex items-end justify-center select-none overflow-hidden"
         aria-hidden="true"
       >
         <img
           src="/logos/msajce-campus-outline.jpeg"
           alt="MSAJCE Architectural Campus Outline"
-          className="w-full h-full min-h-[360px] max-w-[1920px] object-cover sm:object-contain object-center mix-blend-screen opacity-20 sm:opacity-25 pointer-events-none select-none filter contrast-125 scale-105 sm:scale-100"
+          className="w-full h-[110%] min-h-[420px] max-w-[1920px] object-cover sm:object-contain object-bottom mix-blend-screen opacity-35 sm:opacity-45 pointer-events-none select-none filter contrast-125 translate-y-4 sm:translate-y-8"
           onError={(e) => {
             (e.target as HTMLImageElement).src = "/logos/msajce%20logo%20outline%20tranparent.jpeg";
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#18181B]/80 via-transparent to-[#18181B]/60 dark:from-[#121214]/80 dark:via-transparent dark:to-[#121214]/60 pointer-events-none" />
+        {/* Directional gradient: darker at top behind text links, revealing building architecture across middle and bottom */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#18181B]/95 via-[#18181B]/65 to-[#18181B]/25 dark:from-[#121214]/95 dark:via-[#121214]/65 dark:to-[#121214]/25 pointer-events-none" />
+        {/* Radial vignette to give extra crisp contrast directly behind the link columns */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,0,0,0.65)_0%,transparent_75%)] pointer-events-none" />
       </div>
 
       {/* ── Main Grid ── */}
@@ -105,7 +108,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
         <motion.div variants={fadeUp} className="md:col-span-12 lg:col-span-4">
           <Link to="/" className="inline-block group focus:outline-none" aria-label="MSAJCE Home">
             <svg
-              className="h-20 sm:h-24 w-auto text-white -ml-2 sm:-ml-4 transition-transform duration-300 group-hover:scale-[1.01]"
+              className="h-20 sm:h-24 w-auto text-white -ml-2 sm:-ml-4 transition-transform duration-300 group-hover:scale-[1.01] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
               viewBox="0 0 700 220"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -146,23 +149,23 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
             </svg>
           </Link>
 
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-[#CCCCCC]/80 font-sans">
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-stone-200 font-sans drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
             An autonomous-spirited engineering campus on Chennai's OMR IT corridor. Empowering the
             next generation of innovators with industry-aligned education, cutting-edge facilities,
             and global perspectives.
           </p>
 
           {/* Contact Details */}
-          <div className="mt-8 flex flex-col items-start gap-3.5 text-sm text-[#CCCCCC]">
+          <div className="mt-8 flex flex-col items-start gap-3.5 text-sm text-stone-200 drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
             <a
               href="https://maps.google.com/?q=Mohamed+Sathak+A.J.+College+of+Engineering"
               target="_blank"
               rel="noreferrer"
-              className="group flex items-start gap-3 hover:text-primary transition-colors text-left"
+              className="group flex items-start gap-3 hover:text-white transition-colors text-left"
             >
               <MapPin
                 size={18}
-                className="mt-0.5 shrink-0 text-white/50 group-hover:text-primary transition-colors"
+                className="mt-0.5 shrink-0 text-rose-400 group-hover:text-rose-300 transition-colors drop-shadow"
               />
               <span className="leading-relaxed">
                 34, Rajiv Gandhi Salai (OMR),
@@ -174,13 +177,13 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
             </a>
 
             <div className="flex items-center gap-3">
-              <Phone size={18} className="shrink-0 text-white/50" />
+              <Phone size={18} className="shrink-0 text-rose-400 drop-shadow" />
               <span className="flex items-center gap-2">
-                <a href="tel:+914427470000" className="hover:text-primary transition-colors">
+                <a href="tel:+914427470000" className="hover:text-white transition-colors">
                   +91 44 2747 0000
                 </a>
-                <span className="text-white/25">/</span>
-                <a href="tel:+914427470001" className="hover:text-primary transition-colors">
+                <span className="text-white/40">/</span>
+                <a href="tel:+914427470001" className="hover:text-white transition-colors">
                   +91 44 2747 0001
                 </a>
               </span>
@@ -188,11 +191,11 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
 
             <a
               href="mailto:admissions@msajce.edu.in"
-              className="group flex items-center gap-3 hover:text-primary transition-colors"
+              className="group flex items-center gap-3 hover:text-white transition-colors"
             >
               <Mail
                 size={18}
-                className="shrink-0 text-white/50 group-hover:text-primary transition-colors"
+                className="shrink-0 text-rose-400 group-hover:text-rose-300 transition-colors drop-shadow"
               />
               <span>admissions@msajce.edu.in</span>
             </a>
@@ -201,10 +204,10 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
 
         {/* ── Col 2: Governance ── */}
         <motion.div variants={fadeUp2} className="md:col-span-4 lg:col-span-2 lg:col-start-5">
-          <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-primary font-oswald mb-4">
+          <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
             Governance
           </h3>
-          <ul className="space-y-3 text-sm text-[#CCCCCC]/90 font-sans">
+          <ul className="space-y-3 text-sm text-stone-100 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
             {[
               { to: "/about", hash: "leadership", label: "Governing Council" },
               { to: "/about", hash: "leadership", label: "Planning & Monitoring Board" },
@@ -215,12 +218,12 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
                 <Link
                   to={to}
                   hash={hash}
-                  className="group flex items-center justify-between hover:text-primary transition-colors py-0.5"
+                  className="group flex items-center justify-between hover:text-rose-300 transition-colors py-0.5"
                 >
                   <span>{label}</span>
                   <ArrowUpRight
                     size={14}
-                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-primary"
+                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
                   />
                 </Link>
               </motion.li>
@@ -230,10 +233,10 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
 
         {/* ── Col 3: Quick Links ── */}
         <motion.div variants={fadeUp2} className="md:col-span-4 lg:col-span-2">
-          <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-primary font-oswald mb-4">
+          <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
             Quick Links
           </h3>
-          <ul className="space-y-3 text-sm text-[#CCCCCC]/90 font-sans">
+          <ul className="space-y-3 text-sm text-stone-100 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
             {[
               { to: "/about", label: "About the College" },
               { to: "/placements", label: "Placements & Career" },
@@ -243,12 +246,12 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
               <motion.li key={label} variants={listItem}>
                 <Link
                   to={to}
-                  className="group flex items-center justify-between hover:text-primary transition-colors py-0.5"
+                  className="group flex items-center justify-between hover:text-rose-300 transition-colors py-0.5"
                 >
                   <span>{label}</span>
                   <ArrowUpRight
                     size={14}
-                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-primary"
+                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
                   />
                 </Link>
               </motion.li>
@@ -258,10 +261,10 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
 
         {/* ── Col 4: Admissions ── */}
         <motion.div variants={fadeUp2} className="md:col-span-4 lg:col-span-2">
-          <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-primary font-oswald mb-4">
+          <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
             Admissions
           </h3>
-          <ul className="space-y-3 text-sm text-[#CCCCCC]/90 font-sans">
+          <ul className="space-y-3 text-sm text-stone-100 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
             {[
               { to: "/admissions/procedure", label: "How to Apply" },
               { to: "/admissions/eligibility", label: "Eligibility Criteria" },
@@ -271,12 +274,12 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
               <motion.li key={label} variants={listItem}>
                 <Link
                   to={to}
-                  className="group flex items-center justify-between hover:text-primary transition-colors py-0.5"
+                  className="group flex items-center justify-between hover:text-rose-300 transition-colors py-0.5"
                 >
                   <span>{label}</span>
                   <ArrowUpRight
                     size={14}
-                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-primary"
+                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
                   />
                 </Link>
               </motion.li>
@@ -311,19 +314,19 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
           </div>
 
           {/* Copyright & Legal */}
-          <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8 text-xs font-medium uppercase tracking-widest text-white/50">
+          <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8 text-xs font-medium uppercase tracking-widest text-stone-400 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
             <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
-              <Link to="/about" className="hover:text-primary transition-colors">
+              <Link to="/about" className="hover:text-rose-400 transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/about" className="hover:text-primary transition-colors">
+              <Link to="/about" className="hover:text-rose-400 transition-colors">
                 Terms of Service
               </Link>
-              <Link to="/credits" className="hover:text-primary transition-colors">
+              <Link to="/credits" className="hover:text-rose-400 transition-colors">
                 Credits
               </Link>
             </div>
-            <p>&copy; {new Date().getFullYear()} MSAJCE. All rights reserved.</p>
+            <p className="text-stone-400">&copy; {new Date().getFullYear()} MSAJCE. All rights reserved.</p>
           </div>
         </div>
       </div>
