@@ -23,6 +23,9 @@ export interface StudentClub {
   studentPresident?: string;
   studentVicePresident?: string;
   envistaNote?: string;
+  scienceSections?: string[];
+  scienceHandsOn?: string[];
+  thingsToDo?: string[];
   images?: string[];
   activities: string[];
   membersCount: string;
@@ -211,15 +214,45 @@ export const studentClubs: StudentClub[] = [
     id: "science-club",
     name: "Science Club",
     category: "technical",
-    tagline: "Exploring Scientific Frontiers & Innovation",
-    description: "Igniting curiosity in fundamental science, physics/chemistry experiments, scientific quizzes, astronomy observation nights, and research paper presentations.",
+    tagline: "Exploring Scientific Frontiers & Practical Innovation",
+    motto: "Arousing Curiosity, Logical Reasoning & Hands-on Experimentation",
+    vision: "To promote interest, understanding, and knowledge of the scientific world amongst college students and the local community.",
+    description: "The Science Club was started with an aim intended to invite many eminent scientists who share their experience with students and motivate them to get scientific knowledge. Science Club is one of the largest clubs in our College, divided into three specialized sections: Physics, Chemistry, and General. We help engineering students learn science outside the classroom, apply scientific principles in daily life, and guide them to develop an independent, logical, and creative mind.",
+    scienceSections: [
+      "Physics Section",
+      "Chemistry Section",
+      "General Science & Mathematics"
+    ],
+    objectives: [
+      "Solve a relevant, science-based problem set within a real-world scenario.",
+      "Work in pairs, small groups, or independently on scientific projects.",
+      "Take part in practical, hands-on science activities and experimentation.",
+      "Think and talk about science during activities and when sharing results.",
+      "Share scientific findings and results using a variety of media."
+    ],
+    scienceHandsOn: [
+      "Making Electronic Components & Circuitry",
+      "Formulating Invisible Ink & Electroplating",
+      "Synthesizing Biodiesels & Chemical Reactions",
+      "Fire Writing & Leaf Venation Botanical Studies"
+    ],
+    thingsToDo: [
+      "Conduct Seminars, Workshops, Exhibitions, and Quiz Competitions.",
+      "Organize monthly guest lectures by eminent scientists.",
+      "Promote the active use of IT in learning science.",
+      "Facilitate monthly discussions on recent innovations in science.",
+      "Decorate classrooms, libraries, and laboratories with student-created scientific charts and models."
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80"
+    ],
     activities: [
       "National Science Day Exhibition & Model Competition",
-      "State-Level Science Quiz & Poster Contest",
-      "Applied Physics & Green Chemistry Experiments",
-      "Astronomy & Telescope Stargazing Workshops"
+      "State-Level Science Quiz & Monthly Expert Lectures",
+      "Applied Physics & Green Chemistry Hands-on Experiments",
+      "Astronomy Stargazing & Scientific Chart Exhibitions"
     ],
-    membersCount: "200+ Researchers",
+    membersCount: "350+ Researchers",
     iconName: "Microscope",
     badge: "Science & Research"
   },

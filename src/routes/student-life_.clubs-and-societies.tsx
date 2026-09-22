@@ -12,7 +12,11 @@ import {
   Dumbbell,
   Palette,
   UserCheck,
-  Star
+  Star,
+  Microscope,
+  FlaskConical,
+  BookOpenCheck,
+  Lightbulb
 } from "lucide-react";
 import { studentClubs } from "@/data/studentLife";
 
@@ -44,6 +48,7 @@ function ClubsAndSocietiesPage() {
 
   const sportsClub = studentClubs.find(c => c.id === "sports-club");
   const fineArtsClub = studentClubs.find(c => c.id === "fine-arts-club");
+  const scienceClub = studentClubs.find(c => c.id === "science-club");
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
@@ -59,7 +64,7 @@ function ClubsAndSocietiesPage() {
               Clubs &amp; Cultural Societies
             </h1>
             <p className="mt-4 text-base sm:text-lg text-white/90 font-sans leading-relaxed">
-              Student-led forums driving athletic excellence, fine arts, ENVISTA club initiatives, technical innovation, Tamil literary heritage, robotics, green sustainability, and visual photojournalism.
+              Student-led forums driving athletic excellence, fine arts, ENVISTA club initiatives, scientific research, Tamil literary heritage, robotics, green sustainability, and visual photojournalism.
             </p>
           </div>
 
@@ -336,6 +341,138 @@ function ClubsAndSocietiesPage() {
                   </span>
                   <h4 className="text-lg sm:text-xl font-black font-oswald uppercase text-white mt-0.5">
                     Expressing Imagination &amp; Multi-Disciplinary Creativity
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* FEATURED SECTION 3: SCIENCE CLUB */}
+        {scienceClub && (
+          <section id="science-club-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-black font-oswald uppercase text-white bg-primary px-2.5 py-0.5 rounded-xs flex items-center gap-1">
+                    <Microscope className="w-3.5 h-3.5 text-amber-300" />
+                    Largest Campus Science Forum
+                  </span>
+                  <span className="text-xs font-bold font-oswald text-primary uppercase">
+                    {scienceClub.membersCount}
+                  </span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-black font-oswald uppercase text-foreground">
+                  {scienceClub.name}
+                </h2>
+                <p className="text-base font-bold font-oswald text-primary uppercase tracking-wider mt-1">
+                  Motto: "{scienceClub.motto}"
+                </p>
+              </div>
+
+              {/* Vision Box */}
+              <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-4 rounded-sm max-w-xl">
+                <span className="text-xs font-bold font-oswald uppercase text-primary tracking-wider block mb-1">
+                  Club Purpose &amp; Vision:
+                </span>
+                <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed italic">
+                  "{scienceClub.vision}"
+                </p>
+              </div>
+            </div>
+
+            {/* Introduction & Guiding Principles */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+              <div className="lg:col-span-2 space-y-4">
+                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2">
+                  <FlaskConical className="w-5 h-5 text-primary" />
+                  Introduction &amp; Club Structure
+                </h3>
+                <p className="text-sm font-sans text-muted-foreground leading-relaxed">
+                  {scienceClub.description}
+                </p>
+
+                {/* 5 Guiding Principles / Objectives */}
+                {scienceClub.objectives && (
+                  <div className="mt-6 pt-6 border-t border-foreground/10">
+                    <h4 className="text-sm font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                      <Target className="w-4 h-4" />
+                      5 Guiding Principles &amp; Investigator Objectives:
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {scienceClub.objectives.map((obj, i) => (
+                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-background/60 p-2.5 rounded-sm border border-foreground/5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                          <span>{obj}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Science Sections & Things To Do Card */}
+              <div className="bg-background dark:bg-[#121214] border border-foreground/10 rounded-sm p-6 space-y-6">
+                <div>
+                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                    <FlaskConical className="w-4 h-4" />
+                    3 Club Sections
+                  </h4>
+                  <div className="flex flex-wrap gap-1.5">
+                    {scienceClub.scienceSections?.map((sec, idx) => (
+                      <span key={idx} className="text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-xs">
+                        🧪 {sec}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-foreground/10">
+                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                    <Lightbulb className="w-4 h-4 text-amber-500" />
+                    Hands-on Projects &amp; Experiments
+                  </h4>
+                  <ul className="space-y-1.5">
+                    {scienceClub.scienceHandsOn?.map((exp, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-xs font-sans text-foreground/80">
+                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 shrink-0" />
+                        <span>{exp}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="pt-4 border-t border-foreground/10">
+                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                    <BookOpenCheck className="w-4 h-4 text-emerald-500" />
+                    Things To Do in Science Club
+                  </h4>
+                  <ul className="space-y-1.5">
+                    {scienceClub.thingsToDo?.map((todo, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-xs font-sans text-foreground/80">
+                        <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-1.5 shrink-0" />
+                        <span>{todo}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Science Stock Image Banner */}
+            <div className="relative aspect-[21/9] sm:aspect-[24/7] rounded-sm overflow-hidden bg-muted border border-foreground/10 shadow-xs">
+              <img
+                src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80"
+                alt="Science Club Laboratory & Research Showcase"
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-4 sm:p-6">
+                <div className="text-white max-w-xl">
+                  <span className="text-xs font-bold font-oswald uppercase tracking-wider text-amber-300">
+                    Physics · Chemistry · General Science &amp; Engineering
+                  </span>
+                  <h4 className="text-lg sm:text-xl font-black font-oswald uppercase text-white mt-0.5">
+                    Practical Experimentation, Innovation &amp; Scientific Discovery
                   </h4>
                 </div>
               </div>
