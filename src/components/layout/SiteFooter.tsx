@@ -113,7 +113,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
 
       {/* ── Main Grid ── */}
       <motion.div
-        className="relative z-10 mx-auto grid max-w-[1440px] gap-12 px-6 py-14 md:grid-cols-12 md:gap-8 md:px-12 lg:px-16 lg:py-20"
+        className="relative z-10 mx-auto grid max-w-[1440px] gap-8 px-5 py-8 sm:px-8 sm:py-10 md:gap-8 md:px-12 md:py-12 lg:grid-cols-12 lg:gap-8 lg:px-16 lg:py-16"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.05 }}
@@ -121,10 +121,10 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
         {...(revealed !== undefined ? { animate: revealed ? "visible" : "hidden" } : {})}
       >
         {/* ── Col 1: Brand ── */}
-        <motion.div variants={fadeUp} className="md:col-span-12 lg:col-span-4">
+        <motion.div variants={fadeUp} className="lg:col-span-4">
           <Link to="/" className="inline-block group focus:outline-none" aria-label="MSAJCE Home">
             <svg
-              className="h-20 sm:h-24 w-auto text-white -ml-2 sm:-ml-4 transition-transform duration-300 group-hover:scale-[1.01] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+              className="h-14 sm:h-18 md:h-20 lg:h-24 w-auto text-white -ml-2 sm:-ml-4 transition-transform duration-300 group-hover:scale-[1.01] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
               viewBox="0 0 700 220"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -165,35 +165,31 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
             </svg>
           </Link>
 
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-stone-300 font-sans drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+          <p className="mt-2.5 max-w-md text-xs sm:text-sm leading-relaxed text-stone-300 font-sans drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
             An autonomous-spirited engineering campus on Chennai's OMR IT corridor. Empowering the
             next generation of innovators with industry-aligned education, cutting-edge facilities,
             and global perspectives.
           </p>
 
           {/* Contact Details */}
-          <div className="mt-8 flex flex-col items-start gap-3.5 text-sm text-stone-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+          <div className="mt-4 sm:mt-6 flex flex-col items-start gap-2 sm:gap-3 text-xs sm:text-sm text-stone-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
             <a
               href="https://maps.google.com/?q=Mohamed+Sathak+A.J.+College+of+Engineering"
               target="_blank"
               rel="noreferrer"
-              className="group flex items-start gap-3 text-stone-300 hover:text-rose-400 dark:hover:text-rose-300 transition-colors text-left"
+              className="group flex items-start gap-2.5 sm:gap-3 text-stone-300 hover:text-rose-400 dark:hover:text-rose-300 transition-colors text-left"
             >
               <MapPin
-                size={18}
+                size={16}
                 className="mt-0.5 shrink-0 text-rose-400 group-hover:text-rose-300 transition-colors drop-shadow"
               />
               <span className="leading-relaxed">
-                34, Rajiv Gandhi Salai (OMR),
-                <br />
-                IT Highway, Siruseri, Egattur,
-                <br />
-                Chennai, Tamil Nadu 603103
+                34, Rajiv Gandhi Salai (OMR), IT Highway, Siruseri, Egattur, Chennai, Tamil Nadu 603103
               </span>
             </a>
 
-            <div className="flex items-center gap-3">
-              <Phone size={18} className="shrink-0 text-rose-400 drop-shadow" />
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+              <Phone size={16} className="shrink-0 text-rose-400 drop-shadow" />
               <span className="flex items-center gap-2">
                 <a href="tel:+914427470000" className="text-stone-300 hover:text-rose-400 dark:hover:text-rose-300 transition-colors">
                   +91 44 2747 0000
@@ -207,10 +203,10 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
 
             <a
               href="mailto:admissions@msajce.edu.in"
-              className="group flex items-center gap-3 text-stone-300 hover:text-rose-400 dark:hover:text-rose-300 transition-colors"
+              className="group flex items-center gap-2.5 sm:gap-3 text-stone-300 hover:text-rose-400 dark:hover:text-rose-300 transition-colors"
             >
               <Mail
-                size={18}
+                size={16}
                 className="shrink-0 text-rose-400 group-hover:text-rose-300 transition-colors drop-shadow"
               />
               <span>admissions@msajce.edu.in</span>
@@ -218,99 +214,102 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
           </div>
         </motion.div>
 
-        {/* ── Col 2: Governance ── */}
-        <motion.div variants={fadeUp2} className="md:col-span-4 lg:col-span-2 lg:col-start-5">
-          <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-            Governance
-          </h3>
-          <ul className="space-y-3 text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
-            {[
-              { to: "/about", hash: "leadership", label: "Governing Council" },
-              { to: "/about", hash: "leadership", label: "Planning & Monitoring Board" },
-              { to: "/about", hash: "leadership", label: "Academic Advisory Board" },
-              { to: "/about", hash: "leadership", label: "Governance Structure" },
-            ].map(({ to, hash, label }) => (
-              <motion.li key={label} variants={listItem}>
-                <Link
-                  to={to}
-                  hash={hash}
-                  className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
-                >
-                  <span>{label}</span>
-                  <ArrowUpRight
-                    size={14}
-                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
-                  />
-                </Link>
-              </motion.li>
-            ))}
-          </ul>
-        </motion.div>
+        {/* ── Link Columns Container (2-cols on mobile, 3-cols on tablet & desktop) ── */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:gap-x-8 lg:col-span-8 lg:grid-cols-3 lg:gap-8">
+          {/* ── Col 2: Governance ── */}
+          <motion.div variants={fadeUp2}>
+            <h3 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-3 sm:mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+              Governance
+            </h3>
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+              {[
+                { to: "/about", hash: "leadership", label: "Governing Council" },
+                { to: "/about", hash: "leadership", label: "Planning & Monitoring Board" },
+                { to: "/about", hash: "leadership", label: "Academic Advisory Board" },
+                { to: "/about", hash: "leadership", label: "Governance Structure" },
+              ].map(({ to, hash, label }) => (
+                <motion.li key={label} variants={listItem}>
+                  <Link
+                    to={to}
+                    hash={hash}
+                    className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
+                  >
+                    <span>{label}</span>
+                    <ArrowUpRight
+                      size={13}
+                      className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
+                    />
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
 
-        {/* ── Col 3: Quick Links ── */}
-        <motion.div variants={fadeUp2} className="md:col-span-4 lg:col-span-2">
-          <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-            Quick Links
-          </h3>
-          <ul className="space-y-3 text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
-            {[
-              { to: "/about", label: "About the College" },
-              { to: "/placements", label: "Placements & Career" },
-              { to: "/campus-life", label: "Campus Life" },
-              { to: "/campus-life", label: "Alumni Network" },
-            ].map(({ to, label }) => (
-              <motion.li key={label} variants={listItem}>
-                <Link
-                  to={to}
-                  className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
-                >
-                  <span>{label}</span>
-                  <ArrowUpRight
-                    size={14}
-                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
-                  />
-                </Link>
-              </motion.li>
-            ))}
-          </ul>
-        </motion.div>
+          {/* ── Col 3: Quick Links ── */}
+          <motion.div variants={fadeUp2}>
+            <h3 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-3 sm:mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+              Quick Links
+            </h3>
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+              {[
+                { to: "/about", label: "About the College" },
+                { to: "/placements", label: "Placements & Career" },
+                { to: "/campus-life", label: "Campus Life" },
+                { to: "/campus-life", label: "Alumni Network" },
+              ].map(({ to, label }) => (
+                <motion.li key={label} variants={listItem}>
+                  <Link
+                    to={to}
+                    className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
+                  >
+                    <span>{label}</span>
+                    <ArrowUpRight
+                      size={13}
+                      className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
+                    />
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
 
-        {/* ── Col 4: Admissions ── */}
-        <motion.div variants={fadeUp2} className="md:col-span-4 lg:col-span-2">
-          <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-            Admissions
-          </h3>
-          <ul className="space-y-3 text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
-            {[
-              { to: "/admissions/procedure", label: "How to Apply" },
-              { to: "/admissions/eligibility", label: "Eligibility Criteria" },
-              { to: "/admissions/scholarships", label: "Scholarships" },
-              { to: "/contact", label: "Talk to an Advisor" },
-            ].map(({ to, label }) => (
-              <motion.li key={label} variants={listItem}>
-                <Link
-                  to={to}
-                  className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
-                >
-                  <span>{label}</span>
-                  <ArrowUpRight
-                    size={14}
-                    className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
-                  />
-                </Link>
-              </motion.li>
-            ))}
-          </ul>
-        </motion.div>
+          {/* ── Col 4: Admissions ── */}
+          <motion.div variants={fadeUp2} className="col-span-2 sm:col-span-1">
+            <h3 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-3 sm:mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+              Admissions
+            </h3>
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+              {[
+                { to: "/admissions/procedure", label: "How to Apply" },
+                { to: "/admissions/eligibility", label: "Eligibility Criteria" },
+                { to: "/admissions/scholarships", label: "Scholarships" },
+                { to: "/contact", label: "Talk to an Advisor" },
+              ].map(({ to, label }) => (
+                <motion.li key={label} variants={listItem}>
+                  <Link
+                    to={to}
+                    className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
+                  >
+                    <span>{label}</span>
+                    <ArrowUpRight
+                      size={13}
+                      className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
+                    />
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
       </motion.div>
 
       {/* ── Bottom Bar ── */}
-      <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+      <div className="relative z-10 mx-auto max-w-[1440px] px-5 sm:px-8 md:px-12 lg:px-16">
         <div className="h-px w-full bg-white/10 dark:bg-white/10" />
 
-        <div className="flex flex-col items-center justify-between gap-6 py-8 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 py-5 sm:py-6 md:flex-row md:py-8">
           {/* Social icons: boxy asymmetrical shapes per MSAJCE design guidelines */}
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2.5 sm:gap-3">
             {socials.map(({ label, href, Icon }) => (
               <a
                 key={label}
@@ -318,20 +317,20 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
                 target="_blank"
                 rel="noreferrer noopener"
                 aria-label={label}
-                className="group relative inline-flex h-10 w-10 overflow-hidden items-center justify-center rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-white/15 text-[#CCCCCC] transition-all hover:border-primary hover:text-white"
+                className="group relative inline-flex h-9 w-9 sm:h-10 sm:w-10 overflow-hidden items-center justify-center rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-white/15 text-[#CCCCCC] transition-all hover:border-primary hover:text-white"
               >
                 <span className="absolute inset-0 top-full bg-primary transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:top-0" />
                 <Icon
-                  size={17}
-                  className="relative z-10 transition-colors duration-300 group-hover:text-primary-foreground"
+                  size={15}
+                  className="relative z-10 transition-colors duration-300 group-hover:text-primary-foreground sm:size-[17px]"
                 />
               </a>
             ))}
           </div>
 
           {/* Copyright & Legal */}
-          <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8 text-xs font-medium uppercase tracking-widest text-stone-400 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
-            <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
+          <div className="flex flex-col items-center gap-2.5 sm:gap-4 md:flex-row md:gap-8 text-[11px] sm:text-xs font-medium uppercase tracking-widest text-stone-400 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
+            <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-6 justify-center">
               <Link to="/about" className="text-stone-400 hover:text-rose-400 dark:hover:text-rose-300 transition-colors">
                 Privacy Policy
               </Link>

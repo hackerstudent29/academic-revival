@@ -38,7 +38,7 @@ export function FooterRevealWrapper({ children }: { children: ReactNode }) {
       <div ref={spacerRef} style={{ height }} aria-hidden className="relative z-0" />
       <div
         ref={footerRef}
-        className="fixed inset-x-0 bottom-0 z-[1] block msajce-page-blur"
+        className="relative z-[2] bg-background lg:fixed lg:inset-x-0 lg:bottom-0 lg:z-[1] msajce-page-blur"
       >
         <SiteFooter revealed={revealed} />
       </div>
