@@ -382,12 +382,9 @@ export function SiteHeader() {
           <div className="flex-1 lg:flex-none flex items-center min-w-[160px] sm:min-w-[200px] md:min-w-[240px] lg:min-w-[280px]">
             <Link to="/" className="flex items-center w-full" onClick={closeAll}>
               <img
-                src="/logos/msajce-full-logo-final.png"
+                src="/logos/msajce-header-combined-hd.png?v=2"
                 alt="MSAJCE Logo"
-                className="h-8 sm:h-9 md:h-10 lg:h-11 xl:h-12 w-auto max-w-[220px] sm:max-w-[260px] md:max-w-[320px] lg:max-w-[360px] object-contain origin-left"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "/logos/msajce%20full%20logo%20final.png";
-                }}
+                className="h-9 sm:h-10 md:h-11 lg:h-12 xl:h-13 w-auto max-w-[240px] sm:max-w-[280px] md:max-w-[320px] lg:max-w-[360px] object-contain origin-left"
               />
             </Link>
           </div>
