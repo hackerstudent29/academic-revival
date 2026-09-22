@@ -30,6 +30,8 @@ export interface StudentClub {
   tamilQuotes?: string[];
   tamilObjectives?: string[];
   tamilEvents?: string[];
+  codingAims?: string[];
+  codingPractices?: string[];
   images?: string[];
   activities: string[];
   membersCount: string;
@@ -305,17 +307,35 @@ export const studentClubs: StudentClub[] = [
     id: "coding-club",
     name: "Coding Club",
     category: "technical",
-    tagline: "Code, Build & Solve Real-World Problems",
-    description: "Dedicated to competitive programming, full-stack software development, open-source projects, LeetCode sprints, and hackathons.",
+    tagline: "Engineering Software Solutions & Competitive Programming",
+    motto: "Code, Build & Solve Real-World Problems",
+    vision: "Programming abilities are crucial tools that can be applied to and integrated into a variety of disciplines and domains in today's climate of rapid change.",
+    description: "Programming abilities are crucial tools that can be applied to and integrated into a variety of disciplines and domains in today's climate of rapid change. The MSAJCE Coding Club empowers students across all engineering branches to master modern software stack, algorithmic problem solving, and open source development.",
+    codingAims: [
+      "More coding contests held to reach all students on campus.",
+      "Conduct workshops on CS topics like web & app development, machine learning, IoT, etc.",
+      "Participate in open source initiatives, build apps, and offer technical assistance to campus groups.",
+      "Represent the college at intercollegiate technical competitions.",
+      "Take part in global events like ACM-ICPC, Google Code Jam, Google Summer of Code, and competitive programming platforms."
+    ],
+    codingPractices: [
+      "College-wide coding competitions focusing on reasoning, analytical thinking, problem-solving, and efficient coding.",
+      "Weekly team meetups to collaborate on projects, shared goals, technical discussions, and competition strategies.",
+      "Structured lecture sessions teaching fundamental computer science & software engineering principles.",
+      "Placement & internship preparation workshops hosted by seniors, alumni, and industry experts."
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80"
+    ],
     activities: [
-      "Weekly 24-Hour CodeWars Hackathons",
-      "DSA & Algorithmic Problem Solving Bootcamps",
-      "Open Source & GitHub Contribution Drives",
-      "Web3, AI & Full-Stack Application Tech Sprints"
+      "Weekly 24-Hour CodeWars & Algorithmic Problem Solving Sprints",
+      "Full-Stack Web Dev, ML & Mobile App Development Bootcamps",
+      "Open Source Contributions & Campus Software Tech Support",
+      "ACM-ICPC, Google Code Jam & Alumni Placement Prep Seminars"
     ],
     membersCount: "500+ Coders",
     iconName: "Code",
-    badge: "Technical"
+    badge: "Technical & Software"
   },
   {
     id: "robotic-club",
