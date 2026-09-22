@@ -32,6 +32,7 @@ export interface StudentClub {
   tamilEvents?: string[];
   codingAims?: string[];
   codingPractices?: string[];
+  roboticsActivities?: string[];
   images?: string[];
   activities: string[];
   membersCount: string;
@@ -341,17 +342,32 @@ export const studentClubs: StudentClub[] = [
     id: "robotic-club",
     name: "Robotic Club",
     category: "technical",
-    tagline: "Engineering Autonomous & Intelligent Machines",
-    description: "Hands-on design, circuit assembly, microcontrollers (Arduino, Raspberry Pi, STM32), ROS, Line Followers, Robo-Wars, and Autonomous Drones.",
+    tagline: "Thinking Technologically · Designing & Constructing Autonomous Robots",
+    motto: "Thinking Technologically",
+    vision: "The Robotics Club aims to cultivate the habit of 'thinking technologically' inside each student at MSAJCE.",
+    description: "Students that are interested in learning about and using robots can come together to form a robotics club. Teams of students must design and construct a robot that can compete against opponents in a number of distinct challenges in order to win the robotics tournament.",
+    objectives: [
+      "To encourage young people to become the robotics industry's driving force.",
+      "It is an opportunity to creatively use information and observe how systems interact with the environment and one another.",
+      "To give students the professional engineering skills that will benefit them in the workplace."
+    ],
+    roboticsActivities: [
+      "Robotics Education Initiatives",
+      "Brief Training Sessions",
+      "Robotics Basics Workshop"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80"
+    ],
     activities: [
-      "Robo-Soccer & Line Follower Robot Races",
-      "Drone Fabrication & Flight Control Workshops",
-      "IoT & Embedded Systems Circuit Design Bootcamps",
-      "National Robotics League Competition Entry"
+      "Robotics Education Initiatives & Circuitry Bootcamps",
+      "Robotics Basics Workshops & Hands-on Assembly",
+      "Inter-Collegiate Robo-Tournament & Line Follower Races",
+      "Brief Training Sessions on Embedded Microcontrollers & Sensors"
     ],
     membersCount: "220+ Roboticists",
-    iconName: "Cpu",
-    badge: "Robotics & IoT"
+    iconName: "Bot",
+    badge: "Robotics & Innovation"
   },
   {
     id: "energy-eco-club",
