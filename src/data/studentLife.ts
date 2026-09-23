@@ -43,6 +43,30 @@ export interface StudentClub {
   badge?: string;
 }
 
+export interface NominationAuthority {
+  name: string;
+  designation: string;
+  phone: string;
+  email: string;
+}
+
+export interface OfficeBearer {
+  position: string;
+  name: string;
+  department: string;
+  batch: string;
+}
+
+export interface CsiActivity {
+  sno: number;
+  name: string;
+  resourcePerson: string;
+  date: string;
+  participants: string;
+  coordinators: string;
+  reportUrl?: string;
+}
+
 export interface ProfessionalSociety {
   id: string;
   name: string;
@@ -51,6 +75,14 @@ export interface ProfessionalSociety {
   category: string;
   tagline: string;
   description: string;
+  visionMotto?: string;
+  region?: string;
+  chapter?: string;
+  history?: string;
+  awards?: string[];
+  nominationAuthorities?: NominationAuthority[];
+  officeBearers?: OfficeBearer[];
+  activitiesList?: CsiActivity[];
   objectives: string[];
   membershipBenefits: string[];
   flagshipEvents: string[];
@@ -448,14 +480,99 @@ export const professionalSocieties: ProfessionalSociety[] = [
     shortName: "CSI",
     code: "CSI-MSAJCE",
     category: "Computer Science & IT",
-    tagline: "Advancing Software Engineering, Cloud Architecture & Competitive Coding",
-    description: "The Computer Society of India (CSI) is the premier and largest organization of IT professionals in India. The CSI Student Chapter at MSAJCE empowers students across Computer Science, Information Technology, AI & Data Science, and Cyber Security with intensive exposure to enterprise software engineering, cloud architecture, open-source initiatives, and cybersecurity operations.",
+    tagline: "The CSI Vision: “IT for Masses”",
+    visionMotto: "IT for Masses",
+    region: "Region – VII (Tamil Nadu, Pondicherry, Andaman and Nicobar, Kerala, Lakshadweep)",
+    chapter: "Kanchipuram Chapter",
+    history: "Keeping in mind the interest of the IT professionals & computer users, CSI works towards making the profession as area of choice amongst all sections of the society. To fulfill this objective, the CSI regularly organizes conferences, conventions, lectures, projects, awards. At the same time it also ensures that regular training and skill updating are organized for the IT professionals. Education Directorate, CSI helps physically challenged citizens by providing training 'Punarjani'. CSI also works towards a global approach, by seeking out alliances with organizations overseas who may be willing to come forward and participate in such activities. CSI also helps governments in formulating IT strategy & planning.",
+    description: "Being closely associated with students, the Society has developed a well-established network across the country. The activities conducted for the students associated with the Society include lecture meetings, seminars, conferences, training programs, programming contests and industrial visits to installations. CSI has a strong Educational Directorate which undertakes activities related to Certification of professionals related to the latest technologies. Its recent initiative of distance education in the Business Domain areas offers technology enabled learning supported by personal counseling & expert advice. In an ever changing environment, CSI offers professional counseling being a great need of the hour. It is done by being in close contact with its young members through various events, conferences, symposia to name a few.",
+    awards: [
+      "Our College Received Best Supporting College award (SBC) from CSI Kancheepuram Chapter",
+      "Our faculty Mr. D. Weslin Received Active participant award (SBC) from CSI Kancheepuram Chapter"
+    ],
+    nominationAuthorities: [
+      {
+        name: "Dr. K.S. SRINIVASAN",
+        designation: "Principal, Mohamed Sathak AJ College of Engineering",
+        phone: "9150575066",
+        email: "principal@msajce-edu.in"
+      },
+      {
+        name: "Dr. I. Manju",
+        designation: "Nominee, Professor, Department of ECE",
+        phone: "9949055026",
+        email: "ece.manju@msajce-edu.in"
+      },
+      {
+        name: "Dr. D. Weslin",
+        designation: "CSI Student Branch Counsellor, Associate Professor, Department of IT",
+        phone: "9715202533",
+        email: "it.weslin@msajce-edu.in"
+      }
+    ],
+    officeBearers: [
+      { position: "President", name: "Yogesh R", department: "IT", batch: "2022-2026" },
+      { position: "Vice President", name: "Saqlin Mustaq M", department: "AI&DS", batch: "2023-2027" },
+      { position: "Secretary", name: "Abu Jabar Mubarak", department: "CS&BS", batch: "2022-2026" },
+      { position: "Joint Secretary", name: "Hanuram PR", department: "CSE", batch: "2023-2027" },
+      { position: "Joint Secretary", name: "Shivam Vishwakarma", department: "CSE", batch: "2023-2027" },
+      { position: "Treasurer", name: "Navadharshan", department: "CSCS", batch: "2023-2027" },
+      { position: "Executive Member", name: "Akram Bilal", department: "AI&DS", batch: "2022-2026" },
+      { position: "Executive Member", name: "Zeenath Nisha", department: "IT", batch: "2023-2027" }
+    ],
+    activitiesList: [
+      {
+        sno: 1,
+        name: "CSI Inaugural Function",
+        resourcePerson: "Dr. Murugan, President CSI Kancheepuram Chapter & Principal, Valliammai College of Engineering",
+        date: "28.02.23",
+        participants: "200",
+        coordinators: "Mrs. Viswajaa.S (AP/IT), Mr. Pandiyan.G (AP/CSE)",
+        reportUrl: "https://www.msajce-edu.in/uploads/csi/CSI-inauguralReport.pdf"
+      },
+      {
+        sno: 2,
+        name: "Guest Lecture - Voice Over IP",
+        resourcePerson: "Mr. Anbazhagan A T, Technical Lead, Cognizant",
+        date: "22.03.23",
+        participants: "100",
+        coordinators: "Mrs. Gayathiri (AP/CSE), Mrs. Aiswarya M.S (AP/IT)",
+        reportUrl: "https://www.msajce-edu.in/uploads/csi/CSI-GL-VoiceOverIP.pdf"
+      },
+      {
+        sno: 3,
+        name: "Guest Lecture - Digital Marketing",
+        resourcePerson: "Mr. J. Mohammed Afroze, Digital CEO, Chennai",
+        date: "17.03.23",
+        participants: "110",
+        coordinators: "Mr. Rajasekar R (AP/CSE), Mrs. Aysha Surfeen.M.A (AP/IT)",
+        reportUrl: "https://www.msajce-edu.in/uploads/csi/CSI-GL-DigitalMarketing.pdf"
+      },
+      {
+        sno: 4,
+        name: "Interactive Session - Innovation & Invention in AI Technology",
+        resourcePerson: "Ms. Anisha Udhayakumar, AI Evangelist, Intel Corporation",
+        date: "10.03.23",
+        participants: "100",
+        coordinators: "Mr. Vigneshwaran (TPO), Mr. Hamer Shield J M",
+        reportUrl: "https://www.msajce-edu.in/uploads/csi/CSI-InteractiveSession-AI-TECH.pdf"
+      },
+      {
+        sno: 5,
+        name: "Benefits of CSI Membership",
+        resourcePerson: "Dr. M. Senthil Kumar, Secretary, CSI Kancheepuram Chapter",
+        date: "20.02.20",
+        participants: "200",
+        coordinators: "Mrs. S. Kayalvizhi, Mrs. Bapitha Rani",
+        reportUrl: "https://www.msajce-edu.in/uploads/csi/CSI-Benefits-Report.pdf"
+      }
+    ],
     objectives: [
-      "Cultivate technical mastery in Full-Stack Development, Cloud Computing (AWS/GCP), AI/ML, and DevOps.",
-      "Organize campus-wide 24-hour hackathons, algorithmic code sprints, and software design challenges.",
-      "Host masterclasses and mentorship sessions by chief software architects and tech industry leaders.",
-      "Guide student research teams in publishing peer-reviewed technical articles in CSI Communications.",
-      "Bridge the gap between academic engineering curricula and modern tech industry practices."
+      "Work towards making IT as an area of choice amongst all sections of society under the vision 'IT for Masses'.",
+      "Organize conferences, conventions, lectures, projects, and awards to advance the IT profession.",
+      "Conduct regular training and skill updating for IT professionals and physically challenged citizens ('Punarjani').",
+      "Seek out global alliances overseas and assist governments in formulating IT strategy and planning.",
+      "Provide professional career counseling and certifications in cutting-edge computing and business domains."
     ],
     membershipBenefits: [
       "Official CSI National Student Membership certification and recognized professional credentials.",
@@ -471,7 +588,7 @@ export const professionalSocieties: ProfessionalSociety[] = [
       "Cloud & DevOps Hands-On Bootcamp"
     ],
     logoOrIcon: "Terminal",
-    studentChairs: "Faculty Coordinator: Dr. S. N. Mohamed (CSE) | Student Lead: A. Firoz (IT)",
+    studentChairs: "CSI Student Branch Counsellor: Dr. D. Weslin (IT) | Student President: Yogesh R (IT)",
     image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=900&q=80",
     membersCount: "280+ Members"
   },

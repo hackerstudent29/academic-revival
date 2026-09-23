@@ -16,6 +16,13 @@ import {
   ArrowRight,
   ArrowLeft,
   Building2,
+  ExternalLink,
+  Phone,
+  Mail,
+  FileText,
+  Trophy,
+  Globe,
+  MapPin,
 } from "lucide-react";
 import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
 import { professionalSocieties, type ProfessionalSociety } from "@/data/studentLife";
@@ -184,6 +191,49 @@ function ProfessionalSocietiesPage() {
                 <p className="text-sm sm:text-base font-bold font-oswald text-primary uppercase tracking-wide mt-2">
                   "{activeSociety.tagline}"
                 </p>
+
+                {/* CSI Special History & Vision Highlights */}
+                {activeSociety.id === "csi" && activeSociety.history && (
+                  <div className="mt-4 space-y-3">
+                    <div className="p-4 border-l-2 border-primary bg-primary/[0.03] dark:bg-primary/[0.06] rounded-r-xs">
+                      <div className="flex flex-wrap items-center gap-3 mb-1">
+                        <span className="text-xs font-black font-oswald uppercase text-primary tracking-wider flex items-center gap-1">
+                          <Globe className="w-3.5 h-3.5" />
+                          The CSI Vision: "{activeSociety.visionMotto}"
+                        </span>
+                        {activeSociety.region && (
+                          <span className="text-xs font-sans text-muted-foreground">
+                            · {activeSociety.region}
+                          </span>
+                        )}
+                        {activeSociety.chapter && (
+                          <span className="text-xs font-bold font-oswald uppercase text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs flex items-center gap-1">
+                            <MapPin className="w-3 h-3 text-primary" />
+                            {activeSociety.chapter}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs sm:text-sm font-sans text-foreground/80 leading-relaxed mt-2">
+                        {activeSociety.history}
+                      </p>
+                    </div>
+
+                    {/* Institutional Awards Badges */}
+                    {activeSociety.awards && (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                        {activeSociety.awards.map((award, idx) => (
+                          <div
+                            key={idx}
+                            className="p-3 border border-primary/20 bg-primary/5 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs flex items-start gap-2.5 text-xs font-sans text-foreground/90 font-medium"
+                          >
+                            <Trophy className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                            <span>{award}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Clean 2-Column Minimal Editorial Breakdown */}
@@ -319,6 +369,199 @@ function ProfessionalSocietiesPage() {
                 </div>
 
               </div>
+
+              {/* SPECIAL TABLES SECTION FOR CSI (Styled as in Innovation & Incubation Cell) */}
+              {activeSociety.id === "csi" && (
+                <div className="pt-8 space-y-10 border-t border-border/60">
+                  
+                  {/* Table 1: Details of Nomination Authority */}
+                  {activeSociety.nominationAuthorities && activeSociety.nominationAuthorities.length > 0 && (
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
+                          Institutional Governance
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-foreground mt-0.5">
+                          Details of Nomination Authority
+                        </h3>
+                        <p className="text-xs sm:text-sm font-sans text-muted-foreground">
+                          Institutional representatives overseeing the Computer Society of India (CSI) student branch operations at MSAJCE.
+                        </p>
+                      </div>
+
+                      <div className="overflow-x-auto border border-border rounded-none">
+                        <table className="w-full text-sm text-left">
+                          <thead className="bg-primary/10 text-primary font-oswald uppercase text-xs">
+                            <tr>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold w-14 text-center">S.No</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Name</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Designation</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap">Contact No</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap">E-Mail ID</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border font-sans text-muted-foreground">
+                            {activeSociety.nominationAuthorities.map((auth, idx) => (
+                              <tr key={idx} className="hover:bg-muted/50 transition-colors">
+                                <td className="px-4 sm:px-6 py-3.5 font-medium text-foreground text-center">
+                                  {String(idx + 1).padStart(2, "0")}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-oswald uppercase text-foreground whitespace-nowrap">
+                                  {auth.name}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 text-xs sm:text-sm">
+                                  {auth.designation}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-mono text-xs font-semibold text-foreground whitespace-nowrap">
+                                  <a href={`tel:${auth.phone}`} className="hover:text-primary transition-colors flex items-center gap-1.5">
+                                    <Phone className="w-3 h-3 text-primary" />
+                                    {auth.phone}
+                                  </a>
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 text-xs font-semibold whitespace-nowrap">
+                                  <a href={`mailto:${auth.email}`} className="text-primary hover:underline flex items-center gap-1.5">
+                                    <Mail className="w-3 h-3" />
+                                    {auth.email}
+                                  </a>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Table 2: CSI Office Bearers */}
+                  {activeSociety.officeBearers && activeSociety.officeBearers.length > 0 && (
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
+                          Student Leadership Council
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-foreground mt-0.5">
+                          CSI Office Bearers
+                        </h3>
+                        <p className="text-xs sm:text-sm font-sans text-muted-foreground">
+                          Elected student representatives leading technical symposiums, hackathons, and programming contests.
+                        </p>
+                      </div>
+
+                      <div className="overflow-x-auto border border-border rounded-none">
+                        <table className="w-full text-sm text-left">
+                          <thead className="bg-primary/10 text-primary font-oswald uppercase text-xs">
+                            <tr>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold w-14 text-center">S.No</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Position</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Name</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Department</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold text-center whitespace-nowrap">Academic Batch</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border font-sans text-muted-foreground">
+                            {activeSociety.officeBearers.map((bearer, idx) => (
+                              <tr key={idx} className="hover:bg-muted/50 transition-colors">
+                                <td className="px-4 sm:px-6 py-3.5 font-medium text-foreground text-center">
+                                  {String(idx + 1).padStart(2, "0")}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-oswald uppercase text-primary whitespace-nowrap">
+                                  <span className="px-2 py-0.5 bg-primary/10 border border-primary/20 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs">
+                                    {bearer.position}
+                                  </span>
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-sans text-foreground">
+                                  {bearer.name}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-semibold font-sans text-foreground/80">
+                                  {bearer.department}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-mono text-xs text-muted-foreground text-center whitespace-nowrap">
+                                  {bearer.batch}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Table 3: CSI Workshops & Activities */}
+                  {activeSociety.activitiesList && activeSociety.activitiesList.length > 0 && (
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
+                          Workshops &amp; Seminars
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-foreground mt-0.5">
+                          CSI Activities &amp; Technical Reports
+                        </h3>
+                        <p className="text-xs sm:text-sm font-sans text-muted-foreground">
+                          Comprehensive record of guest lectures, interactive AI sessions, and inaugural conventions conducted by CSI MSAJCE.
+                        </p>
+                      </div>
+
+                      <div className="overflow-x-auto border border-border rounded-none">
+                        <table className="w-full text-sm text-left">
+                          <thead className="bg-primary/10 text-primary font-oswald uppercase text-xs">
+                            <tr>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold w-14 text-center">S.No</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Name Of the Workshop / Event</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Resource Person</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap">Date</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold text-center whitespace-nowrap">Participants</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Co-Ordinators</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold text-right whitespace-nowrap">Report</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border font-sans text-muted-foreground">
+                            {activeSociety.activitiesList.map((act) => (
+                              <tr key={act.sno} className="hover:bg-muted/50 transition-colors">
+                                <td className="px-4 sm:px-6 py-3.5 font-medium text-foreground text-center">
+                                  {String(act.sno).padStart(2, "0")}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-oswald uppercase text-foreground">
+                                  {act.name}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 text-xs font-sans text-foreground/90 max-w-[220px]">
+                                  {act.resourcePerson}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-mono text-xs text-muted-foreground whitespace-nowrap">
+                                  {act.date}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-mono font-bold text-xs text-center text-primary whitespace-nowrap">
+                                  <span className="px-2 py-0.5 bg-primary/10 rounded-xs">
+                                    {act.participants}
+                                  </span>
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 text-xs font-sans text-muted-foreground max-w-[200px]">
+                                  {act.coordinators}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 text-right whitespace-nowrap">
+                                  {act.reportUrl ? (
+                                    <a
+                                      href={act.reportUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary text-white text-xs font-bold font-oswald uppercase rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors cursor-pointer"
+                                    >
+                                      <span>View</span>
+                                      <ExternalLink className="w-3 h-3" />
+                                    </a>
+                                  ) : (
+                                    <span className="text-xs text-muted-foreground italic">N/A</span>
+                                  )}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                </div>
+              )}
 
               {/* Sequential Society Navigation Controls */}
               <div className="pt-6 border-t border-border/60 flex flex-wrap items-center justify-between gap-4">
@@ -502,7 +745,7 @@ function ProfessionalSocietiesPage() {
                   Corporate Fast-Tracks
                 </h3>
                 <p className="text-xs sm:text-sm font-sans text-muted-foreground leading-relaxed">
-                  Direct networking with technical leaders from Tata Motors, Mahindra, Blue Star, Daikin, TCS, and Zoho through chapter-exclusive conclaves and recruitment drives.
+                  Direct networking with technical leaders from Tata Motors, Mahindra, Blue Star, Daikin, TCS, and Cognizant through chapter-exclusive conclaves and recruitment drives.
                 </p>
               </div>
 
@@ -514,7 +757,7 @@ function ProfessionalSocietiesPage() {
                   Peer-Reviewed Journals
                 </h3>
                 <p className="text-xs sm:text-sm font-sans text-muted-foreground leading-relaxed">
-                  Undergraduate students receive faculty mentorship to author and publish technical research papers in CSI Communications and IETE Journals.
+                  Undergraduate students receive faculty mentorship to author and publish technical research papers in CSI Communications, IETE Journals, and national conventions.
                 </p>
               </div>
 
