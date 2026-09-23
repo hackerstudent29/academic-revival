@@ -89,13 +89,13 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
       </div>
 
       {/* ── Main Grid ── */}
-      <div className="relative z-10 mx-auto grid max-w-[1440px] grid-cols-12 gap-8 px-6 py-12 md:px-12 md:py-16 lg:px-16 lg:py-20">
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] grid grid-cols-12 gap-8 px-4 sm:px-6 md:px-8 xl:px-12 py-12 md:py-16 lg:py-20">
         {/* ── Col 1: Brand ── */}
         <div className="col-span-12 lg:col-span-4">
           <Link to="/" className="inline-block group focus:outline-none" aria-label="MSAJCE Home">
             <svg
-              className="h-16 sm:h-20 md:h-22 lg:h-24 w-auto text-white -ml-2 sm:-ml-4 transition-transform duration-300 group-hover:scale-[1.01] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
-              viewBox="0 0 700 220"
+              className="h-16 sm:h-20 md:h-22 lg:h-24 w-auto text-white transition-transform duration-300 group-hover:scale-[1.01] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+              viewBox="30 20 670 190"
               xmlns="http://www.w3.org/2000/svg"
             >
               <rect x="30" y="30" width="500" height="1.5" fill="currentColor" />
@@ -275,12 +275,12 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
       </div>
 
       {/* ── Bottom Bar ── */}
-      <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
         <div className="h-px w-full bg-white/10 dark:bg-white/10" />
 
-        <div className="flex flex-col items-center justify-between gap-6 py-8 md:flex-row">
-          {/* Social icons: boxy asymmetrical shapes per MSAJCE design guidelines */}
-          <div className="flex flex-wrap gap-3">
+        <div className="flex w-full flex-col items-center justify-between gap-6 py-6 sm:flex-row md:py-8">
+          {/* Social icons: aligned straight to the college logo on the left with Liquid Ocean Wave Fill Effect */}
+          <div className="flex flex-wrap items-center justify-start gap-3">
             {socials.map(({ label, href, Icon }) => (
               <a
                 key={label}
@@ -288,31 +288,48 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
                 target="_blank"
                 rel="noreferrer noopener"
                 aria-label={label}
-                className="group relative inline-flex h-10 w-10 overflow-hidden items-center justify-center rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-white/15 text-[#CCCCCC] transition-all hover:border-primary hover:text-white"
+                className="group relative inline-flex h-10 w-10 overflow-hidden items-center justify-center rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-white/20 bg-white/5 text-[#CCCCCC] transition-all duration-300 hover:border-primary hover:text-white shadow-xs"
               >
-                <span className="absolute inset-0 top-full bg-primary transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:top-0" />
+                {/* Liquid Ocean Wave Fill Effect */}
+                <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                  <span className="absolute inset-x-0 top-0 h-[140%] bg-primary translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    {/* Ocean Wave Crest SVG (Primary) */}
+                    <span className="absolute -top-3.5 left-0 w-[200%] h-4 pointer-events-none block">
+                      <svg className="w-full h-full fill-primary animate-ocean-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,-20 1200,40 L1200,120 L0,120 Z" />
+                      </svg>
+                    </span>
+                    {/* Secondary Depth Layer Wave */}
+                    <span className="absolute -top-4 left-0 w-[200%] h-5 opacity-40 pointer-events-none block">
+                      <svg className="w-full h-full fill-primary animate-ocean-wave-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M0,30 C200,-30 400,90 600,10 C800,-40 1000,70 1200,20 L1200,120 L0,120 Z" />
+                      </svg>
+                    </span>
+                  </span>
+                </span>
+
                 <Icon
                   size={17}
-                  className="relative z-10 transition-colors duration-300 group-hover:text-primary-foreground"
+                  className="relative z-10 transition-colors duration-300 group-hover:text-white"
                 />
               </a>
             ))}
           </div>
 
-          {/* Copyright & Legal */}
-          <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8 text-xs font-medium uppercase tracking-widest text-stone-400 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
-            <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
-              <Link to="/about" className="text-stone-400 hover:text-rose-400 dark:hover:text-rose-300 transition-colors">
+          {/* Copyright & Legal - placed straight to the header ending padding on the right with high-visibility bright styling */}
+          <div className="flex flex-col items-center sm:items-end md:flex-row md:items-center gap-4 sm:gap-6 md:gap-8 text-xs font-semibold uppercase tracking-widest text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]">
+            <div className="flex flex-wrap gap-4 md:gap-6 items-center justify-center sm:justify-end">
+              <Link to="/about" className="text-white/90 hover:text-white dark:hover:text-rose-300 transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/about" className="text-stone-400 hover:text-rose-400 dark:hover:text-rose-300 transition-colors">
+              <Link to="/about" className="text-white/90 hover:text-white dark:hover:text-rose-300 transition-colors">
                 Terms of Service
               </Link>
-              <Link to="/credits" className="text-stone-400 hover:text-rose-400 dark:hover:text-rose-300 transition-colors">
+              <Link to="/credits" className="text-white/90 hover:text-white dark:hover:text-rose-300 transition-colors">
                 Credits
               </Link>
             </div>
-            <p className="text-stone-400">&copy; {new Date().getFullYear()} MSAJCE. All rights reserved.</p>
+            <p className="text-white shrink-0 text-center sm:text-right">&copy; {new Date().getFullYear()} MSAJCE. All rights reserved.</p>
           </div>
         </div>
       </div>

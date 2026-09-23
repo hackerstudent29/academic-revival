@@ -17,6 +17,7 @@ import { ScrollToTop } from "@/components/shared/ScrollToTop";
 import { RefreshSnapIndicator } from "@/components/shared/RefreshSnapIndicator";
 import { HeaderProvider } from "@/context/HeaderContext";
 import { ChatbotWidget } from "@/components/widgets/ChatbotWidget";
+import { StickySocialBar } from "@/components/widgets/StickySocialBar";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -146,6 +147,7 @@ function RootComponent() {
         <SmoothScroll />
         <ScrollToTop />
         <RefreshSnapIndicator />
+        <StickySocialBar />
         <ChatbotWidget />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <div className="bg-background text-foreground max-w-full w-full min-h-screen flex flex-col">
