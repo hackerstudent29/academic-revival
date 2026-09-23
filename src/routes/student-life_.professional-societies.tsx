@@ -1,23 +1,42 @@
+import { useMemo } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  Sparkles,
-  ArrowRight,
-  Cpu,
-  GraduationCap,
   Terminal,
+  Cpu,
   Wrench,
-  CheckCircle2,
   ShieldCheck,
+  CheckCircle2,
+  Target,
+  Activity,
   Award,
-  BookOpen
+  BookOpen,
+  Users,
+  Calendar,
+  ArrowRight,
+  ArrowLeft,
+  Building2,
 } from "lucide-react";
-import { professionalSocieties } from "@/data/studentLife";
+import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
+import { professionalSocieties, type ProfessionalSociety } from "@/data/studentLife";
 
 const title = "Professional Societies | Student Life | MSAJCE";
 const description =
-  "Explore IEEE, ISTE, CSI, and SAE India professional body chapters at Mohamed Sathak A.J. College of Engineering. Industry standards, research papers, hackathons, and certifications.";
+  "Explore CSI, IETE, SAE, and ISHRAE professional body chapters at Mohamed Sathak A.J. College of Engineering. Industry standards, research papers, hackathons, and certifications.";
+
+const societyNavTabs: SubNavTab[] = [
+  { id: "csi", label: "CSI" },
+  { id: "iete", label: "IETE" },
+  { id: "sae", label: "SAE" },
+  { id: "ishrae", label: "ISHRAE" },
+];
 
 export const Route = createFileRoute("/student-life_/professional-societies")({
+  validateSearch: (search: Record<string, unknown>) => {
+    return {
+      society: typeof search.society === "string" ? search.society : "csi",
+    };
+  },
   head: () => ({
     meta: [
       { title },
@@ -33,146 +52,505 @@ export const Route = createFileRoute("/student-life_/professional-societies")({
 
 function ProfessionalSocietiesPage() {
   const navigate = useNavigate();
+  const search = Route.useSearch();
+
+  // Validate active society from URL query or default to csi
+  const activeSocietyId = useMemo(() => {
+    const valid = societyNavTabs.some((t) => t.id === search.society);
+    return valid ? search.society : "csi";
+  }, [search.society]);
+
+  const activeIndex = useMemo(() => {
+    const idx = professionalSocieties.findIndex((s) => s.id === activeSocietyId);
+    return idx >= 0 ? idx : 0;
+  }, [activeSocietyId]);
+
+  const activeSociety: ProfessionalSociety = professionalSocieties[activeIndex] || professionalSocieties[0];
+
+  const prevSociety = professionalSocieties[(activeIndex - 1 + professionalSocieties.length) % professionalSocieties.length];
+  const nextSociety = professionalSocieties[(activeIndex + 1) % professionalSocieties.length];
+
+  const handleSelectSociety = (societyId: string) => {
+    navigate({
+      search: { society: societyId },
+      replace: true,
+    });
+
+    const el = document.getElementById("society-focus-container");
+    if (el) {
+      const headerOffset = typeof window !== "undefined" && window.innerWidth < 768 ? 115 : 125;
+      const elementTop = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      if (window.pageYOffset > elementTop + 80) {
+        window.scrollTo({
+          top: Math.max(0, elementTop),
+          behavior: "smooth",
+        });
+      }
+    }
+  };
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
-      {/* Page Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-10 pb-16 px-4 sm:px-6 md:px-12 border-b border-primary/20">
+      {/* SECONDARY SUB-NAV HEADER (4 Official Professional Chapters) */}
+      <SecondarySubNav
+        title="PROFESSIONAL SOCIETIES"
+        tabs={societyNavTabs}
+        activeTab={activeSocietyId}
+        onSelectTab={handleSelectSociety}
+        onTitleClick={() => handleSelectSociety("csi")}
+      />
+
+      {/* Page Hero Banner */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-8 pb-12 sm:pt-10 sm:pb-14 px-4 sm:px-6 md:px-12 border-b border-primary/20">
         <div className="max-w-[1440px] mx-auto relative z-10">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-sm text-xs font-bold font-oswald uppercase tracking-wider text-white border border-white/20 mb-4">
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              Global Engineering Standards
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-md rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs font-bold font-oswald uppercase tracking-wider text-white border border-white/20 mb-3">
+              National &amp; International Technical Chapters
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-oswald uppercase tracking-tight leading-[1.05]">
-              International &amp; National Professional Chapters
+              Professional Societies
             </h1>
-            <p className="mt-4 text-base sm:text-lg text-white/90 font-sans leading-relaxed">
-              Connecting MSAJCE engineering students directly with global industry standards, research networks, professional certifications, and technical body chapters.
+            <p className="mt-3 text-sm sm:text-base md:text-lg text-white/90 font-sans leading-relaxed">
+              Connecting MSAJCE engineering students directly with industry standards, technical certifications, research networks, and premier national body chapters: CSI, IETE, SAE, and ISHRAE.
             </p>
           </div>
 
-          {/* Quick Metrics */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-white/15">
+          {/* Quick Metrics Bar */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-6 border-t border-white/15">
             <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">8 Chapters</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Active Professional Bodies</span>
+              <span className="text-2xl sm:text-3xl font-black font-oswald text-white">4 Chapters</span>
+              <span className="text-xs font-sans text-white/80">Active Professional Bodies</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">STB99214</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">IEEE Student Branch Code</span>
+              <span className="text-2xl sm:text-3xl font-black font-oswald text-white">940+</span>
+              <span className="text-xs font-sans text-white/80">Student Members</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">BAJA SAE</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">ATV &amp; Go-Kart Racing</span>
+              <span className="text-2xl sm:text-3xl font-black font-oswald text-white">BAJA &amp; aQuest</span>
+              <span className="text-xs font-sans text-white/80">National Championships</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">100% Industry</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Aligned Certification</span>
+              <span className="text-2xl sm:text-3xl font-black font-oswald text-white">100% Core</span>
+              <span className="text-xs font-sans text-white/80">Industry Alignment</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Content Area */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 py-10 space-y-8">
-        <div className="border-b border-foreground/10 pb-4">
-          <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground">
-            Professional Chapters Directory
-          </h2>
-          <p className="text-sm text-muted-foreground font-sans mt-1">
-            Detailed objectives, student benefits, and flagship conventions for each body chapter.
-          </p>
-        </div>
-
-        {/* Professional Chapters Grid */}
-        <div className="space-y-8">
-          {professionalSocieties.map((soc) => (
-            <div
-              key={soc.id}
-              className="bg-card dark:bg-[#18181B] border border-foreground/10 rounded-sm p-6 sm:p-8 shadow-xs hover:border-primary/50 transition-colors"
+      {/* SECTION A: FOCUSED MINIMAL ACTIVE SOCIETY PROFILE */}
+      <section id="society-focus-container" className="bg-white dark:bg-[#121214] py-8 sm:py-12 transition-colors">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12">
+          
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={activeSociety.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-8"
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-foreground/10 pb-4 mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-primary/10 border border-primary/20 rounded-sm flex items-center justify-center text-primary shrink-0">
-                    {soc.id === "ieee" && <Cpu className="w-6 h-6" />}
-                    {soc.id === "iste" && <GraduationCap className="w-6 h-6" />}
-                    {soc.id === "csi" && <Terminal className="w-6 h-6" />}
-                    {soc.id === "sae" && <Wrench className="w-6 h-6" />}
+              {/* Society Identity Header */}
+              <div className="border-b border-border/60 pb-6">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold font-oswald uppercase text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                      {activeSociety.category}
+                    </span>
+                    <span className="text-xs font-mono font-bold text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs">
+                      {activeSociety.code}
+                    </span>
+                    <span className="text-xs font-bold font-oswald text-muted-foreground uppercase">
+                      {activeSociety.membersCount}
+                    </span>
                   </div>
+                  <span className="text-xs font-mono font-bold text-muted-foreground">
+                    Chapter {String(activeIndex + 1).padStart(2, "0")} of 04
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3 mt-1">
+                  <div className="w-10 h-10 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                    {activeSociety.id === "csi" && <Terminal className="w-5 h-5" />}
+                    {activeSociety.id === "iete" && <Cpu className="w-5 h-5" />}
+                    {activeSociety.id === "sae" && <Wrench className="w-5 h-5" />}
+                    {activeSociety.id === "ishrae" && <Building2 className="w-5 h-5" />}
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black font-oswald uppercase tracking-tight text-foreground">
+                    {activeSociety.name}
+                  </h2>
+                </div>
+
+                <p className="text-sm sm:text-base font-bold font-oswald text-primary uppercase tracking-wide mt-2">
+                  "{activeSociety.tagline}"
+                </p>
+              </div>
+
+              {/* Clean 2-Column Minimal Editorial Breakdown */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-2">
+                
+                {/* Left Column: About & Core Objectives & Flagship Events */}
+                <div className="lg:col-span-7 space-y-6">
                   <div>
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-2xl font-black font-oswald uppercase text-foreground">
-                        {soc.name}
-                      </h3>
-                      <span className="text-xs font-bold font-oswald text-primary bg-primary/10 px-2 py-0.5 rounded-xs">
-                        {soc.code}
-                      </span>
+                    <h3 className="text-xs font-bold font-oswald uppercase tracking-wider text-primary mb-2 flex items-center gap-1.5">
+                      <Activity className="w-3.5 h-3.5" />
+                      About The Professional Chapter
+                    </h3>
+                    <p className="text-sm sm:text-base font-sans text-muted-foreground leading-relaxed">
+                      {activeSociety.description}
+                    </p>
+                  </div>
+
+                  {/* Mobile-Only Compact Showcase Image (renders cleanly right after About on mobile) */}
+                  {activeSociety.image && (
+                    <div className="block lg:hidden">
+                      <div className="relative aspect-[16/10] max-h-[220px] w-full rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border/80 bg-muted shadow-xs">
+                        <img
+                          key={`mobile-${activeSociety.id}`}
+                          src={activeSociety.image}
+                          alt={`${activeSociety.name} showcase`}
+                          className="w-full h-full object-cover block"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+                          }}
+                        />
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-3 pointer-events-none select-none">
+                          <span className="text-[11px] font-bold font-oswald uppercase tracking-wider text-white block">
+                            {activeSociety.shortName} · Professional Chapter
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-xs font-sans text-muted-foreground mt-0.5">{soc.studentChairs}</p>
+                  )}
+
+                  {/* Core Objectives List */}
+                  {activeSociety.objectives && activeSociety.objectives.length > 0 && (
+                    <div className="pt-2">
+                      <h3 className="text-sm font-black font-oswald uppercase tracking-wide text-foreground mb-3 flex items-center gap-1.5">
+                        <Target className="w-4 h-4 text-primary" />
+                        Strategic Mandate &amp; Objectives
+                      </h3>
+                      <div className="divide-y divide-border/60 border-y border-border/60">
+                        {activeSociety.objectives.map((obj, i) => (
+                          <div key={i} className="py-2.5 flex items-start gap-3">
+                            <span className="text-xs font-black font-oswald text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs shrink-0 mt-0.5">
+                              {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed">
+                              {obj}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Flagship Events & Annual Conventions */}
+                  <div className="pt-2">
+                    <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2.5 flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-primary" />
+                      Flagship Conventions &amp; Competitions
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {activeSociety.flagshipEvents.map((evt, i) => (
+                        <div key={i} className="p-2.5 border border-border/60 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs font-sans font-semibold text-foreground/90 bg-muted/30 flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-xs bg-primary shrink-0" />
+                          <span>{evt}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <p className="text-sm font-sans text-foreground/90 leading-relaxed mb-6">
-                {soc.description}
-              </p>
+                {/* Right Column: Desktop Compact Stock Image + Benefits + Leadership */}
+                <div className="lg:col-span-5 space-y-6 lg:pl-8 lg:border-l lg:border-border/60">
+                  
+                  {/* Desktop Perfectly Proportioned Compact Stock Image */}
+                  {activeSociety.image && (
+                    <div className="hidden lg:block">
+                      <div className="relative aspect-[16/10] max-h-[240px] w-full rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border/80 bg-muted shadow-xs">
+                        <img
+                          key={`desktop-${activeSociety.id}`}
+                          src={activeSociety.image}
+                          alt={`${activeSociety.name} showcase`}
+                          className="w-full h-full object-cover block"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+                          }}
+                        />
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-3 pointer-events-none select-none">
+                          <span className="text-[11px] font-bold font-oswald uppercase tracking-wider text-white block">
+                            {activeSociety.name} · MSAJCE
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                <div className="bg-background/80 p-4 border border-foreground/10 rounded-sm">
-                  <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                    <BookOpen className="w-3.5 h-3.5" />
-                    Core Objectives:
-                  </h4>
-                  <ul className="space-y-2">
-                    {soc.objectives.map((obj, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-xs font-sans text-foreground/80">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                        <span>{obj}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Student Membership Benefits List */}
+                  <div>
+                    <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                      <Award className="w-3.5 h-3.5" />
+                      Student Membership Privileges &amp; Benefits
+                    </h4>
+                    <div className="space-y-2">
+                      {activeSociety.membershipBenefits.map((ben, i) => (
+                        <div key={i} className="flex items-start gap-2.5 text-xs font-sans text-muted-foreground">
+                          <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                          <span className="leading-relaxed">{ben}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Chapter Faculty Advisors & Student Chairs */}
+                  <div className="pt-4 border-t border-border/60">
+                    <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2 flex items-center gap-1.5">
+                      <Users className="w-3.5 h-3.5 text-primary" />
+                      Faculty Advisory &amp; Student Executive
+                    </h4>
+                    <div className="p-3 border-l-2 border-primary bg-primary/5 rounded-r-xs">
+                      <p className="text-xs font-sans text-foreground/90 font-medium leading-relaxed">
+                        {activeSociety.studentChairs}
+                      </p>
+                    </div>
+                  </div>
+
                 </div>
 
-                <div className="bg-background/80 p-4 border border-foreground/10 rounded-sm">
-                  <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                    <Award className="w-3.5 h-3.5" />
-                    Membership &amp; Student Benefits:
-                  </h4>
-                  <ul className="space-y-2">
-                    {soc.membershipBenefits.map((ben, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-xs font-sans text-foreground/80">
-                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                        <span>{ben}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
-            </div>
-          ))}
-        </div>
 
-        {/* Navigation Banner */}
-        <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-6 rounded-sm flex items-center justify-between gap-4">
-          <div>
-            <h4 className="text-lg font-black font-oswald uppercase text-foreground">Explore Our TEDx Chapter</h4>
-            <p className="text-xs text-muted-foreground font-sans">TEDxMSAJCE talks, featured speakers, and license details.</p>
-          </div>
-          <button
-            type="button"
-            onClick={() => navigate({ to: "/student-life/tedx" })}
-            className="relative group overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-stone-200 dark:bg-neutral-800 text-foreground dark:text-white border border-stone-300 dark:border-neutral-700 px-5 py-2.5 font-bold font-oswald text-xs uppercase tracking-wider shrink-0 cursor-pointer"
-          >
-            <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
-              TEDx Chapter <ArrowRight className="w-3.5 h-3.5" />
-            </span>
-            <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-              <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-            </span>
-          </button>
+              {/* Sequential Society Navigation Controls */}
+              <div className="pt-6 border-t border-border/60 flex flex-wrap items-center justify-between gap-4">
+                <button
+                  type="button"
+                  onClick={() => handleSelectSociety(prevSociety.id)}
+                  className="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-bold font-oswald uppercase tracking-wider text-foreground hover:text-primary border border-border hover:border-primary/50 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs transition-colors cursor-pointer"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  <span>Previous: {prevSociety.shortName}</span>
+                </button>
+
+                <div className="flex items-center gap-1.5">
+                  {professionalSocieties.map((s) => (
+                    <button
+                      key={s.id}
+                      type="button"
+                      onClick={() => handleSelectSociety(s.id)}
+                      title={s.name}
+                      className={`h-2 transition-all rounded-xs cursor-pointer ${
+                        s.id === activeSociety.id
+                          ? "w-8 bg-primary"
+                          : "w-2 bg-muted hover:bg-foreground/30"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => handleSelectSociety(nextSociety.id)}
+                  className="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-bold font-oswald uppercase tracking-wider text-foreground hover:text-primary border border-border hover:border-primary/50 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs transition-colors cursor-pointer"
+                >
+                  <span>Next: {nextSociety.shortName}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+            </motion.div>
+          </AnimatePresence>
+
         </div>
+      </section>
+
+      {/* ORGANIC WAVE DIVIDER A -> B */}
+      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-[#F3F3F2] dark:fill-[#18181B]"
+          />
+        </svg>
       </div>
+
+      {/* SECTION B: SCANNABLE ALL 4 CHAPTERS DIRECTORY */}
+      <section className="bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14 px-4 sm:px-6 md:px-12 transition-colors">
+        <div className="max-w-[1440px] mx-auto space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border/60 pb-4">
+            <div>
+              <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary">
+                At A Glance Directory
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground mt-0.5">
+                All 4 Professional Societies
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm font-sans text-muted-foreground max-w-md">
+              Click any professional chapter below to directly review its technical mandate, leadership, and student privileges.
+            </p>
+          </div>
+
+          {/* Clean Editorial Table / Open Directory List (Strictly NO Cards) */}
+          <div className="divide-y divide-border/60 border-y border-border/60 bg-transparent">
+            {professionalSocieties.map((soc, idx) => {
+              const isActive = soc.id === activeSociety.id;
+              return (
+                <div
+                  key={soc.id}
+                  onClick={() => handleSelectSociety(soc.id)}
+                  className={`py-3.5 sm:py-4 px-2 sm:px-4 flex flex-col md:flex-row md:items-center justify-between gap-3 transition-colors cursor-pointer ${
+                    isActive
+                      ? "bg-primary/5 dark:bg-primary/10 border-l-4 border-primary pl-3"
+                      : "hover:bg-foreground/[0.02]"
+                  }`}
+                >
+                  <div className="flex items-start sm:items-center gap-3">
+                    <span className="text-xs font-mono font-bold text-muted-foreground w-6 shrink-0 mt-0.5 sm:mt-0">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-base sm:text-lg font-black font-oswald uppercase text-foreground hover:text-primary transition-colors">
+                          {soc.name}
+                        </span>
+                        {isActive && (
+                          <span className="text-[10px] font-bold font-oswald uppercase bg-primary text-white px-2 py-0.5 rounded-xs">
+                            Active
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs font-sans text-muted-foreground line-clamp-1 mt-0.5">
+                        {soc.tagline}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between md:justify-end gap-4 shrink-0 pl-9 md:pl-0">
+                    <span className="text-[11px] font-mono font-bold text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs">
+                      {soc.code}
+                    </span>
+                    <span className="text-[11px] font-bold font-oswald uppercase text-primary px-2.5 py-0.5 bg-primary/10 border border-primary/20 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                      {soc.category}
+                    </span>
+                    <span className="text-xs font-bold font-oswald uppercase text-primary flex items-center gap-1">
+                      {isActive ? "Viewing" : "Explore"} <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ORGANIC WAVE DIVIDER B -> A */}
+      <div className="w-full overflow-hidden leading-none select-none bg-[#F3F3F2] dark:bg-[#18181B]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-white dark:fill-[#121214]"
+          />
+        </svg>
+      </div>
+
+      {/* SECTION A: PROFESSIONAL CERTIFICATIONS & TEDx GATEWAY */}
+      <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 px-4 sm:px-6 md:px-12 transition-colors">
+        <div className="max-w-[1440px] mx-auto space-y-10">
+          
+          <div>
+            <div className="border-b border-border/60 pb-3 mb-6">
+              <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary">
+                Career Catalysts &amp; Industry Standards
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground mt-0.5">
+                Technical Chapters Impact
+              </h2>
+            </div>
+
+            {/* 3 Major Impact Editorial Columns (No heavy card boxes) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-border/60">
+              
+              <div className="pt-4 md:pt-0 md:pr-6 space-y-2">
+                <span className="text-xs font-black font-oswald uppercase text-primary">
+                  National Competitions
+                </span>
+                <h3 className="text-xl font-black font-oswald uppercase text-foreground">
+                  BAJA, SUPRA &amp; aQuest
+                </h3>
+                <p className="text-xs sm:text-sm font-sans text-muted-foreground leading-relaxed">
+                  MSAJCE student teams consistently represent Tamil Nadu at premier national championships, engineering formula student cars, all-terrain buggies, and smart HVAC architectures.
+                </p>
+              </div>
+
+              <div className="pt-4 md:pt-0 md:px-6 space-y-2">
+                <span className="text-xs font-black font-oswald uppercase text-primary">
+                  Core Industrial Hiring
+                </span>
+                <h3 className="text-xl font-black font-oswald uppercase text-foreground">
+                  Corporate Fast-Tracks
+                </h3>
+                <p className="text-xs sm:text-sm font-sans text-muted-foreground leading-relaxed">
+                  Direct networking with technical leaders from Tata Motors, Mahindra, Blue Star, Daikin, TCS, and Zoho through chapter-exclusive conclaves and recruitment drives.
+                </p>
+              </div>
+
+              <div className="pt-4 md:pt-0 md:pl-6 space-y-2">
+                <span className="text-xs font-black font-oswald uppercase text-primary">
+                  Research &amp; Publications
+                </span>
+                <h3 className="text-xl font-black font-oswald uppercase text-foreground">
+                  Peer-Reviewed Journals
+                </h3>
+                <p className="text-xs sm:text-sm font-sans text-muted-foreground leading-relaxed">
+                  Undergraduate students receive faculty mentorship to author and publish technical research papers in CSI Communications and IETE Journals.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Gateway Banner to TEDx */}
+          <div className="border border-border/60 p-6 sm:p-8 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-muted/20">
+            <div>
+              <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary">
+                Ideas Worth Spreading
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-foreground mt-0.5">
+                Explore TEDxMSAJCE
+              </h3>
+              <p className="text-xs sm:text-sm text-muted-foreground font-sans mt-1">
+                Official independently licensed TED conference hosting global visionaries and innovators.
+              </p>
+            </div>
+            
+            <button
+              type="button"
+              onClick={() => navigate({ to: "/student-life/tedx" })}
+              className="relative group overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-stone-200 dark:bg-neutral-800 text-foreground dark:text-white border border-stone-300 dark:border-neutral-700 px-5 py-2.5 font-bold font-oswald text-xs uppercase tracking-wider shrink-0 cursor-pointer"
+            >
+              <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
+                TEDx Chapter <ArrowRight className="w-3.5 h-3.5" />
+              </span>
+              <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+              </span>
+            </button>
+          </div>
+
+        </div>
+      </section>
     </main>
   );
 }

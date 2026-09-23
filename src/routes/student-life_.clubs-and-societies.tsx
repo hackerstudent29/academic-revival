@@ -773,7 +773,7 @@ function ClubsAndSocietiesPage() {
                 Explore Professional Societies
               </h3>
               <p className="text-xs sm:text-sm text-muted-foreground font-sans mt-1">
-                IEEE, ISTE, CSI, and SAE India international student branches at MSAJCE.
+                CSI, IETE, SAE, and ISHRAE professional student chapters at MSAJCE.
               </p>
             </div>
             

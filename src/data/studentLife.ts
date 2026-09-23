@@ -46,13 +46,18 @@ export interface StudentClub {
 export interface ProfessionalSociety {
   id: string;
   name: string;
+  shortName: string;
   code: string;
+  category: string;
+  tagline: string;
   description: string;
   objectives: string[];
   membershipBenefits: string[];
   flagshipEvents: string[];
   logoOrIcon: string;
   studentChairs: string;
+  image: string;
+  membersCount: string;
 }
 
 export interface TEDxSpeaker {
@@ -71,7 +76,7 @@ export const studentLifeOverview = {
   description: "At Mohamed Sathak A.J. College of Engineering, life beyond the classroom is vibrant, inclusive, and transformative. From state-of-the-art recreation hubs and student-led clubs to prestigious international professional society chapters and our official TEDx chapter, we foster a rich ecosystem for holistic development.",
   stats: [
     { label: "Active Student Clubs", value: "8 Flagship Clubs" },
-    { label: "Professional Chapters", value: "8" },
+    { label: "Professional Chapters", value: "4 Chapters" },
     { label: "Annual Campus Events", value: "50+" },
     { label: "TEDx Talks Delivered", value: "18+" },
   ],
@@ -438,85 +443,136 @@ export const studentClubs: StudentClub[] = [
 
 export const professionalSocieties: ProfessionalSociety[] = [
   {
-    id: "ieee",
-    name: "IEEE Student Branch",
-    code: "STB99214",
-    description: "The world's largest technical professional organization dedicated to advancing technology for humanity. Our active IEEE Student Branch hosts technical symposiums, research paper contests, and IEEE Xplore access training.",
-    objectives: [
-      "Promote research culture and IEEE paper publications among students",
-      "Host IEEE Women in Engineering (WIE) empowerment seminars",
-      "Conduct international webinars with global IEEE Senior Members",
-      "Provide student travel grants for international IEEE conferences"
-    ],
-    membershipBenefits: [
-      "Free subscription to IEEE Spectrum magazine & digital library access",
-      "Discounts on IEEE conference registrations worldwide",
-      "Networking with top global engineers and industrial mentors",
-      "Eligibility for IEEE student scholarships and awards"
-    ],
-    flagshipEvents: ["IEEE TechSummit", "WIE Leadership Conclave", "Project Expo"],
-    logoOrIcon: "Cpu",
-    studentChairs: "Branch Counselor: Dr. M. K. Subashini | Student Chair: R. Karthik (ECE)"
-  },
-  {
-    id: "iste",
-    name: "ISTE Student Chapter",
-    code: "TN-142",
-    description: "Indian Society for Technical Education chapter focused on bridging academia and industry through skill development courses, guest lectures by eminent scientists, and faculty-student joint workshops.",
-    objectives: [
-      "Enhance pedagogical and practical engineering skills",
-      "Organize nationwide technical paper presentations",
-      "Bridge gaps between curriculum and current industrial demand",
-      "Recognize academic excellence through annual ISTE awards"
-    ],
-    membershipBenefits: [
-      "Official ISTE membership ID recognized across Indian engineering colleges",
-      "Priority registration in value-added skill certification programs",
-      "Access to ISTE Journal of Technical Education"
-    ],
-    flagshipEvents: ["National Technical Convention", "State-Level Paper Contest", "SkillFest"],
-    logoOrIcon: "GraduationCap",
-    studentChairs: "Faculty Advisor: Prof. A. R. Rahman | Student Secretary: S. Priya (CSE)"
-  },
-  {
     id: "csi",
     name: "Computer Society of India (CSI)",
+    shortName: "CSI",
     code: "CSI-MSAJCE",
-    description: "The premier association of IT professionals in India. CSI MSAJCE chapter empowers computer science and IT students through coding bootcamps, cybersecurity drills, and software architecture workshops.",
+    category: "Computer Science & IT",
+    tagline: "Advancing Software Engineering, Cloud Architecture & Competitive Coding",
+    description: "The Computer Society of India (CSI) is the premier and largest organization of IT professionals in India. The CSI Student Chapter at MSAJCE empowers students across Computer Science, Information Technology, AI & Data Science, and Cyber Security with intensive exposure to enterprise software engineering, cloud architecture, open-source initiatives, and cybersecurity operations.",
     objectives: [
-      "Train students on emerging paradigms: Cloud, AI, Blockchain, and DevOps",
-      "Organize regional hackathons and competitive programming challenges",
-      "Facilitate industry interactions with top IT company leaders",
-      "Guide students in publishing technical articles in CSI Communications"
+      "Cultivate technical mastery in Full-Stack Development, Cloud Computing (AWS/GCP), AI/ML, and DevOps.",
+      "Organize campus-wide 24-hour hackathons, algorithmic code sprints, and software design challenges.",
+      "Host masterclasses and mentorship sessions by chief software architects and tech industry leaders.",
+      "Guide student research teams in publishing peer-reviewed technical articles in CSI Communications.",
+      "Bridge the gap between academic engineering curricula and modern tech industry practices."
     ],
     membershipBenefits: [
-      "CSI Student Membership certification",
-      "Free access to CSI digital knowledge repository",
-      "Direct entry into CSI National Student Convention competitions"
+      "Official CSI National Student Membership certification and recognized professional credentials.",
+      "Direct eligibility for national CSI Student Convention competitions, awards, and project expos.",
+      "Free subscription to CSI Communications magazine and access to digital technical repositories.",
+      "Priority registration for value-added industry certification workshops and coding bootcamps.",
+      "Networking with national chapter delegates, technical alumni, and premier software recruiters."
     ],
-    flagshipEvents: ["CSI HackVerse", "CyberSecurity Workshop", "CodeSprint"],
+    flagshipEvents: [
+      "CSI HackVerse (24-Hour National Hackathon)",
+      "CyberDefense Conclave & CTF Security Sprint",
+      "CodeSprint Algorithmic Programming Contest",
+      "Cloud & DevOps Hands-On Bootcamp"
+    ],
     logoOrIcon: "Terminal",
-    studentChairs: "Faculty Coordinator: Dr. S. N. Mohamed | Student Lead: A. Firoz (IT)"
+    studentChairs: "Faculty Coordinator: Dr. S. N. Mohamed (CSE) | Student Lead: A. Firoz (IT)",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=900&q=80",
+    membersCount: "280+ Members"
+  },
+  {
+    id: "iete",
+    name: "Institution of Electronics and Telecommunication Engineers (IETE)",
+    shortName: "IETE",
+    code: "IETE-ISF-MSAJCE",
+    category: "Electronics & Telecommunications",
+    tagline: "Engineering Modern Telecommunications, IoT Architectures & Embedded VLSI Systems",
+    description: "The Institution of Electronics and Telecommunication Engineers (IETE) is the leading national professional society devoted to the advancement of science and technology in Electronics, Telecommunications, Computers, and IT. The IETE Student Forum (ISF) at MSAJCE provides ECE, EEE, and VLSI engineering students with rigorous training in RF design, embedded systems, microcontrollers, signal processing, and IoT hardware prototyping.",
+    objectives: [
+      "Promote applied engineering expertise in VLSI design, semiconductor devices, and digital signal processing.",
+      "Conduct hands-on PCB design, etching, circuit soldering, and sensor-interface workshops.",
+      "Facilitate industrial visits to telecom switching centers, satellite ground stations, and semiconductor labs.",
+      "Encourage high-impact student research papers submitted to IETE Technical Review and IETE Journal of Research.",
+      "Mentor students in developing smart embedded IoT hardware for healthcare, agriculture, and defense."
+    ],
+    membershipBenefits: [
+      "Prestigious IETE Student Forum (ISF) membership credentials recognized nationwide.",
+      "Free access to IETE national technical libraries, e-journals, and monthly expert webinars.",
+      "Subsidized registration for IETE national conventions, conferences, and student symposiums.",
+      "Direct eligibility for annual IETE student innovation project awards and technical grants.",
+      "Core electronics and semiconductor placement assistance and industrial internship referrals."
+    ],
+    flagshipEvents: [
+      "ElectroWaves National ECE Technical Symposium",
+      "Embedded Systems & IoT Hardware Hackathon",
+      "Hands-on PCB Design & Soldering Workshop",
+      "RF Engineering & 5G Telecommunications Colloquium"
+    ],
+    logoOrIcon: "Cpu",
+    studentChairs: "Branch Counselor: Dr. M. K. Subashini (ECE) | Student Chair: R. Karthik (ECE)",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
+    membersCount: "220+ Members"
   },
   {
     id: "sae",
-    name: "SAE India Collegiate Club",
-    code: "SAE-AUTO",
-    description: "Society of Automotive Engineers student chapter providing hands-on experience in vehicle design, powertrain engineering, electric mobility, and fabricating vehicles for BAJA SAE and Supra SAE competitions.",
+    name: "Society of Automotive Engineers (SAE India)",
+    shortName: "SAE",
+    code: "SAE-COLLEGIATE-MSAJCE",
+    category: "Automotive & Mobility Engineering",
+    tagline: "Innovating All-Terrain Vehicles, Formula Racing & Clean Electric Mobility",
+    description: "The SAE India Collegiate Club at MSAJCE is the premier student chapter dedicated to vehicle dynamics, powertrain engineering, lightweight chassis fabrication, and electric mobility. Members design, simulate, and fabricate competition vehicles from scratch, representing MSAJCE in prestigious national motorsport championships including BAJA SAE India and SUPRA Formula Student racing.",
     objectives: [
-      "Design, analyze, and build All-Terrain Vehicles (ATV) and Electric Go-Karts",
-      "Train in 3D CAD modeling (SolidWorks/CATIA) and Altair FEA simulations",
-      "Participate in national automotive mobility challenges",
-      "Expose students to modern EV powertrain technology"
+      "Design, analyze, and build high-performance All-Terrain Vehicles (ATV) and Electric Go-Karts.",
+      "Train students in industry-standard CAD/CAM/CAE tools (SolidWorks, CATIA, ANSYS, and Altair HyperMesh).",
+      "Provide hands-on welding, CNC machining, suspension tuning, and vehicle testing in campus workshops.",
+      "Pioneer electric vehicle (EV) battery pack engineering, regenerative braking, and motor controllers.",
+      "Instill rigorous motorsport safety standards, team leadership, and dynamic track test methodologies."
     ],
     membershipBenefits: [
-      "Hands-on vehicle fabrication experience in campus mechanical workshop",
-      "SAE India membership card & entry to BAJA/SUPRA competitions",
-      "Automotive industry recruitment drives & internship referrals"
+      "Official SAE India Student Membership card providing nationwide mobility network access.",
+      "Direct entry eligibility for BAJA SAE India, SUPRA SAE, and Efficycle national championships.",
+      "Hands-on fabrication experience in the dedicated campus Automobile & Mechanical Technology Center.",
+      "Preferential recruitment drives and internship referrals with premier automotive OEMs and tier-1 suppliers.",
+      "Discounted access to SAE International engineering standards, technical papers, and digital libraries."
     ],
-    flagshipEvents: ["e-BAJA ATV Launch", "Go-Kart Racing Challenge", "Automotive CAD Clash"],
+    flagshipEvents: [
+      "BAJA SAE All-Terrain Vehicle Unveiling & Track Trials",
+      "Annual Inter-College Go-Kart Championship",
+      "Automotive 3D CAD Modeling & Crash Simulation Clash",
+      "EV Powertrain & Battery Management Systems Workshop"
+    ],
     logoOrIcon: "Wrench",
-    studentChairs: "Faculty Advisor: Dr. K. Ramesh (Mech) | Captain: M. Imran (Mech)"
+    studentChairs: "Faculty Advisor: Dr. K. Ramesh (Mech) | Team Captain: M. Imran (Mech)",
+    image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=900&q=80",
+    membersCount: "250+ Members"
+  },
+  {
+    id: "ishrae",
+    name: "Indian Society of Heating, Refrigerating and Air Conditioning Engineers (ISHRAE)",
+    shortName: "ISHRAE",
+    code: "ISHRAE-MSAJCE",
+    category: "Thermal, HVAC&R & Green Buildings",
+    tagline: "Advancing HVAC&R Engineering, Energy Conservation & Sustainable Thermal Comfort",
+    description: "The Indian Society of Heating, Refrigerating and Air Conditioning Engineers (ISHRAE) is the premier national organization devoted to advancing the arts and sciences of heating, ventilation, air conditioning, and refrigeration. The ISHRAE Student Chapter at MSAJCE equips mechanical, electrical, and civil engineering students with technical expertise in green building design, clean refrigerants, energy auditing, smart cold-chain systems, and decarbonization technologies.",
+    objectives: [
+      "Educate students on advanced HVAC&R design, thermal load calculations, and energy modeling software.",
+      "Conduct technical visits to central chiller plants, refrigerated warehouses, and LEED-certified green buildings.",
+      "Prepare students for national competitions including the prestigious aQuest Technical Quiz and ACREX India.",
+      "Host masterclasses on eco-friendly refrigerants, indoor air quality (IAQ), and commercial heat pump systems.",
+      "Collaborate with industry partners on energy conservation audits and sustainable thermal building solutions."
+    ],
+    membershipBenefits: [
+      "ISHRAE student membership credentials recognized across the global HVAC&R and MEP engineering sector.",
+      "Direct participation in the national aQuest quiz, student design competitions, and ACREX India expos.",
+      "Free access to ISHRAE standards, technical handbooks, and the Air Conditioning and Refrigeration Journal.",
+      "Dedicated campus recruitment and career job fairs by HVAC conglomerates (Blue Star, Voltas, Daikin, Carrier, Johnson Controls).",
+      "Eligibility for ISHRAE national student research project grants and academic scholarships."
+    ],
+    flagshipEvents: [
+      "ACREX Student Delegation & Industry Conclave",
+      "National aQuest HVAC&R Technical Quiz Championship",
+      "Green Building Thermal Modeling & IAQ Workshop",
+      "Refrigeration & Cold Chain Technology Seminar"
+    ],
+    logoOrIcon: "ShieldCheck",
+    studentChairs: "Faculty Coordinator: Prof. N. Senthil Kumar (Mech) | Student Chair: K. Vignesh (Mech)",
+    image: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=900&q=80",
+    membersCount: "190+ Members"
   }
 ];
 
