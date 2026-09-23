@@ -85,6 +85,23 @@ export interface IeteActivity {
   participants: string;
 }
 
+export interface SaeOfficeBearer {
+  sno: number;
+  position: string;
+  name: string;
+  roleCategory: "Faculty Incharge" | "Student Bearer";
+  department: string;
+}
+
+export interface SaeActivity {
+  sno: number;
+  typeOfEvent: string;
+  eventTitle: string;
+  date: string;
+  reportUrl?: string;
+  academicYear?: string;
+}
+
 export interface ProfessionalSociety {
   id: string;
   name: string;
@@ -105,6 +122,10 @@ export interface ProfessionalSociety {
   ieteCounselors?: IeteCounselor[];
   ieteActivities?: IeteActivity[];
   ietePublications?: string[];
+  saeMilestones?: string[];
+  saeCompetitions?: string[];
+  saeOfficeBearers?: SaeOfficeBearer[];
+  saeActivities?: SaeActivity[];
   objectives: string[];
   membershipBenefits: string[];
   flagshipEvents: string[];
@@ -749,34 +770,122 @@ export const professionalSocieties: ProfessionalSociety[] = [
     id: "sae",
     name: "Society of Automotive Engineers (SAE India)",
     shortName: "SAE",
-    code: "SAE-COLLEGIATE-MSAJCE",
+    code: "SAE-INDIA-MSAJCE",
     category: "Automotive & Mobility Engineering",
-    tagline: "Innovating All-Terrain Vehicles, Formula Racing & Clean Electric Mobility",
-    description: "The SAE India Collegiate Club at MSAJCE is the premier student chapter dedicated to vehicle dynamics, powertrain engineering, lightweight chassis fabrication, and electric mobility. Members design, simulate, and fabricate competition vehicles from scratch, representing MSAJCE in prestigious national motorsport championships including BAJA SAE India and SUPRA Formula Student racing.",
+    tagline: "SAEINDIA Collegiate Club · Inaugurated 21.02.2020",
+    establishedDate: "21.02.2020",
+    region: "Southern Section (Covering Northern, Eastern, Southern & Western Sections nationwide)",
+    description: "Society of Automotive Engineers (SAE) is a U.S.-based, globally active professional association and standards developing organization for engineering professionals in various industries. Principal emphasis is placed on global transport industries such as aerospace, automotive, and commercial vehicles. Accordingly, the name SAE was established to reflect the broader emphasis on mobility. SAEINDIA is India's leading resource for mobility technology. As an individual member driven society of mobility practitioners the ownership of SAEINDIA wrests with its members who are Individuals from the mobility community, which includes Engineers Executives from Industry, Government Officials, Academics and Students. It is an affiliate society of SAE International registered in India as an Indian nonprofit engineering and scientific society dedicated to the advancement of mobility industry in India. Student clubs of SAE from various academic institution, make sure that they establish a link between the industry and the students. SAE India with its four sections (Northern, Eastern, Southern and Western) covering entire India, organizes various events for the benefit of the engineering student community.",
+    saeMilestones: [
+      "Inaugurated the SAE-INDIA collegiate club associated with MSAJCE dated on 21.02.2020",
+      "Conducted the SAE-INDIA Southern section TIER-II event dated on 21.02.2020"
+    ],
+    saeCompetitions: [
+      "TRACTOR DESIGN COMPETITION",
+      "BAJA SAE INDIA",
+      "SUPRA SAEINDIA",
+      "AERO DESIGN CHALLENGE",
+      "SAE INDIA STUDENT CONVENTION",
+      "SAE INDIA BICYCLE DESIGN COMPETITION",
+      "SAE INDIA ASOP",
+      "ELECTRIC TWO WHEELER DESIGN COMPETITION",
+      "SAE INDIA TIFAN (TECHNOLOGY INNOVATION FORUM FOR AGRICULTURAL NURTURING)",
+      "SAE INDIA EFFICYCLE"
+    ],
+    saeOfficeBearers: [
+      {
+        sno: 1,
+        position: "Faculty Incharge",
+        name: "Mr. S. Deepakkumar",
+        roleCategory: "Faculty Incharge",
+        department: "Department of Mechanical Engineering"
+      },
+      {
+        sno: 2,
+        position: "Faculty Incharge",
+        name: "Mr. R. Prabu",
+        roleCategory: "Faculty Incharge",
+        department: "Department of Mechanical Engineering"
+      },
+      {
+        sno: 3,
+        position: "President",
+        name: "Syed. N. Zaheer Abbas",
+        roleCategory: "Student Bearer",
+        department: "Department of Mechanical Engineering"
+      },
+      {
+        sno: 4,
+        position: "Vice President",
+        name: "Chandrasekar. G",
+        roleCategory: "Student Bearer",
+        department: "Department of Mechanical Engineering"
+      },
+      {
+        sno: 5,
+        position: "Secretary",
+        name: "Muhammed Zahan Faaieq J",
+        roleCategory: "Student Bearer",
+        department: "Department of Mechanical Engineering"
+      },
+      {
+        sno: 6,
+        position: "Joint Secretary",
+        name: "Shahila P",
+        roleCategory: "Student Bearer",
+        department: "Department of Mechanical Engineering"
+      },
+      {
+        sno: 7,
+        position: "Treasurer",
+        name: "Abdullah B",
+        roleCategory: "Student Bearer",
+        department: "Department of Mechanical Engineering"
+      }
+    ],
+    saeActivities: [
+      {
+        sno: 1,
+        academicYear: "2019-2020",
+        typeOfEvent: "Collegiate Club",
+        eventTitle: "Inauguration of SAE Collegiate Club",
+        date: "21.02.2020",
+        reportUrl: "https://www.msajce-edu.in/images/Departments/Mech/21-02-2020-Collegiate-Club.pdf"
+      },
+      {
+        sno: 2,
+        academicYear: "2019-2020",
+        typeOfEvent: "Student Convention Tier - II Events",
+        eventTitle: "SAEISS - Student Convention Tier - II Event 2020",
+        date: "21.02.2020",
+        reportUrl: "https://www.msajce-edu.in/images/Departments/Mech/21-02-2020-SAE-Tier-II-Events.pdf"
+      }
+    ],
     objectives: [
-      "Design, analyze, and build high-performance All-Terrain Vehicles (ATV) and Electric Go-Karts.",
-      "Train students in industry-standard CAD/CAM/CAE tools (SolidWorks, CATIA, ANSYS, and Altair HyperMesh).",
-      "Provide hands-on welding, CNC machining, suspension tuning, and vehicle testing in campus workshops.",
-      "Pioneer electric vehicle (EV) battery pack engineering, regenerative braking, and motor controllers.",
-      "Instill rigorous motorsport safety standards, team leadership, and dynamic track test methodologies."
+      "Establish a robust link between automotive, aerospace, and commercial transport industries and engineering students.",
+      "Promote applied automotive systems knowledge through vehicle dynamics, powertrain engineering, and fabrication.",
+      "Facilitate active participation in national competitions like BAJA, SUPRA, TIFAN, and Electric Two Wheeler Challenges.",
+      "Nurture leadership, project management, and multidisciplinary engineering capabilities through collegiate club governance.",
+      "Provide access to global SAE mobility technical standards, design conventions, and professional network conclaves."
     ],
     membershipBenefits: [
-      "Official SAE India Student Membership card providing nationwide mobility network access.",
-      "Direct entry eligibility for BAJA SAE India, SUPRA SAE, and Efficycle national championships.",
-      "Hands-on fabrication experience in the dedicated campus Automobile & Mechanical Technology Center.",
-      "Preferential recruitment drives and internship referrals with premier automotive OEMs and tier-1 suppliers.",
-      "Discounted access to SAE International engineering standards, technical papers, and digital libraries."
+      "Official SAE India Student Membership credential conferring nationwide mobility engineering network access.",
+      "Direct eligibility to compete in prestigious national student events like BAJA SAEINDIA, SUPRA, and EFFICYCLE.",
+      "Subsidized access to SAE technical conferences, student conventions, and specialized industrial webinars.",
+      "Mentorship from automotive OEM industry executives, government mobility officials, and academic researchers.",
+      "Preferential recruitment drives and internship referrals across automotive, aerospace, and EV mobility sectors."
     ],
     flagshipEvents: [
-      "BAJA SAE All-Terrain Vehicle Unveiling & Track Trials",
-      "Annual Inter-College Go-Kart Championship",
-      "Automotive 3D CAD Modeling & Crash Simulation Clash",
-      "EV Powertrain & Battery Management Systems Workshop"
+      "BAJA SAE INDIA & SUPRA SAEINDIA",
+      "SAE India Student Convention (Tier-II Events)",
+      "Electric Two Wheeler Design Competition",
+      "TIFAN (Technology Innovation Forum for Agricultural Nurturing)",
+      "SAE India Efficycle & Tractor Design Challenge"
     ],
     logoOrIcon: "Wrench",
-    studentChairs: "Faculty Advisor: Dr. K. Ramesh (Mech) | Team Captain: M. Imran (Mech)",
+    studentChairs: "Faculty Incharge: Mr. S. Deepakkumar & Mr. R. Prabu | Student President: Syed. N. Zaheer Abbas",
     image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=900&q=80",
-    membersCount: "250+ Members"
+    membersCount: "Collegiate Chapter"
   },
   {
     id: "ishrae",

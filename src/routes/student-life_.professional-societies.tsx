@@ -267,6 +267,53 @@ function ProfessionalSocietiesPage() {
                     </div>
                   </div>
                 )}
+
+                {/* SAE Special Milestones & National Competitions Highlights */}
+                {activeSociety.id === "sae" && (
+                  <div className="mt-4 space-y-3">
+                    {/* College Milestones */}
+                    {activeSociety.saeMilestones && (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        {activeSociety.saeMilestones.map((milestone, idx) => (
+                          <div
+                            key={idx}
+                            className="p-3 border border-primary/20 bg-primary/5 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs flex items-start gap-2.5 text-xs font-sans text-foreground/90 font-medium"
+                          >
+                            <Trophy className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                            <span>{milestone}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Regional Section & Student Competitions */}
+                    {activeSociety.saeCompetitions && (
+                      <div className="p-4 border-l-2 border-primary bg-primary/[0.03] dark:bg-primary/[0.06] rounded-r-xs space-y-2">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-xs font-black font-oswald uppercase text-primary tracking-wider flex items-center gap-1.5">
+                            <Wrench className="w-3.5 h-3.5" />
+                            SAE India Student Events &amp; Design Competitions
+                          </span>
+                          {activeSociety.region && (
+                            <span className="text-xs font-sans text-muted-foreground">
+                              · {activeSociety.region}
+                            </span>
+                          )}
+                        </div>
+                        <div className="flex flex-wrap gap-1.5 pt-1">
+                          {activeSociety.saeCompetitions.map((comp, idx) => (
+                            <span
+                              key={idx}
+                              className="px-2.5 py-1 bg-background border border-border/80 text-[11px] font-oswald uppercase text-foreground font-semibold rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs"
+                            >
+                              {comp}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Clean 2-Column Minimal Editorial Breakdown */}
@@ -713,6 +760,145 @@ function ProfessionalSocietiesPage() {
                                   <span className="px-2.5 py-0.5 bg-primary/10 rounded-xs">
                                     {act.participants}
                                   </span>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                </div>
+              )}
+
+              {/* SPECIAL TABLES SECTION FOR SAE (Styled as in Innovation & Incubation Cell) */}
+              {activeSociety.id === "sae" && (
+                <div className="pt-8 space-y-10 border-t border-border/60">
+                  
+                  {/* Table 1: SAE Collegiate Club Office Bearers */}
+                  {activeSociety.saeOfficeBearers && activeSociety.saeOfficeBearers.length > 0 && (
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
+                          Collegiate Chapter Governance
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-foreground mt-0.5">
+                          SAE India - MSAJCE Collegiate Club Office Bearers
+                        </h3>
+                        <p className="text-xs sm:text-sm font-sans text-muted-foreground">
+                          Faculty in-charge advisors and elected student officers leading mobility projects, automotive symposiums, and national challenges.
+                        </p>
+                      </div>
+
+                      <div className="overflow-x-auto border border-border rounded-none">
+                        <table className="w-full text-sm text-left">
+                          <thead className="bg-primary/10 text-primary font-oswald uppercase text-xs">
+                            <tr>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold w-14 text-center">S.No</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap">Designation / Role</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Officer Name</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap">Role Category</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Department &amp; Institution</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border font-sans text-muted-foreground">
+                            {activeSociety.saeOfficeBearers.map((bearer) => (
+                              <tr key={bearer.sno} className="hover:bg-muted/50 transition-colors">
+                                <td className="px-4 sm:px-6 py-3.5 font-medium text-foreground text-center">
+                                  {String(bearer.sno).padStart(2, "0")}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-oswald uppercase text-primary whitespace-nowrap">
+                                  <span className="px-2.5 py-0.5 bg-primary/10 border border-primary/20 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs">
+                                    {bearer.position}
+                                  </span>
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-sans text-foreground">
+                                  {bearer.name}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-mono text-xs whitespace-nowrap">
+                                  <span
+                                    className={`px-2 py-0.5 rounded-xs font-semibold ${
+                                      bearer.roleCategory === "Faculty Incharge"
+                                        ? "bg-primary/15 text-primary border border-primary/20"
+                                        : "bg-muted text-foreground/80"
+                                    }`}
+                                  >
+                                    {bearer.roleCategory}
+                                  </span>
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 text-xs sm:text-sm">
+                                  {bearer.department}, MSAJCE
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Table 2: SAE Activities Conducted */}
+                  {activeSociety.saeActivities && activeSociety.saeActivities.length > 0 && (
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
+                          Academic Year 2019–2020
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-foreground mt-0.5">
+                          SAE Activities Conducted
+                        </h3>
+                        <p className="text-xs sm:text-sm font-sans text-muted-foreground">
+                          Inauguration of the collegiate chapter and hosting of the prestigious SAE-INDIA Southern Section TIER-II student convention.
+                        </p>
+                      </div>
+
+                      <div className="overflow-x-auto border border-border rounded-none">
+                        <table className="w-full text-sm text-left">
+                          <thead className="bg-primary/10 text-primary font-oswald uppercase text-xs">
+                            <tr>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold w-14 text-center">S.No</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap">Type Of Event</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Event Title</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold text-center whitespace-nowrap">Academic Year</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap">Date</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold text-right whitespace-nowrap">Official Report</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border font-sans text-muted-foreground">
+                            {activeSociety.saeActivities.map((act) => (
+                              <tr key={act.sno} className="hover:bg-muted/50 transition-colors">
+                                <td className="px-4 sm:px-6 py-3.5 font-medium text-foreground text-center">
+                                  {String(act.sno).padStart(2, "0")}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-oswald uppercase text-foreground whitespace-nowrap">
+                                  <span className="px-2 py-0.5 bg-muted rounded-xs text-xs font-sans font-semibold">
+                                    {act.typeOfEvent}
+                                  </span>
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-oswald uppercase text-foreground">
+                                  {act.eventTitle}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-mono text-xs text-muted-foreground text-center whitespace-nowrap">
+                                  {act.academicYear}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-mono text-xs text-muted-foreground whitespace-nowrap">
+                                  {act.date}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 text-right whitespace-nowrap">
+                                  {act.reportUrl ? (
+                                    <a
+                                      href={act.reportUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary text-white text-xs font-bold font-oswald uppercase rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors cursor-pointer"
+                                    >
+                                      <span>View</span>
+                                      <ExternalLink className="w-3 h-3" />
+                                    </a>
+                                  ) : (
+                                    <span className="text-xs text-muted-foreground italic">N/A</span>
+                                  )}
                                 </td>
                               </tr>
                             ))}
