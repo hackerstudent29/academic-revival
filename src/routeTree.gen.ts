@@ -18,6 +18,7 @@ import { Route as CampusLifeRouteImport } from './routes/campus-life'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreditsRouteImport } from './routes/credits'
 import { Route as CurriculumAndSyllabusRouteImport } from './routes/curriculum-and-syllabus'
+import { Route as HostelRouteImport } from './routes/hostel'
 import { Route as IncubationRouteImport } from './routes/incubation'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as NaacRouteImport } from './routes/naac'
@@ -26,7 +27,6 @@ import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offered'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as SocialMediaRouteImport } from './routes/social-media'
-import { Route as StudentHousingRouteImport } from './routes/student-housing'
 import { Route as AboutAccreditationsRouteImport } from './routes/about_.accreditations'
 import { Route as AboutGoverningCouncilRouteImport } from './routes/about_.governing-council'
 import { Route as AboutGroupInstitutionsRouteImport } from './routes/about_.group-institutions'
@@ -94,6 +94,11 @@ const CurriculumAndSyllabusRoute = CurriculumAndSyllabusRouteImport.update({
   path: '/curriculum-and-syllabus',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HostelRoute = HostelRouteImport.update({
+  id: '/hostel',
+  path: '/hostel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IncubationRoute = IncubationRouteImport.update({
   id: '/incubation',
   path: '/incubation',
@@ -132,11 +137,6 @@ const ResearchRoute = ResearchRouteImport.update({
 const SocialMediaRoute = SocialMediaRouteImport.update({
   id: '/social-media',
   path: '/social-media',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const StudentHousingRoute = StudentHousingRouteImport.update({
-  id: '/student-housing',
-  path: '/student-housing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutAccreditationsRoute = AboutAccreditationsRouteImport.update({
@@ -256,6 +256,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
+  '/hostel': typeof HostelRoute
   '/incubation': typeof IncubationRoute
   '/library': typeof LibraryRoute
   '/naac': typeof NaacRouteWithChildren
@@ -264,7 +265,6 @@ export interface FileRoutesByFullPath {
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
-  '/student-housing': typeof StudentHousingRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
   '/about/governing-council': typeof AboutGoverningCouncilRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -297,6 +297,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
+  '/hostel': typeof HostelRoute
   '/incubation': typeof IncubationRoute
   '/library': typeof LibraryRoute
   '/nirf': typeof NirfRoute
@@ -304,7 +305,6 @@ export interface FileRoutesByTo {
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
-  '/student-housing': typeof StudentHousingRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
   '/about/governing-council': typeof AboutGoverningCouncilRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -338,6 +338,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
+  '/hostel': typeof HostelRoute
   '/incubation': typeof IncubationRoute
   '/library': typeof LibraryRoute
   '/naac': typeof NaacRouteWithChildren
@@ -346,7 +347,6 @@ export interface FileRoutesById {
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
-  '/student-housing': typeof StudentHousingRoute
   '/about_/accreditations': typeof AboutAccreditationsRoute
   '/about_/governing-council': typeof AboutGoverningCouncilRoute
   '/about_/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -381,6 +381,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/credits'
     | '/curriculum-and-syllabus'
+    | '/hostel'
     | '/incubation'
     | '/library'
     | '/naac'
@@ -389,7 +390,6 @@ export interface FileRouteTypes {
     | '/programmes-offered'
     | '/research'
     | '/social-media'
-    | '/student-housing'
     | '/about/accreditations'
     | '/about/governing-council'
     | '/about/group-institutions'
@@ -422,6 +422,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/credits'
     | '/curriculum-and-syllabus'
+    | '/hostel'
     | '/incubation'
     | '/library'
     | '/nirf'
@@ -429,7 +430,6 @@ export interface FileRouteTypes {
     | '/programmes-offered'
     | '/research'
     | '/social-media'
-    | '/student-housing'
     | '/about/accreditations'
     | '/about/governing-council'
     | '/about/group-institutions'
@@ -462,6 +462,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/credits'
     | '/curriculum-and-syllabus'
+    | '/hostel'
     | '/incubation'
     | '/library'
     | '/naac'
@@ -470,7 +471,6 @@ export interface FileRouteTypes {
     | '/programmes-offered'
     | '/research'
     | '/social-media'
-    | '/student-housing'
     | '/about_/accreditations'
     | '/about_/governing-council'
     | '/about_/group-institutions'
@@ -504,6 +504,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CreditsRoute: typeof CreditsRoute
   CurriculumAndSyllabusRoute: typeof CurriculumAndSyllabusRoute
+  HostelRoute: typeof HostelRoute
   IncubationRoute: typeof IncubationRoute
   LibraryRoute: typeof LibraryRoute
   NaacRoute: typeof NaacRouteWithChildren
@@ -512,7 +513,6 @@ export interface RootRouteChildren {
   ProgrammesOfferedRoute: typeof ProgrammesOfferedRoute
   ResearchRoute: typeof ResearchRoute
   SocialMediaRoute: typeof SocialMediaRoute
-  StudentHousingRoute: typeof StudentHousingRoute
   AboutAccreditationsRoute: typeof AboutAccreditationsRoute
   AboutGoverningCouncilRoute: typeof AboutGoverningCouncilRoute
   AboutGroupInstitutionsRoute: typeof AboutGroupInstitutionsRoute
@@ -599,6 +599,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CurriculumAndSyllabusRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/hostel': {
+      id: '/hostel'
+      path: '/hostel'
+      fullPath: '/hostel'
+      preLoaderRoute: typeof HostelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/incubation': {
       id: '/incubation'
       path: '/incubation'
@@ -653,13 +660,6 @@ declare module '@tanstack/react-router' {
       path: '/social-media'
       fullPath: '/social-media'
       preLoaderRoute: typeof SocialMediaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/student-housing': {
-      id: '/student-housing'
-      path: '/student-housing'
-      fullPath: '/student-housing'
-      preLoaderRoute: typeof StudentHousingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about_/accreditations': {
@@ -834,6 +834,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CreditsRoute: CreditsRoute,
   CurriculumAndSyllabusRoute: CurriculumAndSyllabusRoute,
+  HostelRoute: HostelRoute,
   IncubationRoute: IncubationRoute,
   LibraryRoute: LibraryRoute,
   NaacRoute: NaacRouteWithChildren,
@@ -842,7 +843,6 @@ const rootRouteChildren: RootRouteChildren = {
   ProgrammesOfferedRoute: ProgrammesOfferedRoute,
   ResearchRoute: ResearchRoute,
   SocialMediaRoute: SocialMediaRoute,
-  StudentHousingRoute: StudentHousingRoute,
   AboutAccreditationsRoute: AboutAccreditationsRoute,
   AboutGoverningCouncilRoute: AboutGoverningCouncilRoute,
   AboutGroupInstitutionsRoute: AboutGroupInstitutionsRoute,

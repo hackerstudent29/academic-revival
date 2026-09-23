@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Check } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { useHeader } from '@/context/HeaderContext';
 
 export interface SubNavTab {
@@ -25,7 +24,7 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
   onTitleClick,
   className = "",
 }) => {
-  const { isHeaderHidden, isScrolled } = useHeader();
+  const { isHeaderHidden } = useHeader();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const currentTabLabel = tabs.find(t => t.id === activeTab)?.label || 'Overview';
@@ -40,55 +39,36 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const isMainNavbarVisible = !isHeaderHidden;
-  const shouldShiftDown = !isHeaderHidden && isScrolled;
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const shiftAmount = isMobile ? 57 : 65;
-
   return (
-    <motion.div
-      initial={false}
-      animate={{ y: shouldShiftDown ? shiftAmount : 0 }}
-      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className={`sticky top-0 z-40 w-full bg-background/90 dark:bg-[#121214]/90 backdrop-blur-xl border-b border-border/80 shadow-xs ${className}`}
+    <div
+      className={`sticky z-40 w-full transition-[top] duration-300 ease-out bg-background/85 dark:bg-[#121214]/85 backdrop-blur-xl border-t border-b border-border/80 dark:border-white/10 shadow-xs ${
+        !isHeaderHidden ? "top-[58px] md:top-[70px]" : "top-0"
+      } ${className}`}
     >
-      <div className={`relative max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 min-h-[44px] flex flex-col md:flex-row md:items-center justify-between gap-1.5 md:gap-0 transition-all duration-300 ${
-        isMainNavbarVisible ? 'pt-3 sm:pt-3.5 pb-1.5 sm:pb-2' : 'py-1.5 sm:py-2'
-      }`}>
+      <div className="relative max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 py-1.5 sm:py-2 min-h-[38px] md:min-h-[44px] flex items-center justify-between gap-3">
         
-        {/* Department Title Header */}
-        <div className="flex items-center justify-between w-full md:w-auto">
-          <div 
-            onClick={onTitleClick}
-            className={`${
-              title.length <= 25 
-                ? 'text-xs sm:text-sm md:text-base xl:text-lg font-black tracking-tight' 
-                : 'text-[11px] sm:text-xs xl:text-sm font-bold tracking-tight'
-            } uppercase text-primary font-oswald md:mr-4 xl:mr-8 shrink-0 select-none transition-all truncate max-w-[90%] md:max-w-none ${
-              onTitleClick ? 'cursor-pointer hover:opacity-80' : ''
-            }`}
-          >
-            {title}
-          </div>
+        {/* Department / Division Title Header */}
+        <div 
+          onClick={onTitleClick}
+          className="text-xs sm:text-sm md:text-base lg:text-lg font-black font-oswald uppercase text-primary tracking-tight leading-none shrink-0 select-none transition-all truncate max-w-[55%] md:max-w-none cursor-pointer hover:opacity-85"
+        >
+          {title}
         </div>
 
-        {/* MOBILE VIEW: Modern Custom Dropdown Menu (< md) */}
-        <div ref={dropdownRef} className="block md:hidden w-full relative">
+        {/* MOBILE VIEW: Compact Single-Row Custom Dropdown (< md) */}
+        <div ref={dropdownRef} className="block md:hidden relative shrink-0">
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="w-full flex items-center justify-between gap-2 bg-stone-200/90 dark:bg-neutral-800 text-primary border border-stone-300 dark:border-neutral-700 px-3 py-1.5 rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs shadow-2xs cursor-pointer text-xs font-bold font-oswald uppercase tracking-wider transition-all"
+            className="flex items-center gap-1.5 bg-foreground/5 hover:bg-foreground/10 text-primary border border-primary/40 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs shadow-2xs cursor-pointer text-[11px] font-bold font-oswald uppercase tracking-wider transition-all"
           >
-            <div className="flex items-center gap-1.5 truncate">
-              <span className="text-muted-foreground text-[10px] font-sans font-semibold uppercase tracking-wider shrink-0">Section:</span>
-              <span className="text-primary font-black truncate">{currentTabLabel}</span>
-            </div>
-            <ChevronDown className={`w-4 h-4 text-primary shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+            <span className="truncate max-w-[130px] sm:max-w-[180px] font-black">{currentTabLabel}</span>
+            <ChevronDown className={`w-3.5 h-3.5 text-primary shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
           </button>
 
           {/* Animated Dropdown Menu */}
           {isOpen && (
-            <div className="absolute top-full left-0 right-0 mt-1 bg-background dark:bg-[#18181B] border border-border dark:border-neutral-700 shadow-2xl rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs py-1 z-50 overflow-hidden max-h-[300px] overflow-y-auto backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 divide-y divide-border/40">
+            <div className="absolute top-full right-0 mt-1 w-64 bg-background dark:bg-[#18181B] border border-border dark:border-neutral-700 shadow-2xl rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs py-1 z-50 overflow-hidden max-h-[300px] overflow-y-auto backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 divide-y divide-border/40">
               {tabs.map((tab) => {
                 const isActive = activeTab === tab.id;
                 return (
@@ -99,7 +79,7 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
                       onSelectTab(tab.id);
                       setIsOpen(false);
                     }}
-                    className={`w-full flex items-center justify-between px-3.5 py-2 text-left text-xs font-bold font-oswald uppercase tracking-wider transition-colors cursor-pointer ${
+                    className={`w-full flex items-center justify-between px-3.5 py-2.5 text-left text-xs font-bold font-oswald uppercase tracking-wider transition-colors cursor-pointer ${
                       isActive
                         ? "bg-primary text-white font-black"
                         : "text-foreground hover:bg-primary/10 hover:text-primary"
@@ -115,15 +95,15 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
         </div>
 
         {/* DESKTOP VIEW: Horizontal Tabs (>= md) */}
-        <div className="hidden md:flex md:flex-1 relative md:ml-4 lg:ml-6 overflow-hidden items-center">
-          <ul className="flex items-center justify-end gap-3 lg:gap-4 xl:gap-6 w-full overflow-x-auto scrollbar-none no-scrollbar py-1">
+        <div className="hidden md:flex md:flex-1 relative md:ml-4 lg:ml-6 overflow-hidden items-center justify-end">
+          <ul className="flex items-center justify-end gap-3 lg:gap-5 xl:gap-7 w-full overflow-x-auto scrollbar-none no-scrollbar">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
                 <li
                   key={tab.id}
                   onClick={() => onSelectTab(tab.id)}
-                  className={`relative py-1.5 whitespace-nowrap text-[11px] sm:text-xs xl:text-[13px] font-bold uppercase tracking-[0.04em] font-oswald cursor-pointer transition-colors duration-200 select-none shrink-0 ${
+                  className={`relative py-1 whitespace-nowrap text-xs sm:text-sm xl:text-[13px] font-bold uppercase tracking-[0.05em] font-oswald cursor-pointer transition-colors duration-200 select-none shrink-0 ${
                     isActive
                       ? 'text-primary font-black'
                       : 'text-foreground/80 hover:text-primary'
@@ -131,7 +111,7 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
                 >
                   {tab.label}
                   <span
-                    className={`absolute -bottom-0.5 left-0 h-[2.5px] bg-primary rounded-full transition-all duration-300 ${
+                    className={`absolute -bottom-1 left-0 h-[2.5px] bg-primary rounded-full transition-all duration-300 ${
                       isActive ? "w-full" : "w-0"
                     }`}
                   />
@@ -142,7 +122,6 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
         </div>
 
       </div>
-    </motion.div>
+    </div>
   );
 };
-

@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
-import { motion } from "framer-motion";
 import { ChevronDown, Check } from "lucide-react";
 import { useHeader } from "@/context/HeaderContext";
 
@@ -17,7 +16,7 @@ export const aboutNavItems = [
 export function AboutSubNav() {
   const location = useLocation();
   const currentPath = location.pathname;
-  const { isHeaderHidden, isScrolled } = useHeader();
+  const { isHeaderHidden } = useHeader();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -33,22 +32,17 @@ export function AboutSubNav() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const shouldShiftDown = !isHeaderHidden && isScrolled;
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-  const shiftAmount = isMobile ? 57 : 65;
-
   return (
-    <motion.nav
-      initial={false}
-      animate={{ y: shouldShiftDown ? shiftAmount : 0 }}
-      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="sticky top-0 z-40 w-full bg-background/90 backdrop-blur-xl border-b border-border/80 shadow-2xs transition-colors"
+    <nav
+      className={`sticky z-40 w-full transition-[top] duration-300 ease-out bg-background/85 dark:bg-[#121214]/85 backdrop-blur-xl border-t border-b border-border/80 dark:border-white/10 shadow-xs ${
+        !isHeaderHidden ? "top-[58px] md:top-[70px]" : "top-0"
+      }`}
     >
-      <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 py-2 min-h-[44px] flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-0">
+      <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 py-1.5 sm:py-2 min-h-[38px] md:min-h-[44px] flex items-center justify-between gap-2">
         {/* Department Title Header */}
         <div className="flex items-center justify-between w-full md:w-auto">
-          <div className="flex items-center shrink-0 md:mr-4 xl:mr-8 md:border-r md:border-border md:pr-6">
-            <span className="text-sm sm:text-base md:text-lg xl:text-xl font-black font-oswald uppercase text-primary tracking-wider whitespace-nowrap">
+          <div className="flex items-center shrink-0 md:mr-4 xl:mr-8 md:border-r md:border-border md:pr-4">
+            <span className="text-xs sm:text-sm md:text-base font-black font-oswald uppercase text-primary tracking-wider whitespace-nowrap">
               ABOUT MSAJCE
             </span>
           </div>
@@ -114,7 +108,7 @@ export function AboutSubNav() {
           })}
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 }
 
