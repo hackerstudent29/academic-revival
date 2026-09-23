@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  Sparkles,
-  ArrowRight,
   Trophy,
   Target,
   Users,
@@ -14,22 +13,22 @@ import {
   UserCheck,
   Star,
   Microscope,
-  FlaskConical,
-  BookOpenCheck,
+  BookOpen,
   Lightbulb,
   Code,
   Terminal,
-  Cpu,
   Bot,
-  Wrench,
   Leaf,
   Zap,
-  Sun,
   Camera,
-  Film
+  ArrowRight,
+  ArrowLeft,
+  Calendar,
+  Layers,
+  Sparkle
 } from "lucide-react";
 import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
-import { studentClubs } from "@/data/studentLife";
+import { studentClubs, type StudentClub } from "@/data/studentLife";
 
 const title = "Clubs & Cultural Societies | Student Life | MSAJCE";
 const description =
@@ -47,6 +46,11 @@ const clubNavTabs: SubNavTab[] = [
 ];
 
 export const Route = createFileRoute("/student-life_/clubs-and-societies")({
+  validateSearch: (search: Record<string, unknown>) => {
+    return {
+      club: typeof search.club === "string" ? search.club : "sports-club",
+    };
+  },
   head: () => ({
     meta: [
       { title },
@@ -62,78 +66,42 @@ export const Route = createFileRoute("/student-life_/clubs-and-societies")({
 
 function ClubsAndSocietiesPage() {
   const navigate = useNavigate();
-  const [clubFilter, setClubFilter] = useState<string>("all");
-  const [activeClub, setActiveClub] = useState<string>("sports-club");
+  const search = Route.useSearch();
 
-  const filteredClubs = clubFilter === "all"
-    ? studentClubs
-    : studentClubs.filter(c => c.category === clubFilter);
+  // Validate active club from URL query or default to sports-club
+  const activeClubId = useMemo(() => {
+    const valid = clubNavTabs.some((t) => t.id === search.club);
+    return valid ? search.club : "sports-club";
+  }, [search.club]);
 
-  const sportsClub = studentClubs.find(c => c.id === "sports-club");
-  const fineArtsClub = studentClubs.find(c => c.id === "fine-arts-club");
-  const scienceClub = studentClubs.find(c => c.id === "science-club");
-  const tamilMandram = studentClubs.find(c => c.id === "tamil-mandram");
-  const codingClub = studentClubs.find(c => c.id === "coding-club");
-  const roboticClub = studentClubs.find(c => c.id === "robotic-club");
-  const energyEcoClub = studentClubs.find(c => c.id === "energy-eco-club");
-  const photographyClub = studentClubs.find(c => c.id === "photography-club");
+  const activeClubIndex = useMemo(() => {
+    const idx = studentClubs.findIndex((c) => c.id === activeClubId);
+    return idx >= 0 ? idx : 0;
+  }, [activeClubId]);
 
-  const scrollToClub = (clubId: string) => {
-    setActiveClub(clubId);
-    const element = document.getElementById(`${clubId}-feature`);
-    if (element) {
+  const activeClub: StudentClub = studentClubs[activeClubIndex] || studentClubs[0];
+
+  const prevClub = studentClubs[(activeClubIndex - 1 + studentClubs.length) % studentClubs.length];
+  const nextClub = studentClubs[(activeClubIndex + 1) % studentClubs.length];
+
+  const handleSelectClub = (clubId: string) => {
+    navigate({
+      search: { club: clubId },
+      replace: true,
+    });
+
+    const el = document.getElementById("club-focus-container");
+    if (el) {
       const headerOffset = typeof window !== "undefined" && window.innerWidth < 768 ? 115 : 125;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({
-        top: Math.max(0, offsetPosition),
-        behavior: "smooth",
-      });
+      const elementTop = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      if (window.pageYOffset > elementTop + 80) {
+        window.scrollTo({
+          top: Math.max(0, elementTop),
+          behavior: "smooth",
+        });
+      }
     }
   };
-
-  useEffect(() => {
-    const clubIds = [
-      "sports-club",
-      "fine-arts-club",
-      "science-club",
-      "tamil-mandram",
-      "coding-club",
-      "robotic-club",
-      "energy-eco-club",
-      "photography-club",
-    ];
-
-    const handleScroll = () => {
-      const headerOffset = typeof window !== "undefined" && window.innerWidth < 768 ? 140 : 155;
-      const scrollPosition = window.scrollY + headerOffset;
-
-      for (let i = clubIds.length - 1; i >= 0; i--) {
-        const el = document.getElementById(`${clubIds[i]}-feature`);
-        if (el) {
-          if (scrollPosition >= el.offsetTop) {
-            setActiveClub(clubIds[i]);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.location.hash) {
-      const hashId = window.location.hash.replace("#", "").replace("-feature", "");
-      const matched = clubNavTabs.find((t) => t.id === hashId);
-      if (matched) {
-        setTimeout(() => {
-          scrollToClub(matched.id);
-        }, 150);
-      }
-    }
-  }, []);
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
@@ -141,1136 +109,674 @@ function ClubsAndSocietiesPage() {
       <SecondarySubNav
         title="CLUBS & SOCIETIES"
         tabs={clubNavTabs}
-        activeTab={activeClub}
-        onSelectTab={scrollToClub}
-        onTitleClick={() => {
-          setActiveClub("sports-club");
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }}
+        activeTab={activeClubId}
+        onSelectTab={handleSelectClub}
+        onTitleClick={() => handleSelectClub("sports-club")}
       />
 
-      {/* Page Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-10 pb-16 px-4 sm:px-6 md:px-12 border-b border-primary/20">
+      {/* Page Hero Banner */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-8 pb-12 sm:pt-10 sm:pb-14 px-4 sm:px-6 md:px-12 border-b border-primary/20">
         <div className="max-w-[1440px] mx-auto relative z-10">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-sm text-xs font-bold font-oswald uppercase tracking-wider text-white border border-white/20 mb-4">
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-md rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs font-bold font-oswald uppercase tracking-wider text-white border border-white/20 mb-3">
               Student Forums &amp; Cultural Life
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-oswald uppercase tracking-tight leading-[1.05]">
               Clubs &amp; Cultural Societies
             </h1>
-            <p className="mt-4 text-base sm:text-lg text-white/90 font-sans leading-relaxed">
-              Student-led forums driving athletic excellence, fine arts, ENVISTA club initiatives, scientific research, Tamil literary heritage, robotics, green sustainability, and visual photojournalism.
+            <p className="mt-3 text-sm sm:text-base md:text-lg text-white/90 font-sans leading-relaxed">
+              Student-led forums driving athletic excellence, fine arts, scientific research, Tamil literary heritage, robotics, green sustainability, and visual photojournalism at MSAJCE.
             </p>
           </div>
 
-          {/* Quick Metrics */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-white/15">
+          {/* Quick Metrics Bar */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-6 border-t border-white/15">
             <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">8 Clubs</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Official Student Forums</span>
+              <span className="text-2xl sm:text-3xl font-black font-oswald text-white">8 Clubs</span>
+              <span className="text-xs font-sans text-white/80">Official Student Forums</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">2,400+</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Active Student Members</span>
+              <span className="text-2xl sm:text-3xl font-black font-oswald text-white">2,400+</span>
+              <span className="text-xs font-sans text-white/80">Active Student Members</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">50+ Fests</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Annual Campus Events</span>
+              <span className="text-2xl sm:text-3xl font-black font-oswald text-white">50+ Fests</span>
+              <span className="text-xs font-sans text-white/80">Annual Campus Events</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">TAKSHASHILA</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Annual Cultural Gala</span>
+              <span className="text-2xl sm:text-3xl font-black font-oswald text-white">TAKSHASHILA</span>
+              <span className="text-xs font-sans text-white/80">Annual Cultural Gala</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Content Area */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 py-10 space-y-12">
-        {/* COMMON STOCK IMAGE BANNER FOR CLUBS & CULTURAL SOCIETIES */}
-        <div className="relative aspect-[21/9] sm:aspect-[24/9] rounded-sm overflow-hidden bg-muted border border-foreground/10 shadow-xs">
-          <img
-            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80"
-            alt="Clubs and Cultural Societies Showcase"
-            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+      {/* SECTION A: FOCUSED MINIMAL ACTIVE CLUB PROFILE */}
+      <section id="club-focus-container" className="bg-white dark:bg-[#121214] py-8 sm:py-12 transition-colors">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12">
+          
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={activeClub.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-8"
+            >
+              {/* Club Identity Header */}
+              <div className="border-b border-border/60 pb-6">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold font-oswald uppercase text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                      {activeClub.badge || activeClub.category}
+                    </span>
+                    <span className="text-xs font-bold font-oswald text-muted-foreground uppercase">
+                      {activeClub.membersCount}
+                    </span>
+                  </div>
+                  <span className="text-xs font-mono font-bold text-muted-foreground">
+                    Club {String(activeClubIndex + 1).padStart(2, "0")} of 08
+                  </span>
+                </div>
+
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-oswald uppercase tracking-tight text-foreground">
+                  {activeClub.name}
+                </h2>
+
+                <p className="text-sm sm:text-base font-bold font-oswald text-primary uppercase tracking-wide mt-1">
+                  "{activeClub.tagline}"
+                </p>
+
+                {/* Motto & Vision Accent Quote */}
+                {(activeClub.motto || activeClub.vision) && (
+                  <div className="mt-4 pl-4 border-l-2 border-primary py-2 bg-primary/[0.03] dark:bg-primary/[0.06] rounded-r-xs max-w-4xl">
+                    {activeClub.motto && (
+                      <div className="text-xs sm:text-sm font-bold font-oswald uppercase tracking-wider text-primary">
+                        Motto: "{activeClub.motto}"
+                      </div>
+                    )}
+                    {activeClub.vision && (
+                      <p className="text-xs sm:text-sm font-sans italic text-foreground/80 mt-1 leading-relaxed">
+                        "{activeClub.vision}"
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Signature Boxy Asymmetrical Stock Photo Showcase */}
+              {activeClub.images && activeClub.images[0] && (
+                <div className="relative aspect-[21/9] sm:aspect-[24/8] rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border bg-muted shadow-xs">
+                  <img
+                    key={activeClub.id}
+                    src={activeClub.images[0]}
+                    alt={`${activeClub.name} showcase`}
+                    className="w-full h-full object-cover block"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex items-end p-4 sm:p-6 pointer-events-none select-none">
+                    <div className="text-white max-w-2xl">
+                      <span className="text-[11px] font-bold font-oswald uppercase tracking-wider text-amber-300 block">
+                        Mohamed Sathak A.J. College of Engineering
+                      </span>
+                      <p className="text-sm sm:text-base font-black font-oswald uppercase text-white mt-0.5">
+                        {activeClub.name} · Official Student Forum
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Clean 2-Column Minimal Editorial Breakdown */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-2">
+                
+                {/* Left Column: About & Core Objectives */}
+                <div className="lg:col-span-7 space-y-6">
+                  <div>
+                    <h3 className="text-xs font-bold font-oswald uppercase tracking-wider text-primary mb-2 flex items-center gap-1.5">
+                      <Activity className="w-3.5 h-3.5" />
+                      About The Forum
+                    </h3>
+                    <p className="text-sm sm:text-base font-sans text-muted-foreground leading-relaxed">
+                      {activeClub.description}
+                    </p>
+                  </div>
+
+                  {/* Core Objectives List */}
+                  {activeClub.objectives && activeClub.objectives.length > 0 && (
+                    <div className="pt-2">
+                      <h3 className="text-sm font-black font-oswald uppercase tracking-wide text-foreground mb-3 flex items-center gap-1.5">
+                        <Target className="w-4 h-4 text-primary" />
+                        Core Objectives &amp; Scope
+                      </h3>
+                      <div className="divide-y divide-border/60 border-y border-border/60">
+                        {activeClub.objectives.map((obj, i) => (
+                          <div key={i} className="py-2.5 flex items-start gap-3">
+                            <span className="text-xs font-black font-oswald text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs shrink-0 mt-0.5">
+                              {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed">
+                              {obj}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Special Tamil Objectives for Tamil Mandram */}
+                  {activeClub.tamilObjectives && (
+                    <div className="pt-2">
+                      <h3 className="text-sm font-black font-oswald uppercase tracking-wide text-foreground mb-3 flex items-center gap-1.5">
+                        <BookOpen className="w-4 h-4 text-primary" />
+                        தமிழ் மன்றத்தின் முக்கிய நோக்கங்கள்
+                      </h3>
+                      <div className="divide-y divide-border/60 border-y border-border/60">
+                        {activeClub.tamilObjectives.map((obj, i) => (
+                          <div key={i} className="py-2.5 flex items-start gap-3">
+                            <span className="text-xs font-black font-oswald text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs shrink-0 mt-0.5">
+                              {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed">
+                              {obj}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Right Column: Specialized Disciplines & Key Activities */}
+                <div className="lg:col-span-5 space-y-6 lg:pl-8 lg:border-l lg:border-border/60">
+                  
+                  {/* CLUB-SPECIFIC COMPONENT: SPORTS CLUB */}
+                  {activeClub.id === "sports-club" && (
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-2.5 flex items-center gap-1.5">
+                          <Dumbbell className="w-3.5 h-3.5" />
+                          Outdoor Sports Arenas (8 Disciplines)
+                        </h4>
+                        <div className="flex flex-wrap gap-1.5">
+                          {activeClub.outdoorGames?.map((game, i) => (
+                            <span key={i} className="text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                              {game}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="pt-4 border-t border-border/60">
+                        <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2.5 flex items-center gap-1.5">
+                          <Award className="w-3.5 h-3.5 text-amber-500" />
+                          Indoor Sports Tournaments (3 Arenas)
+                        </h4>
+                        <div className="flex flex-wrap gap-1.5">
+                          {activeClub.indoorGames?.map((game, i) => (
+                            <span key={i} className="text-xs font-bold font-oswald uppercase bg-foreground/5 text-foreground border border-foreground/15 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                              {game}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* CLUB-SPECIFIC COMPONENT: FINE ARTS CLUB */}
+                  {activeClub.id === "fine-arts-club" && (
+                    <div className="space-y-5">
+                      {activeClub.envistaNote && (
+                        <div className="p-3.5 border-l-2 border-primary bg-primary/5 rounded-r-xs">
+                          <span className="text-xs font-black font-oswald uppercase text-primary block">
+                            ENVISTA CLUB Umbrella Initiative:
+                          </span>
+                          <p className="text-xs font-sans text-muted-foreground mt-1 leading-relaxed">
+                            {activeClub.envistaNote}
+                          </p>
+                        </div>
+                      )}
+
+                      <div className="space-y-3">
+                        <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider flex items-center gap-1.5">
+                          <UserCheck className="w-3.5 h-3.5 text-primary" />
+                          Leadership &amp; Faculty Coordination
+                        </h4>
+                        
+                        <div className="text-xs font-sans py-2 border-b border-border/60">
+                          <span className="text-[11px] font-bold font-oswald uppercase text-primary block">Staff Coordinator:</span>
+                          <span className="font-semibold text-foreground">{activeClub.staffCoordinator}</span>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3 py-1">
+                          <div className="text-xs font-sans">
+                            <span className="text-[11px] font-bold font-oswald uppercase text-primary block">President:</span>
+                            <span className="font-semibold text-foreground">{activeClub.studentPresident}</span>
+                          </div>
+                          <div className="text-xs font-sans">
+                            <span className="text-[11px] font-bold font-oswald uppercase text-primary block">Vice-President:</span>
+                            <span className="font-semibold text-foreground">{activeClub.studentVicePresident}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* CLUB-SPECIFIC COMPONENT: SCIENCE CLUB */}
+                  {activeClub.id === "science-club" && (
+                    <div className="space-y-5">
+                      <div>
+                        <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-2.5 flex items-center gap-1.5">
+                          <Microscope className="w-3.5 h-3.5" />
+                          Three Specialized Sections
+                        </h4>
+                        <div className="flex flex-wrap gap-1.5">
+                          {activeClub.scienceSections?.map((sec, i) => (
+                            <span key={i} className="text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                              {sec}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {activeClub.scienceHandsOn && (
+                        <div className="pt-4 border-t border-border/60">
+                          <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2.5 flex items-center gap-1.5">
+                            <Star className="w-3.5 h-3.5 text-amber-500" />
+                            Hands-on Experiments &amp; Projects
+                          </h4>
+                          <div className="space-y-1.5">
+                            {activeClub.scienceHandsOn.map((item, i) => (
+                              <div key={i} className="flex items-center gap-2 text-xs font-sans text-muted-foreground">
+                                <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                                <span>{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* CLUB-SPECIFIC COMPONENT: TAMIL MANDRAM */}
+                  {activeClub.id === "tamil-mandram" && (
+                    <div className="space-y-5">
+                      <div>
+                        <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-2.5 flex items-center gap-1.5">
+                          <BookOpen className="w-3.5 h-3.5" />
+                          பாரம்பரிய தமிழ் நிகழ்வுகள் &amp; போட்டிகள்
+                        </h4>
+                        <div className="grid grid-cols-2 gap-2">
+                          {activeClub.tamilEvents?.map((event, i) => (
+                            <div key={i} className="p-2 border border-border/60 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs font-sans font-semibold text-foreground/90 bg-muted/30">
+                              {event}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* CLUB-SPECIFIC COMPONENT: CODING CLUB */}
+                  {activeClub.id === "coding-club" && (
+                    <div className="space-y-5">
+                      <div>
+                        <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-2.5 flex items-center gap-1.5">
+                          <Code className="w-3.5 h-3.5" />
+                          Core Practices &amp; Weekly Routines
+                        </h4>
+                        <div className="space-y-2">
+                          {activeClub.codingPractices?.map((practice, i) => (
+                            <div key={i} className="flex items-start gap-2 text-xs font-sans text-muted-foreground">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                              <span>{practice}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {activeClub.codingAims && (
+                        <div className="pt-4 border-t border-border/60">
+                          <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2.5 flex items-center gap-1.5">
+                            <Terminal className="w-3.5 h-3.5 text-primary" />
+                            Strategic Goals
+                          </h4>
+                          <div className="space-y-1.5">
+                            {activeClub.codingAims.map((aim, i) => (
+                              <div key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80">
+                                <span className="w-1.5 h-1.5 rounded-full bg-foreground/40 shrink-0 mt-1.5" />
+                                <span>{aim}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* CLUB-SPECIFIC COMPONENT: ROBOTIC CLUB */}
+                  {activeClub.id === "robotic-club" && (
+                    <div className="space-y-5">
+                      <div>
+                        <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-2.5 flex items-center gap-1.5">
+                          <Bot className="w-3.5 h-3.5" />
+                          Club Activities &amp; Training
+                        </h4>
+                        <div className="space-y-2">
+                          {activeClub.roboticsActivities?.map((act, i) => (
+                            <div key={i} className="p-2.5 border border-border/60 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs font-sans font-semibold text-foreground/90 bg-muted/30 flex items-center gap-2">
+                              <span className="w-2 h-2 rounded-xs bg-primary shrink-0" />
+                              <span>{act}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* CLUB-SPECIFIC COMPONENT: ENERGY & ECO CLUB */}
+                  {activeClub.id === "energy-eco-club" && (
+                    <div className="space-y-4">
+                      {activeClub.energyClubDetails && (
+                        <div className="p-3 border-l-2 border-primary bg-primary/5 rounded-r-xs">
+                          <span className="text-xs font-black font-oswald uppercase text-primary block flex items-center gap-1">
+                            <Zap className="w-3.5 h-3.5" />
+                            Energy Conservation Mission
+                          </span>
+                          <p className="text-xs font-sans text-muted-foreground mt-1 leading-relaxed">
+                            {activeClub.energyClubDetails}
+                          </p>
+                        </div>
+                      )}
+
+                      {activeClub.ecoClubDetails && (
+                        <div className="p-3 border-l-2 border-emerald-600 bg-emerald-500/5 rounded-r-xs">
+                          <span className="text-xs font-black font-oswald uppercase text-emerald-600 dark:text-emerald-400 block flex items-center gap-1">
+                            <Leaf className="w-3.5 h-3.5" />
+                            Eco Club Environmental Mandate
+                          </span>
+                          <p className="text-xs font-sans text-muted-foreground mt-1 leading-relaxed">
+                            {activeClub.ecoClubDetails}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* CLUB-SPECIFIC COMPONENT: PHOTOGRAPHY CLUB */}
+                  {activeClub.id === "photography-club" && (
+                    <div className="space-y-5">
+                      <div>
+                        <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-2.5 flex items-center gap-1.5">
+                          <Camera className="w-3.5 h-3.5" />
+                          Four Pillars of Visual Art
+                        </h4>
+                        <div className="space-y-2">
+                          {activeClub.photographyPillars?.map((pillar, i) => (
+                            <div key={i} className="p-2.5 border border-border/60 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs font-sans font-semibold text-foreground/90 bg-muted/30 flex items-center gap-2">
+                              <span className="text-xs font-bold font-oswald text-primary">0{i + 1}.</span>
+                              <span>{pillar}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* General Key Activities Strip */}
+                  <div className="pt-4 border-t border-border/60">
+                    <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2.5 flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-primary" />
+                      Annual Calendar Highlights
+                    </h4>
+                    <div className="space-y-1.5">
+                      {activeClub.activities.map((act, i) => (
+                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-muted-foreground">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
+                          <span>{act}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+              {/* Sequential Club Navigation Controls */}
+              <div className="pt-6 border-t border-border/60 flex flex-wrap items-center justify-between gap-4">
+                <button
+                  type="button"
+                  onClick={() => handleSelectClub(prevClub.id)}
+                  className="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-bold font-oswald uppercase tracking-wider text-foreground hover:text-primary border border-border hover:border-primary/50 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs transition-colors cursor-pointer"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  <span>Previous: {prevClub.name}</span>
+                </button>
+
+                <div className="flex items-center gap-1.5">
+                  {studentClubs.map((c, i) => (
+                    <button
+                      key={c.id}
+                      type="button"
+                      onClick={() => handleSelectClub(c.id)}
+                      title={c.name}
+                      className={`h-2 transition-all rounded-xs cursor-pointer ${
+                        c.id === activeClub.id
+                          ? "w-8 bg-primary"
+                          : "w-2 bg-muted hover:bg-foreground/30"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => handleSelectClub(nextClub.id)}
+                  className="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-bold font-oswald uppercase tracking-wider text-foreground hover:text-primary border border-border hover:border-primary/50 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs transition-colors cursor-pointer"
+                >
+                  <span>Next: {nextClub.name}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+            </motion.div>
+          </AnimatePresence>
+
+        </div>
+      </section>
+
+      {/* ORGANIC WAVE DIVIDER A -> B */}
+      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-[#F3F3F2] dark:fill-[#18181B]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-6 sm:p-8">
-            <div className="text-white max-w-2xl">
-              <span className="text-xs font-bold font-oswald uppercase tracking-wider text-amber-300">
-                Mohamed Sathak A.J. College of Engineering
+        </svg>
+      </div>
+
+      {/* SECTION B: QUICK DIRECTORY & ALL 8 CLUBS COMPARISON */}
+      <section className="bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14 px-4 sm:px-6 md:px-12 transition-colors">
+        <div className="max-w-[1440px] mx-auto space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border/60 pb-4">
+            <div>
+              <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary">
+                At A Glance Directory
               </span>
-              <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-white mt-1">
-                Student Activities &amp; Cultural Heritage
+              <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground mt-0.5">
+                All 8 Official Student Clubs
               </h2>
             </div>
-          </div>
-        </div>
-
-        {/* FEATURED SECTION 1: SPORTS CLUB */}
-        {sportsClub && (
-          <section id="sports-club-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-black font-oswald uppercase text-white bg-primary px-2.5 py-0.5 rounded-xs flex items-center gap-1">
-                    <Trophy className="w-3.5 h-3.5 text-amber-300" />
-                    Featured Official Club
-                  </span>
-                  <span className="text-xs font-bold font-oswald text-primary uppercase">
-                    {sportsClub.membersCount}
-                  </span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-black font-oswald uppercase text-foreground">
-                  {sportsClub.name}
-                </h2>
-                <p className="text-base font-bold font-oswald text-primary uppercase tracking-wider mt-1">
-                  Motto: "{sportsClub.motto}"
-                </p>
-              </div>
-
-              {/* Vision Box */}
-              <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-4 rounded-sm max-w-xl">
-                <span className="text-xs font-bold font-oswald uppercase text-primary tracking-wider block mb-1">
-                  Club Vision:
-                </span>
-                <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed italic">
-                  "{sportsClub.vision}"
-                </p>
-              </div>
-            </div>
-
-            {/* Introduction & Overview */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2 space-y-4">
-                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2">
-                  <Activity className="w-5 h-5 text-primary" />
-                  Introduction &amp; Mandate
-                </h3>
-                <p className="text-sm font-sans text-muted-foreground leading-relaxed">
-                  {sportsClub.description}
-                </p>
-
-                {/* Objectives */}
-                {sportsClub.objectives && (
-                  <div className="mt-6 pt-6 border-t border-foreground/10">
-                    <h4 className="text-sm font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                      <Target className="w-4 h-4" />
-                      Club Objectives:
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {sportsClub.objectives.map((obj, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-background/60 p-2.5 rounded-sm border border-foreground/5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                          <span>{obj}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Outdoor & Indoor Games Card */}
-              <div className="bg-background dark:bg-[#121214] border border-foreground/10 rounded-sm p-6 space-y-6">
-                <div>
-                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                    <Dumbbell className="w-4 h-4" />
-                    Outdoor Games (8 Discipline Arenas)
-                  </h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {sportsClub.outdoorGames?.map((game, idx) => (
-                      <span key={idx} className="text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-xs">
-                        ⚽ {game}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-foreground/10">
-                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                    <Award className="w-4 h-4 text-amber-500" />
-                    Indoor Games (3 Tournament Arenas)
-                  </h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {sportsClub.indoorGames?.map((game, idx) => (
-                      <span key={idx} className="text-xs font-bold font-oswald uppercase bg-foreground/10 text-foreground border border-foreground/20 px-2.5 py-1 rounded-xs">
-                        ♟️ {game}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* FEATURED SECTION 2: FINE ARTS CLUB (ARTFUL AESTHETICS) */}
-        {fineArtsClub && (
-          <section id="fine-arts-club-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-black font-oswald uppercase text-white bg-primary px-2.5 py-0.5 rounded-xs flex items-center gap-1">
-                    <Palette className="w-3.5 h-3.5 text-amber-300" />
-                    ENVISTA CLUB Inaugurated Member
-                  </span>
-                  <span className="text-xs font-bold font-oswald text-primary uppercase">
-                    {fineArtsClub.membersCount}
-                  </span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-black font-oswald uppercase text-foreground">
-                  {fineArtsClub.name}
-                </h2>
-                <p className="text-base font-bold font-oswald text-primary uppercase tracking-wider mt-1">
-                  Motto: "{fineArtsClub.motto}"
-                </p>
-              </div>
-
-              {/* Vision Box */}
-              <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-4 rounded-sm max-w-xl">
-                <span className="text-xs font-bold font-oswald uppercase text-primary tracking-wider block mb-1">
-                  Club Vision:
-                </span>
-                <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed italic">
-                  "{fineArtsClub.vision}"
-                </p>
-              </div>
-            </div>
-
-            {/* Introduction & Leadership Details */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-              <div className="lg:col-span-2 space-y-4">
-                <div className="bg-amber-500/10 border border-amber-500/20 p-3.5 rounded-sm">
-                  <span className="text-xs font-bold font-oswald uppercase text-amber-600 dark:text-amber-400 block">
-                    ENVISTA CLUB Umbrella Initiative:
-                  </span>
-                  <p className="text-xs font-sans text-foreground/90 mt-0.5 leading-relaxed">
-                    {fineArtsClub.envistaNote}
-                  </p>
-                </div>
-
-                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2 pt-2">
-                  <Star className="w-5 h-5 text-primary" />
-                  Introduction &amp; Activities
-                </h3>
-                <p className="text-sm font-sans text-muted-foreground leading-relaxed">
-                  {fineArtsClub.description}
-                </p>
-
-                {/* 8 Objectives */}
-                {fineArtsClub.objectives && (
-                  <div className="mt-6 pt-6 border-t border-foreground/10">
-                    <h4 className="text-sm font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                      <Target className="w-4 h-4" />
-                      8 Core Objectives:
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {fineArtsClub.objectives.map((obj, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-background/60 p-2.5 rounded-sm border border-foreground/5">
-                          <span className="w-4 h-4 bg-primary/20 text-primary rounded-full flex items-center justify-center text-[10px] font-bold font-oswald shrink-0 mt-0.5">
-                            {i + 1}
-                          </span>
-                          <span>{obj}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Leadership & Faculty Coordinator Card */}
-              <div className="bg-background dark:bg-[#121214] border border-foreground/10 rounded-sm p-6 space-y-6">
-                <div>
-                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                    <UserCheck className="w-4 h-4" />
-                    Faculty Coordinator
-                  </h4>
-                  <div className="bg-card p-3 border border-foreground/10 rounded-sm">
-                    <span className="text-sm font-black font-oswald uppercase text-foreground block">
-                      {fineArtsClub.staffCoordinator}
-                    </span>
-                    <span className="text-xs text-muted-foreground font-sans">
-                      Department of Information Technology, MSAJCE
-                    </span>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-foreground/10">
-                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                    <Users className="w-4 h-4" />
-                    Student Executive Leadership
-                  </h4>
-                  <div className="space-y-2.5">
-                    <div className="bg-card p-3 border border-foreground/10 rounded-sm">
-                      <span className="text-xs font-bold font-oswald uppercase text-primary block">
-                        Student President:
-                      </span>
-                      <span className="text-sm font-black font-oswald uppercase text-foreground">
-                        {fineArtsClub.studentPresident}
-                      </span>
-                    </div>
-
-                    <div className="bg-card p-3 border border-foreground/10 rounded-sm">
-                      <span className="text-xs font-bold font-oswald uppercase text-primary block">
-                        Student Vice-President:
-                      </span>
-                      <span className="text-sm font-black font-oswald uppercase text-foreground">
-                        {fineArtsClub.studentVicePresident}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Fine Arts Stock Image Banner */}
-            <div className="relative aspect-[21/9] sm:aspect-[24/7] rounded-sm overflow-hidden bg-muted border border-foreground/10 shadow-xs">
-              <img
-                src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80"
-                alt="Fine Arts Showcase"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-4 sm:p-6">
-                <div className="text-white max-w-xl">
-                  <span className="text-xs font-bold font-oswald uppercase tracking-wider text-amber-300">
-                    Artful Aesthetics · Dance, Singing, Acting &amp; Painting
-                  </span>
-                  <h4 className="text-lg sm:text-xl font-black font-oswald uppercase text-white mt-0.5">
-                    Expressing Imagination &amp; Multi-Disciplinary Creativity
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* FEATURED SECTION 3: SCIENCE CLUB */}
-        {scienceClub && (
-          <section id="science-club-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-black font-oswald uppercase text-white bg-primary px-2.5 py-0.5 rounded-xs flex items-center gap-1">
-                    <Microscope className="w-3.5 h-3.5 text-amber-300" />
-                    Largest Campus Science Forum
-                  </span>
-                  <span className="text-xs font-bold font-oswald text-primary uppercase">
-                    {scienceClub.membersCount}
-                  </span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-black font-oswald uppercase text-foreground">
-                  {scienceClub.name}
-                </h2>
-                <p className="text-base font-bold font-oswald text-primary uppercase tracking-wider mt-1">
-                  Motto: "{scienceClub.motto}"
-                </p>
-              </div>
-
-              {/* Vision Box */}
-              <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-4 rounded-sm max-w-xl">
-                <span className="text-xs font-bold font-oswald uppercase text-primary tracking-wider block mb-1">
-                  Club Purpose &amp; Vision:
-                </span>
-                <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed italic">
-                  "{scienceClub.vision}"
-                </p>
-              </div>
-            </div>
-
-            {/* Introduction & Guiding Principles */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-              <div className="lg:col-span-2 space-y-4">
-                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2">
-                  <FlaskConical className="w-5 h-5 text-primary" />
-                  Introduction &amp; Club Structure
-                </h3>
-                <p className="text-sm font-sans text-muted-foreground leading-relaxed">
-                  {scienceClub.description}
-                </p>
-
-                {/* 5 Guiding Principles / Objectives */}
-                {scienceClub.objectives && (
-                  <div className="mt-6 pt-6 border-t border-foreground/10">
-                    <h4 className="text-sm font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                      <Target className="w-4 h-4" />
-                      5 Guiding Principles &amp; Investigator Objectives:
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {scienceClub.objectives.map((obj, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-background/60 p-2.5 rounded-sm border border-foreground/5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                          <span>{obj}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Science Sections & Things To Do Card */}
-              <div className="bg-background dark:bg-[#121214] border border-foreground/10 rounded-sm p-6 space-y-6">
-                <div>
-                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                    <FlaskConical className="w-4 h-4" />
-                    3 Club Sections
-                  </h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {scienceClub.scienceSections?.map((sec, idx) => (
-                      <span key={idx} className="text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-xs">
-                        🧪 {sec}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-foreground/10">
-                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                    <Lightbulb className="w-4 h-4 text-amber-500" />
-                    Hands-on Projects &amp; Experiments
-                  </h4>
-                  <ul className="space-y-1.5">
-                    {scienceClub.scienceHandsOn?.map((exp, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-xs font-sans text-foreground/80">
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 shrink-0" />
-                        <span>{exp}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="pt-4 border-t border-foreground/10">
-                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                    <BookOpenCheck className="w-4 h-4 text-emerald-500" />
-                    Things To Do in Science Club
-                  </h4>
-                  <ul className="space-y-1.5">
-                    {scienceClub.thingsToDo?.map((todo, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-xs font-sans text-foreground/80">
-                        <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-1.5 shrink-0" />
-                        <span>{todo}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Science Stock Image Banner */}
-            <div className="relative aspect-[21/9] sm:aspect-[24/7] rounded-sm overflow-hidden bg-muted border border-foreground/10 shadow-xs">
-              <img
-                src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80"
-                alt="Science Club Laboratory & Research Showcase"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-4 sm:p-6">
-                <div className="text-white max-w-xl">
-                  <span className="text-xs font-bold font-oswald uppercase tracking-wider text-amber-300">
-                    Physics · Chemistry · General Science &amp; Engineering
-                  </span>
-                  <h4 className="text-lg sm:text-xl font-black font-oswald uppercase text-white mt-0.5">
-                    Practical Experimentation, Innovation &amp; Scientific Discovery
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* FEATURED SECTION 4: TAMIL MANDRAM */}
-        {tamilMandram && (
-          <section id="tamil-mandram-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-black font-oswald uppercase text-white bg-primary px-2.5 py-0.5 rounded-xs flex items-center gap-1">
-                    <BookOpenCheck className="w-3.5 h-3.5 text-amber-300" />
-                    Official Literary &amp; Cultural Forum
-                  </span>
-                  <span className="text-xs font-bold font-oswald text-primary uppercase">
-                    {tamilMandram.membersCount}
-                  </span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-black font-oswald uppercase text-foreground">
-                  {tamilMandram.name}
-                </h2>
-                <p className="text-base font-bold font-oswald text-primary uppercase tracking-wider mt-1">
-                  Motto: "{tamilMandram.motto}"
-                </p>
-              </div>
-
-              {/* Vision Box */}
-              <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-4 rounded-sm max-w-xl">
-                <span className="text-xs font-bold font-oswald uppercase text-primary tracking-wider block mb-1">
-                  தமிழ் மன்றத்தின் தாரக மந்திரம்:
-                </span>
-                <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed italic font-semibold">
-                  "{tamilMandram.vision}"
-                </p>
-              </div>
-            </div>
-
-            {/* Introduction & Objectives */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-              <div className="lg:col-span-2 space-y-4">
-                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2">
-                  <BookOpenCheck className="w-5 h-5 text-primary" />
-                  முன்னுரை (Introduction)
-                </h3>
-                <p className="text-sm sm:text-base font-sans text-muted-foreground leading-relaxed">
-                  {tamilMandram.description}
-                </p>
-
-                {/* Tamil Objectives */}
-                {tamilMandram.tamilObjectives && (
-                  <div className="mt-6 pt-6 border-t border-foreground/10">
-                    <h4 className="text-sm font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                      <Target className="w-4 h-4" />
-                      தமிழ் மன்றத்தின் 4 முக்கிய நோக்கங்கள் (Objectives):
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {tamilMandram.tamilObjectives.map((obj, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-background/60 p-2.5 rounded-sm border border-foreground/5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                          <span>{obj}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Tamil Events & Competitions Card */}
-              <div className="bg-background dark:bg-[#121214] border border-foreground/10 rounded-sm p-6 space-y-6">
-                <div>
-                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                    <Sparkles className="w-4 h-4 text-amber-500" />
-                    நிகழ்ச்சிகள் &amp; போட்டிகள் (8 Competitions)
-                  </h4>
-                  <div className="grid grid-cols-2 gap-2">
-                    {tamilMandram.tamilEvents?.map((event, idx) => (
-                      <div key={idx} className="flex items-center gap-1.5 text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 p-2 rounded-xs">
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full shrink-0" />
-                        <span>{event}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-foreground/10">
-                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-2">
-                    மகுட வாக்கியங்கள் (Quotes)
-                  </h4>
-                  {tamilMandram.tamilQuotes?.map((q, idx) => (
-                    <p key={idx} className="text-xs font-sans italic text-muted-foreground mb-1">
-                      {q}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Tamil Mandram Common Stock Image Banner */}
-            <div className="relative aspect-[21/9] sm:aspect-[24/7] rounded-sm overflow-hidden bg-muted border border-foreground/10 shadow-xs">
-              <img
-                src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1200&q=80"
-                alt="Tamil Mandram Cultural Heritage Showcase"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-4 sm:p-6">
-                <div className="text-white max-w-xl">
-                  <span className="text-xs font-bold font-oswald uppercase tracking-wider text-amber-300">
-                    தமிழ் மொழி · பண்பாடு · கவிதை · பட்டிமன்றம் &amp; கலை
-                  </span>
-                  <h4 className="text-lg sm:text-xl font-black font-oswald uppercase text-white mt-0.5">
-                    “வாழ்க தமிழ் ! வெல்க தமிழ் !” — MSAJCE தமிழ் மன்றம்
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* FEATURED SECTION 5: CODING CLUB */}
-        {codingClub && (
-          <section id="coding-club-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-black font-oswald uppercase text-white bg-primary px-2.5 py-0.5 rounded-xs flex items-center gap-1">
-                    <Code className="w-3.5 h-3.5 text-amber-300" />
-                    Software &amp; Competitive Programming Hub
-                  </span>
-                  <span className="text-xs font-bold font-oswald text-primary uppercase">
-                    {codingClub.membersCount}
-                  </span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-black font-oswald uppercase text-foreground">
-                  {codingClub.name}
-                </h2>
-                <p className="text-base font-bold font-oswald text-primary uppercase tracking-wider mt-1">
-                  Motto: "{codingClub.motto}"
-                </p>
-              </div>
-
-              {/* Vision Box */}
-              <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-4 rounded-sm max-w-xl">
-                <span className="text-xs font-bold font-oswald uppercase text-primary tracking-wider block mb-1">
-                  Club Vision &amp; Philosophy:
-                </span>
-                <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed italic font-semibold">
-                  "{codingClub.vision}"
-                </p>
-              </div>
-            </div>
-
-            {/* Introduction, Aim & Practice */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-              <div className="lg:col-span-2 space-y-4">
-                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2">
-                  <Terminal className="w-5 h-5 text-primary" />
-                  About Coding Club
-                </h3>
-                <p className="text-sm sm:text-base font-sans text-muted-foreground leading-relaxed">
-                  {codingClub.description}
-                </p>
-
-                {/* Club Aims */}
-                {codingClub.codingAims && (
-                  <div className="mt-6 pt-6 border-t border-foreground/10">
-                    <h4 className="text-sm font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                      <Target className="w-4 h-4" />
-                      Strategic Aims &amp; Competitions:
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {codingClub.codingAims.map((aim, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-background/60 p-2.5 rounded-sm border border-foreground/5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                          <span>{aim}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Practice & Operational Routine Card */}
-              <div className="bg-background dark:bg-[#121214] border border-foreground/10 rounded-sm p-6 space-y-6">
-                <div>
-                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                    <Cpu className="w-4 h-4 text-amber-500" />
-                    Weekly Practice &amp; Initiatives
-                  </h4>
-                  <ul className="space-y-2.5">
-                    {codingClub.codingPractices?.map((practice, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-card p-2.5 rounded-sm border border-foreground/10">
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 shrink-0" />
-                        <span>{practice}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Coding Stock Image Banner */}
-            <div className="relative aspect-[21/9] sm:aspect-[24/7] rounded-sm overflow-hidden bg-muted border border-foreground/10 shadow-xs">
-              <img
-                src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80"
-                alt="Coding Club Developer Workspace Showcase"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-4 sm:p-6">
-                <div className="text-white max-w-xl">
-                  <span className="text-xs font-bold font-oswald uppercase tracking-wider text-amber-300">
-                    Full-Stack · Machine Learning · Competitive Programming &amp; Hackathons
-                  </span>
-                  <h4 className="text-lg sm:text-xl font-black font-oswald uppercase text-white mt-0.5">
-                    Building Powerful Software &amp; Algorithmic Excellence
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* FEATURED SECTION 6: ROBOTIC CLUB */}
-        {roboticClub && (
-          <section id="robotic-club-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-black font-oswald uppercase text-white bg-primary px-2.5 py-0.5 rounded-xs flex items-center gap-1">
-                    <Bot className="w-3.5 h-3.5 text-amber-300" />
-                    Autonomous Robotics &amp; Mechatronics Hub
-                  </span>
-                  <span className="text-xs font-bold font-oswald text-primary uppercase">
-                    {roboticClub.membersCount}
-                  </span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-black font-oswald uppercase text-foreground">
-                  {roboticClub.name}
-                </h2>
-                <p className="text-base font-bold font-oswald text-primary uppercase tracking-wider mt-1">
-                  Motto: "{roboticClub.motto}"
-                </p>
-              </div>
-
-              {/* Vision Box */}
-              <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-4 rounded-sm max-w-xl">
-                <span className="text-xs font-bold font-oswald uppercase text-primary tracking-wider block mb-1">
-                  Club Aim &amp; Philosophy:
-                </span>
-                <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed italic font-semibold">
-                  "{roboticClub.vision}"
-                </p>
-              </div>
-            </div>
-
-            {/* Introduction & Objectives */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-              <div className="lg:col-span-2 space-y-4">
-                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2">
-                  <Wrench className="w-5 h-5 text-primary" />
-                  Introduction
-                </h3>
-                <p className="text-sm sm:text-base font-sans text-muted-foreground leading-relaxed">
-                  {roboticClub.description}
-                </p>
-
-                {/* Club Objectives */}
-                {roboticClub.objectives && (
-                  <div className="mt-6 pt-6 border-t border-foreground/10">
-                    <h4 className="text-sm font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                      <Target className="w-4 h-4" />
-                      3 Core Objectives:
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {roboticClub.objectives.map((obj, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-background/60 p-2.5 rounded-sm border border-foreground/5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                          <span>{obj}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Activities & Training Card */}
-              <div className="bg-background dark:bg-[#121214] border border-foreground/10 rounded-sm p-6 space-y-6">
-                <div>
-                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                    <Bot className="w-4 h-4 text-amber-500" />
-                    Club Activities Include
-                  </h4>
-                  <ul className="space-y-2.5">
-                    {roboticClub.roboticsActivities?.map((act, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-card p-2.5 rounded-sm border border-foreground/10">
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 shrink-0" />
-                        <span className="font-bold font-oswald text-foreground">{act}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Robotics Stock Image Banner */}
-            <div className="relative aspect-[21/9] sm:aspect-[24/7] rounded-sm overflow-hidden bg-muted border border-foreground/10 shadow-xs">
-              <img
-                src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80"
-                alt="Robotics Club Engineering & Automation Showcase"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-4 sm:p-6">
-                <div className="text-white max-w-xl">
-                  <span className="text-xs font-bold font-oswald uppercase tracking-wider text-amber-300">
-                    Thinking Technologically · Autonomous Robotics &amp; Circuitry
-                  </span>
-                  <h4 className="text-lg sm:text-xl font-black font-oswald uppercase text-white mt-0.5">
-                    Designing &amp; Constructing Intelligent Machines
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* FEATURED SECTION 7: ENERGY & ECO CLUB */}
-        {energyEcoClub && (
-          <section id="energy-eco-club-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-black font-oswald uppercase text-white bg-primary px-2.5 py-0.5 rounded-xs flex items-center gap-1">
-                    <Leaf className="w-3.5 h-3.5 text-emerald-300" />
-                    Green Energy &amp; Ecological Sustainability Forum
-                  </span>
-                  <span className="text-xs font-bold font-oswald text-primary uppercase">
-                    {energyEcoClub.membersCount}
-                  </span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-black font-oswald uppercase text-foreground">
-                  {energyEcoClub.name}
-                </h2>
-                <p className="text-base font-bold font-oswald text-primary uppercase tracking-wider mt-1">
-                  Motto: "{energyEcoClub.motto}"
-                </p>
-              </div>
-
-              {/* Vision Box */}
-              <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-4 rounded-sm max-w-xl">
-                <span className="text-xs font-bold font-oswald uppercase text-primary tracking-wider block mb-1">
-                  Eco Philosophy &amp; Vision:
-                </span>
-                <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed italic font-semibold">
-                  "{energyEcoClub.vision}"
-                </p>
-              </div>
-            </div>
-
-            {/* Energy Club & Eco Club Sub-sections */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-              {/* Energy Club Sub-card */}
-              <div className="bg-background dark:bg-[#121214] border border-amber-500/20 rounded-sm p-6 space-y-4">
-                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2 border-b border-foreground/10 pb-3">
-                  <Zap className="w-5 h-5 text-amber-500" />
-                  Energy Club Mandate
-                </h3>
-                <p className="text-sm font-sans text-muted-foreground leading-relaxed">
-                  {energyEcoClub.energyClubDetails}
-                </p>
-              </div>
-
-              {/* Eco Club Sub-card */}
-              <div className="bg-background dark:bg-[#121214] border border-emerald-500/20 rounded-sm p-6 space-y-4">
-                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2 border-b border-foreground/10 pb-3">
-                  <Sun className="w-5 h-5 text-emerald-500" />
-                  Eco Club Mandate
-                </h3>
-                <p className="text-sm font-sans text-muted-foreground leading-relaxed">
-                  {energyEcoClub.ecoClubDetails}
-                </p>
-              </div>
-            </div>
-
-            {/* Objectives & Key Initiatives */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-              <div className="lg:col-span-2 space-y-4">
-                <h4 className="text-sm font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                  <Target className="w-4 h-4" />
-                  Core Environmental &amp; Energy Objectives:
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {energyEcoClub.objectives?.map((obj, i) => (
-                    <div key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-background/60 p-2.5 rounded-sm border border-foreground/5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                      <span>{obj}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-background dark:bg-[#121214] border border-foreground/10 rounded-sm p-6 space-y-4">
-                <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                  <Leaf className="w-4 h-4 text-emerald-500" />
-                  Flagship Campus Initiatives
-                </h4>
-                <ul className="space-y-2">
-                  {energyEcoClub.activities.map((act, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-xs font-sans text-foreground/80">
-                      <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-1.5 shrink-0" />
-                      <span>{act}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Energy & Eco Stock Image Banner */}
-            <div className="relative aspect-[21/9] sm:aspect-[24/7] rounded-sm overflow-hidden bg-muted border border-foreground/10 shadow-xs">
-              <img
-                src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80"
-                alt="Green Renewable Energy & Nature Conservation Showcase"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-4 sm:p-6">
-                <div className="text-white max-w-xl">
-                  <span className="text-xs font-bold font-oswald uppercase tracking-wider text-amber-300">
-                    Sustainable Energy · Environmental Health · Conservation
-                  </span>
-                  <h4 className="text-lg sm:text-xl font-black font-oswald uppercase text-white mt-0.5">
-                    Empowering Youth for Responsible Energy &amp; Ecological Stewardship
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* FEATURED SECTION 8: PHOTOGRAPHY CLUB */}
-        {photographyClub && (
-          <section id="photography-club-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-black font-oswald uppercase text-white bg-primary px-2.5 py-0.5 rounded-xs flex items-center gap-1">
-                    <Camera className="w-3.5 h-3.5 text-amber-300" />
-                    Visual Arts, Photojournalism &amp; Short Filmmaking
-                  </span>
-                  <span className="text-xs font-bold font-oswald text-primary uppercase">
-                    {photographyClub.membersCount}
-                  </span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-black font-oswald uppercase text-foreground">
-                  {photographyClub.name}
-                </h2>
-                <p className="text-base font-bold font-oswald text-primary uppercase tracking-wider mt-1">
-                  Motto: "{photographyClub.motto}"
-                </p>
-              </div>
-
-              {/* Vision Box */}
-              <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-4 rounded-sm max-w-xl">
-                <span className="text-xs font-bold font-oswald uppercase text-primary tracking-wider block mb-1">
-                  Visual Arts Philosophy:
-                </span>
-                <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed italic font-semibold">
-                  "{photographyClub.vision}"
-                </p>
-              </div>
-            </div>
-
-            {/* Introduction & Objectives */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-              <div className="lg:col-span-2 space-y-4">
-                <h3 className="text-xl font-black font-oswald uppercase text-foreground flex items-center gap-2">
-                  <Film className="w-5 h-5 text-primary" />
-                  Introduction &amp; Visual Expression
-                </h3>
-                <p className="text-sm sm:text-base font-sans text-muted-foreground leading-relaxed">
-                  {photographyClub.description}
-                </p>
-
-                {/* Objectives */}
-                {photographyClub.objectives && (
-                  <div className="mt-6 pt-6 border-t border-foreground/10">
-                    <h4 className="text-sm font-bold font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                      <Target className="w-4 h-4" />
-                      4 Core Photography Objectives:
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {photographyClub.objectives.map((obj, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80 bg-background/60 p-2.5 rounded-sm border border-foreground/5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                          <span>{obj}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Pillars & Software Training Card */}
-              <div className="bg-background dark:bg-[#121214] border border-foreground/10 rounded-sm p-6 space-y-6">
-                <div>
-                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
-                    <Camera className="w-4 h-4 text-amber-500" />
-                    4 Core Pillars of Visual Arts
-                  </h4>
-                  <ul className="space-y-2">
-                    {photographyClub.photographyPillars?.map((pillar, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 p-2 rounded-xs">
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full shrink-0" />
-                        <span>{pillar}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="pt-4 border-t border-foreground/10">
-                  <h4 className="text-sm font-black font-oswald uppercase text-primary tracking-wider mb-2">
-                    Key Media Activities
-                  </h4>
-                  <ul className="space-y-1.5">
-                    {photographyClub.activities.map((act, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-xs font-sans text-foreground/80">
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 shrink-0" />
-                        <span>{act}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Photography Stock Image Banner */}
-            <div className="relative aspect-[21/9] sm:aspect-[24/7] rounded-sm overflow-hidden bg-muted border border-foreground/10 shadow-xs">
-              <img
-                src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80"
-                alt="Photography & Short Filmmaking Showcase"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-4 sm:p-6">
-                <div className="text-white max-w-xl">
-                  <span className="text-xs font-bold font-oswald uppercase tracking-wider text-amber-300">
-                    Composition · Short Filmmaking · Screenwriting · Post-Production
-                  </span>
-                  <h4 className="text-lg sm:text-xl font-black font-oswald uppercase text-white mt-0.5">
-                    Exploring &amp; Appreciating Surroundings Through Visual Arts
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Directory Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-foreground/10 pb-4">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground">
-              Official Student Clubs Directory
-            </h2>
-            <p className="text-sm text-muted-foreground font-sans mt-1">
-              Explore all 8 specialized student clubs across sports, technical, arts, literary, eco, and media categories.
+            <p className="text-xs sm:text-sm font-sans text-muted-foreground max-w-md">
+              Click any forum below to directly switch the focus and review its specific activities and mandate.
             </p>
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex flex-wrap gap-2">
-            {[
-              { id: "all", label: "All 8 Clubs" },
-              { id: "technical", label: "Technical & Science" },
-              { id: "cultural", label: "Cultural & Literary" },
-              { id: "sports", label: "Sports" },
-              { id: "media", label: "Media" },
-              { id: "eco", label: "Eco & Green" },
-            ].map(f => (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => setClubFilter(f.id)}
-                className={`px-3 py-1.5 text-xs font-bold font-oswald uppercase tracking-wider rounded-sm transition-all cursor-pointer ${
-                  clubFilter === f.id
-                    ? "bg-primary text-primary-foreground shadow-xs"
-                    : "bg-muted text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Clubs Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredClubs.map((club) => (
-            <div
-              key={club.id}
-              className="group bg-card dark:bg-[#18181B] border border-foreground/10 rounded-sm p-6 flex flex-col justify-between hover:border-primary/50 transition-colors shadow-xs"
-            >
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="text-[11px] font-bold font-oswald uppercase text-primary px-2 py-0.5 bg-primary/10 border border-primary/20 rounded-xs">
-                    {club.badge || club.category}
-                  </span>
-                  <span className="text-xs font-sans text-muted-foreground font-semibold">
-                    {club.membersCount}
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-black font-oswald uppercase text-foreground group-hover:text-primary transition-colors">
-                  {club.name}
-                </h3>
-                <p className="text-xs font-bold font-oswald uppercase text-primary/90 mt-1">
-                  "{club.tagline}"
-                </p>
-                <p className="text-sm font-sans text-muted-foreground mt-3 leading-relaxed line-clamp-3">
-                  {club.description}
-                </p>
-
-                <div className="mt-4 pt-4 border-t border-foreground/10">
-                  <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2">
-                    Key Initiatives &amp; Activities:
-                  </h4>
-                  <ul className="space-y-1.5">
-                    {club.activities.map((act, i) => (
-                      <li key={i} className="flex items-start gap-2 text-xs font-sans text-foreground/80">
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 shrink-0" />
-                        <span>{act}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-foreground/10 flex items-center justify-between">
-                <button
-                  type="button"
-                  onClick={() => scrollToClub(club.id)}
-                  className="text-xs font-bold font-oswald uppercase text-primary hover:text-primary/80 flex items-center gap-1 cursor-pointer transition-colors"
+          {/* Clean Editorial Table / Open Directory List (Strictly NO Cards) */}
+          <div className="divide-y divide-border/60 border-y border-border/60 bg-transparent">
+            {studentClubs.map((club, idx) => {
+              const isActive = club.id === activeClub.id;
+              return (
+                <div
+                  key={club.id}
+                  onClick={() => handleSelectClub(club.id)}
+                  className={`py-3.5 sm:py-4 px-2 sm:px-4 flex flex-col md:flex-row md:items-center justify-between gap-3 transition-colors cursor-pointer ${
+                    isActive
+                      ? "bg-primary/5 dark:bg-primary/10 border-l-4 border-primary pl-3"
+                      : "hover:bg-foreground/[0.02]"
+                  }`}
                 >
-                  View Club Profile <ArrowRight className="w-3 h-3" />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+                  <div className="flex items-start sm:items-center gap-3">
+                    <span className="text-xs font-mono font-bold text-muted-foreground w-6 shrink-0 mt-0.5 sm:mt-0">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-base sm:text-lg font-black font-oswald uppercase text-foreground hover:text-primary transition-colors">
+                          {club.name}
+                        </span>
+                        {isActive && (
+                          <span className="text-[10px] font-bold font-oswald uppercase bg-primary text-white px-2 py-0.5 rounded-xs">
+                            Active
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs font-sans text-muted-foreground line-clamp-1 mt-0.5">
+                        {club.tagline}
+                      </p>
+                    </div>
+                  </div>
 
-        {/* Flagship Annual Festivals Showcase */}
-        <div className="mt-12 bg-card dark:bg-[#18181B] border border-foreground/10 rounded-sm p-6 sm:p-8">
-          <h3 className="text-2xl font-black font-oswald uppercase text-primary mb-2">
-            Annual Flagship Festivals
-          </h3>
-          <p className="text-sm text-muted-foreground font-sans mb-6">
-            Major state-level annual college conventions driven by our student clubs on MSAJCE campus.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-4 border border-foreground/10 rounded-sm bg-background">
-              <span className="text-xs font-black font-oswald uppercase text-primary">Annual Cultural Fest</span>
-              <h4 className="text-lg font-black font-oswald uppercase text-foreground mt-1">TAKSHASHILA</h4>
-              <p className="text-xs text-muted-foreground font-sans mt-2">
-                3-day inter-collegiate cultural extravaganza featuring music battles, dance troupes, drama, Fine Arts exhibitions, and Tamil Mandram galas.
-              </p>
-            </div>
-            <div className="p-4 border border-foreground/10 rounded-sm bg-background">
-              <span className="text-xs font-black font-oswald uppercase text-primary">Technical Symposium</span>
-              <h4 className="text-lg font-black font-oswald uppercase text-foreground mt-1">INNOVIX</h4>
-              <p className="text-xs text-muted-foreground font-sans mt-2">
-                National level technical symposium organized by Coding Club, Robotic Club, and Science Club with code sprints, robo-soccer, and science paper presentations.
-              </p>
-            </div>
-            <div className="p-4 border border-foreground/10 rounded-sm bg-background">
-              <span className="text-xs font-black font-oswald uppercase text-primary">Sports Championship</span>
-              <h4 className="text-lg font-black font-oswald uppercase text-foreground mt-1">SPORTS FIESTA</h4>
-              <p className="text-xs text-muted-foreground font-sans mt-2">
-                Annual athletic meet and inter-department sports tournament organized by Sports Club spanning cricket, football, basketball, and track athletics.
-              </p>
-            </div>
+                  <div className="flex items-center justify-between md:justify-end gap-4 shrink-0 pl-9 md:pl-0">
+                    <span className="text-[11px] font-bold font-oswald uppercase text-primary px-2.5 py-0.5 bg-primary/10 border border-primary/20 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                      {club.badge || club.category}
+                    </span>
+                    <span className="text-xs font-sans font-semibold text-muted-foreground hidden sm:inline">
+                      {club.membersCount}
+                    </span>
+                    <span className="text-xs font-bold font-oswald uppercase text-primary flex items-center gap-1">
+                      {isActive ? "Viewing" : "Explore"} <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
+      </section>
 
-        {/* Navigation Banner */}
-        <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-6 rounded-sm flex items-center justify-between gap-4">
-          <div>
-            <h4 className="text-lg font-black font-oswald uppercase text-foreground">Explore Professional Societies</h4>
-            <p className="text-xs text-muted-foreground font-sans">IEEE, ISTE, CSI, and SAE India student chapters.</p>
-          </div>
-          <button
-            type="button"
-            onClick={() => navigate({ to: "/student-life/professional-societies" })}
-            className="relative group overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-stone-200 dark:bg-neutral-800 text-foreground dark:text-white border border-stone-300 dark:border-neutral-700 px-5 py-2.5 font-bold font-oswald text-xs uppercase tracking-wider shrink-0 cursor-pointer"
-          >
-            <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
-              Professional Chapters <ArrowRight className="w-3.5 h-3.5" />
-            </span>
-            <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-              <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-            </span>
-          </button>
-        </div>
+      {/* ORGANIC WAVE DIVIDER B -> A */}
+      <div className="w-full overflow-hidden leading-none select-none bg-[#F3F3F2] dark:bg-[#18181B]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-white dark:fill-[#121214]"
+          />
+        </svg>
       </div>
+
+      {/* SECTION A: ANNUAL FLAGSHIP FESTIVALS & PROFESSIONAL GATEWAY */}
+      <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 px-4 sm:px-6 md:px-12 transition-colors">
+        <div className="max-w-[1440px] mx-auto space-y-10">
+          
+          <div>
+            <div className="border-b border-border/60 pb-3 mb-6">
+              <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary">
+                Campus Traditions &amp; Inter-Collegiate Competitions
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground mt-0.5">
+                Annual Flagship Festivals
+              </h2>
+            </div>
+
+            {/* 3 Major Festivals Editorial Columns (No heavy card boxes) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-border/60">
+              
+              <div className="pt-4 md:pt-0 md:pr-6 space-y-2">
+                <span className="text-xs font-black font-oswald uppercase text-primary">
+                  Annual Cultural Fest
+                </span>
+                <h3 className="text-xl font-black font-oswald uppercase text-foreground">
+                  TAKSHASHILA
+                </h3>
+                <p className="text-xs sm:text-sm font-sans text-muted-foreground leading-relaxed">
+                  3-day inter-collegiate cultural extravaganza featuring music battles, dance troupes, drama, Fine Arts exhibitions, and Tamil Mandram galas with 5,000+ attendees.
+                </p>
+              </div>
+
+              <div className="pt-4 md:pt-0 md:px-6 space-y-2">
+                <span className="text-xs font-black font-oswald uppercase text-primary">
+                  National Technical Symposium
+                </span>
+                <h3 className="text-xl font-black font-oswald uppercase text-foreground">
+                  INNOVIX
+                </h3>
+                <p className="text-xs sm:text-sm font-sans text-muted-foreground leading-relaxed">
+                  National technical symposium organized jointly by Coding Club, Robotic Club, and Science Club with 24-hr code sprints, robo-soccer, and science paper presentations.
+                </p>
+              </div>
+
+              <div className="pt-4 md:pt-0 md:pl-6 space-y-2">
+                <span className="text-xs font-black font-oswald uppercase text-primary">
+                  Annual Sports Championship
+                </span>
+                <h3 className="text-xl font-black font-oswald uppercase text-foreground">
+                  SPORTS FIESTA
+                </h3>
+                <p className="text-xs sm:text-sm font-sans text-muted-foreground leading-relaxed">
+                  Annual athletic meet and inter-department championship organized by Sports Club spanning cricket, football, basketball, and track athletics with gold/silver medal ceremonies.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Gateway Banner to Professional Societies */}
+          <div className="border border-border/60 p-6 sm:p-8 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-muted/20">
+            <div>
+              <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary">
+                Technical Societies &amp; Chapters
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-foreground mt-0.5">
+                Explore Professional Societies
+              </h3>
+              <p className="text-xs sm:text-sm text-muted-foreground font-sans mt-1">
+                IEEE, ISTE, CSI, and SAE India international student branches at MSAJCE.
+              </p>
+            </div>
+            
+            <button
+              type="button"
+              onClick={() => navigate({ to: "/student-life/professional-societies" })}
+              className="relative group overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-stone-200 dark:bg-neutral-800 text-foreground dark:text-white border border-stone-300 dark:border-neutral-700 px-5 py-2.5 font-bold font-oswald text-xs uppercase tracking-wider shrink-0 cursor-pointer"
+            >
+              <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
+                Professional Chapters <ArrowRight className="w-3.5 h-3.5" />
+              </span>
+              <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+              </span>
+            </button>
+          </div>
+
+        </div>
+      </section>
     </main>
   );
 }
