@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import {
   Sparkles,
@@ -28,11 +28,23 @@ import {
   Camera,
   Film
 } from "lucide-react";
+import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
 import { studentClubs } from "@/data/studentLife";
 
 const title = "Clubs & Cultural Societies | Student Life | MSAJCE";
 const description =
   "Explore official student clubs at Mohamed Sathak A.J. College of Engineering: Sports Club, Fine Arts Club (ENVISTA), Science Club, Tamil Mandram, Coding Club, Robotic Club, Energy & Eco Club, and Photography Club.";
+
+const clubNavTabs: SubNavTab[] = [
+  { id: "sports-club", label: "Sports Club" },
+  { id: "fine-arts-club", label: "Fine Arts Club" },
+  { id: "science-club", label: "Science Club" },
+  { id: "tamil-mandram", label: "Tamil Mandram" },
+  { id: "coding-club", label: "Coding Club" },
+  { id: "robotic-club", label: "Robotic Club" },
+  { id: "energy-eco-club", label: "Energy & Eco Club" },
+  { id: "photography-club", label: "Photography Club" },
+];
 
 export const Route = createFileRoute("/student-life_/clubs-and-societies")({
   head: () => ({
@@ -51,6 +63,7 @@ export const Route = createFileRoute("/student-life_/clubs-and-societies")({
 function ClubsAndSocietiesPage() {
   const navigate = useNavigate();
   const [clubFilter, setClubFilter] = useState<string>("all");
+  const [activeClub, setActiveClub] = useState<string>("sports-club");
 
   const filteredClubs = clubFilter === "all"
     ? studentClubs
@@ -65,8 +78,77 @@ function ClubsAndSocietiesPage() {
   const energyEcoClub = studentClubs.find(c => c.id === "energy-eco-club");
   const photographyClub = studentClubs.find(c => c.id === "photography-club");
 
+  const scrollToClub = (clubId: string) => {
+    setActiveClub(clubId);
+    const element = document.getElementById(`${clubId}-feature`);
+    if (element) {
+      const headerOffset = typeof window !== "undefined" && window.innerWidth < 768 ? 115 : 125;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    const clubIds = [
+      "sports-club",
+      "fine-arts-club",
+      "science-club",
+      "tamil-mandram",
+      "coding-club",
+      "robotic-club",
+      "energy-eco-club",
+      "photography-club",
+    ];
+
+    const handleScroll = () => {
+      const headerOffset = typeof window !== "undefined" && window.innerWidth < 768 ? 140 : 155;
+      const scrollPosition = window.scrollY + headerOffset;
+
+      for (let i = clubIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(`${clubIds[i]}-feature`);
+        if (el) {
+          if (scrollPosition >= el.offsetTop) {
+            setActiveClub(clubIds[i]);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash) {
+      const hashId = window.location.hash.replace("#", "").replace("-feature", "");
+      const matched = clubNavTabs.find((t) => t.id === hashId);
+      if (matched) {
+        setTimeout(() => {
+          scrollToClub(matched.id);
+        }, 150);
+      }
+    }
+  }, []);
+
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
+      {/* SECONDARY SUB-NAV HEADER (8 Official Student Clubs Navigation) */}
+      <SecondarySubNav
+        title="CLUBS & SOCIETIES"
+        tabs={clubNavTabs}
+        activeTab={activeClub}
+        onSelectTab={scrollToClub}
+        onTitleClick={() => {
+          setActiveClub("sports-club");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+      />
+
       {/* Page Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-10 pb-16 px-4 sm:px-6 md:px-12 border-b border-primary/20">
         <div className="max-w-[1440px] mx-auto relative z-10">
@@ -128,7 +210,7 @@ function ClubsAndSocietiesPage() {
 
         {/* FEATURED SECTION 1: SPORTS CLUB */}
         {sportsClub && (
-          <section id="sports-club-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
+          <section id="sports-club-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -225,7 +307,7 @@ function ClubsAndSocietiesPage() {
 
         {/* FEATURED SECTION 2: FINE ARTS CLUB (ARTFUL AESTHETICS) */}
         {fineArtsClub && (
-          <section id="fine-arts-club-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
+          <section id="fine-arts-club-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -365,7 +447,7 @@ function ClubsAndSocietiesPage() {
 
         {/* FEATURED SECTION 3: SCIENCE CLUB */}
         {scienceClub && (
-          <section id="science-club-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
+          <section id="science-club-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -497,7 +579,7 @@ function ClubsAndSocietiesPage() {
 
         {/* FEATURED SECTION 4: TAMIL MANDRAM */}
         {tamilMandram && (
-          <section id="tamil-mandram-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
+          <section id="tamil-mandram-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -611,7 +693,7 @@ function ClubsAndSocietiesPage() {
 
         {/* FEATURED SECTION 5: CODING CLUB */}
         {codingClub && (
-          <section id="coding-club-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
+          <section id="coding-club-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -714,7 +796,7 @@ function ClubsAndSocietiesPage() {
 
         {/* FEATURED SECTION 6: ROBOTIC CLUB */}
         {roboticClub && (
-          <section id="robotic-club-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
+          <section id="robotic-club-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -817,7 +899,7 @@ function ClubsAndSocietiesPage() {
 
         {/* FEATURED SECTION 7: ENERGY & ECO CLUB */}
         {energyEcoClub && (
-          <section id="energy-eco-club-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
+          <section id="energy-eco-club-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -929,7 +1011,7 @@ function ClubsAndSocietiesPage() {
 
         {/* FEATURED SECTION 8: PHOTOGRAPHY CLUB */}
         {photographyClub && (
-          <section id="photography-club-feature" className="bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
+          <section id="photography-club-feature" className="scroll-mt-28 md:scroll-mt-32 bg-card dark:bg-[#18181B] border border-primary/30 rounded-sm p-6 sm:p-10 shadow-md">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-foreground/10 pb-6 mb-8">
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -1121,6 +1203,16 @@ function ClubsAndSocietiesPage() {
                     ))}
                   </ul>
                 </div>
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-foreground/10 flex items-center justify-between">
+                <button
+                  type="button"
+                  onClick={() => scrollToClub(club.id)}
+                  className="text-xs font-bold font-oswald uppercase text-primary hover:text-primary/80 flex items-center gap-1 cursor-pointer transition-colors"
+                >
+                  View Club Profile <ArrowRight className="w-3 h-3" />
+                </button>
               </div>
             </div>
           ))}
