@@ -102,6 +102,28 @@ export interface SaeActivity {
   academicYear?: string;
 }
 
+export interface IshraeOfficeBearer {
+  sno: number;
+  position: string;
+  name: string;
+  roleCategory: "Faculty Advisor" | "Student Officer";
+  department: string;
+}
+
+export interface IshraeActivity {
+  sno: number;
+  activityTitle: string;
+  keyMandate: string;
+  scopeAndBenefit: string;
+}
+
+export interface IshraeGovtPartnership {
+  sno: number;
+  partnerEntity: string;
+  technicalDomain: string;
+  initiativeSummary: string;
+}
+
 export interface ProfessionalSociety {
   id: string;
   name: string;
@@ -126,6 +148,9 @@ export interface ProfessionalSociety {
   saeCompetitions?: string[];
   saeOfficeBearers?: SaeOfficeBearer[];
   saeActivities?: SaeActivity[];
+  ishraeOfficeBearers?: IshraeOfficeBearer[];
+  ishraeActivities?: IshraeActivity[];
+  ishraePartnerships?: IshraeGovtPartnership[];
   objectives: string[];
   membershipBenefits: string[];
   flagshipEvents: string[];
@@ -893,30 +918,147 @@ export const professionalSocieties: ProfessionalSociety[] = [
     shortName: "ISHRAE",
     code: "ISHRAE-MSAJCE",
     category: "Thermal, HVAC&R & Green Buildings",
-    tagline: "Advancing HVAC&R Engineering, Energy Conservation & Sustainable Thermal Comfort",
-    description: "The Indian Society of Heating, Refrigerating and Air Conditioning Engineers (ISHRAE) is the premier national organization devoted to advancing the arts and sciences of heating, ventilation, air conditioning, and refrigeration. The ISHRAE Student Chapter at MSAJCE equips mechanical, electrical, and civil engineering students with technical expertise in green building design, clean refrigerants, energy auditing, smart cold-chain systems, and decarbonization technologies.",
+    tagline: "ISHRAE Student Chapter · Advancing Arts & Sciences of HVAC&R",
+    establishedDate: "Founded 1981 at New Delhi",
+    region: "41 Chapters & Sub-Chapters Nationwide (HQ: New Delhi)",
+    description: "The Indian Society of Heating, Refrigerating and Air Conditioning Engineers (ISHRAE), was founded in 1981 at New Delhi by a group of eminent HVAC&R professionals. ISHRAE operates from 41 Chapters and sub Chapters spread all over India, with HQ in Delhi. ISHRAE works in the National interest with various Govt. Ministries/Departments, e.g. in the development of Standards & drafting of NBC for BIS, working on ECBC with BEE, with Ozone cell of MoEFCC, on refrigerant gases. ISHRAE is a member & active supporter of National Centre for Cold Chain development (NCCD). Ministry of Agriculture works closely with NCCD on refrigeration. ISHRAE is also working in close co-operation with other similar Societies & organizations, both at national and international level, for the promotion and development of issues like Sustainability, Green Buildings, Energy Efficiency, Environmental Responsibility, Indoor Air Quality, Fire & Safety. ISHRAE is looked upon as a repository of technical knowledge in the HVAC&R and Building Industry field by peer Organizations & the Govt. of India. ISHRAE reaches out to all its members and seeks their active participation & involvement in all the Events/Programs organized by the society.",
     objectives: [
-      "Educate students on advanced HVAC&R design, thermal load calculations, and energy modeling software.",
-      "Conduct technical visits to central chiller plants, refrigerated warehouses, and LEED-certified green buildings.",
-      "Prepare students for national competitions including the prestigious aQuest Technical Quiz and ACREX India.",
-      "Host masterclasses on eco-friendly refrigerants, indoor air quality (IAQ), and commercial heat pump systems.",
-      "Collaborate with industry partners on energy conservation audits and sustainable thermal building solutions."
+      "Advancement of the Arts and Sciences of Heating, Ventilation, Air Conditioning and Refrigeration Engineering and related services.",
+      "Continuing education of members and interested professionals through lectures, workshops, product presentations, publications and expositions.",
+      "Rendition of professional career guidance and financial assistance to students in thermal and HVAC&R sciences.",
+      "Encouragement and incubation of cutting-edge scientific research in energy conservation, cold chains, and indoor air quality.",
+      "Active collaboration with government ministries and statutory bodies to formulate energy benchmarks and safety codes."
     ],
     membershipBenefits: [
-      "ISHRAE student membership credentials recognized across the global HVAC&R and MEP engineering sector.",
-      "Direct participation in the national aQuest quiz, student design competitions, and ACREX India expos.",
-      "Free access to ISHRAE standards, technical handbooks, and the Air Conditioning and Refrigeration Journal.",
-      "Dedicated campus recruitment and career job fairs by HVAC conglomerates (Blue Star, Voltas, Daikin, Carrier, Johnson Controls).",
-      "Eligibility for ISHRAE national student research project grants and academic scholarships."
+      "Provides excellent networking opportunities to interact with other Professionals, Industry Leaders and key decision makers in the Profession and Industry.",
+      "Provides an excellent forum for professional development and continuous training & re-training on both fundamentals and latest worldwide products & technologies.",
+      "Easy access to all ISHRAE Technical Publications, Software, Handbooks, Workshops, Conferences and Training Programs.",
+      "Opportunity to work in the Chapter Working Committee & Headquarter activities towards our mission to promote the arts and sciences of HVAC&R in India.",
+      "Provides a platform for effective marketing and launching of new products and technologies through exhibitions, product presentations and advertisements.",
+      "Provides an International exposure through International Associates and global HVAC&R engineering societies."
+    ],
+    ishraeOfficeBearers: [
+      {
+        sno: 1,
+        position: "Faculty Coordinator",
+        name: "Prof. N. Senthil Kumar",
+        roleCategory: "Faculty Advisor",
+        department: "Department of Mechanical Engineering"
+      },
+      {
+        sno: 2,
+        position: "Student President",
+        name: "K. Vignesh",
+        roleCategory: "Student Officer",
+        department: "Department of Mechanical Engineering"
+      },
+      {
+        sno: 3,
+        position: "Student Vice President",
+        name: "M. Hameed Fayaz",
+        roleCategory: "Student Officer",
+        department: "Department of Mechanical Engineering"
+      },
+      {
+        sno: 4,
+        position: "Student Secretary",
+        name: "R. Mohammed Aslam",
+        roleCategory: "Student Officer",
+        department: "Department of Mechanical Engineering"
+      },
+      {
+        sno: 5,
+        position: "Student Joint Secretary",
+        name: "S. Dinesh Kumar",
+        roleCategory: "Student Officer",
+        department: "Department of Mechanical Engineering"
+      },
+      {
+        sno: 6,
+        position: "Student Treasurer",
+        name: "A. Fazil Ahamed",
+        roleCategory: "Student Officer",
+        department: "Department of Mechanical Engineering"
+      }
+    ],
+    ishraeActivities: [
+      {
+        sno: 1,
+        activityTitle: "Professional Industry Networking",
+        keyMandate: "Interaction with HVAC&R industry leaders, consultants, and corporate decision-makers.",
+        scopeAndBenefit: "Industry Conclaves, ACREX Delegations & Corporate Networking"
+      },
+      {
+        sno: 2,
+        activityTitle: "Professional Training & Re-Training",
+        keyMandate: "Continuous hands-on training on engineering fundamentals and latest worldwide technologies.",
+        scopeAndBenefit: "Technical Workshops, Certification Courses & Software Masterclasses"
+      },
+      {
+        sno: 3,
+        activityTitle: "Technical Publications & Software Access",
+        keyMandate: "Unrestricted access to ISHRAE standards, technical journals, duct design tools, and research handbooks.",
+        scopeAndBenefit: "National Knowledge Repositories, Research Papers & Simulation Tools"
+      },
+      {
+        sno: 4,
+        activityTitle: "Chapter Governance & Committee Leadership",
+        keyMandate: "Active student role in Chapter Working Committees and national headquarters mission projects.",
+        scopeAndBenefit: "Leadership Development, Event Management & Institutional Governance"
+      },
+      {
+        sno: 5,
+        activityTitle: "Product Expositions & Technical Launches",
+        keyMandate: "Platform for evaluating and presenting cutting-edge thermal comfort and refrigeration products.",
+        scopeAndBenefit: "Product Presentations, Live Demonstrations & Industry Exhibitions"
+      },
+      {
+        sno: 6,
+        activityTitle: "Global Engineering & International Exposure",
+        keyMandate: "Cross-border learning and student exchange through global international associate partnerships.",
+        scopeAndBenefit: "International Associate Conclaves & Global Technical Exchange"
+      }
+    ],
+    ishraePartnerships: [
+      {
+        sno: 1,
+        partnerEntity: "Bureau of Indian Standards (BIS)",
+        technicalDomain: "National Building Code (NBC)",
+        initiativeSummary: "Formulation of statutory HVAC&R engineering standards, drafting NBC codes, and building safety provisions."
+      },
+      {
+        sno: 2,
+        partnerEntity: "Bureau of Energy Efficiency (BEE)",
+        technicalDomain: "Energy Conservation Building Code (ECBC)",
+        initiativeSummary: "Co-developing national energy conservation codes, thermal efficiency benchmarks, and star rating schemes."
+      },
+      {
+        sno: 3,
+        partnerEntity: "Ozone Cell, MoEFCC",
+        technicalDomain: "Eco-Friendly Low-GWP Refrigerants",
+        initiativeSummary: "Environmental compliance, phase-down of ozone depleting substances, and sustainable next-gen refrigerants."
+      },
+      {
+        sno: 4,
+        partnerEntity: "National Centre for Cold Chain Development (NCCD)",
+        technicalDomain: "Ministry of Agriculture Collaboration",
+        initiativeSummary: "Active partnership on cold chain refrigeration infrastructure, agricultural logistics, and post-harvest preservation."
+      },
+      {
+        sno: 5,
+        partnerEntity: "International Associates & Peer Bodies",
+        technicalDomain: "Sustainability, IAQ & Green Architecture",
+        initiativeSummary: "Global initiatives on Indoor Air Quality (IAQ), Green Buildings, Fire & Safety, and net-zero thermal systems."
+      }
     ],
     flagshipEvents: [
-      "ACREX Student Delegation & Industry Conclave",
+      "ACREX India International Student Conclave",
       "National aQuest HVAC&R Technical Quiz Championship",
-      "Green Building Thermal Modeling & IAQ Workshop",
-      "Refrigeration & Cold Chain Technology Seminar"
+      "Green Building Energy Auditing & IAQ Colloquium",
+      "Cold Chain Refrigeration & Thermal Storage Seminar"
     ],
     logoOrIcon: "ShieldCheck",
-    studentChairs: "Faculty Coordinator: Prof. N. Senthil Kumar (Mech) | Student Chair: K. Vignesh (Mech)",
+    studentChairs: "Faculty Coordinator: Prof. N. Senthil Kumar (Mech) | Student President: K. Vignesh (Mech)",
     image: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=900&q=80",
     membersCount: "190+ Members"
   }

@@ -314,6 +314,48 @@ function ProfessionalSocietiesPage() {
                     )}
                   </div>
                 )}
+
+                {/* ISHRAE Special Government Linkages & Technical Domains Highlight */}
+                {activeSociety.id === "ishrae" && (
+                  <div className="mt-4 space-y-3">
+                    <div className="p-4 border-l-2 border-primary bg-primary/[0.03] dark:bg-primary/[0.06] rounded-r-xs space-y-2">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-xs font-black font-oswald uppercase text-primary tracking-wider flex items-center gap-1.5">
+                          <Building2 className="w-3.5 h-3.5" />
+                          National Repository &amp; Standards Developing Body
+                        </span>
+                        {activeSociety.establishedDate && (
+                          <span className="text-xs font-mono text-muted-foreground">
+                            · {activeSociety.establishedDate}
+                          </span>
+                        )}
+                        {activeSociety.region && (
+                          <span className="text-xs font-bold font-oswald uppercase text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs">
+                            {activeSociety.region}
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {[
+                          "National Building Code (BIS)",
+                          "Energy Conservation Code (BEE)",
+                          "Ozone Cell (MoEFCC)",
+                          "Cold Chain Development (NCCD)",
+                          "Sustainability & Green Buildings",
+                          "Indoor Air Quality (IAQ)",
+                          "Fire & Safety Standards",
+                        ].map((domain, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2.5 py-1 bg-background border border-border/80 text-[11px] font-oswald uppercase text-foreground font-semibold rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs"
+                          >
+                            {domain}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Clean 2-Column Minimal Editorial Breakdown */}
@@ -899,6 +941,175 @@ function ProfessionalSocietiesPage() {
                                   ) : (
                                     <span className="text-xs text-muted-foreground italic">N/A</span>
                                   )}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                </div>
+              )}
+
+              {/* SPECIAL TABLES SECTION FOR ISHRAE (Styled as in Innovation & Incubation Cell) */}
+              {activeSociety.id === "ishrae" && (
+                <div className="pt-8 space-y-10 border-t border-border/60">
+                  
+                  {/* Table 1: ISHRAE Student Branch Chapter Office Bearers */}
+                  {activeSociety.ishraeOfficeBearers && activeSociety.ishraeOfficeBearers.length > 0 && (
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
+                          Chapter Governance &amp; Student Executive
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-foreground mt-0.5">
+                          ISHRAE Student Branch Chapter Office Bearers
+                        </h3>
+                        <p className="text-xs sm:text-sm font-sans text-muted-foreground">
+                          Faculty coordinators and elected student officers leading HVAC&amp;R technical chapters, workshops, and national conventions.
+                        </p>
+                      </div>
+
+                      <div className="overflow-x-auto border border-border rounded-none">
+                        <table className="w-full text-sm text-left">
+                          <thead className="bg-primary/10 text-primary font-oswald uppercase text-xs">
+                            <tr>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold w-14 text-center">S.No</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap">Designation / Role</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Officer Name</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap">Role Category</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Department &amp; Institution</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border font-sans text-muted-foreground">
+                            {activeSociety.ishraeOfficeBearers.map((bearer) => (
+                              <tr key={bearer.sno} className="hover:bg-muted/50 transition-colors">
+                                <td className="px-4 sm:px-6 py-3.5 font-medium text-foreground text-center">
+                                  {String(bearer.sno).padStart(2, "0")}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-oswald uppercase text-primary whitespace-nowrap">
+                                  <span className="px-2.5 py-0.5 bg-primary/10 border border-primary/20 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs">
+                                    {bearer.position}
+                                  </span>
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-sans text-foreground">
+                                  {bearer.name}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-mono text-xs whitespace-nowrap">
+                                  <span
+                                    className={`px-2 py-0.5 rounded-xs font-semibold ${
+                                      bearer.roleCategory === "Faculty Advisor"
+                                        ? "bg-primary/15 text-primary border border-primary/20"
+                                        : "bg-muted text-foreground/80"
+                                    }`}
+                                  >
+                                    {bearer.roleCategory}
+                                  </span>
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 text-xs sm:text-sm">
+                                  {bearer.department}, MSAJCE
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Table 2: ISHRAE Student Branch Core Activities */}
+                  {activeSociety.ishraeActivities && activeSociety.ishraeActivities.length > 0 && (
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
+                          Student Branch Mandate &amp; Professional Development
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-foreground mt-0.5">
+                          Activities of the Student Branch
+                        </h3>
+                        <p className="text-xs sm:text-sm font-sans text-muted-foreground">
+                          Comprehensive initiatives undertaken by the MSAJCE student chapter to advance HVAC&amp;R engineering competencies.
+                        </p>
+                      </div>
+
+                      <div className="overflow-x-auto border border-border rounded-none">
+                        <table className="w-full text-sm text-left">
+                          <thead className="bg-primary/10 text-primary font-oswald uppercase text-xs">
+                            <tr>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold w-14 text-center">S.No</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap">Core Activity Domain</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Key Mandate &amp; Professional Opportunities</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap">Technical Scope &amp; Benefits</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border font-sans text-muted-foreground">
+                            {activeSociety.ishraeActivities.map((act) => (
+                              <tr key={act.sno} className="hover:bg-muted/50 transition-colors">
+                                <td className="px-4 sm:px-6 py-3.5 font-medium text-foreground text-center">
+                                  {String(act.sno).padStart(2, "0")}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-oswald uppercase text-foreground whitespace-nowrap">
+                                  {act.activityTitle}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 text-xs sm:text-sm text-foreground/90 leading-relaxed">
+                                  {act.keyMandate}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 text-xs font-sans text-muted-foreground whitespace-nowrap">
+                                  <span className="px-2 py-0.5 bg-muted rounded-xs">
+                                    {act.scopeAndBenefit}
+                                  </span>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Table 3: National Governance & Statutory Framework */}
+                  {activeSociety.ishraePartnerships && activeSociety.ishraePartnerships.length > 0 && (
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
+                          Statutory &amp; Inter-Ministerial Collaborations
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-foreground mt-0.5">
+                          National Technical Knowledge &amp; Standards Framework
+                        </h3>
+                        <p className="text-xs sm:text-sm font-sans text-muted-foreground">
+                          Strategic engagements with Government Ministries, Bureau of Indian Standards, and global environmental bodies.
+                        </p>
+                      </div>
+
+                      <div className="overflow-x-auto border border-border rounded-none">
+                        <table className="w-full text-sm text-left">
+                          <thead className="bg-primary/10 text-primary font-oswald uppercase text-xs">
+                            <tr>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold w-14 text-center">S.No</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Government Ministry / Statutory Entity</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap">Technical Focus Area</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Institutional Collaboration Details</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border font-sans text-muted-foreground">
+                            {activeSociety.ishraePartnerships.map((partner) => (
+                              <tr key={partner.sno} className="hover:bg-muted/50 transition-colors">
+                                <td className="px-4 sm:px-6 py-3.5 font-medium text-foreground text-center">
+                                  {String(partner.sno).padStart(2, "0")}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-oswald uppercase text-foreground">
+                                  {partner.partnerEntity}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-mono text-xs whitespace-nowrap">
+                                  <span className="px-2.5 py-0.5 bg-primary/10 text-primary border border-primary/20 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs font-semibold">
+                                    {partner.technicalDomain}
+                                  </span>
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 text-xs sm:text-sm text-foreground/90 leading-relaxed">
+                                  {partner.initiativeSummary}
                                 </td>
                               </tr>
                             ))}
