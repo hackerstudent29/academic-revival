@@ -67,6 +67,24 @@ export interface CsiActivity {
   reportUrl?: string;
 }
 
+export interface IeteCounselor {
+  sno: number;
+  role: string;
+  name: string;
+  department: string;
+  institution: string;
+  codeInfo?: string;
+}
+
+export interface IeteActivity {
+  sno: number;
+  eventName: string;
+  resourcePerson: string;
+  date: string;
+  targetAudience: string;
+  participants: string;
+}
+
 export interface ProfessionalSociety {
   id: string;
   name: string;
@@ -76,6 +94,7 @@ export interface ProfessionalSociety {
   tagline: string;
   description: string;
   visionMotto?: string;
+  establishedDate?: string;
   region?: string;
   chapter?: string;
   history?: string;
@@ -83,6 +102,9 @@ export interface ProfessionalSociety {
   nominationAuthorities?: NominationAuthority[];
   officeBearers?: OfficeBearer[];
   activitiesList?: CsiActivity[];
+  ieteCounselors?: IeteCounselor[];
+  ieteActivities?: IeteActivity[];
+  ietePublications?: string[];
   objectives: string[];
   membershipBenefits: string[];
   flagshipEvents: string[];
@@ -597,33 +619,131 @@ export const professionalSocieties: ProfessionalSociety[] = [
     name: "Institution of Electronics and Telecommunication Engineers (IETE)",
     shortName: "IETE",
     code: "IETE-ISF-MSAJCE",
-    category: "Electronics & Telecommunications",
-    tagline: "Engineering Modern Telecommunications, IoT Architectures & Embedded VLSI Systems",
-    description: "The Institution of Electronics and Telecommunication Engineers (IETE) is the leading national professional society devoted to the advancement of science and technology in Electronics, Telecommunications, Computers, and IT. The IETE Student Forum (ISF) at MSAJCE provides ECE, EEE, and VLSI engineering students with rigorous training in RF design, embedded systems, microcontrollers, signal processing, and IoT hardware prototyping.",
+    category: "Electronics & Telecommunication Engineering",
+    tagline: "IETE Students Forum (ISF) · Established 16/08/2017",
+    establishedDate: "16/08/2017",
+    description: "The Institution of Electronics and Telecommunication Engineers (IETE) is one of the leading Professional Societies in India for Electronics and Communication Engineers. Our institution has established an IETE Students Forum in the year - 16 /08/2017 -. Our student branches have 100 active members. This Forum organizes Guest lectures, Seminars, Workshops, and conferences for the benefit of student members to exchange ideas and information on the topics of their interest like curriculum, employment opportunities, higher educational opportunities, emerging trends, new developments etc. The student members are also facilitated towards technical visits, practical training, and project work in R&D laboratories and Industries. These activities encourage team work, event management and develop the spirit of self-reliance among the student members. Our student members have also actively participated and won prizes in various technical events conducted by other institutions. IETE student members have the privilege to attend IETE technical programs in India at reduced registration fees.",
     objectives: [
-      "Promote applied engineering expertise in VLSI design, semiconductor devices, and digital signal processing.",
-      "Conduct hands-on PCB design, etching, circuit soldering, and sensor-interface workshops.",
-      "Facilitate industrial visits to telecom switching centers, satellite ground stations, and semiconductor labs.",
-      "Encourage high-impact student research papers submitted to IETE Technical Review and IETE Journal of Research.",
-      "Mentor students in developing smart embedded IoT hardware for healthcare, agriculture, and defense."
+      "Improving the standard of education across Electronics & Communication Engineering disciplines.",
+      "Train the students in the emerging area to meet the new opportunities in semiconductor, telecommunications, and IoT sectors.",
+      "Encouraging outside-the-classroom studies / practical work / seminars etc. to foster technical excellence.",
+      "Better employment of the students on completion of their courses through practical domain skill-sets.",
+      "Substantial increase of IETE membership and its nationwide distributions across academic engineering institutions."
     ],
     membershipBenefits: [
-      "Prestigious IETE Student Forum (ISF) membership credentials recognized nationwide.",
-      "Free access to IETE national technical libraries, e-journals, and monthly expert webinars.",
-      "Subsidized registration for IETE national conventions, conferences, and student symposiums.",
-      "Direct eligibility for annual IETE student innovation project awards and technical grants.",
-      "Core electronics and semiconductor placement assistance and industrial internship referrals."
+      "Priority for publishing their papers in Journal of Education.",
+      "Can also subscribe for other publications such as IETE Journal of Research and IETE Technical Review (available online).",
+      "ISF students are welcome to attend IETE technical programs in India at reduced registration fees.",
+      "ISF member will be issued with an official recognized Identity Card.",
+      "Facilitation towards industrial technical visits, practical training, and project work in R&D laboratories and industries."
+    ],
+    ietePublications: [
+      "IETE Journal of Education",
+      "IETE Journal of Research",
+      "IETE Technical Review"
+    ],
+    ieteCounselors: [
+      {
+        sno: 1,
+        role: "Branch Counselor 1",
+        name: "Dr. I. Manju",
+        department: "Department of ECE",
+        institution: "Mohamed Sathak AJ College of Engineering",
+        codeInfo: "School Code / Branch Code: ISF-MSAJCE"
+      },
+      {
+        sno: 2,
+        role: "Branch Counselor 2",
+        name: "Mrs. S. Anusuya",
+        department: "Department of ECE",
+        institution: "Mohamed Sathak AJ College of Engineering",
+        codeInfo: "School Code / Branch Code: ISF-MSAJCE"
+      }
+    ],
+    ieteActivities: [
+      {
+        sno: 1,
+        eventName: "Signal and Power Integrity in Semiconductor Industry",
+        resourcePerson: "Mr. ZakirHussain, M.E. Analog Design Engineer, Microchip India PVT Ltd, Bangalore",
+        date: "27-06-2020",
+        targetAudience: "100",
+        participants: "65"
+      },
+      {
+        sno: 2,
+        eventName: "Cyber Physical Systems and its Applications using LABVIEW",
+        resourcePerson: "Mr. K. Prakash, M.E. Application Engineer, Optithought",
+        date: "24/06/20",
+        targetAudience: "100",
+        participants: "77"
+      },
+      {
+        sno: 3,
+        eventName: "Art of Thinking Big",
+        resourcePerson: "Mr. Aadil Ibrahim .A (Alumnus) Founder of Cameraman, Entrepreneur by Profession, Public Speaker by Passion",
+        date: "11/06/20",
+        targetAudience: "160",
+        participants: "263"
+      },
+      {
+        sno: 4,
+        eventName: "Embedded & IOT Boot Camp",
+        resourcePerson: "Day 1 - Dr. A.L. Vallikannu, Associate Professor, HITS, Chennai | Day 2 - Dr. Athif shah, Founder Managing Director, ABE semiconductor Designs, Chennai | Day 3 - Mr. M. Prabakaran (Alumni), Senior Software Architect in Caterpillar",
+        date: "27/05/20 to 29/05/20",
+        targetAudience: "75",
+        participants: "120"
+      },
+      {
+        sno: 5,
+        eventName: "Scope of Electronics Engineer in Various Domain",
+        resourcePerson: "Mr. Sankaralingam Principal Engineer, Valeo & Mrs. Suganya - Jasmine Infotech",
+        date: "30/01/2019",
+        targetAudience: "63",
+        participants: "70"
+      },
+      {
+        sno: 6,
+        eventName: "Inter Department TECHNICAL QUIZ",
+        resourcePerson: "Coordinator: Mr. M.L. Syed Ali | Convenor: Dr. E. Dhiravidachelvi",
+        date: "12/02/20",
+        targetAudience: "Won prizes (3 batches)",
+        participants: "200"
+      },
+      {
+        sno: 7,
+        eventName: "IETE- TECHNICAL & NON TECHNICAL CONNEXIONS",
+        resourcePerson: "Coordinator: Ms. E. Jayanthi | Convenor: Dr. E. Dhiravidachelvi",
+        date: "01/09/2018",
+        targetAudience: "Won prizes (3 batches)",
+        participants: "300"
+      },
+      {
+        sno: 8,
+        eventName: "PROJECT EXPO",
+        resourcePerson: "Coordinator: Ms. I.S. Suganthi | Convenor: Dr. E. Dhiravidachelvi",
+        date: "23/03/2018",
+        targetAudience: "Won prizes (3 batches)",
+        participants: "70"
+      },
+      {
+        sno: 9,
+        eventName: "Seminar on Recent Trends in Optical Fibre Communication",
+        resourcePerson: "Dr A. Sadagopan, Asst. General Manager (Rtd) BSNL, IETE Professor",
+        date: "16/08/2017",
+        targetAudience: "97",
+        participants: "120"
+      }
     ],
     flagshipEvents: [
-      "ElectroWaves National ECE Technical Symposium",
-      "Embedded Systems & IoT Hardware Hackathon",
-      "Hands-on PCB Design & Soldering Workshop",
-      "RF Engineering & 5G Telecommunications Colloquium"
+      "Embedded & IOT Boot Camp",
+      "PROJECT EXPO & Technical Connexions",
+      "Inter Department Technical Quiz",
+      "Signal and Power Integrity in Semiconductor Industry"
     ],
     logoOrIcon: "Cpu",
-    studentChairs: "Branch Counselor: Dr. M. K. Subashini (ECE) | Student Chair: R. Karthik (ECE)",
+    studentChairs: "Branch Counselor 1: Dr. I. Manju (ECE) | Branch Counselor 2: Mrs. S. Anusuya (ECE)",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
-    membersCount: "220+ Members"
+    membersCount: "100 Active Members"
   },
   {
     id: "sae",

@@ -234,6 +234,39 @@ function ProfessionalSocietiesPage() {
                     )}
                   </div>
                 )}
+
+                {/* IETE Special Publications & Establishment Highlights */}
+                {activeSociety.id === "iete" && activeSociety.ietePublications && (
+                  <div className="mt-4 space-y-3">
+                    <div className="p-4 border-l-2 border-primary bg-primary/[0.03] dark:bg-primary/[0.06] rounded-r-xs">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <span className="text-xs font-black font-oswald uppercase text-primary tracking-wider flex items-center gap-1.5">
+                          <BookOpen className="w-3.5 h-3.5" />
+                          Official IETE Publications &amp; Journals
+                        </span>
+                        {activeSociety.establishedDate && (
+                          <span className="text-xs font-mono text-muted-foreground">
+                            · Established: {activeSociety.establishedDate}
+                          </span>
+                        )}
+                        <span className="text-xs font-bold font-oswald uppercase text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs">
+                          {activeSociety.membersCount}
+                        </span>
+                      </div>
+                      <div className="flex flex-wrap gap-2 pt-1">
+                        {activeSociety.ietePublications.map((pub, idx) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1 bg-background border border-primary/20 text-xs font-oswald uppercase text-foreground font-bold rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs flex items-center gap-1.5 shadow-2xs"
+                          >
+                            <span className="text-primary font-mono text-[11px] font-bold">{idx + 1}.</span>
+                            {pub}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Clean 2-Column Minimal Editorial Breakdown */}
@@ -551,6 +584,135 @@ function ProfessionalSocietiesPage() {
                                   ) : (
                                     <span className="text-xs text-muted-foreground italic">N/A</span>
                                   )}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                </div>
+              )}
+
+              {/* SPECIAL TABLES SECTION FOR IETE (Styled as in Innovation & Incubation Cell) */}
+              {activeSociety.id === "iete" && (
+                <div className="pt-8 space-y-10 border-t border-border/60">
+                  
+                  {/* Table 1: IETE Students Forum Leadership & Branch Counselors */}
+                  {activeSociety.ieteCounselors && activeSociety.ieteCounselors.length > 0 && (
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
+                          Institutional Governance &amp; Mentorship
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-foreground mt-0.5">
+                          IETE Students Forum Leadership &amp; Branch Counselors
+                        </h3>
+                        <p className="text-xs sm:text-sm font-sans text-muted-foreground">
+                          Faculty counselors steering the IETE Students Forum (ISF) chapter operations and technical development at MSAJCE.
+                        </p>
+                      </div>
+
+                      <div className="overflow-x-auto border border-border rounded-none">
+                        <table className="w-full text-sm text-left">
+                          <thead className="bg-primary/10 text-primary font-oswald uppercase text-xs">
+                            <tr>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold w-14 text-center">S.No</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap">Designation / Role</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Faculty Counselor Name</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Department &amp; Institution</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap text-right">Chapter Code</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border font-sans text-muted-foreground">
+                            {activeSociety.ieteCounselors.map((counselor) => (
+                              <tr key={counselor.sno} className="hover:bg-muted/50 transition-colors">
+                                <td className="px-4 sm:px-6 py-3.5 font-medium text-foreground text-center">
+                                  {String(counselor.sno).padStart(2, "0")}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-oswald uppercase text-primary whitespace-nowrap">
+                                  <span className="px-2.5 py-0.5 bg-primary/10 border border-primary/20 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs">
+                                    {counselor.role}
+                                  </span>
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-sans text-foreground">
+                                  {counselor.name}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 text-xs sm:text-sm">
+                                  {counselor.department}, {counselor.institution}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-mono text-xs font-semibold text-foreground text-right whitespace-nowrap">
+                                  <span className="px-2 py-0.5 bg-muted rounded-xs">
+                                    {counselor.codeInfo || "School Code / Branch Code"}
+                                  </span>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Table 2: IETE Activities & Technical Events Conducted */}
+                  {activeSociety.ieteActivities && activeSociety.ieteActivities.length > 0 && (
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
+                          Workshops, Seminars &amp; Technical Events
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-foreground mt-0.5">
+                          IETE Activities Conducted
+                        </h3>
+                        <p className="text-xs sm:text-sm font-sans text-muted-foreground">
+                          Detailed log of semiconductor lectures, cyber physical workshops, IoT bootcamps, and technical quiz competitions.
+                        </p>
+                      </div>
+
+                      <div className="overflow-x-auto border border-border rounded-none">
+                        <table className="w-full text-sm text-left">
+                          <thead className="bg-primary/10 text-primary font-oswald uppercase text-xs">
+                            <tr>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold w-14 text-center">S.No</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Name Of The Event</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold">Details Of Resource Person</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold whitespace-nowrap">Date Of The Event</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold text-center whitespace-nowrap">Target Audience</th>
+                              <th className="px-4 sm:px-6 py-3.5 font-bold text-center whitespace-nowrap">No. Of Participants</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border font-sans text-muted-foreground">
+                            {activeSociety.ieteActivities.map((act) => (
+                              <tr key={act.sno} className="hover:bg-muted/50 transition-colors">
+                                <td className="px-4 sm:px-6 py-3.5 font-medium text-foreground text-center">
+                                  {String(act.sno).padStart(2, "0")}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-bold font-oswald uppercase text-foreground">
+                                  {act.eventName}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 text-xs font-sans text-foreground/90 max-w-[260px] leading-relaxed">
+                                  {act.resourcePerson}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-mono text-xs text-muted-foreground whitespace-nowrap">
+                                  {act.date}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-mono text-xs text-center whitespace-nowrap">
+                                  {act.targetAudience.includes("Won prizes") ? (
+                                    <span className="px-2 py-0.5 bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 rounded-xs text-[11px] font-semibold">
+                                      {act.targetAudience}
+                                    </span>
+                                  ) : (
+                                    <span className="px-2 py-0.5 bg-muted text-foreground/80 rounded-xs font-mono text-xs">
+                                      {act.targetAudience}
+                                    </span>
+                                  )}
+                                </td>
+                                <td className="px-4 sm:px-6 py-3.5 font-mono font-bold text-xs text-center text-primary whitespace-nowrap">
+                                  <span className="px-2.5 py-0.5 bg-primary/10 rounded-xs">
+                                    {act.participants}
+                                  </span>
                                 </td>
                               </tr>
                             ))}
