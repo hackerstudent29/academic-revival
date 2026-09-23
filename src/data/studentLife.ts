@@ -170,10 +170,10 @@ export const studentClubs: StudentClub[] = [
       "Chess"
     ],
     images: [
+      "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=900&q=80"
     ],
     activities: [
       "Annual Intra-College Sports Championship & Medals Ceremony",
@@ -388,7 +388,8 @@ export const studentClubs: StudentClub[] = [
       "Empower students to uphold environmental health and prevent ecological degradation individually and collectively."
     ],
     images: [
-      "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&q=80"
     ],
     activities: [
       "Energy Conservation Awareness & Household Audit Seminars",

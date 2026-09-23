@@ -14,7 +14,6 @@ import {
   Star,
   Microscope,
   BookOpen,
-  Lightbulb,
   Code,
   Terminal,
   Bot,
@@ -24,8 +23,6 @@ import {
   ArrowRight,
   ArrowLeft,
   Calendar,
-  Layers,
-  Sparkle
 } from "lucide-react";
 import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
 import { studentClubs, type StudentClub } from "@/data/studentLife";
@@ -205,35 +202,10 @@ function ClubsAndSocietiesPage() {
                 )}
               </div>
 
-              {/* Signature Boxy Asymmetrical Stock Photo Showcase */}
-              {activeClub.images && activeClub.images[0] && (
-                <div className="relative aspect-[21/9] sm:aspect-[24/8] rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border bg-muted shadow-xs">
-                  <img
-                    key={activeClub.id}
-                    src={activeClub.images[0]}
-                    alt={`${activeClub.name} showcase`}
-                    className="w-full h-full object-cover block"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex items-end p-4 sm:p-6 pointer-events-none select-none">
-                    <div className="text-white max-w-2xl">
-                      <span className="text-[11px] font-bold font-oswald uppercase tracking-wider text-amber-300 block">
-                        Mohamed Sathak A.J. College of Engineering
-                      </span>
-                      <p className="text-sm sm:text-base font-black font-oswald uppercase text-white mt-0.5">
-                        {activeClub.name} · Official Student Forum
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Clean 2-Column Minimal Editorial Breakdown */}
+              {/* Clean 2-Column Minimal Editorial Breakdown (Balanced with Perfectly Sized Media) */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-2">
                 
-                {/* Left Column: About & Core Objectives */}
+                {/* Left Column: About & Core Objectives & Annual Highlights */}
                 <div className="lg:col-span-7 space-y-6">
                   <div>
                     <h3 className="text-xs font-bold font-oswald uppercase tracking-wider text-primary mb-2 flex items-center gap-1.5">
@@ -244,6 +216,28 @@ function ClubsAndSocietiesPage() {
                       {activeClub.description}
                     </p>
                   </div>
+
+                  {/* Mobile-Only Compact Showcase Image (renders cleanly right after About on mobile) */}
+                  {activeClub.images && activeClub.images[0] && (
+                    <div className="block lg:hidden">
+                      <div className="relative aspect-[16/10] max-h-[220px] w-full rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border/80 bg-muted shadow-xs">
+                        <img
+                          key={`mobile-${activeClub.id}`}
+                          src={activeClub.images[0]}
+                          alt={`${activeClub.name} showcase`}
+                          className="w-full h-full object-cover block"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+                          }}
+                        />
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-3 pointer-events-none select-none">
+                          <span className="text-[11px] font-bold font-oswald uppercase tracking-wider text-white block">
+                            {activeClub.name} · Official Student Forum
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Core Objectives List */}
                   {activeClub.objectives && activeClub.objectives.length > 0 && (
@@ -288,11 +282,49 @@ function ClubsAndSocietiesPage() {
                       </div>
                     </div>
                   )}
+
+                  {/* Annual Calendar Highlights */}
+                  <div className="pt-2">
+                    <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2.5 flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-primary" />
+                      Annual Calendar Highlights
+                    </h4>
+                    <div className="space-y-1.5">
+                      {activeClub.activities.map((act, i) => (
+                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-muted-foreground">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
+                          <span>{act}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                {/* Right Column: Specialized Disciplines & Key Activities */}
+                {/* Right Column: Desktop Compact Stock Image + Specialized Disciplines */}
                 <div className="lg:col-span-5 space-y-6 lg:pl-8 lg:border-l lg:border-border/60">
                   
+                  {/* Desktop Perfectly Proportioned Compact Stock Image */}
+                  {activeClub.images && activeClub.images[0] && (
+                    <div className="hidden lg:block">
+                      <div className="relative aspect-[16/10] max-h-[240px] w-full rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border/80 bg-muted shadow-xs">
+                        <img
+                          key={`desktop-${activeClub.id}`}
+                          src={activeClub.images[0]}
+                          alt={`${activeClub.name} showcase`}
+                          className="w-full h-full object-cover block"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+                          }}
+                        />
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-3 pointer-events-none select-none">
+                          <span className="text-[11px] font-bold font-oswald uppercase tracking-wider text-white block">
+                            {activeClub.name} · Official Student Forum
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                   {/* CLUB-SPECIFIC COMPONENT: SPORTS CLUB */}
                   {activeClub.id === "sports-club" && (
                     <div className="space-y-6">
@@ -526,22 +558,6 @@ function ClubsAndSocietiesPage() {
                     </div>
                   )}
 
-                  {/* General Key Activities Strip */}
-                  <div className="pt-4 border-t border-border/60">
-                    <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2.5 flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-primary" />
-                      Annual Calendar Highlights
-                    </h4>
-                    <div className="space-y-1.5">
-                      {activeClub.activities.map((act, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-muted-foreground">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
-                          <span>{act}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
                 </div>
 
               </div>
@@ -558,7 +574,7 @@ function ClubsAndSocietiesPage() {
                 </button>
 
                 <div className="flex items-center gap-1.5">
-                  {studentClubs.map((c, i) => (
+                  {studentClubs.map((c) => (
                     <button
                       key={c.id}
                       type="button"
