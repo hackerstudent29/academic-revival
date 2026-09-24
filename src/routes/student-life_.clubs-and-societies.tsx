@@ -199,73 +199,66 @@ function ClubsAndSocietiesPage() {
                 )}
               </div>
 
-              {/* DEDICATED ULTRA-MINIMAL & BALANCED STRUCTURED VIEW FOR SPORTS CLUB */}
+              {/* SPORTS CLUB: EXACT VISION & MISSION EDITORIAL LAYOUT (REFERENCE: IMAGE 2) */}
               {activeClub.id === "sports-club" ? (
                 <div className="space-y-8 pt-4">
-                  {/* Row 1: Vision & Motto Side-by-Side Foundation */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                    {/* Vision Block */}
-                    {activeClub.vision && (
-                      <div className="p-4 sm:p-5 border-l-4 border-primary bg-primary/[0.03] dark:bg-primary/[0.06] rounded-r-xs">
-                        <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary block mb-1">
-                          Vision
+                  {/* VISION SECTION */}
+                  {activeClub.vision && (
+                    <div className="space-y-3">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                        Vision
+                      </h3>
+                      <div className="py-3.5 sm:py-4 px-2 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors border-y border-border/60">
+                        <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                          V
                         </span>
-                        <p className="text-sm sm:text-base font-libre text-foreground/90 leading-relaxed">
-                          "{activeClub.vision}"
+                        <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
+                          “{activeClub.vision}”
                         </p>
                       </div>
-                    )}
+                    </div>
+                  )}
 
-                    {/* Motto Block */}
-                    {activeClub.motto && (
-                      <div className="p-4 sm:p-5 border-l-4 border-primary bg-primary/[0.03] dark:bg-primary/[0.06] rounded-r-xs flex flex-col justify-center">
-                        <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary block mb-1">
-                          Motto
+                  {/* MOTTO SECTION */}
+                  {activeClub.motto && (
+                    <div className="space-y-3">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                        Motto
+                      </h3>
+                      <div className="py-3.5 sm:py-4 px-2 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors border-y border-border/60">
+                        <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                          M
                         </span>
-                        <p className="text-base sm:text-lg font-bold font-oswald uppercase tracking-wide text-primary">
-                          "{activeClub.motto}"
+                        <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
+                          “{activeClub.motto}”
                         </p>
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
 
-                  {/* Row 2: Objective Section (Clean 2-Column Open Editorial Structure) */}
-                  <div className="space-y-4">
-                    <h3 className="text-sm sm:text-base font-black font-oswald uppercase tracking-wide text-foreground flex items-center gap-2">
-                      <Target className="w-4 h-4 text-primary" />
-                      Objective
-                    </h3>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-0 divide-y md:divide-y-0 border-y border-border/60">
-                      {/* Left Column: 01 & 02 */}
-                      <div className="divide-y divide-border/60">
-                        {activeClub.objectives?.slice(0, 2).map((obj, i) => (
-                          <div key={i} className="py-3.5 flex items-start gap-3">
-                            <span className="text-xs font-black font-oswald text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs shrink-0 mt-0.5">
-                              {String(i + 1).padStart(2, "0")}
+                  {/* OBJECTIVE SECTION */}
+                  {activeClub.objectives && activeClub.objectives.length > 0 && (
+                    <div className="space-y-3">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                        Objective
+                      </h3>
+                      <div className="divide-y divide-border/60 border-y border-border/60">
+                        {activeClub.objectives.map((obj, idx) => (
+                          <div
+                            key={idx}
+                            className="py-3.5 sm:py-4 px-2 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors"
+                          >
+                            <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                              O{idx + 1}
                             </span>
-                            <p className="text-xs sm:text-sm font-libre text-foreground/90 leading-relaxed">
-                              {obj}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Right Column: 03 & 04 */}
-                      <div className="divide-y divide-border/60 md:pl-8 md:border-l md:border-border/60">
-                        {activeClub.objectives?.slice(2).map((obj, i) => (
-                          <div key={i + 2} className="py-3.5 flex items-start gap-3">
-                            <span className="text-xs font-black font-oswald text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs shrink-0 mt-0.5">
-                              {String(i + 3).padStart(2, "0")}
-                            </span>
-                            <p className="text-xs sm:text-sm font-libre text-foreground/90 leading-relaxed">
+                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
                               {obj}
                             </p>
                           </div>
                         ))}
                       </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               ) : (
                 /* Clean 2-Column Minimal Editorial Breakdown (Balanced with Perfectly Sized Media) */
