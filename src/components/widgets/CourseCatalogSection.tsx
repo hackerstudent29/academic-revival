@@ -6,6 +6,8 @@ import { allCourses } from "@/lib/courseData";
 interface CourseCatalogSectionProps {
   initialLevel?: string | undefined;
   titleOverride?: string;
+  showHeading?: boolean;
+  onLevelChange?: (level: string | null) => void;
   showViewToggles?: boolean;
   defaultViewMode?: "list" | "table" | "grid";
   showDepartment?: boolean;
@@ -15,6 +17,8 @@ interface CourseCatalogSectionProps {
 export function CourseCatalogSection({ 
   initialLevel, 
   titleOverride, 
+  showHeading = true,
+  onLevelChange,
   showViewToggles = true,
   defaultViewMode = "list",
   showDepartment = true,
@@ -70,16 +74,18 @@ export function CourseCatalogSection({
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-12">
         
         {/* Department / Programmes Page Title Block */}
-        <div className="mb-6 pb-2">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-wide text-primary font-oswald">
-            {headerInfo.title}
-          </h2>
-          {showDescription && headerInfo.description && (
-            <p className="mt-2 text-sm sm:text-base text-muted-foreground max-w-3xl font-libre leading-relaxed">
-              {headerInfo.description}
-            </p>
-          )}
-        </div>
+        {showHeading && (
+          <div className="mb-6 pb-2">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-wide text-primary font-oswald">
+              {headerInfo.title}
+            </h2>
+            {showDescription && headerInfo.description && (
+              <p className="mt-2 text-sm sm:text-base text-muted-foreground max-w-3xl font-libre leading-relaxed">
+                {headerInfo.description}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* ── SEARCH & FILTER CONTROL SECTION ── */}
         <div className="space-y-4 mb-8">
@@ -118,7 +124,10 @@ export function CourseCatalogSection({
                 return (
                   <button
                     key={filter.label}
-                    onClick={() => setLevelFilter(filter.id)}
+                    onClick={() => {
+                      setLevelFilter(filter.id);
+                      onLevelChange?.(filter.id);
+                    }}
                     className={`px-4 py-2 text-xs sm:text-sm font-bold uppercase font-oswald tracking-wider transition-colors duration-200 border cursor-pointer rounded-sm ${
                       isActive 
                         ? "bg-primary text-primary-foreground border-primary shadow-xs" 
@@ -189,18 +198,15 @@ export function CourseCatalogSection({
                       (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80";
                     }}
                   />
-                  <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold font-oswald uppercase tracking-wider px-2.5 py-1 border border-white/20 shadow-xs z-10 rounded-sm">
-                    {course.level}
-                  </span>
                 </div>
                 
                 {/* Content */}
                 <div className="flex-1 flex flex-col md:flex-row gap-8 md:gap-12">
                   <div className="flex-1">
-                    <span className="text-xs font-bold uppercase tracking-widest text-primary block mb-2 font-oswald">COURSE</span>
-                    <h3 className="text-2xl md:text-3xl lg:text-[2rem] font-bold tracking-tight text-primary font-oswald group-hover:underline underline-offset-8 decoration-1 leading-tight flex items-center gap-3">
+                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground block mb-2 font-oswald">COURSE</span>
+                    <h3 className="text-2xl md:text-3xl lg:text-[2rem] font-bold tracking-tight text-foreground group-hover:text-primary font-oswald group-hover:underline underline-offset-8 decoration-1 leading-tight flex items-center gap-3">
                       {course.name}
-                      <ArrowRight className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" size={28} strokeWidth={3} />
+                      <ArrowRight className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-foreground group-hover:text-primary" size={28} strokeWidth={3} />
                     </h3>
                   </div>
                   
@@ -344,7 +350,7 @@ export function CourseCatalogSection({
                   </div>
 
                   <div className="p-5 space-y-3 font-sans">
-                    <h3 className="text-lg font-bold font-oswald text-primary group-hover:text-primary transition-colors leading-snug line-clamp-2">
+                    <h3 className="text-lg font-bold font-oswald text-foreground group-hover:text-primary transition-colors leading-snug line-clamp-2">
                       {course.name}
                     </h3>
 
@@ -375,7 +381,7 @@ export function CourseCatalogSection({
         )}
 
         {filteredCourses.length === 0 && (
-          <div className="py-16 text-center text-muted-foreground bg-card border border-border text-base font-sans rounded-sm">
+          <div className="py-16 text-center text-muted-foreground bg-white dark:bg-[#121214] border border-border text-base font-sans rounded-sm">
             No programmes found matching your search. Try adjusting the search keywords or filters.
           </div>
         )}

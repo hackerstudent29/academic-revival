@@ -1,24 +1,29 @@
-import React, { useState, useMemo } from 'react';
-import { 
-  Search,
-  ExternalLink
-} from 'lucide-react';
-import { MOU_PARTNERS } from '@/lib/placementData';
+import React from 'react';
+import { ExternalLink } from 'lucide-react';
 import { MouPartner } from '@/types/placement';
 
 interface MoUsSectionProps {
-  onOpenMou: (mou: MouPartner) => void;
+  onOpenMou?: (mou: MouPartner) => void;
 }
 
-export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
-  const [selectedYear, setSelectedYear] = useState<string>('ALL');
-  const [searchFilter, setSearchFilter] = useState<string>('');
+export const MoUsSection: React.FC<MoUsSectionProps> = () => {
+  const iiiCellObjectives = [
+    "Facilitate regular interactions with industry experts through guest lectures and sessions on current industrial practices.",
+    "Support curriculum enhancement through industry participation, including value-added courses and specialized training.",
+    "Provide students with exposure to industry through periodic industrial visits and ensure internship opportunities for all.",
+    "Promote consultancy activities by faculty members in collaboration with corporate industries.",
+    "Organize Faculty Development Programs (FDPs) to keep faculty updated with advancements in their respective domains.",
+    "Coordinate and conduct placement drives to enhance employment opportunities for students.",
+    "Establish industry-oriented laboratories and Centers of Excellence (CoEs) to support practical learning.",
+    "Foster strong partnerships by signing Memoranda of Understanding (MoUs) with industries for mutual growth.",
+    "Organize workshops, conferences, seminars, and guest lectures with active participation from academia and industry.",
+    "Encourage and facilitate mandatory industrial training for faculty to upgrade technical knowledge and industry exposure.",
+  ];
 
   const mouTableData = [
     {
       partner: 'AWS Academy (Amazon Web Services)',
       domain: 'Cloud Computing, DevOps & Generative AI',
-      duration: '3 Years (2024–2027)',
       depts: 'CSE, IT, AI&DS',
       scope: 'AWS Cloud Practitioner, Solutions Architect labs, 600+ cloud exam vouchers',
       outcome: '92 Certified Students'
@@ -26,7 +31,6 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
     {
       partner: 'Cisco Networking Academy',
       domain: 'Cybersecurity, Routing & Switching',
-      duration: '3 Years (2023–2026)',
       depts: 'ECE, EEE, CSE, IT',
       scope: 'CCNA Routing, Network Security labs, Enterprise Packet Tracer sandboxes',
       outcome: '120 CCNA Badges'
@@ -34,7 +38,6 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
     {
       partner: 'Infosys Springboard',
       domain: 'Enterprise Full Stack & Agile Engineering',
-      duration: '5 Years (2022–2027)',
       depts: 'All Engineering Streams',
       scope: 'Curated 1000+ digital learning modules, direct GenC pooled recruitment track',
       outcome: '450 Active Learners'
@@ -42,7 +45,6 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
     {
       partner: 'TVS Training Services',
       domain: 'Automotive Mechatronics & EV Powertrains',
-      duration: '3 Years (2024–2027)',
       depts: 'MECH, EEE, ECE',
       scope: 'In-plant EV powertrain training, CAD modeling rigs, guaranteed in-plant internships',
       outcome: '48 In-Plant Interns'
@@ -50,7 +52,6 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
     {
       partner: 'L&T EduTech',
       domain: 'Infrastructure, BIM & Smart Construction',
-      duration: '3 Years (2024–2027)',
       depts: 'CIVIL, MECH',
       scope: '3D BIM structural modeling software suites, on-site construction live capstones',
       outcome: '35 BIM Trainees'
@@ -58,87 +59,87 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
     {
       partner: 'Red Hat Enterprise',
       domain: 'Linux Kernel & Open Hybrid Cloud',
-      duration: '3 Years (2024–2027)',
       depts: 'CSE, IT',
       scope: 'RHCSA certification training, containerization with Podman and OpenShift',
       outcome: '42 RHCSA Certified'
     },
-    {
-      partner: 'IBM Academic Initiative',
-      domain: 'Enterprise AI & Data Science',
-      duration: '3 Years (2024–2027)',
-      depts: 'CSE, IT, AI&DS',
-      scope: 'IBM Watson Studio, cloud predictive modeling, quantum computing sandboxes',
-      outcome: '65 AI Specializations'
-    },
-    {
-      partner: 'Oracle Academy',
-      domain: 'Autonomous Database & Java SE',
-      duration: '3 Years (2023–2026)',
-      depts: 'CSE, IT',
-      scope: 'Autonomous database architecture, PL/SQL developer curricula, Java certifications',
-      outcome: '78 Database Certified'
-    }
   ];
 
-  const filteredMous = useMemo(() => {
-    return MOU_PARTNERS.filter(m => {
-      const matchesYear = selectedYear === 'ALL' || m.year === selectedYear;
-      const matchesSearch = 
-        m.partnerName.toLowerCase().includes(searchFilter.toLowerCase()) ||
-        m.domain.toLowerCase().includes(searchFilter.toLowerCase()) ||
-        m.purpose.toLowerCase().includes(searchFilter.toLowerCase());
-      return matchesYear && matchesSearch;
-    });
-  }, [selectedYear, searchFilter]);
+  const iiiCellActivities = [
+    {
+      activity: 'MoU (Bilateral Corporate Accords)',
+      ay25: 'https://www.msajce-edu.in/uploads/placement/colloboration/MOU/MoU2025.pdf',
+      ay24: 'https://www.msajce-edu.in/uploads/placement/colloboration/MOU/MoU2024.pdf',
+      ay23: 'https://www.msajce-edu.in/uploads/placement/colloboration/MOU/MoU2023.pdf',
+      ay22: 'https://www.msajce-edu.in/uploads/placement/colloboration/MOU/MoU2022.pdf',
+    },
+    {
+      activity: 'Industrial Internships & PPOs',
+      ay25: null,
+      ay24: 'https://www.msajce-edu.in/uploads/placement/colloboration/INTERNSHIP/Internship2024-25.pdf',
+      ay23: 'https://www.msajce-edu.in/uploads/placement/colloboration/INTERNSHIP/Internship2023-24.pdf',
+      ay22: 'https://www.msajce-edu.in/uploads/placement/colloboration/INTERNSHIP/Internship2022-23.pdf',
+    },
+    {
+      activity: 'Campus Placement Drives',
+      ay25: 'https://www.msajce-edu.in/uploads/placement/colloboration/PLACEMENT/placementdetails2025-2026.pdf',
+      ay24: 'https://www.msajce-edu.in/uploads/placement/colloboration/PLACEMENT/placementdetails2024-2025.pdf',
+      ay23: 'https://www.msajce-edu.in/uploads/placement/colloboration/PLACEMENT/placementdetails2023-2024.pdf',
+      ay22: 'https://www.msajce-edu.in/uploads/placement/colloboration/PLACEMENT/placementdetails2022-2023.pdf',
+    },
+    {
+      activity: 'Industrial Visits (IV)',
+      ay25: 'https://www.msajce-edu.in/uploads/placement/colloboration/INDUSTRY-VISIT/IV25-26.pdf',
+      ay24: 'https://www.msajce-edu.in/uploads/placement/colloboration/INDUSTRY-VISIT/IV24-25.pdf',
+      ay23: 'https://www.msajce-edu.in/uploads/placement/colloboration/INDUSTRY-VISIT/IV23-24.pdf',
+      ay22: 'https://www.msajce-edu.in/uploads/placement/colloboration/INDUSTRY-VISIT/IV22-23.pdf',
+    },
+    {
+      activity: 'Advisory Board Committee',
+      ay25: 'https://www.msajce-edu.in/uploads/placement/colloboration/ADVISORY-BOARD/AY25-26COMMITTEE.pdf',
+      ay24: 'https://www.msajce-edu.in/uploads/placement/colloboration/ADVISORY-BOARD/AY24-25COMMITTEE.pdf',
+      ay23: 'https://www.msajce-edu.in/uploads/placement/colloboration/ADVISORY-BOARD/AY23-24COMMITTEE.pdf',
+      ay22: null,
+    },
+  ];
 
   return (
     <div className="w-full">
-      {/* SECTION 1: Canvas A (White / #121214) — MoUs Overview */}
-      <section className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-6 sm:pb-8 md:pb-10 bg-white dark:bg-[#121214] transition-colors">
-        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+      {/* SECTION 1: Canvas A (White / #121214) — Industry-Institute Interaction Cell (III Cell) */}
+      <section className="pt-8 sm:pt-12 md:pt-14 pb-10 sm:pb-14 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-            BILATERAL CORPORATE ALLIANCES &amp; MoUs
+            INDUSTRY–INSTITUTE INTERACTION CELL (III CELL)
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {[
-              {
-                title: 'Curriculum Co-Creation',
-                desc: 'Corporate advisory boards reviewing and enriching syllabus topics with current enterprise engineering practices.',
-                stat: '65+ Corporate MoUs'
-              },
-              {
-                title: 'Centres of Excellence',
-                desc: 'Specialized lab setups powered by AWS, Cisco, RedHat, and TVS with dedicated hardware testbeds.',
-                stat: '8 Technology CoEs'
-              },
-              {
-                title: 'Global Certification Vouchers',
-                desc: 'Subsidized certification tracks in Cloud, Cybersecurity, Linux, and Java directly validating student skills.',
-                stat: '500+ Annual Badges'
-              },
-              {
-                title: 'Prioritized Recruitment',
-                desc: 'Corporate partners guaranteeing annual placement quotas and dedicated pre-placement talks on campus.',
-                stat: '100% Placement Support'
-              }
-            ].map((item, idx) => (
-              <div key={idx} className="p-3.5 sm:p-4 space-y-2 hover:bg-foreground/[0.015] transition-colors">
-                <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs border border-foreground/20">
-                  0{idx + 1}
-                </span>
-                <span className="text-xs font-black font-oswald uppercase text-primary block pt-1">
-                  {item.stat}
-                </span>
-                <h3 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground leading-snug">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-foreground font-libre font-medium leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
+          <div className="space-y-4 w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+            <p>
+              Mohamed Sathak A.J. College of Engineering emphasizes strong collaboration between academia and industry through its Industry–Institute Interaction (III) Cell. The cell fosters strategic partnerships with corporate industries to enhance student learning, technological innovation, and employability.
+            </p>
+            <p>
+              Serving as an active platform for students to understand current industrial expectations, identify emerging skill gaps, and upgrade technical competencies through internships, industrial visits, and expert interactions, the III Cell also supports faculty members in aligning academic practices with industry demands.
+            </p>
+          </div>
+
+          <div className="pt-4 space-y-4">
+            <h3 className="text-lg font-bold font-oswald uppercase text-foreground">
+              Objectives of the III Cell
+            </h3>
+            <div className="divide-y divide-border/40 font-libre">
+              {iiiCellObjectives.map((obj, idx) => (
+                <div
+                  key={idx}
+                  className="py-3 px-1 sm:px-3 flex items-start gap-3 sm:gap-4 hover:bg-primary/[0.02] transition-colors"
+                >
+                  <span className="shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs mt-0.5 border border-primary/20 shadow-2xs">
+                    {idx + 1}
+                  </span>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5">
+                    {obj}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -149,7 +150,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
           viewBox="0 0 1440 72"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-6 sm:h-8 md:h-10 block preserve-3d"
+          className="w-full h-8 sm:h-12 md:h-14 block preserve-3d"
           preserveAspectRatio="none"
         >
           <path
@@ -159,54 +160,99 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
         </svg>
       </div>
 
-      {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — Active Alliances Directory Table */}
-      <section className="py-6 sm:py-8 md:py-10 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
-        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-5 sm:space-y-6">
+      {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — III Cell Annual Reports Table */}
+      <section className="pt-8 sm:pt-10 md:pt-12 pb-10 sm:pb-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-            ACTIVE TECHNOLOGY &amp; CORE ENGINEERING ACCORDS
+            INDUSTRY INSTITUTION INTERACTION CELL ACTIVITIES
           </h2>
 
           <div className="w-full overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[720px]">
+            <table className="w-full text-left border-collapse min-w-[650px]">
               <thead>
                 <tr className="border-b border-border/60">
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-16 sm:w-20">
-                    S.No
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5">
+                    III Cell Activity / Domain
                   </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-60">
-                    Partner Organisation
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 text-center w-28">
+                    AY 2025–26
                   </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Domain &amp; Focus Area
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 text-center w-28">
+                    AY 2024–25
                   </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-32">
-                    Departments
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 text-center w-28">
+                    AY 2023–24
                   </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-44">
-                    Verified Outcome
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 text-center w-28">
+                    AY 2022–23
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border/40">
-                {mouTableData.map((mou, idx) => (
-                  <tr key={idx} className="hover:bg-muted/30 transition-colors">
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-oswald font-bold text-primary text-sm sm:text-base align-middle whitespace-nowrap">
-                      {String(idx + 1).padStart(2, "0")}
+                {iiiCellActivities.map((row, idx) => (
+                  <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                    <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm">
+                      {row.activity}
                     </td>
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-libre font-bold text-foreground text-sm sm:text-base align-middle">
-                      {mou.partner}
+                    <td className="px-4 py-3.5 text-center align-middle">
+                      {row.ay25 ? (
+                        <a
+                          href={row.ay25}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs font-bold font-oswald uppercase text-primary hover:underline"
+                        >
+                          <span>View</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      ) : (
+                        <span className="text-xs text-foreground/40 font-mono">—</span>
+                      )}
                     </td>
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-libre font-medium text-xs sm:text-sm text-foreground align-middle">
-                      <div>
-                        <p className="font-semibold text-foreground">{mou.domain}</p>
-                        <p className="text-foreground/70 text-xs mt-0.5">{mou.scope}</p>
-                      </div>
+                    <td className="px-4 py-3.5 text-center align-middle">
+                      {row.ay24 ? (
+                        <a
+                          href={row.ay24}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs font-bold font-oswald uppercase text-primary hover:underline"
+                        >
+                          <span>View</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      ) : (
+                        <span className="text-xs text-foreground/40 font-mono">—</span>
+                      )}
                     </td>
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-oswald font-bold text-foreground text-xs sm:text-sm align-middle whitespace-nowrap">
-                      {mou.depts}
+                    <td className="px-4 py-3.5 text-center align-middle">
+                      {row.ay23 ? (
+                        <a
+                          href={row.ay23}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs font-bold font-oswald uppercase text-primary hover:underline"
+                        >
+                          <span>View</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      ) : (
+                        <span className="text-xs text-foreground/40 font-mono">—</span>
+                      )}
                     </td>
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-oswald font-bold text-primary text-xs sm:text-sm align-middle whitespace-nowrap">
-                      {mou.outcome}
+                    <td className="px-4 py-3.5 text-center align-middle">
+                      {row.ay22 ? (
+                        <a
+                          href={row.ay22}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs font-bold font-oswald uppercase text-primary hover:underline"
+                        >
+                          <span>View</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      ) : (
+                        <span className="text-xs text-foreground/40 font-mono">—</span>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -222,7 +268,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
           viewBox="0 0 1440 72"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-6 sm:h-8 md:h-10 block preserve-3d"
+          className="w-full h-8 sm:h-12 md:h-14 block preserve-3d"
           preserveAspectRatio="none"
         >
           <path
@@ -232,64 +278,57 @@ export const MoUsSection: React.FC<MoUsSectionProps> = ({ onOpenMou }) => {
         </svg>
       </div>
 
-      {/* SECTION 3: Canvas A (White / #121214) — Filterable Partner Directory */}
-      <section className="py-6 sm:py-8 md:py-10 bg-white dark:bg-[#121214] transition-colors pb-12 sm:pb-16">
-        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-5 sm:space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              CORPORATE MoUs DIRECTORY
-            </h2>
+      {/* SECTION 3: Canvas A (White / #121214) — Corporate Accords Directory */}
+      <section className="pt-8 sm:pt-10 md:pt-12 pb-14 sm:pb-18 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+            ACTIVE CORPORATE &amp; TECHNOLOGY ACCORDS
+          </h2>
 
-            {/* Search Input */}
-            <div className="relative max-w-xs w-full">
-              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <input
-                type="text"
-                value={searchFilter}
-                onChange={(e) => setSearchFilter(e.target.value)}
-                placeholder="Search partner or domain..."
-                className="w-full pl-10 pr-4 py-2 bg-foreground/[0.02] border border-border/80 dark:border-white/10 rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs text-xs sm:text-sm font-libre focus:outline-none focus:border-primary"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {filteredMous.slice(0, 9).map((mou) => (
-              <div 
-                key={mou.id}
-                className="p-3.5 sm:p-4 space-y-2 hover:bg-foreground/[0.015] transition-colors flex flex-col justify-between"
-              >
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-black font-oswald uppercase tracking-wider text-primary">
-                      {mou.year} Accord
-                    </span>
-                    <span className="text-[10px] font-mono text-foreground/70 uppercase">
-                      {mou.status}
-                    </span>
-                  </div>
-                  <h3 className="text-base sm:text-lg font-bold font-oswald uppercase text-foreground leading-snug">
-                    {mou.partnerName}
-                  </h3>
-                  <p className="text-sm text-foreground font-libre font-medium leading-relaxed">
-                    {mou.purpose}
-                  </p>
-                </div>
-
-                <div className="pt-2 flex items-center justify-between">
-                  <span className="text-xs font-libre font-semibold text-foreground/80">
-                    {mou.domain}
-                  </span>
-                  <button
-                    onClick={() => onOpenMou(mou)}
-                    className="text-xs font-bold font-oswald uppercase tracking-wider text-primary hover:underline flex items-center gap-1 cursor-pointer"
-                  >
-                    <span>Details</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </button>
-                </div>
-              </div>
-            ))}
+          <div className="w-full overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[700px]">
+              <thead>
+                <tr className="border-b border-border/60">
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 w-16">
+                    S.No
+                  </th>
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 w-56">
+                    Partner Organisation
+                  </th>
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5">
+                    Domain &amp; Technical Scope
+                  </th>
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 w-32">
+                    Departments
+                  </th>
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 w-44">
+                    Verified Outcome
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border/40">
+                {mouTableData.map((mou, idx) => (
+                  <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                    <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap">
+                      {String(idx + 1).padStart(2, "0")}
+                    </td>
+                    <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm">
+                      {mou.partner}
+                    </td>
+                    <td className="px-4 py-3.5 font-libre font-medium text-xs sm:text-sm text-foreground">
+                      <p className="font-semibold text-foreground">{mou.domain}</p>
+                      <p className="text-foreground/75 text-xs mt-0.5">{mou.scope}</p>
+                    </td>
+                    <td className="px-4 py-3.5 font-oswald font-bold text-foreground text-xs sm:text-sm whitespace-nowrap">
+                      {mou.depts}
+                    </td>
+                    <td className="px-4 py-3.5 font-oswald font-bold text-primary text-xs sm:text-sm whitespace-nowrap">
+                      {mou.outcome}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>

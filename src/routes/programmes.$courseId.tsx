@@ -582,7 +582,7 @@ function DepartmentFacilitiesView({ courseSlug, courseName }: { courseSlug: stri
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-6 w-full mx-0 max-w-none">
       
       {/* Header Banner */}
-      <div className="pb-3 border-b-2 border-primary mb-6">
+      <div className="pb-3 border-b border-black/20 dark:border-white/20 mb-6">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary leading-none">
           Facilities &amp; Infrastructure
         </h2>
@@ -771,7 +771,7 @@ function DepartmentResearchView({ courseSlug, courseName }: { courseSlug: string
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-8 w-full mx-0 max-w-none">
       
       {/* Header Banner */}
-      <div className="pb-3 border-b-2 border-primary mb-6">
+      <div className="pb-3 border-b border-black/20 dark:border-white/20 mb-6">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary leading-none">
           Research &amp; Development
         </h2>
@@ -1217,7 +1217,7 @@ function CoursePage() {
     h2: ({ node, children, ...props }: any) => {
       const tabLabel = departmentTabsList.find(t => t.id === activeTab)?.label || children;
       return (
-        <div className="pb-3 border-b-2 border-primary mb-6">
+        <div className="pb-3 border-b border-black/20 dark:border-white/20 mb-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary leading-none break-words" {...props}>
             {tabLabel}
           </h2>
@@ -1526,7 +1526,7 @@ function CoursePage() {
                   <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-8 w-full">
                     
                     {/* Direct Overview Section Title */}
-                    <div className="pb-3 border-b-2 border-primary mb-6">
+                    <div className="pb-3 border-b border-black/20 dark:border-white/20 mb-6">
                       <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary leading-none">
                         Overview
                       </h2>
@@ -1596,7 +1596,7 @@ function CoursePage() {
                     </ReactMarkdown>
                   ) : (
                     <div className="space-y-6">
-                      <div className="pb-3 border-b-2 border-primary mb-6">
+                      <div className="pb-3 border-b border-black/20 dark:border-white/20 mb-6">
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary leading-none">
                           Outcomes
                         </h2>
@@ -1630,7 +1630,7 @@ function CoursePage() {
                   <div className="w-full space-y-8 mx-0 max-w-none animate-in fade-in slide-in-from-bottom-4 duration-500">
                     
                     {/* Header Banner */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b-2 border-primary mb-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-black/20 dark:border-white/20 mb-6">
                       <div>
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary leading-none">
                           {course.name} Curriculum &amp; Syllabi
@@ -1820,7 +1820,7 @@ function CoursePage() {
                     })()
                   ) : (
                     <div className="space-y-8">
-                      <div className="pb-3 border-b-2 border-primary mb-6">
+                      <div className="pb-3 border-b border-black/20 dark:border-white/20 mb-6">
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary leading-none">
                           Careers &amp; Outcomes
                         </h2>
@@ -1880,7 +1880,7 @@ function CoursePage() {
 
                 return (
                   <div className="w-full space-y-6 mx-0 max-w-none">
-                    <div className="pb-3 border-b-2 border-primary mb-6">
+                    <div className="pb-3 border-b border-black/20 dark:border-white/20 mb-6">
                       <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary leading-none">
                         Faculty Directory
                       </h2>
@@ -1973,7 +1973,7 @@ function CoursePage() {
 
                 return (
                 <div className="space-y-10">
-                  <div className="pb-3 border-b-2 border-primary mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="pb-3 border-b border-black/20 dark:border-white/20 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
                       <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary leading-none">
                         Happenings
@@ -2198,7 +2198,7 @@ function CoursePage() {
                   <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-8 w-full mx-0 max-w-none">
                     
                     {/* Header Banner */}
-                    <div className="pb-3 border-b-2 border-primary mb-6">
+                    <div className="pb-3 border-b border-black/20 dark:border-white/20 mb-6">
                       <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary leading-none">
                         Student Activities
                       </h2>
