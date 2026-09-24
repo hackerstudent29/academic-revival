@@ -33,7 +33,7 @@ export const Route = createFileRoute("/transport")({
 });
 
 const TRANSPORT_TABS: SubNavTab[] = [
-  { id: "overview", label: "College Bus Facility" },
+  { id: "overview", label: "Transport" },
   { id: "college-routes", label: "College Bus Routes" },
   { id: "mtc-routes", label: "MTC Bus Routes" },
   { id: "committee", label: "Transport Committee" },
@@ -110,7 +110,7 @@ export function TransportPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const currentTabLabel = TRANSPORT_TABS.find((t) => t.id === activeSection)?.label ?? "College Bus Facility";
+  const currentTabLabel = TRANSPORT_TABS.find((t) => t.id === activeSection)?.label ?? "Transport";
 
   return (
     <main className="bg-white dark:bg-[#121214] text-foreground font-libre antialiased min-h-screen flex flex-col selection:bg-primary selection:text-white">
@@ -181,7 +181,7 @@ export function TransportPage() {
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-8">
                       <div>
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                          COLLEGE BUS FACILITY
+                          TRANSPORT OVERVIEW
                         </h2>
                       </div>
 
