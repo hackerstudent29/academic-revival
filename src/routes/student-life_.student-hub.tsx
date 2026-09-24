@@ -34,52 +34,53 @@ function StudentHubPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
-      {/* Page Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-10 pb-16 px-4 sm:px-6 md:px-12 border-b border-primary/20">
-        {/* Background Stock Image with Subtle Dark/Maroon Overlay */}
+      {/* Page Hero with Stock Image Background */}
+      <section className="relative overflow-hidden bg-[#18181B] text-white pt-10 sm:pt-12 pb-14 sm:pb-16 px-4 sm:px-6 md:px-12 border-b border-primary/20 min-h-[440px] sm:min-h-[480px] flex flex-col justify-end">
+        {/* Background Stock Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80"
-            alt="Campus Recreation and Student Life"
-            className="w-full h-full object-cover object-center brightness-[0.28] filter contrast-110 select-none pointer-events-none"
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80"
+            alt="Student Hub and Campus Amenities at MSAJCE"
+            className="w-full h-full object-cover object-center brightness-[0.70] filter contrast-105 select-none pointer-events-none"
             onError={(e) => {
               (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#9E2339]/90 via-[#861E30]/85 to-[#671422]/90 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
+          {/* Subtle multi-layer gradient overlay for contrast, depth, and legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
+          <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
         </div>
 
-        <div className="max-w-[1440px] mx-auto relative z-10">
-          <div className="max-w-3xl">
+        <div className="max-w-[1440px] mx-auto w-full relative z-10">
+          <div className="max-w-4xl">
             <span className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs font-bold font-oswald uppercase tracking-wider text-white border border-white/20 mb-4">
               Campus Recreation &amp; Welfare
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-oswald uppercase tracking-tight leading-[1.05]">
               Student Hub &amp; Campus Amenities
             </h1>
-            <p className="mt-4 text-base sm:text-lg text-white/90 font-sans leading-relaxed">
+            <p className="mt-4 text-base sm:text-lg text-white/90 font-libre font-medium leading-relaxed">
               {studentLifeOverview.description}
             </p>
           </div>
 
           {/* Quick Metrics */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-white/15">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-white/20">
             <div className="flex flex-col">
               <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">12,000 Sq.Ft</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Student Activity Centre</span>
+              <span className="text-xs sm:text-sm font-libre font-semibold text-white/80">Student Activity Centre</span>
             </div>
             <div className="flex flex-col">
               <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">600+ Seating</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Multi-Cuisine Canteen</span>
+              <span className="text-xs sm:text-sm font-libre font-semibold text-white/80">Multi-Cuisine Canteen</span>
             </div>
             <div className="flex flex-col">
               <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">15+ Arenas</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Sports &amp; Fitness Complex</span>
+              <span className="text-xs sm:text-sm font-libre font-semibold text-white/80">Sports &amp; Fitness Complex</span>
             </div>
             <div className="flex flex-col">
               <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">24/7 Security</span>
-              <span className="text-xs sm:text-sm font-sans font-semibold text-white/80">Student Residences</span>
+              <span className="text-xs sm:text-sm font-libre font-semibold text-white/80">Student Residences</span>
             </div>
           </div>
         </div>
