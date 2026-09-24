@@ -176,31 +176,105 @@ function ClubsAndSocietiesPage() {
                   "{activeClub.tagline}"
                 </p>
 
-                {/* Motto & Vision Accent Quote */}
-                {(activeClub.motto || activeClub.vision) && (
-                  <div className="mt-4 pl-4 border-l-2 border-primary py-2 bg-primary/[0.03] dark:bg-primary/[0.06] rounded-r-xs max-w-4xl">
-                    {activeClub.motto && (
-                      <div className="text-xs sm:text-sm font-bold font-oswald uppercase tracking-wider text-primary">
-                        Motto: "{activeClub.motto}"
+                {/* Vision & Motto Accent Quote */}
+                {(activeClub.vision || activeClub.motto) && (
+                  <div className="mt-4 pl-4 border-l-2 border-primary py-2.5 bg-primary/[0.03] dark:bg-primary/[0.06] rounded-r-xs max-w-4xl space-y-1.5">
+                    {activeClub.vision && (
+                      <div className="text-xs sm:text-sm font-libre text-foreground/90 leading-relaxed">
+                        <span className="font-bold font-oswald uppercase tracking-wider text-primary mr-1.5">
+                          Vision:
+                        </span>
+                        <span>"{activeClub.vision}"</span>
                       </div>
                     )}
-                    {activeClub.vision && (
-                      <p className="text-xs sm:text-sm font-libre italic text-foreground/80 mt-1 leading-relaxed">
-                        "{activeClub.vision}"
-                      </p>
+                    {activeClub.motto && (
+                      <div className="text-xs sm:text-sm font-libre text-foreground/90 leading-relaxed">
+                        <span className="font-bold font-oswald uppercase tracking-wider text-primary mr-1.5">
+                          Motto:
+                        </span>
+                        <span>"{activeClub.motto}"</span>
+                      </div>
                     )}
                   </div>
                 )}
               </div>
 
-              {/* Clean 2-Column Minimal Editorial Breakdown (Balanced with Perfectly Sized Media) */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-2">
+              {/* DEDICATED ULTRA-MINIMAL VIEW FOR SPORTS CLUB */}
+              {activeClub.id === "sports-club" ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 pt-2">
+                  {/* Objective */}
+                  <div className="space-y-4">
+                    <h3 className="text-sm font-black font-oswald uppercase tracking-wide text-foreground flex items-center gap-1.5">
+                      <Target className="w-4 h-4 text-primary" />
+                      Objective
+                    </h3>
+                    <div className="divide-y divide-border/60 border-y border-border/60">
+                      {activeClub.objectives?.map((obj, i) => (
+                        <div key={i} className="py-3 flex items-start gap-3">
+                          <span className="text-xs font-black font-oswald text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs shrink-0 mt-0.5">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <p className="text-xs sm:text-sm font-libre text-foreground/90 leading-relaxed">
+                            {obj}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Games Takes Place */}
+                  <div className="space-y-6 md:pl-8 md:border-l md:border-border/60">
+                    <h3 className="text-sm font-black font-oswald uppercase tracking-wide text-foreground flex items-center gap-1.5">
+                      <Dumbbell className="w-4 h-4 text-primary" />
+                      Games Takes Place
+                    </h3>
+
+                    {/* Outdoor Games */}
+                    <div className="space-y-2.5">
+                      <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider flex items-center gap-1.5">
+                        Outdoor Games ({activeClub.outdoorGames?.length || 8})
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {activeClub.outdoorGames?.map((game, i) => (
+                          <span
+                            key={i}
+                            className="text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 px-3 py-1.5 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs"
+                          >
+                            {game}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Indoor Games */}
+                    <div className="space-y-2.5 pt-4 border-t border-border/60">
+                      <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider flex items-center gap-1.5">
+                        <Award className="w-3.5 h-3.5 text-amber-500" />
+                        Indoor Games ({activeClub.indoorGames?.length || 3})
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {activeClub.indoorGames?.map((game, i) => (
+                          <span
+                            key={i}
+                            className="text-xs font-bold font-oswald uppercase bg-foreground/5 text-foreground border border-foreground/15 px-3 py-1.5 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs"
+                          >
+                            {game}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                /* Clean 2-Column Minimal Editorial Breakdown (Balanced with Perfectly Sized Media) */
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-2">
                 
                 {/* Left Column: About & Core Objectives & Annual Highlights */}
                 <div className="lg:col-span-7 space-y-6">
                   <div>
-                    <h3 className="text-xs font-bold font-oswald uppercase tracking-wider text-primary mb-2">
-                      About The Club
+                    <h3 className="text-xs font-bold font-oswald uppercase tracking-wider text-primary mb-2 flex items-center gap-1.5">
+                      <Activity className="w-3.5 h-3.5" />
+                      About The Forum
                     </h3>
                     <p className="text-sm sm:text-base font-libre text-muted-foreground leading-relaxed">
                       {activeClub.description}
@@ -220,6 +294,11 @@ function ClubsAndSocietiesPage() {
                             (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
                           }}
                         />
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-3 pointer-events-none select-none">
+                          <span className="text-[11px] font-bold font-oswald uppercase tracking-wider text-white block">
+                            {activeClub.name} · Official Student Forum
+                          </span>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -269,22 +348,20 @@ function ClubsAndSocietiesPage() {
                   )}
 
                   {/* Annual Calendar Highlights */}
-                  {activeClub.activities && activeClub.activities.length > 0 && (
-                    <div className="pt-2">
-                      <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2.5 flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5 text-primary" />
-                        Annual Calendar Highlights
-                      </h4>
-                      <div className="space-y-1.5">
-                        {activeClub.activities.map((act, i) => (
-                          <div key={i} className="flex items-start gap-2 text-xs font-libre text-muted-foreground">
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
-                            <span>{act}</span>
-                          </div>
-                        ))}
-                      </div>
+                  <div className="pt-2">
+                    <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2.5 flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-primary" />
+                      Annual Calendar Highlights
+                    </h4>
+                    <div className="space-y-1.5">
+                      {activeClub.activities.map((act, i) => (
+                        <div key={i} className="flex items-start gap-2 text-xs font-libre text-muted-foreground">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
+                          <span>{act}</span>
+                        </div>
+                      ))}
                     </div>
-                  )}
+                  </div>
                 </div>
 
                 {/* Right Column: Desktop Compact Stock Image + Specialized Disciplines */}
@@ -303,46 +380,15 @@ function ClubsAndSocietiesPage() {
                             (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
                           }}
                         />
-                      </div>
-                    </div>
-                  )}
-
-                  {/* CLUB-SPECIFIC COMPONENT: SPORTS CLUB */}
-                  {activeClub.id === "sports-club" && (
-                    <div className="space-y-5">
-                      <div>
-                        <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-2">
-                          Outdoor Sports Disciplines ({activeClub.outdoorGames?.length || 8})
-                        </h4>
-                        <div className="flex flex-wrap gap-1.5">
-                          {activeClub.outdoorGames?.map((game, i) => (
-                            <span
-                              key={i}
-                              className="text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs"
-                            >
-                              {game}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="pt-4 border-t border-border/60">
-                        <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2">
-                          Indoor Sports ({activeClub.indoorGames?.length || 3})
-                        </h4>
-                        <div className="flex flex-wrap gap-1.5">
-                          {activeClub.indoorGames?.map((game, i) => (
-                            <span
-                              key={i}
-                              className="text-xs font-bold font-oswald uppercase bg-foreground/5 text-foreground border border-foreground/15 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs"
-                            >
-                              {game}
-                            </span>
-                          ))}
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-3 pointer-events-none select-none">
+                          <span className="text-[11px] font-bold font-oswald uppercase tracking-wider text-white block">
+                            {activeClub.name} · Official Student Forum
+                          </span>
                         </div>
                       </div>
                     </div>
                   )}
+
 
                   {/* CLUB-SPECIFIC COMPONENT: FINE ARTS CLUB */}
                   {activeClub.id === "fine-arts-club" && (
@@ -547,6 +593,7 @@ function ClubsAndSocietiesPage() {
                 </div>
 
               </div>
+            )}
 
               {/* Sequential Club Navigation Controls */}
               <div className="pt-6 border-t border-border/60 flex flex-wrap items-center justify-between gap-4">

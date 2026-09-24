@@ -247,7 +247,15 @@ export const studentClubs: StudentClub[] = [
     name: "Sports Club",
     category: "sports",
     tagline: "Athletic Excellence & Team Spirit",
-    description: "The Sports Club coordinates collegiate athletics, fitness conditioning, and tournament participation across campus, representing MSAJCE in Anna University Zonal and State-level championships.",
+    motto: "Teamwork Makes The Dream Work",
+    vision: "To encourage and motivate students to achieve athletic excellence, healthy living, and sportsmanship at university, zonal, and state levels.",
+    description: "The Sports Club coordinates collegiate athletics, fitness conditioning, and tournament participation across campus. It trains student athletes, manages dedicated outdoor and indoor sports facilities, and represents MSAJCE in Anna University Zonal and State-level championships.",
+    objectives: [
+      "Foster sportsmanship, team spirit, and competitive athletic excellence.",
+      "Promote daily physical fitness, mental endurance, and active student wellness.",
+      "Coach and field collegiate teams for Anna University Zonal and State meets.",
+      "Cultivate leadership, discipline, self-confidence, and resilience through athletics."
+    ],
     outdoorGames: [
       "Cricket",
       "Football",
@@ -263,9 +271,7 @@ export const studentClubs: StudentClub[] = [
       "Chess",
       "Carrom"
     ],
-    images: [
-      "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80"
-    ],
+    images: [],
     activities: [],
     membersCount: "450+ Student Athletes",
     iconName: "Trophy",
