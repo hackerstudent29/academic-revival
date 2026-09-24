@@ -173,12 +173,12 @@ function TedxDatabasePage() {
       {/* ========================================================================= */}
       <section className="py-8 sm:py-10 md:py-12 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
-          <div className="max-w-4xl space-y-3">
+          <div className="w-full space-y-3">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               Our TEDx Chapter
             </h2>
-            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-              TEDxMSAJCE is an independently organized event under official license from TED. Hosted at Mohamed Sathak A.J. College of Engineering, it provides a prestigious platform where pioneering researchers, technological visionaries, creative artists, and social changemakers converge to spark deep discussion and inspire transformative ideas.
+            <p className="text-sm sm:text-base md:text-lg text-foreground font-libre font-medium leading-relaxed w-full text-justify [text-align:justify] [text-justify:inter-word]">
+              TEDxMSAJCE is an independently organized event under official license from TED. Hosted at Mohamed Sathak A.J.&nbsp;College of Engineering, it provides a prestigious platform where pioneering researchers, technological visionaries, creative artists, and social changemakers converge to spark deep discussion and inspire transformative ideas.
             </p>
           </div>
         </div>
@@ -216,7 +216,7 @@ function TedxDatabasePage() {
               <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                 TEDx Talks &amp; Sessions Archive
               </h2>
-              <p className="mt-1 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed max-w-3xl">
+              <p className="mt-1 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
                 Watch all 54 authentic TEDx talks published by the TEDxMSAJCE chapter. Click any talk to play inline or open the theater mode.
               </p>
             </div>
@@ -599,7 +599,7 @@ function TedxDatabasePage() {
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               TEDx Community Guidelines &amp; Licensing
             </h2>
-            <p className="mt-2 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed max-w-3xl">
+            <p className="mt-2 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
               TEDxMSAJCE is an independently organized event under official license from TED Conferences LLC.
             </p>
           </div>
