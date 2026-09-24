@@ -111,53 +111,30 @@ function ClubsAndSocietiesPage() {
         onTitleClick={() => handleSelectClub("sports-club")}
       />
 
-      {/* Page Hero Banner */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-8 pb-12 sm:pt-10 sm:pb-14 px-4 sm:px-6 md:px-12 border-b border-primary/20">
-        {/* Background Stock Image with Subtle Dark/Maroon Overlay */}
+      {/* ========================================================================= */}
+      {/* 1. HERO BANNER: Vision & Mission Style Minimal Flush Docked Title         */}
+      {/* ========================================================================= */}
+      <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+        {/* Hero Background Image */}
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1920&q=80"
-            alt="Student Clubs and Cultural Societies"
-            className="w-full h-full object-cover object-center brightness-[0.28] filter contrast-110 select-none pointer-events-none"
+            alt="Clubs and Cultural Societies at Mohamed Sathak A.J. College of Engineering"
+            className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none rounded-none"
             onError={(e) => {
               (e.target as HTMLImageElement).src = "/images/why-join/sports.jpg";
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#9E2339]/90 via-[#861E30]/85 to-[#671422]/90 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
+          {/* Subtle gradient overlay for depth and title legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
         </div>
 
-        <div className="max-w-[1440px] mx-auto relative z-10">
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-md rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs font-bold font-oswald uppercase tracking-wider text-white border border-white/20 mb-3">
-              Student Forums &amp; Cultural Life
-            </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-oswald uppercase tracking-tight leading-[1.05]">
-              Clubs &amp; Cultural Societies
+        {/* Title Container: Docked Flush at Bottom of Hero */}
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
+          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
+              Clubs &amp; Societies
             </h1>
-            <p className="mt-3 text-sm sm:text-base md:text-lg text-white/90 font-sans leading-relaxed">
-              Student-led forums driving athletic excellence, fine arts, scientific research, Tamil literary heritage, robotics, green sustainability, and visual photojournalism at MSAJCE.
-            </p>
-          </div>
-
-          {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-6 border-t border-white/15">
-            <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl font-black font-oswald text-white">8 Clubs</span>
-              <span className="text-xs font-sans text-white/80">Official Student Forums</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl font-black font-oswald text-white">2,400+</span>
-              <span className="text-xs font-sans text-white/80">Active Student Members</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl font-black font-oswald text-white">50+ Fests</span>
-              <span className="text-xs font-sans text-white/80">Annual Campus Events</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl font-black font-oswald text-white">TAKSHASHILA</span>
-              <span className="text-xs font-sans text-white/80">Annual Cultural Gala</span>
-            </div>
           </div>
         </div>
       </section>

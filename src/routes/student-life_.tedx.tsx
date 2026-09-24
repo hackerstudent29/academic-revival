@@ -96,73 +96,29 @@ function TedxDatabasePage() {
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
       {/* ========================================================================= */}
-      {/* 1. HERO BANNER WITH DOCKED FLUSH TITLE & STATS STRIP                       */}
+      {/* 1. HERO BANNER: Vision & Mission Style Minimal Flush Docked Title         */}
       {/* ========================================================================= */}
-      <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[360px] sm:min-h-[420px] md:min-h-[460px] flex flex-col justify-end">
-        {/* Background Campus Image */}
+      <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+        {/* Hero Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/accreditations_campus.jpg"
-            alt="Mohamed Sathak A.J. College of Engineering Campus"
-            className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none"
+            src="/images/procedure_hero.jpg"
+            alt="Mohamed Sathak A.J. College of Engineering Campus Architecture"
+            className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none rounded-none"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = "/images/library_reading_hall_real.jpg";
+              (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30" />
+          {/* Subtle gradient overlay for depth and title legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
         </div>
 
-        {/* Title Container: Docked Flush at the Hero End */}
-        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-12 sm:pt-16 md:pt-20 pb-0">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full sm:max-w-2xl md:max-w-3xl border-t border-r border-border dark:border-white/15"
-          >
+        {/* Title Container: Docked Flush at Bottom of Hero */}
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
+          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
             <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
               Our TEDx Chapter
             </h1>
-          </motion.div>
-        </div>
-
-        {/* Quick Facts & Figures Docked Stats Strip */}
-        <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/85 to-transparent pt-8 sm:pt-10 md:pt-12 pb-5 sm:pb-6 md:pb-8">
-          <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:divide-x md:divide-white/15">
-              <div className="first:pl-0 md:pl-4 space-y-0.5">
-                <div className="font-oswald text-2xl sm:text-3xl lg:text-4xl font-black text-primary leading-none">
-                  54
-                </div>
-                <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-0.5">
-                  Archived Talks &amp; Sessions
-                </div>
-              </div>
-              <div className="first:pl-0 md:pl-4 space-y-0.5">
-                <div className="font-oswald text-2xl sm:text-3xl lg:text-4xl font-black text-primary leading-none">
-                  TEDx
-                </div>
-                <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-0.5">
-                  Officially Licensed Chapter
-                </div>
-              </div>
-              <div className="first:pl-0 md:pl-4 space-y-0.5">
-                <div className="font-oswald text-2xl sm:text-3xl lg:text-4xl font-black text-primary leading-none">
-                  100%
-                </div>
-                <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-0.5">
-                  Ideas Worth Spreading
-                </div>
-              </div>
-              <div className="first:pl-0 md:pl-4 space-y-0.5">
-                <div className="font-oswald text-2xl sm:text-3xl lg:text-4xl font-black text-primary leading-none">
-                  Global
-                </div>
-                <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-0.5">
-                  Thought Leaders &amp; Innovators
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
