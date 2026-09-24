@@ -133,7 +133,7 @@ const nav: NavItem[] = [
         title: "Campus Facilities",
         links: [
           { label: "Central Library", to: "/library" },
-          { label: "Hostel", to: "/student-housing" },
+          { label: "Hostel", to: "/hostel" },
           { label: "Transport", to: "/campus-life", hash: "facilities" },
           { label: "Sports & Gym", to: "/campus-life", hash: "facilities" },
         ],
@@ -367,8 +367,8 @@ export function SiteHeader() {
         transition={{ duration: 0.35, ease: APPLE_EASE }}
         className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
           active || moreOpen || isScrolled 
-            ? "border-foreground/10 bg-background/80 backdrop-blur-xl" 
-            : "border-transparent bg-background backdrop-blur-none"
+            ? "border-border/80 dark:border-white/10 bg-background/80 dark:bg-[#121214]/80 backdrop-blur-xl shadow-xs" 
+            : "border-border/80 dark:border-white/10 bg-background/80 dark:bg-[#121214]/80 backdrop-blur-xl"
         }`}
         onMouseLeave={handleMouseLeaveNav}
         onMouseEnter={() => {
@@ -378,16 +378,14 @@ export function SiteHeader() {
           }
         }}
       >
-        <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 lg:gap-6 px-4 py-2.5 md:px-8 xl:px-12 md:py-3">
-          <div className="flex-1 lg:flex-none flex items-center min-w-[140px]">
-            <Link to="/" className="flex items-center min-h-[36px] md:min-h-[40px] w-full" onClick={closeAll}>
-              {(!isHome || isScrolled) && (
-                <img
-                  src="/logos/clg-logo.png"
-                  alt="MSAJCE Logo"
-                  className="h-9 md:h-10 w-auto object-contain origin-left"
-                />
-              )}
+        <div className="mx-auto flex max-w-[1440px] h-[58px] md:h-[70px] items-center justify-between gap-4 lg:gap-6 px-4 md:px-8 xl:px-12">
+          <div className="flex-1 lg:flex-none flex items-center min-w-[160px] sm:min-w-[200px] md:min-w-[240px] lg:min-w-[280px]">
+            <Link to="/" className="flex items-center w-full" onClick={closeAll}>
+              <img
+                src="/logos/msajce-header-combined-hd.png?v=2"
+                alt="MSAJCE Logo"
+                className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto max-w-[240px] sm:max-w-[280px] md:max-w-[320px] lg:max-w-[360px] object-contain origin-left"
+              />
             </Link>
           </div>
 

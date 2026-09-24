@@ -80,8 +80,8 @@ export function KeyDriversAccordion({ drivers = keyDrivers }: KeyDriversAccordio
   const [activeItem, setActiveItem] = useState<number | null>(null);
 
   return (
-    <div className="my-12">
-      <h3 className="text-2xl md:text-3xl font-serif tracking-tight mb-6 text-foreground">
+    <div className="my-10 sm:my-12">
+      <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-6">
         Key Drivers of Employment Growth
       </h3>
       <div 
@@ -99,7 +99,7 @@ export function KeyDriversAccordion({ drivers = keyDrivers }: KeyDriversAccordio
               onMouseEnter={() => hasContent && setActiveItem(index)}
             >
               <div className={`flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all ${hasContent ? 'cursor-pointer hover:text-primary' : ''}`}>
-                <span className="text-left font-oswald font-bold uppercase text-[#9E2339] dark:text-[#E11D48] text-base md:text-lg tracking-tight">
+                <span className="text-left font-oswald font-bold uppercase text-primary text-base md:text-lg tracking-tight">
                   {driver.title}
                 </span>
                 {hasContent && (
@@ -121,13 +121,13 @@ export function KeyDriversAccordion({ drivers = keyDrivers }: KeyDriversAccordio
                   >
                     <div className="pb-4 pt-0">
                       {driver.description && (
-                        <p className="text-muted-foreground text-sm md:text-base leading-relaxed pl-4 mb-2">{driver.description}</p>
+                        <p className="text-foreground font-libre font-medium text-sm sm:text-base leading-relaxed pl-4 mb-2">{driver.description}</p>
                       )}
                       {driver.points && driver.points.length > 0 && (
-                        <ul className="space-y-4 pt-2 pb-4 text-muted-foreground text-sm md:text-base leading-relaxed pl-4 list-disc marker:text-primary/50">
+                        <ul className="space-y-3 pt-2 pb-4 text-foreground font-libre font-medium text-sm sm:text-base leading-relaxed pl-4 list-disc marker:text-primary/70">
                           {driver.points.map((point, pIndex) => (
                             <li key={pIndex}>
-                              <strong className="text-foreground">{point.label}:</strong> {point.description}
+                              <strong className="text-foreground font-bold font-oswald uppercase tracking-wide mr-1.5">{point.label}:</strong> {point.description}
                             </li>
                           ))}
                         </ul>

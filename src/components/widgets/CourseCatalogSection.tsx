@@ -8,13 +8,17 @@ interface CourseCatalogSectionProps {
   titleOverride?: string;
   showViewToggles?: boolean;
   defaultViewMode?: "list" | "table" | "grid";
+  showDepartment?: boolean;
+  showDescription?: boolean;
 }
 
 export function CourseCatalogSection({ 
   initialLevel, 
   titleOverride, 
   showViewToggles = true,
-  defaultViewMode = "list"
+  defaultViewMode = "list",
+  showDepartment = true,
+  showDescription = true,
 }: CourseCatalogSectionProps) {
   const [search, setSearch] = useState("");
   const [levelFilter, setLevelFilter] = useState<string | null>(initialLevel || null);
@@ -62,17 +66,19 @@ export function CourseCatalogSection({
   const headerInfo = getHeaderInfo();
 
   return (
-    <section id="programmes" className="bg-background text-foreground pt-2 md:pt-4 pb-10 md:pb-16 font-sans">
+    <section id="programmes" className="bg-transparent text-foreground pt-2 md:pt-4 pb-10 md:pb-16 font-sans">
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-12">
         
         {/* Department / Programmes Page Title Block */}
-        <div className="mb-6 border-b border-border pb-5">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-primary font-oswald">
+        <div className="mb-6 pb-2">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-wide text-primary font-oswald">
             {headerInfo.title}
-          </h1>
-          <p className="mt-2 text-sm sm:text-base text-muted-foreground max-w-3xl font-sans leading-relaxed">
-            {headerInfo.description}
-          </p>
+          </h2>
+          {showDescription && headerInfo.description && (
+            <p className="mt-2 text-sm sm:text-base text-muted-foreground max-w-3xl font-libre leading-relaxed">
+              {headerInfo.description}
+            </p>
+          )}
         </div>
 
         {/* ── SEARCH & FILTER CONTROL SECTION ── */}
@@ -82,8 +88,8 @@ export function CourseCatalogSection({
             <Search className="absolute left-3.5 text-muted-foreground pointer-events-none" size={20} />
             <input 
               type="text"
-              placeholder="Search for a course or department (e.g., CSE, Cyber, AI, Civil)..."
-              className="w-full bg-card border border-border pl-10 pr-10 py-3 text-sm sm:text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors duration-200 font-sans shadow-xs rounded-sm"
+              placeholder={showDepartment ? "Search for a course or department (e.g., CSE, Cyber, AI, Civil)..." : "Search for a course or specialization..."}
+              className="w-full bg-white dark:bg-[#121214] border border-border pl-10 pr-10 py-3 text-sm sm:text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors duration-200 font-sans shadow-xs rounded-sm"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -99,7 +105,7 @@ export function CourseCatalogSection({
           </div>
 
           {/* Level Filter Buttons & View Mode Toggles Bar */}
-          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-3 bg-card border border-border shadow-xs rounded-sm">
+          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-3 bg-white dark:bg-[#121214] border border-border shadow-xs rounded-sm">
             {/* Filter Buttons */}
             <div className="flex flex-wrap items-center gap-2">
               {[
@@ -200,14 +206,23 @@ export function CourseCatalogSection({
                   
                   <div className="flex-1 md:max-w-[280px] lg:max-w-xs flex flex-col pt-1 font-sans">
                     <div className="flex justify-between border-b border-border pb-4 mb-4">
-                      <div>
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground block mb-1">DEPARTMENT</span>
-                        <span className="text-sm font-semibold text-foreground leading-tight">{course.department}</span>
-                      </div>
-                      <div className="text-right">
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground block mb-1">LEVEL</span>
-                        <span className="text-sm font-semibold text-foreground leading-tight">{course.level}</span>
-                      </div>
+                      {showDepartment ? (
+                        <>
+                          <div>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground block mb-1">DEPARTMENT</span>
+                            <span className="text-sm font-semibold text-foreground leading-tight">{course.department}</span>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground block mb-1">LEVEL</span>
+                            <span className="text-sm font-semibold text-foreground leading-tight">{course.level}</span>
+                          </div>
+                        </>
+                      ) : (
+                        <div>
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground block mb-1">DEGREE LEVEL</span>
+                          <span className="text-sm font-semibold text-foreground leading-tight">{course.level}</span>
+                        </div>
+                      )}
                     </div>
                     
                     <div className="grid grid-cols-3 gap-2 border-b border-border pb-4 mb-4 text-center">
@@ -237,13 +252,13 @@ export function CourseCatalogSection({
 
         {/* ── MODE 2: COMPACT TABLE VIEW ── */}
         {viewMode === "table" && (
-          <div className="overflow-x-auto border border-border bg-card shadow-xs rounded-sm">
+          <div className="overflow-x-auto border border-border bg-white dark:bg-[#121214] shadow-xs rounded-sm">
             <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-primary text-primary-foreground uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-primary/20">
+              <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
                 <tr>
                   <th className="py-3.5 px-4">Programme Name</th>
                   <th className="py-3.5 px-4">Level</th>
-                  <th className="py-3.5 px-4 hidden md:table-cell">Department</th>
+                  {showDepartment && <th className="py-3.5 px-4 hidden md:table-cell">Department</th>}
                   <th className="py-3.5 px-4 text-center">Intake</th>
                   <th className="py-3.5 px-4 text-center hidden sm:table-cell">Govt Seats</th>
                   <th className="py-3.5 px-4 text-center hidden sm:table-cell">Mgmt Seats</th>
@@ -262,13 +277,15 @@ export function CourseCatalogSection({
                       </Link>
                     </td>
                     <td className="py-3.5 px-4">
-                      <span className="inline-block px-2 py-0.5 text-[10px] font-extrabold uppercase bg-muted text-foreground border border-border font-oswald rounded-sm">
+                      <span className="inline-block px-2 py-0.5 text-[10px] font-extrabold uppercase bg-stone-100 dark:bg-neutral-800 text-foreground border border-stone-300 dark:border-neutral-700 font-oswald rounded-sm">
                         {course.level}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-muted-foreground hidden md:table-cell font-medium">
-                      {course.department}
-                    </td>
+                    {showDepartment && (
+                      <td className="py-3.5 px-4 text-muted-foreground hidden md:table-cell font-medium">
+                        {course.department}
+                      </td>
+                    )}
                     <td className="py-3.5 px-4 text-center font-bold text-foreground">
                       {course.intake}
                     </td>
@@ -281,7 +298,7 @@ export function CourseCatalogSection({
                     <td className="py-3.5 px-4 text-right">
                       <Link 
                         to={`/programmes/${course.slug}` as any} 
-                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider hover:bg-primary/90 transition-colors font-oswald rounded-sm"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 border border-stone-300 dark:border-neutral-700 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white hover:border-primary text-xs font-bold uppercase tracking-wider transition-all duration-200 font-oswald rounded-sm"
                       >
                         <span>View</span>
                         <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -301,7 +318,7 @@ export function CourseCatalogSection({
               <Link 
                 to={`/programmes/${course.slug}` as any} 
                 key={course.slug || idx} 
-                className="group flex flex-col justify-between bg-card border border-border hover:border-primary transition-colors duration-200 shadow-xs hover:shadow-md cursor-pointer overflow-hidden rounded-sm h-full"
+                className="group flex flex-col justify-between bg-white dark:bg-[#121214] border border-border hover:border-primary transition-colors duration-200 shadow-xs hover:shadow-md cursor-pointer overflow-hidden rounded-sm h-full"
               >
                 <div>
                   <div className="relative w-full h-36 bg-primary/10 overflow-hidden border-b border-border">
@@ -319,9 +336,11 @@ export function CourseCatalogSection({
                       {course.level}
                     </span>
 
-                    <span className="absolute bottom-2.5 left-3 right-3 text-xs font-bold text-white/90 truncate font-sans z-10">
-                      {course.department}
-                    </span>
+                    {showDepartment && (
+                      <span className="absolute bottom-2.5 left-3 right-3 text-xs font-bold text-white/90 truncate font-sans z-10">
+                        {course.department}
+                      </span>
+                    )}
                   </div>
 
                   <div className="p-5 space-y-3 font-sans">
@@ -347,7 +366,7 @@ export function CourseCatalogSection({
                 </div>
 
                 <div className="px-5 py-3.5 bg-muted/30 border-t border-border flex items-center justify-between text-xs font-bold text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors font-oswald uppercase tracking-wider">
-                  <span>Explore Department Page</span>
+                  <span>Explore Programme</span>
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>

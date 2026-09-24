@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const TESTIMONIALS = [
   {
-    quote: "The hands-on projects and industry-aligned curriculum at MSAJCE completely transformed my career trajectory.",
+    quote: "Hands-on projects and industry-aligned curriculum at MSAJCE transformed my career trajectory.",
     author: "Aarav Sharma",
     position: "SDE II",
     companyLogo: "/logos/amazon.svg",
@@ -12,7 +12,7 @@ const TESTIMONIALS = [
     alt: "Portrait of Aarav Sharma",
   },
   {
-    quote: "Amazing faculty and supportive environment. I built a solid foundation that helped me crack top tech interviews.",
+    quote: "Amazing faculty and supportive mentors helped me build a solid foundation for top tech roles.",
     author: "Priya Patel",
     position: "Software Engineer",
     companyLogo: "/logos/tcs.svg",
@@ -20,7 +20,7 @@ const TESTIMONIALS = [
     alt: "Portrait of Priya Patel",
   },
   {
-    quote: "The startup incubator at the campus gave me the exact push I needed to understand product development at scale.",
+    quote: "The startup incubator gave me the exact push I needed to build products at scale.",
     author: "Rahul Kumar",
     position: "Product Manager",
     companyLogo: "/logos/zoho.svg",
@@ -28,7 +28,7 @@ const TESTIMONIALS = [
     alt: "Portrait of Rahul Kumar",
   },
   {
-    quote: "From state-of-the-art labs to incredible research opportunities, my 4 years here were genuinely the best of my life.",
+    quote: "State-of-the-art labs and research opportunities made my 4 years here genuinely transformative.",
     author: "Sneha Gupta",
     position: "Data Scientist",
     companyLogo: "/logos/ibm.svg",
@@ -36,7 +36,7 @@ const TESTIMONIALS = [
     alt: "Portrait of Sneha Gupta",
   },
   {
-    quote: "The placement cell is fantastic! They brought in top-tier companies and ensured we were well-prepared.",
+    quote: "The placement cell brought top global companies to campus and prepared us for success.",
     author: "Vikram Singh",
     position: "Tech Lead",
     companyLogo: "/logos/infosys.svg",
@@ -44,7 +44,7 @@ const TESTIMONIALS = [
     alt: "Portrait of Vikram Singh",
   },
   {
-    quote: "I was challenged to push my limits every single day. The competitive yet supportive environment shaped my career.",
+    quote: "A supportive yet challenging environment pushed my limits and shaped my engineering career.",
     author: "Ananya Desai",
     position: "System Analyst",
     companyLogo: "/logos/cognizant.svg",
@@ -52,7 +52,7 @@ const TESTIMONIALS = [
     alt: "Portrait of Ananya Desai",
   },
   {
-    quote: "A vibrant campus with amazing libraries and research facilities. I spent my best years learning and growing here.",
+    quote: "Vibrant campus culture and modern learning facilities made this the best place to grow.",
     author: "Karthik Raj",
     position: "Frontend Developer",
     companyLogo: "/logos/customerlabs.png",
@@ -60,7 +60,7 @@ const TESTIMONIALS = [
     alt: "Portrait of Karthik Raj",
   },
   {
-    quote: "The professors are highly approachable and always willing to help. I couldn't have asked for better mentors.",
+    quote: "Approachable professors and exceptional guidance gave me the best mentorship imaginable.",
     author: "Neha Reddy",
     position: "Backend Engineer",
     companyLogo: "/logos/qburst.png",
@@ -68,7 +68,7 @@ const TESTIMONIALS = [
     alt: "Portrait of Neha Reddy",
   },
   {
-    quote: "Joining the robotics club was the highlight of my college life. The resources available for student clubs are phenomenal.",
+    quote: "Robotics club projects and modern labs gave me the practical exposure needed to excel.",
     author: "Arjun Nair",
     position: "Solutions Architect",
     companyLogo: "/logos/lenovo.svg",
@@ -76,7 +76,7 @@ const TESTIMONIALS = [
     alt: "Portrait of Arjun Nair",
   },
   {
-    quote: "Hostel facilities are great, and the campus is super safe. It truly felt like a home away from home.",
+    quote: "Outstanding residential facilities and a welcoming campus made MSAJCE feel like home.",
     author: "Meera Menon",
     position: "UI/UX Designer",
     companyLogo: "/logos/atos.svg",
@@ -84,7 +84,7 @@ const TESTIMONIALS = [
     alt: "Portrait of Meera Menon",
   },
   {
-    quote: "The diversity of the student body makes every discussion a rich learning experience. Highly recommend MSAJCE.",
+    quote: "A diverse student community and collaborative peer group enriched every classroom discussion.",
     author: "Sanjay Verma",
     position: "QA Engineer",
     companyLogo: "/logos/wipro.svg",
@@ -92,7 +92,7 @@ const TESTIMONIALS = [
     alt: "Portrait of Sanjay Verma",
   },
   {
-    quote: "Excellent infrastructure and sports facilities. Being part of the college football team taught me invaluable leadership skills.",
+    quote: "Great sports facilities and campus athletics taught me invaluable teamwork and leadership.",
     author: "Pooja Iyer",
     position: "Network Engineer",
     companyLogo: "/logos/tvs.svg",
@@ -100,7 +100,7 @@ const TESTIMONIALS = [
     alt: "Portrait of Pooja Iyer",
   },
   {
-    quote: "I received a very generous scholarship that made my education possible. The college truly cares about student welfare.",
+    quote: "Generous merit scholarships and dedicated faculty support made my engineering dream a reality.",
     author: "Rohit Das",
     position: "Cloud Consultant",
     companyLogo: "/logos/hitachi.svg",
@@ -108,7 +108,7 @@ const TESTIMONIALS = [
     alt: "Portrait of Rohit Das",
   },
   {
-    quote: "I loved the focus on practical learning. The industry collaborations provided us with insights no textbook could offer.",
+    quote: "Industry partnerships provided practical engineering insights no textbook could offer.",
     author: "Kavita Rao",
     position: "Software Developer",
     companyLogo: "/logos/valeo.svg",
@@ -116,7 +116,7 @@ const TESTIMONIALS = [
     alt: "Portrait of Kavita Rao",
   },
   {
-    quote: "The facilities and the quality of education at MSAJCE are simply top-notch. It was the best decision of my life.",
+    quote: "Top-tier academic standards and advanced facilities made choosing MSAJCE my best career decision.",
     author: "Abhinav Joshi",
     position: "DevOps Engineer",
     companyLogo: "/logos/movate.png",
@@ -158,8 +158,8 @@ export function TestimonialSection() {
         style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
         className="relative z-10 w-full text-center px-6 mb-10 md:mb-12"
       >
-        <p className="text-muted-foreground text-[11px] md:text-sm font-bold uppercase tracking-[0.16em] mb-4 font-mono">
-          3940+ Happy Alumni //
+        <p className="text-muted-foreground text-xs sm:text-sm font-bold uppercase tracking-[0.16em] mb-4 font-mono">
+          3940+ Happy Alumni
         </p>
         <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-primary font-oswald">
           Testimonials
@@ -181,7 +181,7 @@ export function TestimonialSection() {
             className="col-span-1 lg:col-span-7 w-full flex flex-col gap-6"
           >
             <span className="text-[10px] font-mono font-bold tracking-widest text-muted-foreground uppercase block">
-              Featured Alumni Spotlight //
+              Featured Alumni Spotlight
             </span>
             
             <div className="w-full bg-card border border-foreground/10 p-6 md:p-8 rounded-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center min-h-[380px] sm:min-h-[420px] shadow-sm">
@@ -223,7 +223,7 @@ export function TestimonialSection() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
                       transition={{ duration: 0.25 }}
-                      className="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug text-foreground tracking-tight font-sans line-clamp-4"
+                      className="text-xl sm:text-2xl lg:text-[26px] xl:text-3xl font-bold leading-snug text-foreground tracking-tight font-sans"
                     >
                       {TESTIMONIALS[activeIndex]?.quote}
                     </motion.blockquote>
@@ -304,7 +304,7 @@ export function TestimonialSection() {
             className="col-span-1 lg:col-span-5 w-full flex flex-col gap-6"
           >
             <span className="text-[10px] font-mono font-bold tracking-widest text-muted-foreground uppercase block">
-              Alumni Video Reels //
+              Alumni Video Reels
             </span>
 
             <div className="w-full grid grid-cols-2 gap-4 sm:gap-6 justify-center items-stretch">
@@ -423,7 +423,7 @@ export function TestimonialSection() {
                   style={{ willChange: "transform, opacity", transform: "translateZ(0)", fontFamily: "'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive" }}
                   className="text-xl md:text-2xl text-primary font-bold mt-2 ml-8 sm:ml-12 block" 
                 >
-                  – Dr. K.S. Srinivasan, Principal
+                  – Dr. K. S. Badrinathan, Principal
                 </motion.p>
 
                 {/* SVG Handwritten Signature Underline Stroke */}
@@ -453,16 +453,17 @@ export function TestimonialSection() {
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.65, ease: EASE_APPLE }}
           style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
-          className="w-full -mt-2 md:-mt-6"
+          className="w-full -mt-8 md:-mt-14"
         >
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-4">
             <div className="flex flex-col">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground">// Legacy Spotlights</span>
-              <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight mt-1 text-primary font-oswald">Alumni Network Feed</h3>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                Alumni Network Feed
+              </h3>
             </div>
           </div>
           
-          <div className="relative w-full overflow-hidden py-4">
+          <div className="relative w-full overflow-hidden py-3">
             {/* Gradient masks to fade edges */}
             <div className="absolute top-0 left-0 bottom-0 w-16 bg-gradient-to-r from-[#EAEAEA] dark:from-[#121214] to-transparent z-10 pointer-events-none" />
             <div className="absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-[#EAEAEA] dark:from-[#121214] to-transparent z-10 pointer-events-none" />
@@ -491,7 +492,7 @@ export function TestimonialSection() {
                 >
                   <div className="flex flex-col">
                     <Quote className="h-5 w-5 text-primary/30 mb-4" />
-                    <p className="text-sm text-foreground/80 leading-relaxed font-medium mb-4 line-clamp-4 font-sans">
+                    <p className="text-sm text-foreground/90 leading-relaxed font-libre font-medium mb-4 line-clamp-4">
                       "{t.quote}"
                     </p>
                   </div>
@@ -504,8 +505,8 @@ export function TestimonialSection() {
                       loading="lazy"
                     />
                     <div className="flex flex-col min-w-0">
-                      <span className="text-sm font-bold text-foreground truncate font-oswald uppercase">{t.author}</span>
-                      <span className="text-[10px] font-mono tracking-widest text-muted-foreground uppercase truncate mt-0.5">
+                      <span className="text-sm font-black text-foreground truncate font-oswald uppercase">{t.author}</span>
+                      <span className="text-[11px] font-sans font-semibold tracking-wider text-muted-foreground uppercase truncate mt-0.5">
                         {t.position}
                       </span>
                     </div>

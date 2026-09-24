@@ -48,7 +48,7 @@ export function NewsAndEventsSection() {
         {/* Section Header */}
         <div className="mb-6">
           <Reveal variant="rise">
-            <h2 className="text-3xl md:text-[34px] font-bold tracking-tight text-primary font-oswald uppercase">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               Currents & Events
             </h2>
           </Reveal>
@@ -95,7 +95,7 @@ export function NewsAndEventsSection() {
 
               {/* Bottom Body */}
               <div className="pt-6 flex flex-col justify-between flex-1 z-10 relative">
-                <p className="text-[15px] font-sans text-foreground/80 leading-relaxed transition-colors duration-300">
+                <p className="text-sm sm:text-base font-libre font-medium text-foreground/80 leading-relaxed transition-colors duration-300">
                   {currentMainArticle.description}
                 </p>
                 <div className="mt-6 flex justify-end">
@@ -110,7 +110,7 @@ export function NewsAndEventsSection() {
           {/* Right Column: Single Panel with Stacked Scrolling Articles (spans 5 columns) */}
           <Reveal variant="rise" delay={0.2} className="lg:col-span-5 h-full">
             <div className="bg-white dark:bg-[#1E201F] border border-foreground/10 rounded-[4px] shadow-xs p-6 h-full flex flex-col">
-              <h3 className="text-xl md:text-2xl font-bold tracking-tight text-primary font-oswald uppercase mb-4">
+              <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-primary mb-4">
                 Upcoming Events
               </h3>
               

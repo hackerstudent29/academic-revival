@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 
-import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { WhyJoinSection } from "@/components/sections/home/WhyJoinSection";
 import { AcademicProgrammesSection } from "@/components/sections/home/AcademicProgrammesSection";
 import { DynamicText } from "@/components/typography/DynamicText";
@@ -42,8 +42,6 @@ const heroLinks = [
 ] as const;
 
 export function HomePage() {
-  const { scrollY } = useScroll();
-  const logoOpacity = useTransform(scrollY, [0, 80], [1, 0]);
   const stripRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -96,15 +94,18 @@ export function HomePage() {
       >
         <div className="grid flex-1 items-stretch lg:grid-cols-[47%_53%]">
           <div className="flex h-full flex-col justify-start px-6 pt-6 pb-8 md:px-8 md:pt-8 md:pb-10 lg:px-12 lg:pt-10">
-            <DynamicText />
-            <div className="mt-6 mb-6 flex items-center justify-start min-h-[40px] sm:min-h-[50px] md:min-h-[70px] lg:min-h-[100px]">
-                <motion.img
-                  layoutId="msajce-logo"
-                  src="/logos/clg-logo.png"
-                  alt="Mohamed Sathak A.J. College of Engineering"
-                  className="w-[90%] max-w-[340px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[850px] h-auto object-contain object-left origin-top-left"
-                  style={{ opacity: logoOpacity }}
-                />
+            <div className="pl-4 lg:pl-6">
+              <DynamicText />
+            </div>
+            <div className="pl-4 lg:pl-6 mt-6 mb-6 flex items-center justify-start min-h-[40px] sm:min-h-[50px] md:min-h-[70px] lg:min-h-[100px]">
+              <img
+                src="/logos/college-name-only-logo.png"
+                alt="Mohamed Sathak A.J. College of Engineering"
+                className="w-[90%] max-w-[340px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[850px] h-auto object-contain object-left origin-top-left"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/logos/college%20name%20only%20logo.PNG";
+                }}
+              />
             </div>
 
             <Stagger gap={0.07} delay={0.25} className="mt-8 border-t border-foreground/12 md:mt-10">

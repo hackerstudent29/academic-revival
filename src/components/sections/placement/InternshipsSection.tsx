@@ -1,25 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { 
   Search,
-  Building2,
-  Calendar,
-  CheckCircle2,
-  TrendingUp,
-  Award,
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Cpu,
-  Layers,
-  Briefcase,
-  Users,
-  Sparkles,
-  X,
-  Filter,
-  GraduationCap,
-  ShieldCheck,
-  Zap,
-  Globe
+  CheckCircle2
 } from 'lucide-react';
 import { INTERNSHIP_RECORDS } from '@/lib/placementData';
 import { FeaturedAchievement } from '@/types/placement';
@@ -27,66 +9,6 @@ import { FeaturedAchievement } from '@/types/placement';
 interface InternshipsSectionProps {
   onOpenStory?: (story: FeaturedAchievement) => void;
 }
-
-const MatteArchPhotoFrame: React.FC<{
-  src: string;
-  alt: string;
-  className?: string;
-}> = ({ src, alt, className = '' }) => {
-  return (
-    <div className={`relative flex flex-col items-center ${className}`}>
-      <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[260px] sm:h-[300px] rounded-md bg-card border border-border shadow-md overflow-hidden p-2">
-        <div className="w-full h-full overflow-hidden rounded-sm bg-muted relative">
-          <img
-            src={src}
-            alt={alt}
-            className="w-full h-full object-cover object-center"
-            referrerPolicy="no-referrer"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80";
-            }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ElongatedArchPhotoFrame: React.FC<{
-  src: string;
-  alt: string;
-  title: string;
-  badge: string;
-  className?: string;
-}> = ({ src, alt, title, badge, className = '' }) => {
-  return (
-    <div className={`relative flex flex-col items-center ${className}`}>
-      <div className="relative w-full max-w-[380px] sm:max-w-[420px] h-[360px] sm:h-[420px] p-2 rounded-md bg-card border border-border shadow-lg">
-        <div className="w-full h-full overflow-hidden rounded-sm bg-card relative">
-          <img
-            src={src}
-            alt={alt}
-            className="w-full h-full object-cover object-center brightness-95"
-            referrerPolicy="no-referrer"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541888946425-d0fbb186156a?w=1000&auto=format&fit=crop&q=85";
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
-          
-          <div className="absolute bottom-6 left-4 right-4 text-center">
-            <span className="inline-block px-3.5 py-1 text-[10px] font-black uppercase tracking-widest bg-primary text-white shadow-xs font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
-              {badge}
-            </span>
-            <p className="text-xs font-bold text-white mt-1.5 font-oswald tracking-wide">
-              {title}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 interface CohortItem {
   id: string;
@@ -176,18 +98,11 @@ const COHORT_CARDS: CohortItem[] = [
 export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
   const [selectedYear, setSelectedYear] = useState<string>('2022-23');
   const [searchFilter, setSearchFilter] = useState<string>('');
-  const [selectedSector, setSelectedSector] = useState<string>('all');
-  const [spotlightId, setSpotlightId] = useState<string>('greenvalleys');
-  const [selectedMode, setSelectedMode] = useState<string>('all');
+  const [spotlightId, setSpotlightId] = useState<string>('lenovo');
 
   const activeSpotlight = useMemo(() => {
     return (COHORT_CARDS.find(c => c.id === spotlightId) || COHORT_CARDS[0])!;
   }, [spotlightId]);
-
-  const filteredCohorts = useMemo(() => {
-    if (selectedSector === 'all') return COHORT_CARDS;
-    return COHORT_CARDS.filter(c => c.sectorKey === selectedSector);
-  }, [selectedSector]);
 
   const currentRecords = INTERNSHIP_RECORDS[selectedYear] || [];
   
@@ -196,599 +111,263 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
       const matchesSearch = 
         r.organisation.toLowerCase().includes(searchFilter.toLowerCase()) ||
         r.domain.toLowerCase().includes(searchFilter.toLowerCase());
-      
-      const matchesMode = 
-        selectedMode === 'all' || 
-        (r.mode && r.mode.toLowerCase() === selectedMode.toLowerCase());
-
-      return matchesSearch && matchesMode;
+      return matchesSearch;
     });
-  }, [currentRecords, searchFilter, selectedMode]);
+  }, [currentRecords, searchFilter]);
 
   return (
-    <div className="relative w-full bg-page-bg text-foreground font-sans">
-      <div className="relative z-10">
-        
-        {/* Top High-Impact Metrics Strip */}
-        <div className="w-full bg-card border-b border-border py-4 px-4 sm:px-8 lg:px-14">
-          <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 divide-y md:divide-y-0 md:divide-x divide-border">
-            <div className="flex items-center gap-3.5 p-2 justify-center md:justify-start">
-              <div className="w-10 h-10 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-                <Briefcase className="w-5 h-5" />
+    <div className="w-full">
+      {/* SECTION 1: Canvas A (White / #121214) — Experiential Learning Overview */}
+      <section className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-6 sm:pb-8 md:pb-10 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+            EXPERIENTIAL LEARNING &amp; IN-PLANT INTERNSHIPS
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {[
+              {
+                title: 'Summer & Winter Internships',
+                desc: 'Mandatory industrial training during semester breaks with leading Chennai and national IT/manufacturing corridors.',
+                metric: '100% Eligible Students'
+              },
+              {
+                title: 'PPO Conversion Pipeline',
+                desc: 'High-performing student interns directly converting practical project performance into full-time employment offers.',
+                metric: '65% Conversion Rate'
+              },
+              {
+                title: 'Stipend Support',
+                desc: 'Students earning competitive monthly stipends scaling up to ₹25,000/month during full-semester internships.',
+                metric: 'Up to ₹25,000 / mo'
+              },
+              {
+                title: 'Live Capstone Projects',
+                desc: 'Industry-sponsored final year projects addressing real production bottlenecks and enterprise software needs.',
+                metric: '65+ Corporate MoUs'
+              }
+            ].map((item, idx) => (
+              <div key={idx} className="p-3.5 sm:p-4 space-y-2 hover:bg-foreground/[0.015] transition-colors">
+                <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs border border-foreground/20">
+                  0{idx + 1}
+                </span>
+                <span className="text-xs font-black font-oswald uppercase text-primary block pt-1">
+                  {item.metric}
+                </span>
+                <h3 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground leading-snug">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-foreground font-libre font-medium leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
-              <div>
-                <div className="text-xl sm:text-2xl font-black font-oswald text-foreground leading-tight">480+</div>
-                <div className="text-[11px] font-sans text-muted-foreground uppercase font-bold tracking-wider">Annual Internships</div>
-              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Wave Divider A -> B */}
+      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-6 sm:h-8 md:h-10 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-[#F3F3F2] dark:fill-[#18181B]"
+          />
+        </svg>
+      </div>
+
+      {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — Major Industry Cohorts */}
+      <section className="py-6 sm:py-8 md:py-10 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+            FEATURED INDUSTRY COHORTS &amp; PPO ACHIEVEMENTS
+          </h2>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Cohort Selector Buttons */}
+            <div className="lg:col-span-5 space-y-2.5">
+              {COHORT_CARDS.map((cohort) => {
+                const isSelected = spotlightId === cohort.id;
+                return (
+                  <button
+                    key={cohort.id}
+                    onClick={() => setSpotlightId(cohort.id)}
+                    className={`w-full p-3.5 sm:p-4 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs text-left transition-all cursor-pointer border flex items-center justify-between ${
+                      isSelected
+                        ? 'bg-primary text-white border-primary shadow-md'
+                        : 'bg-foreground/[0.02] text-foreground border-border/80 dark:border-white/10 hover:border-primary/50'
+                    }`}
+                  >
+                    <div>
+                      <span className="text-[10px] font-black font-oswald uppercase tracking-wider block opacity-80">
+                        {cohort.badge}
+                      </span>
+                      <h3 className="text-sm sm:text-base font-bold font-oswald uppercase tracking-tight">
+                        {cohort.title}
+                      </h3>
+                      <p className={`text-xs font-libre mt-0.5 ${
+                        isSelected ? 'text-white/90' : 'text-foreground/70'
+                      }`}>
+                        {cohort.metric}
+                      </p>
+                    </div>
+                    <span className={`text-xs font-bold font-oswald uppercase px-2.5 py-1 rounded-sm ${
+                      isSelected ? 'bg-white text-primary' : 'bg-foreground/5 text-foreground'
+                    }`}>
+                      {cohort.studentCount} Students
+                    </span>
+                  </button>
+                );
+              })}
             </div>
 
-            <div className="flex items-center gap-3.5 p-2 justify-center md:justify-start pt-3 md:pt-2">
-              <div className="w-10 h-10 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-                <Building2 className="w-5 h-5" />
+            {/* Active Cohort Showcase */}
+            <div className="lg:col-span-7 space-y-4">
+              <div className="aspect-[16/9] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden bg-muted shadow-sm">
+                <img 
+                  src={activeSpotlight.image} 
+                  alt={activeSpotlight.title} 
+                  className="w-full h-full object-cover select-none pointer-events-none" 
+                />
               </div>
-              <div>
-                <div className="text-xl sm:text-2xl font-black font-oswald text-foreground leading-tight">42+</div>
-                <div className="text-[11px] font-sans text-muted-foreground uppercase font-bold tracking-wider">Corporate Partners</div>
-              </div>
-            </div>
 
-            <div className="flex items-center gap-3.5 p-2 justify-center md:justify-start pt-3 md:pt-2">
-              <div className="w-10 h-10 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-                <TrendingUp className="w-5 h-5" />
+              <div className="space-y-2">
+                <div>
+                  <span className="text-xs font-black font-oswald uppercase tracking-wider text-primary">
+                    {activeSpotlight.category}
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase text-foreground">
+                    {activeSpotlight.title}
+                  </h3>
+                </div>
+                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                  {activeSpotlight.description}
+                </p>
               </div>
-              <div>
-                <div className="text-xl sm:text-2xl font-black font-oswald text-primary leading-tight">89.5%</div>
-                <div className="text-[11px] font-sans text-muted-foreground uppercase font-bold tracking-wider">PPO Yield Rate</div>
-              </div>
-            </div>
 
-            <div className="flex items-center gap-3.5 p-2 justify-center md:justify-start pt-3 md:pt-2">
-              <div className="w-10 h-10 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-                <GraduationCap className="w-5 h-5" />
-              </div>
-              <div>
-                <div className="text-xl sm:text-2xl font-black font-oswald text-foreground leading-tight">100%</div>
-                <div className="text-[11px] font-sans text-muted-foreground uppercase font-bold tracking-wider">Hands-on R&D Immersion</div>
+              <div className="space-y-2 pt-2">
+                <h4 className="text-xs font-bold font-oswald uppercase tracking-wider text-primary">
+                  Verified Outcomes &amp; PPO Results:
+                </h4>
+                {activeSpotlight.outcomes.map((out, oIdx) => (
+                  <div key={oIdx} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                    <p className="text-sm text-foreground font-libre font-medium">{out}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* SECTION 1: HERO & PRACTICAL IMMERSION PIPELINE */}
-        <section className="relative w-full pt-12 sm:pt-16 pb-16 px-4 sm:px-8 lg:px-14 bg-page-bg border-b border-border">
-          <div className="max-w-7xl mx-auto space-y-12">
-            
-            <div className="text-center max-w-3xl mx-auto space-y-3">
-              <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
-                PRACTICAL IMMERSION & INDUSTRY PIPELINE
-              </span>
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-primary uppercase tracking-tight font-oswald">
-                FROM CLASSROOM TO WORKPLACE
-              </h1>
-              <p className="text-sm sm:text-base text-muted-foreground font-normal font-sans leading-relaxed">
-                Where academic engineering principles transform directly into verified industry competence through sustained corporate immersion.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              <div className="lg:col-span-4 flex justify-center lg:justify-start">
-                <div className="w-full max-w-[280px] sm:max-w-[320px]">
-                  <MatteArchPhotoFrame
-                    src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80"
-                    alt="Engineering Innovation Lab"
-                    className="w-full drop-shadow-lg"
-                  />
-                  <div className="mt-4 p-3 bg-card border-l-3 border-primary rounded-r-sm border-y border-r border-border">
-                    <p className="text-[11px] text-primary uppercase tracking-wider font-oswald font-bold">
-                      LABORATORY IMMERSION
-                    </p>
-                    <p className="text-xs font-bold text-foreground font-sans mt-0.5">
-                      Hands-on technical engineering & research pods
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="lg:col-span-5 space-y-5 text-center lg:text-left">
-                <h3 className="text-2xl sm:text-3xl font-black text-foreground uppercase tracking-tight font-oswald">
-                  INDUSTRY-READY CAREER PATHWAYS
-                </h3>
-
-                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed font-normal font-sans">
-                  Internships, in-plant industrial training, and live technical site visits equip students with deep professional acumen, industry toolsets, and immediate employment readiness.
-                </p>
-              </div>
-
-              <div className="lg:col-span-3 flex flex-col items-center lg:items-end gap-4">
-                <div className="w-full max-w-[260px] sm:max-w-[280px]">
-                  <div className="p-2 bg-card border border-border shadow-md rounded-md">
-                    <div className="overflow-hidden bg-card rounded-sm h-52">
-                      <img
-                        src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=700&auto=format&fit=crop&q=80"
-                        alt="Corporate Technical Standup"
-                        className="w-full h-full object-cover object-center"
-                        referrerPolicy="no-referrer"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&auto=format&fit=crop&q=80";
-                        }}
-                      />
-                    </div>
-                    <div className="p-3 bg-card border-t border-border">
-                      <p className="text-[10px] text-primary font-bold uppercase font-oswald tracking-widest">
-                        INDUSTRY MENTORSHIP
-                      </p>
-                      <p className="text-xs font-bold text-foreground font-sans mt-0.5">
-                        Direct corporate technical sprints & standups
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* 4 Pillar Grid Banner */}
-            <div className="pt-6 border-t border-border grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {[
-                { label: 'INTERNSHIPS', num: '01', sub: 'Practical Exposure' },
-                { label: 'IN-PLANT TRAINING', num: '02', sub: 'Site Experience' },
-                { label: 'INDUSTRY INTERACTION', num: '03', sub: 'Expert Lectures' },
-                { label: 'PPO PIPELINES', num: '04', sub: 'Pre-Placement Offers' }
-              ].map((nav, i) => (
-                <div 
-                  key={i} 
-                  className="p-4 bg-card border-l-3 border-primary rounded-r-sm border-y border-r border-border hover:border-primary/60 transition-colors shadow-2xs"
-                >
-                  <div className="text-[11px] text-primary font-bold tracking-widest font-oswald">
-                    [{nav.num}]
-                  </div>
-                  <div className="text-xs sm:text-sm font-black tracking-wider text-foreground uppercase mt-1 font-oswald">
-                    {nav.label}
-                  </div>
-                  <div className="text-[11px] text-muted-foreground font-medium font-sans mt-0.5">
-                    {nav.sub}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-
-        {/* SECTION 2: PROVEN COHORT DEPLOYMENTS */}
-        <section className="w-full py-16 px-4 sm:px-8 lg:px-14 bg-background border-b border-border">
-          <div className="max-w-7xl mx-auto space-y-10">
-            
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-              <div className="max-w-2xl space-y-2">
-                <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
-                  PROVEN COHORT DEPLOYMENTS
-                </span>
-                <h2 className="text-2xl sm:text-4xl font-black text-primary font-oswald uppercase tracking-tight">
-                  WHERE STUDENTS STEPPED INTO INDUSTRY
-                </h2>
-                <p className="text-sm text-muted-foreground font-normal font-sans">
-                  Key corporate partner cohorts across manufacturing, software product engineering, civil infrastructure, and automotive mobility.
-                </p>
-              </div>
-
-              {/* Sector Filter Tabs */}
-              <div className="flex flex-wrap gap-2 text-xs font-oswald uppercase tracking-wider">
-                {[
-                  { id: 'all', label: 'All Sectors' },
-                  { id: 'hardware', label: 'Hardware & QA' },
-                  { id: 'saas', label: 'Enterprise SaaS' },
-                  { id: 'civil', label: 'Civil Infrastructure' },
-                  { id: 'mobility', label: 'Mobility Tech' },
-                ].map((sec) => (
-                  <button
-                    key={sec.id}
-                    onClick={() => setSelectedSector(sec.id)}
-                    className={`px-3 py-1.5 transition-all cursor-pointer font-bold rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs ${
-                      selectedSector === sec.id
-                        ? 'bg-primary text-white shadow-xs'
-                        : 'bg-card text-foreground hover:bg-muted border border-border'
-                    }`}
-                  >
-                    {sec.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Cohort Grid Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {filteredCohorts.map((card) => (
-                <div 
-                  key={card.id}
-                  className="bg-card border border-border shadow-xs flex flex-col justify-between overflow-hidden rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs hover:border-primary/50 transition-all duration-200"
-                >
-                  <div className="relative h-48 overflow-hidden bg-muted">
-                    <img
-                      src={card.image}
-                      alt={card.title}
-                      className="w-full h-full object-cover object-center"
-                      referrerPolicy="no-referrer"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80";
-                      }}
-                    />
-                    <div className="absolute top-3 left-3">
-                      <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 text-white bg-primary shadow-xs font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
-                        {card.badge}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-3 right-3 bg-black/80 border border-white/10 px-2.5 py-1 text-xs font-bold text-white font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs shadow-xs">
-                      {card.metric}
-                    </div>
-                  </div>
-
-                  <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                    <div className="space-y-2">
-                      <div className="text-[10px] font-bold text-primary uppercase font-oswald tracking-wider">
-                        {card.category}
-                      </div>
-                      <h3 className="text-base font-bold text-foreground font-oswald leading-tight">
-                        {card.title}
-                      </h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed font-normal font-sans">
-                        {card.description}
-                      </p>
-                    </div>
-
-                    <div className="pt-3 border-t border-border space-y-2">
-                      <div className="text-[10px] font-bold text-foreground uppercase font-oswald tracking-widest">
-                        DOMAINS & MENTORSHIP:
-                      </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {card.tags.map((t, idx) => (
-                          <span 
-                            key={idx}
-                            className="px-2 py-0.5 bg-page-bg border border-border text-[10px] text-foreground font-medium font-sans rounded-xs"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-
-        {/* SECTION 3: FEATURED COHORT HIGHLIGHT / SPOTLIGHT */}
-        <section className="w-full py-16 px-4 sm:px-8 lg:px-14 bg-page-bg border-b border-border">
-          <div className="max-w-7xl mx-auto space-y-8">
-            
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
-                FEATURED COHORT HIGHLIGHT
-              </span>
-
-              {/* Interactive Cohort Selector */}
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-bold uppercase font-oswald text-muted-foreground mr-1">Select Cohort:</span>
-                {COHORT_CARDS.map((cohort) => (
-                  <button
-                    key={cohort.id}
-                    onClick={() => setSpotlightId(cohort.id)}
-                    className={`px-3 py-1 text-xs font-bold uppercase font-oswald rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs cursor-pointer transition-all ${
-                      spotlightId === cohort.id
-                        ? 'bg-primary text-white shadow-xs'
-                        : 'bg-card border border-border text-foreground hover:bg-muted'
-                    }`}
-                  >
-                    {cohort.title.split(' ')[0]} ({cohort.studentCount})
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-              <div className="lg:col-span-6 space-y-6">
-                
-                <div className="flex items-baseline gap-4">
-                  <div className="text-[80px] sm:text-[120px] font-black text-foreground leading-[0.85] tracking-tighter font-oswald">
-                    {activeSpotlight.studentCount}
-                  </div>
-                  <div className="space-y-1">
-                    <span className="text-lg sm:text-2xl font-black tracking-widest text-primary uppercase font-oswald block">
-                      STUDENTS DEPLOYED
-                    </span>
-                    <span className="text-xs text-muted-foreground uppercase block font-oswald font-bold tracking-wider">
-                      COHORT 2022–23 | {activeSpotlight.badge}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="space-y-2 pt-2 border-t-2 border-primary">
-                  <h3 className="text-2xl sm:text-3xl font-black text-foreground font-oswald uppercase tracking-tight">
-                    {activeSpotlight.title}
-                  </h3>
-                  <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 text-primary font-oswald text-xs font-bold uppercase rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
-                    {activeSpotlight.category}
-                  </div>
-                </div>
-
-                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed font-normal font-sans">
-                  {activeSpotlight.description}
-                </p>
-
-                {/* Key Outcomes List */}
-                <div className="space-y-2.5 pt-2">
-                  <p className="text-xs font-bold uppercase font-oswald text-foreground tracking-wider">Key Cohort Achievements:</p>
-                  {activeSpotlight.outcomes.map((item, i) => (
-                    <div key={i} className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                      <span className="text-xs sm:text-sm font-sans text-foreground font-medium">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="p-4 bg-card border border-border flex items-center gap-3 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs shadow-2xs">
-                  <Building2 className="w-6 h-6 text-primary shrink-0" />
-                  <span className="text-xs sm:text-sm font-bold text-foreground font-sans">
-                    Structured industrial supervision with periodic technical milestone evaluations.
-                  </span>
-                </div>
-              </div>
-
-              <div className="lg:col-span-6 flex justify-center lg:justify-end">
-                <ElongatedArchPhotoFrame
-                  src={activeSpotlight.image}
-                  alt={activeSpotlight.title}
-                  badge={activeSpotlight.badge}
-                  title={`${activeSpotlight.title} — ${activeSpotlight.metric}`}
-                  className="w-full"
-                />
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* SECTION 4: OFFICIAL INTERNSHIP REPOSITORY */}
-        <section className="w-full py-16 px-4 sm:px-8 lg:px-14 bg-background border-b border-border">
-          <div className="max-w-7xl mx-auto space-y-8">
-            
-            <div className="max-w-3xl space-y-2">
-              <span className="text-xs font-bold text-foreground tracking-widest uppercase inline-block font-oswald mb-2">
-                OFFICIAL REPOSITORY
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-primary font-oswald uppercase">
-                THE INTERNSHIP LANDSCAPE
-              </h2>
-              <p className="text-sm text-muted-foreground leading-relaxed font-normal font-sans">
-                Published placement and internship records document verified student deployments across corporate partners.
-              </p>
-            </div>
-
-            {/* Filter Bar */}
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 mb-2 border-b-2 border-primary">
-              
-              {/* Year Selector Tabs */}
-              <div className="flex flex-wrap items-center gap-2 text-xs font-oswald uppercase tracking-wider">
-                {[
-                  { id: '2022-23', label: '2022–23 (42 entries)' },
-                  { id: '2024-25', label: '2024–25 (5 entries)' },
-                  { id: '2023-24', label: '2023–24 (4 entries)' },
-                  { id: '2021-22', label: '2021–22 (5 entries)' },
-                  { id: '2020-21', label: '2020–21 (15 entries)' },
-                ].map((yr) => (
-                  <button
-                    key={yr.id}
-                    onClick={() => setSelectedYear(yr.id)}
-                    className={`px-3 py-1.5 transition-all cursor-pointer font-bold rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs ${
-                      selectedYear === yr.id
-                        ? 'bg-primary text-white shadow-xs'
-                        : 'bg-card text-foreground hover:bg-muted border border-border'
-                    }`}
-                  >
-                    {yr.label}
-                  </button>
-                ))}
-              </div>
-
-              {/* Mode Filter Pills & Search */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                <div className="flex items-center gap-1 bg-card border border-border p-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
-                  {['all', 'on-site', 'hybrid', 'remote'].map((m) => (
-                    <button
-                      key={m}
-                      onClick={() => setSelectedMode(m)}
-                      className={`px-2.5 py-1 text-[11px] font-bold font-oswald uppercase cursor-pointer rounded-xs transition-colors ${
-                        selectedMode === m
-                          ? 'bg-primary text-white'
-                          : 'text-muted-foreground hover:text-foreground'
-                      }`}
-                    >
-                      {m === 'all' ? 'All Modes' : m}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="relative w-full sm:w-72">
-                  <input
-                    type="text"
-                    placeholder="Filter company or domain..."
-                    value={searchFilter}
-                    onChange={(e) => setSearchFilter(e.target.value)}
-                    className="w-full py-2 pl-3 pr-8 bg-card border border-border text-xs focus:outline-none focus:border-primary placeholder:text-muted-foreground text-foreground rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs font-sans"
-                  />
-                  {searchFilter ? (
-                    <button 
-                      onClick={() => setSearchFilter('')}
-                      className="absolute right-2.5 top-2.5 text-muted-foreground hover:text-foreground cursor-pointer"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  ) : (
-                    <Search className="w-4 h-4 absolute right-2.5 top-2.5 text-muted-foreground" />
-                  )}
-                </div>
-              </div>
-
-            </div>
-
-            {/* Results count indicator */}
-            <div className="flex items-center justify-between text-xs font-oswald text-muted-foreground uppercase px-1">
-              <span>Showing <strong className="text-foreground font-bold">{filteredRecords.length}</strong> of {currentRecords.length} partner records ({selectedYear})</span>
-              {searchFilter && <span>Filtered by: "{searchFilter}"</span>}
-            </div>
-
-            {/* Main Table and Historic Summary Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              
-              {/* Repository Table */}
-              <div className="lg:col-span-8 bg-card border border-border shadow-xs rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden">
-                <div className="flex items-center justify-between p-3.5 bg-primary text-white text-xs font-oswald font-bold tracking-widest uppercase">
-                  <div>ORGANISATION & FOCUS DOMAIN</div>
-                  <div className="text-right">STUDENTS HOSTED</div>
-                </div>
-
-                <div className="divide-y divide-border max-h-[580px] overflow-y-auto">
-                  {filteredRecords.map((entry, index) => {
-                    const initials = entry.organisation.slice(0, 2).toUpperCase();
-                    return (
-                      <div
-                        key={entry.id || index}
-                        className="flex items-center justify-between p-3.5 hover:bg-muted/50 transition-colors gap-4"
-                      >
-                        <div className="flex items-center gap-3 flex-1 min-w-0">
-                          <div className="w-8 h-8 rounded-xs bg-primary/10 border border-primary/20 text-primary font-oswald font-bold text-xs flex items-center justify-center shrink-0">
-                            {initials}
-                          </div>
-                          <div className="min-w-0">
-                            <div className="text-sm font-bold text-foreground font-oswald flex items-center gap-2 flex-wrap">
-                              <span className="truncate">{entry.organisation}</span>
-                              {entry.mode && (
-                                <span className={`text-[9px] px-1.5 py-0.2 uppercase font-oswald font-bold rounded-xs shrink-0 ${
-                                  entry.mode.toLowerCase() === 'on-site'
-                                    ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
-                                    : entry.mode.toLowerCase() === 'hybrid'
-                                    ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20'
-                                    : 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20'
-                                }`}>
-                                  {entry.mode}
-                                </span>
-                              )}
-                            </div>
-                            <div className="text-xs text-primary font-sans mt-0.5 font-bold truncate">
-                              {entry.domain}
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="text-right flex items-center justify-end gap-3 shrink-0">
-                          <div>
-                            <span className="text-xl font-black text-foreground font-oswald">
-                              {entry.students}
-                            </span>
-                            <span className="text-[10px] font-oswald text-muted-foreground block uppercase font-bold">
-                              STUDENTS
-                            </span>
-                          </div>
-                          {entry.convertedPPOs ? (
-                            <span className="hidden sm:inline-block text-[10px] bg-primary/10 border border-primary/20 text-primary px-2 py-1 font-oswald font-bold uppercase rounded-xs">
-                              {entry.convertedPPOs} PPOs
-                            </span>
-                          ) : null}
-                        </div>
-                      </div>
-                    );
-                  })}
-
-                  {filteredRecords.length === 0 && (
-                    <div className="py-16 text-center text-xs font-sans text-muted-foreground space-y-2">
-                      <p className="font-bold text-sm text-foreground font-oswald uppercase">No Records Found</p>
-                      <p>No corporate internship records match your filter criteria.</p>
-                      <button 
-                        onClick={() => { setSearchFilter(''); setSelectedMode('all'); }}
-                        className="px-3 py-1.5 bg-primary text-white font-oswald text-xs font-bold uppercase rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs cursor-pointer"
-                      >
-                        Reset Search Filters
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Historic Summary Side Card */}
-              <div className="lg:col-span-4 space-y-4">
-                <div className="p-5 bg-card border border-border space-y-5 rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs shadow-xs">
-                  <h3 className="text-sm font-black text-foreground font-oswald uppercase tracking-wider pb-2.5 border-b border-border flex items-center justify-between">
-                    <span>HISTORIC SUMMARY</span>
-                    <ShieldCheck className="w-4 h-4 text-primary" />
-                  </h3>
-
-                  <div className="space-y-3">
-                    <div className="p-3.5 bg-page-bg border-l-4 border-primary rounded-r-sm border-y border-r border-border">
-                      <div className="text-[10px] font-oswald text-muted-foreground uppercase font-bold tracking-wider">
-                        ACADEMIC YEAR 2022–23
-                      </div>
-                      <div className="text-2xl font-black text-foreground font-oswald">
-                        42 Entries (388+ Offers)
-                      </div>
-                      <div className="text-xs text-muted-foreground font-sans mt-0.5">
-                        Lenovo, Zoho Tech's, Green Valleys Shelters, Thermodyn
-                      </div>
-                    </div>
-
-                    <div className="p-3.5 bg-page-bg border-l-4 border-primary/70 rounded-r-sm border-y border-r border-border">
-                      <div className="text-[10px] font-oswald text-muted-foreground uppercase font-bold tracking-wider">
-                        ACADEMIC YEAR 2021–22
-                      </div>
-                      <div className="text-2xl font-black text-primary font-oswald">
-                        5 Primary Cohorts
-                      </div>
-                      <div className="text-xs text-muted-foreground font-sans mt-0.5">
-                        Cognizant (38), TCS (25), Zoho (18), TVS (15)
-                      </div>
-                    </div>
-
-                    <div className="p-3.5 bg-page-bg border-l-4 border-primary/40 rounded-r-sm border-y border-r border-border">
-                      <div className="text-[10px] font-oswald text-muted-foreground uppercase font-bold tracking-wider">
-                        ACADEMIC YEAR 2020–21
-                      </div>
-                      <div className="text-2xl font-black text-primary font-oswald">
-                        15 Enterprise Track Recruiter Partners
-                      </div>
-                      <div className="text-xs text-muted-foreground font-sans mt-0.5">
-                        Infosys Springboard (48), Cognizant (30), Wipro (22)
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-3 border-t border-border space-y-2">
-                    <div className="text-xs font-bold uppercase font-oswald text-foreground">SECTOR DISTRIBUTION</div>
-                    <div className="flex flex-wrap gap-1.5">
-                      <span className="px-2 py-1 bg-page-bg border border-border text-[10px] font-bold font-oswald text-foreground rounded-xs">
-                        IT & SAAS: 45%
-                      </span>
-                      <span className="px-2 py-1 bg-page-bg border border-border text-[10px] font-bold font-oswald text-foreground rounded-xs">
-                        MANUFACTURING: 30%
-                      </span>
-                      <span className="px-2 py-1 bg-page-bg border border-border text-[10px] font-bold font-oswald text-foreground rounded-xs">
-                        CIVIL INFRA: 15%
-                      </span>
-                      <span className="px-2 py-1 bg-page-bg border border-border text-[10px] font-bold font-oswald text-foreground rounded-xs">
-                        MOBILITY: 10%
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </section>
-
+      {/* Wave Divider B -> A */}
+      <div className="w-full overflow-hidden leading-none select-none bg-[#F3F3F2] dark:bg-[#18181B]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-6 sm:h-8 md:h-10 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-white dark:fill-[#121214]"
+          />
+        </svg>
       </div>
+
+      {/* SECTION 3: Canvas A (White / #121214) — Filterable Internship Records Directory */}
+      <section className="py-6 sm:py-8 md:py-10 bg-white dark:bg-[#121214] transition-colors pb-12 sm:pb-16">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-5 sm:space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              INTERNSHIP PLACEMENT RECORDS
+            </h2>
+
+            {/* Year Toggle */}
+            <div className="flex items-center gap-2">
+              {['2022-23', '2021-22', '2020-21'].map((yr) => (
+                <button
+                  key={yr}
+                  onClick={() => setSelectedYear(yr)}
+                  className={`px-3 py-1.5 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs font-bold font-oswald uppercase tracking-wider transition-all cursor-pointer ${
+                    selectedYear === yr
+                      ? 'bg-primary text-white shadow-xs'
+                      : 'bg-foreground/[0.04] text-foreground border border-border/80 dark:border-white/10 hover:border-primary/50'
+                  }`}
+                >
+                  {yr}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Search Input */}
+          <div className="relative max-w-md">
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <input
+              type="text"
+              value={searchFilter}
+              onChange={(e) => setSearchFilter(e.target.value)}
+              placeholder="Search company or domain..."
+              className="w-full pl-10 pr-4 py-2 bg-foreground/[0.02] border border-border/80 dark:border-white/10 rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs text-xs sm:text-sm font-libre focus:outline-none focus:border-primary"
+            />
+          </div>
+
+          {/* Records Table */}
+          <div className="w-full overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[620px]">
+              <thead>
+                <tr className="border-b border-border/60">
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-16 sm:w-20">
+                    S.No
+                  </th>
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
+                    Company / Organisation
+                  </th>
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
+                    Domain / Technology
+                  </th>
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-32">
+                    Students
+                  </th>
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-36">
+                    Mode
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border/40">
+                {filteredRecords.map((rec, idx) => (
+                  <tr key={idx} className="hover:bg-muted/30 transition-colors">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-oswald font-bold text-primary text-sm sm:text-base align-middle whitespace-nowrap">
+                      {String(idx + 1).padStart(2, "0")}
+                    </td>
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-libre font-bold text-foreground text-sm sm:text-base align-middle">
+                      {rec.organisation}
+                    </td>
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-libre font-medium text-xs sm:text-sm text-foreground align-middle">
+                      {rec.domain}
+                    </td>
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-oswald font-bold text-primary text-sm align-middle whitespace-nowrap">
+                      {rec.students} Students
+                    </td>
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-libre font-medium text-xs sm:text-sm text-foreground/80 align-middle whitespace-nowrap">
+                      {rec.mode}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
