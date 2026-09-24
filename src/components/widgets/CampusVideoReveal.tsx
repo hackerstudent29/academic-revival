@@ -33,13 +33,13 @@ export function CampusVideoReveal() {
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
           <video
             ref={videoRef}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover scale-[1.35] origin-center transition-transform duration-500"
             autoPlay
             muted
             loop
             playsInline
           >
-            <source src="/campus-video.mp4" type="video/mp4" />
+            <source src="/msajce.video.mp4" type="video/mp4" />
           </video>
         </div>
       </div>

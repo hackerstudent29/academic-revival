@@ -159,10 +159,10 @@ const nav: NavItem[] = [
       {
         title: "Student Community",
         links: [
-          { label: "Our Alumni", to: "/campus-life" },
-          { label: "Convocation", to: "/campus-life" },
-          { label: "Campus Happenings", to: "/campus-life" },
-          { label: "Social Media Directory", to: "/social-media" },
+          { label: "Our Alumni", to: "/student-community/alumni" },
+          { label: "Convocation", to: "/student-community/convocation" },
+          { label: "Campus Happenings", to: "/student-community/campus-happenings" },
+          { label: "Social Media Directory", to: "/student-community/social-media" },
         ],
       },
     ],

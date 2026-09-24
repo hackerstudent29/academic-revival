@@ -27,6 +27,7 @@ import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offered'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as SocialMediaRouteImport } from './routes/social-media'
+import { Route as StudentCommunityRouteImport } from './routes/student-community'
 import { Route as AboutAccreditationsRouteImport } from './routes/about_.accreditations'
 import { Route as AboutGoverningCouncilRouteImport } from './routes/about_.governing-council'
 import { Route as AboutGroupInstitutionsRouteImport } from './routes/about_.group-institutions'
@@ -48,6 +49,10 @@ import { Route as ResearchIicRouteImport } from './routes/research_.iic'
 import { Route as ResearchPatentsRouteImport } from './routes/research_.patents'
 import { Route as ResearchPublicationsRouteImport } from './routes/research_.publications'
 import { Route as ResearchStartupEcosystemRouteImport } from './routes/research_.startup-ecosystem'
+import { Route as StudentCommunityAlumniRouteImport } from './routes/student-community_.alumni'
+import { Route as StudentCommunityCampusHappeningsRouteImport } from './routes/student-community_.campus-happenings'
+import { Route as StudentCommunityConvocationRouteImport } from './routes/student-community_.convocation'
+import { Route as StudentCommunitySocialMediaRouteImport } from './routes/student-community_.social-media'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -137,6 +142,11 @@ const ResearchRoute = ResearchRouteImport.update({
 const SocialMediaRoute = SocialMediaRouteImport.update({
   id: '/social-media',
   path: '/social-media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentCommunityRoute = StudentCommunityRouteImport.update({
+  id: '/student-community',
+  path: '/student-community',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutAccreditationsRoute = AboutAccreditationsRouteImport.update({
@@ -245,6 +255,29 @@ const ResearchStartupEcosystemRoute =
     path: '/research/startup-ecosystem',
     getParentRoute: () => rootRouteImport,
   } as any)
+const StudentCommunityAlumniRoute = StudentCommunityAlumniRouteImport.update({
+  id: '/student-community_/alumni',
+  path: '/student-community/alumni',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentCommunityCampusHappeningsRoute =
+  StudentCommunityCampusHappeningsRouteImport.update({
+    id: '/student-community_/campus-happenings',
+    path: '/student-community/campus-happenings',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const StudentCommunityConvocationRoute =
+  StudentCommunityConvocationRouteImport.update({
+    id: '/student-community_/convocation',
+    path: '/student-community/convocation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const StudentCommunitySocialMediaRoute =
+  StudentCommunitySocialMediaRouteImport.update({
+    id: '/student-community_/social-media',
+    path: '/student-community/social-media',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -265,6 +298,7 @@ export interface FileRoutesByFullPath {
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
+  '/student-community': typeof StudentCommunityRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
   '/about/governing-council': typeof AboutGoverningCouncilRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -284,6 +318,10 @@ export interface FileRoutesByFullPath {
   '/research/patents': typeof ResearchPatentsRoute
   '/research/publications': typeof ResearchPublicationsRoute
   '/research/startup-ecosystem': typeof ResearchStartupEcosystemRoute
+  '/student-community/alumni': typeof StudentCommunityAlumniRoute
+  '/student-community/campus-happenings': typeof StudentCommunityCampusHappeningsRoute
+  '/student-community/convocation': typeof StudentCommunityConvocationRoute
+  '/student-community/social-media': typeof StudentCommunitySocialMediaRoute
   '/naac/': typeof NaacIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
 }
@@ -305,6 +343,7 @@ export interface FileRoutesByTo {
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
+  '/student-community': typeof StudentCommunityRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
   '/about/governing-council': typeof AboutGoverningCouncilRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -324,6 +363,10 @@ export interface FileRoutesByTo {
   '/research/patents': typeof ResearchPatentsRoute
   '/research/publications': typeof ResearchPublicationsRoute
   '/research/startup-ecosystem': typeof ResearchStartupEcosystemRoute
+  '/student-community/alumni': typeof StudentCommunityAlumniRoute
+  '/student-community/campus-happenings': typeof StudentCommunityCampusHappeningsRoute
+  '/student-community/convocation': typeof StudentCommunityConvocationRoute
+  '/student-community/social-media': typeof StudentCommunitySocialMediaRoute
   '/naac': typeof NaacIndexRoute
   '/programmes': typeof ProgrammesIndexRoute
 }
@@ -347,6 +390,7 @@ export interface FileRoutesById {
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
+  '/student-community': typeof StudentCommunityRoute
   '/about_/accreditations': typeof AboutAccreditationsRoute
   '/about_/governing-council': typeof AboutGoverningCouncilRoute
   '/about_/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -366,6 +410,10 @@ export interface FileRoutesById {
   '/research_/patents': typeof ResearchPatentsRoute
   '/research_/publications': typeof ResearchPublicationsRoute
   '/research_/startup-ecosystem': typeof ResearchStartupEcosystemRoute
+  '/student-community_/alumni': typeof StudentCommunityAlumniRoute
+  '/student-community_/campus-happenings': typeof StudentCommunityCampusHappeningsRoute
+  '/student-community_/convocation': typeof StudentCommunityConvocationRoute
+  '/student-community_/social-media': typeof StudentCommunitySocialMediaRoute
   '/naac/': typeof NaacIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
 }
@@ -390,6 +438,7 @@ export interface FileRouteTypes {
     | '/programmes-offered'
     | '/research'
     | '/social-media'
+    | '/student-community'
     | '/about/accreditations'
     | '/about/governing-council'
     | '/about/group-institutions'
@@ -409,6 +458,10 @@ export interface FileRouteTypes {
     | '/research/patents'
     | '/research/publications'
     | '/research/startup-ecosystem'
+    | '/student-community/alumni'
+    | '/student-community/campus-happenings'
+    | '/student-community/convocation'
+    | '/student-community/social-media'
     | '/naac/'
     | '/programmes/'
   fileRoutesByTo: FileRoutesByTo
@@ -430,6 +483,7 @@ export interface FileRouteTypes {
     | '/programmes-offered'
     | '/research'
     | '/social-media'
+    | '/student-community'
     | '/about/accreditations'
     | '/about/governing-council'
     | '/about/group-institutions'
@@ -449,6 +503,10 @@ export interface FileRouteTypes {
     | '/research/patents'
     | '/research/publications'
     | '/research/startup-ecosystem'
+    | '/student-community/alumni'
+    | '/student-community/campus-happenings'
+    | '/student-community/convocation'
+    | '/student-community/social-media'
     | '/naac'
     | '/programmes'
   id:
@@ -471,6 +529,7 @@ export interface FileRouteTypes {
     | '/programmes-offered'
     | '/research'
     | '/social-media'
+    | '/student-community'
     | '/about_/accreditations'
     | '/about_/governing-council'
     | '/about_/group-institutions'
@@ -490,6 +549,10 @@ export interface FileRouteTypes {
     | '/research_/patents'
     | '/research_/publications'
     | '/research_/startup-ecosystem'
+    | '/student-community_/alumni'
+    | '/student-community_/campus-happenings'
+    | '/student-community_/convocation'
+    | '/student-community_/social-media'
     | '/naac/'
     | '/programmes/'
   fileRoutesById: FileRoutesById
@@ -513,6 +576,7 @@ export interface RootRouteChildren {
   ProgrammesOfferedRoute: typeof ProgrammesOfferedRoute
   ResearchRoute: typeof ResearchRoute
   SocialMediaRoute: typeof SocialMediaRoute
+  StudentCommunityRoute: typeof StudentCommunityRoute
   AboutAccreditationsRoute: typeof AboutAccreditationsRoute
   AboutGoverningCouncilRoute: typeof AboutGoverningCouncilRoute
   AboutGroupInstitutionsRoute: typeof AboutGroupInstitutionsRoute
@@ -531,6 +595,10 @@ export interface RootRouteChildren {
   ResearchPatentsRoute: typeof ResearchPatentsRoute
   ResearchPublicationsRoute: typeof ResearchPublicationsRoute
   ResearchStartupEcosystemRoute: typeof ResearchStartupEcosystemRoute
+  StudentCommunityAlumniRoute: typeof StudentCommunityAlumniRoute
+  StudentCommunityCampusHappeningsRoute: typeof StudentCommunityCampusHappeningsRoute
+  StudentCommunityConvocationRoute: typeof StudentCommunityConvocationRoute
+  StudentCommunitySocialMediaRoute: typeof StudentCommunitySocialMediaRoute
   ProgrammesIndexRoute: typeof ProgrammesIndexRoute
 }
 
@@ -660,6 +728,13 @@ declare module '@tanstack/react-router' {
       path: '/social-media'
       fullPath: '/social-media'
       preLoaderRoute: typeof SocialMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-community': {
+      id: '/student-community'
+      path: '/student-community'
+      fullPath: '/student-community'
+      preLoaderRoute: typeof StudentCommunityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about_/accreditations': {
@@ -809,6 +884,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchStartupEcosystemRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/student-community_/alumni': {
+      id: '/student-community_/alumni'
+      path: '/student-community/alumni'
+      fullPath: '/student-community/alumni'
+      preLoaderRoute: typeof StudentCommunityAlumniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-community_/campus-happenings': {
+      id: '/student-community_/campus-happenings'
+      path: '/student-community/campus-happenings'
+      fullPath: '/student-community/campus-happenings'
+      preLoaderRoute: typeof StudentCommunityCampusHappeningsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-community_/convocation': {
+      id: '/student-community_/convocation'
+      path: '/student-community/convocation'
+      fullPath: '/student-community/convocation'
+      preLoaderRoute: typeof StudentCommunityConvocationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-community_/social-media': {
+      id: '/student-community_/social-media'
+      path: '/student-community/social-media'
+      fullPath: '/student-community/social-media'
+      preLoaderRoute: typeof StudentCommunitySocialMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -843,6 +946,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProgrammesOfferedRoute: ProgrammesOfferedRoute,
   ResearchRoute: ResearchRoute,
   SocialMediaRoute: SocialMediaRoute,
+  StudentCommunityRoute: StudentCommunityRoute,
   AboutAccreditationsRoute: AboutAccreditationsRoute,
   AboutGoverningCouncilRoute: AboutGoverningCouncilRoute,
   AboutGroupInstitutionsRoute: AboutGroupInstitutionsRoute,
@@ -861,6 +965,10 @@ const rootRouteChildren: RootRouteChildren = {
   ResearchPatentsRoute: ResearchPatentsRoute,
   ResearchPublicationsRoute: ResearchPublicationsRoute,
   ResearchStartupEcosystemRoute: ResearchStartupEcosystemRoute,
+  StudentCommunityAlumniRoute: StudentCommunityAlumniRoute,
+  StudentCommunityCampusHappeningsRoute: StudentCommunityCampusHappeningsRoute,
+  StudentCommunityConvocationRoute: StudentCommunityConvocationRoute,
+  StudentCommunitySocialMediaRoute: StudentCommunitySocialMediaRoute,
   ProgrammesIndexRoute: ProgrammesIndexRoute,
 }
 export const routeTree = rootRouteImport
