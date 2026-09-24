@@ -331,10 +331,10 @@ function TedxDatabasePage() {
                 return (
                   <div
                     key={video.id}
-                    className="border border-stone-300/80 dark:border-neutral-700/80 bg-white dark:bg-[#121214] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden transition-colors flex flex-col justify-between"
+                    className="flex flex-col justify-between space-y-2.5 group"
                   >
                     {/* Media Area (16:9 Aspect Ratio) */}
-                    <div className="aspect-video relative bg-black/10 dark:bg-black/40 overflow-hidden">
+                    <div className="aspect-video relative bg-black/10 dark:bg-black/40 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden shadow-xs">
                       {isPlaying ? (
                         <div className="relative w-full h-full">
                           <iframe
@@ -355,7 +355,7 @@ function TedxDatabasePage() {
                           </button>
                         </div>
                       ) : (
-                        <div className="relative w-full h-full group">
+                        <div className="relative w-full h-full">
                           <img
                             src={video.thumbnail}
                             alt={video.title}
@@ -386,8 +386,8 @@ function TedxDatabasePage() {
                       )}
                     </div>
 
-                    {/* Metadata & Editorial Body */}
-                    <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
+                    {/* Metadata & Editorial Content (Directly on canvas, no white card) */}
+                    <div className="flex-1 flex flex-col justify-between space-y-2 pt-0.5">
                       <div>
                         {/* Speaker Name */}
                         <div className="flex items-center gap-1.5 text-xs font-bold font-oswald uppercase text-primary tracking-wide">
@@ -401,8 +401,8 @@ function TedxDatabasePage() {
                         </h3>
                       </div>
 
-                      {/* Action Footer */}
-                      <div className="pt-2 border-t border-stone-200 dark:border-neutral-800 flex items-center justify-between gap-2">
+                      {/* Action Row */}
+                      <div className="pt-2 border-t border-stone-300/60 dark:border-neutral-700/60 flex items-center justify-between gap-2">
                         <button
                           type="button"
                           onClick={() => {
@@ -418,11 +418,11 @@ function TedxDatabasePage() {
                           <span>{isPlaying ? "Close Player" : "Watch Talk"}</span>
                         </button>
 
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-3">
                           <button
                             type="button"
                             onClick={() => setModalVideo(video)}
-                            className="text-xs font-oswald uppercase tracking-wider text-muted-foreground hover:text-foreground cursor-pointer"
+                            className="text-xs font-oswald uppercase tracking-wider text-muted-foreground hover:text-foreground cursor-pointer font-bold"
                             title="Open Theater View"
                           >
                             Theater
@@ -432,7 +432,7 @@ function TedxDatabasePage() {
                             href={video.watchUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs font-oswald uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors"
+                            className="inline-flex items-center gap-1 text-xs font-oswald uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors font-bold"
                             title="Open on YouTube"
                           >
                             <span>YouTube</span>
@@ -449,7 +449,7 @@ function TedxDatabasePage() {
 
           {/* 3B. TABLE VIEW: Clean, Minimal Editorial List */}
           {viewMode === "table" && (
-            <div className="overflow-x-auto border border-stone-300/80 dark:border-neutral-700/80 bg-white dark:bg-[#121214] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+            <div className="overflow-x-auto border border-stone-300/80 dark:border-neutral-700/80 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
               <table className="w-full text-left border-collapse text-xs sm:text-sm">
                 <thead>
                   <tr className="border-b border-stone-300 dark:border-neutral-700 bg-stone-100/70 dark:bg-[#18181B]/70 font-oswald font-bold uppercase tracking-wider text-foreground">
@@ -508,7 +508,7 @@ function TedxDatabasePage() {
 
           {/* Empty State */}
           {totalItems === 0 && (
-            <div className="py-12 text-center space-y-3 bg-white dark:bg-[#121214] border border-stone-300 dark:border-neutral-700 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6">
+            <div className="py-12 text-center space-y-3 border border-dashed border-stone-300 dark:border-neutral-700 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6">
               <p className="text-base font-libre text-muted-foreground">
                 No TEDx talks found matching "<strong>{searchQuery}</strong>".
               </p>
