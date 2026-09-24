@@ -4,7 +4,6 @@ import {
   Utensils,
   Trophy,
   Home as HomeIcon,
-  Sparkles,
   ArrowRight,
   CheckCircle2,
   Heart,
@@ -36,11 +35,24 @@ function StudentHubPage() {
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
       {/* Page Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-10 pb-16 px-4 sm:px-6 md:px-12 border-b border-primary/20">
+      <section className="relative overflow-hidden bg-[#18181B] text-white pt-10 pb-16 px-4 sm:px-6 md:px-12 border-b border-primary/20">
+        {/* Topic-Related Stock Background Image: Student Hub, Recreation & Campus Amenities */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80"
+            alt="Student Hub & Campus Amenities"
+            className="w-full h-full object-cover object-center brightness-[0.32] filter contrast-110 select-none pointer-events-none"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#9E2339]/90 via-[#861E30]/85 to-[#671422]/90 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
+
         <div className="max-w-[1440px] mx-auto relative z-10">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-sm text-xs font-bold font-oswald uppercase tracking-wider text-white border border-white/20 mb-4">
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-md rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs font-bold font-oswald uppercase tracking-wider text-white border border-white/20 mb-4">
               Campus Recreation &amp; Welfare
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-oswald uppercase tracking-tight leading-[1.05]">

@@ -96,53 +96,97 @@ function TedxDatabasePage() {
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
       {/* ========================================================================= */}
-      {/* 1. HERO BANNER: Student Life Signature Maroon Theme with TEDx Spotlight   */}
+      {/* 1. HERO BANNER WITH DOCKED FLUSH TITLE & STATS STRIP                       */}
       {/* ========================================================================= */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-10 pb-16 px-4 sm:px-6 md:px-12 border-b border-primary/20">
-        {/* TEDx Thematic Ambient Spotlight & Stage Glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_25%,rgba(230,43,30,0.32),transparent_55%)] pointer-events-none" />
-        <div className="absolute -right-20 -top-20 w-[460px] h-[460px] rounded-full bg-red-600/15 blur-3xl pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none" />
+      <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[360px] sm:min-h-[420px] md:min-h-[460px] flex flex-col justify-end">
+        {/* Background Keynote Speaker Stage Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1920&q=80"
+            alt="TEDx Keynote Stage & Innovation Forum"
+            className="w-full h-full object-cover object-center brightness-[0.7] filter contrast-110 select-none pointer-events-none"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/35" />
+        </div>
 
-        <div className="max-w-[1440px] mx-auto relative z-10">
-          <div className="max-w-4xl">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-md rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs font-bold font-oswald uppercase tracking-wider text-white border border-white/20 mb-4">
-              Officially Licensed TED Event
-            </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-oswald uppercase tracking-tight leading-[1.05] text-white">
+        {/* Title Container: Docked Flush at the Hero End */}
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-12 sm:pt-16 md:pt-20 pb-0">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full sm:max-w-2xl md:max-w-3xl border-t border-r border-border dark:border-white/15"
+          >
+            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
               Our TEDx Chapter
             </h1>
-            <p className="mt-4 text-base sm:text-lg text-white/90 font-libre font-medium leading-relaxed">
-              TEDxMSAJCE is an independently organized event under official license from TED. Hosted at Mohamed Sathak A.J.&nbsp;College of Engineering, it provides a prestigious platform where pioneering researchers, technological visionaries, creative artists, and social changemakers converge to spark deep discussion and inspire transformative ideas.
-            </p>
-          </div>
+          </motion.div>
+        </div>
 
-          {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-white/15">
-            <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">54 Talks</span>
-              <span className="text-xs sm:text-sm font-libre font-semibold text-white/80">Archived Official Talks</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">TEDx</span>
-              <span className="text-xs sm:text-sm font-libre font-semibold text-white/80">Officially Licensed Chapter</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">100%</span>
-              <span className="text-xs sm:text-sm font-libre font-semibold text-white/80">Ideas Worth Spreading</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black font-oswald text-white">Global</span>
-              <span className="text-xs sm:text-sm font-libre font-semibold text-white/80">Speakers &amp; Innovators</span>
+        {/* Quick Facts & Figures Docked Stats Strip */}
+        <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/85 to-transparent pt-8 sm:pt-10 md:pt-12 pb-5 sm:pb-6 md:pb-8">
+          <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:divide-x md:divide-white/15">
+              <div className="first:pl-0 md:pl-4 space-y-0.5">
+                <div className="font-oswald text-2xl sm:text-3xl lg:text-4xl font-black text-primary leading-none">
+                  54
+                </div>
+                <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-0.5">
+                  Archived Talks &amp; Sessions
+                </div>
+              </div>
+              <div className="first:pl-0 md:pl-4 space-y-0.5">
+                <div className="font-oswald text-2xl sm:text-3xl lg:text-4xl font-black text-primary leading-none">
+                  TEDx
+                </div>
+                <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-0.5">
+                  Officially Licensed Chapter
+                </div>
+              </div>
+              <div className="first:pl-0 md:pl-4 space-y-0.5">
+                <div className="font-oswald text-2xl sm:text-3xl lg:text-4xl font-black text-primary leading-none">
+                  100%
+                </div>
+                <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-0.5">
+                  Ideas Worth Spreading
+                </div>
+              </div>
+              <div className="first:pl-0 md:pl-4 space-y-0.5">
+                <div className="font-oswald text-2xl sm:text-3xl lg:text-4xl font-black text-primary leading-none">
+                  Global
+                </div>
+                <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-0.5">
+                  Thought Leaders &amp; Innovators
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* WAVE DIVIDER: Hero (Maroon) -> Canvas B (#F3F3F2 / #18181B)               */}
+      {/* 2. SECTION 1: Canvas A (White / #121214) — Chapter Introduction           */}
       {/* ========================================================================= */}
-      <div className="w-full overflow-hidden leading-none select-none bg-gradient-to-r from-[#9E2339] via-[#861E30] to-[#671422]">
+      <section className="py-8 sm:py-10 md:py-12 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          <div className="w-full space-y-3">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              TEDx MSAJCE Overview
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-foreground font-libre font-medium leading-relaxed w-full text-justify [text-align:justify] [text-justify:inter-word]">
+              TEDxMSAJCE is an independently organized event under official license from TED. Hosted at Mohamed Sathak A.J.&nbsp;College of Engineering, it provides a prestigious platform where pioneering researchers, technological visionaries, creative artists, and social changemakers converge to spark deep discussion and inspire transformative ideas.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* WAVE DIVIDER 1: Canvas A (White / #121214) -> Canvas B (#F3F3F2 / #18181B) */}
+      {/* ========================================================================= */}
+      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
         <svg
           viewBox="0 0 1440 72"
           fill="none"

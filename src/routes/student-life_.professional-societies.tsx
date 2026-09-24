@@ -108,7 +108,21 @@ function ProfessionalSocietiesPage() {
       />
 
       {/* Page Hero Banner */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-8 pb-12 sm:pt-10 sm:pb-14 px-4 sm:px-6 md:px-12 border-b border-primary/20">
+      <section className="relative overflow-hidden bg-[#18181B] text-white pt-8 pb-12 sm:pt-10 sm:pb-14 px-4 sm:px-6 md:px-12 border-b border-primary/20">
+        {/* Topic-Related Stock Background Image: Engineering Labs, Robotics & Technical Research */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1920&q=80"
+            alt="Professional Societies & Engineering Chapters"
+            className="w-full h-full object-cover object-center brightness-[0.3] filter contrast-110 select-none pointer-events-none"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/images/why-join/labs.jpg";
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#9E2339]/90 via-[#861E30]/85 to-[#671422]/90 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
+
         <div className="max-w-[1440px] mx-auto relative z-10">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-md rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs text-xs font-bold font-oswald uppercase tracking-wider text-white border border-white/20 mb-3">
