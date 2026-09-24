@@ -227,7 +227,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
               { to: "/about", label: "About the College" },
               { to: "/placements", label: "Placements & Career" },
               { to: "/campus-life", label: "Campus Life" },
-              { to: "/campus-life", label: "Alumni Network" },
+              { to: "/student-community/alumni", label: "Alumni Network" },
             ].map(({ to, label }) => (
               <li key={label}>
                 <Link
