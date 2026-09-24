@@ -176,8 +176,8 @@ function ClubsAndSocietiesPage() {
                   "{activeClub.tagline}"
                 </p>
 
-                {/* Vision & Motto Accent Quote */}
-                {(activeClub.vision || activeClub.motto) && (
+                {/* Vision & Motto Accent Quote for Other Clubs */}
+                {activeClub.id !== "sports-club" && (activeClub.vision || activeClub.motto) && (
                   <div className="mt-4 pl-4 border-l-2 border-primary py-2.5 bg-primary/[0.03] dark:bg-primary/[0.06] rounded-r-xs max-w-4xl space-y-1.5">
                     {activeClub.vision && (
                       <div className="text-xs sm:text-sm font-libre text-foreground/90 leading-relaxed">
@@ -199,67 +199,69 @@ function ClubsAndSocietiesPage() {
                 )}
               </div>
 
-              {/* DEDICATED ULTRA-MINIMAL VIEW FOR SPORTS CLUB */}
+              {/* DEDICATED ULTRA-MINIMAL & BALANCED STRUCTURED VIEW FOR SPORTS CLUB */}
               {activeClub.id === "sports-club" ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 pt-2">
-                  {/* Objective */}
+                <div className="space-y-8 pt-4">
+                  {/* Row 1: Vision & Motto Side-by-Side Foundation */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    {/* Vision Block */}
+                    {activeClub.vision && (
+                      <div className="p-4 sm:p-5 border-l-4 border-primary bg-primary/[0.03] dark:bg-primary/[0.06] rounded-r-xs">
+                        <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary block mb-1">
+                          Vision
+                        </span>
+                        <p className="text-sm sm:text-base font-libre text-foreground/90 leading-relaxed">
+                          "{activeClub.vision}"
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Motto Block */}
+                    {activeClub.motto && (
+                      <div className="p-4 sm:p-5 border-l-4 border-primary bg-primary/[0.03] dark:bg-primary/[0.06] rounded-r-xs flex flex-col justify-center">
+                        <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary block mb-1">
+                          Motto
+                        </span>
+                        <p className="text-base sm:text-lg font-bold font-oswald uppercase tracking-wide text-primary">
+                          "{activeClub.motto}"
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Row 2: Objective Section (Clean 2-Column Open Editorial Structure) */}
                   <div className="space-y-4">
-                    <h3 className="text-sm font-black font-oswald uppercase tracking-wide text-foreground flex items-center gap-1.5">
+                    <h3 className="text-sm sm:text-base font-black font-oswald uppercase tracking-wide text-foreground flex items-center gap-2">
                       <Target className="w-4 h-4 text-primary" />
                       Objective
                     </h3>
-                    <div className="divide-y divide-border/60 border-y border-border/60">
-                      {activeClub.objectives?.map((obj, i) => (
-                        <div key={i} className="py-3 flex items-start gap-3">
-                          <span className="text-xs font-black font-oswald text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs shrink-0 mt-0.5">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <p className="text-xs sm:text-sm font-libre text-foreground/90 leading-relaxed">
-                            {obj}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
 
-                  {/* Games Takes Place */}
-                  <div className="space-y-6 md:pl-8 md:border-l md:border-border/60">
-                    <h3 className="text-sm font-black font-oswald uppercase tracking-wide text-foreground flex items-center gap-1.5">
-                      <Dumbbell className="w-4 h-4 text-primary" />
-                      Games Takes Place
-                    </h3>
-
-                    {/* Outdoor Games */}
-                    <div className="space-y-2.5">
-                      <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider flex items-center gap-1.5">
-                        Outdoor Games ({activeClub.outdoorGames?.length || 8})
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {activeClub.outdoorGames?.map((game, i) => (
-                          <span
-                            key={i}
-                            className="text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 px-3 py-1.5 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs"
-                          >
-                            {game}
-                          </span>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-0 divide-y md:divide-y-0 border-y border-border/60">
+                      {/* Left Column: 01 & 02 */}
+                      <div className="divide-y divide-border/60">
+                        {activeClub.objectives?.slice(0, 2).map((obj, i) => (
+                          <div key={i} className="py-3.5 flex items-start gap-3">
+                            <span className="text-xs font-black font-oswald text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs shrink-0 mt-0.5">
+                              {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <p className="text-xs sm:text-sm font-libre text-foreground/90 leading-relaxed">
+                              {obj}
+                            </p>
+                          </div>
                         ))}
                       </div>
-                    </div>
 
-                    {/* Indoor Games */}
-                    <div className="space-y-2.5 pt-4 border-t border-border/60">
-                      <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider flex items-center gap-1.5">
-                        <Award className="w-3.5 h-3.5 text-amber-500" />
-                        Indoor Games ({activeClub.indoorGames?.length || 3})
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {activeClub.indoorGames?.map((game, i) => (
-                          <span
-                            key={i}
-                            className="text-xs font-bold font-oswald uppercase bg-foreground/5 text-foreground border border-foreground/15 px-3 py-1.5 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs"
-                          >
-                            {game}
-                          </span>
+                      {/* Right Column: 03 & 04 */}
+                      <div className="divide-y divide-border/60 md:pl-8 md:border-l md:border-border/60">
+                        {activeClub.objectives?.slice(2).map((obj, i) => (
+                          <div key={i + 2} className="py-3.5 flex items-start gap-3">
+                            <span className="text-xs font-black font-oswald text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs shrink-0 mt-0.5">
+                              {String(i + 3).padStart(2, "0")}
+                            </span>
+                            <p className="text-xs sm:text-sm font-libre text-foreground/90 leading-relaxed">
+                              {obj}
+                            </p>
+                          </div>
                         ))}
                       </div>
                     </div>
