@@ -199,9 +199,8 @@ function ClubsAndSocietiesPage() {
                 {/* Left Column: About & Core Objectives & Annual Highlights */}
                 <div className="lg:col-span-7 space-y-6">
                   <div>
-                    <h3 className="text-xs font-bold font-oswald uppercase tracking-wider text-primary mb-2 flex items-center gap-1.5">
-                      <Activity className="w-3.5 h-3.5" />
-                      About The Forum
+                    <h3 className="text-xs font-bold font-oswald uppercase tracking-wider text-primary mb-2">
+                      About The Club
                     </h3>
                     <p className="text-sm sm:text-base font-libre text-muted-foreground leading-relaxed">
                       {activeClub.description}
@@ -221,11 +220,6 @@ function ClubsAndSocietiesPage() {
                             (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
                           }}
                         />
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-3 pointer-events-none select-none">
-                          <span className="text-[11px] font-bold font-oswald uppercase tracking-wider text-white block">
-                            {activeClub.name} · Official Student Forum
-                          </span>
-                        </div>
                       </div>
                     </div>
                   )}
@@ -275,20 +269,22 @@ function ClubsAndSocietiesPage() {
                   )}
 
                   {/* Annual Calendar Highlights */}
-                  <div className="pt-2">
-                    <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2.5 flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-primary" />
-                      Annual Calendar Highlights
-                    </h4>
-                    <div className="space-y-1.5">
-                      {activeClub.activities.map((act, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs font-libre text-muted-foreground">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
-                          <span>{act}</span>
-                        </div>
-                      ))}
+                  {activeClub.activities && activeClub.activities.length > 0 && (
+                    <div className="pt-2">
+                      <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2.5 flex items-center gap-1.5">
+                        <Calendar className="w-3.5 h-3.5 text-primary" />
+                        Annual Calendar Highlights
+                      </h4>
+                      <div className="space-y-1.5">
+                        {activeClub.activities.map((act, i) => (
+                          <div key={i} className="flex items-start gap-2 text-xs font-libre text-muted-foreground">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
+                            <span>{act}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 {/* Right Column: Desktop Compact Stock Image + Specialized Disciplines */}
@@ -307,11 +303,6 @@ function ClubsAndSocietiesPage() {
                             (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
                           }}
                         />
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-3 pointer-events-none select-none">
-                          <span className="text-[11px] font-bold font-oswald uppercase tracking-wider text-white block">
-                            {activeClub.name} · Official Student Forum
-                          </span>
-                        </div>
                       </div>
                     </div>
                   )}
@@ -320,8 +311,7 @@ function ClubsAndSocietiesPage() {
                   {activeClub.id === "sports-club" && (
                     <div className="space-y-5">
                       <div>
-                        <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-2 flex items-center gap-1.5">
-                          <Dumbbell className="w-3.5 h-3.5" />
+                        <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-2">
                           Outdoor Sports Disciplines ({activeClub.outdoorGames?.length || 8})
                         </h4>
                         <div className="flex flex-wrap gap-1.5">
@@ -337,9 +327,8 @@ function ClubsAndSocietiesPage() {
                       </div>
 
                       <div className="pt-4 border-t border-border/60">
-                        <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2 flex items-center gap-1.5">
-                          <Award className="w-3.5 h-3.5 text-amber-500" />
-                          Indoor Sports Complex ({activeClub.indoorGames?.length || 3})
+                        <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2">
+                          Indoor Sports ({activeClub.indoorGames?.length || 3})
                         </h4>
                         <div className="flex flex-wrap gap-1.5">
                           {activeClub.indoorGames?.map((game, i) => (
@@ -350,32 +339,6 @@ function ClubsAndSocietiesPage() {
                               {game}
                             </span>
                           ))}
-                        </div>
-                      </div>
-
-                      {/* Structured Club Overview for Visitors */}
-                      <div className="pt-4 border-t border-border/60">
-                        <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2.5 flex items-center gap-1.5">
-                          <Trophy className="w-3.5 h-3.5 text-primary" />
-                          Athletic Framework At A Glance
-                        </h4>
-                        <div className="divide-y divide-border/60 border-y border-border/60 text-xs font-libre">
-                          <div className="py-2 flex items-center justify-between gap-4">
-                            <span className="text-muted-foreground">Tournament League</span>
-                            <span className="font-semibold text-foreground font-oswald uppercase">Anna University Zone 3</span>
-                          </div>
-                          <div className="py-2 flex items-center justify-between gap-4">
-                            <span className="text-muted-foreground">Training Routine</span>
-                            <span className="font-semibold text-foreground font-oswald uppercase">Daily Morning &amp; Evening</span>
-                          </div>
-                          <div className="py-2 flex items-center justify-between gap-4">
-                            <span className="text-muted-foreground">Major Annual Meet</span>
-                            <span className="font-semibold text-foreground font-oswald uppercase">College Sports Day &amp; Trophies</span>
-                          </div>
-                          <div className="py-2 flex items-center justify-between gap-4">
-                            <span className="text-muted-foreground">Total Disciplines</span>
-                            <span className="font-semibold text-foreground font-oswald uppercase">11 Outdoor &amp; Indoor Arenas</span>
-                          </div>
                         </div>
                       </div>
                     </div>
