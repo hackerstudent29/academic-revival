@@ -1,9 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, Award, Building2, Users, GraduationCap, Briefcase } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
 
 const title = "Governing Council — M.S.A.J. College of Engineering, Chennai";
 const description =
-  "Official Governing Council members of Mohamed Sathak A.J. College of Engineering, Chennai.";
+  "Official Governing Council members and statutory governance of Mohamed Sathak A.J. College of Engineering, Chennai.";
 
 export const Route = createFileRoute("/about_/governing-council")({
   head: () => ({
@@ -19,128 +18,228 @@ export const Route = createFileRoute("/about_/governing-council")({
   component: GoverningCouncilPage,
 });
 
-const members = [
-  { sno: 1, name: "Alhaj. S.M. Yousuf Sahib", role: "Chairman", category: "Trust", designation: "Chairman, Mohamed Sathak Trust, Chennai" },
-  { sno: 2, name: "Janaba. S.M.H. Sharmila", role: "Member", category: "Trust", designation: "Secretary, Mohamed Sathak Trust, Chennai" },
-  { sno: 3, name: "Janab. P.R.L. Hamid Ibrahim", role: "Member", category: "Trust", designation: "Executive Director, Mohamed Sathak Trust, Chennai" },
-  { sno: 4, name: "Mr. S.M.Y. Mohamed Sathak", role: "Member", category: "Trust", designation: "Campus Director, Mohamed Sathak Trust, Chennai" },
-  { sno: 5, name: "Dr. T.V. Gopal", role: "University Nominee", category: "Government & University", designation: "Professor / CSE, Anna University, Chennai" },
-  { sno: 6, name: "Dr. S. Murugavel", role: "DOTE Nominee", category: "Government & University", designation: "Professor / TPGIT, Vellore" },
-  { sno: 7, name: "Dr. B. Anbu Thambi", role: "Member", category: "Industry Partner", designation: "Head, Strategy & Partnerships, L&T EduTech, Chennai" },
-  { sno: 8, name: "Mr. Arul Rajkumar", role: "Member", category: "Industry Partner", designation: "VP - IT Operations, Ford Motors Pvt. Ltd., Chennai" },
-  { sno: 9, name: "Dr. R. Subramani", role: "Member", category: "Industry Partner", designation: "Director, IBM Chennai" },
-  { sno: 10, name: "Dr. G. Kulanthaivelu", role: "Member", category: "Academic Expert", designation: "Professor & Head - ECE, NITTTR, Chennai" },
-  { sno: 11, name: "Dr. K.S. Srinivasan", role: "Member Secretary", category: "Institutional Leadership", designation: "Principal, MSAJCE, Chennai" },
-  { sno: 12, name: "Head - Administration", role: "Member", category: "Institutional Leadership", designation: "MSAJCE, Chennai" },
-  { sno: 13, name: "Head - Academics", role: "Senior Faculty", category: "Academic Heads", designation: "MSAJCE, Chennai" },
-  { sno: 14, name: "Head - IQAC", role: "Senior Faculty", category: "Academic Heads", designation: "MSAJCE, Chennai" },
-  { sno: 15, name: "Head - Admission", role: "Senior Faculty", category: "Academic Heads", designation: "MSAJCE, Chennai" },
-  { sno: 16, name: "Head – Student Affairs", role: "Senior Faculty", category: "Academic Heads", designation: "MSAJCE, Chennai" },
-  { sno: 17, name: "Head - Research", role: "Senior Faculty", category: "Academic Heads", designation: "MSAJCE, Chennai" },
-  { sno: 18, name: "Head - Examcell", role: "Member", category: "Academic Heads", designation: "MSAJCE, Chennai" },
-];
+interface CouncilMember {
+  sno: number;
+  name: string;
+  position: string;
+  organization: string;
+  councilDesignation: string;
+}
 
-const categoriesSummary = [
-  { title: "Trust Management", icon: Building2, count: "4 Members", desc: "Chairman, Secretary, Executive Director, Campus Director" },
-  { title: "Government & University Nominees", icon: ShieldCheck, count: "2 Nominees", desc: "Anna University Nominee & DOTE Nominee" },
-  { title: "Industry Leaders", icon: Briefcase, count: "3 Leaders", desc: "L&T EduTech, Ford Motors, IBM" },
-  { title: "Academic & Administrative Heads", icon: GraduationCap, count: "9 Experts", desc: "Principal, IQAC, Research, Admissions & Department Heads" },
+const governingCouncilMembers: CouncilMember[] = [
+  {
+    sno: 1,
+    name: "Alhaj. S.M. Yousuf Sahib",
+    position: "Chairman",
+    organization: "Mohamed Sathak Trust, Chennai",
+    councilDesignation: "Chairman",
+  },
+  {
+    sno: 2,
+    name: "Janaba. S.M.H. Sharmila",
+    position: "Secretary",
+    organization: "Mohamed Sathak Trust, Chennai",
+    councilDesignation: "Member",
+  },
+  {
+    sno: 3,
+    name: "Janab. P.R.L. Hamid Ibrahim",
+    position: "Executive Director",
+    organization: "Mohamed Sathak Trust, Chennai",
+    councilDesignation: "Member",
+  },
+  {
+    sno: 4,
+    name: "Mr. S.M.Y. Mohamed Sathak",
+    position: "Campus Director",
+    organization: "Mohamed Sathak Trust, Chennai",
+    councilDesignation: "Member",
+  },
+  {
+    sno: 5,
+    name: "Dr. T.V. Gopal",
+    position: "Prof / CSE",
+    organization: "Anna University, Chennai",
+    councilDesignation: "University Nominee",
+  },
+  {
+    sno: 6,
+    name: "Dr. S. Murugavel",
+    position: "Prof / TPGIT",
+    organization: "Vellore",
+    councilDesignation: "DOTE Nominee",
+  },
+  {
+    sno: 7,
+    name: "Dr. B. Anbu Thambi",
+    position: "Head, Strategy & Partnerships",
+    organization: "L & T EduTech, Chennai / Former VP, ICT Academy",
+    councilDesignation: "Member",
+  },
+  {
+    sno: 8,
+    name: "Mr. Arul Rajkumar",
+    position: "VP IT Operations",
+    organization: "Ford Motors Pvt. Ltd.",
+    councilDesignation: "Member",
+  },
+  {
+    sno: 9,
+    name: "Dr. R. Subramani",
+    position: "Director",
+    organization: "IBM, Chennai",
+    councilDesignation: "Member",
+  },
+  {
+    sno: 10,
+    name: "Dr. G. Kulanthaivelu",
+    position: "Prof / Head - ECE",
+    organization: "NITTTR, Chennai",
+    councilDesignation: "Member",
+  },
+  {
+    sno: 11,
+    name: "Principal",
+    position: "Principal",
+    organization: "MSAJCE, Chennai",
+    councilDesignation: "Member Secretary",
+  },
+  {
+    sno: 12,
+    name: "Head - Administration",
+    position: "Head - Administration",
+    organization: "MSAJCE, Chennai",
+    councilDesignation: "Member",
+  },
+  {
+    sno: 13,
+    name: "Head - Academics",
+    position: "Head - Academics",
+    organization: "MSAJCE, Chennai",
+    councilDesignation: "Senior Faculty Member",
+  },
+  {
+    sno: 14,
+    name: "Head - IQAC",
+    position: "Head - IQAC",
+    organization: "MSAJCE, Chennai",
+    councilDesignation: "Senior Faculty Member",
+  },
+  {
+    sno: 15,
+    name: "Head - Admission",
+    position: "Head - Admission",
+    organization: "MSAJCE, Chennai",
+    councilDesignation: "Senior Faculty Member",
+  },
+  {
+    sno: 16,
+    name: "Head – Student Affairs",
+    position: "Head – Student Affairs",
+    organization: "MSAJCE, Chennai",
+    councilDesignation: "Senior Faculty Member",
+  },
+  {
+    sno: 17,
+    name: "Head - Research",
+    position: "Head - Research",
+    organization: "MSAJCE, Chennai",
+    councilDesignation: "Senior Faculty Member",
+  },
+  {
+    sno: 18,
+    name: "Head - Examcell",
+    position: "Head - Examcell",
+    organization: "MSAJCE, Chennai",
+    councilDesignation: "Member",
+  },
 ];
 
 export function GoverningCouncilPage() {
   return (
-    <main className="bg-page-bg text-foreground min-h-screen pt-0 md:pt-1 font-sans">
-      {/* SECTION 1: Boardroom Header */}
-      <section className="relative border-b border-border bg-page-bg pt-4 md:pt-6 pb-12 md:pb-16">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12">
-          <div className="mb-4">
-            <span className="text-sm sm:text-base md:text-lg xl:text-xl font-black font-oswald uppercase text-primary tracking-wider">
-              ABOUT MSAJCE // STATUTORY GOVERNANCE
-            </span>
-          </div>
+    <main className="bg-white dark:bg-[#121214] text-foreground font-libre antialiased selection:bg-primary selection:text-white min-h-screen pt-0 md:pt-1">
+      {/* ========================================================================= */}
+      {/* 1. HERO BANNER: Title Docked Flush with Hero Section End                  */}
+      {/* ========================================================================= */}
+      <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+        {/* Hero Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/procedure_hero.jpg"
+            alt="Mohamed Sathak A.J. College of Engineering Campus Architecture"
+            className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none rounded-none"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+            }}
+          />
+          {/* Subtle gradient overlay for depth and title legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
+        </div>
 
-          <div className="flex flex-col gap-3 max-w-4xl">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-foreground font-oswald leading-none">
-              Governing Council <br />
-              <span className="text-primary font-oswald">& Statutory Body</span>
+        {/* Title Container: Docked Flush at Bottom of Hero */}
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
+          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
+              Governing Council
             </h1>
-            <p className="text-base sm:text-lg md:text-xl leading-relaxed text-muted-foreground font-sans mt-2">
-              The Governing Council of Mohamed Sathak A.J. College of Engineering comprises distinguished educational administrators, corporate tech leaders from Ford & IBM, university nominees from Anna University, and senior academic heads steering institutional policy.
-            </p>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2: Boardroom Governance Composition Cards */}
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-16">
-        <div className="max-w-2xl mb-8">
-          <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase block mb-1">
-            Council Composition
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-foreground font-oswald">
-            4 Pillars of Statutory Governance
-          </h2>
-        </div>
+      {/* ========================================================================= */}
+      {/* 2. MAIN SECTION: 5-Column Transparent Editorial Data Table (Ascending)     */}
+      {/* ========================================================================= */}
+      <section className="py-10 sm:py-14 md:py-18 lg:py-20 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          <div className="mb-6 sm:mb-10">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              Governing Council
+            </h2>
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categoriesSummary.map((cat) => {
-            const Icon = cat.icon;
-            return (
-              <div
-                key={cat.title}
-                className="bg-card border border-border p-6 rounded-sm shadow-xs flex flex-col justify-between"
-              >
-                <div>
-                  <div className="w-10 h-10 rounded-sm bg-primary/10 text-primary flex items-center justify-center mb-4">
-                    <Icon size={20} />
-                  </div>
-                  <span className="text-[11px] font-mono font-bold text-primary uppercase block mb-1">
-                    {cat.count}
-                  </span>
-                  <h3 className="text-lg font-bold text-foreground font-oswald uppercase mb-2">{cat.title}</h3>
-                  <p className="text-xs text-muted-foreground font-sans leading-relaxed">{cat.desc}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* SECTION 3: Complete Member Table */}
-      <section className="mx-auto max-w-[1440px] px-6 pb-12 md:px-12 md:pb-20 border-t border-border pt-12">
-        <div className="max-w-3xl mb-8">
-          <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase block mb-1">
-            Official Directory
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-foreground font-oswald">
-            Complete 18-Member Governing Council
-          </h2>
-        </div>
-
-        <div className="border border-border rounded-md overflow-hidden bg-card shadow-xs">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+          {/* Open Transparent 5-Column Table (Strict Zero Cards Rule Compliant) */}
+          <div className="w-full overflow-x-auto border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-white dark:bg-[#121214]">
+            <table className="w-full text-left border-collapse min-w-[800px]">
               <thead>
-                <tr className="bg-muted/60 border-b border-border text-foreground font-oswald text-xs uppercase tracking-widest">
-                  <th className="py-4 px-4 sm:px-6 w-16">S.No</th>
-                  <th className="py-4 px-4 sm:px-6 font-bold">Name of Member</th>
-                  <th className="py-4 px-4 sm:px-6 font-bold">Category</th>
-                  <th className="py-4 px-4 sm:px-6 font-bold">Designation in Council</th>
-                  <th className="py-4 px-4 sm:px-6 font-bold">Designation / Organization</th>
+                <tr className="bg-foreground/[0.03] border-b border-border">
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-16 sm:w-20">
+                    S.No
+                  </th>
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
+                    Name
+                  </th>
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
+                    Position / Role
+                  </th>
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
+                    Organization / Institution
+                  </th>
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-48 sm:w-56">
+                    Council Designation
+                  </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border text-sm font-sans">
-                {members.map((member) => (
-                  <tr key={member.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                    <td className="py-3.5 px-4 sm:px-6 font-mono font-bold text-primary">{member.sno}</td>
-                    <td className="py-3.5 px-4 sm:px-6 font-bold text-foreground">{member.name}</td>
-                    <td className="py-3.5 px-4 sm:px-6 text-xs font-mono text-muted-foreground uppercase">{member.category}</td>
-                    <td className="py-3.5 px-4 sm:px-6 text-foreground font-medium">
-                      <span className="inline-block px-2.5 py-1 bg-primary/10 text-primary text-xs font-mono font-bold uppercase rounded-xs">
-                        {member.role}
-                      </span>
+              <tbody className="divide-y divide-border">
+                {governingCouncilMembers.map((member) => (
+                  <tr
+                    key={member.sno}
+                    className="hover:bg-foreground/[0.02] transition-colors"
+                  >
+                    <td className="px-4 sm:px-6 py-4 font-oswald font-bold text-primary text-sm sm:text-base align-middle whitespace-nowrap">
+                      {member.sno}
                     </td>
-                    <td className="py-3.5 px-4 sm:px-6 text-muted-foreground">{member.designation}</td>
+                    <td className="px-4 sm:px-6 py-4 font-libre font-bold text-foreground text-sm sm:text-base align-middle">
+                      {member.name}
+                    </td>
+                    <td className="px-4 sm:px-6 py-4 font-libre font-medium text-xs sm:text-sm text-foreground align-middle">
+                      {member.position}
+                    </td>
+                    <td className="px-4 sm:px-6 py-4 font-libre font-normal text-xs sm:text-sm text-muted-foreground align-middle">
+                      {member.organization}
+                    </td>
+                    <td className="px-4 sm:px-6 py-4 font-libre font-semibold text-xs sm:text-sm text-foreground align-middle whitespace-nowrap">
+                      {member.councilDesignation}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -148,22 +247,6 @@ export function GoverningCouncilPage() {
           </div>
         </div>
       </section>
-
-      {/* Navigation Footer */}
-      <section className="border-t border-border bg-page-bg py-10">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="text-sm font-semibold text-muted-foreground font-sans">
-            Read messages from Chairman and Principal
-          </span>
-          <Link
-            to="/about/leadership"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 text-xs font-bold uppercase tracking-widest rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors font-oswald"
-          >
-            Leadership Messages <ArrowRight size={14} />
-          </Link>
-        </div>
-      </section>
     </main>
   );
 }
-

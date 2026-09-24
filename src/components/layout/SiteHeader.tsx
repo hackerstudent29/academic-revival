@@ -28,6 +28,7 @@ const nav: NavItem[] = [
           { label: "Governing Council", to: "/about/governing-council" },
           { label: "The Trust", to: "/about/trust" },
           { label: "Group of Institutions", to: "/about/group-institutions" },
+          { label: "Institutional Policies", to: "/about/policies" },
         ],
       },
       {
@@ -38,14 +39,6 @@ const nav: NavItem[] = [
           { label: "Statutory Committees", to: "/about/governing-council" },
           { label: "Anti-Ragging Committee", to: "/about/committees" },
           { label: "Women's Empowerment Cell", to: "/about/committees" },
-        ],
-      },
-      {
-        title: "Policies & Compliance",
-        links: [
-          { label: "Institutional Policies", to: "/about/policies" },
-          { label: "Code of Conduct", to: "/about/policies" },
-          { label: "Mandatory Disclosure", to: "/about/mandatory-disclosure" },
         ],
       },
       {
@@ -138,8 +131,8 @@ const nav: NavItem[] = [
       {
         title: "Campus Facilities",
         links: [
-          { label: "Central Library", to: "/campus-life", hash: "facilities" },
-          { label: "Hostel", to: "/student-housing" },
+          { label: "Central Library", to: "/library" },
+          { label: "Hostel", to: "/hostel" },
           { label: "Transport", to: "/campus-life", hash: "facilities" },
           { label: "Sports & Gym", to: "/campus-life", hash: "facilities" },
         ],
@@ -165,10 +158,10 @@ const nav: NavItem[] = [
       {
         title: "Student Community",
         links: [
-          { label: "Our Alumni", to: "/campus-life" },
-          { label: "Convocation", to: "/campus-life" },
-          { label: "Campus Happenings", to: "/campus-life" },
-          { label: "Social Media Directory", to: "/social-media" },
+          { label: "Our Alumni", to: "/student-community/alumni" },
+          { label: "Convocation", to: "/student-community/convocation" },
+          { label: "Campus Happenings", to: "/student-community/campus-happenings" },
+          { label: "Social Media Directory", to: "/student-community/social-media" },
         ],
       },
     ],
@@ -373,8 +366,8 @@ export function SiteHeader() {
         transition={{ duration: 0.35, ease: APPLE_EASE }}
         className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
           active || moreOpen || isScrolled 
-            ? "border-foreground/10 bg-background/80 backdrop-blur-xl" 
-            : "border-transparent bg-background backdrop-blur-none"
+            ? "border-border/80 dark:border-white/10 bg-background/80 dark:bg-[#121214]/80 backdrop-blur-xl shadow-xs" 
+            : "border-border/80 dark:border-white/10 bg-background/80 dark:bg-[#121214]/80 backdrop-blur-xl"
         }`}
         onMouseLeave={handleMouseLeaveNav}
         onMouseEnter={() => {
@@ -384,20 +377,18 @@ export function SiteHeader() {
           }
         }}
       >
-        <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 lg:gap-6 px-4 py-2.5 md:px-8 xl:px-12 md:py-3">
-          <div className="flex-1 lg:flex-none flex items-center min-w-[140px]">
-            <Link to="/" className="flex items-center min-h-[36px] md:min-h-[40px] w-full" onClick={closeAll}>
-              {(!isHome || isScrolled) && (
-                <img
-                  src="/logos/clg-logo.png"
-                  alt="MSAJCE Logo"
-                  className="h-9 md:h-10 w-auto object-contain origin-left"
-                />
-              )}
+        <div className="mx-auto flex max-w-[1440px] h-[58px] md:h-[70px] items-center justify-between gap-4 lg:gap-6 px-4 md:px-8 xl:px-12">
+          <div className="flex-1 lg:flex-none flex items-center min-w-[160px] sm:min-w-[200px] md:min-w-[240px] lg:min-w-[280px]">
+            <Link to="/" className="flex items-center w-full" onClick={closeAll}>
+              <img
+                src="/logos/msajce-header-combined-hd.png?v=2"
+                alt="MSAJCE Logo"
+                className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto max-w-[240px] sm:max-w-[280px] md:max-w-[320px] lg:max-w-[360px] object-contain origin-left"
+              />
             </Link>
           </div>
 
-          <nav className="hidden items-center gap-3 lg:gap-4 xl:gap-7 lg:flex" aria-label="Main navigation">
+          <nav className="hidden items-center gap-2 lg:gap-2.5 xl:gap-5 2xl:gap-7 lg:flex" aria-label="Main navigation">
             {nav.map((item) =>
               item.cols ? (
                 <button
@@ -406,7 +397,7 @@ export function SiteHeader() {
                   onMouseEnter={() => handleMouseEnterItem(item.id)}
                   onClick={() => setActive((c) => (c === item.id ? null : item.id))}
                   aria-expanded={active === item.id}
-                  className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] font-oswald transition-colors duration-200 ${
+                  className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.03em] xl:tracking-[0.04em] font-oswald transition-colors duration-200 ${
                     active === item.id ? "text-primary" : "text-foreground hover:text-primary"
                   }`}
                 >
@@ -422,7 +413,7 @@ export function SiteHeader() {
                   key={item.id}
                   to={item.to}
                   onMouseEnter={() => setActive(null)}
-                  className="relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.04em] font-oswald text-foreground transition-colors duration-200 hover:text-primary"
+                  className="relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.03em] xl:tracking-[0.04em] font-oswald text-foreground transition-colors duration-200 hover:text-primary"
                   activeProps={{ className: "text-primary font-bold" }}
                 >
                   {item.label}
@@ -436,7 +427,7 @@ export function SiteHeader() {
             <Link
               to="/admissions"
               search={{} as any}
-              className="group relative hidden overflow-hidden whitespace-nowrap sm:inline-flex items-center justify-center border border-primary px-5 py-2.5 text-[11px] xl:text-[13px] font-bold uppercase tracking-wide text-primary transition-colors hover:text-primary-foreground after:absolute after:inset-0 after:top-full after:bg-primary after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0 rounded-xs shadow-xs"
+              className="group relative hidden overflow-hidden whitespace-nowrap sm:inline-flex lg:hidden xl:inline-flex items-center justify-center border border-primary px-4 xl:px-5 py-2 xl:py-2.5 text-[11px] xl:text-[13px] font-bold uppercase tracking-wide text-primary transition-colors hover:text-primary-foreground after:absolute after:inset-0 after:top-full after:bg-primary after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:top-0 rounded-xs shadow-xs"
               onClick={closeAll}
             >
               <span className="relative z-10 font-oswald tracking-wider">Apply Now &raquo;</span>

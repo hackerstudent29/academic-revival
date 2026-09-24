@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MotionView</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #121214;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <canvas id="motion" style="width: 340px"></canvas>
+  </div>
+
+  <script src="https://feralui.dev/motionview/runtime.js"></script>
+  <script>
+    MotionView.mount('#motion', {
+      familyKey: 'grid',
+      imageCount: 20,
+      aspectId: '16:9',
+      loopSec: 12,
+      params: {
+        rows: 3,
+        hero: 0.95,
+        window: 0.3,
+        path: 2,
+        gutter: 0.013,
+        life: 0.19,
+        breathe: 0.02
+      },
+      bgId: 'paper',
+      focusReach: 0.52,
+      focusSoft: 2.4,
+      easePts: [0.4, 0, 0.2, 1],
+      texts: [
+        {
+          content: '',
+          x: 0.09,
+          y: 0.075,
+          size: 0.0145,
+          weight: 700,
+          color: '#ffffff',
+          font: 'sans',
+          tracking: 0.44,
+          align: 'left',
+          id: 'tx-1789885904347-0'
+        },
+        {
+          content: '',
+          x: 0.09,
+          y: 0.855,
+          size: 0.082,
+          weight: 500,
+          italic: true,
+          color: '#ffffff',
+          font: 'serif',
+          align: 'left',
+          leading: 0.94,
+          id: 'tx-1789885904348-1'
+        },
+        {
+          content: '',
+          x: 0.09,
+          y: 0.945,
+          size: 0.0135,
+          weight: 650,
+          color: '#a9a9b4',
+          font: 'sans',
+          tracking: 0.3,
+          align: 'left',
+          id: 'tx-1789885904348-2'
+        }
+      ]
+    });
+  </script>
+</body>
+</html>

@@ -43,26 +43,12 @@ export function NewsAndEventsSection() {
   if (!currentMainArticle) return null;
 
   return (
-    <section ref={sectionRef} className="relative bg-[#F4F5F6] dark:bg-[#141615] border-b border-border py-12 md:py-16 overflow-hidden" id="news">
-      {/* Subtle Background Design - Elegant Swept Curves with Rose Accent */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* Top-Right sweeping curve with subtle Rose/Maroon accent */}
-        <div 
-          className="absolute top-0 right-0 w-[65%] h-[90%] bg-gradient-to-bl from-[#9E2339]/15 via-[#9E2339]/5 to-[#E8EAEC]/40 dark:from-[#9E2339]/20 dark:via-[#9E2339]/5 dark:to-transparent" 
-          style={{ clipPath: "ellipse(100% 100% at 100% 0%)" }} 
-        />
-        {/* Bottom-Left counter curve */}
-        <div 
-          className="absolute bottom-0 left-0 w-[45%] h-[65%] bg-[#E8EAEC] dark:bg-white/[0.02]" 
-          style={{ clipPath: "ellipse(100% 100% at 0% 100%)" }} 
-        />
-      </div>
-
+    <section ref={sectionRef} className="relative bg-background py-12 md:py-16 overflow-hidden" id="news">
       <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 md:px-12">
         {/* Section Header */}
         <div className="mb-6">
           <Reveal variant="rise">
-            <h2 className="text-3xl md:text-[34px] font-bold tracking-tight text-primary font-oswald uppercase">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               Currents & Events
             </h2>
           </Reveal>
@@ -109,7 +95,7 @@ export function NewsAndEventsSection() {
 
               {/* Bottom Body */}
               <div className="pt-6 flex flex-col justify-between flex-1 z-10 relative">
-                <p className="text-[15px] font-sans text-foreground/80 leading-relaxed transition-colors duration-300">
+                <p className="text-sm sm:text-base font-libre font-medium text-foreground/80 leading-relaxed transition-colors duration-300">
                   {currentMainArticle.description}
                 </p>
                 <div className="mt-6 flex justify-end">
@@ -124,7 +110,7 @@ export function NewsAndEventsSection() {
           {/* Right Column: Single Panel with Stacked Scrolling Articles (spans 5 columns) */}
           <Reveal variant="rise" delay={0.2} className="lg:col-span-5 h-full">
             <div className="bg-white dark:bg-[#1E201F] border border-foreground/10 rounded-[4px] shadow-xs p-6 h-full flex flex-col">
-              <h3 className="text-xl md:text-2xl font-bold tracking-tight text-primary font-oswald uppercase mb-4">
+              <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-primary mb-4">
                 Upcoming Events
               </h3>
               
@@ -191,7 +177,7 @@ export function NewsAndEventsSection() {
               </div>
 
               {/* Upcoming Event Dates Footer */}
-              <div className="mt-6 pt-5 border-t border-border">
+              <div className="mt-6 pt-5">
                 <span className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3 flex items-center gap-1.5 font-sans">
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
                   Mark Your Calendars

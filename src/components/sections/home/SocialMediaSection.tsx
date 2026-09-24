@@ -99,7 +99,7 @@ export function SocialMediaSection() {
   return (
     <section 
       id="social-media" 
-      className="relative z-10 w-full bg-[#EAEFF5] dark:bg-[#121214] border-t border-b border-[#D8E1EC] dark:border-border py-16 md:py-24 overflow-hidden"
+      className="relative z-10 w-full bg-[#EAEFF5] dark:bg-[#121214] py-16 md:py-24 overflow-hidden"
     >
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-16 flex flex-col items-center">
         
@@ -112,10 +112,10 @@ export function SocialMediaSection() {
           className="text-center max-w-2xl mx-auto mb-8"
         >
           <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-primary block mb-2">
-            Connect With Us //
+            Connect With Us
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif tracking-tight text-foreground font-normal mb-6">
-            Explore <span className="font-bold text-primary font-oswald uppercase">#MSAJCE</span> on Social Media
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-oswald uppercase tracking-wide text-foreground mb-6">
+            Explore <span className="text-primary">#MSAJCE</span> on Social Media
           </h2>
 
           {/* Social Media Directory Button */}

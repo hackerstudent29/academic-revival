@@ -103,97 +103,28 @@ const requiredDocumentsPG = [
 
 function ProcedureHero() {
   return (
-    <section className="relative w-full overflow-hidden h-auto lg:h-[70vh] flex flex-col lg:block">
-      {/* Desktop Image Showcase */}
-      <motion.div 
-        initial={{ width: "100%" }}
-        animate={{ width: "58%" }}
-        transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
-        className="absolute inset-y-0 right-0 z-10 hidden lg:block pointer-events-none"
-      >
-        <img 
-          src="/images/procedure_hero.jpg" 
-          alt="Students going through admission procedure at MSAJCE" 
-          className="w-full h-full object-cover object-center"
+    <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+      {/* Hero Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/procedure_hero.jpg"
+          alt="Mohamed Sathak A.J. College of Engineering Campus Architecture"
+          className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none rounded-none"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2000&auto=format&fit=crop";
+            (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
           }}
         />
-      </motion.div>
-
-      {/* Accent sliding diagonal block */}
-      <motion.div 
-        initial={{ width: "0%" }}
-        animate={{ width: "50%" }}
-        transition={{ duration: 1.2, delay: 0.05, ease: [0.76, 0, 0.24, 1] }}
-        className="absolute inset-y-0 left-0 bg-primary z-20 hidden lg:block shadow-2xl"
-        style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
-      />
-
-      {/* Sliding Background from Left */}
-      <motion.div 
-        initial={{ width: "0%" }}
-        animate={{ width: "49%" }}
-        transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
-        className="absolute inset-y-0 left-0 bg-background z-30 hidden lg:block"
-        style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
-      />
-
-      {/* Mobile Image */}
-      <div className="w-full h-[260px] relative lg:hidden block z-10">
-        <img 
-          src="/images/procedure_hero.jpg" 
-          alt="Students going through admission procedure at MSAJCE" 
-          className="absolute inset-0 w-full h-full object-cover object-center"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2000&auto=format&fit=crop";
-          }}
-        />
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+        {/* Subtle gradient overlay for depth and contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
       </div>
 
-      {/* Text Content */}
-      <div className="w-full lg:w-[48%] px-6 py-10 md:py-14 lg:px-10 xl:px-12 flex flex-col justify-center z-40 relative lg:absolute lg:inset-y-0 lg:left-0 h-full bg-background lg:bg-transparent">
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="inline-flex items-center gap-2 mb-4">
-            <span className="w-2 h-2 rounded-sm bg-primary animate-pulse" />
-            <span className="text-xs font-black uppercase font-oswald tracking-widest text-primary">TNEA CODE: 1301 // ADMISSIONS 2026-2027</span>
-          </div>
-          
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.05] tracking-tight text-foreground font-oswald mb-4 text-balance">
-            ADMISSION <br className="hidden sm:inline"/>
-            PROCEDURE
+      {/* Title Container: Docked Flush at Bottom of Hero */}
+      <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
+        <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+          <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
+            Admission Procedure
           </h1>
-          
-          <p className="text-sm md:text-base font-medium text-muted-foreground leading-relaxed max-w-md font-sans">
-            Step-by-step guidance for undergraduate (B.E. / B.Tech), lateral entry, postgraduate (M.E.), and Ph.D. admissions at Mohamed Sathak A.J. College of Engineering.
-          </p>
-
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <a
-              href="https://msajce-edu.in/admission_form.php"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider font-oswald rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs shadow-xs hover:opacity-90 transition-opacity"
-            >
-              <span>Apply Online Now</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
-            <a
-              href="/uploads/admission/College-Prospectus.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 border border-border bg-card text-foreground text-xs font-bold uppercase tracking-wider font-oswald rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:border-primary transition-colors"
-            >
-              <Download className="w-4 h-4 text-primary" />
-              <span>Download Prospectus</span>
-            </a>
-          </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

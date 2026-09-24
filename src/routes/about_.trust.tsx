@@ -1,10 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { Heart, Building2, GraduationCap, Award, ShieldCheck, ArrowRight, Quote } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
 
-const title = "The Trust — Mohamed Sathak Trust | Educational & Social Welfare";
+const title = "Mohamed Sathak Trust — 50+ Years of Educational Philanthropy & Excellence";
 const description =
-  "Discover Mohamed Sathak Trust established on 26 October 1973, managing 18 educational institutions across Tamil Nadu.";
+  "Official portal of Mohamed Sathak Trust, established 26 October 1973 at Kilakarai by the Mohamed Sathak Family. Discover our Founders, Board of Trustees, and Chairman's Message.";
 
 export const Route = createFileRoute("/about_/trust")({
   head: () => ({
@@ -20,216 +18,363 @@ export const Route = createFileRoute("/about_/trust")({
   component: TheTrustPage,
 });
 
-const milestones = [
-  { year: "26 OCT 1973", title: "Establishment of Mohamed Sathak Trust", desc: "Founded at Kilakarai by the philanthropic Mohamed Sathak Family of Ramanathapuram District to empower rural and financially challenged students with quality education." },
-  { year: "1984", title: "First Self-Financing Engineering College in TN", desc: "Established Mohamed Sathak Engineering College at Kilakarai — pioneering self-financing technical education in Tamil Nadu." },
-  { year: "1990s", title: "Expansion into Health Sciences & Arts", desc: "Launched pharmacy, nursing, physiotherapy, and arts & science colleges across Kilakarai, Ramanathapuram, and Chennai." },
-  { year: "5 JULY 2001", title: "Establishment of MSAJCE in Chennai IT Park", desc: "Founded Mohamed Sathak A.J. College of Engineering inside the 70-acre SIPCOT IT Park in Siruseri, OMR, Chennai." },
-  { year: "PRESENT", title: "18 Premier Educational Institutions", desc: "A thriving educational legacy managing 18 institutions across Engineering, Architecture, Medicine, Arts, Science, and K-12 Schooling." },
+// 6 Founders from official Mohamed Sathak Trust records
+const founders = [
+  {
+    name: "Late Alhaj Dr. S. M. Dasthagir",
+    role: "Founder",
+    image: "/images/trust/Dasthagir_head.jpg",
+  },
+  {
+    name: "Late Hajjani Syed Hameeda Beevi",
+    role: "Founder",
+    image: "/images/trust/Hajjani_head.jpg",
+  },
+  {
+    name: "Late Alhaj Dr. P.R.L. Shaik Aboobacker",
+    role: "Founder",
+    image: "/images/trust/Shaik_head.jpg",
+  },
+  {
+    name: "Late Alhaj S.M. Ahamed Jalaluddin",
+    role: "Founder",
+    image: "/images/trust/Ahamed-Jalaluddin_head.jpg?v=3",
+  },
+  {
+    name: "Late Alhaj S. M. Kabeer",
+    role: "Founder",
+    image: "/images/trust/Kabeer_head.jpg",
+  },
+  {
+    name: "Late Alhaj Dr. S. M. Hamid Abdul Quadir",
+    role: "Founder",
+    image: "/images/trust/Abdul_head.jpg",
+  },
 ];
 
+// Board of Trustees
 const trustees = [
-  { name: "Alhaj S.M. Yousuf Sahib", role: "Chairman", desc: "Visionary leader steering the Trust's strategic growth and educational mission across Tamil Nadu." },
-  { name: "Janaba S.M.H. Sharmila", role: "Secretary", desc: "Championing academic excellence, infrastructure modernization, and institutional governance." },
-  { name: "Janab P.R.L. Hamid Ibrahim", role: "Executive Director", desc: "Overseeing administration, operational growth, and global technical collaborations." },
-  { name: "Mr. S.M.Y. Mohamed Sathak", role: "Campus Director", desc: "Directing campus development, industry partnerships, and student welfare initiatives." },
-];
-
-const welfareActivities = [
-  { title: "Educational Philanthropy & Concessions", desc: "Providing fee concessions, merit-cum-means scholarships, and support for economically challenged rural students." },
-  { title: "Rural Upliftment & Technical Skills", desc: "Empowering rural youth with vocational, technical, and professional skills for sustainable self-employability." },
-  { title: "Women's Empowerment in Education", desc: "Establishing dedicated women's colleges and promoting female participation in engineering, science, and healthcare." },
-  { title: "Healthcare & Community Services", desc: "Free medical, dental, and health screening camps conducted by the Trust's nursing and pharmacy colleges." },
+  {
+    name: "Alhaj Janab S. M. Yousuf",
+    role: "Chairman",
+    image: "/images/trust/YOUSUF_head.jpg",
+  },
+  {
+    name: "Mrs. S. M. H. Sharmila",
+    role: "Secretary",
+    image: "/images/trust/SHARMILA_head.jpg",
+  },
+  {
+    name: "Janab P.R.L. Hamid Ibrahim",
+    role: "Executive Director",
+    image: "/images/trust/Hamid_head.jpg",
+  },
 ];
 
 export function TheTrustPage() {
   return (
-    <main className="bg-page-bg text-foreground min-h-screen pt-0 md:pt-1">
-      {/* Header & Sub-Nav Title */}
-      <section className="relative border-b border-border bg-page-bg pt-4 md:pt-6 pb-12 md:pb-16">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12">
-          {/* Secondary Sub-Nav Header */}
-          <div className="mb-4">
-            <span className="text-sm sm:text-base md:text-lg xl:text-xl font-black font-oswald uppercase text-primary tracking-wider">
-              ABOUT MSAJCE // PHILANTHROPIC HERITAGE
-            </span>
-          </div>
+    <main className="bg-white dark:bg-[#121214] text-foreground font-libre antialiased selection:bg-primary selection:text-white min-h-screen pt-0 md:pt-1">
+      {/* ========================================================================= */}
+      {/* 1. HERO BANNER: Title Docked Flush with Hero Section End                  */}
+      {/* ========================================================================= */}
+      <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+        {/* Hero Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/procedure_hero.jpg"
+            alt="Mohamed Sathak Trust Campus Architecture"
+            className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none rounded-none"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+            }}
+          />
+          {/* Subtle gradient overlay for depth and title legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
+        </div>
 
-          <div className="flex flex-col gap-3 max-w-4xl">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-foreground font-oswald leading-none">
-              Mohamed Sathak <br />
-              <span className="text-primary font-oswald">Trust History</span>
+        {/* Title Container: Docked Flush at Bottom of Hero */}
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
+          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
+              Mohamed Sathak Trust
             </h1>
-            <p className="text-base sm:text-lg md:text-xl leading-relaxed text-muted-foreground font-sans mt-2">
-              Established on <strong>26 October 1973</strong> to empower rural and deprived youth through academic excellence, vocational training, and social service.
-            </p>
           </div>
         </div>
       </section>
 
-      {/* Trust Narrative & Motto */}
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            <Reveal variant="slide-right">
-              <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase">
-                // 50+ Years of Educational Service
-              </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-foreground font-oswald mt-1">
-                Empowering Generations Through Education
-              </h2>
-            </Reveal>
-
-            <Reveal variant="slide-right" delay={0.1}>
-              <p className="text-base sm:text-lg leading-relaxed text-foreground font-sans">
-                The <strong>Mohamed Sathak Trust</strong>, a charitable and educational organization, was established on <strong>26 October 1973</strong> at Kilakarai by the philanthropic Mohamed Sathak Family of Kilakarai, Ramanathapuram District, Tamil Nadu, with the sole purpose of helping deprived people from rural and financially challenged backgrounds to obtain quality education.
-              </p>
-            </Reveal>
-
-            <Reveal variant="slide-right" delay={0.2}>
-              <p className="text-base leading-relaxed text-muted-foreground font-sans">
-                The first self-financing engineering college in Tamil Nadu (Mohamed Sathak Engineering College) was established by the Trust in 1984 at Kilakarai. Since then, the Trust has maintained an impeccable track record of running <strong>18 premier educational institutions</strong> from higher secondary level to undergraduate, postgraduate, and doctoral levels across Kilakarai, Ramanathapuram, and Chennai.
-              </p>
-            </Reveal>
-
-            <Reveal variant="slide-right" delay={0.3}>
-              <div className="bg-card border-l-4 border-primary p-6 rounded-r-md shadow-xs">
-                <Quote className="h-6 w-6 text-primary mb-2" />
-                <p className="text-lg font-bold text-foreground font-oswald uppercase leading-snug">
-                  "God will not change the condition of a people until they try to change themselves."
-                </p>
-                <span className="text-xs text-muted-foreground font-sans mt-2 block">
-                  Foundational Philosophy of Mohamed Sathak Trust
-                </span>
-              </div>
-            </Reveal>
+      {/* ========================================================================= */}
+      {/* 2. SECTION 1: Canvas A (White / #121214) — TRUST NARRATIVE                */}
+      {/* ========================================================================= */}
+      <section className="py-6 sm:py-8 md:py-10 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          <div className="mb-4 sm:mb-6">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              Our Journey
+            </h2>
           </div>
 
-          <div className="lg:col-span-5">
-            <div className="relative rounded-lg overflow-hidden border border-border bg-card shadow-sm aspect-[4/3]">
-              <img
-                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200&auto=format&fit=crop"
-                alt="Mohamed Sathak Educational Campus"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
-                <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold">
-                  Est. 26 October 1973
-                </span>
-                <span className="text-white text-base font-bold tracking-tight font-oswald uppercase mt-1">
-                  18 Institutions Across Tamil Nadu
-                </span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-10 items-stretch">
+            {/* Left Column: Campus Architectural Showcase */}
+            <div className="lg:col-span-5 flex flex-col">
+              <div className="relative w-full h-full min-h-[240px] sm:min-h-[280px] md:min-h-[300px] overflow-hidden rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs shadow-md bg-muted border border-border">
+                <img
+                  src="/images/why-join/affiliated.jpg"
+                  alt="Mohamed Sathak Trust Campus"
+                  className="w-full h-full object-cover select-none pointer-events-none"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+                  }}
+                />
               </div>
+            </div>
+
+            {/* Right Column: Exact User-Provided Narrative Text */}
+            <div className="lg:col-span-7 flex flex-col justify-center space-y-3 sm:space-y-4">
+              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                Mohamed Sathak Trust, a charitable and educational organization, was established on
+                26 October 1973 at Kilakarai, by the Philanthropic Mohamed Sathak Family of
+                Kilakarai, Ramanathapuram District, Tamil Nadu, with the sole purpose of helping
+                deprived people from rural and financially challenged background to obtain quality
+                education.
+              </p>
+
+              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                The first self-financing engineering college in the country was established by the
+                Trust in 1984 at Kilakarai, and from that day onwards the Trust has been
+                contributing to provide quality education with academic excellence to meet the
+                requirements of industries at national and international levels.
+              </p>
+
+              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                The trust has an impeccable track record of running quality educational
+                institutions from higher secondary level to the under graduate and post graduate
+                levels in various disciplines such as Engineering Technology, Arts and Science,
+                Pharmacy, Physiotherapy, Nursing and Medical Sciences; It has 18 educational
+                institutions at present in Kilakarai, Ramanathapuram and Chennai.
+              </p>
+
+              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                We believe that "God will not change the condition of a people until they try to
+                change themselves". We focus on doing right things without any bias and with
+                charitable mind would strive to build an institution of academic excellence and help
+                in building the nation.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Trust Management Leadership */}
-      <section className="bg-page-bg border-y border-border py-12 md:py-20">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12">
-          <div className="max-w-2xl mb-12">
-            <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase block mb-1">
-              Trust Leadership
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-foreground font-oswald">
+      {/* ========================================================================= */}
+      {/* WAVE DIVIDER 1: Canvas A (White / #121214) -> Canvas B (#F3F3F2 / #18181B) */}
+      {/* ========================================================================= */}
+      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-6 sm:h-8 md:h-10 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-[#F3F3F2] dark:fill-[#18181B]"
+          />
+        </svg>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 3. SECTION 2: Canvas B (#F3F3F2 / #18181B) — OUR FOUNDERS                  */}
+      {/* ========================================================================= */}
+      <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-6 sm:py-8 md:py-10 transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          <div className="mb-5 sm:mb-8">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              Our Founders
+            </h2>
+          </div>
+
+          {/* 6 Founders Grid (Zero Cards, Clean Editorial Showcase) */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4 md:gap-6">
+            {founders.map((founder) => (
+              <div key={founder.name} className="flex flex-col items-center text-center">
+                <div className="w-full aspect-[4/5] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border shadow-xs bg-white dark:bg-[#121214] mb-2.5">
+                  <img
+                    src={founder.image}
+                    alt={founder.name}
+                    className="w-full h-full object-cover object-center select-none pointer-events-none"
+                  />
+                </div>
+                <h3 className="font-oswald text-xs sm:text-sm font-bold uppercase tracking-tight text-foreground leading-snug">
+                  {founder.name}
+                </h3>
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-primary font-bold mt-0.5">
+                  {founder.role}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* WAVE DIVIDER 2: Canvas B (#F3F3F2 / #18181B) -> Canvas A (White / #121214) */}
+      {/* ========================================================================= */}
+      <div className="w-full overflow-hidden leading-none select-none bg-[#F3F3F2] dark:bg-[#18181B]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-6 sm:h-8 md:h-10 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-white dark:fill-[#121214]"
+          />
+        </svg>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 4. SECTION 3: Canvas A (White / #121214) — BOARD OF TRUSTEES               */}
+      {/* ========================================================================= */}
+      <section className="py-6 sm:py-8 md:py-10 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          <div className="mb-5 sm:mb-8">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               Board of Trustees
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {trustees.map((t) => (
+          {/* Trustees 3-Column Clean Showcase (Zero Cards, Balanced Editorial Layout) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 divide-y md:divide-y-0 md:divide-x divide-border border-t border-b border-border py-6">
+            {trustees.map((trustee) => (
               <div
-                key={t.name}
-                className="bg-card border border-border p-6 rounded-sm shadow-xs flex flex-col justify-between"
+                key={trustee.name}
+                className="flex flex-col items-center text-center pt-5 md:pt-0 first:pt-0 first:pl-0 md:px-6 last:pr-0"
               >
-                <div>
-                  <span className="inline-block px-2.5 py-1 bg-primary/10 text-primary text-xs font-mono font-bold uppercase rounded-xs mb-3">
-                    {t.role}
-                  </span>
-                  <h3 className="text-lg font-bold text-foreground font-oswald uppercase mb-2">{t.name}</h3>
-                  <p className="text-xs text-muted-foreground font-sans leading-relaxed">{t.desc}</p>
+                <div className="w-28 h-36 sm:w-36 sm:h-44 aspect-[4/5] rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border shadow-sm bg-muted mb-3">
+                  <img
+                    src={trustee.image}
+                    alt={trustee.name}
+                    className="w-full h-full object-cover object-top select-none pointer-events-none"
+                  />
                 </div>
+                <h3 className="font-oswald text-base sm:text-lg lg:text-xl font-bold uppercase tracking-tight text-foreground leading-snug">
+                  {trustee.name}
+                </h3>
+                <span className="text-xs sm:text-sm font-oswald font-bold uppercase tracking-wider text-primary mt-1">
+                  {trustee.role}
+                </span>
+                <span className="text-xs text-muted-foreground font-libre mt-0.5">
+                  Mohamed Sathak Trust
+                </span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Timeline Milestones */}
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-20">
-        <div className="max-w-2xl mb-12">
-          <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase block mb-1">
-            Historical Milestones
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-foreground font-oswald">
-            Five Decades of Excellence
-          </h2>
-        </div>
+      {/* ========================================================================= */}
+      {/* WAVE DIVIDER 3: Canvas A (White / #121214) -> Canvas B (#F3F3F2 / #18181B) */}
+      {/* ========================================================================= */}
+      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-6 sm:h-8 md:h-10 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-[#F3F3F2] dark:fill-[#18181B]"
+          />
+        </svg>
+      </div>
 
-        <div className="relative border-l-2 border-primary ml-4 md:ml-6 space-y-10 pl-6 md:pl-10">
-          {milestones.map((m) => (
-            <div key={m.year} className="relative">
-              <div className="absolute -left-[31px] md:-left-[47px] top-1 w-4 h-4 rounded-full bg-primary border-4 border-background" />
-              <span className="text-xs font-mono font-bold text-primary tracking-widest uppercase block mb-1">
-                {m.year}
-              </span>
-              <h3 className="text-xl font-bold text-foreground font-oswald uppercase mb-2">{m.title}</h3>
-              <p className="text-sm text-muted-foreground font-sans max-w-3xl leading-relaxed">
-                {m.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Welfare Initiatives */}
-      <section className="bg-page-bg border-t border-border py-12 md:py-20">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12">
-          <div className="max-w-2xl mb-12">
-            <span className="text-xs font-mono font-bold tracking-widest text-primary uppercase block mb-1">
-              Social Responsibility
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-foreground font-oswald">
-              Philanthropic Initiatives
+      {/* ========================================================================= */}
+      {/* 5. SECTION 4: Canvas B (#F3F3F2 / #18181B) — CHAIRMAN'S MESSAGE            */}
+      {/* ========================================================================= */}
+      <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-6 sm:py-8 md:py-10 transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          <div className="mb-4 sm:mb-6">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              Chairman's Message
             </h2>
           </div>
 
-          <Stagger gap={0.1} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {welfareActivities.map((act) => (
-              <StaggerItem
-                key={act.title}
-                variant="rise"
-                className="bg-card border border-border p-8 rounded-sm shadow-xs flex flex-col justify-between"
-              >
-                <div>
-                  <div className="w-10 h-10 rounded-sm bg-primary/10 text-primary flex items-center justify-center mb-4">
-                    <Heart size={20} />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground font-oswald uppercase mb-2">{act.title}</h3>
-                  <p className="text-sm text-muted-foreground font-sans leading-relaxed">{act.desc}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-10 items-start">
+            {/* Left Column: Chairman Portrait with Natural Portrait Proportions */}
+            <div className="lg:col-span-4 flex flex-col items-start gap-2.5">
+              <div className="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[4/5] rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden shadow-sm bg-muted border border-border">
+                <img
+                  src="/images/trust/YOUSUF_head.jpg"
+                  alt="Alhaj Janab S. M. Yousuf, Chairman"
+                  className="w-full h-full object-cover object-top pointer-events-none select-none"
+                />
+              </div>
+              <div className="pt-0.5 text-left">
+                <h3 className="text-base sm:text-lg lg:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                  Alhaj Janab S. M. Yousuf
+                </h3>
+                <p className="font-libre text-xs sm:text-sm font-medium text-foreground/75 mt-0.5">
+                  Chairman, Mohamed Sathak Trust
+                </p>
+              </div>
+            </div>
 
-      {/* Navigation Footer */}
-      <section className="border-t border-border bg-page-bg py-10">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="text-sm font-semibold text-muted-foreground font-sans">
-            Explore the complete directory of Mohamed Sathak Institutions
-          </span>
-          <Link
-            to="/about/group-institutions"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 text-xs font-bold uppercase tracking-widest rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors font-oswald"
-          >
-            Group of Institutions &raquo;
-          </Link>
+            {/* Right Column: Structured Narrative Content */}
+            <div className="lg:col-span-8 space-y-3.5 sm:space-y-4">
+              <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground leading-tight">
+                Dear Parents and Prospective Students
+              </h3>
+
+              <div className="space-y-3 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                <p>
+                  Welcome to Mohamed Sathak A.J. College of Engineering, Chennai. Choosing a right
+                  institute to pursue your higher studies is one of the most important decisions
+                  that you will ever make. It can be the key for the door of your lifelong
+                  opportunity for sustainable growth and service. We want you to base your choice at
+                  the right place with relevant and reliable education.
+                </p>
+
+                <p>
+                  The success depends on the effort you invest in your own intellectual and
+                  professional development. Invest wisely and be assured that MSAJCE faculty and
+                  staff pledge their best efforts in helping you to achieve your educational goals.
+                </p>
+
+                <p>
+                  Our standards are challenging and we are dedicating ourselves in helping you to
+                  meet the standards. We will judge our institution's success by how best your
+                  succeed in realizing your potential as a student and later in professional career.
+                  I invite you to visit our magnificent campus, to witness our state-of-the
+                  facilities, including the Technology Centres, interact with students and faculty
+                  and to convince yourselves on why so many bright students have made MSAJCE as
+                  their choice of the institution.
+                </p>
+
+                <p className="font-bold text-foreground">
+                  I am confident that you will take pride in joining our college.
+                </p>
+              </div>
+
+              {/* Structured Valediction */}
+              <div className="pt-4 flex flex-col items-start sm:items-end text-left sm:text-right space-y-0.5">
+                <span className="font-libre text-sm sm:text-base font-semibold text-foreground/90">
+                  Best Wishes
+                </span>
+                <span className="font-oswald font-black text-lg sm:text-xl text-primary uppercase tracking-tight">
+                  Alhaj Janab S. M. Yousuf
+                </span>
+                <span className="font-libre text-xs sm:text-sm font-medium text-foreground/75">
+                  Chairman, Mohamed Sathak Trust
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
   );
 }
-

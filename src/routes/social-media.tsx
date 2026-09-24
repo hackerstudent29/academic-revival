@@ -160,15 +160,15 @@ function SocialMediaPage() {
   };
 
   return (
-    <main className="bg-background min-h-screen text-foreground overflow-hidden">
+    <main className="relative bg-background min-h-screen text-foreground overflow-hidden max-w-full pt-0 md:pt-1">
       {/* Editorial Watermark */}
-      <div className="absolute right-[-3%] top-[120px] text-[16vw] font-black text-foreground/[0.02] select-none pointer-events-none uppercase leading-none font-sans tracking-tighter">
+      <div className="absolute right-0 top-[120px] text-[16vw] font-black text-foreground/[0.02] select-none pointer-events-none uppercase leading-none font-sans tracking-tighter overflow-hidden">
         SOCIAL
       </div>
 
       {/* Hero Header Section */}
-      <section className="relative z-10 border-b border-border pt-12 pb-16 md:pt-16 md:pb-24 bg-card/20">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+      <section className="relative z-10 border-b border-border pt-8 pb-12 sm:pt-12 sm:pb-16 md:pt-16 md:pb-24 bg-foreground/[0.02]">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-12 lg:px-16">
           
           {/* Top Live Ticker Badge */}
           <motion.div 

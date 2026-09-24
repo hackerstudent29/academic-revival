@@ -32,7 +32,7 @@ const inputVariants = {
 
 export function ContactSection() {
   return (
-    <section className="relative min-h-[100svh] w-full flex flex-col justify-center border-b border-border bg-page-bg py-16" id="contact">
+    <section className="relative min-h-[100svh] w-full flex flex-col justify-center bg-page-bg py-16" id="contact">
       <div className="mx-auto grid max-w-[1440px] w-full gap-12 px-6 md:grid-cols-2 md:gap-8 md:px-12 lg:px-16">
         {/* Left Column: Info */}
         <motion.div 
@@ -43,13 +43,13 @@ export function ContactSection() {
           className="flex flex-col justify-between"
         >
           <div>
-            <h2 className="text-[12px] font-mono font-bold uppercase tracking-[0.32em] text-primary">
-              Contact Us //
+            <h2 className="text-xs font-mono font-bold uppercase tracking-[0.32em] text-primary">
+              Contact Us
             </h2>
             <h3 className="mt-6 text-[40px] font-black font-oswald uppercase leading-[0.9] tracking-tighter text-foreground sm:text-[60px] md:text-[5vw] lg:text-[6vw]">
               GET IN <br /> TOUCH.
             </h3>
-            <p className="mt-8 max-w-md text-sm leading-relaxed font-sans text-foreground/70 sm:text-base md:mt-12">
+            <p className="mt-8 max-w-md text-sm leading-relaxed font-libre font-medium text-foreground/80 sm:text-base md:mt-12">
               Have questions about admissions, academic programs, or campus life? Our advisors are here to help you begin your journey at MSAJCE.
             </p>
           </div>
