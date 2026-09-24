@@ -248,47 +248,44 @@ export const studentClubs: StudentClub[] = [
     category: "sports",
     tagline: "Athletic Excellence & Team Spirit",
     motto: "Teamwork Makes The Dream Work",
-    vision: "To encourage and motivate students to involve in various sports activities at both inter and intra college level.",
-    description: "This club maintains records of sports and games events attended by students within the college, within the university, and outside at the region/state/national level and their achievements/awards. We submit annual reports on sports events, budget allocations, and organize competitive sports events, rewarding winners with trophies and medals 🏅. All kinds of sports events take place in this club.",
+    vision: "To encourage and motivate students to achieve athletic excellence, healthy living, and sportsmanship at university, zonal, and state levels.",
+    description: "The Sports Club coordinates collegiate athletics, fitness conditioning, and tournament participation across campus. It trains student athletes, manages dedicated outdoor and indoor sports facilities, and represents MSAJCE in Anna University Zonal and State-level championships.",
     objectives: [
-      "To build up sportsmanship.",
-      "To foster intimate friendships.",
-      "To reduce stress and improve health.",
-      "To improve skills and enhance employability.",
-      "To support in developing positive attitude, self-confidence, courage and patience.",
-      "To get opportunities to see the community closely and thus gets an experience of human nature in relation to his / her environment.",
-      "To avail the opportunity to meet the people from different walks of life."
+      "Foster sportsmanship, team spirit, and competitive athletic excellence.",
+      "Promote daily physical fitness, mental endurance, and active student wellness.",
+      "Coach and field collegiate teams for Anna University Zonal and State meets.",
+      "Cultivate leadership, discipline, self-confidence, and resilience through athletics."
     ],
     outdoorGames: [
       "Cricket",
       "Football",
       "Volleyball",
       "Basketball",
-      "Rugby",
       "Badminton",
-      "Kho Kho",
+      "Athletics (Track & Field)",
+      "Kho-Kho",
       "Throwball"
     ],
     indoorGames: [
-      "Carrom",
       "Table Tennis",
-      "Chess"
+      "Chess",
+      "Carrom"
     ],
     images: [
+      "/images/why-join/sports.jpg",
       "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=900&q=80"
     ],
     activities: [
-      "Annual Intra-College Sports Championship & Medals Ceremony",
+      "Annual Intra-College Sports Meet & Medals Ceremony",
       "Inter-Collegiate Anna University Zone Tournaments",
       "Daily Athletic Coaching & Fitness Conditioning Sessions",
-      "Cricket, Football, Basketball & Track Athletics Leagues"
+      "Inter-Departmental Cricket, Football & Volleyball Leagues"
     ],
-    membersCount: "450+ Athletes",
+    membersCount: "450+ Student Athletes",
     iconName: "Trophy",
-    badge: "Sports & Fitness"
+    badge: "Sports & Athletics"
   },
   {
     id: "fine-arts-club",

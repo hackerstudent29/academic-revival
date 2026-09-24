@@ -185,7 +185,7 @@ function ClubsAndSocietiesPage() {
                       </div>
                     )}
                     {activeClub.vision && (
-                      <p className="text-xs sm:text-sm font-sans italic text-foreground/80 mt-1 leading-relaxed">
+                      <p className="text-xs sm:text-sm font-libre italic text-foreground/80 mt-1 leading-relaxed">
                         "{activeClub.vision}"
                       </p>
                     )}
@@ -203,7 +203,7 @@ function ClubsAndSocietiesPage() {
                       <Activity className="w-3.5 h-3.5" />
                       About The Forum
                     </h3>
-                    <p className="text-sm sm:text-base font-sans text-muted-foreground leading-relaxed">
+                    <p className="text-sm sm:text-base font-libre text-muted-foreground leading-relaxed">
                       {activeClub.description}
                     </p>
                   </div>
@@ -243,7 +243,7 @@ function ClubsAndSocietiesPage() {
                             <span className="text-xs font-black font-oswald text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs shrink-0 mt-0.5">
                               {String(i + 1).padStart(2, "0")}
                             </span>
-                            <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed">
+                            <p className="text-xs sm:text-sm font-libre text-foreground/90 leading-relaxed">
                               {obj}
                             </p>
                           </div>
@@ -265,7 +265,7 @@ function ClubsAndSocietiesPage() {
                             <span className="text-xs font-black font-oswald text-foreground bg-foreground/10 px-2 py-0.5 rounded-xs shrink-0 mt-0.5">
                               {String(i + 1).padStart(2, "0")}
                             </span>
-                            <p className="text-xs sm:text-sm font-sans text-foreground/90 leading-relaxed">
+                            <p className="text-xs sm:text-sm font-libre text-foreground/90 leading-relaxed">
                               {obj}
                             </p>
                           </div>
@@ -282,7 +282,7 @@ function ClubsAndSocietiesPage() {
                     </h4>
                     <div className="space-y-1.5">
                       {activeClub.activities.map((act, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs font-sans text-muted-foreground">
+                        <div key={i} className="flex items-start gap-2 text-xs font-libre text-muted-foreground">
                           <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
                           <span>{act}</span>
                         </div>
@@ -318,15 +318,18 @@ function ClubsAndSocietiesPage() {
 
                   {/* CLUB-SPECIFIC COMPONENT: SPORTS CLUB */}
                   {activeClub.id === "sports-club" && (
-                    <div className="space-y-6">
+                    <div className="space-y-5">
                       <div>
-                        <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-2.5 flex items-center gap-1.5">
+                        <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-2 flex items-center gap-1.5">
                           <Dumbbell className="w-3.5 h-3.5" />
-                          Outdoor Sports Arenas (8 Disciplines)
+                          Outdoor Sports Disciplines ({activeClub.outdoorGames?.length || 8})
                         </h4>
                         <div className="flex flex-wrap gap-1.5">
                           {activeClub.outdoorGames?.map((game, i) => (
-                            <span key={i} className="text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                            <span
+                              key={i}
+                              className="text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs"
+                            >
                               {game}
                             </span>
                           ))}
@@ -334,16 +337,45 @@ function ClubsAndSocietiesPage() {
                       </div>
 
                       <div className="pt-4 border-t border-border/60">
-                        <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2.5 flex items-center gap-1.5">
+                        <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2 flex items-center gap-1.5">
                           <Award className="w-3.5 h-3.5 text-amber-500" />
-                          Indoor Sports Tournaments (3 Arenas)
+                          Indoor Sports Complex ({activeClub.indoorGames?.length || 3})
                         </h4>
                         <div className="flex flex-wrap gap-1.5">
                           {activeClub.indoorGames?.map((game, i) => (
-                            <span key={i} className="text-xs font-bold font-oswald uppercase bg-foreground/5 text-foreground border border-foreground/15 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                            <span
+                              key={i}
+                              className="text-xs font-bold font-oswald uppercase bg-foreground/5 text-foreground border border-foreground/15 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs"
+                            >
                               {game}
                             </span>
                           ))}
+                        </div>
+                      </div>
+
+                      {/* Structured Club Overview for Visitors */}
+                      <div className="pt-4 border-t border-border/60">
+                        <h4 className="text-xs font-bold font-oswald uppercase text-foreground tracking-wider mb-2.5 flex items-center gap-1.5">
+                          <Trophy className="w-3.5 h-3.5 text-primary" />
+                          Athletic Framework At A Glance
+                        </h4>
+                        <div className="divide-y divide-border/60 border-y border-border/60 text-xs font-libre">
+                          <div className="py-2 flex items-center justify-between gap-4">
+                            <span className="text-muted-foreground">Tournament League</span>
+                            <span className="font-semibold text-foreground font-oswald uppercase">Anna University Zone 3</span>
+                          </div>
+                          <div className="py-2 flex items-center justify-between gap-4">
+                            <span className="text-muted-foreground">Training Routine</span>
+                            <span className="font-semibold text-foreground font-oswald uppercase">Daily Morning &amp; Evening</span>
+                          </div>
+                          <div className="py-2 flex items-center justify-between gap-4">
+                            <span className="text-muted-foreground">Major Annual Meet</span>
+                            <span className="font-semibold text-foreground font-oswald uppercase">College Sports Day &amp; Trophies</span>
+                          </div>
+                          <div className="py-2 flex items-center justify-between gap-4">
+                            <span className="text-muted-foreground">Total Disciplines</span>
+                            <span className="font-semibold text-foreground font-oswald uppercase">11 Outdoor &amp; Indoor Arenas</span>
+                          </div>
                         </div>
                       </div>
                     </div>
