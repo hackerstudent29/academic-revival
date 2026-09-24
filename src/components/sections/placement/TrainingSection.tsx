@@ -3,9 +3,11 @@ import {
   BrainCircuit, 
   MessageSquareText, 
   Code2, 
-  Microscope 
+  Microscope,
+  ExternalLink 
 } from 'lucide-react';
 import { Facility } from '@/types/placement';
+import { ImageAutoSlider } from '@/components/ui/image-auto-slider';
 
 interface TrainingSectionProps {
   onOpenFacility?: (facility: Facility) => void;
@@ -40,74 +42,79 @@ export const TrainingSection: React.FC<TrainingSectionProps> = () => {
     },
   ];
 
-  const trainingProgression = [
+  const infrastructureFeatures = [
     {
+      id: 'cbt',
       num: '01',
-      semester: 'Semesters 1–2',
-      title: 'Foundation & English Drills',
-      desc: 'Diagnostic assessments, verbal communication, and foundational reasoning.',
-    },
-    {
-      num: '02',
-      semester: 'Semesters 3–4',
-      title: 'Data Structures & Core Tech',
-      desc: 'Hands-on coding, branch technology labs, and certified value-added courses.',
-    },
-    {
-      num: '03',
-      semester: 'Semesters 5–6',
-      title: 'Advanced Aptitude & Internships',
-      desc: 'Timed online CBT tests, mandatory summer internships, and STAR prep.',
-    },
-    {
-      num: '04',
-      semester: 'Semesters 7–8',
-      title: 'Campus Hiring & PPOs',
-      desc: 'Executive mock panels, Day-1 campus hiring drives, and PPO confirmations.',
-    },
-  ];
-
-  const infrastructure = [
-    {
-      id: 'lab',
-      name: 'Computer Labs (CBT)',
-      capacity: '600+ Workstations',
-      desc: 'Gigabit network workstations and proctored online testing suites for recruitment drives.',
+      title: 'Computer Labs for Online Exams',
+      desc: 'Well established Computer labs equipped for online skill training and proctored recruitment examinations.',
       image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80',
     },
     {
       id: 'interview',
-      name: 'Interview Cabins',
-      capacity: '12 Cabins',
-      desc: 'Acoustic-treated air-conditioned suites for one-on-one technical and HR interviews.',
+      num: '02',
+      title: 'Interview & Evaluation Cabins',
+      desc: 'Well-furnished air-conditioned rooms designed for written tests, technical evaluations, and face-to-face HR interviews.',
       image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80',
     },
     {
       id: 'gd',
-      name: 'Group Discussion Suites',
-      capacity: '4 Chambers',
-      desc: 'Circular discussion chambers equipped with audio-visual capture and moderator seating.',
+      num: '03',
+      title: 'Dedicated AC Group Discussion Rooms',
+      desc: 'Dedicated air-conditioned rooms for conducting group discussions, mock debates, and panel interactions.',
       image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80',
     },
     {
-      id: 'seminar',
-      name: 'Seminar Auditoriums',
-      capacity: '450+ Seats',
-      desc: 'Air-conditioned auditoriums with 4K laser projection for Pre-Placement Talks (PPT).',
+      id: 'auditorium',
+      num: '04',
+      title: 'AC Auditoriums & Seminar Halls',
+      desc: 'Air-conditioned Auditorium, Seminar Halls, and Meeting Halls for Pre-Placement Talks (PPT) and conclaves.',
       image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=80',
+    },
+  ];
+
+  const studentTrainingReports = [
+    {
+      year: 'AY 2025–26',
+      title: 'Student Training Program Annual Schedule & Reports',
+      url: 'https://www.msajce-edu.in/uploads/placement/training/Training2025-26.pdf',
+    },
+    {
+      year: 'AY 2024–25',
+      title: 'Student Training Program Annual Schedule & Reports',
+      url: 'https://www.msajce-edu.in/uploads/placement/training/Training2024-25.pdf',
+    },
+    {
+      year: 'AY 2023–24',
+      title: 'Student Training Program Annual Schedule & Reports',
+      url: 'https://www.msajce-edu.in/uploads/placement/training/Training2023-24.pdf',
+    },
+    {
+      year: 'AY 2022–23',
+      title: 'Student Training Program Annual Schedule & Reports',
+      url: 'https://www.msajce-edu.in/uploads/placement/training/Training2022-23.pdf',
     },
   ];
 
   return (
     <div className="w-full">
-      {/* SECTION 1: Canvas A (White / #121214) — Skill Architecture */}
+      {/* SECTION 1: Canvas A (White / #121214) — Skill Architecture & Career Counselling */}
       <section className="pt-8 sm:pt-12 md:pt-14 pb-8 sm:pb-12 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-            SKILLS TRAINING &amp; READINESS
+            SKILLS TRAINING &amp; CAREER COUNSELLING
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="space-y-4 w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+            <p>
+              At Mohamed Sathak A.J. College of Engineering, comprehensive career counselling is available on campus directing students to choose the best possible academic and professional stream that meets their requirements in a unique way.
+            </p>
+            <p>
+              Students are guided by dedicated faculty mentors who address individual learning needs, conduct diagnostic skill mapping, and keep them focused on achieving their specific placement targets throughout their academic tenure.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
             {skillPillars.map((pillar, idx) => {
               const Icon = pillar.icon;
               return (
@@ -149,33 +156,14 @@ export const TrainingSection: React.FC<TrainingSectionProps> = () => {
         </svg>
       </div>
 
-      {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — Semester Progression */}
+      {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — Training & Placement Infrastructure */}
       <section className="pt-8 sm:pt-10 md:pt-12 pb-10 sm:pb-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-            SEMESTER TRAINING PROGRESSION
+            TRAINING &amp; PLACEMENT INFRASTRUCTURE
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {trainingProgression.map((prog) => (
-              <div key={prog.num} className="space-y-2 py-1">
-                <div className="flex items-center gap-3">
-                  <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs border border-primary/20">
-                    {prog.num}
-                  </span>
-                  <span className="text-xs font-black font-oswald uppercase text-primary">
-                    {prog.semester}
-                  </span>
-                </div>
-                <h3 className="text-base font-bold font-oswald uppercase text-foreground leading-snug">
-                  {prog.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-foreground/80 font-libre font-medium leading-relaxed">
-                  {prog.desc}
-                </p>
-              </div>
-            ))}
-          </div>
+          <ImageAutoSlider />
         </div>
       </section>
 
@@ -195,36 +183,52 @@ export const TrainingSection: React.FC<TrainingSectionProps> = () => {
         </svg>
       </div>
 
-      {/* SECTION 3: Canvas A (White / #121214) — Placement Infrastructure */}
+      {/* SECTION 3: Canvas A (White / #121214) — Student Training Program Annual Reports */}
       <section className="pt-8 sm:pt-10 md:pt-12 pb-14 sm:pb-18 bg-white dark:bg-[#121214] transition-colors">
-        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-            PLACEMENT TRAINING INFRASTRUCTURE
+            STUDENT TRAINING PROGRAM REPORTS
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {infrastructure.map((fac) => (
-              <div key={fac.id} className="space-y-3 group py-1">
-                <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-muted border border-border/30">
-                  <img
-                    src={fac.image}
-                    alt={fac.name}
-                    className="w-full h-full object-cover select-none pointer-events-none"
-                  />
-                  <span className="absolute top-2.5 right-2.5 bg-primary text-white text-[10px] font-bold font-oswald uppercase tracking-wider px-2 py-0.5 rounded-sm shadow-sm">
-                    {fac.capacity}
-                  </span>
-                </div>
-                <div className="space-y-1">
-                  <h3 className="text-base font-bold font-oswald uppercase text-foreground leading-snug">
-                    {fac.name}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-foreground/80 font-libre font-medium leading-relaxed">
-                    {fac.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
+          <div className="w-full overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[600px]">
+              <thead>
+                <tr className="border-b border-border/60">
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 w-32">
+                    Academic Year
+                  </th>
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5">
+                    Program Document / Schedule
+                  </th>
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 w-28 text-center">
+                    Report Link
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border/40">
+                {studentTrainingReports.map((row, idx) => (
+                  <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                    <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap">
+                      {row.year}
+                    </td>
+                    <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm">
+                      {row.title}
+                    </td>
+                    <td className="px-4 py-3.5 text-center align-middle whitespace-nowrap">
+                      <a
+                        href={row.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs font-bold font-oswald uppercase text-primary hover:underline"
+                      >
+                        <span>View PDF</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
