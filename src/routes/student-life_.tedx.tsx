@@ -13,7 +13,6 @@ import {
   ChevronLeft,
   ChevronRight,
   ArrowRight,
-  ExternalLink,
   RotateCcw,
 } from "lucide-react";
 import { tedxVideos, type TedxVideo } from "@/data/tedxVideos";
@@ -604,7 +603,7 @@ function TedxDatabasePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-1">
               <h3 className="text-base font-bold font-oswald uppercase text-foreground">
                 Non-Commercial &amp; Independent
@@ -622,39 +621,18 @@ function TedxDatabasePage() {
                 All recorded talks are processed and published to the official TEDx global archives and YouTube channel, ensuring worldwide visibility for every presentation.
               </p>
             </div>
-
-            <div className="space-y-1">
-              <h3 className="text-base font-bold font-oswald uppercase text-foreground">
-                Institutional Archive
-              </h3>
-              <p className="text-xs sm:text-sm text-foreground/80 font-libre leading-relaxed">
-                Reference details and event history are maintained on the official Mohamed Sathak A.J. College of Engineering archive portal.
-              </p>
-            </div>
           </div>
 
           {/* Action Buttons */}
           <div className="pt-4 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex flex-wrap items-center gap-3">
-              <a
-                href="https://www.msajce-edu.in/TEDxMSAJCE.php"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-primary/40 text-primary hover:bg-primary hover:text-white transition-colors text-xs font-oswald font-bold uppercase tracking-wider"
-              >
-                <span>Official Archive Portal</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-
-              <button
-                type="button"
-                onClick={() => navigate({ to: "/student-life/clubs-and-societies" })}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-stone-300 dark:border-neutral-700 bg-stone-100 dark:bg-neutral-800 text-foreground hover:border-primary transition-colors text-xs font-oswald font-bold uppercase tracking-wider cursor-pointer"
-              >
-                <span>Clubs &amp; Societies</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={() => navigate({ to: "/student-life/clubs-and-societies" })}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-stone-300 dark:border-neutral-700 bg-stone-100 dark:bg-neutral-800 text-foreground hover:border-primary transition-colors text-xs font-oswald font-bold uppercase tracking-wider cursor-pointer"
+            >
+              <span>Clubs &amp; Societies</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
 
             <button
               type="button"
