@@ -41,6 +41,16 @@ const DEFAULT_INFRASTRUCTURE_SLIDES: InfrastructureSlide[] = [
     title: 'Mechatronics & CAD Rigs',
     desc: 'Precision CAD/CAM modeling rigs and automotive mechatronics stations for live project work.',
   },
+  {
+    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&auto=format&fit=crop&q=80',
+    title: 'Career Counselling Suites',
+    desc: 'Personalized mentoring spaces for student stream alignment, target setting, and faculty guidance.',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=80',
+    title: 'Hardware & Systems QA Labs',
+    desc: 'State-of-the-art testing workstations for hardware diagnostics and embedded systems assembly.',
+  },
 ];
 
 export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
@@ -49,7 +59,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
   const duplicatedSlides = [...slides, ...slides];
 
   return (
-    <div className="w-full relative overflow-hidden py-2">
+    <div className="w-full relative overflow-hidden py-3">
       <style>{`
         @keyframes scroll-right {
           0% {
@@ -61,7 +71,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
         }
 
         .infinite-scroll-track {
-          animation: scroll-right 28s linear infinite;
+          animation: scroll-right 32s linear infinite;
         }
 
         .infinite-scroll-track:hover {
@@ -72,19 +82,23 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
           mask: linear-gradient(
             90deg,
             transparent 0%,
-            black 5%,
-            black 95%,
+            black 10%,
+            black 90%,
             transparent 100%
           );
           -webkit-mask: linear-gradient(
             90deg,
             transparent 0%,
-            black 5%,
-            black 95%,
+            black 10%,
+            black 90%,
             transparent 100%
           );
         }
       `}</style>
+
+      {/* Subtle Side Fading Gradient Overlays */}
+      <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-[#F3F3F2] dark:from-[#18181B] to-transparent z-20 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-[#F3F3F2] dark:from-[#18181B] to-transparent z-20 pointer-events-none" />
 
       <div className="slider-mask-container w-full">
         <div className="infinite-scroll-track flex gap-5 sm:gap-6 w-max">
@@ -97,7 +111,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover select-none pointer-events-none transition-filter duration-300 group-hover:brightness-105"
+                  className="w-full h-full object-cover select-none pointer-events-none transition-all duration-300 group-hover:brightness-105"
                   loading="lazy"
                 />
                 <span className="absolute top-2.5 left-2.5 bg-primary text-white text-[10px] font-bold font-oswald uppercase tracking-wider px-2 py-0.5 rounded-sm shadow-sm">
