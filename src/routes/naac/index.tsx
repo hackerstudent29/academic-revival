@@ -158,16 +158,16 @@ function NaacPortal() {
             <Reveal>
               <h3 className="text-2xl font-bold font-oswald uppercase text-foreground mb-6">Additional Reports & Initiatives</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <a href="https://www.msajce-edu.in/uploads/naac/DisabledFriendlyCampus.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 bg-card border border-border rounded-sm p-4 hover:border-primary/50 transition-all hover:-translate-y-1 group">
-                <FileText className="text-primary w-5 h-5 shrink-0" />
+                <a href="https://www.msajce-edu.in/uploads/naac/DisabledFriendlyCampus.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 bg-card border border-border rounded-sm p-4 hover:border-primary/50 transition-all hover:-translate-y-1 group">
+                  <FileText className="text-primary w-5 h-5 shrink-0" />
                   <span className="font-bold text-sm group-hover:text-primary transition-colors">Disabled Friendly Campus</span>
                 </a>
-              <a href="https://www.msajce-edu.in/uploads/naac/Environmentalpromotionalactivitiesbeyondthecampus.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 bg-card border border-border rounded-sm p-4 hover:border-primary/50 transition-all hover:-translate-y-1 group">
-                <FileText className="text-primary w-5 h-5 shrink-0" />
+                <a href="https://www.msajce-edu.in/uploads/naac/Environmentalpromotionalactivitiesbeyondthecampus.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 bg-card border border-border rounded-sm p-4 hover:border-primary/50 transition-all hover:-translate-y-1 group">
+                  <FileText className="text-primary w-5 h-5 shrink-0" />
                   <span className="font-bold text-sm group-hover:text-primary transition-colors">Environmental Promotional Activities</span>
                 </a>
-              <a href="https://www.msajce-edu.in/uploads/naac/AnnualReport20-21.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 bg-card border border-border rounded-sm p-4 hover:border-primary/50 transition-all hover:-translate-y-1 group">
-                <FileText className="text-primary w-5 h-5 shrink-0" />
+                <a href="https://www.msajce-edu.in/uploads/naac/AnnualReport20-21.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-3 bg-card border border-border rounded-sm p-4 hover:border-primary/50 transition-all hover:-translate-y-1 group">
+                  <FileText className="text-primary w-5 h-5 shrink-0" />
                   <span className="font-bold text-sm group-hover:text-primary transition-colors">Annual Report (Latest)</span>
                 </a>
               </div>

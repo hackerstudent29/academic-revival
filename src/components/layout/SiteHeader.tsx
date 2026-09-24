@@ -84,7 +84,6 @@ const nav: NavItem[] = [
         title: "Apply Online",
         links: [
           { label: "Online Application", to: "/admissions", hash: "apply" },
-          { label: "Online Fee Payment", to: "/admissions", hash: "apply" },
           { label: "Enquire Now", to: "/contact" },
         ],
       },

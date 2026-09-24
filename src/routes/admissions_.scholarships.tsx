@@ -119,7 +119,7 @@ function ScholarshipsHero() {
         initial={{ width: "0%" }}
         animate={{ width: "50%" }}
         transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
-        className="absolute inset-y-0 left-0 bg-background z-30 hidden lg:block"
+        className="absolute inset-y-0 left-0 bg-page-bg z-30 hidden lg:block"
         style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
       />
 
@@ -130,11 +130,11 @@ function ScholarshipsHero() {
           alt="Students learning and securing scholarships" 
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-page-bg to-transparent z-10 pointer-events-none" />
       </div>
 
       {/* Text Content */}
-      <div className="w-full lg:w-[48%] px-6 py-12 md:py-16 lg:px-10 xl:px-12 flex flex-col justify-center z-40 relative lg:absolute lg:inset-y-0 lg:left-0 h-full bg-background lg:bg-transparent">
+      <div className="w-full lg:w-[48%] px-6 py-12 md:py-16 lg:px-10 xl:px-12 flex flex-col justify-center z-40 relative lg:absolute lg:inset-y-0 lg:left-0 h-full bg-page-bg lg:bg-transparent">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
@@ -161,18 +161,18 @@ function ScholarshipsHero() {
 
 function ScholarshipsPage() {
   return (
-    <main className="bg-background min-h-screen">
+    <main className="bg-page-bg text-foreground min-h-screen">
       <ScholarshipsHero />
 
       {/* Trust Badge Strip */}
-      <div className="border-b border-border bg-muted/30">
+      <div className="border-b border-border bg-card/60">
         <div className="mx-auto max-w-[1440px] px-6 py-4 md:px-12 flex justify-end">
           <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground">TNEA Counselling Code: 1301</span>
         </div>
       </div>
 
       <section className="mx-auto max-w-[1200px] px-6 py-24 md:px-12 md:py-32">
-        <Reveal variant="rise">
+        <Reveal variant="rise" once={true}>
           <p className="text-base text-muted-foreground leading-relaxed max-w-[80ch] mb-16">
             MSAJCE students can access AICTE, Ministry of Minority Affairs, MHRD, and Ministry of Labour scholarship schemes based on category, income, and academic eligibility.
           </p>
@@ -215,7 +215,7 @@ function ScholarshipsPage() {
           </Stagger>
         </div>
 
-        <Reveal variant="mask">
+        <Reveal variant="mask" once={true}>
           <div className="mb-16">
             <h2 className="text-[8vw] font-black uppercase leading-[0.95] tracking-tighter text-foreground md:text-[4vw] mb-4">
               Scheme Details
@@ -227,7 +227,7 @@ function ScholarshipsPage() {
         </Reveal>
 
         {/* Note block */}
-        <Reveal variant="rise">
+        <Reveal variant="rise" once={true}>
           <div className="flex flex-col md:flex-row items-start justify-between gap-6 py-8 border-y border-border">
             <div className="flex items-start gap-4">
               <Info className="h-6 w-6 text-primary shrink-0 mt-0.5" />
@@ -239,7 +239,7 @@ function ScholarshipsPage() {
         </Reveal>
 
         {/* Closing CTA row */}
-        <Reveal variant="rise">
+        <Reveal variant="rise" once={true}>
           <div className="mt-16 flex flex-col sm:flex-row items-center gap-6 border-t border-border pt-12">
             <Magnetic>
               <a 

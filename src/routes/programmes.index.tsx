@@ -9,8 +9,8 @@ interface ProgrammesSearch {
 export const Route = createFileRoute('/programmes/')({
   validateSearch: (search: Record<string, unknown>): ProgrammesSearch => {
     return {
-      level: search['level'] as string | undefined,
-      view: search['view'] as ('list' | 'table' | 'grid') | undefined,
+      level: (search["level"] as string | undefined) || undefined,
+      view: (search["view"] as ("list" | "table" | "grid") | undefined) || undefined,
     };
   },
   component: ProgrammesIndex,
