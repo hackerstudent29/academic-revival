@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { tedxVideos, type TedxVideo } from "@/data/tedxVideos";
 
-const title = "Welcome to the TEDx MSAJCE Database | Our TEDx Chapter | MSAJCE";
+const title = "Our TEDx Chapter | TEDxMSAJCE | Student Life | MSAJCE";
 const description =
   "Official TEDxMSAJCE talks database at Mohamed Sathak A.J. College of Engineering. Browse 54 independently organized TEDx talks by innovators, researchers, and global thought leaders.";
 
@@ -122,7 +122,7 @@ function TedxDatabasePage() {
             className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full sm:max-w-2xl md:max-w-3xl border-t border-r border-border dark:border-white/15"
           >
             <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
-              Welcome to the TEDx MSAJCE Database
+              Our TEDx Chapter
             </h1>
           </motion.div>
         </div>
@@ -175,7 +175,7 @@ function TedxDatabasePage() {
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           <div className="w-full space-y-3">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              Our TEDx Chapter
+              TEDx MSAJCE Overview
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-foreground font-libre font-medium leading-relaxed w-full text-justify [text-align:justify] [text-justify:inter-word]">
               TEDxMSAJCE is an independently organized event under official license from TED. Hosted at Mohamed Sathak A.J.&nbsp;College of Engineering, it provides a prestigious platform where pioneering researchers, technological visionaries, creative artists, and social changemakers converge to spark deep discussion and inspire transformative ideas.
