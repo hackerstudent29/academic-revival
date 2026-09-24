@@ -99,17 +99,17 @@ function TedxDatabasePage() {
       {/* 1. HERO BANNER WITH DOCKED FLUSH TITLE & STATS STRIP                       */}
       {/* ========================================================================= */}
       <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[360px] sm:min-h-[420px] md:min-h-[460px] flex flex-col justify-end">
-        {/* Background Keynote Speaker Stage Image */}
+        {/* Background Campus Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1920&q=80"
-            alt="TEDx Keynote Stage & Innovation Forum"
-            className="w-full h-full object-cover object-center brightness-[0.7] filter contrast-110 select-none pointer-events-none"
+            src="/images/accreditations_campus.jpg"
+            alt="Mohamed Sathak A.J. College of Engineering Campus"
+            className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+              (e.target as HTMLImageElement).src = "/images/library_reading_hall_real.jpg";
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/35" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30" />
         </div>
 
         {/* Title Container: Docked Flush at the Hero End */}

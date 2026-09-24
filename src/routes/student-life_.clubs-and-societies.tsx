@@ -112,19 +112,19 @@ function ClubsAndSocietiesPage() {
       />
 
       {/* Page Hero Banner */}
-      <section className="relative overflow-hidden bg-[#18181B] text-white pt-8 pb-12 sm:pt-10 sm:pb-14 px-4 sm:px-6 md:px-12 border-b border-primary/20">
-        {/* Topic-Related Stock Background Image: Clubs, Cultural Arts, Performing Stage & Festivals */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#9E2339] via-[#861E30] to-[#671422] text-white pt-8 pb-12 sm:pt-10 sm:pb-14 px-4 sm:px-6 md:px-12 border-b border-primary/20">
+        {/* Background Stock Image with Subtle Dark/Maroon Overlay */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1920&q=80"
-            alt="Clubs & Cultural Societies"
-            className="w-full h-full object-cover object-center brightness-[0.32] filter contrast-110 select-none pointer-events-none"
+            src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1920&q=80"
+            alt="Student Clubs and Cultural Societies"
+            className="w-full h-full object-cover object-center brightness-[0.28] filter contrast-110 select-none pointer-events-none"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = "/images/moments/moment-2-dancers.jpg";
+              (e.target as HTMLImageElement).src = "/images/why-join/sports.jpg";
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-[#9E2339]/90 via-[#861E30]/85 to-[#671422]/90 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
         </div>
 
         <div className="max-w-[1440px] mx-auto relative z-10">
