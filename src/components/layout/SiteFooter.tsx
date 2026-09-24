@@ -57,7 +57,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
   return (
     <footer
       ref={footerRef}
-      className="relative w-full min-h-[85vh] lg:min-h-[92vh] flex flex-col justify-between overflow-hidden bg-[#18181B] dark:bg-[#121214] text-[#CCCCCC] border-t border-white/10 dark:border-white/5 pointer-events-auto"
+      className="relative w-full min-h-[85vh] lg:min-h-[92vh] flex flex-col justify-between overflow-hidden bg-[#18181B] dark:bg-[#121214] text-[#CCCCCC] border-t border-white/10 dark:border-white/5 pointer-events-auto msajce-page-blur"
     >
       {/* ── 1. Architectural Campus Outline Ambient Background ── */}
       <div

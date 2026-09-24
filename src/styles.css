@@ -312,29 +312,33 @@ button:disabled,
   line-height: 1.2;
 }
 
-/* Apple-style glass header backdrop */
-.msajce-header-glass,
-.msajce-dropdown-glass {
-  background-color: rgba(255, 255, 255, 0.70);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+/* Apple-style glassmorphism header & dropdown backdrop */
+.msajce-header-glass {
+  background-color: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   transition: background-color 0.3s ease;
 }
 
-.dark .msajce-header-glass,
+.dark .msajce-header-glass {
+  background-color: rgba(18, 18, 20, 0.78);
+}
+
+.msajce-dropdown-glass {
+  background-color: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+}
+
 .dark .msajce-dropdown-glass {
-  background-color: rgba(10, 10, 10, 0.75);
+  background-color: rgba(18, 18, 20, 0.82);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Blur page content behind an open menu */
-body.dropdown-open .msajce-page-blur {
-  filter: blur(8px) brightness(0.8);
-  will-change: filter;
-}
 
-.msajce-page-blur {
-  transition: filter 0.4s ease-out;
-}
 
 /* Hide scrollbar across browsers */
 .scrollbar-none,

@@ -100,8 +100,8 @@ const nav: NavItem[] = [
       {
         title: "Academic Resources",
         links: [
-          { label: "Academic Calendar", to: "/academics" },
-          { label: "Curriculum & Syllabus", to: "/academics" },
+          { label: "Academic Calendar", to: "/curriculum" },
+          { label: "Curriculum & Syllabus", to: "/curriculum" },
         ],
       },
       {
@@ -134,8 +134,8 @@ const nav: NavItem[] = [
         links: [
           { label: "Central Library", to: "/library" },
           { label: "Hostel", to: "/hostel" },
-          { label: "Transport", to: "/campus-life", hash: "facilities" },
-          { label: "Sports & Gym", to: "/campus-life", hash: "facilities" },
+          { label: "Transport", to: "/transport" },
+          { label: "Sports & Gym", to: "/sports" },
         ],
       },
       {
@@ -241,15 +241,18 @@ const moreMenuData = [
 ];
 
 export function SiteHeader() {
-  const { setHeaderHidden, setIsScrolled: setHeaderScrolled } = useHeader();
+  const { isHeaderHidden, setHeaderHidden, setIsScrolled: setHeaderScrolled, hasSecondaryNav, isTabSwitching, setIsTabSwitching } = useHeader();
   const [active, setActive] = useState<string | null>(null);
   const [moreOpen, setMoreOpen] = useState(false);
   const [activePanel, setActivePanel] = useState<string>("main");
-  const [hidden, setHidden] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const leaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const headerRevealedTimeRef = useRef(0);
+
   const handleMouseEnterItem = (id: string) => {
+    if (isHeaderHidden || isTabSwitching) return;
+
     if (leaveTimeoutRef.current) {
       clearTimeout(leaveTimeoutRef.current);
       leaveTimeoutRef.current = null;
@@ -268,24 +271,19 @@ export function SiteHeader() {
     }
     leaveTimeoutRef.current = setTimeout(() => {
       setActive(null);
-    }, 150);
+    }, 100);
   };
 
+  // Close dropdown whenever header is hidden & record reveal timestamp
   useEffect(() => {
-    setHeaderHidden(hidden);
-  }, [hidden, setHeaderHidden]);
+    if (isHeaderHidden) {
+      setActive(null);
+    } else {
+      headerRevealedTimeRef.current = Date.now();
+    }
+  }, [isHeaderHidden]);
 
   const { scrollY } = useScroll();
-
-  const [showCode, setShowCode] = useState(false);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setShowCode(prev => !prev);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
   const location = useLocation();
   const isHome = location.pathname === "/";
 
@@ -293,28 +291,42 @@ export function SiteHeader() {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const scrolled = latest > 60;
-    setIsScrolled(scrolled);
-    setHeaderScrolled(scrolled);
+    if (scrolled !== isScrolled) {
+      setIsScrolled(scrolled);
+      setHeaderScrolled(scrolled);
+    }
     
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const minScroll = isMobile ? 35 : 50;
     const delta = isMobile ? 4 : 8;
 
+    // While switching tabs via secondary nav, keep main header hidden during programmatic scroll
+    if (isTabSwitching) {
+      if (Math.abs(latest - lastScrollY.current) > 30) {
+        setIsTabSwitching(false);
+      } else {
+        setHeaderHidden(true);
+        lastScrollY.current = latest;
+        return;
+      }
+    }
+
+    // Near the top of the page, always show main header
     if (latest < minScroll) {
-      setHidden(false);
       setHeaderHidden(false);
       lastScrollY.current = latest;
       return;
     }
 
+    // Scroll Down -> Hide Header
     if (latest > lastScrollY.current + delta) {
       if (!moreOpen && !active) {
-        setHidden(true);
         setHeaderHidden(true);
       }
       lastScrollY.current = latest;
-    } else if (latest < lastScrollY.current - delta) {
-      setHidden(false);
+    } 
+    // Scroll Up -> Automatically reveal Header!
+    else if (latest < lastScrollY.current - delta) {
       setHeaderHidden(false);
       lastScrollY.current = latest;
     }
@@ -328,6 +340,19 @@ export function SiteHeader() {
     else document.body.classList.remove(cls);
     return () => document.body.classList.remove(cls);
   }, [activeItem, moreOpen]);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    if (!active) return;
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest("header")) {
+        setActive(null);
+      }
+    };
+    document.addEventListener("click", handleGlobalClick);
+    return () => document.removeEventListener("click", handleGlobalClick);
+  }, [active]);
 
   // Lock body scroll while the mobile sidebar is open.
   useEffect(() => {
@@ -360,12 +385,29 @@ export function SiteHeader() {
     <>
       <motion.header
         variants={{
-          visible: { y: "0%", opacity: 1 },
-          hidden: { y: "-100%", opacity: 0 }
+          visible: { 
+            y: "0%", 
+            opacity: 1,
+            transition: {
+              type: "spring",
+              stiffness: 380,
+              damping: 30,
+              mass: 0.8
+            }
+          },
+          hidden: { 
+            y: "-100%", 
+            opacity: 0,
+            transition: {
+              duration: 0.25,
+              ease: [0.32, 0, 0.67, 0]
+            }
+          }
         }}
-        animate={hidden ? "hidden" : "visible"}
-        transition={{ duration: 0.35, ease: APPLE_EASE }}
+        animate={isHeaderHidden ? "hidden" : "visible"}
         className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
+          isHeaderHidden ? "pointer-events-none" : ""
+        } ${
           active || moreOpen || isScrolled 
             ? "border-border/80 dark:border-white/10 bg-background/80 dark:bg-[#121214]/80 backdrop-blur-xl shadow-xs" 
             : "border-border/80 dark:border-white/10 bg-background/80 dark:bg-[#121214]/80 backdrop-blur-xl"
@@ -452,9 +494,9 @@ export function SiteHeader() {
           </div>
         </div>
 
-        {/* Apple-style dropdown overlay */}
+        {/* Apple-style dropdown menu */}
         <div 
-          className="absolute left-0 top-full hidden w-full lg:block"
+          className="absolute left-0 top-full hidden w-full lg:block z-20"
           onMouseEnter={() => {
             if (leaveTimeoutRef.current) {
               clearTimeout(leaveTimeoutRef.current);
@@ -463,26 +505,29 @@ export function SiteHeader() {
           }}
           onMouseLeave={handleMouseLeaveNav}
         >
-          <AnimatePresence initial={false}>
+          <AnimatePresence>
             {activeItem && (
               <motion.div
                 key="pane"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.28, ease: APPLE_EASE }}
-                className="bg-background/80 backdrop-blur-3xl overflow-hidden border-b border-foreground/10 w-full"
+                initial={{ opacity: 0, y: -12, scaleY: 0.96 }}
+                animate={{ opacity: 1, y: 0, scaleY: 1 }}
+                exit={{ opacity: 0, y: -8, scaleY: 0.98 }}
+                transition={{ duration: 0.24, ease: APPLE_EASE }}
+                style={{ transformOrigin: "top center" }}
+                className="msajce-dropdown-glass border-b border-black/10 dark:border-white/10 w-full shadow-2xl"
               >
                 <motion.div
                   key={activeItem.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="mx-auto grid max-w-[1440px] grid-cols-[0.8fr_2.2fr] xl:grid-cols-[0.5fr_2.5fr] gap-12 px-12 py-12"
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.2, ease: APPLE_EASE }}
+                  className="mx-auto grid max-w-[1440px] grid-cols-[0.8fr_2.2fr] xl:grid-cols-[0.5fr_2.5fr] gap-12 px-12 py-10"
                 >
                   <motion.div
-                    variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: APPLE_EASE } } }}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.22, delay: 0.03, ease: APPLE_EASE }}
                   >
                     <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Explore</p>
                     <Link to={activeItem.to} onClick={closeAll} className="text-3xl font-black leading-[0.95] text-primary transition-colors hover:text-primary/80">
@@ -495,10 +540,12 @@ export function SiteHeader() {
                           activeItem.cols!.length === 4 ? "grid-cols-2 xl:grid-cols-4" :
                             "grid-cols-2 lg:grid-cols-3"
                     }`}>
-                    {activeItem.cols!.map((col) => (
+                    {activeItem.cols!.map((col, idx) => (
                       <motion.div
                         key={col.title}
-                        variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: APPLE_EASE } } }}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.24, delay: 0.04 + idx * 0.03, ease: APPLE_EASE }}
                       >
                         <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-primary">{col.title}</h3>
                         <ul className="space-y-3">
@@ -517,6 +564,22 @@ export function SiteHeader() {
           </AnimatePresence>
         </div>
       </motion.header>
+
+      {/* Feather-light GPU-accelerated Apple-style page backdrop blur overlay */}
+      <AnimatePresence>
+        {activeItem && (
+          <motion.div
+            key="dropdown-backdrop-blur"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.24, ease: APPLE_EASE }}
+            onClick={() => setActive(null)}
+            className="fixed inset-0 top-[58px] md:top-[70px] z-[48] bg-black/25 dark:bg-black/50 backdrop-blur-md cursor-pointer"
+            style={{ willChange: "opacity" }}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Sidebar unified menu overlay */}
       <AnimatePresence>

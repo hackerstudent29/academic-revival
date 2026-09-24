@@ -17,6 +17,7 @@ import { Route as AriiaRouteImport } from './routes/ariia'
 import { Route as CampusLifeRouteImport } from './routes/campus-life'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreditsRouteImport } from './routes/credits'
+import { Route as CurriculumRouteImport } from './routes/curriculum'
 import { Route as CurriculumAndSyllabusRouteImport } from './routes/curriculum-and-syllabus'
 import { Route as HostelRouteImport } from './routes/hostel'
 import { Route as IncubationRouteImport } from './routes/incubation'
@@ -27,6 +28,9 @@ import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offered'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as SocialMediaRouteImport } from './routes/social-media'
+import { Route as SportsRouteImport } from './routes/sports'
+import { Route as SyllabusRouteImport } from './routes/syllabus'
+import { Route as TransportRouteImport } from './routes/transport'
 import { Route as AboutAccreditationsRouteImport } from './routes/about_.accreditations'
 import { Route as AboutGoverningCouncilRouteImport } from './routes/about_.governing-council'
 import { Route as AboutGroupInstitutionsRouteImport } from './routes/about_.group-institutions'
@@ -89,6 +93,11 @@ const CreditsRoute = CreditsRouteImport.update({
   path: '/credits',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CurriculumRoute = CurriculumRouteImport.update({
+  id: '/curriculum',
+  path: '/curriculum',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CurriculumAndSyllabusRoute = CurriculumAndSyllabusRouteImport.update({
   id: '/curriculum-and-syllabus',
   path: '/curriculum-and-syllabus',
@@ -137,6 +146,21 @@ const ResearchRoute = ResearchRouteImport.update({
 const SocialMediaRoute = SocialMediaRouteImport.update({
   id: '/social-media',
   path: '/social-media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SportsRoute = SportsRouteImport.update({
+  id: '/sports',
+  path: '/sports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SyllabusRoute = SyllabusRouteImport.update({
+  id: '/syllabus',
+  path: '/syllabus',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TransportRoute = TransportRouteImport.update({
+  id: '/transport',
+  path: '/transport',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutAccreditationsRoute = AboutAccreditationsRouteImport.update({
@@ -255,6 +279,7 @@ export interface FileRoutesByFullPath {
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
+  '/curriculum': typeof CurriculumRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
   '/hostel': typeof HostelRoute
   '/incubation': typeof IncubationRoute
@@ -265,6 +290,9 @@ export interface FileRoutesByFullPath {
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
+  '/sports': typeof SportsRoute
+  '/syllabus': typeof SyllabusRoute
+  '/transport': typeof TransportRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
   '/about/governing-council': typeof AboutGoverningCouncilRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -296,6 +324,7 @@ export interface FileRoutesByTo {
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
+  '/curriculum': typeof CurriculumRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
   '/hostel': typeof HostelRoute
   '/incubation': typeof IncubationRoute
@@ -305,6 +334,9 @@ export interface FileRoutesByTo {
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
+  '/sports': typeof SportsRoute
+  '/syllabus': typeof SyllabusRoute
+  '/transport': typeof TransportRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
   '/about/governing-council': typeof AboutGoverningCouncilRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -337,6 +369,7 @@ export interface FileRoutesById {
   '/campus-life': typeof CampusLifeRoute
   '/contact': typeof ContactRoute
   '/credits': typeof CreditsRoute
+  '/curriculum': typeof CurriculumRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
   '/hostel': typeof HostelRoute
   '/incubation': typeof IncubationRoute
@@ -347,6 +380,9 @@ export interface FileRoutesById {
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
+  '/sports': typeof SportsRoute
+  '/syllabus': typeof SyllabusRoute
+  '/transport': typeof TransportRoute
   '/about_/accreditations': typeof AboutAccreditationsRoute
   '/about_/governing-council': typeof AboutGoverningCouncilRoute
   '/about_/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -380,6 +416,7 @@ export interface FileRouteTypes {
     | '/campus-life'
     | '/contact'
     | '/credits'
+    | '/curriculum'
     | '/curriculum-and-syllabus'
     | '/hostel'
     | '/incubation'
@@ -390,6 +427,9 @@ export interface FileRouteTypes {
     | '/programmes-offered'
     | '/research'
     | '/social-media'
+    | '/sports'
+    | '/syllabus'
+    | '/transport'
     | '/about/accreditations'
     | '/about/governing-council'
     | '/about/group-institutions'
@@ -421,6 +461,7 @@ export interface FileRouteTypes {
     | '/campus-life'
     | '/contact'
     | '/credits'
+    | '/curriculum'
     | '/curriculum-and-syllabus'
     | '/hostel'
     | '/incubation'
@@ -430,6 +471,9 @@ export interface FileRouteTypes {
     | '/programmes-offered'
     | '/research'
     | '/social-media'
+    | '/sports'
+    | '/syllabus'
+    | '/transport'
     | '/about/accreditations'
     | '/about/governing-council'
     | '/about/group-institutions'
@@ -461,6 +505,7 @@ export interface FileRouteTypes {
     | '/campus-life'
     | '/contact'
     | '/credits'
+    | '/curriculum'
     | '/curriculum-and-syllabus'
     | '/hostel'
     | '/incubation'
@@ -471,6 +516,9 @@ export interface FileRouteTypes {
     | '/programmes-offered'
     | '/research'
     | '/social-media'
+    | '/sports'
+    | '/syllabus'
+    | '/transport'
     | '/about_/accreditations'
     | '/about_/governing-council'
     | '/about_/group-institutions'
@@ -503,6 +551,7 @@ export interface RootRouteChildren {
   CampusLifeRoute: typeof CampusLifeRoute
   ContactRoute: typeof ContactRoute
   CreditsRoute: typeof CreditsRoute
+  CurriculumRoute: typeof CurriculumRoute
   CurriculumAndSyllabusRoute: typeof CurriculumAndSyllabusRoute
   HostelRoute: typeof HostelRoute
   IncubationRoute: typeof IncubationRoute
@@ -513,6 +562,9 @@ export interface RootRouteChildren {
   ProgrammesOfferedRoute: typeof ProgrammesOfferedRoute
   ResearchRoute: typeof ResearchRoute
   SocialMediaRoute: typeof SocialMediaRoute
+  SportsRoute: typeof SportsRoute
+  SyllabusRoute: typeof SyllabusRoute
+  TransportRoute: typeof TransportRoute
   AboutAccreditationsRoute: typeof AboutAccreditationsRoute
   AboutGoverningCouncilRoute: typeof AboutGoverningCouncilRoute
   AboutGroupInstitutionsRoute: typeof AboutGroupInstitutionsRoute
@@ -592,6 +644,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreditsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/curriculum': {
+      id: '/curriculum'
+      path: '/curriculum'
+      fullPath: '/curriculum'
+      preLoaderRoute: typeof CurriculumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/curriculum-and-syllabus': {
       id: '/curriculum-and-syllabus'
       path: '/curriculum-and-syllabus'
@@ -660,6 +719,27 @@ declare module '@tanstack/react-router' {
       path: '/social-media'
       fullPath: '/social-media'
       preLoaderRoute: typeof SocialMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sports': {
+      id: '/sports'
+      path: '/sports'
+      fullPath: '/sports'
+      preLoaderRoute: typeof SportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/syllabus': {
+      id: '/syllabus'
+      path: '/syllabus'
+      fullPath: '/syllabus'
+      preLoaderRoute: typeof SyllabusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/transport': {
+      id: '/transport'
+      path: '/transport'
+      fullPath: '/transport'
+      preLoaderRoute: typeof TransportRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about_/accreditations': {
@@ -833,6 +913,7 @@ const rootRouteChildren: RootRouteChildren = {
   CampusLifeRoute: CampusLifeRoute,
   ContactRoute: ContactRoute,
   CreditsRoute: CreditsRoute,
+  CurriculumRoute: CurriculumRoute,
   CurriculumAndSyllabusRoute: CurriculumAndSyllabusRoute,
   HostelRoute: HostelRoute,
   IncubationRoute: IncubationRoute,
@@ -843,6 +924,9 @@ const rootRouteChildren: RootRouteChildren = {
   ProgrammesOfferedRoute: ProgrammesOfferedRoute,
   ResearchRoute: ResearchRoute,
   SocialMediaRoute: SocialMediaRoute,
+  SportsRoute: SportsRoute,
+  SyllabusRoute: SyllabusRoute,
+  TransportRoute: TransportRoute,
   AboutAccreditationsRoute: AboutAccreditationsRoute,
   AboutGoverningCouncilRoute: AboutGoverningCouncilRoute,
   AboutGroupInstitutionsRoute: AboutGroupInstitutionsRoute,

@@ -108,46 +108,85 @@ function Eye({
     };
   }, [blinkInterval]);
 
-  // Track mouse position and update pupil
+  // Cache eye center position to prevent forced reflow layout thrashing
+  const eyeCenterRef = React.useRef<{ x: number; y: number } | null>(null);
+
   React.useEffect(() => {
-    let animFrame: number;
-
-    const update = () => {
-      if (!eyeRef.current) {
-        animFrame = requestAnimationFrame(update);
-        return;
+    const updateCenter = () => {
+      if (eyeRef.current) {
+        const rect = eyeRef.current.getBoundingClientRect();
+        eyeCenterRef.current = {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2,
+        };
       }
-
-      const rect = eyeRef.current.getBoundingClientRect();
-      const eyeCenterX = rect.left + rect.width / 2;
-      const eyeCenterY = rect.top + rect.height / 2;
-
-      const dx = mouseX.current - eyeCenterX;
-      const dy = mouseY.current - eyeCenterY;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      const angle = Math.atan2(dy, dx);
-
-      const clampedDistance = Math.min(distance, maxOffset * 3);
-      const normalizedDistance = clampedDistance / (maxOffset * 3);
-      const offset = normalizedDistance * maxOffset;
-
-      x.set(Math.cos(angle) * offset);
-      y.set(Math.sin(angle) * offset);
-
-      // Reactive pupil dilation based on distance
-      if (reactivePupil) {
-        const proximityScale =
-          distance < 200
-            ? 1.3 - (distance / 200) * 0.3
-            : 0.85 + (Math.min(distance, 800) / 800) * 0.15;
-        setPupilScale(proximityScale);
-      }
-
-      animFrame = requestAnimationFrame(update);
     };
 
-    animFrame = requestAnimationFrame(update);
-    return () => cancelAnimationFrame(animFrame);
+    updateCenter();
+    window.addEventListener("resize", updateCenter, { passive: true });
+    window.addEventListener("scroll", updateCenter, { passive: true });
+    return () => {
+      window.removeEventListener("resize", updateCenter);
+      window.removeEventListener("scroll", updateCenter);
+    };
+  }, []);
+
+  // Track mouse position and update pupil smoothly on movement without continuous layout reflows
+  React.useEffect(() => {
+    let ticking = false;
+
+    const onMove = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (!eyeCenterRef.current) {
+            if (eyeRef.current) {
+              const rect = eyeRef.current.getBoundingClientRect();
+              eyeCenterRef.current = {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2,
+              };
+            } else {
+              ticking = false;
+              return;
+            }
+          }
+
+          const eyeCenterX = eyeCenterRef.current.x;
+          const eyeCenterY = eyeCenterRef.current.y;
+
+          const dx = mouseX.current - eyeCenterX;
+          const dy = mouseY.current - eyeCenterY;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const angle = Math.atan2(dy, dx);
+
+          const clampedDistance = Math.min(distance, maxOffset * 3);
+          const normalizedDistance = clampedDistance / (maxOffset * 3);
+          const offset = normalizedDistance * maxOffset;
+
+          x.set(Math.cos(angle) * offset);
+          y.set(Math.sin(angle) * offset);
+
+          // Reactive pupil dilation based on distance
+          if (reactivePupil) {
+            const proximityScale =
+              distance < 200
+                ? 1.3 - (distance / 200) * 0.3
+                : 0.85 + (Math.min(distance, 800) / 800) * 0.15;
+            setPupilScale(proximityScale);
+          }
+
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("touchmove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("touchmove", onMove);
+    };
   }, [x, y, maxOffset, reactivePupil, mouseX, mouseY]);
 
   // Rotation transform for iris detail
@@ -493,6 +532,7 @@ export function EyeTracking({
     const checkIdle = () => {
       if (mouseX.current === lastX && mouseY.current === lastY) {
         // Start idle micro-movements
+        if (idleInterval) clearInterval(idleInterval);
         idleInterval = setInterval(() => {
           const currentX = mouseX.current;
           const currentY = mouseY.current;

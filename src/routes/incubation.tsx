@@ -6,6 +6,7 @@ import {
   Plus,
 } from "lucide-react";
 import { SecondarySubNav } from "@/components/layout/SecondarySubNav";
+import { DataGridContainer } from "@/components/ui/data-grid-table";
 import { cn } from "@/lib/utils";
 
 // Standard Apple/luxury cubic-bezier ease-out curve for buttery smooth animations
@@ -96,17 +97,29 @@ function SiifContent() {
             </div>
           </div>
 
-          {/* Architectural Showcase */}
-          <div className="w-full pt-2">
-            <div className="relative w-full rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden shadow-xl bg-muted aspect-[16/9] sm:aspect-[21/9] max-h-[360px]">
-              <img
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1400&auto=format&fit=crop"
-                alt="MSAJCE Incubation Facility"
-                className="w-full h-full object-cover select-none pointer-events-none"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
-                }}
-              />
+          {/* Two Images Showcase (Clean 2-Column Grid) */}
+          <div className="w-full pt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+              <div className="relative rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden shadow-md bg-muted aspect-[16/10] max-h-[300px]">
+                <img
+                  src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop"
+                  alt="MSAJCE Incubation Facility"
+                  className="w-full h-full object-cover select-none pointer-events-none"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+                  }}
+                />
+              </div>
+              <div className="relative rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden shadow-md bg-muted aspect-[16/10] max-h-[300px]">
+                <img
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop"
+                  alt="Student Innovation and Startup Ecosystem"
+                  className="w-full h-full object-cover select-none pointer-events-none"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -405,46 +418,48 @@ function NispContent() {
             </div>
           </div>
 
-          {/* Thrust Areas Table */}
+          {/* Thrust Areas Table Component */}
           <div className="space-y-3.5 pt-2">
             <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-primary">
               THRUST AREAS
             </h3>
-            <div className="w-full overflow-x-auto">
-              <table className="w-full text-left border-collapse min-w-[580px]">
-                <thead>
-                  <tr className="border-b border-border/60">
-                    <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-16 sm:w-20">
-                      S.No
-                    </th>
-                    <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                      Thrust Area &amp; Focus Plan
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border/40">
-                  {[
-                    "To develop Strategies and governance for Promoting Innovation Entrepreneurship in the institute",
-                    "Creating Innovation Pipeline and Pathways for Entrepreneurs and Startups.",
-                    "Building Organizational Capacity, Human Resources and Incentive",
-                    "Collaboration, Co-creation, Business Relationship and knowledge Exchange",
-                    "Incubation & Pre-Incubation support at SIIF",
-                    "IP Ownership Rights for Technologies Developed at MSAJCE and SIIF.",
-                    "Pedagogy & Learning Interventions for Supporting Innovations & Start-ups",
-                    "Entrepreneurial Performance Impact Assessment",
-                  ].map((plan, idx) => (
-                    <tr key={idx} className="hover:bg-muted/30 transition-colors">
-                      <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-oswald font-bold text-primary text-sm sm:text-base align-middle whitespace-nowrap">
-                        {String(idx + 1).padStart(2, "0")}
-                      </td>
-                      <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-libre font-medium text-sm sm:text-base text-foreground align-middle leading-relaxed">
-                        {plan}
-                      </td>
+            <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+              <div className="overflow-x-auto bg-transparent">
+                <table className="w-full text-left border-collapse min-w-[580px] text-xs sm:text-sm">
+                  <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                    <tr>
+                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
+                        S.No
+                      </th>
+                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                        Thrust Area &amp; Focus Plan
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody className="divide-y divide-border/40 font-libre">
+                    {[
+                      "To develop Strategies and governance for Promoting Innovation Entrepreneurship in the institute",
+                      "Creating Innovation Pipeline and Pathways for Entrepreneurs and Startups.",
+                      "Building Organizational Capacity, Human Resources and Incentive",
+                      "Collaboration, Co-creation, Business Relationship and knowledge Exchange",
+                      "Incubation & Pre-Incubation support at SIIF",
+                      "IP Ownership Rights for Technologies Developed at MSAJCE and SIIF.",
+                      "Pedagogy & Learning Interventions for Supporting Innovations & Start-ups",
+                      "Entrepreneurial Performance Impact Assessment",
+                    ].map((plan, idx) => (
+                      <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                        <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap text-center align-middle w-16">
+                          {String(idx + 1).padStart(2, "0")}
+                        </td>
+                        <td className="px-4 py-3.5 font-libre font-medium text-xs sm:text-sm text-foreground align-middle leading-relaxed">
+                          {plan}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </DataGridContainer>
           </div>
         </div>
       </section>
@@ -471,52 +486,54 @@ function NispContent() {
           <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
             COMMITTEE MEMBERS
           </h3>
-          <div className="w-full overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[680px]">
-              <thead>
-                <tr className="border-b border-border/60">
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-16 sm:w-20">
-                    S.No
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Name
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Designation / Organization
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-48">
-                    Position
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border/40">
-                {[
-                  { name: "Dr. K.S. Srinivasan", desig: "Principal, Mohamed Sathak A.J. College of Engineering (MSAJCE), Chennai", pos: "President" },
-                  { name: "Mr. Prakadesh Subramanian", desig: "Strategic Partner, SIIF, Chennai", pos: "Incubation Coordinator" },
-                  { name: "Mr. Parvez Aalam", desig: "CEO, Crescent Innovation Incubation Council, Chennai", pos: "Incubation Coordinator" },
-                  { name: "Mr. Thiyagaraja Gupta", desig: "Deputy Controller of Patents and Designs", pos: "Patent Expert" },
-                  { name: "Ahamed Jamel", desig: "AMT IT consultant, 4A technology", pos: "Alumni Entrepreneur" },
-                  { name: "Abdur Rahim Salih", desig: "Director & CEO V5 Innovations Pvt,Ltd", pos: "Alumni Entrepreneur" },
-                  { name: "Asim Ali. L", desig: "CMO, Customer Labs", pos: "Alumni Entrepreneur" },
-                ].map((member, idx) => (
-                  <tr key={idx} className="hover:bg-muted/30 transition-colors">
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-oswald font-bold text-primary text-sm sm:text-base align-middle whitespace-nowrap">
-                      {String(idx + 1).padStart(2, "0")}
-                    </td>
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-libre font-bold text-foreground text-sm sm:text-base align-middle whitespace-nowrap">
-                      {member.name}
-                    </td>
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-libre font-medium text-xs sm:text-sm text-foreground align-middle">
-                      {member.desig}
-                    </td>
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-libre font-semibold text-xs sm:text-sm text-foreground align-middle whitespace-nowrap">
-                      {member.pos}
-                    </td>
+          <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+            <div className="overflow-x-auto bg-transparent">
+              <table className="w-full text-left border-collapse min-w-[680px] text-xs sm:text-sm">
+                <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                  <tr>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
+                      S.No
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[180px]">
+                      Name
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                      Designation / Organization
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-44 text-right">
+                      Position
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-border/40 font-libre">
+                  {[
+                    { name: "Dr. K.S. Srinivasan", desig: "Principal, Mohamed Sathak A.J. College of Engineering (MSAJCE), Chennai", pos: "President" },
+                    { name: "Mr. Prakadesh Subramanian", desig: "Strategic Partner, SIIF, Chennai", pos: "Incubation Coordinator" },
+                    { name: "Mr. Parvez Aalam", desig: "CEO, Crescent Innovation Incubation Council, Chennai", pos: "Incubation Coordinator" },
+                    { name: "Mr. Thiyagaraja Gupta", desig: "Deputy Controller of Patents and Designs", pos: "Patent Expert" },
+                    { name: "Ahamed Jamel", desig: "AMT IT consultant, 4A technology", pos: "Alumni Entrepreneur" },
+                    { name: "Abdur Rahim Salih", desig: "Director & CEO V5 Innovations Pvt,Ltd", pos: "Alumni Entrepreneur" },
+                    { name: "Asim Ali. L", desig: "CMO, Customer Labs", pos: "Alumni Entrepreneur" },
+                  ].map((member, idx) => (
+                    <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                      <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap text-center align-middle w-16">
+                        {String(idx + 1).padStart(2, "0")}
+                      </td>
+                      <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm whitespace-nowrap align-middle">
+                        {member.name}
+                      </td>
+                      <td className="px-4 py-3.5 font-libre font-medium text-xs sm:text-sm text-foreground align-middle">
+                        {member.desig}
+                      </td>
+                      <td className="px-4 py-3.5 font-libre font-semibold text-xs sm:text-sm text-primary align-middle whitespace-nowrap text-right">
+                        {member.pos}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </DataGridContainer>
         </div>
       </section>
 
@@ -690,59 +707,61 @@ function NispContent() {
           <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
             TENTATIVE PLAN FOR THE NEXT 5 YEARS
           </h3>
-          <div className="w-full overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[680px]">
-              <thead>
-                <tr className="border-b border-border/60">
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-16 sm:w-20">
-                    S.No
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Activity &amp; Focus Initiative
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-44">
-                    Frequency
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border/40">
-                {[
-                  { act: "One Day Workshop on “Entrepreneurship and Innovation as Career Opportunity”", freq: "One per Year" },
-                  { act: "One Day Workshop on Problem Solving/Design Thinking/Ideation Workshop/ Campus Hackathon etc", freq: "One per Year" },
-                  { act: "Field/Exposure Visit to Village/Society /School/Industry/Market – Identity real Life Problem", freq: "One per Year" },
-                  { act: "Special Talk on My Story - Entrepreneur’s Life & Crossroad – Motivational Speak - To be Share by Entrepreneurs", freq: "Two per year" },
-                  { act: "Product Development Phases - Story Telling - (Innovators in Campus)", freq: "Two per year" },
-                  { act: "National Conference/workshop on Start-up/Social Innovation & Entrepreneurship", freq: "One per Year" },
-                  { act: "Demo Day – Exhibition Cum Demo for PoCs & Mentorship Session for Innovators (or) Student Entrepreneurs", freq: "Two per year" },
-                  { act: "Internship at Innovation & Start-up Centre/Startups/Incubation Unit etc. during Semester Break", freq: "One per Year" },
-                  { act: "Field/Exposure Visit to Incubation Unit/Patent Facilitation Centre/Technology Transfer Centre", freq: "One per Year" },
-                  { act: "Business Plan Contest", freq: "One per Year" },
-                  { act: "One Day Awareness/Mentoring Session on IPR & IP Management for Innovation and Start-ups", freq: "One per Year" },
-                  { act: "Field/Exposure Visit to Design Centre/Makers’ Space/Fab Lab/Prototype Lab/Tinkering Lab etc.", freq: "One per Year" },
-                  { act: "Seminar on Accelerator/Incubation - Opportunity for Student Faculty - Early-Stage Entrepreneurs", freq: "One per Year" },
-                  { act: "Seminar on Understanding Angel and Venture Capital Funding - What is there for Early-Stage Innovator & Entrepreneurs", freq: "One per Year" },
-                  { act: "Boot camp for Innovation product development", freq: "One per Year" },
-                  { act: "Innovation Day Celebrations", freq: "One per Year" },
-                  { act: "National Science Day", freq: "One per Year" },
-                  { act: "Workshop Funding Opportunities for Innovation and Entrepreneurship Development", freq: "One per Year" },
-                  { act: "SATHAKATHON-A National Level 24Hrs - Hackathon", freq: "One per Year" },
-                  { act: "Short Term Training course on Innovation /Start-up & Entrepreneurship", freq: "One per Year" },
-                ].map((item, idx) => (
-                  <tr key={idx} className="hover:bg-muted/30 transition-colors">
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-oswald font-bold text-primary text-sm sm:text-base align-middle whitespace-nowrap">
-                      {String(idx + 1).padStart(2, "0")}
-                    </td>
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-libre font-medium text-sm sm:text-base text-foreground align-middle leading-relaxed">
-                      {item.act}
-                    </td>
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-libre font-medium text-xs sm:text-sm text-foreground align-middle whitespace-nowrap">
-                      {item.freq}
-                    </td>
+          <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+            <div className="overflow-x-auto bg-transparent">
+              <table className="w-full text-left border-collapse min-w-[680px] text-xs sm:text-sm">
+                <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                  <tr>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
+                      S.No
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                      Activity &amp; Focus Initiative
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-44 text-right">
+                      Frequency
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-border/40 font-libre">
+                  {[
+                    { act: "One Day Workshop on “Entrepreneurship and Innovation as Career Opportunity”", freq: "One per Year" },
+                    { act: "One Day Workshop on Problem Solving/Design Thinking/Ideation Workshop/ Campus Hackathon etc", freq: "One per Year" },
+                    { act: "Field/Exposure Visit to Village/Society /School/Industry/Market – Identity real Life Problem", freq: "One per Year" },
+                    { act: "Special Talk on My Story - Entrepreneur’s Life & Crossroad – Motivational Speak - To be Share by Entrepreneurs", freq: "Two per year" },
+                    { act: "Product Development Phases - Story Telling - (Innovators in Campus)", freq: "Two per year" },
+                    { act: "National Conference/workshop on Start-up/Social Innovation & Entrepreneurship", freq: "One per Year" },
+                    { act: "Demo Day – Exhibition Cum Demo for PoCs & Mentorship Session for Innovators (or) Student Entrepreneurs", freq: "Two per year" },
+                    { act: "Internship at Innovation & Start-up Centre/Startups/Incubation Unit etc. during Semester Break", freq: "One per Year" },
+                    { act: "Field/Exposure Visit to Incubation Unit/Patent Facilitation Centre/Technology Transfer Centre", freq: "One per Year" },
+                    { act: "Business Plan Contest", freq: "One per Year" },
+                    { act: "One Day Awareness/Mentoring Session on IPR & IP Management for Innovation and Start-ups", freq: "One per Year" },
+                    { act: "Field/Exposure Visit to Design Centre/Makers’ Space/Fab Lab/Prototype Lab/Tinkering Lab etc.", freq: "One per Year" },
+                    { act: "Seminar on Accelerator/Incubation - Opportunity for Student Faculty - Early-Stage Entrepreneurs", freq: "One per Year" },
+                    { act: "Seminar on Understanding Angel and Venture Capital Funding - What is there for Early-Stage Innovator & Entrepreneurs", freq: "One per Year" },
+                    { act: "Boot camp for Innovation product development", freq: "One per Year" },
+                    { act: "Innovation Day Celebrations", freq: "One per Year" },
+                    { act: "National Science Day", freq: "One per Year" },
+                    { act: "Workshop Funding Opportunities for Innovation and Entrepreneurship Development", freq: "One per Year" },
+                    { act: "SATHAKATHON-A National Level 24Hrs - Hackathon", freq: "One per Year" },
+                    { act: "Short Term Training course on Innovation /Start-up & Entrepreneurship", freq: "One per Year" },
+                  ].map((item, idx) => (
+                    <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                      <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap text-center align-middle w-16">
+                        {String(idx + 1).padStart(2, "0")}
+                      </td>
+                      <td className="px-4 py-3.5 font-libre font-medium text-xs sm:text-sm text-foreground align-middle leading-relaxed">
+                        {item.act}
+                      </td>
+                      <td className="px-4 py-3.5 font-libre font-semibold text-xs sm:text-sm text-primary align-middle whitespace-nowrap text-right">
+                        {item.freq}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </DataGridContainer>
         </div>
       </section>
     </motion.div>
@@ -808,19 +827,7 @@ function EdcContent() {
             ))}
           </div>
 
-          {/* Architectural Showcase */}
-          <div className="w-full pt-2">
-            <div className="relative w-full rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden shadow-xl bg-muted aspect-[16/9] sm:aspect-[21/9] max-h-[360px]">
-              <img
-                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1400&auto=format&fit=crop"
-                alt="Entrepreneurship Development"
-                className="w-full h-full object-cover select-none pointer-events-none"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
-                }}
-              />
-            </div>
-          </div>
+          {/* End of Roles and Responsibilities */}
         </div>
       </section>
 
@@ -840,56 +847,58 @@ function EdcContent() {
         </svg>
       </div>
 
-      {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — Core Members (Clean Pure Text Role, No Badges) */}
+      {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — Core Members */}
       <section className="py-6 sm:py-8 md:py-10 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors pb-12 sm:pb-16">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-4 sm:space-y-5">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
             CORE MEMBERS
           </h3>
 
-          <div className="w-full overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[580px]">
-              <thead>
-                <tr className="border-b border-border/60">
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-16 sm:w-20">
-                    S.No
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Faculty Name
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Department
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-48">
-                    Role
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border/40">
-                {[
-                  { name: "Mr. S.V. Vinodh", role: "Head EDC & HEC", dept: "EEE" },
-                  { name: "Mrs. N. Kavitha", role: "Member", dept: "MBA" },
-                  { name: "Mr. Ajin Sijo John", role: "Member", dept: "MECH" },
-                  { name: "Mrs. N. Selvi", role: "Member", dept: "Training" },
-                ].map((member, idx) => (
-                  <tr key={idx} className="hover:bg-muted/30 transition-colors">
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-oswald font-bold text-primary text-sm sm:text-base align-middle whitespace-nowrap">
-                      {String(idx + 1).padStart(2, "0")}
-                    </td>
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-libre font-bold text-foreground text-sm sm:text-base align-middle whitespace-nowrap">
-                      {member.name}
-                    </td>
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-libre font-medium text-xs sm:text-sm text-foreground align-middle">
-                      {member.dept}
-                    </td>
-                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-libre font-semibold text-xs sm:text-sm text-foreground align-middle whitespace-nowrap">
-                      {member.role}
-                    </td>
+          <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+            <div className="overflow-x-auto bg-transparent">
+              <table className="w-full text-left border-collapse min-w-[580px] text-xs sm:text-sm">
+                <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                  <tr>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
+                      S.No
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[180px]">
+                      Faculty Name
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                      Department
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-44 text-right">
+                      Role
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-border/40 font-libre">
+                  {[
+                    { name: "Mr. S.V. Vinodh", role: "Head EDC & HEC", dept: "EEE" },
+                    { name: "Mrs. N. Kavitha", role: "Member", dept: "MBA" },
+                    { name: "Mr. Ajin Sijo John", role: "Member", dept: "MECH" },
+                    { name: "Mrs. N. Selvi", role: "Member", dept: "Training" },
+                  ].map((member, idx) => (
+                    <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                      <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap text-center align-middle w-16">
+                        {String(idx + 1).padStart(2, "0")}
+                      </td>
+                      <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm whitespace-nowrap align-middle">
+                        {member.name}
+                      </td>
+                      <td className="px-4 py-3.5 font-libre font-medium text-xs sm:text-sm text-foreground align-middle">
+                        {member.dept}
+                      </td>
+                      <td className="px-4 py-3.5 font-libre font-semibold text-xs sm:text-sm text-primary align-middle whitespace-nowrap text-right">
+                        {member.role}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </DataGridContainer>
         </div>
       </section>
     </motion.div>
@@ -908,45 +917,35 @@ function IicContent() {
       transition={{ duration: 0.45, ease: smoothEase }}
       className="w-full"
     >
-      {/* SECTION 1: Canvas A (White / #121214) — Council Introduction (Generous Top Breathing Room) */}
-      <section className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-6 sm:pb-8 md:pb-10 bg-white dark:bg-[#121214] transition-colors">
-        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-5 sm:space-y-7">
-          <div className="space-y-1.5">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              INSTITUTION INNOVATION COUNCIL
-            </h2>
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
-              IIC-MSAJCE
-            </span>
+      {/* SECTION 1: Canvas A (White / #121214) — Council Introduction (Overview Style, Full Width with Container Paddings) */}
+      <section className="pt-8 sm:pt-12 md:pt-14 pb-6 sm:pb-8 md:pb-10 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-7">
+          <div className="border-b border-border/80 pb-3 sm:pb-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+            <div>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                INSTITUTION INNOVATION COUNCIL
+              </h2>
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-muted-foreground mt-1 block">
+                IIC-MSAJCE
+              </span>
+            </div>
           </div>
 
-          <div className="space-y-3.5 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed max-w-4xl">
-            <p>
+          <div className="w-full space-y-4 sm:space-y-5 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+            <p className="w-full">
               Institution Innovation Council (IIC-MSAJCE) had been constituted in our college as per the guidelines of the Ministry of Human Resource Development Innovation Cell (MIC).
             </p>
-            <div className="border-l-4 border-primary pl-4 py-1">
-              <p className="text-foreground/90 font-medium">
+            <div className="w-full border-l-4 border-primary pl-4 sm:pl-6 py-3 sm:py-3.5 bg-foreground/[0.02] dark:bg-white/[0.02] rounded-r-lg">
+              <p className="text-foreground/90 font-libre font-medium leading-relaxed">
                 Ministry of Human Resource Development (MHRD), Govt. of India has established 'MHRD's Innovation Cell (MIC)' to systematically foster the culture of Innovation amongst all Higher Education Institutions (HEIs). The primary mandate of MIC is to encourage, inspire and nurture young students by supporting them to work with new ideas and transform them into prototypes while they are in their formative years.
               </p>
             </div>
-            <p>
+            <p className="w-full">
               MIC has envisioned encouraging creation of 'Institution's Innovation Council (IICs)' across selected HEIs. A network of these IICs will be established to promote innovation in the Institution through multitudinous modes leading to an innovation promotion eco-system in the campuses.
             </p>
           </div>
 
-          {/* Architectural Showcase */}
-          <div className="w-full pt-2">
-            <div className="relative w-full rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs overflow-hidden shadow-xl bg-muted aspect-[16/9] sm:aspect-[21/9] max-h-[360px]">
-              <img
-                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1400&auto=format&fit=crop"
-                alt="MSAJCE Institution Innovation Council"
-                className="w-full h-full object-cover select-none pointer-events-none"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
-                }}
-              />
-            </div>
-          </div>
+          {/* End of IIC Introduction */}
         </div>
       </section>
 
@@ -1125,14 +1124,11 @@ function IicContent() {
             IIC CERTIFICATES
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               { src: "/images/iic/cert-2023-24.jpg", year: "2023–24", stars: 3 },
               { src: "/images/iic/cert-2022-23.jpg", year: "2022–23", stars: 2 },
               { src: "/images/iic/cert-2020-21.jpg", year: "2020–21", stars: 2 },
-              { src: "/images/iic/cert-2019-20-activity.png", year: "2019–20 (Activity)", stars: 1 },
-              { src: "/images/iic/cert-2019-20-establishment.png", year: "2019–20 (Establishment)", stars: 5 },
-              { src: "/images/iic/cert-nic-2020.png", year: "NIC 2020 — Finalist", stars: 4 },
             ].map((item, i) => (
               <div
                 key={i}
@@ -1198,8 +1194,7 @@ export function IncubationPage() {
   const scrollToContent = () => {
     const el = document.getElementById("incubation-main-content");
     if (el) {
-      // Header (~58px/70px) + SubNav (~38px/44px) = ~105px on mobile, ~120px on desktop
-      const headerOffset = typeof window !== "undefined" && window.innerWidth < 768 ? 105 : 120;
+      const headerOffset = typeof window !== "undefined" && window.innerWidth < 768 ? 44 : 52;
       const elementTop = el.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({
         top: Math.max(0, elementTop - headerOffset),
@@ -1210,9 +1205,13 @@ export function IncubationPage() {
 
   const handleTabChange = (tabId: string) => {
     setActiveSection(tabId);
-    setTimeout(() => {
-      scrollToContent();
-    }, 40);
+    if (tabId === "siif") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      setTimeout(() => {
+        scrollToContent();
+      }, 40);
+    }
   };
 
   const handleTitleClick = () => {

@@ -152,10 +152,10 @@ function RootComponent() {
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <div className="bg-background text-foreground max-w-full w-full min-h-screen flex flex-col">
           <div 
-            className="site-main-canvas relative z-10 isolate flex min-h-screen flex-col shadow-2xl w-full bg-background"
+            className="site-main-canvas relative z-10 flex min-h-screen flex-col shadow-2xl w-full bg-background"
           >
             {!isCreditsPage && <SiteHeader />}
-            <div className="msajce-page-blur flex flex-1 flex-col">
+            <div className="flex flex-1 flex-col">
               <Outlet />
             </div>
           </div>

@@ -1202,9 +1202,9 @@ function CoursePage() {
     requestAnimationFrame(() => {
       const contentContainer = document.getElementById('department-main-content');
       if (contentContainer) {
-        const yOffset = -120;
-        const y = contentContainer.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        const headerOffset = typeof window !== 'undefined' && window.innerWidth < 768 ? 44 : 52;
+        const y = contentContainer.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
       }
     });
   };
@@ -1637,7 +1637,7 @@ function CoursePage() {
                         </h2>
                       </div>
                       <Link
-                        to="/academics"
+                        to="/curriculum"
                         className="group relative overflow-hidden inline-flex items-center gap-2 px-4 py-2 border border-stone-300 dark:border-neutral-700 bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-white text-xs font-bold font-oswald uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs shadow-xs select-none transition-all duration-300 shrink-0 w-fit"
                       >
                         {/* Liquid Ocean Wave Fill Overlay */}

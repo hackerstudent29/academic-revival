@@ -3,6 +3,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Reveal } from "@/components/motion";
 import { motion, AnimatePresence } from "framer-motion";
 import { SecondarySubNav } from "@/components/layout/SecondarySubNav";
+import { DataGridContainer } from "@/components/ui/data-grid-table";
 import { 
   BookOpen, 
   Lightbulb, 
@@ -183,6 +184,14 @@ const officialActivities = [
   { id: 26, name: "Internal Hackathon to select team for Smart India Hackathon (SIH)", type: "Self-Driven Activity" }
 ];
 
+const iicOverviewPoints = [
+  { title: "Local Innovation Ecosystem", desc: "Create a vibrant local innovation ecosystem within the campus across all engineering disciplines." },
+  { title: "Start-up Support Mechanism", desc: "Build a robust start-up supporting mechanism and pre-incubation infrastructure in Higher Education Institutions." },
+  { title: "Atal Ranking Preparation", desc: "Prepare institute for Atal Ranking of Institutions on Innovation Achievements Framework (ARIIA)." },
+  { title: "Idea Pre-incubation", desc: "Establish functional ecosystem for scouting innovative ideas and pre-incubating student prototypes." },
+  { title: "Cognitive Ability Development", desc: "Develop cognitive ability and problem-solving skills for technology students through national hackathons." },
+];
+
 const committeeMembers = [
   { role: "Head of Institution", name: "Dr. K.S. Srinivasan", designation: "Principal, MSAJCE" },
   { role: "President, IIC", name: "Dr. B. Janarthanan", designation: "Professor & Head - Research, Dept of Mechanical, MSAJCE" },
@@ -258,6 +267,42 @@ const kpiEvaluationData = [
   }
 ];
 
+// --- ORGANIC WAVE DIVIDERS ---
+
+const WaveAB = () => (
+  <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+    <svg
+      viewBox="0 0 1440 72"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-full h-8 sm:h-12 md:h-16 lg:h-20 block preserve-3d"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+        className="fill-[#F3F3F2] dark:fill-[#18181B]"
+      />
+    </svg>
+  </div>
+);
+
+const WaveBA = () => (
+  <div className="w-full overflow-hidden leading-none select-none bg-[#F3F3F2] dark:bg-[#18181B]">
+    <svg
+      viewBox="0 0 1440 72"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-full h-8 sm:h-12 md:h-16 lg:h-20 block preserve-3d"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+        className="fill-white dark:fill-[#121214]"
+      />
+    </svg>
+  </div>
+);
+
 // --- UNIFIED RESEARCH PAGE COMPONENT ---
 
 function UnifiedResearchPage() {
@@ -270,7 +315,7 @@ function UnifiedResearchPage() {
   const scrollToContent = () => {
     const contentContainer = document.getElementById("research-main-content");
     if (contentContainer) {
-      const headerOffset = typeof window !== 'undefined' && window.innerWidth < 768 ? 80 : 110;
+      const headerOffset = typeof window !== 'undefined' && window.innerWidth < 768 ? 44 : 52;
       const elementPosition = contentContainer.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
       window.scrollTo({
@@ -284,9 +329,13 @@ function UnifiedResearchPage() {
     setSearchTerm("");
     navigate({ search: { tab: tabId } });
 
-    setTimeout(() => {
-      scrollToContent();
-    }, 60);
+    if (tabId === "overview") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      setTimeout(() => {
+        scrollToContent();
+      }, 50);
+    }
   };
 
   // Automatically scroll to content if visiting a sub-tab deep link directly
@@ -318,10 +367,13 @@ function UnifiedResearchPage() {
     c.number.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const currentTabLabel = tab === "overview" 
+    ? "RESEARCH & INNOVATION" 
+    : (subNavTabs.find((t) => t.id === tab)?.label ?? "RESEARCH & INNOVATION");
+
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans max-w-full">
-      
-      {/* SECONDARY SUB-NAV HEADER (Using Official Department SecondarySubNav Component) */}
+    <main className="bg-white dark:bg-[#121214] text-foreground font-libre antialiased min-h-screen flex flex-col selection:bg-primary selection:text-white">
+      {/* Sticky Secondary Navigation */}
       <SecondarySubNav
         title="RESEARCH & INNOVATION"
         tabs={subNavTabs}
@@ -333,777 +385,866 @@ function UnifiedResearchPage() {
         }}
       />
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key="research-page-container"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0, transition: { delay: 0.05, duration: 0.3 } }}
-          exit={{ opacity: 0, transition: { duration: 0.12 } }}
-          className="w-full flex flex-col max-w-full"
-        >
+      <div className="flex-1 pt-0 md:pt-1">
+        {/* HERO BANNER: Modeled exactly on Placement Page Recruiters & Tiers Showcase */}
+        <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/images/accreditations_campus.jpg"
+              alt="MSAJCE Research & Innovation Ecosystem"
+              className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none rounded-none"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = "/images/eligibility_hero.jpg";
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
+          </div>
 
-          {/* Research Page Hero Section (Full-Screen Edge-to-Edge Layout with #212121 / #1C1C1E Background & Down-to-Up Filling Buttons) */}
-          <section className="w-full bg-[#212121] dark:bg-[#121214] text-white pt-10 pb-12 border-b border-neutral-800 relative overflow-hidden min-h-[calc(100vh-110px)] flex flex-col justify-center">
-            <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-between flex-1 py-4">
-              
-              {/* Top Section: Split Layout (Headline & Description vs Rectangular Image Showcase) */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto">
-                
-                {/* Left Column (Headline & Pitch) */}
-                <div className="lg:col-span-7 flex flex-col justify-center">
-                  <motion.h1 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase text-white font-oswald tracking-tight leading-[1.05] mb-4"
-                  >
-                    Research &amp; Innovation
-                  </motion.h1>
-
-                  <motion.p 
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-sm sm:text-base md:text-lg text-neutral-300 font-sans leading-relaxed max-w-2xl mb-8"
-                  >
-                    Pioneering interdisciplinary research, patents, books, MoE Institution's Innovation Council (IIC), and NISP startup incubation at Mohamed Sathak A.J. College of Engineering.
-                  </motion.p>
-
-                  {/* Liquid Ocean Wave Filling CTA Button */}
-                  <motion.div 
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.55, delay: 0.35 }}
-                    className="flex flex-wrap gap-4"
-                  >
-                    <button
-                      onClick={() => scrollToContent()}
-                      className="group relative overflow-hidden bg-neutral-900/80 text-white font-bold font-oswald text-xs uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs px-7 py-3 shadow-md border border-neutral-600 transition-all cursor-pointer select-none inline-flex items-center"
-                    >
-                      {/* Liquid Ocean Wave Fill Overlay */}
-                      <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                        <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                          {/* Ocean Wave Crest SVG (Primary) */}
-                          <span className="absolute -top-3.5 left-0 w-[200%] h-4 pointer-events-none block">
-                            <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                              <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,-20 1200,40 L1200,120 L0,120 Z" />
-                            </svg>
-                          </span>
-                          {/* Secondary Depth Layer Wave */}
-                          <span className="absolute -top-4 left-0 w-[200%] h-5 opacity-40 pointer-events-none block">
-                            <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                              <path d="M0,30 C200,-30 400,90 600,10 C800,-40 1000,70 1200,20 L1200,120 L0,120 Z" />
-                            </svg>
-                          </span>
-                        </span>
-                      </span>
-                      
-                      {/* Button Content */}
-                      <span className="relative z-10 flex items-center justify-center gap-2 text-white group-hover:text-white transition-colors duration-300 font-bold">
-                        <span>Explore Research &amp; Innovation</span>
-                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </span>
-                    </button>
-                  </motion.div>
-                </div>
-
-                {/* Right Column (Rectangular Showcase Card) */}
-                <div className="lg:col-span-5 w-full">
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.7, delay: 0.15 }}
-                    className="w-full max-w-[520px] lg:ml-auto aspect-[16/10] rounded-sm overflow-hidden border border-neutral-700 bg-neutral-800 shadow-2xl relative"
-                  >
-                    <img 
-                      src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2000&auto=format&fit=crop" 
-                      alt="Research & Innovation Cell MSAJCE" 
-                      className="w-full h-full object-cover block"
-                    />
-                  </motion.div>
-                </div>
-
-              </div>
-
-              {/* Bottom Section: Metadata Specifications Grid */}
-              <motion.div 
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="border-t border-neutral-700/80 pt-6 mt-8"
-              >
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 sm:gap-6 text-[12.5px] mb-4">
-                  <div>
-                    <div className="text-[10px] sm:text-[11px] font-bold font-oswald uppercase tracking-wider text-neutral-400 mb-0.5">Ph.D. Supervisors</div>
-                    <div className="text-xs sm:text-sm font-bold font-sans text-white">7 Approved</div>
-                  </div>
-
-                  <div>
-                    <div className="text-[10px] sm:text-[11px] font-bold font-oswald uppercase tracking-wider text-neutral-400 mb-0.5">Patents &amp; IPR</div>
-                    <div className="text-xs sm:text-sm font-bold font-sans text-white">23+ Published</div>
-                  </div>
-
-                  <div>
-                    <div className="text-[10px] sm:text-[11px] font-bold font-oswald uppercase tracking-wider text-neutral-400 mb-0.5">Publications</div>
-                    <div className="text-xs sm:text-sm font-bold font-sans text-white">31+ Books &amp; Ch.</div>
-                  </div>
-
-                  <div>
-                    <div className="text-[10px] sm:text-[11px] font-bold font-oswald uppercase tracking-wider text-neutral-400 mb-0.5">MoE Rating</div>
-                    <div className="text-xs sm:text-sm font-bold font-sans text-white">4-Star IIC Rating</div>
-                  </div>
-
-                  <div>
-                    <div className="text-[10px] sm:text-[11px] font-bold font-oswald uppercase tracking-wider text-neutral-400 mb-0.5">Startup Incubation</div>
-                    <div className="text-xs sm:text-sm font-bold font-sans text-white">NISP &amp; SIIF</div>
-                  </div>
-
-                  <div>
-                    <div className="text-[10px] sm:text-[11px] font-bold font-oswald uppercase tracking-wider text-neutral-400 mb-0.5">Copyrights</div>
-                    <div className="text-xs sm:text-sm font-bold font-sans text-white">10 Registered</div>
-                  </div>
-                </div>
-
-                <p className="text-[11px] text-neutral-400 italic font-sans pt-2 border-t border-neutral-800">
-                  Recognized Research Centre, Mohamed Sathak A.J. College of Engineering.
-                </p>
-              </motion.div>
-
+          <div className="relative z-10 mx-auto max-w-[1440px] w-full px-3.5 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 md:pt-24 pb-0">
+            <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+              <AnimatePresence mode="wait">
+                <motion.h1
+                  key={currentTabLabel}
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none"
+                >
+                  {currentTabLabel}
+                </motion.h1>
+              </AnimatePresence>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Main Content Layout Container */}
-          <div id="research-main-content" className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-4 sm:pt-6 md:pt-8 pb-16 sm:pb-24 overflow-x-hidden">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={tab}
-                initial={{ opacity: 0, y: 20, scale: 0.98, filter: "blur(4px)" }}
-                animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -10, scale: 0.99, filter: "blur(2px)" }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full max-w-full"
-              >
-
-      {/* --- TAB 1: OVERVIEW (R&D CELL) --- */}
-      {tab === "overview" && (
-        <div className="animate-in fade-in duration-300">
-          
-          {/* Key Metrics Stats Counter */}
-          <section className="px-4 py-12 md:px-8 border-b border-foreground/10 bg-foreground/[0.02]">
-            <div className="mx-auto max-w-[1200px]">
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                {researchStats.map((stat) => (
-                  <Reveal key={stat.label} variant="rise">
-                    <div className="border border-foreground/15 bg-card p-6 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs shadow-sm flex flex-col justify-between h-full">
-                      <div className="w-10 h-10 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-foreground/10 flex items-center justify-center mb-4">
-                        <stat.icon className="w-5 h-5 text-foreground" />
+        {/* Tab Content Target Anchor */}
+        <div id="research-main-content">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={tab}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full"
+            >
+              {/* ========================================================= */}
+              {/* TAB 1: OVERVIEW (R&D CELL) */}
+              {/* ========================================================= */}
+              {tab === "overview" && (
+                <div className="w-full">
+                  {/* Section A: Research at a Glance (Stats) */}
+                  <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          RESEARCH AT A GLANCE
+                        </h2>
                       </div>
-                      <div>
-                        <div className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald mb-1">
-                          {stat.value}
-                        </div>
-                        <div className="text-xs font-bold uppercase tracking-wider text-foreground font-oswald">
-                          {stat.label}
-                        </div>
-                      </div>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Objectives Section */}
-          <section className="px-4 py-16 md:px-8 border-b border-foreground/10">
-            <div className="mx-auto max-w-[1200px]">
-              <div className="mb-12 border-b border-foreground/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <Reveal variant="rise">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                    Research Cell Objectives
-                  </h2>
-                </Reveal>
-                <span className="text-xs font-bold uppercase tracking-widest text-foreground font-oswald">
-                  Core R&amp;D Mission &amp; Goals
-                </span>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                {objectivesList.map((obj, idx) => (
-                  <Reveal key={idx} variant="rise" delay={idx * 0.04}>
-                    <div className="border border-foreground/15 bg-card p-5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs flex items-start gap-3 h-full">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <p className="text-xs font-medium text-muted-foreground leading-relaxed font-sans">
-                        {obj}
+                      <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed max-w-4xl mb-8 sm:mb-10">
+                        The Research &amp; Development Cell at Mohamed Sathak A.J. College of Engineering fosters an advanced interdisciplinary ecosystem dedicated to innovation, sponsored research, intellectual property generation, and Anna University approved Ph.D. supervision.
                       </p>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </section>
 
-          {/* Anna University Recognized Ph.D. Supervisors Table */}
-          <section className="px-4 py-16 md:px-8 bg-foreground/[0.02] border-b border-foreground/10">
-            <div className="mx-auto max-w-[1200px]">
-              <div className="mb-10 border-b border-foreground/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <Reveal variant="rise">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                    Anna University Recognized Ph.D. Supervisors
-                  </h2>
-                </Reveal>
-                <span className="text-xs font-bold uppercase tracking-wider text-foreground font-oswald">
-                  Approved Research Supervisors
-                </span>
-              </div>
-
-              <div className="overflow-x-auto border border-foreground/15 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-card shadow-sm">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="bg-foreground/10 border-b border-foreground/15 text-xs font-black uppercase font-oswald text-foreground">
-                      <th className="py-3.5 px-4">S.No</th>
-                      <th className="py-3.5 px-4">Supervisor Name</th>
-                      <th className="py-3.5 px-4">Anna Univ Ref. No</th>
-                      <th className="py-3.5 px-4">Department</th>
-                      <th className="py-3.5 px-4">Core Research Specialization</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border/60 text-xs font-sans">
-                    {supervisorsData.map((sup, index) => (
-                      <tr key={sup.refNo} className="hover:bg-foreground/[0.02] transition-colors">
-                        <td className="py-3.5 px-4 font-bold font-oswald text-foreground">{index + 1}</td>
-                        <td className="py-3.5 px-4 font-bold font-oswald text-primary">{sup.name}</td>
-                        <td className="py-3.5 px-4 font-mono text-foreground font-bold">{sup.refNo}</td>
-                        <td className="py-3.5 px-4 font-bold font-oswald text-foreground">{sup.dept}</td>
-                        <td className="py-3.5 px-4 text-muted-foreground font-medium">{sup.area}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
-
-          {/* Research Advisory Committee */}
-          <section className="px-4 py-16 md:px-8 border-b border-foreground/10">
-            <div className="mx-auto max-w-[1200px]">
-              <div className="mb-10 border-b border-foreground/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <Reveal variant="rise">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                    Research Advisory Committee
-                  </h2>
-                </Reveal>
-                <span className="text-xs font-bold uppercase tracking-wider text-foreground font-oswald">
-                  Institutional R&amp;D Advisory Board
-                </span>
-              </div>
-
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {advisoryCommittee.map((member) => (
-                  <Reveal key={member.name} variant="rise">
-                    <div className="border border-foreground/15 bg-card p-6 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs shadow-sm flex flex-col justify-between h-full">
-                      <div>
-                        <span className="text-[10px] font-black uppercase tracking-widest text-foreground font-oswald block mb-2 border-l-2 border-foreground/60 pl-3">
-                          {member.role}
-                        </span>
-                        <h3 className="text-lg font-black uppercase text-primary font-oswald mb-1">
-                          {member.name}
-                        </h3>
-                        <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground font-oswald">
-                          {member.designation}
-                        </p>
+                      {/* Editorial Stats Grid */}
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:divide-x md:divide-border/80">
+                        {researchStats.map((stat) => (
+                          <div key={stat.label} className="first:pl-0 md:pl-6 lg:pl-8 space-y-1 sm:space-y-1.5">
+                            <div className="font-oswald text-3xl sm:text-4xl lg:text-5xl font-black text-primary tracking-tight leading-none">
+                              {stat.value}
+                            </div>
+                            <div className="text-xs sm:text-sm text-foreground/85 font-libre font-medium leading-snug pt-1">
+                              {stat.label}
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </section>
+                  </section>
 
-        </div>
-      )}
+                  <WaveAB />
 
-      {/* --- TAB 2: PUBLICATIONS & BOOKS --- */}
-      {tab === "publications" && (
-        <div className="animate-in fade-in duration-300">
-          <section className="px-4 py-12 md:px-8 border-b border-foreground/10">
-            <div className="mx-auto max-w-[1200px]">
-              
-              <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-8 pb-6 border-b border-foreground/10">
-                <div>
-                  <span className="text-[10px] font-black uppercase tracking-widest text-foreground font-oswald">Faculty Publications</span>
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald">
-                    Books &amp; Book Chapters
-                  </h2>
-                </div>
+                  {/* Section B: Objectives */}
+                  <section className="bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14 md:py-16">
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          RESEARCH CELL OBJECTIVES
+                        </h2>
+                      </div>
 
-                {/* Search Box */}
-                <div className="relative w-full md:w-96">
-                  <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <input 
-                    type="text"
-                    placeholder="Search book title, author, ISBN..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 bg-background border border-foreground/20 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs text-xs font-medium focus:outline-none focus:border-foreground transition-colors font-sans"
-                  />
-                </div>
-              </div>
-
-              <div className="overflow-x-auto border border-foreground/15 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-card shadow-sm">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="bg-foreground/10 border-b border-foreground/15 text-xs font-black uppercase font-oswald text-foreground">
-                      <th className="py-3.5 px-4">S.No</th>
-                      <th className="py-3.5 px-4">Author(s) Name</th>
-                      <th className="py-3.5 px-4">Title of the Book / Chapter</th>
-                      <th className="py-3.5 px-4">ISBN / ISSN Number</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border/60 text-xs font-sans">
-                    {filteredBooks.map((b) => (
-                      <tr key={b.id} className="hover:bg-foreground/[0.02] transition-colors">
-                        <td className="py-3.5 px-4 font-bold font-oswald text-foreground">{b.id}</td>
-                        <td className="py-3.5 px-4 font-bold font-oswald text-primary">{b.authors}</td>
-                        <td className="py-3.5 px-4 text-foreground font-medium">{b.title}</td>
-                        <td className="py-3.5 px-4 font-mono text-foreground font-bold">{b.isbn}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-            </div>
-          </section>
-        </div>
-      )}
-
-      {/* --- TAB 3: PATENTS & COPYRIGHTS --- */}
-      {tab === "patents" && (
-        <div className="animate-in fade-in duration-300">
-          <section className="px-4 py-12 md:px-8">
-            <div className="mx-auto max-w-[1200px]">
-              
-              <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-8 pb-6 border-b border-foreground/10">
-                <div className="flex gap-2">
-                  <button 
-                    onClick={() => setIpSubTab("patents")}
-                    className={`px-5 py-2.5 text-xs font-black uppercase tracking-wider font-oswald rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs transition-colors cursor-pointer ${
-                      ipSubTab === "patents" ? "bg-foreground text-background" : "bg-foreground/10 text-foreground hover:bg-foreground/20"
-                    }`}
-                  >
-                    Patents ({officialPatents.length})
-                  </button>
-                  <button 
-                    onClick={() => setIpSubTab("copyrights")}
-                    className={`px-5 py-2.5 text-xs font-black uppercase tracking-wider font-oswald rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs transition-colors cursor-pointer ${
-                      ipSubTab === "copyrights" ? "bg-foreground text-background" : "bg-foreground/10 text-foreground hover:bg-foreground/20"
-                    }`}
-                  >
-                    Copyrights ({officialCopyrights.length})
-                  </button>
-                </div>
-
-                <div className="relative w-full md:w-96">
-                  <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <input 
-                    type="text"
-                    placeholder={`Search ${ipSubTab}...`}
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 bg-background border border-foreground/20 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs text-xs font-medium focus:outline-none focus:border-foreground"
-                  />
-                </div>
-              </div>
-
-              {ipSubTab === "patents" ? (
-                <div className="overflow-x-auto border border-foreground/15 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-card shadow-sm">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="bg-foreground/10 border-b border-foreground/15 text-xs font-black uppercase font-oswald text-foreground">
-                        <th className="py-3.5 px-4">S.No</th>
-                        <th className="py-3.5 px-4">Inventor(s) Name</th>
-                        <th className="py-3.5 px-4">Title of Patent</th>
-                        <th className="py-3.5 px-4">Patent Application / Grant No</th>
-                        <th className="py-3.5 px-4">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-border/60 text-xs font-sans">
-                      {filteredPatents.map((pat) => (
-                        <tr key={pat.id} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 font-bold font-oswald text-foreground">{pat.id}</td>
-                          <td className="py-3.5 px-4 font-bold font-oswald text-primary">{pat.inventors}</td>
-                          <td className="py-3.5 px-4 text-foreground font-medium">{pat.title}</td>
-                          <td className="py-3.5 px-4 font-mono text-foreground font-bold">{pat.patentNo}</td>
-                          <td className="py-3.5 px-4">
-                            <span className={`text-[10px] font-black uppercase tracking-widest font-oswald px-2.5 py-0.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs ${
-                              pat.status === "Granted" ? "bg-primary text-primary-foreground" : "bg-foreground/10 text-foreground"
-                            }`}>
-                              {pat.status}
+                      <div className="space-y-3">
+                        {objectivesList.map((obj, idx) => (
+                          <div key={idx} className="flex items-center gap-3 sm:gap-4 py-2.5 sm:py-3 border-b border-border/40">
+                            <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-xs shrink-0">
+                              {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
                             </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              ) : (
-                <div className="overflow-x-auto border border-foreground/15 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-card shadow-sm">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="bg-foreground/10 border-b border-foreground/15 text-xs font-black uppercase font-oswald text-foreground">
-                        <th className="py-3.5 px-4">S.No</th>
-                        <th className="py-3.5 px-4">Author(s) Name</th>
-                        <th className="py-3.5 px-4">Title of Copyright</th>
-                        <th className="py-3.5 px-4">Copyright Registration No</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-border/60 text-xs font-sans">
-                      {filteredCopyrights.map((c) => (
-                        <tr key={c.id} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 font-bold font-oswald text-foreground">{c.id}</td>
-                          <td className="py-3.5 px-4 font-bold font-oswald text-primary">{c.authors}</td>
-                          <td className="py-3.5 px-4 text-foreground font-medium">{c.title}</td>
-                          <td className="py-3.5 px-4 font-mono text-foreground font-bold">{c.number}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                            <p className="text-xs sm:text-sm md:text-base text-foreground font-libre font-medium truncate sm:whitespace-normal">
+                              {obj}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+
+                  <WaveBA />
+
+                  {/* Section C: Ph.D. Supervisors Table */}
+                  <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          ANNA UNIVERSITY RECOGNIZED PH.D. SUPERVISORS
+                        </h2>
+                      </div>
+
+                      <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                        <div className="overflow-x-auto bg-transparent">
+                          <table className="w-full text-left border-collapse min-w-[720px] text-xs sm:text-sm">
+                            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                              <tr>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16">
+                                  S.No
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[240px]">
+                                  Supervisor Name
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-48">
+                                  Anna Univ Ref. No
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-48">
+                                  Department
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[280px]">
+                                  Core Research Specialization
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border/40 font-libre">
+                              {supervisorsData.map((sup, index) => (
+                                <tr key={sup.refNo} className="hover:bg-foreground/[0.02] transition-colors">
+                                  <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap">
+                                    {index + 1}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm whitespace-nowrap">
+                                    {sup.name}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-mono text-foreground font-semibold text-xs sm:text-sm whitespace-nowrap">
+                                    {sup.refNo}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-oswald font-bold text-foreground text-xs sm:text-sm whitespace-nowrap">
+                                    {sup.dept}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-libre text-xs sm:text-sm text-foreground/90">
+                                    {sup.area}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </DataGridContainer>
+                    </div>
+                  </section>
+
+                  <WaveAB />
+
+                  {/* Section D: Advisory Committee */}
+                  <section className="bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14 md:py-16">
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          RESEARCH ADVISORY COMMITTEE
+                        </h2>
+                      </div>
+
+                      <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                        <div className="overflow-x-auto bg-transparent">
+                          <table className="w-full text-left border-collapse min-w-[720px] text-xs sm:text-sm">
+                            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                              <tr>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16">
+                                  S.No
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[260px]">
+                                  Member Name
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[280px]">
+                                  Designation &amp; Organization
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-52">
+                                  Committee Role
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border/40 font-libre">
+                              {advisoryCommittee.map((member, idx) => (
+                                <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                                  <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap">
+                                    {idx + 1}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm whitespace-nowrap">
+                                    {member.name}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-libre font-medium text-xs sm:text-sm text-foreground/90">
+                                    {member.designation}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-oswald font-bold text-primary text-xs sm:text-sm whitespace-nowrap">
+                                    {member.role}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </DataGridContainer>
+                    </div>
+                  </section>
                 </div>
               )}
 
-              {/* Official Verification Reference Link */}
-              <div className="mt-8 p-4 border border-foreground/15 bg-foreground/[0.02] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs flex flex-col sm:flex-row items-center justify-between gap-3">
-                <span className="text-xs font-bold uppercase tracking-wider text-foreground font-oswald text-center sm:text-left">
-                  Verify Official Application Status on Indian Patent Office Portal
-                </span>
-                <a 
-                  href="https://ipindiaservices.gov.in/patentsearch/patentsearch/viewapplicationstatus" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-primary font-oswald border-b border-primary pb-0.5"
-                >
-                  IP India Portal <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
+              {/* ========================================================= */}
+              {/* TAB 2: PUBLICATIONS */}
+              {/* ========================================================= */}
+              {tab === "publications" && (
+                <div className="w-full">
+                  <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center mb-8 pb-4 border-b border-border/80">
+                        <div>
+                          <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                            BOOKS &amp; BOOK CHAPTERS
+                          </h2>
+                          <p className="text-xs sm:text-sm font-libre text-foreground/80 font-medium pt-1">
+                            Showing {filteredBooks.length} of {booksData.length} published volumes &amp; chapters
+                          </p>
+                        </div>
 
-            </div>
-          </section>
-        </div>
-      )}
+                        {/* Search Bar */}
+                        <div className="relative w-full md:w-96">
+                          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                          <input 
+                            type="text"
+                            placeholder="Search book title, author, ISBN..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="w-full pl-10 pr-4 py-2.5 bg-background dark:bg-[#18181B] border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs text-xs sm:text-sm font-medium font-libre focus:outline-none focus:border-primary transition-colors text-foreground"
+                          />
+                        </div>
+                      </div>
 
-      {/* --- TAB 4: INNOVATION COUNCIL (IIC) --- */}
-      {tab === "iic" && (
-        <div className="animate-in fade-in duration-300">
-          
-          {/* Star Rating Banner */}
-          <section className="px-4 py-12 md:px-8 border-b border-foreground/10 bg-foreground/[0.02]">
-            <div className="mx-auto max-w-[1200px] flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
-              <div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-foreground font-oswald">Ministry of Education's Innovation Cell (MIC)</span>
-                <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald mb-3">
-                  Institution's Innovation Council (IIC)
-                </h2>
-                <p className="text-sm font-medium text-muted-foreground leading-relaxed max-w-2xl font-sans">
-                  Established under the directives of Ministry of Education (MoE), Government of India, MSAJCE IIC fosters a systematic innovation culture, hackathons, pre-incubation support, and entrepreneurship ecosystem across all departments.
-                </p>
-              </div>
-
-              <div className="border border-foreground/20 bg-card p-6 rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs shadow-md min-w-[240px] text-center">
-                <div className="flex justify-center gap-1 mb-2 text-primary">
-                  {[...Array(4)].map((_, i) => (
-                    <Star key={i} className="w-6 h-6 fill-primary" />
-                  ))}
+                      <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                        <div className="overflow-x-auto bg-transparent">
+                          <table className="w-full text-left border-collapse min-w-[720px] text-xs sm:text-sm">
+                            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                              <tr>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16">
+                                  S.No
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[240px]">
+                                  Author(s) Name
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[320px]">
+                                  Title of the Book / Chapter
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-56">
+                                  ISBN / ISSN Number
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border/40 font-libre">
+                              {filteredBooks.map((b) => (
+                                <tr key={b.id} className="hover:bg-foreground/[0.02] transition-colors">
+                                  <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap">
+                                    {b.id}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm whitespace-nowrap">
+                                    {b.authors}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-libre font-medium text-xs sm:text-sm text-foreground/90">
+                                    {b.title}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-mono text-foreground font-semibold text-xs sm:text-sm whitespace-nowrap">
+                                    {b.isbn}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </DataGridContainer>
+                    </div>
+                  </section>
                 </div>
-                <div className="text-xl font-black uppercase text-primary font-oswald mb-1">
-                  4-Star Rating
-                </div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-foreground font-oswald">
-                  Awarded by MoE Innovation Cell
-                </div>
-              </div>
-            </div>
-          </section>
+              )}
 
-          {/* Activities Table */}
-          <section className="px-4 py-16 md:px-8 border-b border-foreground/10">
-            <div className="mx-auto max-w-[1200px]">
-              <div className="mb-10 border-b border-foreground/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <Reveal variant="rise">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                    Innovation Activity Calendar &amp; Events
-                  </h2>
-                </Reveal>
-                <span className="text-xs font-bold uppercase tracking-wider text-foreground font-oswald">
-                  26+ Official Conducted Events
-                </span>
-              </div>
+              {/* ========================================================= */}
+              {/* TAB 3: PATENTS & IPR */}
+              {/* ========================================================= */}
+              {tab === "patents" && (
+                <div className="w-full">
+                  <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center mb-8 pb-4 border-b border-border/80">
+                        {/* Sub-tab selection */}
+                        <div className="flex gap-2">
+                          <button 
+                            type="button"
+                            onClick={() => setIpSubTab("patents")}
+                            className={`px-4 py-2 text-xs font-bold uppercase tracking-wider font-oswald rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs transition-colors cursor-pointer border ${
+                              ipSubTab === "patents"
+                                ? "bg-primary text-white border-primary font-black"
+                                : "bg-foreground/5 hover:bg-foreground/10 text-foreground border-border"
+                            }`}
+                          >
+                            Patents ({officialPatents.length})
+                          </button>
+                          <button 
+                            type="button"
+                            onClick={() => setIpSubTab("copyrights")}
+                            className={`px-4 py-2 text-xs font-bold uppercase tracking-wider font-oswald rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs transition-colors cursor-pointer border ${
+                              ipSubTab === "copyrights"
+                                ? "bg-primary text-white border-primary font-black"
+                                : "bg-foreground/5 hover:bg-foreground/10 text-foreground border-border"
+                            }`}
+                          >
+                            Copyrights ({officialCopyrights.length})
+                          </button>
+                        </div>
 
-              <div className="overflow-x-auto border border-foreground/15 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-card shadow-sm">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="bg-foreground/10 border-b border-foreground/15 text-xs font-black uppercase font-oswald text-foreground">
-                      <th className="py-3.5 px-4">S.No</th>
-                      <th className="py-3.5 px-4">Name of the Event</th>
-                      <th className="py-3.5 px-4">Type of Activity</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border/60 text-xs font-sans">
-                    {officialActivities.map((act) => (
-                      <tr key={act.id} className="hover:bg-foreground/[0.02] transition-colors">
-                        <td className="py-3 px-4 font-bold font-oswald text-foreground">{act.id}</td>
-                        <td className="py-3 px-4 font-medium text-foreground">{act.name}</td>
-                        <td className="py-3 px-4">
-                          <span className={`text-[10px] font-black uppercase tracking-widest font-oswald px-2.5 py-0.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs ${
-                            act.type === "MIC Driven Activity" 
-                              ? "bg-primary text-primary-foreground" 
-                              : act.type === "IIC Calendar Activity"
-                              ? "bg-foreground/20 text-foreground font-black"
-                              : "bg-foreground/10 text-foreground"
-                          }`}>
-                            {act.type}
+                        {/* Search Input */}
+                        <div className="relative w-full md:w-96">
+                          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                          <input 
+                            type="text"
+                            placeholder={`Search ${ipSubTab}...`}
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="w-full pl-10 pr-4 py-2.5 bg-background dark:bg-[#18181B] border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs text-xs sm:text-sm font-medium font-libre focus:outline-none focus:border-primary transition-colors text-foreground"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Patents Table */}
+                      {ipSubTab === "patents" ? (
+                        <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                          <div className="overflow-x-auto bg-transparent">
+                            <table className="w-full text-left border-collapse min-w-[760px] text-xs sm:text-sm">
+                              <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                                <tr>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16">
+                                    S.No
+                                  </th>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-64 min-w-[240px]">
+                                    Inventor(s) Name
+                                  </th>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[320px]">
+                                    Title of Patent
+                                  </th>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-56 min-w-[200px]">
+                                    Patent Application / Grant No
+                                  </th>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-32">
+                                    Status
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-border/40 font-libre">
+                                {filteredPatents.map((pat) => (
+                                  <tr key={pat.id} className="hover:bg-foreground/[0.02] transition-colors">
+                                    <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap align-top w-16">
+                                      {pat.id}
+                                    </td>
+                                    <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm align-top w-64 min-w-[240px]">
+                                      <div className="space-y-1">
+                                        {pat.inventors.split(",").map((name, idx) => (
+                                          <div key={idx} className="whitespace-nowrap leading-tight">
+                                            {name.trim()}
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </td>
+                                    <td className="px-4 py-3.5 font-libre font-medium text-xs sm:text-sm text-foreground/90 align-top leading-relaxed min-w-[320px]">
+                                      {pat.title}
+                                    </td>
+                                    <td className="px-4 py-3.5 font-mono text-foreground font-semibold text-xs sm:text-sm whitespace-nowrap align-top w-56">
+                                      {pat.patentNo}
+                                    </td>
+                                    <td className="px-4 py-3.5 whitespace-nowrap align-top w-32">
+                                      <span className="font-oswald font-bold text-primary text-xs sm:text-sm whitespace-nowrap">
+                                        {pat.status}
+                                      </span>
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </DataGridContainer>
+                      ) : (
+                        /* Copyrights Table */
+                        <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                          <div className="overflow-x-auto bg-transparent">
+                            <table className="w-full text-left border-collapse min-w-[760px] text-xs sm:text-sm">
+                              <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                                <tr>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16">
+                                    S.No
+                                  </th>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-64 min-w-[240px]">
+                                    Author(s) Name
+                                  </th>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[320px]">
+                                    Title of Copyright
+                                  </th>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-56 min-w-[200px]">
+                                    Copyright Registration No
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-border/40 font-libre">
+                                {filteredCopyrights.map((c) => (
+                                  <tr key={c.id} className="hover:bg-foreground/[0.02] transition-colors">
+                                    <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap align-top w-16">
+                                      {c.id}
+                                    </td>
+                                    <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm align-top w-64 min-w-[240px]">
+                                      <div className="space-y-1">
+                                        {c.authors.split(",").map((name, idx) => (
+                                          <div key={idx} className="whitespace-nowrap leading-tight">
+                                            {name.trim()}
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </td>
+                                    <td className="px-4 py-3.5 font-libre font-medium text-xs sm:text-sm text-foreground/90 align-top leading-relaxed min-w-[320px]">
+                                      {c.title}
+                                    </td>
+                                    <td className="px-4 py-3.5 font-mono text-foreground font-semibold text-xs sm:text-sm whitespace-nowrap align-top w-56">
+                                      {c.number}
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </DataGridContainer>
+                      )}
+
+                      {/* Official Verification Reference Link */}
+                      <div className="mt-10 pt-4 border-t border-border/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <span className="text-xs sm:text-sm font-medium font-libre text-foreground/80 text-center sm:text-left">
+                          Verify official application status on Indian Patent Office Portal
+                        </span>
+                        <a 
+                          href="https://ipindiaservices.gov.in/patentsearch/patentsearch/viewapplicationstatus" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary font-oswald hover:underline"
+                        >
+                          IP India Portal <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              )}
+
+              {/* ========================================================= */}
+              {/* TAB 4: INNOVATION COUNCIL (IIC) */}
+              {/* ========================================================= */}
+              {tab === "iic" && (
+                <div className="w-full">
+                  {/* Section A: IIC Overview & Core Mandates */}
+                  <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          INSTITUTION'S INNOVATION COUNCIL (IIC)
+                        </h2>
+                        <div className="flex items-center gap-2.5 text-primary">
+                          <div className="flex gap-1">
+                            {[...Array(4)].map((_, i) => (
+                              <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                            ))}
+                          </div>
+                          <span className="text-xs sm:text-sm font-bold font-oswald uppercase tracking-wider">
+                            4-Star Rating (MoE Innovation Cell)
                           </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
+                        </div>
+                      </div>
 
-          {/* Committee Roster */}
-          <section className="px-4 py-16 md:px-8">
-            <div className="mx-auto max-w-[1200px]">
-              <div className="mb-10 border-b border-foreground/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <Reveal variant="rise">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                    IIC Committee Members &amp; External Advisors
-                  </h2>
-                </Reveal>
-                <span className="text-xs font-bold uppercase tracking-wider text-foreground font-oswald">
-                  Council Executive Roster
-                </span>
-              </div>
+                      {/* Overview Narrative */}
+                      <div className="space-y-6 max-w-5xl">
+                        <div>
+                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-2">
+                            Overview
+                          </h3>
+                          <p className="text-sm sm:text-base font-libre font-medium text-foreground leading-relaxed">
+                            Institution's Innovation Council (IIC-MSAJCE) was established under the directives of Ministry of Education (MoE) Innovation Cell (MIC), Government of India, to systematically foster the culture of innovation, research pre-incubation, hackathons, and entrepreneurship across all engineering departments. The council empowers students and faculty to transform innovative ideas into viable prototypes and impactful ventures.
+                          </p>
+                        </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {committeeMembers.map((member) => (
-                  <Reveal key={member.name} variant="rise">
-                    <div className="border border-foreground/15 bg-card p-6 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs shadow-sm flex flex-col justify-between h-full">
-                      <div>
-                        <span className="text-[10px] font-black uppercase tracking-widest text-foreground font-oswald block mb-2 border-l-2 border-foreground/60 pl-3">
-                          {member.role}
-                        </span>
-                        <h3 className="text-lg font-black uppercase text-primary font-oswald mb-1">
-                          {member.name}
-                        </h3>
-                        <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground font-oswald">
-                          {member.designation}
-                        </p>
+                        <div className="pt-2">
+                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-3 pb-2 border-b border-border/60">
+                            Key Mandates &amp; Objectives
+                          </h3>
+                          <div className="space-y-3">
+                            {iicOverviewPoints.map((item, idx) => (
+                              <div key={idx} className="flex items-center gap-3 sm:gap-4 py-2.5 sm:py-3 border-b border-border/40">
+                                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-xs shrink-0">
+                                  0{idx + 1}
+                                </span>
+                                <p className="text-xs sm:text-sm md:text-base text-foreground font-libre font-medium truncate sm:whitespace-normal">
+                                  <span className="font-bold text-foreground">{item.title}:</span> {item.desc}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </section>
+                  </section>
 
-        </div>
-      )}
+                  <WaveAB />
 
-      {/* --- TAB 5: STARTUP ECOSYSTEM (NISP) --- */}
-      {tab === "startup-ecosystem" && (
-        <div className="animate-in fade-in duration-300">
-          
-          {/* Vision & Mission */}
-          <section className="px-4 py-16 md:px-8 border-b border-foreground/10">
-            <div className="mx-auto max-w-[1200px] grid md:grid-cols-2 gap-8">
-              <div className="border border-foreground/15 bg-card p-8 rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs">
-                <span className="text-[10px] font-black uppercase tracking-widest text-foreground font-oswald mb-2 block border-l-2 border-foreground/60 pl-3">
-                  NISP VISION
-                </span>
-                <h2 className="text-2xl font-black uppercase text-primary font-oswald mb-4">
-                  Catering to Student Entrepreneurs
-                </h2>
-                <p className="text-sm font-medium text-muted-foreground leading-relaxed font-sans">
-                  To cater to the needs of student entrepreneurs with innovative ideas, thereby introducing a culture of entrepreneurship inside campus which will strengthen our education system and promote national economic and social growth.
-                </p>
-              </div>
+                  {/* Section B: Activity Calendar */}
+                  <section className="bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14 md:py-16">
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          INNOVATION ACTIVITY CALENDAR &amp; EVENTS
+                        </h2>
+                      </div>
 
-              <div className="border border-foreground/15 bg-card p-8 rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs">
-                <span className="text-[10px] font-black uppercase tracking-widest text-foreground font-oswald mb-2 block border-l-2 border-foreground/60 pl-3">
-                  NISP MISSION
-                </span>
-                <h2 className="text-2xl font-black uppercase text-primary font-oswald mb-4">
-                  Enabling Prototyping &amp; Industry Standards
-                </h2>
-                <p className="text-sm font-medium text-muted-foreground leading-relaxed font-sans">
-                  To develop an ecosystem with required infrastructure that enables students and faculty to innovate and prototype their potential ideas with industrial standards and support from Government, industry, and reputed academic institutions globally.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* Short Term & Long Term Objectives */}
-          <section className="px-4 py-16 md:px-8 bg-foreground/[0.02] border-b border-foreground/10">
-            <div className="mx-auto max-w-[1200px]">
-              <div className="mb-12 border-b border-foreground/10 pb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-                <div>
-                  <span className="text-[10px] font-black uppercase tracking-widest text-foreground font-oswald">Strategic Roadmap</span>
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald">
-                    Short Term &amp; Long Term Objectives
-                  </h2>
-                </div>
-                <span className="text-xs font-bold uppercase tracking-wider text-foreground font-oswald">NISP Guidelines</span>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                {/* Short Term */}
-                <div className="border border-foreground/15 bg-card p-6 md:p-8 rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs">
-                  <h3 className="text-xl font-black uppercase text-primary font-oswald mb-4 flex items-center gap-2">
-                    <Target className="w-5 h-5" /> Short Term Objectives
-                  </h3>
-                  <ul className="space-y-3">
-                    {shortTermObjectives.map((obj, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-xs font-medium text-muted-foreground font-sans">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span>{obj}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Long Term */}
-                <div className="border border-foreground/15 bg-card p-6 md:p-8 rounded-tl-2xl rounded-br-2xl rounded-tr-xs rounded-bl-xs">
-                  <h3 className="text-xl font-black uppercase text-primary font-oswald mb-4 flex items-center gap-2">
-                    <Rocket className="w-5 h-5" /> Long Term Objectives
-                  </h3>
-                  <ul className="space-y-3">
-                    {longTermObjectives.map((obj, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-xs font-medium text-muted-foreground font-sans">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span>{obj}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* 8 NISP Thrust Areas */}
-          <section className="px-4 py-16 md:px-8 border-b border-foreground/10">
-            <div className="mx-auto max-w-[1200px]">
-              <div className="mb-10 border-b border-foreground/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <Reveal variant="rise">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                    NISP 8 Core Thrust Areas
-                  </h2>
-                </Reveal>
-                <span className="text-xs font-bold uppercase tracking-wider text-foreground font-oswald">
-                  Strategic Action Plans
-                </span>
-              </div>
-
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {thrustAreas.map((area, idx) => (
-                  <Reveal key={idx} variant="rise" delay={idx * 0.05}>
-                    <div className="border border-foreground/15 bg-card p-5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs flex flex-col justify-between h-full">
-                      <span className="text-[10px] font-black uppercase font-oswald text-foreground bg-foreground/10 px-2 py-0.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs w-max mb-3">
-                        Plan 0{idx + 1}
-                      </span>
-                      <p className="text-xs font-bold text-foreground font-oswald leading-relaxed">
-                        {area}
-                      </p>
+                      <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                        <div className="overflow-x-auto bg-transparent">
+                          <table className="w-full text-left border-collapse min-w-[720px] text-xs sm:text-sm">
+                            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                              <tr>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16">
+                                  S.No
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[380px]">
+                                  Name of the Event
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[220px]">
+                                  Type of Activity
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border/40 font-libre">
+                              {officialActivities.map((act) => (
+                                <tr key={act.id} className="hover:bg-foreground/[0.02] transition-colors">
+                                  <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap">
+                                    {act.id}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-libre font-medium text-xs sm:text-sm text-foreground/90">
+                                    {act.name}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-libre text-xs sm:text-sm text-foreground/90 whitespace-nowrap">
+                                    {act.type}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </DataGridContainer>
                     </div>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </section>
+                  </section>
 
-          {/* KPI Evaluation Matrix Table */}
-          <section className="px-4 py-16 md:px-8 bg-foreground/[0.02] border-b border-foreground/10">
-            <div className="mx-auto max-w-[1200px]">
-              <div className="mb-10 border-b border-foreground/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <Reveal variant="rise">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                    KPI Monitor &amp; Evaluation Framework
-                  </h2>
-                </Reveal>
-                <span className="text-xs font-bold uppercase tracking-wider text-foreground font-oswald">
-                  NIRF &amp; ARIIA Metrics
-                </span>
-              </div>
+                  <WaveBA />
 
-              <div className="overflow-x-auto border border-foreground/15 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-card shadow-sm">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="bg-foreground/10 border-b border-foreground/15 text-xs font-black uppercase font-oswald text-foreground">
-                      <th className="py-3.5 px-4">Hierarchy Level</th>
-                      <th className="py-3.5 px-4">Key Performance Indicators (KPIs)</th>
-                      <th className="py-3.5 px-4">Means &amp; Verification</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border/60 text-xs font-sans">
-                    {kpiEvaluationData.map((row) => (
-                      <tr key={row.level} className="hover:bg-foreground/[0.02] transition-colors">
-                        <td className="py-4 px-4 font-bold font-oswald text-primary uppercase text-sm">{row.level}</td>
-                        <td className="py-4 px-4 text-foreground font-medium whitespace-pre-line leading-relaxed">{row.kpis}</td>
-                        <td className="py-4 px-4 font-bold font-oswald text-foreground whitespace-pre-line">{row.verification}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
+                  {/* Section C: IIC Committee */}
+                  <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          IIC COMMITTEE MEMBERS &amp; EXTERNAL ADVISORS
+                        </h2>
+                      </div>
 
-          {/* NISP Committee */}
-          <section className="px-4 py-16 md:px-8">
-            <div className="mx-auto max-w-[1200px]">
-              <div className="mb-10 border-b border-foreground/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <Reveal variant="rise">
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-primary font-oswald leading-none">
-                    NISP Executive Committee
-                  </h2>
-                </Reveal>
-                <span className="text-xs font-bold uppercase tracking-wider text-foreground font-oswald">
-                  Incubation Experts &amp; Alumni Entrepreneurs
-                </span>
-              </div>
+                      <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                        <div className="overflow-x-auto bg-transparent">
+                          <table className="w-full text-left border-collapse min-w-[720px] text-xs sm:text-sm">
+                            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                              <tr>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16">
+                                  S.No
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[260px]">
+                                  Member Name
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[280px]">
+                                  Designation &amp; Organization
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-52">
+                                  Committee Role
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border/40 font-libre">
+                              {committeeMembers.map((member, idx) => (
+                                <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                                  <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap">
+                                    {idx + 1}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm whitespace-nowrap">
+                                    {member.name}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-libre font-medium text-xs sm:text-sm text-foreground/90">
+                                    {member.designation}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-oswald font-bold text-primary text-xs sm:text-sm whitespace-nowrap">
+                                    {member.role}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </DataGridContainer>
+                    </div>
+                  </section>
+                </div>
+              )}
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {nispCommittee.map((member) => (
-                  <Reveal key={member.name} variant="rise">
-                    <div className="border border-foreground/15 bg-card p-6 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs shadow-sm flex flex-col justify-between h-full">
-                      <div>
-                        <span className="text-[10px] font-black uppercase tracking-widest text-foreground font-oswald block mb-2 border-l-2 border-foreground/60 pl-3">
-                          {member.role}
-                        </span>
-                        <h3 className="text-lg font-black uppercase text-primary font-oswald mb-1">
-                          {member.name}
-                        </h3>
-                        <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground font-oswald">
-                          {member.designation}
-                        </p>
+              {/* ========================================================= */}
+              {/* TAB 5: STARTUP ECOSYSTEM (NISP) */}
+              {/* ========================================================= */}
+              {tab === "startup-ecosystem" && (
+                <div className="w-full">
+                  {/* Section A: Vision & Mission */}
+                  <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          VISION &amp; MISSION
+                        </h2>
+                      </div>
+
+                      <div className="space-y-6 sm:space-y-8 max-w-5xl">
+                        {/* Vision */}
+                        <div className="space-y-2 sm:space-y-2.5">
+                          <div className="flex items-center gap-3">
+                            <span className="w-8 h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-xs shrink-0">
+                              V
+                            </span>
+                            <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                              NISP VISION
+                            </h3>
+                          </div>
+                          <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed pl-11">
+                            To cater to the needs of student entrepreneurs with innovative ideas, thereby introducing a culture of entrepreneurship inside campus which will strengthen our education system and promote national economic and social growth.
+                          </p>
+                        </div>
+
+                        {/* Mission */}
+                        <div className="space-y-2 sm:space-y-2.5">
+                          <div className="flex items-center gap-3">
+                            <span className="w-8 h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-xs shrink-0">
+                              M
+                            </span>
+                            <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                              NISP MISSION
+                            </h3>
+                          </div>
+                          <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed pl-11">
+                            To develop an ecosystem with required infrastructure that enables students and faculty to innovate and prototype their potential ideas with industrial standards and support from Government, industry, and reputed academic institutions globally.
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </section>
+                  </section>
 
-        </div>
-      )}
+                  <WaveAB />
 
+                  {/* Section B: Strategic Objectives */}
+                  <section className="bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14 md:py-16">
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          STRATEGIC OBJECTIVES
+                        </h2>
+                      </div>
+
+                      <div className="space-y-8">
+                        {/* Short Term */}
+                        <div className="space-y-4">
+                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground pb-2 border-b border-border/60">
+                            Short Term Objectives
+                          </h3>
+                          <div className="space-y-3">
+                            {shortTermObjectives.map((obj, i) => (
+                              <div key={i} className="flex items-center gap-3 sm:gap-4 py-2.5 sm:py-3 border-b border-border/40">
+                                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-[11px] shrink-0">
+                                  S{i + 1}
+                                </span>
+                                <p className="text-xs sm:text-sm md:text-base text-foreground font-libre font-medium truncate sm:whitespace-normal">
+                                  {obj}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Long Term */}
+                        <div className="space-y-4">
+                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground pb-2 border-b border-border/60">
+                            Long Term Objectives
+                          </h3>
+                          <div className="space-y-3">
+                            {longTermObjectives.map((obj, i) => (
+                              <div key={i} className="flex items-center gap-3 sm:gap-4 py-2.5 sm:py-3 border-b border-border/40">
+                                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-[11px] shrink-0">
+                                  L{i + 1}
+                                </span>
+                                <p className="text-xs sm:text-sm md:text-base text-foreground font-libre font-medium truncate sm:whitespace-normal">
+                                  {obj}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <WaveBA />
+
+                  {/* Section C: Thrust Areas */}
+                  <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          NISP 8 CORE THRUST AREAS
+                        </h2>
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {thrustAreas.map((area, idx) => (
+                          <div key={idx} className="pb-4 border-b border-border/60 flex flex-col justify-between">
+                            <span className="w-8 h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-xs mb-3 shrink-0">
+                              0{idx + 1}
+                            </span>
+                            <p className="text-sm font-libre font-medium text-foreground leading-relaxed">
+                              {area}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+
+                  <WaveAB />
+
+                  {/* Section D: KPI Evaluation Matrix */}
+                  <section className="bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14 md:py-16">
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          KPI MONITOR &amp; EVALUATION FRAMEWORK
+                        </h2>
+                      </div>
+
+                      <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                        <div className="overflow-x-auto bg-transparent">
+                          <table className="w-full text-left border-collapse min-w-[720px] text-xs sm:text-sm">
+                            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                              <tr>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-48">
+                                  Hierarchy Level
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[360px]">
+                                  Key Performance Indicators (KPIs)
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[260px]">
+                                  Means &amp; Verification
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border/40 font-libre">
+                              {kpiEvaluationData.map((row) => (
+                                <tr key={row.level} className="hover:bg-foreground/[0.02] transition-colors">
+                                  <td className="px-4 py-4 font-oswald font-bold text-primary uppercase text-sm whitespace-nowrap align-top">
+                                    {row.level}
+                                  </td>
+                                  <td className="px-4 py-4 font-libre font-medium text-xs sm:text-sm text-foreground whitespace-pre-line leading-relaxed align-top">
+                                    {row.kpis}
+                                  </td>
+                                  <td className="px-4 py-4 font-libre font-medium text-xs sm:text-sm text-foreground/85 whitespace-pre-line leading-relaxed align-top">
+                                    {row.verification}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </DataGridContainer>
+                    </div>
+                  </section>
+
+                  <WaveBA />
+
+                  {/* Section E: NISP Committee */}
+                  <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          NISP EXECUTIVE COMMITTEE
+                        </h2>
+                      </div>
+
+                      <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                        <div className="overflow-x-auto bg-transparent">
+                          <table className="w-full text-left border-collapse min-w-[720px] text-xs sm:text-sm">
+                            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                              <tr>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16">
+                                  S.No
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[260px]">
+                                  Member Name
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[280px]">
+                                  Designation &amp; Organization
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-52">
+                                  Committee Role
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border/40 font-libre">
+                              {nispCommittee.map((member, idx) => (
+                                <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                                  <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap">
+                                    {idx + 1}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm whitespace-nowrap">
+                                    {member.name}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-libre font-medium text-xs sm:text-sm text-foreground/90">
+                                    {member.designation}
+                                  </td>
+                                  <td className="px-4 py-3.5 font-oswald font-bold text-primary text-xs sm:text-sm whitespace-nowrap">
+                                    {member.role}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </DataGridContainer>
+                    </div>
+                  </section>
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
         </div>
-
-        </motion.div>
-      </AnimatePresence>
-
-    </div>
+      </div>
+    </main>
   );
 }

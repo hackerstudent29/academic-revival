@@ -35,9 +35,9 @@ function NaacPortal() {
     setTimeout(() => {
       const contentContainer = document.getElementById('naac-tab-content');
       if (contentContainer) {
-        const yOffset = -110; 
-        const y = contentContainer.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        const headerOffset = typeof window !== "undefined" && window.innerWidth < 768 ? 44 : 52; 
+        const y = contentContainer.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
       }
     }, 50);
   };

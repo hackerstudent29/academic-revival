@@ -433,15 +433,6 @@ function SocialMediaPage() {
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-between p-6 text-white">
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-widest px-2.5 py-0.5 bg-primary/90 rounded-xs self-start">
-                    {item.platform}
-                  </span>
-                  <div>
-                    <span className="text-xs font-mono font-bold text-primary-foreground/90 block mb-1">{item.tag}</span>
-                    <h4 className="text-lg font-bold font-oswald uppercase text-white leading-tight">{item.alt}</h4>
-                  </div>
-                </div>
               </motion.div>
             ))}
           </div>

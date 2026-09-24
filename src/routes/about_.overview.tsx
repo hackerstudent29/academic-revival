@@ -24,7 +24,7 @@ export const Route = createFileRoute("/about_/overview")({
   component: InstitutionOverviewPage,
 });
 
-// Institutional Benchmark Metrics
+// Facts & Figures Stats
 const heroStats = [
   { value: "981", label: "Happy Students" },
   { value: "175", label: "Achievements" },
@@ -115,13 +115,10 @@ export function InstitutionOverviewPage() {
         {/* Fading Facts & Figures Docked Stats Strip (Smooth Gradient Fade, No Harsh Line, Maroon Figures) */}
         <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-8 sm:pt-10 md:pt-14 pb-5 sm:pb-6 md:pb-8">
           <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
-            <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4">
+            <div className="mb-3 sm:mb-4">
               <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-black font-oswald uppercase tracking-wide text-primary">
                 Facts &amp; Figures
               </h2>
-              <span className="text-[10px] sm:text-[11px] md:text-xs font-oswald uppercase tracking-widest text-white/50 hidden sm:inline">
-                Institutional Benchmark Metrics
-              </span>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8 md:divide-x md:divide-white/15">
