@@ -19,20 +19,25 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreditsRouteImport } from './routes/credits'
 import { Route as CurriculumRouteImport } from './routes/curriculum'
 import { Route as CurriculumAndSyllabusRouteImport } from './routes/curriculum-and-syllabus'
+import { Route as EbsbRouteImport } from './routes/ebsb'
 import { Route as HostelRouteImport } from './routes/hostel'
 import { Route as IncubationRouteImport } from './routes/incubation'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as NaacRouteImport } from './routes/naac'
 import { Route as NirfRouteImport } from './routes/nirf'
+import { Route as NssRouteImport } from './routes/nss'
 import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offered'
 import { Route as ResearchRouteImport } from './routes/research'
+import { Route as SocialAndCommunityRouteImport } from './routes/social-and-community'
 import { Route as SocialMediaRouteImport } from './routes/social-media'
 import { Route as SportsRouteImport } from './routes/sports'
 import { Route as StudentCommunityRouteImport } from './routes/student-community'
 import { Route as StudentLifeRouteImport } from './routes/student-life'
 import { Route as SyllabusRouteImport } from './routes/syllabus'
 import { Route as TransportRouteImport } from './routes/transport'
+import { Route as UbaRouteImport } from './routes/uba'
+import { Route as YrcRouteImport } from './routes/yrc'
 import { Route as AboutAccreditationsRouteImport } from './routes/about_.accreditations'
 import { Route as AboutGoverningCouncilRouteImport } from './routes/about_.governing-council'
 import { Route as AboutGroupInstitutionsRouteImport } from './routes/about_.group-institutions'
@@ -54,6 +59,10 @@ import { Route as ResearchIicRouteImport } from './routes/research_.iic'
 import { Route as ResearchPatentsRouteImport } from './routes/research_.patents'
 import { Route as ResearchPublicationsRouteImport } from './routes/research_.publications'
 import { Route as ResearchStartupEcosystemRouteImport } from './routes/research_.startup-ecosystem'
+import { Route as SocialAndCommunityEbsbRouteImport } from './routes/social-and-community_.ebsb'
+import { Route as SocialAndCommunityNssRouteImport } from './routes/social-and-community_.nss'
+import { Route as SocialAndCommunityUbaRouteImport } from './routes/social-and-community_.uba'
+import { Route as SocialAndCommunityYrcRouteImport } from './routes/social-and-community_.yrc'
 import { Route as StudentCommunityAlumniRouteImport } from './routes/student-community_.alumni'
 import { Route as StudentCommunityCampusHappeningsRouteImport } from './routes/student-community_.campus-happenings'
 import { Route as StudentCommunityConvocationRouteImport } from './routes/student-community_.convocation'
@@ -113,6 +122,11 @@ const CurriculumAndSyllabusRoute = CurriculumAndSyllabusRouteImport.update({
   path: '/curriculum-and-syllabus',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EbsbRoute = EbsbRouteImport.update({
+  id: '/ebsb',
+  path: '/ebsb',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HostelRoute = HostelRouteImport.update({
   id: '/hostel',
   path: '/hostel',
@@ -138,6 +152,11 @@ const NirfRoute = NirfRouteImport.update({
   path: '/nirf',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NssRoute = NssRouteImport.update({
+  id: '/nss',
+  path: '/nss',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlacementsRoute = PlacementsRouteImport.update({
   id: '/placements',
   path: '/placements',
@@ -151,6 +170,11 @@ const ProgrammesOfferedRoute = ProgrammesOfferedRouteImport.update({
 const ResearchRoute = ResearchRouteImport.update({
   id: '/research',
   path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocialAndCommunityRoute = SocialAndCommunityRouteImport.update({
+  id: '/social-and-community',
+  path: '/social-and-community',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SocialMediaRoute = SocialMediaRouteImport.update({
@@ -181,6 +205,16 @@ const SyllabusRoute = SyllabusRouteImport.update({
 const TransportRoute = TransportRouteImport.update({
   id: '/transport',
   path: '/transport',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UbaRoute = UbaRouteImport.update({
+  id: '/uba',
+  path: '/uba',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const YrcRoute = YrcRouteImport.update({
+  id: '/yrc',
+  path: '/yrc',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutAccreditationsRoute = AboutAccreditationsRouteImport.update({
@@ -289,6 +323,26 @@ const ResearchStartupEcosystemRoute =
     path: '/research/startup-ecosystem',
     getParentRoute: () => rootRouteImport,
   } as any)
+const SocialAndCommunityEbsbRoute = SocialAndCommunityEbsbRouteImport.update({
+  id: '/social-and-community_/ebsb',
+  path: '/social-and-community/ebsb',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocialAndCommunityNssRoute = SocialAndCommunityNssRouteImport.update({
+  id: '/social-and-community_/nss',
+  path: '/social-and-community/nss',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocialAndCommunityUbaRoute = SocialAndCommunityUbaRouteImport.update({
+  id: '/social-and-community_/uba',
+  path: '/social-and-community/uba',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocialAndCommunityYrcRoute = SocialAndCommunityYrcRouteImport.update({
+  id: '/social-and-community_/yrc',
+  path: '/social-and-community/yrc',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudentCommunityAlumniRoute = StudentCommunityAlumniRouteImport.update({
   id: '/student-community_/alumni',
   path: '/student-community/alumni',
@@ -346,20 +400,25 @@ export interface FileRoutesByFullPath {
   '/credits': typeof CreditsRoute
   '/curriculum': typeof CurriculumRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
+  '/ebsb': typeof EbsbRoute
   '/hostel': typeof HostelRoute
   '/incubation': typeof IncubationRoute
   '/library': typeof LibraryRoute
   '/naac': typeof NaacRouteWithChildren
   '/nirf': typeof NirfRoute
+  '/nss': typeof NssRoute
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
+  '/social-and-community': typeof SocialAndCommunityRoute
   '/social-media': typeof SocialMediaRoute
   '/sports': typeof SportsRoute
   '/student-community': typeof StudentCommunityRoute
   '/student-life': typeof StudentLifeRoute
   '/syllabus': typeof SyllabusRoute
   '/transport': typeof TransportRoute
+  '/uba': typeof UbaRoute
+  '/yrc': typeof YrcRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
   '/about/governing-council': typeof AboutGoverningCouncilRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -379,6 +438,10 @@ export interface FileRoutesByFullPath {
   '/research/patents': typeof ResearchPatentsRoute
   '/research/publications': typeof ResearchPublicationsRoute
   '/research/startup-ecosystem': typeof ResearchStartupEcosystemRoute
+  '/social-and-community/ebsb': typeof SocialAndCommunityEbsbRoute
+  '/social-and-community/nss': typeof SocialAndCommunityNssRoute
+  '/social-and-community/uba': typeof SocialAndCommunityUbaRoute
+  '/social-and-community/yrc': typeof SocialAndCommunityYrcRoute
   '/student-community/alumni': typeof StudentCommunityAlumniRoute
   '/student-community/campus-happenings': typeof StudentCommunityCampusHappeningsRoute
   '/student-community/convocation': typeof StudentCommunityConvocationRoute
@@ -401,19 +464,24 @@ export interface FileRoutesByTo {
   '/credits': typeof CreditsRoute
   '/curriculum': typeof CurriculumRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
+  '/ebsb': typeof EbsbRoute
   '/hostel': typeof HostelRoute
   '/incubation': typeof IncubationRoute
   '/library': typeof LibraryRoute
   '/nirf': typeof NirfRoute
+  '/nss': typeof NssRoute
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
+  '/social-and-community': typeof SocialAndCommunityRoute
   '/social-media': typeof SocialMediaRoute
   '/sports': typeof SportsRoute
   '/student-community': typeof StudentCommunityRoute
   '/student-life': typeof StudentLifeRoute
   '/syllabus': typeof SyllabusRoute
   '/transport': typeof TransportRoute
+  '/uba': typeof UbaRoute
+  '/yrc': typeof YrcRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
   '/about/governing-council': typeof AboutGoverningCouncilRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -433,6 +501,10 @@ export interface FileRoutesByTo {
   '/research/patents': typeof ResearchPatentsRoute
   '/research/publications': typeof ResearchPublicationsRoute
   '/research/startup-ecosystem': typeof ResearchStartupEcosystemRoute
+  '/social-and-community/ebsb': typeof SocialAndCommunityEbsbRoute
+  '/social-and-community/nss': typeof SocialAndCommunityNssRoute
+  '/social-and-community/uba': typeof SocialAndCommunityUbaRoute
+  '/social-and-community/yrc': typeof SocialAndCommunityYrcRoute
   '/student-community/alumni': typeof StudentCommunityAlumniRoute
   '/student-community/campus-happenings': typeof StudentCommunityCampusHappeningsRoute
   '/student-community/convocation': typeof StudentCommunityConvocationRoute
@@ -456,20 +528,25 @@ export interface FileRoutesById {
   '/credits': typeof CreditsRoute
   '/curriculum': typeof CurriculumRoute
   '/curriculum-and-syllabus': typeof CurriculumAndSyllabusRoute
+  '/ebsb': typeof EbsbRoute
   '/hostel': typeof HostelRoute
   '/incubation': typeof IncubationRoute
   '/library': typeof LibraryRoute
   '/naac': typeof NaacRouteWithChildren
   '/nirf': typeof NirfRoute
+  '/nss': typeof NssRoute
   '/placements': typeof PlacementsRoute
   '/programmes-offered': typeof ProgrammesOfferedRoute
   '/research': typeof ResearchRoute
+  '/social-and-community': typeof SocialAndCommunityRoute
   '/social-media': typeof SocialMediaRoute
   '/sports': typeof SportsRoute
   '/student-community': typeof StudentCommunityRoute
   '/student-life': typeof StudentLifeRoute
   '/syllabus': typeof SyllabusRoute
   '/transport': typeof TransportRoute
+  '/uba': typeof UbaRoute
+  '/yrc': typeof YrcRoute
   '/about_/accreditations': typeof AboutAccreditationsRoute
   '/about_/governing-council': typeof AboutGoverningCouncilRoute
   '/about_/group-institutions': typeof AboutGroupInstitutionsRoute
@@ -489,6 +566,10 @@ export interface FileRoutesById {
   '/research_/patents': typeof ResearchPatentsRoute
   '/research_/publications': typeof ResearchPublicationsRoute
   '/research_/startup-ecosystem': typeof ResearchStartupEcosystemRoute
+  '/social-and-community_/ebsb': typeof SocialAndCommunityEbsbRoute
+  '/social-and-community_/nss': typeof SocialAndCommunityNssRoute
+  '/social-and-community_/uba': typeof SocialAndCommunityUbaRoute
+  '/social-and-community_/yrc': typeof SocialAndCommunityYrcRoute
   '/student-community_/alumni': typeof StudentCommunityAlumniRoute
   '/student-community_/campus-happenings': typeof StudentCommunityCampusHappeningsRoute
   '/student-community_/convocation': typeof StudentCommunityConvocationRoute
@@ -513,20 +594,25 @@ export interface FileRouteTypes {
     | '/credits'
     | '/curriculum'
     | '/curriculum-and-syllabus'
+    | '/ebsb'
     | '/hostel'
     | '/incubation'
     | '/library'
     | '/naac'
     | '/nirf'
+    | '/nss'
     | '/placements'
     | '/programmes-offered'
     | '/research'
+    | '/social-and-community'
     | '/social-media'
     | '/sports'
     | '/student-community'
     | '/student-life'
     | '/syllabus'
     | '/transport'
+    | '/uba'
+    | '/yrc'
     | '/about/accreditations'
     | '/about/governing-council'
     | '/about/group-institutions'
@@ -546,6 +632,10 @@ export interface FileRouteTypes {
     | '/research/patents'
     | '/research/publications'
     | '/research/startup-ecosystem'
+    | '/social-and-community/ebsb'
+    | '/social-and-community/nss'
+    | '/social-and-community/uba'
+    | '/social-and-community/yrc'
     | '/student-community/alumni'
     | '/student-community/campus-happenings'
     | '/student-community/convocation'
@@ -568,19 +658,24 @@ export interface FileRouteTypes {
     | '/credits'
     | '/curriculum'
     | '/curriculum-and-syllabus'
+    | '/ebsb'
     | '/hostel'
     | '/incubation'
     | '/library'
     | '/nirf'
+    | '/nss'
     | '/placements'
     | '/programmes-offered'
     | '/research'
+    | '/social-and-community'
     | '/social-media'
     | '/sports'
     | '/student-community'
     | '/student-life'
     | '/syllabus'
     | '/transport'
+    | '/uba'
+    | '/yrc'
     | '/about/accreditations'
     | '/about/governing-council'
     | '/about/group-institutions'
@@ -600,6 +695,10 @@ export interface FileRouteTypes {
     | '/research/patents'
     | '/research/publications'
     | '/research/startup-ecosystem'
+    | '/social-and-community/ebsb'
+    | '/social-and-community/nss'
+    | '/social-and-community/uba'
+    | '/social-and-community/yrc'
     | '/student-community/alumni'
     | '/student-community/campus-happenings'
     | '/student-community/convocation'
@@ -622,20 +721,25 @@ export interface FileRouteTypes {
     | '/credits'
     | '/curriculum'
     | '/curriculum-and-syllabus'
+    | '/ebsb'
     | '/hostel'
     | '/incubation'
     | '/library'
     | '/naac'
     | '/nirf'
+    | '/nss'
     | '/placements'
     | '/programmes-offered'
     | '/research'
+    | '/social-and-community'
     | '/social-media'
     | '/sports'
     | '/student-community'
     | '/student-life'
     | '/syllabus'
     | '/transport'
+    | '/uba'
+    | '/yrc'
     | '/about_/accreditations'
     | '/about_/governing-council'
     | '/about_/group-institutions'
@@ -655,6 +759,10 @@ export interface FileRouteTypes {
     | '/research_/patents'
     | '/research_/publications'
     | '/research_/startup-ecosystem'
+    | '/social-and-community_/ebsb'
+    | '/social-and-community_/nss'
+    | '/social-and-community_/uba'
+    | '/social-and-community_/yrc'
     | '/student-community_/alumni'
     | '/student-community_/campus-happenings'
     | '/student-community_/convocation'
@@ -678,20 +786,25 @@ export interface RootRouteChildren {
   CreditsRoute: typeof CreditsRoute
   CurriculumRoute: typeof CurriculumRoute
   CurriculumAndSyllabusRoute: typeof CurriculumAndSyllabusRoute
+  EbsbRoute: typeof EbsbRoute
   HostelRoute: typeof HostelRoute
   IncubationRoute: typeof IncubationRoute
   LibraryRoute: typeof LibraryRoute
   NaacRoute: typeof NaacRouteWithChildren
   NirfRoute: typeof NirfRoute
+  NssRoute: typeof NssRoute
   PlacementsRoute: typeof PlacementsRoute
   ProgrammesOfferedRoute: typeof ProgrammesOfferedRoute
   ResearchRoute: typeof ResearchRoute
+  SocialAndCommunityRoute: typeof SocialAndCommunityRoute
   SocialMediaRoute: typeof SocialMediaRoute
   SportsRoute: typeof SportsRoute
   StudentCommunityRoute: typeof StudentCommunityRoute
   StudentLifeRoute: typeof StudentLifeRoute
   SyllabusRoute: typeof SyllabusRoute
   TransportRoute: typeof TransportRoute
+  UbaRoute: typeof UbaRoute
+  YrcRoute: typeof YrcRoute
   AboutAccreditationsRoute: typeof AboutAccreditationsRoute
   AboutGoverningCouncilRoute: typeof AboutGoverningCouncilRoute
   AboutGroupInstitutionsRoute: typeof AboutGroupInstitutionsRoute
@@ -710,6 +823,10 @@ export interface RootRouteChildren {
   ResearchPatentsRoute: typeof ResearchPatentsRoute
   ResearchPublicationsRoute: typeof ResearchPublicationsRoute
   ResearchStartupEcosystemRoute: typeof ResearchStartupEcosystemRoute
+  SocialAndCommunityEbsbRoute: typeof SocialAndCommunityEbsbRoute
+  SocialAndCommunityNssRoute: typeof SocialAndCommunityNssRoute
+  SocialAndCommunityUbaRoute: typeof SocialAndCommunityUbaRoute
+  SocialAndCommunityYrcRoute: typeof SocialAndCommunityYrcRoute
   StudentCommunityAlumniRoute: typeof StudentCommunityAlumniRoute
   StudentCommunityCampusHappeningsRoute: typeof StudentCommunityCampusHappeningsRoute
   StudentCommunityConvocationRoute: typeof StudentCommunityConvocationRoute
@@ -793,6 +910,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CurriculumAndSyllabusRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ebsb': {
+      id: '/ebsb'
+      path: '/ebsb'
+      fullPath: '/ebsb'
+      preLoaderRoute: typeof EbsbRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/hostel': {
       id: '/hostel'
       path: '/hostel'
@@ -828,6 +952,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NirfRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nss': {
+      id: '/nss'
+      path: '/nss'
+      fullPath: '/nss'
+      preLoaderRoute: typeof NssRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/placements': {
       id: '/placements'
       path: '/placements'
@@ -847,6 +978,13 @@ declare module '@tanstack/react-router' {
       path: '/research'
       fullPath: '/research'
       preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/social-and-community': {
+      id: '/social-and-community'
+      path: '/social-and-community'
+      fullPath: '/social-and-community'
+      preLoaderRoute: typeof SocialAndCommunityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/social-media': {
@@ -889,6 +1027,20 @@ declare module '@tanstack/react-router' {
       path: '/transport'
       fullPath: '/transport'
       preLoaderRoute: typeof TransportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uba': {
+      id: '/uba'
+      path: '/uba'
+      fullPath: '/uba'
+      preLoaderRoute: typeof UbaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/yrc': {
+      id: '/yrc'
+      path: '/yrc'
+      fullPath: '/yrc'
+      preLoaderRoute: typeof YrcRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about_/accreditations': {
@@ -1038,6 +1190,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchStartupEcosystemRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/social-and-community_/ebsb': {
+      id: '/social-and-community_/ebsb'
+      path: '/social-and-community/ebsb'
+      fullPath: '/social-and-community/ebsb'
+      preLoaderRoute: typeof SocialAndCommunityEbsbRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/social-and-community_/nss': {
+      id: '/social-and-community_/nss'
+      path: '/social-and-community/nss'
+      fullPath: '/social-and-community/nss'
+      preLoaderRoute: typeof SocialAndCommunityNssRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/social-and-community_/uba': {
+      id: '/social-and-community_/uba'
+      path: '/social-and-community/uba'
+      fullPath: '/social-and-community/uba'
+      preLoaderRoute: typeof SocialAndCommunityUbaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/social-and-community_/yrc': {
+      id: '/social-and-community_/yrc'
+      path: '/social-and-community/yrc'
+      fullPath: '/social-and-community/yrc'
+      preLoaderRoute: typeof SocialAndCommunityYrcRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/student-community_/alumni': {
       id: '/student-community_/alumni'
       path: '/student-community/alumni'
@@ -1120,20 +1300,25 @@ const rootRouteChildren: RootRouteChildren = {
   CreditsRoute: CreditsRoute,
   CurriculumRoute: CurriculumRoute,
   CurriculumAndSyllabusRoute: CurriculumAndSyllabusRoute,
+  EbsbRoute: EbsbRoute,
   HostelRoute: HostelRoute,
   IncubationRoute: IncubationRoute,
   LibraryRoute: LibraryRoute,
   NaacRoute: NaacRouteWithChildren,
   NirfRoute: NirfRoute,
+  NssRoute: NssRoute,
   PlacementsRoute: PlacementsRoute,
   ProgrammesOfferedRoute: ProgrammesOfferedRoute,
   ResearchRoute: ResearchRoute,
+  SocialAndCommunityRoute: SocialAndCommunityRoute,
   SocialMediaRoute: SocialMediaRoute,
   SportsRoute: SportsRoute,
   StudentCommunityRoute: StudentCommunityRoute,
   StudentLifeRoute: StudentLifeRoute,
   SyllabusRoute: SyllabusRoute,
   TransportRoute: TransportRoute,
+  UbaRoute: UbaRoute,
+  YrcRoute: YrcRoute,
   AboutAccreditationsRoute: AboutAccreditationsRoute,
   AboutGoverningCouncilRoute: AboutGoverningCouncilRoute,
   AboutGroupInstitutionsRoute: AboutGroupInstitutionsRoute,
@@ -1152,6 +1337,10 @@ const rootRouteChildren: RootRouteChildren = {
   ResearchPatentsRoute: ResearchPatentsRoute,
   ResearchPublicationsRoute: ResearchPublicationsRoute,
   ResearchStartupEcosystemRoute: ResearchStartupEcosystemRoute,
+  SocialAndCommunityEbsbRoute: SocialAndCommunityEbsbRoute,
+  SocialAndCommunityNssRoute: SocialAndCommunityNssRoute,
+  SocialAndCommunityUbaRoute: SocialAndCommunityUbaRoute,
+  SocialAndCommunityYrcRoute: SocialAndCommunityYrcRoute,
   StudentCommunityAlumniRoute: StudentCommunityAlumniRoute,
   StudentCommunityCampusHappeningsRoute: StudentCommunityCampusHappeningsRoute,
   StudentCommunityConvocationRoute: StudentCommunityConvocationRoute,
