@@ -68,10 +68,19 @@ function StudentHubPage() {
       {/* ========================================================================= */}
       {/* 1. HERO BANNER: Standard MSAJCE Hero (Title Docked Flush at Bottom)       */}
       {/* ========================================================================= */}
-      <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[260px] sm:min-h-[300px] md:min-h-[360px] flex flex-col justify-end">
-        {/* Background gradient canvas */}
-        <div className="absolute inset-0 z-0 bg-[#18181B]">
-          <div className="absolute inset-0 bg-radial from-primary/10 via-transparent to-transparent opacity-40" />
+      <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+        {/* Hero Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80"
+            alt="Student Hub and Campus Amenities at Mohamed Sathak A.J. College of Engineering"
+            className="w-full h-full object-cover object-center brightness-[0.70] filter contrast-105 select-none pointer-events-none rounded-none"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+            }}
+          />
+          {/* Subtle gradient overlay for depth and title legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
         </div>
 
         {/* Title Container: Docked Flush at Bottom of Hero */}
