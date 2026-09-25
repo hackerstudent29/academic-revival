@@ -150,11 +150,11 @@ const nav: NavItem[] = [
       {
         title: "Social & Community",
         links: [
-          { label: "National Service Scheme (NSS)", to: "/social-and-community/nss" },
-          { label: "Youth Red Cross (YRC)", to: "/social-and-community/yrc" },
-          { label: "Unnat Bharat Abhiyan (UBA)", to: "/social-and-community/uba" },
-          { label: "EBSB Initiative", to: "/social-and-community/ebsb" },
-          { label: "AICTE KARMA Scheme", to: "/social-and-community/karma" },
+          { label: "National Service Scheme (NSS)", to: "/social-and-community", search: { tab: "nss" } },
+          { label: "Youth Red Cross (YRC)", to: "/social-and-community", search: { tab: "yrc" } },
+          { label: "Unnat Bharat Abhiyan (UBA)", to: "/social-and-community", search: { tab: "uba" } },
+          { label: "EBSB Initiative", to: "/social-and-community", search: { tab: "ebsb" } },
+          { label: "AICTE KARMA", to: "/social-and-community", search: { tab: "karma" } },
         ],
       },
       {
