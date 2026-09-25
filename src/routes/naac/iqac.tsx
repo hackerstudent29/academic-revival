@@ -32,11 +32,15 @@ function IQAC() {
         activeTab={activeTab}
         onSelectTab={(id) => {
           setActiveTab(id);
-          const contentContainer = document.getElementById('iqac-main-content');
-          if (contentContainer) {
-            const yOffset = -120;
-            const y = contentContainer.getBoundingClientRect().top + window.pageYOffset + yOffset;
-            window.scrollTo({ top: y, behavior: 'smooth' });
+          if (id === "overview") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          } else {
+            const contentContainer = document.getElementById('iqac-main-content');
+            if (contentContainer) {
+              const headerOffset = typeof window !== "undefined" && window.innerWidth < 768 ? 44 : 52;
+              const y = contentContainer.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+              window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+            }
           }
         }}
       />

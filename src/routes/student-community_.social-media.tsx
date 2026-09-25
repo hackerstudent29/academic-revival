@@ -150,77 +150,30 @@ function SocialMediaDirectoryPage() {
       className="bg-white dark:bg-[#121214] text-foreground font-libre antialiased selection:bg-primary selection:text-white"
     >
       {/* ========================================================================= */}
-      {/* 1. SLIDING MOTION HERO SECTION (Admission Eligibility Style)              */}
+      {/* 1. HERO BANNER: Title Docked Flush with Hero Section End                  */}
       {/* ========================================================================= */}
-      <section className="relative w-full overflow-hidden h-auto lg:h-[72vh] min-h-[500px] flex flex-col lg:block bg-[#18181B]">
-        {/* Desktop Image with Motion Reveal */}
-        <motion.div
-          initial={{ width: "100%" }}
-          animate={{ width: "60%" }}
-          transition={{ duration: 1.2, delay: 0.1, ease: cubicEase }}
-          className="absolute inset-y-0 right-0 z-10 hidden lg:block pointer-events-none"
-        >
+      <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+        {/* Hero Background Image */}
+        <div className="absolute inset-0 z-0">
           <img
             src="/images/social_media_directory.jpg"
             alt="MSAJCE Social Media Network"
-            className="w-full h-full object-cover object-center brightness-95"
+            className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none rounded-none"
             onError={(e) => {
               (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
             }}
           />
-        </motion.div>
-
-        {/* Accent sliding block (The Crimson Edge) */}
-        <motion.div
-          initial={{ width: "0%" }}
-          animate={{ width: "51%" }}
-          transition={{ duration: 1.2, delay: 0.05, ease: cubicEase }}
-          className="absolute inset-y-0 left-0 bg-primary z-20 hidden lg:block shadow-2xl"
-          style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
-        />
-
-        {/* Sliding Background from Left with Diagonal Edge */}
-        <motion.div
-          initial={{ width: "0%" }}
-          animate={{ width: "50%" }}
-          transition={{ duration: 1.2, delay: 0.1, ease: cubicEase }}
-          className="absolute inset-y-0 left-0 bg-background dark:bg-[#121214] z-30 hidden lg:block"
-          style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
-        />
-
-        {/* Mobile Image */}
-        <div className="w-full h-[300px] relative lg:hidden block z-10">
-          <img
-            src="/images/social_media_directory.jpg"
-            alt="MSAJCE Social Media Network"
-            className="absolute inset-0 w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+          {/* Subtle gradient overlay for depth and title legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
         </div>
 
-        {/* Text Content */}
-        <div className="w-full lg:w-[48%] px-6 py-12 md:py-16 lg:px-10 xl:px-12 flex flex-col justify-center z-40 relative lg:absolute lg:inset-y-0 lg:left-0 h-full bg-background dark:bg-[#121214] lg:bg-transparent">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="inline-flex items-center gap-2 mb-4">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-[10px] font-bold font-mono tracking-widest uppercase text-primary">
-                Digital Campus Network
-              </span>
-            </div>
-
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black font-oswald uppercase leading-[1.05] tracking-tight text-primary mb-4">
-              SOCIAL <br />
-              MEDIA
+        {/* Title Container: Docked Flush at Bottom of Hero with Correct Container Alignment */}
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
+          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
+              Social Media Directory
             </h1>
-
-            <p className="text-sm md:text-base font-medium text-muted-foreground leading-relaxed max-w-md font-libre">
-              Connect directly with the digital pulse of MSAJCE across verified institutional platforms, engineering department hubs, and student-led channels.
-            </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 

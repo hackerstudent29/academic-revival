@@ -28,14 +28,14 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({ onNavigate }) 
       title: 'Entrepreneurship',
       desc: 'Incubation support, patent filing assistance, and proof-of-concept seed validation.',
       tag: 'INNOVATION',
-      nav: 'journey',
+      nav: 'pathways',
     },
     {
       num: '03',
       title: 'Higher Studies',
       desc: 'Preparation for GATE, GRE, TOEFL, and admissions into premier global universities.',
       tag: 'GLOBAL TRACK',
-      nav: 'journey',
+      nav: 'pathways',
     },
     {
       num: '04',

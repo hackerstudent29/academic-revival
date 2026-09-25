@@ -73,34 +73,6 @@ export const MoUsSection: React.FC<MoUsSectionProps> = () => {
       ay23: 'https://www.msajce-edu.in/uploads/placement/colloboration/MOU/MoU2023.pdf',
       ay22: 'https://www.msajce-edu.in/uploads/placement/colloboration/MOU/MoU2022.pdf',
     },
-    {
-      activity: 'Industrial Internships & PPOs',
-      ay25: null,
-      ay24: 'https://www.msajce-edu.in/uploads/placement/colloboration/INTERNSHIP/Internship2024-25.pdf',
-      ay23: 'https://www.msajce-edu.in/uploads/placement/colloboration/INTERNSHIP/Internship2023-24.pdf',
-      ay22: 'https://www.msajce-edu.in/uploads/placement/colloboration/INTERNSHIP/Internship2022-23.pdf',
-    },
-    {
-      activity: 'Campus Placement Drives',
-      ay25: 'https://www.msajce-edu.in/uploads/placement/colloboration/PLACEMENT/placementdetails2025-2026.pdf',
-      ay24: 'https://www.msajce-edu.in/uploads/placement/colloboration/PLACEMENT/placementdetails2024-2025.pdf',
-      ay23: 'https://www.msajce-edu.in/uploads/placement/colloboration/PLACEMENT/placementdetails2023-2024.pdf',
-      ay22: 'https://www.msajce-edu.in/uploads/placement/colloboration/PLACEMENT/placementdetails2022-2023.pdf',
-    },
-    {
-      activity: 'Industrial Visits (IV)',
-      ay25: 'https://www.msajce-edu.in/uploads/placement/colloboration/INDUSTRY-VISIT/IV25-26.pdf',
-      ay24: 'https://www.msajce-edu.in/uploads/placement/colloboration/INDUSTRY-VISIT/IV24-25.pdf',
-      ay23: 'https://www.msajce-edu.in/uploads/placement/colloboration/INDUSTRY-VISIT/IV23-24.pdf',
-      ay22: 'https://www.msajce-edu.in/uploads/placement/colloboration/INDUSTRY-VISIT/IV22-23.pdf',
-    },
-    {
-      activity: 'Advisory Board Committee',
-      ay25: 'https://www.msajce-edu.in/uploads/placement/colloboration/ADVISORY-BOARD/AY25-26COMMITTEE.pdf',
-      ay24: 'https://www.msajce-edu.in/uploads/placement/colloboration/ADVISORY-BOARD/AY24-25COMMITTEE.pdf',
-      ay23: 'https://www.msajce-edu.in/uploads/placement/colloboration/ADVISORY-BOARD/AY23-24COMMITTEE.pdf',
-      ay22: null,
-    },
   ];
 
   return (
@@ -164,7 +136,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = () => {
       <section className="pt-8 sm:pt-10 md:pt-12 pb-10 sm:pb-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-            INDUSTRY INSTITUTION INTERACTION CELL ACTIVITIES
+            ANNUAL MOU ACCORDS
           </h2>
 
           <div className="w-full overflow-x-auto">
@@ -202,7 +174,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = () => {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 text-xs font-bold font-oswald uppercase text-primary hover:underline"
                         >
-                          <span>View</span>
+                          <span>VIEW</span>
                           <ExternalLink className="w-3 h-3" />
                         </a>
                       ) : (
@@ -217,7 +189,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = () => {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 text-xs font-bold font-oswald uppercase text-primary hover:underline"
                         >
-                          <span>View</span>
+                          <span>VIEW</span>
                           <ExternalLink className="w-3 h-3" />
                         </a>
                       ) : (
@@ -232,7 +204,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = () => {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 text-xs font-bold font-oswald uppercase text-primary hover:underline"
                         >
-                          <span>View</span>
+                          <span>VIEW</span>
                           <ExternalLink className="w-3 h-3" />
                         </a>
                       ) : (
@@ -247,7 +219,7 @@ export const MoUsSection: React.FC<MoUsSectionProps> = () => {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 text-xs font-bold font-oswald uppercase text-primary hover:underline"
                         >
-                          <span>View</span>
+                          <span>VIEW</span>
                           <ExternalLink className="w-3 h-3" />
                         </a>
                       ) : (

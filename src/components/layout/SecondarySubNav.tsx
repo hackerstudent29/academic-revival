@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Check } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useHeader } from '@/context/HeaderContext';
 
 export interface SubNavTab {
@@ -24,10 +25,23 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
   onTitleClick,
   className = "",
 }) => {
-  const { isHeaderHidden } = useHeader();
+  const { isHeaderHidden, setHeaderHidden, setHasSecondaryNav, setIsTabSwitching } = useHeader();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const currentTabLabel = tabs.find(t => t.id === activeTab)?.label || 'Overview';
+  const switchTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Inform HeaderContext that a secondary navbar is mounted on this page
+  useEffect(() => {
+    setHasSecondaryNav(true);
+    return () => {
+      setHasSecondaryNav(false);
+      setIsTabSwitching(false);
+      if (switchTimerRef.current) {
+        clearTimeout(switchTimerRef.current);
+      }
+    };
+  }, [setHasSecondaryNav, setIsTabSwitching]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -39,10 +53,32 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const handleTabClick = (tabId: string) => {
+    const isFirstTab = tabs.length > 0 && (tabId === tabs[0]?.id || tabId === "overview");
+    if (!isFirstTab) {
+      // Keep main header hidden and prevent upward scroll from popping open the main header/dropdown
+      setHeaderHidden(true);
+      setIsTabSwitching(true);
+      if (switchTimerRef.current) {
+        clearTimeout(switchTimerRef.current);
+      }
+      switchTimerRef.current = setTimeout(() => {
+        setIsTabSwitching(false);
+      }, 600);
+    } else {
+      setHeaderHidden(false);
+      setIsTabSwitching(false);
+    }
+    onSelectTab(tabId);
+  };
+
   return (
     <div
-      className={`sticky z-40 w-full transition-[top] duration-300 ease-out bg-background/85 dark:bg-[#121214]/85 backdrop-blur-xl border-t border-b border-border/80 dark:border-white/10 shadow-xs ${
-        !isHeaderHidden ? "top-[58px] md:top-[70px]" : "top-0"
+      style={{
+        transition: 'top 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1)'
+      }}
+      className={`sticky z-40 w-full bg-background/85 dark:bg-[#121214]/85 backdrop-blur-xl border-t border-b border-border/80 dark:border-white/10 shadow-xs ${
+        !isHeaderHidden ? "top-[58px] md:top-[70px]" : "top-0 md:top-0"
       } ${className}`}
     >
       <div className="relative max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 py-1.5 sm:py-2 min-h-[38px] md:min-h-[44px] flex items-center justify-between gap-3">
@@ -76,7 +112,7 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
                     key={tab.id}
                     type="button"
                     onClick={() => {
-                      onSelectTab(tab.id);
+                      handleTabClick(tab.id);
                       setIsOpen(false);
                     }}
                     className={`w-full flex items-center justify-between px-3.5 py-2.5 text-left text-xs font-bold font-oswald uppercase tracking-wider transition-colors cursor-pointer ${
@@ -102,7 +138,7 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
               return (
                 <li
                   key={tab.id}
-                  onClick={() => onSelectTab(tab.id)}
+                  onClick={() => handleTabClick(tab.id)}
                   className={`relative py-1 whitespace-nowrap text-xs sm:text-sm xl:text-[13px] font-bold uppercase tracking-[0.05em] font-oswald cursor-pointer transition-colors duration-200 select-none shrink-0 ${
                     isActive
                       ? 'text-primary font-black'
@@ -110,11 +146,13 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
                   }`}
                 >
                   {tab.label}
-                  <span
-                    className={`absolute -bottom-1 left-0 h-[2.5px] bg-primary rounded-full transition-all duration-300 ${
-                      isActive ? "w-full" : "w-0"
-                    }`}
-                  />
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeSecondarySubNavIndicator"
+                      className="absolute -bottom-1 left-0 right-0 h-[2.5px] bg-primary rounded-full"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                    />
+                  )}
                 </li>
               );
             })}

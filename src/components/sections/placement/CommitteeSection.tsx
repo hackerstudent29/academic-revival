@@ -181,10 +181,10 @@ export const CommitteeSection: React.FC = () => {
                   <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 w-16">
                     S.No
                   </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 w-48">
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 min-w-[260px]">
                     Member Name
                   </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5">
+                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 min-w-[260px]">
                     Designation &amp; Department
                   </th>
                   <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 py-3.5 w-44">
@@ -201,7 +201,7 @@ export const CommitteeSection: React.FC = () => {
                     <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap">
                       {member.sno}
                     </td>
-                    <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm">
+                    <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm whitespace-nowrap">
                       {member.name}
                     </td>
                     <td className="px-4 py-3.5 font-libre font-medium text-xs sm:text-sm text-foreground/90">

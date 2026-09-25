@@ -59,6 +59,7 @@ description: Design system rules and guidelines for MSAJCE website, using Oswald
 *   **Hero Image Showcase Rules**:
     - **No Video Overlay Icons**: Do NOT add play buttons, video play circles, or video player UI overlays over static hero images. Images must be rendered as clean static media showcases.
     - **No Floating Overlay Badges**: Do NOT add floating bottom-right text pill badges over hero images.
+    - **Strict Ban on Text Overlays over Images**: STRICTLY DO NOT paste or overlay text, labels, badges, captions, or gradient text overlays on top of images in galleries, cards, or media showcases across any pages or tabs. Images must be rendered cleanly and purely as static media showcases with zero text pasted over them.
     - **Boxy Asymmetrical Button & Badge Shape**: Buttons and badges on hero blocks must use boxy asymmetrical rectangular shapes (`rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs` or `rounded-sm` with crisp borders) rather than plain fully-rounded pills (`rounded-full`).
     - **Component Remounting & Fallback**: Images must use `key={item.id}` or `key={course.slug}` to force fresh element remounting and specify a local fallback (`/images/eligibility_hero.jpg`) in `onError`.
 *   **Image Radii & Animation Constraints**: Use minimal edge curves (`rounded-lg` or `rounded-md`, `0.25rem` radius). Strictly avoid image zoom/popup hover effects (`scale-105`/`scale-110`). Images must stay flat and static on hover.
@@ -88,6 +89,31 @@ description: Design system rules and guidelines for MSAJCE website, using Oswald
 ### Strict Page Minimalism Guidelines (Reference: `/library` & `/about/overview`)
 
 *   **Strict Ban on Cards**: STRICTLY DO NOT use card components or boxed card containers (`bg-card`, rounded boxed card frames, card shadows) for page components and elements unless the user explicitly and personally requests cards. Use clean, open editorial lists, transparent tables, and crisp divider lines (`divide-y divide-border` / `border-b border-border`) instead.
+*   **Full-Length Editorial Text Layout (Strict Ban on `max-w-4xl` / `max-w-prose`)**:
+    - **MANDATORY**: All narrative paragraphs, descriptive text, overview articles, policy statements, and highlight/quote blocks must span **full width (`w-full`)** across to the right container edge with standard container padding (`max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12`).
+    - **Strictly Banned**: NEVER restrict text width with `max-w-prose`, `max-w-2xl`, `max-w-3xl`, or `max-w-4xl`. Text must run all the way from the left boundary to the right boundary padding before wrapping to the next line.
+*   **Mandatory Standard Table Component (`DataGridContainer` from Publications)**:
+    - **Rule**: Whenever asked to "use table component" or render data tables for any page or section, you MUST strictly use the official Publications DataGrid table standard from `@/components/ui/data-grid-table`:
+      ```tsx
+      <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+        <div className="overflow-x-auto bg-transparent">
+          <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+              <tr>
+                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap ...">
+                  ...
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/40 font-libre">
+              <tr className="hover:bg-foreground/[0.02] transition-colors">
+                <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </DataGridContainer>
+      ```
 *   **Strict Ban on Unwanted Lines**: STRICTLY DO NOT use `<hr>` tags or harsh horizontal divider lines (`border-t border-border`) between sections or before visual galleries. Visual separation is achieved purely through alternating wave backgrounds or natural breathing room.
 *   **Multi-Section Alternating Wave Background Design**: Whenever creating or restructuring any page, tab, or view with two or more sections, you MUST use our signature alternating organic wave background color split design (as demonstrated in `/library`). Alternate between Section A (`bg-white dark:bg-[#121214]`) and Section B (`bg-[#F3F3F2] dark:bg-[#18181B]`) separated by smooth organic wave SVGs.
 *   **Tight Header Spacing**: Spacing between the top sticky header and main content must remain minimal (`pt-0 md:pt-1` on `<main>` / `pt-2 md:pt-4` on section wrapper). NEVER leave large dead padding or empty gaps above page content.

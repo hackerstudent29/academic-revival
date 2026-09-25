@@ -4,10 +4,8 @@ import { SecondarySubNav } from "@/components/layout/SecondarySubNav";
 import { OverviewSection } from "@/components/sections/placement/OverviewSection";
 import { RecruitersSection } from "@/components/sections/placement/RecruitersSection";
 import { TrainingSection } from "@/components/sections/placement/TrainingSection";
-import { InternshipsSection } from "@/components/sections/placement/InternshipsSection";
 import { MoUsSection } from "@/components/sections/placement/MoUsSection";
 import { JourneySection } from "@/components/sections/placement/JourneySection";
-import { CommitteeSection } from "@/components/sections/placement/CommitteeSection";
 
 // Modals
 import { FacilityLightbox } from "@/components/modals/placement/FacilityLightbox";
@@ -22,7 +20,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const title = "Career & Placements — M.S.A.J. College of Engineering, Chennai";
 const description =
-  "Comprehensive Placement & Career Ecosystem at Mohamed Sathak A.J. College of Engineering, featuring 95% placement track record, 120+ recruiters, advanced skill labs, and corporate MoUs.";
+  "Comprehensive Placement & Career Ecosystem at Mohamed Sathak A.J. College of Engineering, featuring 80% overall percentage, 180+ offers received, 50+ companies visited, and 8 LPA highest package.";
 
 interface PlacementsSearch {
   tab?: string | undefined;
@@ -49,21 +47,32 @@ export const Route = createFileRoute("/placements")({
 
 const PLACEMENT_TABS = [
   { id: "overview", label: "Overview" },
-  { id: "recruiters", label: "Recruiters & Tiers" },
-  { id: "training", label: "Skill Training & Labs" },
-  { id: "internships", label: "Internships & PPOs" },
-  { id: "mous", label: "MoUs & Alliances" },
-  { id: "journey", label: "Higher Studies Track" },
-  { id: "committee", label: "Placement Cell & Contact" },
+  { id: "recruiters", label: "Campus Placements" },
+  { id: "training", label: "Training & Internships" },
+  { id: "mous", label: "MoUs & Collaborations" },
+  { id: "pathways", label: "Pathways & Placement Cell" },
 ];
 
 function Placements() {
   const { tab } = Route.useSearch();
-  const [activeSection, setActiveSection] = useState<string>(tab || "overview");
+  const [activeSection, setActiveSection] = useState<string>(() => {
+    if (tab === "internships") return "training";
+    if (tab === "journey" || tab === "committee") return "pathways";
+    if (tab === "placements" || tab === "placement") return "recruiters";
+    return tab || "overview";
+  });
 
   useEffect(() => {
-    if (tab && tab !== activeSection) {
-      setActiveSection(tab);
+    if (tab) {
+      if (tab === "internships") {
+        setActiveSection("training");
+      } else if (tab === "journey" || tab === "committee") {
+        setActiveSection("pathways");
+      } else if (tab === "placements" || tab === "placement") {
+        setActiveSection("recruiters");
+      } else if (PLACEMENT_TABS.some((t) => t.id === tab) && tab !== activeSection) {
+        setActiveSection(tab);
+      }
     }
   }, [tab]);
 
@@ -84,7 +93,7 @@ function Placements() {
   const scrollToContent = () => {
     const el = document.getElementById("placement-main-content");
     if (el) {
-      const headerOffset = typeof window !== "undefined" && window.innerWidth < 768 ? 105 : 120;
+      const headerOffset = typeof window !== "undefined" && window.innerWidth < 768 ? 44 : 52;
       const elementTop = el.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({
         top: Math.max(0, elementTop - headerOffset),
@@ -95,9 +104,13 @@ function Placements() {
 
   const handleSelectSection = (sectionId: string) => {
     setActiveSection(sectionId);
-    setTimeout(() => {
-      scrollToContent();
-    }, 40);
+    if (sectionId === "overview") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      setTimeout(() => {
+        scrollToContent();
+      }, 40);
+    }
   };
 
   const handleTitleClick = () => {
@@ -128,7 +141,7 @@ function Placements() {
               <img
                 src="/images/accreditations_campus.jpg"
                 alt="MSAJCE Career & Placements Ecosystem"
-                className="w-full h-full object-cover object-center brightness-[0.80] filter contrast-105 select-none pointer-events-none rounded-none"
+                className="w-full h-full object-cover object-center brightness-[0.85] filter contrast-105 select-none pointer-events-none rounded-none"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = "/images/eligibility_hero.jpg";
                 }}
@@ -137,13 +150,13 @@ function Placements() {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20" />
             </div>
 
-            {/* Title Container: Fading Translucent Backdrop */}
-            <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-6 sm:pt-8 md:pt-10 pb-2 sm:pb-3 md:pb-4">
+            {/* Title Container: Fading Translucent Backdrop, Institution Title Only */}
+            <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-12 sm:pt-16 md:pt-20 pb-4 sm:pb-6 md:pb-8">
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-2.5 sm:px-6 sm:py-3.5 md:px-8 md:py-4 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15"
+                className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15"
               >
                 <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-[1.1]">
                   Career &amp; Placements
@@ -151,85 +164,37 @@ function Placements() {
               </motion.div>
             </div>
 
-            {/* Docked Facts & Figures Placement Track Record Strip (Institution Hero Style) */}
-            <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/85 to-transparent pt-4 sm:pt-6 md:pt-8 pb-4 sm:pb-5 md:pb-6">
+            {/* Fading Facts & Figures Docked Stats Strip (Smooth Gradient Fade, No Harsh Line, Maroon Figures) */}
+            <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-8 sm:pt-10 md:pt-14 pb-5 sm:pb-6 md:pb-8">
               <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
-                <div className="flex items-center justify-between gap-4 mb-2 sm:mb-3">
+                <div className="mb-3 sm:mb-4">
                   <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-black font-oswald uppercase tracking-wide text-primary">
-                    PLACEMENT TRACK RECORD
+                    Facts &amp; Figures
                   </h2>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-5 md:gap-6 lg:gap-8 md:divide-x md:divide-white/15">
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.45, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                    className="first:pl-0 md:pl-4 lg:pl-6 space-y-0.5 sm:space-y-1"
-                  >
-                    <div className="font-oswald text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-primary tracking-tight leading-none">
-                      95%
-                    </div>
-                    <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white font-oswald">
-                      Placement Rate
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.45, delay: 0.21, ease: [0.16, 1, 0.3, 1] }}
-                    className="md:pl-4 lg:pl-6 space-y-0.5 sm:space-y-1"
-                  >
-                    <div className="font-oswald text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-primary tracking-tight leading-none">
-                      450+
-                    </div>
-                    <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white font-oswald">
-                      Offers Made
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.45, delay: 0.27, ease: [0.16, 1, 0.3, 1] }}
-                    className="md:pl-4 lg:pl-6 space-y-0.5 sm:space-y-1"
-                  >
-                    <div className="font-oswald text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-primary tracking-tight leading-none">
-                      120+
-                    </div>
-                    <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white font-oswald">
-                      Recruiters
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.45, delay: 0.33, ease: [0.16, 1, 0.3, 1] }}
-                    className="md:pl-4 lg:pl-6 space-y-0.5 sm:space-y-1"
-                  >
-                    <div className="font-oswald text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-primary tracking-tight leading-none">
-                      ₹43.3 <span className="text-sm font-bold">LPA</span>
-                    </div>
-                    <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white font-oswald">
-                      Highest Package
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.45, delay: 0.39, ease: [0.16, 1, 0.3, 1] }}
-                    className="col-span-2 md:col-span-1 md:pl-4 lg:pl-6 space-y-0.5 sm:space-y-1"
-                  >
-                    <div className="font-oswald text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-primary tracking-tight leading-none">
-                      ₹5.8 <span className="text-sm font-bold">LPA</span>
-                    </div>
-                    <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white font-oswald">
-                      Average Package
-                    </div>
-                  </motion.div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8 md:divide-x md:divide-white/15">
+                  {[
+                    { value: "8 LPA", label: "Highest Package" },
+                    { value: "180+", label: "Offers Received" },
+                    { value: "50+", label: "Companies Visited" },
+                    { value: "80%", label: "Overall Percentage" },
+                  ].map((stat, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.45, delay: 0.15 + idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                      className="first:pl-0 md:pl-4 lg:pl-6 space-y-0.5 sm:space-y-1"
+                    >
+                      <div className="font-oswald text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-primary tracking-tight leading-none">
+                        {stat.value}
+                      </div>
+                      <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-0.5 sm:pt-1">
+                        {stat.label}
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -281,24 +246,16 @@ function Placements() {
                 <TrainingSection onOpenFacility={(fac) => setSelectedFacility(fac)} onNavigate={handleSelectSection} />
               )}
 
-              {activeSection === "internships" && (
-                <InternshipsSection onOpenStory={(story) => setSelectedStory(story)} />
-              )}
-
               {activeSection === "mous" && (
                 <MoUsSection onOpenMou={(mou) => setSelectedMou(mou)} />
               )}
 
-              {activeSection === "journey" && (
+              {activeSection === "pathways" && (
                 <JourneySection
                   onOpenEvent={(ev) => setSelectedEvent(ev)}
                   onOpenBrochure={() => setIsBrochureOpen(true)}
                   onOpenContact={() => setIsContactOpen(true)}
                 />
-              )}
-
-              {activeSection === "committee" && (
-                <CommitteeSection />
               )}
             </motion.div>
           </AnimatePresence>

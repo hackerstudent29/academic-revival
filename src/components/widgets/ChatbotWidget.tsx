@@ -51,47 +51,23 @@ function useChatbotEmotions(isOpen: boolean) {
 
     startIdleRotation();
 
-    // Contextual Hover Detection (Minimal 4-5 small sentences, strictly NO emojis)
+    // Hovering the chatbot launcher itself
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      // Hovering the chatbot launcher itself
       if (target.closest("[data-chatbot-launcher]")) {
         if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
         setCurrentText("Click to chat with me");
-        return;
-      }
-
-      // Hovering clickable links or buttons
-      if (target.closest("a, button, [role='button'], input, select, textarea")) {
-        if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-        setCurrentText("Curious about this?");
-        hoverTimeoutRef.current = setTimeout(startIdleRotation, 4000);
-        return;
-      }
-    };
-
-    // User Scroll
-    let lastScrollY = window.scrollY;
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (Math.abs(currentScrollY - lastScrollY) > 400) {
-        lastScrollY = currentScrollY;
-        if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-        setCurrentText("Can I help you?");
-        hoverTimeoutRef.current = setTimeout(startIdleRotation, 4000);
       }
     };
 
     window.addEventListener("mouseover", handleMouseOver, { passive: true });
-    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       if (idleIntervalRef.current) clearInterval(idleIntervalRef.current);
       if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
       window.removeEventListener("mouseover", handleMouseOver);
-      window.removeEventListener("scroll", handleScroll);
     };
   }, [isOpen]);
 

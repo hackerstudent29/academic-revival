@@ -57,15 +57,15 @@ export const PLACEMENT_STATS: Record<string, PlacementStat> = {
   },
   '2025-26': {
     year: '2025-26',
-    placedCount: 86,
-    highestPackageLPA: 12.0,
-    averagePackageLPA: 4.8,
-    eligibleStudents: 160,
-    totalOffers: 124,
-    visitingCompanies: 38,
+    placedCount: 160,
+    highestPackageLPA: 8.0,
+    averagePackageLPA: 4.0,
+    eligibleStudents: 200,
+    totalOffers: 180,
+    visitingCompanies: 50,
     internshipOffers: 480,
-    placementRatePercent: 88.0,
-    reportLabel: 'Academic Year 2025–26 | Ongoing recruitment cycle (Pooled & On-Campus)',
+    placementRatePercent: 80.0,
+    reportLabel: 'Academic Year 2025–26 (2026 Major Recruiters) | Official Placement Highlights',
   },
 };
 

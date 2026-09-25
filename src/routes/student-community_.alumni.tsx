@@ -52,8 +52,10 @@ function FormattedAlumniDetails({ details }: { details: string }) {
   // Multiline lists (e.g. 25 Alumni Achievers or multi-person lists)
   if (details.includes("\n")) {
     const rawLines = details.split("\n").map((l) => l.trim()).filter(Boolean);
-    const hasHeader = !rawLines[0].match(/^(\d+)[\.\)]/);
-    const headerLine = hasHeader ? rawLines[0] : null;
+    if (rawLines.length === 0) return null;
+    const firstLine = rawLines[0] || "";
+    const hasHeader = !firstLine.match(/^(\d+)[\.\)]/);
+    const headerLine = hasHeader ? firstLine : null;
     const listLines = hasHeader ? rawLines.slice(1) : rawLines;
 
     return (
@@ -66,19 +68,19 @@ function FormattedAlumniDetails({ details }: { details: string }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[360px] overflow-y-auto pr-1">
           {listLines.map((line, idx) => {
             const match = line.match(/^(\d+)[\.\)]\s*(.*)/);
-            const num = match ? match[1] : (idx + 1).toString();
-            const content = match ? match[2] : line;
+            const num = (match && match[1]) ? match[1] : (idx + 1).toString();
+            const content = (match && match[2]) ? match[2] : line;
 
             let name = content;
             let company = "";
 
-            if (content.includes(" - ")) {
+            if (content && content.includes(" - ")) {
               const parts = content.split(/\s+-\s+/);
-              name = parts[0];
+              name = parts[0] || "";
               company = parts.slice(1).join(" • ");
-            } else if (content.includes(" – ")) {
+            } else if (content && content.includes(" – ")) {
               const parts = content.split(/\s+–\s+/);
-              name = parts[0];
+              name = parts[0] || "";
               company = parts.slice(1).join(" • ");
             }
 

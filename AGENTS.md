@@ -23,11 +23,34 @@
 >
 > **Strict Page Minimalism (Reference: `/library` & `/about/overview`)**:
 > - **Strict Ban on Cards**: STRICTLY DO NOT use card components or boxed card containers (`bg-card`, rounded boxed card frames, card drop shadows) for page components and elements unless the user explicitly and personally requests cards. Use clean, open editorial lists, transparent tables, and minimal spacing.
+> - **Full-Length Editorial Text Layout (Strict Ban on `max-w-4xl` / `max-w-prose`)**: All narrative paragraphs, descriptive text, overview articles, policy statements, and highlight/quote blocks must span **full width (`w-full`)** across to the right container edge with standard container padding (`max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12`). Strictly forbid artificial truncation like `max-w-4xl` / `max-w-prose` that ends lines prematurely in the middle of wide screens. Text must run all the way from the left boundary to the right boundary padding before wrapping to the next line.
+> - **Mandatory Standard Table Component (`DataGridContainer` from Publications)**: Whenever asked to "use table component" or render data tables for any page or section, you MUST strictly fetch and use the official Publications DataGrid table standard from `@/components/ui/data-grid-table`:
+>   ```tsx
+>   <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+>     <div className="overflow-x-auto bg-transparent">
+>       <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+>         <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+>           <tr>
+>             <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap ...">
+>               ...
+>             </th>
+>           </tr>
+>         </thead>
+>         <tbody className="divide-y divide-border/40 font-libre">
+>           <tr className="hover:bg-foreground/[0.02] transition-colors">
+>             <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">...</td>
+>           </tr>
+>         </tbody>
+>       </table>
+>     </div>
+>   </DataGridContainer>
+>   ```
 > - **Strict Ban on Unwanted Lines**: STRICTLY DO NOT use `<hr>` tags or harsh horizontal divider lines (`border-t border-border`) between sections or before galleries. Visual separation is achieved purely through alternating wave backgrounds or natural breathing room.
 > - **Multi-Section Alternating Wave Background Design**: Whenever creating or restructuring any page, tab, or view with two or more sections, you MUST use our signature alternating organic wave background color split design (as demonstrated in `/library`). Alternate between Section A (`bg-white dark:bg-[#121214]`) and Section B (`bg-[#F3F3F2] dark:bg-[#18181B]`) separated by smooth organic wave SVGs.
 > - **Tight Header Spacing**: Spacing between the top sticky header and main content must remain minimal (`pt-0 md:pt-1` on `<main>` / `pt-2 md:pt-4` on section wrapper). NEVER leave large dead padding or empty gaps above page content.
 > - **No AI Symbols or Eyebrow Sentences**: NEVER add AI symbols (such as Lucide `Sparkles`) or introductory eyebrows/sentences (e.g. `ABOUT MSAJCE // ...` or `Welcome to...`). Use only the clean, direct section title.
 > - **No Video Play Overlays & No Floating Badges on Images**: When adding image components or hero image showcases, NEVER overlay fake video play buttons/circles or floating bottom-right text pill badges.
+> - **Strict Ban on Text Overlays over Images**: STRICTLY DO NOT paste or overlay text, labels, badges, captions, or gradient text overlays on top of images in galleries, cards, or media showcases across any pages or tabs. Images must be rendered cleanly and purely as static media showcases with zero text pasted over them.
 > - **Boxy Asymmetrical Button & Badge Shapes**: Buttons and badges on hero and content components must use boxy asymmetrical rectangular shapes (`rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs` or `rounded-sm`) rather than generic fully rounded pills (`rounded-full`).
 > - **No Image Zoom/Popup Animations**: Strictly avoid using zoom or popup hover effects (e.g., `group-hover:scale-105` or `scale-110`). Images must remain flat and static on hover.
 > - **Authentic Real Photographs (No AI Imagery)**: Always use authentic, real architectural and campus photography. Strictly avoid AI-generated images that look synthetic or artificial.

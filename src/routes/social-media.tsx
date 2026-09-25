@@ -167,61 +167,27 @@ function SocialMediaPage() {
       </div>
 
       {/* Hero Header Section */}
-      <section className="relative z-10 border-b border-border pt-8 pb-12 sm:pt-12 sm:pb-16 md:pt-16 md:pb-24 bg-foreground/[0.02]">
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-12 lg:px-16">
-          
-          {/* Top Live Ticker Badge */}
-          <motion.div 
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: EASE_APPLE }}
-            className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-xs mb-6"
-          >
-            <Radio size={12} className="text-primary animate-pulse" />
-            <span className="text-[10px] font-mono font-bold tracking-widest text-primary uppercase">
-              OFFICIAL SOCIAL MEDIA DIRECTORY // 120K+ TOTAL COMMUNITY
-            </span>
-          </motion.div>
+      <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+        {/* Hero Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/social_media_directory.jpg"
+            alt="MSAJCE Social Media Network"
+            className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none rounded-none"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+            }}
+          />
+          {/* Subtle gradient overlay for depth and title legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
-            <motion.div 
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, ease: EASE_APPLE, delay: 0.1 }}
-              className="lg:col-span-8 flex flex-col"
-            >
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-foreground font-oswald leading-[0.95]">
-                CONNECT & FOLLOW <span className="text-primary">#MSAJCE</span>
-              </h1>
-              <p className="mt-6 text-base sm:text-lg text-foreground/80 leading-relaxed font-sans max-w-3xl">
-                Explore official social handles, academic department networks, student clubs, and live video channels across Mohamed Sathak A.J. College of Engineering.
-              </p>
-            </motion.div>
-
-            {/* Quick Live Followers Banner */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.65, ease: EASE_APPLE, delay: 0.2 }}
-              className="lg:col-span-4 bg-card border border-foreground/10 p-6 rounded-md shadow-xs grid grid-cols-2 gap-4"
-            >
-              <div>
-                <span className="text-[10px] font-mono text-muted-foreground uppercase block font-bold">INSTAGRAM //</span>
-                <span className="text-2xl font-black font-oswald text-primary">15.4K+</span>
-              </div>
-              <div>
-                <span className="text-[10px] font-mono text-muted-foreground uppercase block font-bold">LINKEDIN //</span>
-                <span className="text-2xl font-black font-oswald text-primary">28K+</span>
-              </div>
-              <div>
-                <span className="text-[10px] font-mono text-muted-foreground uppercase block font-bold">YOUTUBE //</span>
-                <span className="text-2xl font-black font-oswald text-primary">12K+</span>
-              </div>
-              <div>
-                <span className="text-[10px] font-mono text-muted-foreground uppercase block font-bold">FACEBOOK //</span>
-                <span className="text-2xl font-black font-oswald text-primary">22K+</span>
-              </div>
-            </motion.div>
+        {/* Title Container: Docked Flush at Bottom of Hero with Correct Container Alignment */}
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
+          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
+              Social Media Directory
+            </h1>
           </div>
         </div>
       </section>
@@ -433,15 +399,6 @@ function SocialMediaPage() {
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-between p-6 text-white">
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-widest px-2.5 py-0.5 bg-primary/90 rounded-xs self-start">
-                    {item.platform}
-                  </span>
-                  <div>
-                    <span className="text-xs font-mono font-bold text-primary-foreground/90 block mb-1">{item.tag}</span>
-                    <h4 className="text-lg font-bold font-oswald uppercase text-white leading-tight">{item.alt}</h4>
-                  </div>
-                </div>
               </motion.div>
             ))}
           </div>
