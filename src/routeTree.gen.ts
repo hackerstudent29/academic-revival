@@ -28,14 +28,19 @@ import { Route as ProgrammesOfferedRouteImport } from './routes/programmes-offer
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as SocialMediaRouteImport } from './routes/social-media'
 import { Route as StudentCommunityRouteImport } from './routes/student-community'
+import { Route as AboutAcademicAdvisoryCommitteeRouteImport } from './routes/about_.academic-advisory-committee'
 import { Route as AboutAccreditationsRouteImport } from './routes/about_.accreditations'
+import { Route as AboutAntiRaggingCommitteeRouteImport } from './routes/about_.anti-ragging-committee'
+import { Route as AboutCommitteesRouteImport } from './routes/about_.committees'
 import { Route as AboutGoverningCouncilRouteImport } from './routes/about_.governing-council'
+import { Route as AboutGrievanceCellRouteImport } from './routes/about_.grievance-cell'
 import { Route as AboutGroupInstitutionsRouteImport } from './routes/about_.group-institutions'
 import { Route as AboutLeadershipRouteImport } from './routes/about_.leadership'
 import { Route as AboutOverviewRouteImport } from './routes/about_.overview'
 import { Route as AboutPoliciesRouteImport } from './routes/about_.policies'
 import { Route as AboutTrustRouteImport } from './routes/about_.trust'
 import { Route as AboutVisionMissionRouteImport } from './routes/about_.vision-mission'
+import { Route as AboutWomensEmpowermentCellRouteImport } from './routes/about_.womens-empowerment-cell'
 import { Route as AdmissionsEligibilityRouteImport } from './routes/admissions_.eligibility'
 import { Route as AdmissionsProcedureRouteImport } from './routes/admissions_.procedure'
 import { Route as AdmissionsScholarshipsRouteImport } from './routes/admissions_.scholarships'
@@ -149,14 +154,36 @@ const StudentCommunityRoute = StudentCommunityRouteImport.update({
   path: '/student-community',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutAcademicAdvisoryCommitteeRoute =
+  AboutAcademicAdvisoryCommitteeRouteImport.update({
+    id: '/about_/academic-advisory-committee',
+    path: '/about/academic-advisory-committee',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AboutAccreditationsRoute = AboutAccreditationsRouteImport.update({
   id: '/about_/accreditations',
   path: '/about/accreditations',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutAntiRaggingCommitteeRoute =
+  AboutAntiRaggingCommitteeRouteImport.update({
+    id: '/about_/anti-ragging-committee',
+    path: '/about/anti-ragging-committee',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AboutCommitteesRoute = AboutCommitteesRouteImport.update({
+  id: '/about_/committees',
+  path: '/about/committees',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutGoverningCouncilRoute = AboutGoverningCouncilRouteImport.update({
   id: '/about_/governing-council',
   path: '/about/governing-council',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutGrievanceCellRoute = AboutGrievanceCellRouteImport.update({
+  id: '/about_/grievance-cell',
+  path: '/about/grievance-cell',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutGroupInstitutionsRoute = AboutGroupInstitutionsRouteImport.update({
@@ -189,6 +216,12 @@ const AboutVisionMissionRoute = AboutVisionMissionRouteImport.update({
   path: '/about/vision-mission',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutWomensEmpowermentCellRoute =
+  AboutWomensEmpowermentCellRouteImport.update({
+    id: '/about_/womens-empowerment-cell',
+    path: '/about/womens-empowerment-cell',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AdmissionsEligibilityRoute = AdmissionsEligibilityRouteImport.update({
   id: '/admissions_/eligibility',
   path: '/admissions/eligibility',
@@ -299,14 +332,19 @@ export interface FileRoutesByFullPath {
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
   '/student-community': typeof StudentCommunityRoute
+  '/about/academic-advisory-committee': typeof AboutAcademicAdvisoryCommitteeRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
+  '/about/anti-ragging-committee': typeof AboutAntiRaggingCommitteeRoute
+  '/about/committees': typeof AboutCommitteesRoute
   '/about/governing-council': typeof AboutGoverningCouncilRoute
+  '/about/grievance-cell': typeof AboutGrievanceCellRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about/leadership': typeof AboutLeadershipRoute
   '/about/overview': typeof AboutOverviewRoute
   '/about/policies': typeof AboutPoliciesRoute
   '/about/trust': typeof AboutTrustRoute
   '/about/vision-mission': typeof AboutVisionMissionRoute
+  '/about/womens-empowerment-cell': typeof AboutWomensEmpowermentCellRoute
   '/admissions/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions/procedure': typeof AdmissionsProcedureRoute
   '/admissions/scholarships': typeof AdmissionsScholarshipsRoute
@@ -344,14 +382,19 @@ export interface FileRoutesByTo {
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
   '/student-community': typeof StudentCommunityRoute
+  '/about/academic-advisory-committee': typeof AboutAcademicAdvisoryCommitteeRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
+  '/about/anti-ragging-committee': typeof AboutAntiRaggingCommitteeRoute
+  '/about/committees': typeof AboutCommitteesRoute
   '/about/governing-council': typeof AboutGoverningCouncilRoute
+  '/about/grievance-cell': typeof AboutGrievanceCellRoute
   '/about/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about/leadership': typeof AboutLeadershipRoute
   '/about/overview': typeof AboutOverviewRoute
   '/about/policies': typeof AboutPoliciesRoute
   '/about/trust': typeof AboutTrustRoute
   '/about/vision-mission': typeof AboutVisionMissionRoute
+  '/about/womens-empowerment-cell': typeof AboutWomensEmpowermentCellRoute
   '/admissions/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions/procedure': typeof AdmissionsProcedureRoute
   '/admissions/scholarships': typeof AdmissionsScholarshipsRoute
@@ -391,14 +434,19 @@ export interface FileRoutesById {
   '/research': typeof ResearchRoute
   '/social-media': typeof SocialMediaRoute
   '/student-community': typeof StudentCommunityRoute
+  '/about_/academic-advisory-committee': typeof AboutAcademicAdvisoryCommitteeRoute
   '/about_/accreditations': typeof AboutAccreditationsRoute
+  '/about_/anti-ragging-committee': typeof AboutAntiRaggingCommitteeRoute
+  '/about_/committees': typeof AboutCommitteesRoute
   '/about_/governing-council': typeof AboutGoverningCouncilRoute
+  '/about_/grievance-cell': typeof AboutGrievanceCellRoute
   '/about_/group-institutions': typeof AboutGroupInstitutionsRoute
   '/about_/leadership': typeof AboutLeadershipRoute
   '/about_/overview': typeof AboutOverviewRoute
   '/about_/policies': typeof AboutPoliciesRoute
   '/about_/trust': typeof AboutTrustRoute
   '/about_/vision-mission': typeof AboutVisionMissionRoute
+  '/about_/womens-empowerment-cell': typeof AboutWomensEmpowermentCellRoute
   '/admissions_/eligibility': typeof AdmissionsEligibilityRoute
   '/admissions_/procedure': typeof AdmissionsProcedureRoute
   '/admissions_/scholarships': typeof AdmissionsScholarshipsRoute
@@ -439,14 +487,19 @@ export interface FileRouteTypes {
     | '/research'
     | '/social-media'
     | '/student-community'
+    | '/about/academic-advisory-committee'
     | '/about/accreditations'
+    | '/about/anti-ragging-committee'
+    | '/about/committees'
     | '/about/governing-council'
+    | '/about/grievance-cell'
     | '/about/group-institutions'
     | '/about/leadership'
     | '/about/overview'
     | '/about/policies'
     | '/about/trust'
     | '/about/vision-mission'
+    | '/about/womens-empowerment-cell'
     | '/admissions/eligibility'
     | '/admissions/procedure'
     | '/admissions/scholarships'
@@ -484,14 +537,19 @@ export interface FileRouteTypes {
     | '/research'
     | '/social-media'
     | '/student-community'
+    | '/about/academic-advisory-committee'
     | '/about/accreditations'
+    | '/about/anti-ragging-committee'
+    | '/about/committees'
     | '/about/governing-council'
+    | '/about/grievance-cell'
     | '/about/group-institutions'
     | '/about/leadership'
     | '/about/overview'
     | '/about/policies'
     | '/about/trust'
     | '/about/vision-mission'
+    | '/about/womens-empowerment-cell'
     | '/admissions/eligibility'
     | '/admissions/procedure'
     | '/admissions/scholarships'
@@ -530,14 +588,19 @@ export interface FileRouteTypes {
     | '/research'
     | '/social-media'
     | '/student-community'
+    | '/about_/academic-advisory-committee'
     | '/about_/accreditations'
+    | '/about_/anti-ragging-committee'
+    | '/about_/committees'
     | '/about_/governing-council'
+    | '/about_/grievance-cell'
     | '/about_/group-institutions'
     | '/about_/leadership'
     | '/about_/overview'
     | '/about_/policies'
     | '/about_/trust'
     | '/about_/vision-mission'
+    | '/about_/womens-empowerment-cell'
     | '/admissions_/eligibility'
     | '/admissions_/procedure'
     | '/admissions_/scholarships'
@@ -577,14 +640,19 @@ export interface RootRouteChildren {
   ResearchRoute: typeof ResearchRoute
   SocialMediaRoute: typeof SocialMediaRoute
   StudentCommunityRoute: typeof StudentCommunityRoute
+  AboutAcademicAdvisoryCommitteeRoute: typeof AboutAcademicAdvisoryCommitteeRoute
   AboutAccreditationsRoute: typeof AboutAccreditationsRoute
+  AboutAntiRaggingCommitteeRoute: typeof AboutAntiRaggingCommitteeRoute
+  AboutCommitteesRoute: typeof AboutCommitteesRoute
   AboutGoverningCouncilRoute: typeof AboutGoverningCouncilRoute
+  AboutGrievanceCellRoute: typeof AboutGrievanceCellRoute
   AboutGroupInstitutionsRoute: typeof AboutGroupInstitutionsRoute
   AboutLeadershipRoute: typeof AboutLeadershipRoute
   AboutOverviewRoute: typeof AboutOverviewRoute
   AboutPoliciesRoute: typeof AboutPoliciesRoute
   AboutTrustRoute: typeof AboutTrustRoute
   AboutVisionMissionRoute: typeof AboutVisionMissionRoute
+  AboutWomensEmpowermentCellRoute: typeof AboutWomensEmpowermentCellRoute
   AdmissionsEligibilityRoute: typeof AdmissionsEligibilityRoute
   AdmissionsProcedureRoute: typeof AdmissionsProcedureRoute
   AdmissionsScholarshipsRoute: typeof AdmissionsScholarshipsRoute
@@ -737,6 +805,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentCommunityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about_/academic-advisory-committee': {
+      id: '/about_/academic-advisory-committee'
+      path: '/about/academic-advisory-committee'
+      fullPath: '/about/academic-advisory-committee'
+      preLoaderRoute: typeof AboutAcademicAdvisoryCommitteeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about_/accreditations': {
       id: '/about_/accreditations'
       path: '/about/accreditations'
@@ -744,11 +819,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutAccreditationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about_/anti-ragging-committee': {
+      id: '/about_/anti-ragging-committee'
+      path: '/about/anti-ragging-committee'
+      fullPath: '/about/anti-ragging-committee'
+      preLoaderRoute: typeof AboutAntiRaggingCommitteeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about_/committees': {
+      id: '/about_/committees'
+      path: '/about/committees'
+      fullPath: '/about/committees'
+      preLoaderRoute: typeof AboutCommitteesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about_/governing-council': {
       id: '/about_/governing-council'
       path: '/about/governing-council'
       fullPath: '/about/governing-council'
       preLoaderRoute: typeof AboutGoverningCouncilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about_/grievance-cell': {
+      id: '/about_/grievance-cell'
+      path: '/about/grievance-cell'
+      fullPath: '/about/grievance-cell'
+      preLoaderRoute: typeof AboutGrievanceCellRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about_/group-institutions': {
@@ -791,6 +887,13 @@ declare module '@tanstack/react-router' {
       path: '/about/vision-mission'
       fullPath: '/about/vision-mission'
       preLoaderRoute: typeof AboutVisionMissionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about_/womens-empowerment-cell': {
+      id: '/about_/womens-empowerment-cell'
+      path: '/about/womens-empowerment-cell'
+      fullPath: '/about/womens-empowerment-cell'
+      preLoaderRoute: typeof AboutWomensEmpowermentCellRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admissions_/eligibility': {
@@ -947,14 +1050,19 @@ const rootRouteChildren: RootRouteChildren = {
   ResearchRoute: ResearchRoute,
   SocialMediaRoute: SocialMediaRoute,
   StudentCommunityRoute: StudentCommunityRoute,
+  AboutAcademicAdvisoryCommitteeRoute: AboutAcademicAdvisoryCommitteeRoute,
   AboutAccreditationsRoute: AboutAccreditationsRoute,
+  AboutAntiRaggingCommitteeRoute: AboutAntiRaggingCommitteeRoute,
+  AboutCommitteesRoute: AboutCommitteesRoute,
   AboutGoverningCouncilRoute: AboutGoverningCouncilRoute,
+  AboutGrievanceCellRoute: AboutGrievanceCellRoute,
   AboutGroupInstitutionsRoute: AboutGroupInstitutionsRoute,
   AboutLeadershipRoute: AboutLeadershipRoute,
   AboutOverviewRoute: AboutOverviewRoute,
   AboutPoliciesRoute: AboutPoliciesRoute,
   AboutTrustRoute: AboutTrustRoute,
   AboutVisionMissionRoute: AboutVisionMissionRoute,
+  AboutWomensEmpowermentCellRoute: AboutWomensEmpowermentCellRoute,
   AdmissionsEligibilityRoute: AdmissionsEligibilityRoute,
   AdmissionsProcedureRoute: AdmissionsProcedureRoute,
   AdmissionsScholarshipsRoute: AdmissionsScholarshipsRoute,
