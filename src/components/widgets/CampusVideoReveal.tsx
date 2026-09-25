@@ -33,7 +33,7 @@ export function CampusVideoReveal() {
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-black flex items-center justify-center">
           <video
             ref={videoRef}
-            className="w-full h-full max-h-screen object-contain mx-auto"
+            className="w-full h-full min-h-screen min-w-full object-cover mx-auto"
             autoPlay
             muted
             loop

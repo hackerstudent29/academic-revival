@@ -423,7 +423,7 @@ export function TestimonialSection() {
                   style={{ willChange: "transform, opacity", transform: "translateZ(0)", fontFamily: "'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive" }}
                   className="text-xl md:text-2xl text-primary font-bold mt-2 ml-8 sm:ml-12 block" 
                 >
-                  – Dr. K. S. Badrinathan, Principal
+                  – Dr. K. S. Srinivasan, Principal
                 </motion.p>
 
                 {/* SVG Handwritten Signature Underline Stroke */}

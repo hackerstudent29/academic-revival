@@ -14,6 +14,7 @@ export interface SecondarySubNavProps {
   activeTab: string;
   onSelectTab: (tabId: string) => void;
   onTitleClick?: () => void;
+  action?: React.ReactNode;
   className?: string;
 }
 
@@ -23,6 +24,7 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
   activeTab,
   onSelectTab,
   onTitleClick,
+  action,
   className = "",
 }) => {
   const { isHeaderHidden, setHeaderHidden, setHasSecondaryNav, setIsTabSwitching } = useHeader();
@@ -91,48 +93,51 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
           {title}
         </div>
 
-        {/* MOBILE VIEW: Compact Single-Row Custom Dropdown (< md) */}
-        <div ref={dropdownRef} className="block md:hidden relative shrink-0">
-          <button
-            type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center gap-1.5 bg-foreground/5 hover:bg-foreground/10 text-primary border border-primary/40 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs shadow-2xs cursor-pointer text-[11px] font-bold font-oswald uppercase tracking-wider transition-all"
-          >
-            <span className="truncate max-w-[130px] sm:max-w-[180px] font-black">{currentTabLabel}</span>
-            <ChevronDown className={`w-3.5 h-3.5 text-primary shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
-          </button>
+        {/* MOBILE VIEW: Action + Compact Single-Row Custom Dropdown (< md) */}
+        <div className="flex md:hidden items-center gap-2 shrink-0">
+          {action}
+          <div ref={dropdownRef} className="relative shrink-0">
+            <button
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex items-center gap-1.5 bg-foreground/5 hover:bg-foreground/10 text-primary border border-primary/40 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs shadow-2xs cursor-pointer text-[11px] font-bold font-oswald uppercase tracking-wider transition-all"
+            >
+              <span className="truncate max-w-[130px] sm:max-w-[180px] font-black">{currentTabLabel}</span>
+              <ChevronDown className={`w-3.5 h-3.5 text-primary shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+            </button>
 
-          {/* Animated Dropdown Menu */}
-          {isOpen && (
-            <div className="absolute top-full right-0 mt-1 w-64 bg-background dark:bg-[#18181B] border border-border dark:border-neutral-700 shadow-2xl rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs py-1 z-50 overflow-hidden max-h-[300px] overflow-y-auto backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 divide-y divide-border/40">
-              {tabs.map((tab) => {
-                const isActive = activeTab === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => {
-                      handleTabClick(tab.id);
-                      setIsOpen(false);
-                    }}
-                    className={`w-full flex items-center justify-between px-3.5 py-2.5 text-left text-xs font-bold font-oswald uppercase tracking-wider transition-colors cursor-pointer ${
-                      isActive
-                        ? "bg-primary text-white font-black"
-                        : "text-foreground hover:bg-primary/10 hover:text-primary"
-                    }`}
-                  >
-                    <span>{tab.label}</span>
-                    {isActive && <Check className="w-3.5 h-3.5 shrink-0" />}
-                  </button>
-                );
-              })}
-            </div>
-          )}
+            {/* Animated Dropdown Menu */}
+            {isOpen && (
+              <div className="absolute top-full right-0 mt-1 w-64 bg-background dark:bg-[#18181B] border border-border dark:border-neutral-700 shadow-2xl rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs py-1 z-50 overflow-hidden max-h-[300px] overflow-y-auto backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 divide-y divide-border/40">
+                {tabs.map((tab) => {
+                  const isActive = activeTab === tab.id;
+                  return (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => {
+                        handleTabClick(tab.id);
+                        setIsOpen(false);
+                      }}
+                      className={`w-full flex items-center justify-between px-3.5 py-2.5 text-left text-xs font-bold font-oswald uppercase tracking-wider transition-colors cursor-pointer ${
+                        isActive
+                          ? "bg-primary text-white font-black"
+                          : "text-foreground hover:bg-primary/10 hover:text-primary"
+                      }`}
+                    >
+                      <span>{tab.label}</span>
+                      {isActive && <Check className="w-3.5 h-3.5 shrink-0" />}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* DESKTOP VIEW: Horizontal Tabs (>= md) */}
-        <div className="hidden md:flex md:flex-1 relative md:ml-4 lg:ml-6 overflow-hidden items-center justify-end">
-          <ul className="flex items-center justify-end gap-3 lg:gap-5 xl:gap-7 w-full overflow-x-auto scrollbar-none no-scrollbar">
+        <div className="hidden md:flex md:flex-1 relative md:ml-4 lg:ml-6 items-center justify-end gap-3 lg:gap-4">
+          <ul className="flex items-center justify-end gap-3 lg:gap-5 xl:gap-7 overflow-x-auto scrollbar-none no-scrollbar">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
@@ -157,6 +162,11 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
               );
             })}
           </ul>
+          {action && (
+            <div className="shrink-0 pl-2 lg:pl-3 border-l border-border/60">
+              {action}
+            </div>
+          )}
         </div>
 
       </div>

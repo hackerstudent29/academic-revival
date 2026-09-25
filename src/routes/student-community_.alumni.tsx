@@ -24,6 +24,8 @@ import {
 } from "lucide-react";
 
 import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
+import { DataGridContainer, SearchBar, TablePagination } from "@/components/ui/data-grid-table";
+import { CustomDropdown, type DropdownOption } from "@/components/ui/custom-dropdown";
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
 
@@ -1239,9 +1241,45 @@ const alumniSubNavTabs: SubNavTab[] = [
   { id: "reunion", label: "Reunions & Feedback" },
 ];
 
+/* Dropdown Filter Options (Standardized MSAJCE Table Filters) */
+const tenureYearOptions: DropdownOption[] = Object.keys(officeBearersByYear).map((yr) => ({
+  value: yr,
+  label: yr,
+}));
+
+const activityYearOptions: DropdownOption[] = [
+  { value: "ALL", label: "All Years" },
+  { value: "2026", label: "Year 2026" },
+  { value: "2025", label: "Year 2025" },
+  { value: "2024", label: "Year 2024" },
+  { value: "2023", label: "Year 2023" },
+  { value: "2022", label: "Year 2022" },
+  { value: "2021 & Earlier", label: "2021 & Earlier" },
+];
+
+const batchEraOptions: DropdownOption[] = [
+  { value: "ALL", label: "All Batch Eras" },
+  { value: "2001-2005", label: "Batch 2001 - 2005" },
+  { value: "2006-2010", label: "Batch 2006 - 2010" },
+  { value: "2011-2015", label: "Batch 2011 - 2015" },
+  { value: "2016-2023", label: "Batch 2016 - 2023" },
+];
+
+const scholarshipDeptOptions: DropdownOption[] = [
+  { value: "ALL", label: "All Departments" },
+  { value: "CSE", label: "CSE & CSBS" },
+  { value: "ECE", label: "ECE, EEE & VLSI" },
+  { value: "IT", label: "Information Tech (IT)" },
+  { value: "AIDS & AIML", label: "AIDS, AIML & ACT" },
+  { value: "Institutional", label: "Institutional / Merit" },
+];
+
+const PAGE_SIZE = 35;
+
 function AlumniPage() {
   const [selectedYear, setSelectedYear] = useState<string>("2024 - Till Now");
   const [searchQuery, setSearchQuery] = useState("");
+  const [bearerPage, setBearerPage] = useState(1);
   const [activeTab, setActiveTab] = useState<
     "overview" | "office-bearers" | "activities" | "alumni-list" | "scholarship" | "reunion"
   >("overview");
@@ -1250,15 +1288,17 @@ function AlumniPage() {
   const [activitiesSubTab, setActivitiesSubTab] = useState<"contributions" | "recognitions">("contributions");
   const [activitySearch, setActivitySearch] = useState("");
   const [activityYearFilter, setActivityYearFilter] = useState("ALL");
+  const [activityPage, setActivityPage] = useState(1);
 
   /* Distinguished Alumni State */
   const [distinguishedSearch, setDistinguishedSearch] = useState("");
   const [distinguishedBatchFilter, setDistinguishedBatchFilter] = useState("ALL");
-  const [distinguishedViewMode, setDistinguishedViewMode] = useState<"table" | "cards">("table");
+  const [distinguishedPage, setDistinguishedPage] = useState(1);
 
   /* Scholarship State */
   const [scholarshipSearch, setScholarshipSearch] = useState("");
   const [scholarshipDeptFilter, setScholarshipDeptFilter] = useState("ALL");
+  const [scholarshipPage, setScholarshipPage] = useState(1);
 
   const currentBearers = officeBearersByYear[selectedYear] || [];
   const filteredBearers = currentBearers.filter(
@@ -1266,6 +1306,10 @@ function AlumniPage() {
       b.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       b.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
       b.designation.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  const paginatedBearers = filteredBearers.slice(
+    (bearerPage - 1) * PAGE_SIZE,
+    bearerPage * PAGE_SIZE
   );
 
   return (
@@ -1280,6 +1324,17 @@ function AlumniPage() {
         title="MSAJCE ALUMNI"
         tabs={alumniSubNavTabs}
         activeTab={activeTab}
+        action={
+          <a
+            href="https://enrollonline.co.in/Registration/Apply/MSAJCE"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 bg-primary text-white text-[11px] sm:text-xs font-bold font-oswald uppercase tracking-wider rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors shadow-xs shrink-0"
+          >
+            <span>Register</span>
+            <ExternalLink className="w-3 h-3" />
+          </a>
+        }
         onSelectTab={(tabId) => {
           setActiveTab(tabId as any);
           const contentEl = document.getElementById("alumni-content-hub");
@@ -1293,71 +1348,117 @@ function AlumniPage() {
         }}
       />
 
-      {/* ========================================================================= */}
-      {/* 1. HERO BANNER WITH BOXY TITLE & FACTS & FIGURES STATS STRIP              */}
-      {/* ========================================================================= */}
-      <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[calc(100svh-56px)] md:min-h-[calc(100vh-64px)] flex flex-col justify-end">
-        {/* Hero Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://www.msajce-edu.in/images/alumni/heade-Alumni.jpg"
-            alt="MSAJCE Alumni Network Header"
-            className="w-full h-full object-cover object-center brightness-[0.85] filter contrast-105 select-none pointer-events-none rounded-none"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = "/images/alumni_section.jpg";
-            }}
-          />
-          {/* Subtle gradient overlay for depth and title legibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20" />
-        </div>
-
-        {/* Title Container: Fading Translucent Backdrop, Title Only */}
-        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-12 sm:pt-16 md:pt-20 pb-4 sm:pb-6 md:pb-8">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.05, ease: smoothEase }}
-            className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15"
-          >
-            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-[1.1]">
-              OUR ALUMNI
-            </h1>
-          </motion.div>
-        </div>
-
-        {/* Fading Facts & Figures Docked Stats Strip */}
-        <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-8 sm:pt-10 md:pt-14 pb-5 sm:pb-6 md:pb-8">
-          <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
-            <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4">
-              <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-black font-oswald uppercase tracking-wide text-primary">
-                Facts &amp; Figures
-              </h2>
-              <span className="text-[10px] sm:text-[11px] md:text-xs font-oswald uppercase tracking-widest text-white/50 hidden sm:inline">
-                Institutional Benchmark Metrics
-              </span>
+      <div className="flex-1 pt-0 md:pt-1">
+        {/* ========================================================================= */}
+        {/* 1. DYNAMIC HERO BANNER: Full Hero for Overview, Compact for Other Tabs    */}
+        {/* ========================================================================= */}
+        {activeTab === "overview" ? (
+          /* Full Institution-Style Hero with Docked Alumni Stats (Overview Tab Only) */
+          <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[calc(100svh-104px)] md:min-h-[calc(100vh-116px)] flex flex-col justify-end">
+            {/* Hero Background Image */}
+            <div className="absolute inset-0 z-0">
+              <img
+                key="alumni-hero-bg"
+                src="https://www.msajce-edu.in/images/alumni/heade-Alumni.jpg"
+                alt="MSAJCE Alumni Network Header"
+                className="w-full h-full object-cover object-center brightness-[0.85] filter contrast-105 select-none pointer-events-none rounded-none"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/images/alumni_section.jpg";
+                }}
+              />
+              {/* Subtle gradient overlay for depth and title legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20" />
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8 md:divide-x md:divide-white/15">
-              {heroStats.map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: 0.15 + idx * 0.06, ease: smoothEase }}
-                  className="first:pl-0 md:pl-4 lg:pl-6 space-y-0.5 sm:space-y-1"
+            {/* Title Container: Fading Translucent Backdrop, Title & Register Action */}
+            <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-12 sm:pt-16 md:pt-20 pb-4 sm:pb-6 md:pb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.05, ease: smoothEase }}
+                className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15"
+              >
+                <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-[1.1]">
+                  OUR ALUMNI
+                </h1>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.1, ease: smoothEase }}
+                className="shrink-0"
+              >
+                <a
+                  href="https://enrollonline.co.in/Registration/Apply/MSAJCE"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 sm:px-6 sm:py-3.5 bg-primary text-white text-xs sm:text-sm font-bold font-oswald uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-all shadow-xl"
                 >
-                  <div className="font-oswald text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-primary tracking-tight leading-none">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-0.5 sm:pt-1">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
+                  <span>Register in Alumni Portal</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </motion.div>
             </div>
-          </div>
-        </div>
-      </section>
+
+            {/* Fading Facts & Figures Docked Stats Strip (Smooth Gradient Fade, No Harsh Line, Maroon Figures) */}
+            <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-8 sm:pt-10 md:pt-14 pb-5 sm:pb-6 md:pb-8">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+                <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4">
+                  <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Facts &amp; Figures
+                  </h2>
+                  <span className="text-[10px] sm:text-[11px] md:text-xs font-oswald uppercase tracking-widest text-white/50 hidden sm:inline">
+                    Institutional Benchmark Metrics
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8 md:divide-x md:divide-white/15">
+                  {heroStats.map((stat, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.45, delay: 0.15 + idx * 0.06, ease: smoothEase }}
+                      className="first:pl-0 md:pl-4 lg:pl-6 space-y-0.5 sm:space-y-1"
+                    >
+                      <div className="font-oswald text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-primary tracking-tight leading-none">
+                        {stat.value}
+                      </div>
+                      <div className="text-xs sm:text-sm text-white/85 font-libre leading-snug pt-0.5 sm:pt-1">
+                        {stat.label}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        ) : (
+          /* Standard Compact Hero Banner for Other Alumni Tabs (Office Bearers, Activities, Distinguished Alumni, Scholarships, Reunions) */
+          <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+            <div className="absolute inset-0 z-0">
+              <img
+                key={activeTab}
+                src="https://www.msajce-edu.in/images/alumni/heade-Alumni.jpg"
+                alt="MSAJCE Alumni Network"
+                className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none rounded-none"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/images/alumni_section.jpg";
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
+            </div>
+
+            <div className="relative z-10 mx-auto max-w-[1440px] w-full px-3.5 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 md:pt-24 pb-0">
+              <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+                <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
+                  {alumniSubNavTabs.find((t) => t.id === activeTab)?.label ?? "Our Alumni"}
+                </h1>
+              </div>
+            </div>
+          </section>
+        )}
 
       {/* ========================================================================= */}
       {/* 2. OFFICIAL CONTENT HUB (Matching msajce-edu.in/alumni.php)                */}
@@ -1374,34 +1475,45 @@ function AlumniPage() {
             {/* Section A: Overview */}
             <div className="py-12 sm:py-16 md:py-20 bg-white dark:bg-[#121214]">
               <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
-                <div className="space-y-4 max-w-4xl">
+                <div className="space-y-4 w-full">
                   <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                     MSAJCE Alumni Association Overview
                   </h2>
-                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
                     Alumni association of Mohamed Sathak A.J. College of Engineering welcomes you all to join us. This association is formed to reconnect and foster intellectual and emotional relationships between alumni and parent organization. Also bring in a good will and voluntary commitment to support future engineers of the institution and provide industry-institute relationship and enthusiastically participate in various activities organized by the college.
                   </p>
                 </div>
 
-                {/* PDF Report Download Action Row */}
-                <div className="pt-6 border-t border-border/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 max-w-4xl">
+                {/* PDF Report Download & Register Action Row */}
+                <div className="pt-6 border-t border-border/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full">
                   <div className="space-y-0.5">
                     <h4 className="text-sm sm:text-base font-bold font-oswald uppercase text-foreground">
                       MSAJCE Alumnus Strength in Social Media Platform
                     </h4>
                     <p className="text-xs text-muted-foreground font-libre">
-                      Official Analytical Report
+                      Official Analytical Report &amp; Global Registration
                     </p>
                   </div>
-                  <a
-                    href="https://www.msajce-edu.in/images/alumni/AlumnusStrength-SocialMedia.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs bg-primary text-white text-xs font-bold font-oswald uppercase tracking-wider flex items-center gap-2 hover:bg-primary/90 transition-colors shrink-0"
-                  >
-                    <Download className="w-4 h-4" />
-                    <span>Download PDF</span>
-                  </a>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <a
+                      href="https://enrollonline.co.in/Registration/Apply/MSAJCE"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-primary text-white text-xs font-bold font-oswald uppercase tracking-wider flex items-center gap-2 hover:bg-primary/90 transition-colors shrink-0 shadow-xs"
+                    >
+                      <span>Register in Alumni Portal</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                    <a
+                      href="https://www.msajce-edu.in/images/alumni/AlumnusStrength-SocialMedia.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 border border-stone-300 dark:border-neutral-700 text-xs font-bold font-oswald uppercase tracking-wider flex items-center gap-2 hover:bg-foreground/10 transition-colors shrink-0 shadow-xs"
+                    >
+                      <Download className="w-4 h-4" />
+                      <span>Download PDF</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1483,11 +1595,11 @@ function AlumniPage() {
                       </div>
                       <div className="flex flex-wrap items-center gap-2">
                         {ch.hubs.split(" • ").map((hub) => (
-                          <span key={hub} className="px-3 py-1 bg-muted/60 text-foreground font-libre text-xs font-semibold border border-border/40">
+                          <span key={hub} className="px-3 py-1 bg-muted/60 text-foreground font-libre text-xs font-semibold border border-border/40 rounded-tl-sm rounded-br-sm rounded-tr-none rounded-bl-none">
                             {hub}
                           </span>
                         ))}
-                        <span className="px-3 py-1 bg-primary text-white font-oswald font-bold text-xs uppercase tracking-wider">
+                        <span className="px-3 py-1 bg-primary text-white font-oswald font-bold text-xs uppercase tracking-wider rounded-tl-sm rounded-br-sm rounded-tr-none rounded-bl-none">
                           {ch.count}
                         </span>
                       </div>
@@ -1513,20 +1625,31 @@ function AlumniPage() {
               </svg>
             </div>
 
-            {/* Section D: Campus & Alumni Showcase */}
-            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B]">
-              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-10">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                  MSAJCE Campus &amp; Alumni Showcase
-                </h3>
+            {/* Section D: Campus & Alumni Showcase (Compact Proportionate Layout) */}
+            <div className="py-8 sm:py-10 md:py-12 bg-[#F3F3F2] dark:bg-[#18181B]">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    MSAJCE Campus &amp; Alumni Showcase
+                  </h3>
+                  <a
+                    href="https://www.msajce-edu.in/images/alumni/AlumniAssociationRodMap.jpg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-oswald font-bold uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors shrink-0"
+                  >
+                    <span>View High-Res Roadmap</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {/* Embedded College Video */}
-                  <div className="space-y-3">
-                    <h4 className="text-base font-bold font-oswald uppercase text-foreground">
+                  <div className="space-y-2">
+                    <h4 className="text-sm font-bold font-oswald uppercase text-foreground">
                       Campus &amp; Alumni Video
                     </h4>
-                    <div className="relative w-full aspect-video overflow-hidden bg-black border border-border/60">
+                    <div className="relative w-full aspect-video overflow-hidden bg-black border border-border/60 rounded-md">
                       <iframe
                         src="https://www.youtube-nocookie.com/embed/aNVaQWh1Pp4?rel=0&modestbranding=1&controls=1&playsinline=1"
                         title="MSAJCE College & Alumni Feature Video"
@@ -1538,12 +1661,13 @@ function AlumniPage() {
                   </div>
 
                   {/* Main Alumni Gathering Image */}
-                  <div className="space-y-3">
-                    <h4 className="text-base font-bold font-oswald uppercase text-foreground">
+                  <div className="space-y-2">
+                    <h4 className="text-sm font-bold font-oswald uppercase text-foreground">
                       Alumni Main Assembly
                     </h4>
-                    <div className="relative w-full aspect-video overflow-hidden border border-border/60 bg-black">
+                    <div className="relative w-full aspect-video overflow-hidden border border-border/60 bg-black rounded-md">
                       <img
+                        key="alumni-gathering"
                         src="https://www.msajce-edu.in/images/alumni/Alumni-Main.jpg"
                         alt="MSAJCE Alumni Association Main Assembly"
                         className="w-full h-full object-cover"
@@ -1553,22 +1677,33 @@ function AlumniPage() {
                       />
                     </div>
                   </div>
-                </div>
 
-                {/* Alumni Association Roadmap Graphic */}
-                <div className="space-y-3 pt-6">
-                  <h4 className="text-base font-bold font-oswald uppercase text-foreground">
-                    Alumni Association Roadmap
-                  </h4>
-                  <div className="relative w-full overflow-hidden border border-border/60 bg-black">
-                    <img
-                      src="https://www.msajce-edu.in/images/alumni/AlumniAssociationRodMap.jpg"
-                      alt="MSAJCE Alumni Association Roadmap"
-                      className="w-full h-auto object-cover"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = "none";
-                      }}
-                    />
+                  {/* Alumni Association Roadmap Graphic (Compact & Proportionate) */}
+                  <div className="space-y-2 md:col-span-2 lg:col-span-1">
+                    <h4 className="text-sm font-bold font-oswald uppercase text-foreground">
+                      Alumni Association Roadmap
+                    </h4>
+                    <a
+                      href="https://www.msajce-edu.in/images/alumni/AlumniAssociationRodMap.jpg"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block relative w-full aspect-video overflow-hidden border border-border/60 bg-black/90 group rounded-md cursor-zoom-in"
+                      title="Click to view full-resolution roadmap"
+                    >
+                      <img
+                        key="alumni-roadmap"
+                        src="https://www.msajce-edu.in/images/alumni/AlumniAssociationRodMap.jpg"
+                        alt="MSAJCE Alumni Association Roadmap"
+                        className="w-full h-full object-contain p-1"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = "none";
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-oswald uppercase tracking-wider font-bold">
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span>Enlarge Roadmap</span>
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -1581,96 +1716,113 @@ function AlumniPage() {
           <div>
             <div className="py-12 sm:py-16 md:py-20 bg-white dark:bg-[#121214]">
               <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                     Office Bearers Council Roster
                   </h2>
+                </div>
 
-                  {/* Search Bar */}
-                  <div className="relative w-full md:w-80">
-                    <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
-                    <input
-                      type="text"
-                      placeholder="Search office bearer..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-9 pr-4 py-2 bg-background border border-border rounded-none text-xs sm:text-sm font-libre text-foreground focus:outline-none focus:border-primary"
+                {/* Search & Tenure Year Dropdown Toolbar */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
+                  <SearchBar
+                    placeholder="Search office bearer, role, designation..."
+                    value={searchQuery}
+                    onValueChange={(val) => {
+                      setSearchQuery(val);
+                      setBearerPage(1);
+                    }}
+                    containerClassName="w-full sm:w-80 shrink-0"
+                  />
+
+                  <div className="flex items-center gap-2 self-start sm:self-auto">
+                    <span className="text-xs font-oswald font-bold text-muted-foreground uppercase whitespace-nowrap">
+                      Tenure Year:
+                    </span>
+                    <CustomDropdown
+                      options={tenureYearOptions}
+                      value={selectedYear}
+                      onChange={(val) => {
+                        setSelectedYear(val);
+                        setBearerPage(1);
+                      }}
+                      className="w-full sm:w-auto"
                     />
                   </div>
                 </div>
 
-                {/* Year Filter Pills */}
-                <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-border/40">
-                  <span className="text-xs font-oswald font-bold text-muted-foreground uppercase mr-2 whitespace-nowrap">
-                    Tenure Year:
-                  </span>
-                  {Object.keys(officeBearersByYear).map((yr) => (
-                    <button
-                      key={yr}
-                      onClick={() => setSelectedYear(yr)}
-                      className={`px-4 py-1.5 text-xs font-oswald uppercase tracking-wider font-bold transition-all whitespace-nowrap ${
-                        selectedYear === yr
-                          ? "bg-primary text-white"
-                          : "bg-muted text-muted-foreground hover:bg-muted/80"
-                      }`}
-                    >
-                      {yr}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Transparent Data Table */}
-                <div className="overflow-x-auto border-t border-border/40">
-                  <table className="w-full text-left text-sm font-libre">
-                    <thead>
-                      <tr className="border-b border-border/70 bg-[#EBEBEB] dark:bg-[#202023]">
-                        <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap w-16">S.No</th>
-                        <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap w-20">Photo</th>
-                        <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap min-w-[220px]">Name of Alumni / Official</th>
-                        <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap min-w-[240px]">Designation</th>
-                        <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap text-right w-40">Category</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-border/40">
-                      {filteredBearers.map((b) => (
-                        <tr key={b.name + b.role} className="hover:bg-muted/20 transition-colors">
-                          <td className="py-3.5 px-4 font-libre text-xs text-muted-foreground">
-                            {b.sNo}
-                          </td>
-                          <td className="py-2.5 px-4">
-                            <div className="w-10 h-10 overflow-hidden border border-border/60 bg-muted shrink-0">
-                              {b.photo ? (
-                                <img
-                                  src={b.photo}
-                                  alt={b.name}
-                                  className="w-full h-full object-cover"
-                                  onError={(e) => {
-                                    (e.target as HTMLImageElement).src = "/images/favicon.png";
-                                  }}
-                                />
-                              ) : (
-                                <div className="w-full h-full flex items-center justify-center bg-primary/10 text-primary font-oswald font-bold text-xs">
-                                  {b.name.charAt(0)}
-                                </div>
-                              )}
-                            </div>
-                          </td>
-                          <td className="py-3.5 px-4 font-bold font-oswald uppercase text-foreground text-sm sm:text-base">
-                            {b.name}
-                          </td>
-                          <td className="py-3.5 px-4 font-oswald font-bold uppercase text-primary text-sm">
-                            {b.role} <span className="text-xs font-normal text-muted-foreground font-libre">({b.designation})</span>
-                          </td>
-                          <td className="py-3.5 px-4 text-right">
-                            <span className="px-2.5 py-1 bg-muted/60 text-foreground font-libre text-[11px] font-semibold uppercase border border-border/40 inline-block">
-                              {b.category}
-                            </span>
-                          </td>
+                {/* Official Publications DataGrid Table Standard */}
+                <DataGridContainer id="bearers-table-container" className="bg-white dark:bg-[#121214] shadow-xs">
+                  <div className="overflow-x-auto bg-transparent">
+                    <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                      <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                        <tr>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16">S.No</th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-20">Photo</th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[220px]">Name of Alumni / Official</th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[240px]">Designation &amp; Role</th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-right w-40">Category</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                      </thead>
+                      <tbody className="divide-y divide-border/40 font-libre">
+                        {paginatedBearers.length === 0 ? (
+                          <tr>
+                            <td colSpan={5} className="py-8 text-center text-sm font-libre text-muted-foreground">
+                              No office bearer found matching "{searchQuery}".
+                            </td>
+                          </tr>
+                        ) : (
+                          paginatedBearers.map((b) => (
+                          <tr key={b.name + b.role} className="hover:bg-foreground/[0.02] transition-colors">
+                            <td className="py-3.5 px-4 font-libre text-xs text-muted-foreground whitespace-nowrap">
+                              {b.sNo}
+                            </td>
+                            <td className="py-2.5 px-4">
+                              <div className="w-10 h-10 overflow-hidden border border-border/60 bg-muted shrink-0 rounded-xs">
+                                {b.photo ? (
+                                  <img
+                                    key={b.name}
+                                    src={b.photo}
+                                    alt={b.name}
+                                    className="w-full h-full object-cover"
+                                    onError={(e) => {
+                                      (e.target as HTMLImageElement).src = "/images/favicon.png";
+                                    }}
+                                  />
+                                ) : (
+                                  <div className="w-full h-full flex items-center justify-center bg-primary/10 text-primary font-oswald font-bold text-xs">
+                                    {b.name.charAt(0)}
+                                  </div>
+                                )}
+                              </div>
+                            </td>
+                            <td className="py-3.5 px-4 font-bold font-oswald uppercase text-foreground text-sm sm:text-base">
+                              {b.name}
+                            </td>
+                            <td className="py-3.5 px-4 font-oswald font-bold uppercase text-primary text-sm">
+                              {b.role} <span className="text-xs font-normal text-muted-foreground font-libre capitalize">({b.designation})</span>
+                            </td>
+                            <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                              <span className="px-2.5 py-1 bg-foreground/5 text-foreground font-libre text-[11px] font-semibold uppercase border border-border/40 inline-block rounded-tl-sm rounded-br-sm rounded-tr-none rounded-bl-none">
+                                {b.category}
+                              </span>
+                            </td>
+                          </tr>
+                          ))
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                  <TablePagination
+                    currentPage={bearerPage}
+                    totalRecords={filteredBearers.length}
+                    pageSize={PAGE_SIZE}
+                    onPageChange={(p) => {
+                      setBearerPage(p);
+                      document.getElementById("bearers-table-container")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
+                    label="office bearers"
+                  />
+                </DataGridContainer>
               </div>
             </div>
 
@@ -1719,22 +1871,28 @@ function AlumniPage() {
                   </h2>
 
                   {/* Sub-Tab Selector Buttons */}
-                  <div className="flex items-center gap-2 bg-muted/40 p-1 border border-border/40 self-start md:self-auto">
+                  <div className="flex items-center gap-2 bg-muted/40 p-1 border border-border/40 self-start md:self-auto rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs">
                     <button
-                      onClick={() => setActivitiesSubTab("contributions")}
-                      className={`px-4 py-2 text-xs font-oswald uppercase font-bold tracking-wider transition-all ${
+                      onClick={() => {
+                        setActivitiesSubTab("contributions");
+                        setActivityPage(1);
+                      }}
+                      className={`px-4 py-2 text-xs font-oswald uppercase font-bold tracking-wider transition-all rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs ${
                         activitiesSubTab === "contributions"
-                          ? "bg-primary text-white"
+                          ? "bg-primary text-white shadow-xs"
                           : "text-muted-foreground hover:text-foreground"
                       }`}
                     >
                       Alumni Contributions (65)
                     </button>
                     <button
-                      onClick={() => setActivitiesSubTab("recognitions")}
-                      className={`px-4 py-2 text-xs font-oswald uppercase font-bold tracking-wider transition-all ${
+                      onClick={() => {
+                        setActivitiesSubTab("recognitions");
+                        setActivityPage(1);
+                      }}
+                      className={`px-4 py-2 text-xs font-oswald uppercase font-bold tracking-wider transition-all rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs ${
                         activitiesSubTab === "recognitions"
-                          ? "bg-primary text-white"
+                          ? "bg-primary text-white shadow-xs"
                           : "text-muted-foreground hover:text-foreground"
                       }`}
                     >
@@ -1743,40 +1901,35 @@ function AlumniPage() {
                   </div>
                 </div>
 
-                {/* Search & Year Filters */}
+                {/* Search & Year Filter Toolbar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-                  <div className="relative w-full sm:w-80">
-                    <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
-                    <input
-                      type="text"
-                      placeholder="Search programme, alumni, date..."
-                      value={activitySearch}
-                      onChange={(e) => setActivitySearch(e.target.value)}
-                      className="w-full pl-9 pr-4 py-2 bg-background border border-border rounded-none text-xs sm:text-sm font-libre text-foreground focus:outline-none focus:border-primary"
-                    />
-                  </div>
+                  <SearchBar
+                    placeholder="Search programme, alumni, date..."
+                    value={activitySearch}
+                    onValueChange={(val) => {
+                      setActivitySearch(val);
+                      setActivityPage(1);
+                    }}
+                    containerClassName="w-full sm:w-80 shrink-0"
+                  />
 
-                  <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
-                    <span className="text-xs font-oswald font-bold text-muted-foreground uppercase mr-1 whitespace-nowrap">
-                      Filter:
+                  <div className="flex items-center gap-2 self-start sm:self-auto">
+                    <span className="text-xs font-oswald font-bold text-muted-foreground uppercase whitespace-nowrap">
+                      Year:
                     </span>
-                    {["ALL", "2026", "2025", "2024", "2023", "2022", "2021 & Earlier"].map((yr) => (
-                      <button
-                        key={yr}
-                        onClick={() => setActivityYearFilter(yr)}
-                        className={`px-3 py-1 text-xs font-oswald uppercase tracking-wider font-bold transition-all whitespace-nowrap ${
-                          activityYearFilter === yr
-                            ? "bg-primary text-white"
-                            : "bg-muted text-muted-foreground hover:bg-muted/80"
-                        }`}
-                      >
-                        {yr}
-                      </button>
-                    ))}
+                    <CustomDropdown
+                      options={activityYearOptions}
+                      value={activityYearFilter}
+                      onChange={(val) => {
+                        setActivityYearFilter(val);
+                        setActivityPage(1);
+                      }}
+                      className="w-full sm:w-auto"
+                    />
                   </div>
                 </div>
 
-                {/* Data Table View */}
+                {/* Official Publications DataGrid Table Standard */}
                 {(() => {
                   const targetData = activitiesSubTab === "contributions" ? alumniContributionsData : institutionRecognitionsData;
 
@@ -1799,66 +1952,85 @@ function AlumniPage() {
                     return item.date.endsWith(activityYearFilter);
                   });
 
+                  const paginatedActivities = filtered.slice(
+                    (activityPage - 1) * PAGE_SIZE,
+                    activityPage * PAGE_SIZE
+                  );
+
                   return (
                     <div className="space-y-3">
                       <div className="text-xs font-mono text-muted-foreground">
-                        Showing {filtered.length} of {targetData.length} records
+                        Showing {filtered.length === 0 ? 0 : (activityPage - 1) * PAGE_SIZE + 1} –{" "}
+                        {Math.min(activityPage * PAGE_SIZE, filtered.length)} of {filtered.length} records{" "}
+                        {filtered.length !== targetData.length && `(filtered from ${targetData.length})`}
                       </div>
 
-                      <div className="overflow-x-auto border-t border-border/40">
-                        <table className="w-full text-left text-sm font-libre">
-                          <thead>
-                            <tr className="border-b border-border/70 bg-[#EBEBEB] dark:bg-[#202023]">
-                              <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap w-16">S.No</th>
-                              <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap min-w-[220px]">Name Of The Programme</th>
-                              <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap min-w-[340px]">Alumni Details &amp; Contributions</th>
-                              <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap w-32">Date</th>
-                              <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap text-right w-32">Report</th>
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y divide-border/40">
-                            {filtered.length === 0 ? (
+                      <DataGridContainer id="activities-table-container" className="bg-white dark:bg-[#121214] shadow-xs">
+                        <div className="overflow-x-auto bg-transparent">
+                          <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
                               <tr>
-                                <td colSpan={5} className="py-8 text-center text-sm font-libre text-muted-foreground">
-                                  No records found matching query "{activitySearch}".
-                                </td>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16">S.No</th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[220px]">Name Of The Programme</th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[340px]">Alumni Details &amp; Contributions</th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-32">Date</th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-right w-32">Report</th>
                               </tr>
-                            ) : (
-                              filtered.map((item) => (
-                                <tr key={item.sNo + item.programme} className="hover:bg-muted/20 transition-colors">
-                                  <td className="py-3.5 px-4 font-libre text-xs text-muted-foreground">
-                                    {item.sNo}
-                                  </td>
-                                  <td className="py-3.5 px-4 font-bold font-oswald text-foreground text-sm leading-snug">
-                                    {item.programme}
-                                  </td>
-                                  <td className="py-3.5 px-4 text-xs sm:text-sm text-foreground/90 leading-relaxed font-libre">
-                                    <FormattedAlumniDetails details={item.details} />
-                                  </td>
-                                  <td className="py-3.5 px-4 font-libre text-xs text-primary whitespace-nowrap font-medium">
-                                    {item.date}
-                                  </td>
-                                  <td className="py-3.5 px-4 text-right whitespace-nowrap">
-                                    {item.pdfUrl ? (
-                                      <a
-                                        href={item.pdfUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="px-3 py-1 bg-muted text-foreground font-oswald text-xs font-bold uppercase tracking-wider border border-border/40 hover:bg-primary hover:text-white transition-all inline-flex items-center gap-1"
-                                      >
-                                        <FileText className="w-3.5 h-3.5" />
-                                        <span>PDF</span>
-                                      </a>
-                                    ) : (
-                                      <span className="text-xs text-muted-foreground">—</span>
-                                    )}
+                            </thead>
+                            <tbody className="divide-y divide-border/40 font-libre">
+                              {paginatedActivities.length === 0 ? (
+                                <tr>
+                                  <td colSpan={5} className="py-8 text-center text-sm font-libre text-muted-foreground">
+                                    No records found matching query "{activitySearch}".
                                   </td>
                                 </tr>
-                              ))
-                            )}
-                          </tbody>
-                        </table>
-                      </div>
+                              ) : (
+                                paginatedActivities.map((item) => (
+                                  <tr key={item.sNo + item.programme} className="hover:bg-foreground/[0.02] transition-colors">
+                                    <td className="py-3.5 px-4 font-libre text-xs text-muted-foreground whitespace-nowrap">
+                                      {item.sNo}
+                                    </td>
+                                    <td className="py-3.5 px-4 font-bold font-oswald text-foreground text-sm leading-snug">
+                                      {item.programme}
+                                    </td>
+                                    <td className="py-3.5 px-4 text-xs sm:text-sm text-foreground/90 leading-relaxed font-libre">
+                                      <FormattedAlumniDetails details={item.details} />
+                                    </td>
+                                    <td className="py-3.5 px-4 font-libre text-xs text-primary whitespace-nowrap font-semibold">
+                                      {item.date}
+                                    </td>
+                                    <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                                      {item.pdfUrl ? (
+                                        <a
+                                          href={item.pdfUrl}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="px-3 py-1 bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 font-oswald text-xs font-bold uppercase tracking-wider border border-stone-300 dark:border-neutral-700 hover:bg-primary hover:text-white dark:hover:bg-primary transition-all inline-flex items-center gap-1 rounded-tl-sm rounded-br-sm rounded-tr-none rounded-bl-none"
+                                        >
+                                          <FileText className="w-3.5 h-3.5" />
+                                          <span>PDF</span>
+                                        </a>
+                                      ) : (
+                                        <span className="text-xs text-muted-foreground">—</span>
+                                      )}
+                                    </td>
+                                  </tr>
+                                ))
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
+                        <TablePagination
+                          currentPage={activityPage}
+                          totalRecords={filtered.length}
+                          pageSize={PAGE_SIZE}
+                          onPageChange={(p) => {
+                            setActivityPage(p);
+                            document.getElementById("activities-table-container")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                          }}
+                          label="programme records"
+                        />
+                      </DataGridContainer>
                     </div>
                   );
                 })()}
@@ -1911,169 +2083,190 @@ function AlumniPage() {
 
         {/* TAB 4: DISTINGUISHED ALUMNI */}
         {activeTab === "alumni-list" && (
-          <div className="py-12 sm:py-16 md:py-20 bg-white dark:bg-[#121214]">
-            <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                  Distinguished Alumni &amp; Industry Leaders
-                </h2>
-
-                {/* View Mode Toggle */}
-                <div className="flex items-center gap-2 bg-muted/40 p-1 border border-border/40 self-start md:self-auto">
-                  <button
-                    onClick={() => setDistinguishedViewMode("table")}
-                    className={`px-4 py-1.5 text-xs font-oswald uppercase font-bold tracking-wider transition-all ${
-                      distinguishedViewMode === "table"
-                        ? "bg-primary text-white"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    Table View
-                  </button>
-                  <button
-                    onClick={() => setDistinguishedViewMode("cards")}
-                    className={`px-4 py-1.5 text-xs font-oswald uppercase font-bold tracking-wider transition-all ${
-                      distinguishedViewMode === "cards"
-                        ? "bg-primary text-white"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    List View
-                  </button>
+          <div>
+            {/* Section A: Directory */}
+            <div className="py-12 sm:py-16 md:py-20 bg-white dark:bg-[#121214]">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Distinguished Alumni &amp; Industry Leaders
+                  </h2>
                 </div>
-              </div>
 
-              {/* Search & Batch Era Filter */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-                <div className="relative w-full sm:w-80">
-                  <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
+                {/* Search & Batch Era Filter Toolbar */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+                  <SearchBar
                     placeholder="Search alumnus, role, company..."
                     value={distinguishedSearch}
-                    onChange={(e) => setDistinguishedSearch(e.target.value)}
-                    className="w-full pl-9 pr-4 py-2 bg-background border border-border rounded-none text-xs sm:text-sm font-libre text-foreground focus:outline-none focus:border-primary"
+                    onValueChange={(val) => {
+                      setDistinguishedSearch(val);
+                      setDistinguishedPage(1);
+                    }}
+                    containerClassName="w-full sm:w-80 shrink-0"
                   />
+
+                  <div className="flex items-center gap-2 self-start sm:self-auto">
+                    <span className="text-xs font-oswald font-bold text-muted-foreground uppercase whitespace-nowrap">
+                      Batch Era:
+                    </span>
+                    <CustomDropdown
+                      options={batchEraOptions}
+                      value={distinguishedBatchFilter}
+                      onChange={(val) => {
+                        setDistinguishedBatchFilter(val);
+                        setDistinguishedPage(1);
+                      }}
+                      className="w-full sm:w-auto"
+                    />
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
-                  <span className="text-xs font-oswald font-bold text-muted-foreground uppercase mr-1 whitespace-nowrap">
-                    Batch Era:
-                  </span>
-                  {["ALL", "2001-2005", "2006-2010", "2011-2015", "2016-2023"].map((era) => (
-                    <button
-                      key={era}
-                      onClick={() => setDistinguishedBatchFilter(era)}
-                      className={`px-3 py-1 text-xs font-oswald uppercase tracking-wider font-bold transition-all whitespace-nowrap ${
-                        distinguishedBatchFilter === era
-                          ? "bg-primary text-white"
-                          : "bg-muted text-muted-foreground hover:bg-muted/80"
-                      }`}
-                    >
-                      {era}
-                    </button>
+                {/* Data Filtering */}
+                {(() => {
+                  const filtered = distinguishedAlumniData.filter((item) => {
+                    const matchesSearch =
+                      item.name.toLowerCase().includes(distinguishedSearch.toLowerCase()) ||
+                      item.credentials.toLowerCase().includes(distinguishedSearch.toLowerCase()) ||
+                      item.company.toLowerCase().includes(distinguishedSearch.toLowerCase()) ||
+                      item.batch.toLowerCase().includes(distinguishedSearch.toLowerCase());
+
+                    if (!matchesSearch) return false;
+                    if (distinguishedBatchFilter === "ALL") return true;
+
+                    if (distinguishedBatchFilter === "2001-2005") {
+                      return item.batch.includes("2001") || item.batch.includes("2002") || item.batch.includes("2003") || item.batch.includes("2004") || item.batch.includes("2005");
+                    }
+                    if (distinguishedBatchFilter === "2006-2010") {
+                      return item.batch.includes("2006") || item.batch.includes("2007") || item.batch.includes("2008") || item.batch.includes("2009") || item.batch.includes("2010");
+                    }
+                    if (distinguishedBatchFilter === "2011-2015") {
+                      return item.batch.includes("2011") || item.batch.includes("2012") || item.batch.includes("2013") || item.batch.includes("2014") || item.batch.includes("2015");
+                    }
+                    if (distinguishedBatchFilter === "2016-2023") {
+                      return item.batch.includes("2016") || item.batch.includes("2017") || item.batch.includes("2018") || item.batch.includes("2019") || item.batch.includes("2020") || item.batch.includes("2021") || item.batch.includes("2022") || item.batch.includes("2023");
+                    }
+                    return true;
+                  });
+
+                  const paginatedDistinguished = filtered.slice(
+                    (distinguishedPage - 1) * PAGE_SIZE,
+                    distinguishedPage * PAGE_SIZE
+                  );
+
+                  return (
+                    <div className="space-y-3">
+                      <div className="text-xs font-mono text-muted-foreground">
+                        Showing {filtered.length === 0 ? 0 : (distinguishedPage - 1) * PAGE_SIZE + 1} –{" "}
+                        {Math.min(distinguishedPage * PAGE_SIZE, filtered.length)} of {filtered.length} alumni leaders{" "}
+                        {filtered.length !== distinguishedAlumniData.length && `(filtered from ${distinguishedAlumniData.length})`}
+                      </div>
+
+                      <DataGridContainer id="distinguished-table-container" className="bg-white dark:bg-[#121214] shadow-xs">
+                        <div className="overflow-x-auto bg-transparent">
+                          <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                              <tr>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16">S.No</th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[220px]">Name Of Alumnus</th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-32">Batch</th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[240px]">Designation / Credentials</th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[240px]">Industry / Enterprise</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border/40 font-libre">
+                              {paginatedDistinguished.length === 0 ? (
+                                <tr>
+                                  <td colSpan={5} className="py-8 text-center text-sm font-libre text-muted-foreground">
+                                    No alumni records found matching "{distinguishedSearch}".
+                                  </td>
+                                </tr>
+                              ) : (
+                                paginatedDistinguished.map((item) => (
+                                  <tr key={item.sNo + item.name} className="hover:bg-foreground/[0.02] transition-colors">
+                                    <td className="py-3.5 px-4 font-libre text-xs text-muted-foreground whitespace-nowrap">
+                                      {item.sNo}
+                                    </td>
+                                    <td className="py-3.5 px-4 font-bold font-oswald uppercase text-foreground text-sm">
+                                      {item.name}
+                                    </td>
+                                    <td className="py-3.5 px-4 font-libre text-xs text-muted-foreground whitespace-nowrap">
+                                      {item.batch}
+                                    </td>
+                                    <td className="py-3.5 px-4 font-libre text-xs text-foreground font-medium">
+                                      {item.credentials}
+                                    </td>
+                                    <td className="py-3.5 px-4 font-oswald font-bold uppercase text-primary text-xs sm:text-sm">
+                                      {item.company}
+                                    </td>
+                                  </tr>
+                                ))
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
+                        <TablePagination
+                          currentPage={distinguishedPage}
+                          totalRecords={filtered.length}
+                          pageSize={PAGE_SIZE}
+                          onPageChange={(p) => {
+                            setDistinguishedPage(p);
+                            document.getElementById("distinguished-table-container")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                          }}
+                          label="alumni leaders"
+                        />
+                      </DataGridContainer>
+                    </div>
+                  );
+                })()}
+              </div>
+            </div>
+
+            {/* Wave Divider A → B */}
+            <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+              <svg
+                viewBox="0 0 1440 72"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+                  className="fill-[#F3F3F2] dark:fill-[#18181B]"
+                />
+              </svg>
+            </div>
+
+            {/* Section B: Global Industry Sectors & Alumni Leadership */}
+            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B]">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                  Alumni Leadership Across Key Enterprise Sectors
+                </h3>
+                <div className="divide-y divide-border/40 border-y border-border/40 font-libre">
+                  {[
+                    { sector: "Enterprise Cloud & Software Engineering", count: "5,400+ Alumni", companies: "Google • Microsoft • Amazon • Cisco • Oracle • IBM" },
+                    { sector: "AI Systems, Data & Product Innovation", count: "2,600+ Alumni", companies: "Cognizant • TCS • Infosys • Wipro • Accenture • Capgemini" },
+                    { sector: "SaaS Platforms & Tech Startups", count: "1,800+ Alumni", companies: "Zoho • Freshworks • Chargebee • Guvi • SaaS Founders" },
+                    { sector: "Civil Infrastructure & Metro Rail", count: "2,100+ Alumni", companies: "L&T Construction • Shapoorji Pallonji • Chennai Metro Rail • Gulf Infrastructure" },
+                    { sector: "Automotive, Aerospace & Embedded VLSI", count: "1,900+ Alumni", companies: "Ford • Hyundai • Bosch • Renault Nissan • Visteon • Valeo" },
+                  ].map((sec) => (
+                    <div key={sec.sector} className="py-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                      <div className="space-y-1">
+                        <h4 className="text-base sm:text-lg font-bold font-oswald uppercase text-foreground">
+                          {sec.sector}
+                        </h4>
+                        <p className="text-xs sm:text-sm font-libre text-muted-foreground">
+                          {sec.companies}
+                        </p>
+                      </div>
+                      <span className="text-xs font-oswald font-black uppercase text-primary shrink-0">
+                        {sec.count}
+                      </span>
+                    </div>
                   ))}
                 </div>
               </div>
-
-              {/* Data Filtering */}
-              {(() => {
-                const filtered = distinguishedAlumniData.filter((item) => {
-                  const matchesSearch =
-                    item.name.toLowerCase().includes(distinguishedSearch.toLowerCase()) ||
-                    item.credentials.toLowerCase().includes(distinguishedSearch.toLowerCase()) ||
-                    item.company.toLowerCase().includes(distinguishedSearch.toLowerCase()) ||
-                    item.batch.toLowerCase().includes(distinguishedSearch.toLowerCase());
-
-                  if (!matchesSearch) return false;
-                  if (distinguishedBatchFilter === "ALL") return true;
-
-                  if (distinguishedBatchFilter === "2001-2005") {
-                    return item.batch.includes("2001") || item.batch.includes("2002") || item.batch.includes("2003") || item.batch.includes("2004") || item.batch.includes("2005");
-                  }
-                  if (distinguishedBatchFilter === "2006-2010") {
-                    return item.batch.includes("2006") || item.batch.includes("2007") || item.batch.includes("2008") || item.batch.includes("2009") || item.batch.includes("2010");
-                  }
-                  if (distinguishedBatchFilter === "2011-2015") {
-                    return item.batch.includes("2011") || item.batch.includes("2012") || item.batch.includes("2013") || item.batch.includes("2014") || item.batch.includes("2015");
-                  }
-                  if (distinguishedBatchFilter === "2016-2023") {
-                    return item.batch.includes("2016") || item.batch.includes("2017") || item.batch.includes("2018") || item.batch.includes("2019") || item.batch.includes("2020") || item.batch.includes("2021") || item.batch.includes("2022") || item.batch.includes("2023");
-                  }
-                  return true;
-                });
-
-                return (
-                  <div className="space-y-3">
-                    <div className="text-xs font-mono text-muted-foreground">
-                      Showing {filtered.length} of {distinguishedAlumniData.length} alumni leaders
-                    </div>
-
-                    {distinguishedViewMode === "table" ? (
-                      <div className="overflow-x-auto border-t border-border/40">
-                        <table className="w-full text-left text-sm font-libre">
-                          <thead>
-                            <tr className="border-b border-border/70 bg-[#EBEBEB] dark:bg-[#202023]">
-                              <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap w-16">S.No</th>
-                              <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap min-w-[220px]">Name Of Alumnus</th>
-                              <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap w-32">Batch</th>
-                              <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap min-w-[240px]">Designation / Credentials</th>
-                              <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap min-w-[240px]">Industry / Enterprise</th>
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y divide-border/40">
-                            {filtered.length === 0 ? (
-                              <tr>
-                                <td colSpan={5} className="py-8 text-center text-sm font-libre text-muted-foreground">
-                                  No alumni records found matching "{distinguishedSearch}".
-                                </td>
-                              </tr>
-                            ) : (
-                              filtered.map((item) => (
-                                <tr key={item.sNo + item.name} className="hover:bg-muted/20 transition-colors">
-                                  <td className="py-3.5 px-4 font-libre text-xs text-muted-foreground">
-                                    {item.sNo}
-                                  </td>
-                                  <td className="py-3.5 px-4 font-bold font-oswald text-foreground text-sm">
-                                    {item.name}
-                                  </td>
-                                  <td className="py-3.5 px-4 font-libre text-xs text-muted-foreground">
-                                    {item.batch}
-                                  </td>
-                                  <td className="py-3.5 px-4 font-libre text-xs text-foreground font-medium">
-                                    {item.credentials}
-                                  </td>
-                                  <td className="py-3.5 px-4 font-oswald font-bold uppercase text-primary text-xs sm:text-sm">
-                                    {item.company}
-                                  </td>
-                                </tr>
-                              ))
-                            )}
-                          </tbody>
-                        </table>
-                      </div>
-                    ) : (
-                      <div className="divide-y divide-border/40 border-y border-border/40 font-libre">
-                        {filtered.map((item) => (
-                          <div key={item.sNo + item.name} className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                            <div className="space-y-0.5">
-                              <h4 className="text-base font-bold font-oswald text-foreground">
-                                {item.name} <span className="text-xs font-normal text-muted-foreground font-libre">({item.batch})</span>
-                              </h4>
-                              <p className="text-xs text-foreground/80 font-libre">
-                                {item.credentials}
-                              </p>
-                            </div>
-                            <span className="text-xs font-oswald font-bold uppercase text-primary">
-                              {item.company}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              })()}
             </div>
           </div>
         )}
@@ -2098,47 +2291,42 @@ function AlumniPage() {
                     href="https://www.feepayr.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs bg-primary text-white text-xs font-bold font-oswald uppercase tracking-wider flex items-center gap-2 hover:bg-primary/90 transition-colors shrink-0 self-start md:self-auto"
+                    className="px-5 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-primary text-white text-xs font-bold font-oswald uppercase tracking-wider flex items-center gap-2 hover:bg-primary/90 transition-colors shrink-0 self-start md:self-auto shadow-xs"
                   >
                     <span>Contribute Online (FeePayr)</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
 
-                {/* Search & Dept Filter */}
+                {/* Search & Department Filter Toolbar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-                  <div className="relative w-full sm:w-80">
-                    <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
-                    <input
-                      type="text"
-                      placeholder="Search student, department, date..."
-                      value={scholarshipSearch}
-                      onChange={(e) => setScholarshipSearch(e.target.value)}
-                      className="w-full pl-9 pr-4 py-2 bg-background border border-border rounded-none text-xs sm:text-sm font-libre text-foreground focus:outline-none focus:border-primary"
-                    />
-                  </div>
+                  <SearchBar
+                    placeholder="Search student, department, date..."
+                    value={scholarshipSearch}
+                    onValueChange={(val) => {
+                      setScholarshipSearch(val);
+                      setScholarshipPage(1);
+                    }}
+                    containerClassName="w-full sm:w-80 shrink-0"
+                  />
 
-                  <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
-                    <span className="text-xs font-oswald font-bold text-muted-foreground uppercase mr-1 whitespace-nowrap">
-                      Dept Filter:
+                  <div className="flex items-center gap-2 self-start sm:self-auto">
+                    <span className="text-xs font-oswald font-bold text-muted-foreground uppercase whitespace-nowrap">
+                      Department:
                     </span>
-                    {["ALL", "CSE", "ECE", "IT", "AIDS & AIML", "Institutional"].map((dept) => (
-                      <button
-                        key={dept}
-                        onClick={() => setScholarshipDeptFilter(dept)}
-                        className={`px-3 py-1 text-xs font-oswald uppercase tracking-wider font-bold transition-all whitespace-nowrap ${
-                          scholarshipDeptFilter === dept
-                            ? "bg-primary text-white"
-                            : "bg-muted text-muted-foreground hover:bg-muted/80"
-                        }`}
-                      >
-                        {dept}
-                      </button>
-                    ))}
+                    <CustomDropdown
+                      options={scholarshipDeptOptions}
+                      value={scholarshipDeptFilter}
+                      onChange={(val) => {
+                        setScholarshipDeptFilter(val);
+                        setScholarshipPage(1);
+                      }}
+                      className="w-full sm:w-auto"
+                    />
                   </div>
                 </div>
 
-                {/* Beneficiaries Data Table */}
+                {/* Beneficiaries Data Table (Official Publications DataGrid Standard) */}
                 {(() => {
                   const filtered = alumniScholarshipsData.filter((item) => {
                     const matchesSearch =
@@ -2158,50 +2346,69 @@ function AlumniPage() {
                     return true;
                   });
 
+                  const paginatedScholarships = filtered.slice(
+                    (scholarshipPage - 1) * PAGE_SIZE,
+                    scholarshipPage * PAGE_SIZE
+                  );
+
                   return (
                     <div className="space-y-3">
                       <div className="text-xs font-mono text-muted-foreground">
-                        Showing {filtered.length} of {alumniScholarshipsData.length} disbursal records
+                        Showing {filtered.length === 0 ? 0 : (scholarshipPage - 1) * PAGE_SIZE + 1} –{" "}
+                        {Math.min(scholarshipPage * PAGE_SIZE, filtered.length)} of {filtered.length} disbursal records{" "}
+                        {filtered.length !== alumniScholarshipsData.length && `(filtered from ${alumniScholarshipsData.length})`}
                       </div>
 
-                      <div className="overflow-x-auto border-t border-border/40">
-                        <table className="w-full text-left text-sm font-libre">
-                          <thead>
-                            <tr className="border-b border-border/70 bg-[#EBEBEB] dark:bg-[#202023]">
-                              <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap w-16">S.No</th>
-                              <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap min-w-[280px]">Student / Beneficiary Name</th>
-                              <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap min-w-[260px]">Batch / Department / Program</th>
-                              <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider text-foreground whitespace-nowrap text-right w-36">Disbursal Date</th>
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y divide-border/40">
-                            {filtered.length === 0 ? (
+                      <DataGridContainer id="scholarships-table-container" className="bg-white dark:bg-[#121214] shadow-xs">
+                        <div className="overflow-x-auto bg-transparent">
+                          <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
                               <tr>
-                                <td colSpan={4} className="py-8 text-center text-sm font-libre text-muted-foreground">
-                                  No scholarship record found matching "{scholarshipSearch}".
-                                </td>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16">S.No</th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[280px]">Student / Beneficiary Name</th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[260px]">Batch / Department / Program</th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-right w-36">Disbursal Date</th>
                               </tr>
-                            ) : (
-                              filtered.map((item) => (
-                                <tr key={item.sNo + item.studentName + item.date} className="hover:bg-muted/20 transition-colors">
-                                  <td className="py-3.5 px-4 font-libre text-xs text-muted-foreground">
-                                    {item.sNo}
-                                  </td>
-                                  <td className="py-3.5 px-4 font-bold font-oswald text-foreground text-sm">
-                                    {item.studentName}
-                                  </td>
-                                  <td className="py-3.5 px-4 font-libre text-xs text-muted-foreground">
-                                    {item.batchDept}
-                                  </td>
-                                  <td className="py-3.5 px-4 font-libre text-xs text-right text-muted-foreground whitespace-nowrap">
-                                    {item.date}
+                            </thead>
+                            <tbody className="divide-y divide-border/40 font-libre">
+                              {paginatedScholarships.length === 0 ? (
+                                <tr>
+                                  <td colSpan={4} className="py-8 text-center text-sm font-libre text-muted-foreground">
+                                    No scholarship record found matching "{scholarshipSearch}".
                                   </td>
                                 </tr>
-                              ))
-                            )}
-                          </tbody>
-                        </table>
-                      </div>
+                              ) : (
+                                paginatedScholarships.map((item) => (
+                                  <tr key={item.sNo + item.studentName + item.date} className="hover:bg-foreground/[0.02] transition-colors">
+                                    <td className="py-3.5 px-4 font-libre text-xs text-muted-foreground whitespace-nowrap">
+                                      {item.sNo}
+                                    </td>
+                                    <td className="py-3.5 px-4 font-bold font-oswald uppercase text-foreground text-sm sm:text-base">
+                                      {item.studentName}
+                                    </td>
+                                    <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground">
+                                      {item.batchDept}
+                                    </td>
+                                    <td className="py-3.5 px-4 font-libre text-xs text-right text-primary font-semibold whitespace-nowrap">
+                                      {item.date}
+                                    </td>
+                                  </tr>
+                                ))
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
+                        <TablePagination
+                          currentPage={scholarshipPage}
+                          totalRecords={filtered.length}
+                          pageSize={PAGE_SIZE}
+                          onPageChange={(p) => {
+                            setScholarshipPage(p);
+                            document.getElementById("scholarships-table-container")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                          }}
+                          label="disbursal records"
+                        />
+                      </DataGridContainer>
                     </div>
                   );
                 })()}
@@ -2258,11 +2465,11 @@ function AlumniPage() {
             {/* Section A: Main Reunion Celebrations */}
             <div className="py-12 sm:py-16 md:py-20 bg-white dark:bg-[#121214]">
               <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
-                <div className="space-y-4">
+                <div className="space-y-4 w-full">
                   <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                     Annual Alumni Meet &amp; Homecoming Program
                   </h2>
-                  <p className="text-sm text-foreground font-libre leading-relaxed max-w-4xl">
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
                     Alumni Meet 2k23 reunited over 300+ graduates across 2009–2020 batches on campus to reconnect with faculty, guide students, and strengthen institutional ties.
                   </p>
                 </div>
@@ -2272,7 +2479,7 @@ function AlumniPage() {
                     href="https://www.msajce-edu.in/uploads/alumni/AlumniMeetBanner.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs bg-primary text-white text-xs font-bold font-oswald uppercase tracking-wider flex items-center gap-2 hover:bg-primary/90 transition-colors"
+                    className="px-5 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-primary text-white text-xs font-bold font-oswald uppercase tracking-wider flex items-center gap-2 hover:bg-primary/90 transition-colors shadow-xs"
                   >
                     <FileText className="w-4 h-4" />
                     <span>Invitation PDF</span>
@@ -2281,7 +2488,7 @@ function AlumniPage() {
                     href="https://photos.app.goo.gl/Qg5EabymfsW948G37"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs bg-muted border border-border text-foreground text-xs font-bold font-oswald uppercase tracking-wider flex items-center gap-2 hover:bg-muted/80 transition-colors"
+                    className="px-5 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-muted border border-border text-foreground text-xs font-bold font-oswald uppercase tracking-wider flex items-center gap-2 hover:bg-muted/80 transition-colors shadow-xs"
                   >
                     <ImageIcon className="w-4 h-4 text-primary" />
                     <span>View Photos</span>
@@ -2290,8 +2497,9 @@ function AlumniPage() {
 
                 {/* Banner Showcase */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
-                  <div className="overflow-hidden border border-border/60 bg-black aspect-[16/9]">
+                  <div className="overflow-hidden border border-border/60 bg-black aspect-[16/9] rounded-md">
                     <img
+                      key="alumni-meet-banner"
                       src="https://www.msajce-edu.in/images/alumni/AlumniMeetBanner.jpg"
                       alt="Alumni Meet 2k23 Main Banner"
                       className="w-full h-full object-cover"
@@ -2301,8 +2509,9 @@ function AlumniPage() {
                     />
                   </div>
 
-                  <div className="overflow-hidden border border-border/60 bg-black aspect-[16/9]">
+                  <div className="overflow-hidden border border-border/60 bg-black aspect-[16/9] rounded-md">
                     <img
+                      key="alumni-meet-invitation"
                       src="https://www.msajce-edu.in/images/alumni/AlumniMee-23Invitation.jpg"
                       alt="Alumni Meet 2k23 Official Invitation"
                       className="w-full h-full object-cover"
@@ -2351,7 +2560,7 @@ function AlumniPage() {
                     { title: "Alumni Journey — From MSAJCE to Global Success", videoId: "tiIZ2TCSI3w", author: "Enterprise Consultant" },
                   ].map((vid) => (
                     <div key={vid.videoId} className="space-y-2">
-                      <div className="aspect-[16/9] w-full overflow-hidden bg-black border border-border/60">
+                      <div className="aspect-[16/9] w-full overflow-hidden bg-black border border-border/60 rounded-md">
                         <iframe
                           className="w-full h-full"
                           src={`https://www.youtube.com/embed/${vid.videoId}`}
@@ -2372,8 +2581,9 @@ function AlumniPage() {
                   <h4 className="text-base font-bold font-oswald uppercase text-foreground">
                     Alumni Meet 2021 (2005, 2006 &amp; 2007 Batches)
                   </h4>
-                  <div className="overflow-hidden border border-border/60 bg-black aspect-[21/9] min-h-[200px]">
+                  <div className="overflow-hidden border border-border/60 bg-black aspect-[21/9] min-h-[200px] rounded-md">
                     <img
+                      key="alumni-meet-2021"
                       src="https://www.msajce-edu.in/images/alumni/AlumniMeet2021.jpg"
                       alt="Alumni Meet 2021 2005-2007 Batches Assembly"
                       className="w-full h-full object-cover"
@@ -2388,36 +2598,7 @@ function AlumniPage() {
           </div>
         )}
       </section>
-
-      {/* ========================================================================= */}
-      {/* 3. CTA REGISTRATION BANNER                                                */}
-      {/* ========================================================================= */}
-      <section className="py-16 sm:py-20 md:py-24 bg-[#18181B] text-white">
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16">
-          <div className="p-10 sm:p-14 md:p-16 rounded-none border border-white/10 bg-gradient-to-r from-black/90 via-[#18181B] to-black/90 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-2xl">
-            <div className="space-y-3">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-primary block">
-                Reconnect &amp; Mentor Future Engineers
-              </span>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black font-oswald uppercase tracking-wide text-white">
-                Are You an MSAJCE Graduate?
-              </h3>
-              <p className="text-xs sm:text-sm md:text-base text-zinc-300 font-libre max-w-2xl leading-relaxed">
-                Join 15,000+ MSAJCE alumni registered worldwide. Update your career profile, deliver guest sessions, and connect with your engineering batchmates.
-              </p>
-            </div>
-            <a
-              href="https://enrollonline.co.in/Registration/Apply/MSAJCE"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-4 rounded-none bg-primary text-white text-xs sm:text-sm font-bold font-oswald uppercase tracking-wider hover:bg-primary/90 transition-all flex items-center gap-2.5 shadow-xl shrink-0"
-            >
-              <span>Register in Alumni Portal</span>
-              <ExternalLink className="w-4.5 h-4.5" />
-            </a>
-          </div>
-        </div>
-      </section>
+      </div>
     </motion.main>
   );
 }
