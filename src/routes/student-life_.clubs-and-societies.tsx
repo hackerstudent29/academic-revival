@@ -56,6 +56,13 @@ function ClubsAndSocietiesPage() {
 
   const activeClub: StudentClub = studentClubs[activeClubIndex] || studentClubs[0];
 
+  const clubObjectives = useMemo(() => {
+    if (activeClub.objectives && activeClub.objectives.length > 0) {
+      return activeClub.objectives;
+    }
+    return activeClub.tamilObjectives || [];
+  }, [activeClub]);
+
   const prevClub = studentClubs[(activeClubIndex - 1 + studentClubs.length) % studentClubs.length];
   const nextClub = studentClubs[(activeClubIndex + 1) % studentClubs.length];
 
@@ -140,19 +147,6 @@ function ClubsAndSocietiesPage() {
                 </h2>
               </div>
 
-              {/* Metadata Badges Row */}
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="text-xs font-bold font-oswald uppercase text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
-                  {activeClub.badge || activeClub.category}
-                </span>
-                <span className="text-xs font-bold font-oswald text-muted-foreground uppercase">
-                  {activeClub.membersCount}
-                </span>
-                <span className="text-xs font-mono font-bold text-muted-foreground ml-auto">
-                  Club {String(activeClubIndex + 1).padStart(2, "0")} of 08
-                </span>
-              </div>
-
               {/* Authentic Club Narrative */}
               <p className="text-sm sm:text-base font-libre font-medium text-foreground/90 leading-relaxed">
                 {activeClub.description}
@@ -193,13 +187,13 @@ function ClubsAndSocietiesPage() {
               )}
 
               {/* Single-Column Core Objectives */}
-              {activeClub.objectives && activeClub.objectives.length > 0 && (
+              {clubObjectives.length > 0 && (
                 <div className="space-y-3.5 pt-2">
                   <h3 className="text-base font-bold font-oswald uppercase text-foreground">
-                    Objectives
+                    {activeClub.id === "tamil-mandram" ? "முக்கிய நோக்கங்கள்" : "Objectives"}
                   </h3>
                   <div className="space-y-3">
-                    {activeClub.objectives.map((obj, idx) => (
+                    {clubObjectives.map((obj, idx) => (
                       <div key={idx} className="flex items-start gap-4">
                         <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs mt-0.5 border border-foreground/20 shadow-2xs">
                           {String(idx + 1).padStart(2, "0")}
@@ -208,133 +202,6 @@ function ClubsAndSocietiesPage() {
                           {obj}
                         </p>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Single-Column Special Tamil Objectives for Tamil Mandram */}
-              {activeClub.tamilObjectives && activeClub.tamilObjectives.length > 0 && (
-                <div className="space-y-3.5 pt-2">
-                  <h3 className="text-base font-bold font-oswald uppercase text-foreground">
-                    முக்கிய நோக்கங்கள்
-                  </h3>
-                  <div className="space-y-3">
-                    {activeClub.tamilObjectives.map((obj, idx) => (
-                      <div key={idx} className="flex items-start gap-4">
-                        <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs mt-0.5 border border-foreground/20 shadow-2xs">
-                          {String(idx + 1).padStart(2, "0")}
-                        </span>
-                        <p className="text-sm sm:text-base text-foreground/85 font-libre font-medium leading-relaxed flex-1 pt-1">
-                          {obj}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Single-Column Coding Club Practices */}
-              {activeClub.codingPractices && activeClub.codingPractices.length > 0 && (
-                <div className="space-y-3.5 pt-2">
-                  <h3 className="text-base font-bold font-oswald uppercase text-foreground">
-                    Core Practices
-                  </h3>
-                  <div className="space-y-3">
-                    {activeClub.codingPractices.map((practice, idx) => (
-                      <div key={idx} className="flex items-start gap-4">
-                        <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs mt-0.5 border border-foreground/20 shadow-2xs">
-                          {String(idx + 1).padStart(2, "0")}
-                        </span>
-                        <p className="text-sm sm:text-base text-foreground/85 font-libre font-medium leading-relaxed flex-1 pt-1">
-                          {practice}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Single-Column Science Club Sections */}
-              {activeClub.id === "science-club" && activeClub.scienceSections && (
-                <div className="space-y-2 pt-2">
-                  <h3 className="text-base font-bold font-oswald uppercase text-foreground">
-                    Specialized Sections
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {activeClub.scienceSections.map((sec, i) => (
-                      <span key={i} className="text-xs font-bold font-oswald uppercase bg-primary/10 text-primary border border-primary/20 px-3 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
-                        {sec}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Single-Column Fine Arts Leadership */}
-              {activeClub.id === "fine-arts-club" && (activeClub.staffCoordinator || activeClub.studentPresident) && (
-                <div className="space-y-2 pt-2">
-                  <h3 className="text-base font-bold font-oswald uppercase text-foreground">
-                    Leadership
-                  </h3>
-                  <div className="space-y-1.5 text-xs sm:text-sm font-libre text-foreground/85">
-                    {activeClub.staffCoordinator && (
-                      <p><span className="font-bold font-oswald uppercase text-primary mr-2">Staff Coordinator:</span>{activeClub.staffCoordinator}</p>
-                    )}
-                    {activeClub.studentPresident && (
-                      <p><span className="font-bold font-oswald uppercase text-primary mr-2">President:</span>{activeClub.studentPresident}</p>
-                    )}
-                    {activeClub.studentVicePresident && (
-                      <p><span className="font-bold font-oswald uppercase text-primary mr-2">Vice-President:</span>{activeClub.studentVicePresident}</p>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Single-Column Tamil Mandram Events */}
-              {activeClub.id === "tamil-mandram" && activeClub.tamilEvents && (
-                <div className="space-y-2 pt-2">
-                  <h3 className="text-base font-bold font-oswald uppercase text-foreground">
-                    பாரம்பரிய நிகழ்வுகள்
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {activeClub.tamilEvents.map((evt, i) => (
-                      <span key={i} className="text-xs font-libre font-medium bg-foreground/5 text-foreground/90 px-3 py-1 rounded-tl-sm rounded-br-sm rounded-tr-xs rounded-bl-xs">
-                        {evt}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Single-Column Photography Pillars */}
-              {activeClub.id === "photography-club" && activeClub.photographyPillars && (
-                <div className="space-y-2 pt-2">
-                  <h3 className="text-base font-bold font-oswald uppercase text-foreground">
-                    Pillars of Visual Art
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {activeClub.photographyPillars.map((p, i) => (
-                      <span key={i} className="text-xs font-libre font-medium bg-foreground/5 text-foreground/90 px-3 py-1 rounded-tl-sm rounded-br-sm rounded-tr-xs rounded-bl-xs">
-                        {p}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Single-Column Annual Activities List */}
-              {activeClub.activities && activeClub.activities.length > 0 && (
-                <div className="space-y-2 pt-2">
-                  <h3 className="text-base font-bold font-oswald uppercase text-foreground">
-                    Annual Activities
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {activeClub.activities.map((act, i) => (
-                      <span key={i} className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-libre font-medium text-foreground/80 bg-foreground/5 px-3 py-1.5 rounded-tl-sm rounded-br-sm rounded-tr-xs rounded-bl-xs">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                        {act}
-                      </span>
                     ))}
                   </div>
                 </div>
