@@ -1,15 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import {
-  Users,
-  Utensils,
-  Trophy,
-  Home as HomeIcon,
-  ArrowRight,
-  CheckCircle2,
-  Heart,
-  BookOpen
-} from "lucide-react";
-import { studentLifeOverview, studentHubAmenities } from "@/data/studentLife";
+import { ArrowRight, Heart, BookOpen } from "lucide-react";
+import { studentHubAmenities } from "@/data/studentLife";
 
 const title = "Student Hub & Campus Amenities | Student Life | MSAJCE";
 const description =
@@ -56,139 +47,208 @@ function StudentHubPage() {
         <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
           <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
             <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
-              Student Hub &amp; Campus Amenities
+              Student Hub
             </h1>
           </div>
         </div>
       </section>
 
-      {/* Main Content Area */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 py-10 space-y-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-foreground/10 pb-4">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground">
-              Campus Life Amenities &amp; Student Spaces
+      {/* ========================================================================= */}
+      {/* 2. SECTION A (White / #121214): CAMPUS AMENITIES & FIXED IMAGE GALLERY    */}
+      {/* ========================================================================= */}
+      <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 px-4 sm:px-6 md:px-12 transition-colors">
+        <div className="max-w-[1440px] mx-auto space-y-8">
+          {/* Section Title — NO text or subtitle below */}
+          <div className="border-b border-border/60 pb-3">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              Campus Amenities
             </h2>
-            <p className="text-sm text-muted-foreground font-sans mt-1">
-              State-of-the-art facilities dedicated to recreation, wellness, dining, and community engagement.
-            </p>
           </div>
-        </div>
 
-        {/* Grid of Amenities */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {studentHubAmenities.map((item) => (
-            <div
-              key={item.id}
-              className="group flex flex-col bg-card dark:bg-[#18181B] border border-foreground/10 rounded-sm overflow-hidden shadow-xs hover:border-primary/50 transition-colors"
-            >
-              <div className="relative aspect-[16/9] overflow-hidden bg-muted">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                  onError={(e) => {
-                    e.currentTarget.src = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80";
-                  }}
-                />
-                <div className="absolute top-3 left-3 bg-primary text-white text-xs font-black font-oswald uppercase px-2.5 py-1 rounded-sm shadow-md flex items-center gap-1.5">
-                  {item.category === "recreation" && <Users className="w-3.5 h-3.5" />}
-                  {item.category === "dining" && <Utensils className="w-3.5 h-3.5" />}
-                  {item.category === "fitness" && <Trophy className="w-3.5 h-3.5" />}
-                  {item.category === "welfare" && <HomeIcon className="w-3.5 h-3.5" />}
-                  <span>{item.category}</span>
-                </div>
+          {/* 2-Column Balanced Editorial Split: Fixed Image Gallery Grid + Open Editorial List */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            
+            {/* Left Column: Fixed 2x2 Image Gallery Grid (NO text over, NO text below, strictly static) */}
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                {studentHubAmenities.map((item) => (
+                  <div
+                    key={`img-${item.id}`}
+                    className="aspect-[4/3] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden border border-border/70 bg-muted shadow-2xs"
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover block select-none pointer-events-none"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+                      }}
+                    />
+                  </div>
+                ))}
               </div>
+            </div>
 
-              <div className="p-6 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-xl font-black font-oswald uppercase text-foreground group-hover:text-primary transition-colors">
+            {/* Right Column: Open Editorial List (Strictly NO Cards, Clean Border Dividers) */}
+            <div className="lg:col-span-7 order-1 lg:order-2 space-y-0 divide-y divide-border/60 border-y border-border/60 bg-transparent">
+              {studentHubAmenities.map((item) => (
+                <div key={item.id} className="py-5 sm:py-6 first:pt-2 last:pb-2">
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <span className="text-[11px] font-bold font-oswald uppercase text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                      {item.category}
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
                     {item.title}
                   </h3>
-                  <p className="text-sm font-sans text-muted-foreground mt-2 leading-relaxed">
+
+                  <p className="text-sm text-foreground/80 font-libre font-medium leading-relaxed mt-2">
                     {item.description}
                   </p>
 
-                  <div className="mt-4 pt-4 border-t border-foreground/10">
-                    <h4 className="text-xs font-bold font-oswald uppercase text-primary tracking-wider mb-2">
-                      Key Highlights:
-                    </h4>
-                    <ul className="space-y-1.5">
-                      {item.highlights.map((hl, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-xs font-sans text-foreground/80">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                          <span>{hl}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="mt-3 flex flex-wrap gap-1.5 sm:gap-2">
+                    {item.highlights.map((hl, idx) => (
+                      <span
+                        key={idx}
+                        className="inline-flex items-center gap-1.5 text-xs font-libre font-medium text-foreground/85 bg-foreground/5 px-2.5 py-1 rounded-tl-sm rounded-br-sm rounded-tr-xs rounded-bl-xs"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                        {hl}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        {/* Health & Reprographic Welfare Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-card dark:bg-[#18181B] border border-foreground/10 rounded-sm p-6 sm:p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-primary/10 border border-primary/20 text-primary rounded-sm flex items-center justify-center font-bold">
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* ORGANIC WAVE DIVIDER A -> B                                               */}
+      {/* ========================================================================= */}
+      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-8 sm:h-12 md:h-16 lg:h-20 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-[#F3F3F2] dark:fill-[#18181B]"
+          />
+        </svg>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 3. SECTION B (#F3F3F2 / #18181B): CAMPUS WELFARE & SERVICES               */}
+      {/* ========================================================================= */}
+      <section className="bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14 px-4 sm:px-6 md:px-12 transition-colors">
+        <div className="max-w-[1440px] mx-auto space-y-8">
+          {/* Section Title — NO text or subtitle below */}
+          <div className="border-b border-border/60 pb-3">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              Campus Welfare &amp; Services
+            </h2>
+          </div>
+
+          {/* 2-Column Minimal Editorial Presentation (Strictly NO Cards) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
+            
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary/10 border border-primary/20 text-primary flex items-center justify-center shrink-0">
                 <Heart className="w-5 h-5" />
               </div>
-              <div>
-                <h3 className="text-xl font-black font-oswald uppercase text-foreground">Health &amp; Wellness Clinic</h3>
-                <span className="text-xs text-muted-foreground font-sans">24/7 On-Campus Medical Support</span>
+              <div className="space-y-1.5 flex-1">
+                <span className="text-[11px] font-bold font-oswald uppercase text-primary tracking-wider block">
+                  24/7 On-Campus Support
+                </span>
+                <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                  Health &amp; Wellness Clinic
+                </h3>
+                <p className="text-sm text-foreground/80 font-libre font-medium leading-relaxed">
+                  Equipped with a first-aid centre, resident nurse, visiting physicians, emergency ambulance service, and mental wellness counselling for all students.
+                </p>
               </div>
             </div>
-            <p className="text-sm text-muted-foreground font-sans leading-relaxed">
-              Equipped with a first-aid centre, resident nurse, visiting physicians, emergency ambulance service, and mental wellness counselling for all students.
-            </p>
-          </div>
 
-          <div className="bg-card dark:bg-[#18181B] border border-foreground/10 rounded-sm p-6 sm:p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-primary/10 border border-primary/20 text-primary rounded-sm flex items-center justify-center font-bold">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary/10 border border-primary/20 text-primary flex items-center justify-center shrink-0">
                 <BookOpen className="w-5 h-5" />
               </div>
-              <div>
-                <h3 className="text-xl font-black font-oswald uppercase text-foreground">Stationery &amp; Reprographic Hub</h3>
-                <span className="text-xs text-muted-foreground font-sans">Academic Supplies &amp; Project Printing</span>
+              <div className="space-y-1.5 flex-1">
+                <span className="text-[11px] font-bold font-oswald uppercase text-primary tracking-wider block">
+                  Academic Reprographics
+                </span>
+                <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                  Stationery &amp; Reprographic Hub
+                </h3>
+                <p className="text-sm text-foreground/80 font-libre font-medium leading-relaxed">
+                  Provides high-speed photocopying, spiral binding, academic drawing materials, engineering stationery, and poster printing right inside campus.
+                </p>
               </div>
             </div>
-            <p className="text-sm text-muted-foreground font-sans leading-relaxed">
-              Provides high-speed photocopying, spiral binding, academic drawing materials, engineering stationery, and poster printing right inside campus.
-            </p>
+
           </div>
         </div>
+      </section>
 
-        {/* Student Governance Banner */}
-        <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-6 sm:p-8 rounded-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-2">
-            <span className="text-xs font-bold font-oswald uppercase text-primary tracking-wider">
-              Student Governance &amp; Leadership
-            </span>
-            <h3 className="text-2xl font-black font-oswald uppercase text-foreground">
-              MSAJCE Student Council
-            </h3>
-            <p className="text-sm font-sans text-muted-foreground max-w-2xl leading-relaxed">
+      {/* ========================================================================= */}
+      {/* ORGANIC WAVE DIVIDER B -> A                                               */}
+      {/* ========================================================================= */}
+      <div className="w-full overflow-hidden leading-none select-none bg-[#F3F3F2] dark:bg-[#18181B]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-8 sm:h-12 md:h-16 lg:h-20 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-white dark:fill-[#121214]"
+          />
+        </svg>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 4. SECTION A (White / #121214): STUDENT COUNCIL EDITORIAL & CTA           */}
+      {/* ========================================================================= */}
+      <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 px-4 sm:px-6 md:px-12 transition-colors">
+        <div className="max-w-[1440px] mx-auto space-y-6">
+          {/* Section Title — NO text or subtitle below */}
+          <div className="border-b border-border/60 pb-3">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              Student Council
+            </h2>
+          </div>
+
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-l-2 border-primary pl-4 sm:pl-6 py-2">
+            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed max-w-3xl">
               The elected Student Council acts as the official bridge between students and executive leadership, ensuring student voices, event proposals, and welfare needs are actively addressed.
             </p>
+
+            <button
+              type="button"
+              onClick={() => navigate({ to: "/student-life/clubs-and-societies" })}
+              className="relative group overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-stone-200 dark:bg-neutral-800 text-foreground dark:text-white border border-stone-300 dark:border-neutral-700 px-6 py-3 font-bold font-oswald text-xs uppercase tracking-wider transition-colors shrink-0 cursor-pointer self-start md:self-auto"
+            >
+              <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
+                Explore Clubs &amp; Societies
+                <ArrowRight className="w-4 h-4" />
+              </span>
+              <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+              </span>
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={() => navigate({ to: "/student-life/clubs-and-societies" })}
-            className="relative group overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-stone-200 dark:bg-neutral-800 text-foreground dark:text-white border border-stone-300 dark:border-neutral-700 px-6 py-3 font-bold font-oswald text-xs uppercase tracking-wider transition-colors shrink-0 cursor-pointer"
-          >
-            <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
-              Explore Clubs &amp; Societies
-              <ArrowRight className="w-4 h-4" />
-            </span>
-            <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-              <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-            </span>
-          </button>
         </div>
-      </div>
+      </section>
     </main>
   );
 }
+

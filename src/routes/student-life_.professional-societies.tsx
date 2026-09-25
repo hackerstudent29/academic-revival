@@ -372,16 +372,11 @@ function ProfessionalSocietiesPage() {
                           key={`mobile-${activeSociety.id}`}
                           src={activeSociety.image}
                           alt={`${activeSociety.name} showcase`}
-                          className="w-full h-full object-cover block"
+                          className="w-full h-full object-cover block select-none pointer-events-none"
                           onError={(e) => {
                             (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
                           }}
                         />
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-3 pointer-events-none select-none">
-                          <span className="text-[11px] font-bold font-oswald uppercase tracking-wider text-white block">
-                            {activeSociety.shortName} · Professional Chapter
-                          </span>
-                        </div>
                       </div>
                     </div>
                   )}
@@ -436,16 +431,11 @@ function ProfessionalSocietiesPage() {
                           key={`desktop-${activeSociety.id}`}
                           src={activeSociety.image}
                           alt={`${activeSociety.name} showcase`}
-                          className="w-full h-full object-cover block"
+                          className="w-full h-full object-cover block select-none pointer-events-none"
                           onError={(e) => {
                             (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
                           }}
                         />
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-3 pointer-events-none select-none">
-                          <span className="text-[11px] font-bold font-oswald uppercase tracking-wider text-white block">
-                            {activeSociety.name} · MSAJCE
-                          </span>
-                        </div>
                       </div>
                     </div>
                   )}
@@ -1175,18 +1165,10 @@ function ProfessionalSocietiesPage() {
       {/* SECTION B: SCANNABLE ALL 4 CHAPTERS DIRECTORY */}
       <section className="bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14 px-4 sm:px-6 md:px-12 transition-colors">
         <div className="max-w-[1440px] mx-auto space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border/60 pb-4">
-            <div>
-              <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary">
-                At A Glance Directory
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground mt-0.5">
-                All 4 Professional Societies
-              </h2>
-            </div>
-            <p className="text-xs sm:text-sm font-sans text-muted-foreground max-w-md">
-              Click any professional chapter below to directly review its technical mandate, leadership, and student privileges.
-            </p>
+          <div className="border-b border-border/60 pb-3">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              All 4 Professional Societies
+            </h2>
           </div>
 
           {/* Clean Editorial Table / Open Directory List (Strictly NO Cards) */}
@@ -1264,10 +1246,7 @@ function ProfessionalSocietiesPage() {
           
           <div>
             <div className="border-b border-border/60 pb-3 mb-6">
-              <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary">
-                Career Catalysts &amp; Industry Standards
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground mt-0.5">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                 Technical Chapters Impact
               </h2>
             </div>
@@ -1317,15 +1296,9 @@ function ProfessionalSocietiesPage() {
           {/* Gateway Banner to TEDx */}
           <div className="border border-border/60 p-6 sm:p-8 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-muted/20">
             <div>
-              <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary">
-                Ideas Worth Spreading
-              </span>
-              <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-foreground mt-0.5">
+              <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
                 Explore TEDxMSAJCE
               </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground font-sans mt-1">
-                Official independently licensed TED conference hosting global visionaries and innovators.
-              </p>
             </div>
             
             <button

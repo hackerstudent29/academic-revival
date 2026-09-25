@@ -171,9 +171,6 @@ function TedxDatabasePage() {
               <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                 TEDx Talks &amp; Sessions Archive
               </h2>
-              <p className="mt-1 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
-                Watch all 54 authentic TEDx talks published by the TEDxMSAJCE chapter. Click any talk to play inline or open the theater mode.
-              </p>
             </div>
 
             {/* View Mode & Page Size Controls */}
@@ -550,13 +547,10 @@ function TedxDatabasePage() {
       {/* ========================================================================= */}
       <section className="py-10 sm:py-14 md:py-16 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12 space-y-8">
-          <div>
+          <div className="border-b border-border/60 pb-3">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               TEDx Community Guidelines &amp; Licensing
             </h2>
-            <p className="mt-2 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
-              TEDxMSAJCE is an independently organized event under official license from TED Conferences LLC.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

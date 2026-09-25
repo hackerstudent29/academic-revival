@@ -284,16 +284,11 @@ function ClubsAndSocietiesPage() {
                           key={`mobile-${activeClub.id}`}
                           src={activeClub.images[0]}
                           alt={`${activeClub.name} showcase`}
-                          className="w-full h-full object-cover block"
+                          className="w-full h-full object-cover block select-none pointer-events-none"
                           onError={(e) => {
                             (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
                           }}
                         />
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-3 pointer-events-none select-none">
-                          <span className="text-[11px] font-bold font-oswald uppercase tracking-wider text-white block">
-                            {activeClub.name} · Official Student Forum
-                          </span>
-                        </div>
                       </div>
                     </div>
                   )}
@@ -370,16 +365,11 @@ function ClubsAndSocietiesPage() {
                           key={`desktop-${activeClub.id}`}
                           src={activeClub.images[0]}
                           alt={`${activeClub.name} showcase`}
-                          className="w-full h-full object-cover block"
+                          className="w-full h-full object-cover block select-none pointer-events-none"
                           onError={(e) => {
                             (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
                           }}
                         />
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-3 pointer-events-none select-none">
-                          <span className="text-[11px] font-bold font-oswald uppercase tracking-wider text-white block">
-                            {activeClub.name} · Official Student Forum
-                          </span>
-                        </div>
                       </div>
                     </div>
                   )}
@@ -652,18 +642,10 @@ function ClubsAndSocietiesPage() {
       {/* SECTION B: QUICK DIRECTORY & ALL 8 CLUBS COMPARISON */}
       <section className="bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14 px-4 sm:px-6 md:px-12 transition-colors">
         <div className="max-w-[1440px] mx-auto space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border/60 pb-4">
-            <div>
-              <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary">
-                At A Glance Directory
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground mt-0.5">
-                All 8 Official Student Clubs
-              </h2>
-            </div>
-            <p className="text-xs sm:text-sm font-sans text-muted-foreground max-w-md">
-              Click any forum below to directly switch the focus and review its specific activities and mandate.
-            </p>
+          <div className="border-b border-border/60 pb-3">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              All 8 Official Student Clubs
+            </h2>
           </div>
 
           {/* Clean Editorial Table / Open Directory List (Strictly NO Cards) */}
@@ -741,10 +723,7 @@ function ClubsAndSocietiesPage() {
           
           <div>
             <div className="border-b border-border/60 pb-3 mb-6">
-              <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary">
-                Campus Traditions &amp; Inter-Collegiate Competitions
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground mt-0.5">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                 Annual Flagship Festivals
               </h2>
             </div>
@@ -794,15 +773,9 @@ function ClubsAndSocietiesPage() {
           {/* Gateway Banner to Professional Societies */}
           <div className="border border-border/60 p-6 sm:p-8 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-muted/20">
             <div>
-              <span className="text-xs font-bold font-oswald uppercase tracking-wider text-primary">
-                Technical Societies &amp; Chapters
-              </span>
-              <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-foreground mt-0.5">
+              <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
                 Explore Professional Societies
               </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground font-sans mt-1">
-                CSI, IETE, SAE, and ISHRAE professional student chapters at MSAJCE.
-              </p>
             </div>
             
             <button
