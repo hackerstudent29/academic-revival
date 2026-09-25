@@ -464,7 +464,7 @@ function SocialAndCommunityPortal() {
 
           {/* Title Container: Theme-Adaptive Frame with Dynamic Hero Title */}
           <div className="relative z-10 mx-auto max-w-[1440px] w-full px-3.5 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 md:pt-24 pb-0">
-            <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+            <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full w-auto border-t border-r border-border dark:border-white/15">
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={heroTitle}
@@ -472,7 +472,7 @@ function SocialAndCommunityPortal() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -4 }}
                   transition={{ duration: 0.25, ease: smoothEase }}
-                  className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none"
+                  className="font-oswald text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black uppercase text-foreground tracking-tight leading-none whitespace-nowrap"
                 >
                   {heroTitle}
                 </motion.h1>
