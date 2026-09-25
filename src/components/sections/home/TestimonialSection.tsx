@@ -427,10 +427,10 @@ export function TestimonialSection() {
                 </motion.p>
 
                 {/* SVG Handwritten Signature Underline Stroke */}
-                <svg className="w-48 sm:w-56 h-6 ml-8 sm:ml-12 -mt-1 pointer-events-none" viewBox="0 0 220 24" fill="none">
+                <svg className="w-48 sm:w-56 h-6 ml-8 sm:ml-12 -mt-1 pointer-events-none text-primary" viewBox="0 0 220 24" fill="none">
                   <motion.path
                     d="M 5 12 Q 55 4 110 12 T 215 8"
-                    stroke="#005DA6"
+                    stroke="currentColor"
                     strokeWidth="2.5"
                     strokeLinecap="round"
                     initial={{ pathLength: 0, opacity: 0 }}

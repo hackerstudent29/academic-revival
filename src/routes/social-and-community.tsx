@@ -1184,27 +1184,32 @@ function SocialAndCommunityPortal() {
                         </p>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 font-libre pt-2">
-                        <div className="pl-5 border-l-4 border-primary dark:border-[#E11D48] space-y-2">
-                          <span className="text-xs font-oswald uppercase font-bold text-primary dark:text-[#E11D48] tracking-wider block">
-                            Host Institution (Tamil Nadu)
-                          </span>
-                          <h3 className="font-oswald font-bold text-lg text-foreground uppercase">
-                            Mohamed Sathak A. J. College of Engineering
-                          </h3>
-                          <p className="text-sm text-foreground/80 font-libre leading-relaxed">
+                      {/* Bilateral Pairing Full-Width Editorial Stack */}
+                      <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
+                        <div className="py-5 sm:py-6 px-1 sm:px-3 flex flex-col md:flex-row md:items-start gap-3 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full">
+                          <div className="md:w-72 shrink-0 space-y-1">
+                            <span className="font-oswald font-black uppercase text-xs tracking-wider px-2.5 py-1 bg-primary/10 text-primary dark:bg-primary/20 dark:text-[#E11D48] rounded-tl-md rounded-br-md border border-primary/20 inline-block">
+                              Host Institution · Tamil Nadu
+                            </span>
+                            <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight pt-1">
+                              Mohamed Sathak A. J. College of Engineering
+                            </h3>
+                          </div>
+                          <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1">
                             Autonomous engineering college affiliated with Anna University, Chennai, Tamil Nadu. Representing Dravidian linguistic heritage, southern classical arts, and coastal innovation.
                           </p>
                         </div>
 
-                        <div className="pl-5 border-l-4 border-foreground/30 space-y-2">
-                          <span className="text-xs font-oswald uppercase font-bold text-primary dark:text-[#E11D48] tracking-wider block">
-                            Paired Institution (Jammu &amp; Kashmir)
-                          </span>
-                          <h3 className="font-oswald font-bold text-lg text-foreground uppercase">
-                            SSM College of Engineering, Baramulla
-                          </h3>
-                          <p className="text-sm text-foreground/80 font-libre leading-relaxed">
+                        <div className="py-5 sm:py-6 px-1 sm:px-3 flex flex-col md:flex-row md:items-start gap-3 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full">
+                          <div className="md:w-72 shrink-0 space-y-1">
+                            <span className="font-oswald font-black uppercase text-xs tracking-wider px-2.5 py-1 bg-foreground/10 text-foreground rounded-tl-md rounded-br-md border border-foreground/20 inline-block">
+                              Paired Institution · Jammu &amp; Kashmir
+                            </span>
+                            <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight pt-1">
+                              SSM College of Engineering, Baramulla
+                            </h3>
+                          </div>
+                          <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1">
                             Premier engineering institution in Baramulla, Jammu &amp; Kashmir. Representing northern cultural traditions, Kashmiri crafts, Himalayan environmental ecology, and technical collaboration.
                           </p>
                         </div>
