@@ -115,8 +115,8 @@ function ClubsAndSocietiesPage() {
         </div>
 
         {/* Title Container: Docked Flush at Bottom of Hero */}
-        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
-          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-3.5 sm:px-6 md:px-8 xl:px-12 pt-14 sm:pt-18 md:pt-20 pb-0">
+          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
             <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
               Clubs &amp; Societies
             </h1>
@@ -127,8 +127,8 @@ function ClubsAndSocietiesPage() {
       {/* ========================================================================= */}
       {/* 2. SECTION A (White / #121214): STRICTLY SINGLE COLUMN ACTIVE CLUB        */}
       {/* ========================================================================= */}
-      <section id="club-focus-container" className="bg-white dark:bg-[#121214] py-10 sm:py-14 px-4 sm:px-6 md:px-8 xl:px-12 transition-colors">
-        <div className="mx-auto max-w-[1440px] w-full">
+      <section id="club-focus-container" className="bg-white dark:bg-[#121214] py-10 sm:py-14 transition-colors">
+        <div className="mx-auto max-w-[1440px] w-full px-3.5 sm:px-6 md:px-8 xl:px-12">
           <div className="max-w-4xl space-y-8 sm:space-y-10">
           
           <AnimatePresence mode="wait" initial={false}>
@@ -272,63 +272,61 @@ function ClubsAndSocietiesPage() {
       {/* ========================================================================= */}
       {/* 3. SECTION B (#F3F3F2 / #18181B): STRICTLY SINGLE COLUMN DIRECTORY        */}
       {/* ========================================================================= */}
-      <section className="bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14 px-4 sm:px-6 md:px-8 xl:px-12 transition-colors">
-        <div className="mx-auto max-w-[1440px] w-full">
-          <div className="max-w-4xl space-y-8">
-            {/* Section Title — NO subtitle text below */}
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                All 8 Official Student Clubs
-              </h2>
-            </div>
+      <section className="bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14 transition-colors">
+        <div className="mx-auto max-w-[1440px] w-full px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-8">
+          {/* Section Title — NO subtitle text below */}
+          <div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              All 8 Official Student Clubs
+            </h2>
+          </div>
 
-            {/* Clean Editorial Open Directory List (Single Column) */}
-            <div className="space-y-2 bg-transparent">
-              {studentClubs.map((club, idx) => {
-                const isActive = club.id === activeClub.id;
-                return (
-                  <div
-                    key={club.id}
-                    onClick={() => handleSelectClub(club.id)}
-                    className={`py-4 px-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors cursor-pointer rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs ${
-                      isActive
-                        ? "bg-primary/10 border-l-4 border-primary pl-4 sm:pl-6"
-                        : "hover:bg-foreground/[0.04]"
-                    }`}
-                  >
-                    <div className="flex items-start sm:items-center gap-3">
-                      <span className="text-xs font-mono font-bold text-muted-foreground w-6 shrink-0 mt-0.5 sm:mt-0">
-                        {String(idx + 1).padStart(2, "0")}
-                      </span>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-base sm:text-lg font-black font-oswald uppercase text-foreground hover:text-primary transition-colors">
-                            {club.name}
+          {/* Clean Editorial Open Directory List (Single Column) */}
+          <div className="space-y-2 bg-transparent max-w-5xl">
+            {studentClubs.map((club, idx) => {
+              const isActive = club.id === activeClub.id;
+              return (
+                <div
+                  key={club.id}
+                  onClick={() => handleSelectClub(club.id)}
+                  className={`py-4 px-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors cursor-pointer rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs ${
+                    isActive
+                      ? "bg-primary/10 border-l-4 border-primary pl-4 sm:pl-6"
+                      : "hover:bg-foreground/[0.04]"
+                  }`}
+                >
+                  <div className="flex items-start sm:items-center gap-3">
+                    <span className="text-xs font-mono font-bold text-muted-foreground w-6 shrink-0 mt-0.5 sm:mt-0">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-base sm:text-lg font-black font-oswald uppercase text-foreground hover:text-primary transition-colors">
+                          {club.name}
+                        </span>
+                        {isActive && (
+                          <span className="text-[10px] font-bold font-oswald uppercase bg-primary text-white px-2 py-0.5 rounded-xs">
+                            Active
                           </span>
-                          {isActive && (
-                            <span className="text-[10px] font-bold font-oswald uppercase bg-primary text-white px-2 py-0.5 rounded-xs">
-                              Active
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-xs sm:text-sm font-libre font-medium text-foreground/70 line-clamp-1 mt-0.5">
-                          {club.tagline}
-                        </p>
+                        )}
                       </div>
-                    </div>
-
-                    <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 pl-9 sm:pl-0">
-                      <span className="text-[11px] font-bold font-oswald uppercase text-primary px-2.5 py-0.5 bg-primary/10 border border-primary/20 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
-                        {club.badge || club.category}
-                      </span>
-                      <span className="text-xs font-bold font-oswald uppercase text-primary flex items-center gap-1">
-                        {isActive ? "Viewing" : "Explore"} <ArrowRight className="w-3.5 h-3.5" />
-                      </span>
+                      <p className="text-xs sm:text-sm font-libre font-medium text-foreground/70 line-clamp-1 mt-0.5">
+                        {club.tagline}
+                      </p>
                     </div>
                   </div>
-                );
-              })}
-            </div>
+
+                  <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 pl-9 sm:pl-0">
+                    <span className="text-[11px] font-bold font-oswald uppercase text-primary px-2.5 py-0.5 bg-primary/10 border border-primary/20 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                      {club.badge || club.category}
+                    </span>
+                    <span className="text-xs font-bold font-oswald uppercase text-primary flex items-center gap-1">
+                      {isActive ? "Viewing" : "Explore"} <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -354,20 +352,19 @@ function ClubsAndSocietiesPage() {
       {/* ========================================================================= */}
       {/* 4. SECTION A (White / #121214): PROFESSIONAL SOCIETIES GATEWAY            */}
       {/* ========================================================================= */}
-      <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 px-4 sm:px-6 md:px-8 xl:px-12 transition-colors">
-        <div className="mx-auto max-w-[1440px] w-full">
-          <div className="max-w-4xl space-y-6">
-            {/* Section Title — NO subtitle text below */}
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                Professional Societies
-              </h2>
-            </div>
+      <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 transition-colors">
+        <div className="mx-auto max-w-[1440px] w-full px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6">
+          {/* Section Title — NO subtitle text below */}
+          <div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              Professional Societies
+            </h2>
+          </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-l-2 border-primary pl-4 sm:pl-6 py-2">
-              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed max-w-2xl">
-                MSAJCE hosts 4 premier technical chapters: CSI, IETE, SAE, and ISHRAE, providing student memberships, international certifications, and national competition platforms.
-              </p>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-l-4 border-primary pl-4 sm:pl-6 py-2">
+            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed max-w-3xl">
+              MSAJCE hosts 4 premier technical chapters: CSI, IETE, SAE, and ISHRAE, providing student memberships, international certifications, and national competition platforms.
+            </p>
 
               <button
                 type="button"
@@ -384,7 +381,6 @@ function ClubsAndSocietiesPage() {
               </button>
             </div>
           </div>
-        </div>
       </section>
     </main>
   );

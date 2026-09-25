@@ -126,8 +126,8 @@ function ProfessionalSocietiesPage() {
         </div>
 
         {/* Title Container: Docked Flush at Bottom of Hero */}
-        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
-          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-3.5 sm:px-6 md:px-8 xl:px-12 pt-14 sm:pt-18 md:pt-20 pb-0">
+          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
             <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
               Professional Societies
             </h1>
@@ -137,7 +137,7 @@ function ProfessionalSocietiesPage() {
 
       {/* SECTION A: FOCUSED MINIMAL ACTIVE SOCIETY PROFILE */}
       <section id="society-focus-container" className="bg-white dark:bg-[#121214] py-8 sm:py-12 transition-colors">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto w-full px-3.5 sm:px-6 md:px-8 xl:px-12">
           
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
@@ -1163,8 +1163,8 @@ function ProfessionalSocietiesPage() {
       </div>
 
       {/* SECTION B: SCANNABLE ALL 4 CHAPTERS DIRECTORY */}
-      <section className="bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14 px-4 sm:px-6 md:px-12 transition-colors">
-        <div className="max-w-[1440px] mx-auto space-y-6">
+      <section className="bg-[#F3F3F2] dark:bg-[#18181B] py-10 sm:py-14 transition-colors">
+        <div className="max-w-[1440px] mx-auto w-full px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6">
           <div className="border-b border-border/60 pb-3">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               All 4 Professional Societies
@@ -1241,8 +1241,8 @@ function ProfessionalSocietiesPage() {
       </div>
 
       {/* SECTION A: PROFESSIONAL CERTIFICATIONS & TEDx GATEWAY */}
-      <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 px-4 sm:px-6 md:px-12 transition-colors">
-        <div className="max-w-[1440px] mx-auto space-y-10">
+      <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 transition-colors">
+        <div className="max-w-[1440px] mx-auto w-full px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-10">
           
           <div>
             <div className="border-b border-border/60 pb-3 mb-6">
