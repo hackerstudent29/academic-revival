@@ -4,7 +4,7 @@ import { socialCommunityTabs } from "./social-and-community_.nss";
 
 const title = "Youth Red Cross (YRC) | Social & Community | MSAJCE";
 const description =
-  "Official Youth Red Cross (YRC) unit at Mohamed Sathak A.J. College of Engineering. Promoting health, hygiene, emergency first-aid readiness, voluntary blood donation, and international humanitarian service.";
+  "Official Youth Red Cross (YRC) club at Mohamed Sathak A.J. College of Engineering. Established in 2014 under the Indian Red Cross, promoting humanity, health awareness, first-aid readiness, and student-led social welfare.";
 
 export const Route = createFileRoute("/social-and-community_/yrc")({
   head: () => ({
@@ -40,6 +40,83 @@ function WaveDividerAB() {
   );
 }
 
+const yrcObjectives = [
+  {
+    code: "O1",
+    desc: "To conduct social and health awareness programmes",
+  },
+  {
+    code: "O2",
+    desc: "Awareness on the care of their own health and that of others",
+  },
+  {
+    code: "O3",
+    desc: "To encourage the students to extend their humanitarian services to the society",
+  },
+  {
+    code: "O4",
+    desc: "To offer First Aid Training to all the YRC volunteers",
+  },
+  {
+    code: "O5",
+    desc: "To enable the growth and development of a spirit of service and sense of duty with dedication and devotion in the minds of youth",
+  },
+  {
+    code: "O6",
+    desc: "To foster better friendly relationship with all without any discrimination",
+  },
+];
+
+const yrcPrinciples = [
+  {
+    code: "P1",
+    title: "Humanity",
+    desc: "To prevent and alleviate human suffering wherever it may be found, protecting life and health and ensuring respect for the human being.",
+  },
+  {
+    code: "P2",
+    title: "Impartiality",
+    desc: "Making no discrimination as to nationality, race, religious beliefs, class, or political opinions; guided solely by the needs of individuals.",
+  },
+  {
+    code: "P3",
+    title: "Neutrality",
+    desc: "Maintaining universal trust by refraining from engaging in controversies of political, racial, religious, or ideological nature.",
+  },
+  {
+    code: "P4",
+    title: "Voluntary Service",
+    desc: "A voluntary relief movement not prompted in any manner by desire for personal gain, committed purely to compassionate service.",
+  },
+];
+
+const yrcActivities = [
+  {
+    title: "Comprehensive First-Aid & Emergency Response Training",
+    category: "Life Safety",
+    detail:
+      "Delivering hands-on certified First-Aid and emergency preparedness training to all student volunteers in coordination with certified medical trainers.",
+  },
+  {
+    title: "Social & Health Awareness Campaigns",
+    category: "Community Health",
+    detail:
+      "Regular health and personal hygiene drives conducted for students, non-teaching staff, and surrounding local communities to promote preventive wellness.",
+  },
+  {
+    title: "Voluntary Blood Donation & Medical Support Camps",
+    category: "Healthcare",
+    detail:
+      "Organizing voluntary donor recruitment drives and life-saving blood supply networks in partnership with the Indian Red Cross Society.",
+  },
+  {
+    title: "Student-Led Welfare & Humanitarian Outreach",
+    category: "Social Service",
+    detail:
+      "Under the guidance of elected student office bearers, organizing community outreach programs for vulnerable and underprivileged groups in the region.",
+  },
+];
+
 function YRCPage() {
   const navigate = useNavigate();
 
@@ -50,56 +127,6 @@ function YRCPage() {
     }
     navigate({ to: `/social-and-community/${tabId}` });
   };
-
-  const yrcPrinciples = [
-    {
-      code: "P1",
-      title: "Protection of Health & Life",
-      desc: "Promoting hygiene, disease prevention awareness, nutrition education, and personal safety practices among youth and local communities.",
-    },
-    {
-      code: "P2",
-      title: "Service to the Sick & Suffering",
-      desc: "Extending compassionate assistance, first-aid support, and emergency medical relief to vulnerable populations without discrimination.",
-    },
-    {
-      code: "P3",
-      title: "Promotion of National & International Friendship",
-      desc: "Cultivating universal fellowship, mutual understanding, tolerance, and human dignity across regional, social, and cultural barriers.",
-    },
-    {
-      code: "P4",
-      title: "Disaster Preparedness & Relief",
-      desc: "Equipping student volunteers with certified emergency response, rescue coordination, and humanitarian relief capabilities during crises.",
-    },
-  ];
-
-  const yrcActivities = [
-    {
-      title: "Certified Emergency First-Aid & CPR Workshops",
-      category: "Life Safety",
-      detail:
-        "Practical certified training sessions conducted in collaboration with the Indian Red Cross Society (IRCS), equipping volunteers with vital life-support techniques.",
-    },
-    {
-      title: "Voluntary Blood Donation & Typing Camps",
-      category: "Healthcare",
-      detail:
-        "Periodic donor recruitment, blood grouping drives, and emergency on-call blood supply linkages for critical medical institutions and rural hospitals.",
-    },
-    {
-      title: "Community Health & Hygiene Outreach",
-      category: "Sanitation",
-      detail:
-        "Medical screening camps, eye-care clinics, oral hygiene drives, and communicable disease prevention campaigns organized for neighboring suburban and rural areas.",
-    },
-    {
-      title: "Disaster Management & Fire Safety Drills",
-      category: "Emergency Readiness",
-      detail:
-        "Hands-on mock rescue simulations, fire evacuation drills, and industrial safety awareness sessions organized in coordination with state emergency services.",
-    },
-  ];
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
@@ -138,24 +165,30 @@ function YRCPage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. SECTION A: Primary Canvas (White / #121214) — Overview & Principles    */}
+      {/* 2. SECTION A: Primary Canvas (White / #121214) — Overview & Objectives   */}
       {/* ========================================================================= */}
       <section className="pt-10 sm:pt-14 md:pt-16 pb-8 sm:pb-12 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              Motto: Through Humanity to Peace
+              About Youth Red Cross
             </h2>
           </div>
 
-          <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-            The Youth Red Cross (YRC) wing of Mohamed Sathak A. J. College of Engineering is an integral chapter of the Indian Red Cross Society (IRCS). Dedicated to instilling humanitarian spirit, emergency medical alertness, and compassionate service among engineering youth, YRC trains students to act decisively during medical crises and societal emergencies.
-          </p>
+          {/* Full-Length Editorial Text Layout */}
+          <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+            <p>
+              The Youth Red Cross is one of the important constituent of its mother organization, Indian Red Cross. It is a group movement organized for students to inculcate social welfare in students and to prepare young minds to render a significant contribution for the needy people with the principles of Humanity, Impartiality, Neutrality, and Voluntary service.
+            </p>
+            <p>
+              YRC at MSAJCE established in the year 2014. At present YRC club of MSAJCE has around 100 active members, all are trained and encouraged to manage the affairs of the group, electing their own office bearers to work with deep involvement.
+            </p>
+          </div>
 
-          {/* Guiding Principles */}
+          {/* Core Guiding Principles */}
           <div className="space-y-3 pt-2">
             <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-              Guiding Principles &amp; Focus Areas
+              Core Principles of YRC
             </h3>
             <div className="divide-y divide-border/40 font-libre">
               {yrcPrinciples.map((pr) => (
@@ -178,6 +211,28 @@ function YRCPage() {
               ))}
             </div>
           </div>
+
+          {/* Objectives of Youth Red Cross */}
+          <div className="space-y-3 pt-4">
+            <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+              Objectives of Youth Red Cross
+            </h3>
+            <div className="divide-y divide-border/40 font-libre">
+              {yrcObjectives.map((obj) => (
+                <div
+                  key={obj.code}
+                  className="py-3 sm:py-3.5 px-1 sm:px-2 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
+                >
+                  <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
+                    {obj.code}
+                  </span>
+                  <p className="w-full text-xs sm:text-sm text-foreground font-libre leading-relaxed pt-1">
+                    {obj.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -185,13 +240,13 @@ function YRCPage() {
       <WaveDividerAB />
 
       {/* ========================================================================= */}
-      {/* 3. SECTION B: Secondary Canvas (#F3F3F2 / #18181B) — Campaigns & Drives   */}
+      {/* 3. SECTION B: Secondary Canvas (#F3F3F2 / #18181B) — Key Initiatives      */}
       {/* ========================================================================= */}
       <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              Humanitarian Campaigns &amp; Health Drives
+              Student-Led Welfare &amp; Health Programmes
             </h2>
           </div>
 

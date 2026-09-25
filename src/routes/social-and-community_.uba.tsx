@@ -4,7 +4,7 @@ import { socialCommunityTabs } from "./social-and-community_.nss";
 
 const title = "Unnat Bharat Abhiyan (UBA) | Social & Community | MSAJCE";
 const description =
-  "Official Unnat Bharat Abhiyan (UBA) cell at Mohamed Sathak A.J. College of Engineering. Connecting engineering intellect with rural India through village adoption, water management, sustainable energy, and grass-root innovation.";
+  "Official Unnat Bharat Abhiyan (UBA) cell at Mohamed Sathak A.J. College of Engineering. Inspired by the Gandhian vision of self-sufficient village republics, connecting higher education with rural communities for transformational development.";
 
 export const Route = createFileRoute("/social-and-community_/uba")({
   head: () => ({
@@ -40,6 +40,45 @@ function WaveDividerAB() {
   );
 }
 
+const ubaTransformationalPillars = [
+  {
+    code: "U1",
+    title: "Connecting Higher Education with Local Communities",
+    desc: "Enabling active processes that connect engineering and knowledge institutions directly with rural villages to address grass-root developmental challenges.",
+  },
+  {
+    code: "U2",
+    title: "Decentralized, Eco-Friendly Technologies",
+    desc: "Deploying local resource-based, sustainable, and eco-friendly technologies to substitute centralized, polluting developmental paradigms.",
+  },
+  {
+    code: "U3",
+    title: "Self-Sufficient 'Village Republics'",
+    desc: "Revitalizing the Gandhian vision where the basic needs of food, clothing, shelter, sanitation, healthcare, energy, livelihood, transportation, and education are locally met.",
+  },
+  {
+    code: "U4",
+    title: "Participatory Problem Solving",
+    desc: "Engaging rural community members and local panchayat leadership in participatory diagnosis and co-creation of engineering solutions.",
+  },
+  {
+    code: "U5",
+    title: "Accelerating Sustainable & Inclusive Growth",
+    desc: "Bridging the acute developmental disconnect between urban and rural areas to construct the architecture of an inclusive, self-reliant India.",
+  },
+];
+
+const basicNeeds = [
+  { need: "Food & Agriculture", focus: "Sustainable farming, soil fertility conservation & organic practices" },
+  { need: "Clean Water & Sanitation", focus: "Groundwater recharge, water testing, filtration & village hygiene" },
+  { need: "Renewable Energy", focus: "Solar street lighting, energy audits & clean domestic cookstoves" },
+  { need: "Livelihood & Skills", focus: "Artisan tool modernization, SHG capacity building & youth vocations" },
+  { need: "Healthcare & Wellness", focus: "Preventive health screening, mobile clinics & telemedicine support" },
+  { need: "Eco-Friendly Shelter", focus: "Low-cost vernacular materials, thermal comfort & rural civil planning" },
+  { need: "Transportation & Connectivity", focus: "All-weather village roads, mobility planning & digital infrastructure" },
+  { need: "Digital & School Education", focus: "Computer literacy, smart classrooms & STEM mentorship for rural schools" },
+];
+
 function UBAPage() {
   const navigate = useNavigate();
 
@@ -50,56 +89,6 @@ function UBAPage() {
     }
     navigate({ to: `/social-and-community/${tabId}` });
   };
-
-  const ubaThemes = [
-    {
-      code: "T1",
-      title: "Sustainable Agriculture & Organic Systems",
-      desc: "Promoting natural farming methods, eco-friendly fertilizers, soil fertility conservation, and cost-effective post-harvest storage techniques.",
-    },
-    {
-      code: "T2",
-      title: "Water Management & Rainwater Harvesting",
-      desc: "Implementing rural watershed development, pond rejuvenation, purification infrastructure, and groundwater recharge systems.",
-    },
-    {
-      code: "T3",
-      title: "Renewable Energy & Solar Electrification",
-      desc: "Deploying solar street lighting, biomass utilization, clean cookstove technologies, and energy-efficient rural appliances.",
-    },
-    {
-      code: "T4",
-      title: "Artisans, Livelihood & Basic Infrastructure",
-      desc: "Upgrading local artisan tools, supporting rural women self-help groups (SHGs), and improving government school digital access.",
-    },
-  ];
-
-  const ubaInterventions = [
-    {
-      title: "Adopted Village Cluster Baseline Surveys",
-      category: "Field Research",
-      detail:
-        "Comprehensive household and village-level socio-economic surveys across adopted Gram Panchayats to diagnose civic challenges and technological gaps.",
-    },
-    {
-      title: "Drinking Water Testing & Sanitation Upgradation",
-      category: "Sanitation",
-      detail:
-        "Routine chemical and biological water quality analysis in village borewells, establishing filtration units, and promoting community hygiene standards.",
-    },
-    {
-      title: "Smart Village Rural Technology Demonstrations",
-      category: "Engineering Outreach",
-      detail:
-        "Engineering student projects providing low-cost agricultural sensors, drip irrigation automation, and eco-friendly waste management setups.",
-    },
-    {
-      title: "Skill Development & Livelihood Workshops",
-      category: "Capacity Building",
-      detail:
-        "Hands-on vocational training, digital payment onboarding, and government welfare scheme facilitation for rural youth and agricultural workers.",
-    },
-  ];
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
@@ -138,40 +127,49 @@ function UBAPage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. SECTION A: Primary Canvas (White / #121214) — Overview & Mandate       */}
+      {/* 2. SECTION A: Primary Canvas (White / #121214) — Overview & Philosophy    */}
       {/* ========================================================================= */}
       <section className="pt-10 sm:pt-14 md:pt-16 pb-8 sm:pb-12 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              Transforming Rural India Through Technical Intellect
+              Transformational Change in Rural Development
             </h2>
           </div>
 
-          <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-            Unnat Bharat Abhiyan (UBA) is a flagship national program of the Ministry of Education, Government of India. At Mohamed Sathak A. J. College of Engineering, UBA catalyzes institutional technical expertise to partner with rural communities, enabling holistic, sustainable economic development through grassroots engineering solutions and indigenous knowledge systems.
-          </p>
+          {/* Full-Length Editorial Text Layout with User's Exact Content */}
+          <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+            <p>
+              As foreseen by Gandhi Ji in his seminal work, &apos;Hind Swaraj&apos;, the western developmental paradigm, based on centralized technologies and urbanization, has given rise to serious problems like increasing inequity (leading to crime and violence), and climate change due to rapid ecological degradation. To ameliorate these problems, it is necessary to promote development of rural areas in tune with Gandhian vision of self-sufficient &apos;village republics&apos;, based on local resources and using decentralized, eco-friendly technologies so that the basic needs of food, clothing, shelter, sanitation, health care, energy, livelihood, transportation, and education are locally met.
+            </p>
+            <p>
+              There are huge developmental disconnects between the rural and urban. Increasing urbanization is neither sustainable nor desirable. Unnat Bharat Abhiyan is inspired by the vision of transformational change in rural development processes by leveraging knowledge institutions to help build the architecture of an Inclusive India.
+            </p>
+            <p>
+              Their mission is conceptualised as a movement to enable processes that connect institutes of higher education with local communities to address the development challenges of rural India through participatory processes and appropriate technologies for accelerating sustainable growth.
+            </p>
+          </div>
 
-          {/* Core Thematic Pillars */}
+          {/* Core Transformational Pillars */}
           <div className="space-y-3 pt-2">
             <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-              Core Thematic Development Pillars
+              Core Transformational Pillars
             </h3>
             <div className="divide-y divide-border/40 font-libre">
-              {ubaThemes.map((th) => (
+              {ubaTransformationalPillars.map((pillar) => (
                 <div
-                  key={th.code}
+                  key={pillar.code}
                   className="py-3.5 sm:py-4 px-1 sm:px-2 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
                 >
                   <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
-                    {th.code}
+                    {pillar.code}
                   </span>
                   <div className="space-y-1 flex-1">
                     <h4 className="font-oswald font-bold text-sm sm:text-base text-foreground uppercase tracking-tight">
-                      {th.title}
+                      {pillar.title}
                     </h4>
                     <p className="w-full text-xs sm:text-sm text-foreground/80 font-libre leading-relaxed">
-                      {th.desc}
+                      {pillar.desc}
                     </p>
                   </div>
                 </div>
@@ -185,36 +183,35 @@ function UBAPage() {
       <WaveDividerAB />
 
       {/* ========================================================================= */}
-      {/* 3. SECTION B: Secondary Canvas (#F3F3F2 / #18181B) — Grassroot Projects   */}
+      {/* 3. SECTION B: Secondary Canvas (#F3F3F2 / #18181B) — Rural Basic Needs    */}
       {/* ========================================================================= */}
       <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              Village Interventions &amp; Grassroot Projects
+              Locally Met Basic Needs Framework
             </h2>
           </div>
 
+          <p className="w-full text-xs sm:text-sm text-foreground/90 font-libre font-medium leading-relaxed">
+            In tune with the Gandhian vision of self-sufficient &apos;village republics&apos;, UBA focuses on ensuring that essential human necessities are sustainably and locally met through decentralized engineering interventions:
+          </p>
+
           <div className="divide-y divide-border/40 font-libre">
-            {ubaInterventions.map((act, idx) => (
+            {basicNeeds.map((item, idx) => (
               <div
                 key={idx}
-                className="py-4 sm:py-5 px-1 sm:px-2 flex items-start gap-4 hover:bg-foreground/[0.02] transition-colors"
+                className="py-3.5 sm:py-4 px-1 sm:px-2 flex items-start gap-4 hover:bg-foreground/[0.02] transition-colors"
               >
-                <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
+                <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                   {String(idx + 1).padStart(2, "0")}
                 </span>
-                <div className="space-y-1.5 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
-                      {act.title}
-                    </h3>
-                    <span className="text-[11px] font-bold font-oswald uppercase tracking-wider px-2 py-0.5 rounded-tl-md rounded-br-md rounded-tr-2xs rounded-bl-2xs bg-primary/10 text-primary border border-primary/20">
-                      {act.category}
-                    </span>
-                  </div>
+                <div className="space-y-1 flex-1">
+                  <h3 className="font-oswald font-bold text-base text-foreground uppercase tracking-tight">
+                    {item.need}
+                  </h3>
                   <p className="w-full text-xs sm:text-sm text-foreground/80 font-libre leading-relaxed">
-                    {act.detail}
+                    {item.focus}
                   </p>
                 </div>
               </div>
