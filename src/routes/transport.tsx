@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
 import { Phone, FileText, ExternalLink, Clock } from "lucide-react";
+import { RedirectButton } from "@/components/ui/redirect-button";
 
 const title = "College Bus Facility — Mohamed Sathak A.J. College of Engineering, Chennai";
 const description =
@@ -338,16 +339,11 @@ export function TransportPage() {
                                     </div>
                                   </td>
                                   <td className="py-3.5 px-4 text-right whitespace-nowrap">
-                                    <a
+                                    <RedirectButton
                                       href={route.pdfUrl}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-oswald font-bold uppercase tracking-wider text-primary border border-primary/30 hover:bg-primary hover:text-white transition-colors rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs"
-                                    >
-                                      <FileText size={13} />
-                                      View Details
-                                      <ExternalLink size={12} className="opacity-70" />
-                                    </a>
+                                      label="View Details"
+                                      icon={<FileText size={13} />}
+                                    />
                                   </td>
                                 </tr>
                               ))}

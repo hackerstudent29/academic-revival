@@ -26,6 +26,7 @@ import {
 import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
 import { DataGridContainer, SearchBar, TablePagination } from "@/components/ui/data-grid-table";
 import { CustomDropdown, type DropdownOption } from "@/components/ui/custom-dropdown";
+import { RedirectButton } from "@/components/ui/redirect-button";
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
 
@@ -1325,15 +1326,11 @@ function AlumniPage() {
         tabs={alumniSubNavTabs}
         activeTab={activeTab}
         action={
-          <a
+          <RedirectButton
             href="https://enrollonline.co.in/Registration/Apply/MSAJCE"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 bg-primary text-white text-[11px] sm:text-xs font-bold font-oswald uppercase tracking-wider rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors shadow-xs shrink-0"
-          >
-            <span>Register</span>
-            <ExternalLink className="w-3 h-3" />
-          </a>
+            label="Register"
+            className="px-3 py-1 sm:px-3.5 sm:py-1.5 text-[11px] sm:text-xs"
+          />
         }
         onSelectTab={(tabId) => {
           setActiveTab(tabId as any);
@@ -1389,15 +1386,11 @@ function AlumniPage() {
                 transition={{ duration: 0.55, delay: 0.1, ease: smoothEase }}
                 className="shrink-0"
               >
-                <a
+                <RedirectButton
                   href="https://enrollonline.co.in/Registration/Apply/MSAJCE"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3 sm:px-6 sm:py-3.5 bg-primary text-white text-xs sm:text-sm font-bold font-oswald uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-all shadow-xl"
-                >
-                  <span>Register in Alumni Portal</span>
-                  <ExternalLink className="w-4 h-4" />
-                </a>
+                  label="Register in Alumni Portal"
+                  className="px-5 py-3 sm:px-6 sm:py-3.5 text-xs sm:text-sm"
+                />
               </motion.div>
             </div>
 
@@ -1495,24 +1488,16 @@ function AlumniPage() {
                     </p>
                   </div>
                   <div className="flex flex-wrap items-center gap-3">
-                    <a
+                    <RedirectButton
                       href="https://enrollonline.co.in/Registration/Apply/MSAJCE"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-primary text-white text-xs font-bold font-oswald uppercase tracking-wider flex items-center gap-2 hover:bg-primary/90 transition-colors shrink-0 shadow-xs"
-                    >
-                      <span>Register in Alumni Portal</span>
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                    <a
+                      label="Register in Alumni Portal"
+                      className="px-5 py-2.5"
+                    />
+                    <RedirectButton
                       href="https://www.msajce-edu.in/images/alumni/AlumnusStrength-SocialMedia.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 border border-stone-300 dark:border-neutral-700 text-xs font-bold font-oswald uppercase tracking-wider flex items-center gap-2 hover:bg-foreground/10 transition-colors shrink-0 shadow-xs"
-                    >
-                      <Download className="w-4 h-4" />
-                      <span>Download PDF</span>
-                    </a>
+                      label="Download PDF"
+                      className="px-5 py-2.5"
+                    />
                   </div>
                 </div>
               </div>
@@ -1632,15 +1617,10 @@ function AlumniPage() {
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                     MSAJCE Campus &amp; Alumni Showcase
                   </h3>
-                  <a
+                  <RedirectButton
                     href="https://www.msajce-edu.in/images/alumni/AlumniAssociationRodMap.jpg"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-oswald font-bold uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors shrink-0"
-                  >
-                    <span>View High-Res Roadmap</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
+                    label="View High-Res Roadmap"
+                  />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -2001,15 +1981,11 @@ function AlumniPage() {
                                     </td>
                                     <td className="py-3.5 px-4 text-right whitespace-nowrap">
                                       {item.pdfUrl ? (
-                                        <a
+                                        <RedirectButton
                                           href={item.pdfUrl}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="px-3 py-1 bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 font-oswald text-xs font-bold uppercase tracking-wider border border-stone-300 dark:border-neutral-700 hover:bg-primary hover:text-white dark:hover:bg-primary transition-all inline-flex items-center gap-1 rounded-tl-sm rounded-br-sm rounded-tr-none rounded-bl-none"
-                                        >
-                                          <FileText className="w-3.5 h-3.5" />
-                                          <span>PDF</span>
-                                        </a>
+                                          label="PDF"
+                                          icon={<FileText className="w-3.5 h-3.5" />}
+                                        />
                                       ) : (
                                         <span className="text-xs text-muted-foreground">—</span>
                                       )}
@@ -2287,15 +2263,10 @@ function AlumniPage() {
                     </p>
                   </div>
 
-                  <a
+                  <RedirectButton
                     href="https://www.feepayr.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-primary text-white text-xs font-bold font-oswald uppercase tracking-wider flex items-center gap-2 hover:bg-primary/90 transition-colors shrink-0 self-start md:self-auto shadow-xs"
-                  >
-                    <span>Contribute Online (FeePayr)</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
+                    label="Contribute Online (FeePayr)"
+                  />
                 </div>
 
                 {/* Search & Department Filter Toolbar */}
@@ -2475,24 +2446,16 @@ function AlumniPage() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3">
-                  <a
+                  <RedirectButton
                     href="https://www.msajce-edu.in/uploads/alumni/AlumniMeetBanner.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-primary text-white text-xs font-bold font-oswald uppercase tracking-wider flex items-center gap-2 hover:bg-primary/90 transition-colors shadow-xs"
-                  >
-                    <FileText className="w-4 h-4" />
-                    <span>Invitation PDF</span>
-                  </a>
-                  <a
+                    label="Invitation PDF"
+                    icon={<FileText className="w-3.5 h-3.5" />}
+                  />
+                  <RedirectButton
                     href="https://photos.app.goo.gl/Qg5EabymfsW948G37"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-muted border border-border text-foreground text-xs font-bold font-oswald uppercase tracking-wider flex items-center gap-2 hover:bg-muted/80 transition-colors shadow-xs"
-                  >
-                    <ImageIcon className="w-4 h-4 text-primary" />
-                    <span>View Photos</span>
-                  </a>
+                    label="View Photos"
+                    icon={<ImageIcon className="w-3.5 h-3.5" />}
+                  />
                 </div>
 
                 {/* Banner Showcase */}

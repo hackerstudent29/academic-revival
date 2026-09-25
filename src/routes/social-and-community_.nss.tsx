@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
+import { RedirectButton } from "@/components/ui/redirect-button";
 import { FileText, ExternalLink } from "lucide-react";
 
 const title = "National Service Scheme (NSS) | Social & Community | MSAJCE";
@@ -384,15 +385,10 @@ function NSSPage() {
                         {event.date}
                       </td>
                       <td className="py-3.5 px-4 text-right whitespace-nowrap">
-                        <a
+                        <RedirectButton
                           href={event.reportUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold font-oswald uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-primary text-white hover:bg-primary/90 transition-colors shadow-2xs"
-                        >
-                          <FileText className="w-3.5 h-3.5" />
-                          <span>View</span>
-                        </a>
+                          label="View Report"
+                        />
                       </td>
                     </tr>
                   ))}

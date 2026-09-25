@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
 import { professionalSocieties, type ProfessionalSociety } from "@/data/studentLife";
+import { RedirectButton } from "@/components/ui/redirect-button";
 
 const title = "Professional Societies | Student Life | MSAJCE";
 const description =
@@ -642,15 +643,10 @@ function ProfessionalSocietiesPage() {
                                 </td>
                                 <td className="px-4 sm:px-6 py-3.5 text-right whitespace-nowrap">
                                   {act.reportUrl ? (
-                                    <a
+                                    <RedirectButton
                                       href={act.reportUrl}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary text-white text-xs font-bold font-oswald uppercase rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors cursor-pointer"
-                                    >
-                                      <span>View</span>
-                                      <ExternalLink className="w-3 h-3" />
-                                    </a>
+                                      label="View"
+                                    />
                                   ) : (
                                     <span className="text-xs text-muted-foreground italic">N/A</span>
                                   )}
@@ -910,15 +906,10 @@ function ProfessionalSocietiesPage() {
                                 </td>
                                 <td className="px-4 sm:px-6 py-3.5 text-right whitespace-nowrap">
                                   {act.reportUrl ? (
-                                    <a
+                                    <RedirectButton
                                       href={act.reportUrl}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary text-white text-xs font-bold font-oswald uppercase rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors cursor-pointer"
-                                    >
-                                      <span>View</span>
-                                      <ExternalLink className="w-3 h-3" />
-                                    </a>
+                                      label="View"
+                                    />
                                   ) : (
                                     <span className="text-xs text-muted-foreground italic">N/A</span>
                                   )}
