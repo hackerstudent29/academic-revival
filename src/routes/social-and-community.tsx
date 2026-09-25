@@ -591,8 +591,8 @@ function SocialAndCommunityPortal() {
                         </h2>
                       </div>
 
-                      {/* Observances List (Clean Editorial Layout, Zero Boxed Cards) */}
-                      <div className="space-y-4">
+                      {/* Observances Table (DataGrid Standard) */}
+                      <div className="space-y-3">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                           <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
                             Observed National Days
@@ -601,54 +601,49 @@ function SocialAndCommunityPortal() {
                             8 Annual Observances
                           </span>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 divide-y md:divide-y-0 divide-border/40 font-libre">
-                          <div className="divide-y divide-border/40">
-                            {nationalDays.slice(0, 4).map((day, idx) => (
-                              <div
-                                key={idx}
-                                className="py-3.5 px-2 flex items-center justify-between gap-4 hover:bg-primary/[0.02] transition-colors"
-                              >
-                                <div className="space-y-0.5">
-                                  <h4 className="font-oswald font-bold text-sm sm:text-base text-foreground uppercase tracking-tight">
-                                    {day.name}
-                                  </h4>
-                                  {day.commemoration && (
-                                    <p className="text-xs text-muted-foreground font-libre">
-                                      {day.commemoration}
-                                    </p>
-                                  )}
-                                </div>
-                                <div className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider rounded-tl-lg rounded-br-lg rounded-tr-2xs rounded-bl-2xs bg-primary/10 text-primary border border-primary/20">
-                                  <Calendar className="w-3.5 h-3.5" />
-                                  <span>{day.date}</span>
-                                </div>
-                              </div>
-                            ))}
+                        <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                          <div className="overflow-x-auto bg-transparent">
+                            <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                              <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                                <tr>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
+                                    S.No
+                                  </th>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                                    Day of National Importance
+                                  </th>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                                    Commemoration / Significance
+                                  </th>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-right w-44">
+                                    Date of Observance
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-border/40 font-libre">
+                                {nationalDays.map((day, idx) => (
+                                  <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                                    <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
+                                      {String(idx + 1).padStart(2, "0")}
+                                    </td>
+                                    <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
+                                      {day.name}
+                                    </td>
+                                    <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/80">
+                                      {day.commemoration || "—"}
+                                    </td>
+                                    <td className="py-3.5 px-4 text-right font-mono font-semibold text-primary text-xs whitespace-nowrap">
+                                      <div className="inline-flex items-center gap-1.5 justify-end">
+                                        <Calendar className="w-3.5 h-3.5 text-primary" />
+                                        <span>{day.date}</span>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
                           </div>
-                          <div className="divide-y divide-border/40">
-                            {nationalDays.slice(4).map((day, idx) => (
-                              <div
-                                key={idx}
-                                className="py-3.5 px-2 flex items-center justify-between gap-4 hover:bg-primary/[0.02] transition-colors"
-                              >
-                                <div className="space-y-0.5">
-                                  <h4 className="font-oswald font-bold text-sm sm:text-base text-foreground uppercase tracking-tight">
-                                    {day.name}
-                                  </h4>
-                                  {day.commemoration && (
-                                    <p className="text-xs text-muted-foreground font-libre">
-                                      {day.commemoration}
-                                    </p>
-                                  )}
-                                </div>
-                                <div className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider rounded-tl-lg rounded-br-lg rounded-tr-2xs rounded-bl-2xs bg-primary/10 text-primary border border-primary/20">
-                                  <Calendar className="w-3.5 h-3.5" />
-                                  <span>{day.date}</span>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
+                        </DataGridContainer>
                       </div>
 
                       {/* Official DataGrid Table Standard for Event Reports */}
