@@ -30,6 +30,7 @@ import { Route as ResearchRouteImport } from './routes/research'
 import { Route as SocialMediaRouteImport } from './routes/social-media'
 import { Route as SportsRouteImport } from './routes/sports'
 import { Route as StudentCommunityRouteImport } from './routes/student-community'
+import { Route as StudentLifeRouteImport } from './routes/student-life'
 import { Route as SyllabusRouteImport } from './routes/syllabus'
 import { Route as TransportRouteImport } from './routes/transport'
 import { Route as AboutAccreditationsRouteImport } from './routes/about_.accreditations'
@@ -57,6 +58,10 @@ import { Route as StudentCommunityAlumniRouteImport } from './routes/student-com
 import { Route as StudentCommunityCampusHappeningsRouteImport } from './routes/student-community_.campus-happenings'
 import { Route as StudentCommunityConvocationRouteImport } from './routes/student-community_.convocation'
 import { Route as StudentCommunitySocialMediaRouteImport } from './routes/student-community_.social-media'
+import { Route as StudentLifeClubsAndSocietiesRouteImport } from './routes/student-life_.clubs-and-societies'
+import { Route as StudentLifeProfessionalSocietiesRouteImport } from './routes/student-life_.professional-societies'
+import { Route as StudentLifeStudentHubRouteImport } from './routes/student-life_.student-hub'
+import { Route as StudentLifeTedxRouteImport } from './routes/student-life_.tedx'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -161,6 +166,11 @@ const SportsRoute = SportsRouteImport.update({
 const StudentCommunityRoute = StudentCommunityRouteImport.update({
   id: '/student-community',
   path: '/student-community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentLifeRoute = StudentLifeRouteImport.update({
+  id: '/student-life',
+  path: '/student-life',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SyllabusRoute = SyllabusRouteImport.update({
@@ -302,6 +312,28 @@ const StudentCommunitySocialMediaRoute =
     path: '/student-community/social-media',
     getParentRoute: () => rootRouteImport,
   } as any)
+const StudentLifeClubsAndSocietiesRoute =
+  StudentLifeClubsAndSocietiesRouteImport.update({
+    id: '/student-life_/clubs-and-societies',
+    path: '/student-life/clubs-and-societies',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const StudentLifeProfessionalSocietiesRoute =
+  StudentLifeProfessionalSocietiesRouteImport.update({
+    id: '/student-life_/professional-societies',
+    path: '/student-life/professional-societies',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const StudentLifeStudentHubRoute = StudentLifeStudentHubRouteImport.update({
+  id: '/student-life_/student-hub',
+  path: '/student-life/student-hub',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentLifeTedxRoute = StudentLifeTedxRouteImport.update({
+  id: '/student-life_/tedx',
+  path: '/student-life/tedx',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -325,6 +357,7 @@ export interface FileRoutesByFullPath {
   '/social-media': typeof SocialMediaRoute
   '/sports': typeof SportsRoute
   '/student-community': typeof StudentCommunityRoute
+  '/student-life': typeof StudentLifeRoute
   '/syllabus': typeof SyllabusRoute
   '/transport': typeof TransportRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
@@ -350,6 +383,10 @@ export interface FileRoutesByFullPath {
   '/student-community/campus-happenings': typeof StudentCommunityCampusHappeningsRoute
   '/student-community/convocation': typeof StudentCommunityConvocationRoute
   '/student-community/social-media': typeof StudentCommunitySocialMediaRoute
+  '/student-life/clubs-and-societies': typeof StudentLifeClubsAndSocietiesRoute
+  '/student-life/professional-societies': typeof StudentLifeProfessionalSocietiesRoute
+  '/student-life/student-hub': typeof StudentLifeStudentHubRoute
+  '/student-life/tedx': typeof StudentLifeTedxRoute
   '/naac/': typeof NaacIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
 }
@@ -374,6 +411,7 @@ export interface FileRoutesByTo {
   '/social-media': typeof SocialMediaRoute
   '/sports': typeof SportsRoute
   '/student-community': typeof StudentCommunityRoute
+  '/student-life': typeof StudentLifeRoute
   '/syllabus': typeof SyllabusRoute
   '/transport': typeof TransportRoute
   '/about/accreditations': typeof AboutAccreditationsRoute
@@ -399,6 +437,10 @@ export interface FileRoutesByTo {
   '/student-community/campus-happenings': typeof StudentCommunityCampusHappeningsRoute
   '/student-community/convocation': typeof StudentCommunityConvocationRoute
   '/student-community/social-media': typeof StudentCommunitySocialMediaRoute
+  '/student-life/clubs-and-societies': typeof StudentLifeClubsAndSocietiesRoute
+  '/student-life/professional-societies': typeof StudentLifeProfessionalSocietiesRoute
+  '/student-life/student-hub': typeof StudentLifeStudentHubRoute
+  '/student-life/tedx': typeof StudentLifeTedxRoute
   '/naac': typeof NaacIndexRoute
   '/programmes': typeof ProgrammesIndexRoute
 }
@@ -425,6 +467,7 @@ export interface FileRoutesById {
   '/social-media': typeof SocialMediaRoute
   '/sports': typeof SportsRoute
   '/student-community': typeof StudentCommunityRoute
+  '/student-life': typeof StudentLifeRoute
   '/syllabus': typeof SyllabusRoute
   '/transport': typeof TransportRoute
   '/about_/accreditations': typeof AboutAccreditationsRoute
@@ -450,6 +493,10 @@ export interface FileRoutesById {
   '/student-community_/campus-happenings': typeof StudentCommunityCampusHappeningsRoute
   '/student-community_/convocation': typeof StudentCommunityConvocationRoute
   '/student-community_/social-media': typeof StudentCommunitySocialMediaRoute
+  '/student-life_/clubs-and-societies': typeof StudentLifeClubsAndSocietiesRoute
+  '/student-life_/professional-societies': typeof StudentLifeProfessionalSocietiesRoute
+  '/student-life_/student-hub': typeof StudentLifeStudentHubRoute
+  '/student-life_/tedx': typeof StudentLifeTedxRoute
   '/naac/': typeof NaacIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
 }
@@ -477,6 +524,7 @@ export interface FileRouteTypes {
     | '/social-media'
     | '/sports'
     | '/student-community'
+    | '/student-life'
     | '/syllabus'
     | '/transport'
     | '/about/accreditations'
@@ -502,6 +550,10 @@ export interface FileRouteTypes {
     | '/student-community/campus-happenings'
     | '/student-community/convocation'
     | '/student-community/social-media'
+    | '/student-life/clubs-and-societies'
+    | '/student-life/professional-societies'
+    | '/student-life/student-hub'
+    | '/student-life/tedx'
     | '/naac/'
     | '/programmes/'
   fileRoutesByTo: FileRoutesByTo
@@ -526,6 +578,7 @@ export interface FileRouteTypes {
     | '/social-media'
     | '/sports'
     | '/student-community'
+    | '/student-life'
     | '/syllabus'
     | '/transport'
     | '/about/accreditations'
@@ -551,6 +604,10 @@ export interface FileRouteTypes {
     | '/student-community/campus-happenings'
     | '/student-community/convocation'
     | '/student-community/social-media'
+    | '/student-life/clubs-and-societies'
+    | '/student-life/professional-societies'
+    | '/student-life/student-hub'
+    | '/student-life/tedx'
     | '/naac'
     | '/programmes'
   id:
@@ -576,6 +633,7 @@ export interface FileRouteTypes {
     | '/social-media'
     | '/sports'
     | '/student-community'
+    | '/student-life'
     | '/syllabus'
     | '/transport'
     | '/about_/accreditations'
@@ -601,6 +659,10 @@ export interface FileRouteTypes {
     | '/student-community_/campus-happenings'
     | '/student-community_/convocation'
     | '/student-community_/social-media'
+    | '/student-life_/clubs-and-societies'
+    | '/student-life_/professional-societies'
+    | '/student-life_/student-hub'
+    | '/student-life_/tedx'
     | '/naac/'
     | '/programmes/'
   fileRoutesById: FileRoutesById
@@ -627,6 +689,7 @@ export interface RootRouteChildren {
   SocialMediaRoute: typeof SocialMediaRoute
   SportsRoute: typeof SportsRoute
   StudentCommunityRoute: typeof StudentCommunityRoute
+  StudentLifeRoute: typeof StudentLifeRoute
   SyllabusRoute: typeof SyllabusRoute
   TransportRoute: typeof TransportRoute
   AboutAccreditationsRoute: typeof AboutAccreditationsRoute
@@ -651,6 +714,10 @@ export interface RootRouteChildren {
   StudentCommunityCampusHappeningsRoute: typeof StudentCommunityCampusHappeningsRoute
   StudentCommunityConvocationRoute: typeof StudentCommunityConvocationRoute
   StudentCommunitySocialMediaRoute: typeof StudentCommunitySocialMediaRoute
+  StudentLifeClubsAndSocietiesRoute: typeof StudentLifeClubsAndSocietiesRoute
+  StudentLifeProfessionalSocietiesRoute: typeof StudentLifeProfessionalSocietiesRoute
+  StudentLifeStudentHubRoute: typeof StudentLifeStudentHubRoute
+  StudentLifeTedxRoute: typeof StudentLifeTedxRoute
   ProgrammesIndexRoute: typeof ProgrammesIndexRoute
 }
 
@@ -801,6 +868,13 @@ declare module '@tanstack/react-router' {
       path: '/student-community'
       fullPath: '/student-community'
       preLoaderRoute: typeof StudentCommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-life': {
+      id: '/student-life'
+      path: '/student-life'
+      fullPath: '/student-life'
+      preLoaderRoute: typeof StudentLifeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/syllabus': {
@@ -992,6 +1066,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentCommunitySocialMediaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/student-life_/clubs-and-societies': {
+      id: '/student-life_/clubs-and-societies'
+      path: '/student-life/clubs-and-societies'
+      fullPath: '/student-life/clubs-and-societies'
+      preLoaderRoute: typeof StudentLifeClubsAndSocietiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-life_/professional-societies': {
+      id: '/student-life_/professional-societies'
+      path: '/student-life/professional-societies'
+      fullPath: '/student-life/professional-societies'
+      preLoaderRoute: typeof StudentLifeProfessionalSocietiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-life_/student-hub': {
+      id: '/student-life_/student-hub'
+      path: '/student-life/student-hub'
+      fullPath: '/student-life/student-hub'
+      preLoaderRoute: typeof StudentLifeStudentHubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-life_/tedx': {
+      id: '/student-life_/tedx'
+      path: '/student-life/tedx'
+      fullPath: '/student-life/tedx'
+      preLoaderRoute: typeof StudentLifeTedxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -1029,6 +1131,7 @@ const rootRouteChildren: RootRouteChildren = {
   SocialMediaRoute: SocialMediaRoute,
   SportsRoute: SportsRoute,
   StudentCommunityRoute: StudentCommunityRoute,
+  StudentLifeRoute: StudentLifeRoute,
   SyllabusRoute: SyllabusRoute,
   TransportRoute: TransportRoute,
   AboutAccreditationsRoute: AboutAccreditationsRoute,
@@ -1053,6 +1156,10 @@ const rootRouteChildren: RootRouteChildren = {
   StudentCommunityCampusHappeningsRoute: StudentCommunityCampusHappeningsRoute,
   StudentCommunityConvocationRoute: StudentCommunityConvocationRoute,
   StudentCommunitySocialMediaRoute: StudentCommunitySocialMediaRoute,
+  StudentLifeClubsAndSocietiesRoute: StudentLifeClubsAndSocietiesRoute,
+  StudentLifeProfessionalSocietiesRoute: StudentLifeProfessionalSocietiesRoute,
+  StudentLifeStudentHubRoute: StudentLifeStudentHubRoute,
+  StudentLifeTedxRoute: StudentLifeTedxRoute,
   ProgrammesIndexRoute: ProgrammesIndexRoute,
 }
 export const routeTree = rootRouteImport

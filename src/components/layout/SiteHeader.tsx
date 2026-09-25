@@ -141,10 +141,10 @@ const nav: NavItem[] = [
       {
         title: "Student Life",
         links: [
-          { label: "Student Hub", to: "/campus-life", hash: "facilities" },
-          { label: "Clubs & Societies", to: "/campus-life", hash: "facilities" },
-          { label: "Professional Societies", to: "/campus-life", hash: "tech-centres" },
-          { label: "Our TEDx Chapter", to: "/campus-life" },
+          { label: "Student Hub", to: "/student-life/student-hub" },
+          { label: "Clubs & Societies", to: "/student-life/clubs-and-societies" },
+          { label: "Professional Societies", to: "/student-life/professional-societies" },
+          { label: "Our TEDx Chapter", to: "/student-life/tedx" },
         ],
       },
       {
