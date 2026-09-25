@@ -119,14 +119,14 @@ interface NationalDayItem {
 }
 
 const nationalDays: NationalDayItem[] = [
-  { name: "Independence Day", date: "15th August" },
-  { name: "Republic Day", date: "26th January" },
-  { name: "Gandhi Jayanti", date: "2nd October" },
-  { name: "NSS Day", date: "24th September" },
   { name: "National Youth Day", date: "12th January", commemoration: "Swami Vivekananda Birthday" },
-  { name: "National Unity Day", date: "31st October", commemoration: "Sardar Vallabhbhai Patel Birthday" },
+  { name: "Republic Day", date: "26th January" },
   { name: "Ambedkar Jayanti", date: "14th April" },
   { name: "International Yoga Day", date: "21st June" },
+  { name: "Independence Day", date: "15th August" },
+  { name: "NSS Day", date: "24th September" },
+  { name: "Gandhi Jayanti", date: "2nd October" },
+  { name: "National Unity Day", date: "31st October", commemoration: "Sardar Vallabhbhai Patel Birthday" },
 ];
 
 const nssEvents = [
@@ -581,59 +581,29 @@ function SocialAndCommunityPortal() {
                   {/* Wave Divider B -> A */}
                   <WaveDividerBA />
 
-                  {/* Section 3 (White / #121214 Canvas): Duties & Code of Conduct */}
+                  {/* Section 3 (White / #121214 Canvas): Duties of NSS Volunteers */}
                   <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
-                    <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-8">
+                    <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                          Volunteer Duties &amp; Code of Conduct
+                          Duties of NSS Volunteers
                         </h2>
                       </div>
 
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-                        {/* Left Column: Duties */}
-                        <div className="space-y-4">
-                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground pb-2 border-b border-border/40">
-                            Duties of NSS Volunteers
-                          </h3>
-                          <div className="divide-y divide-border/40 font-libre">
-                            {nssDuties.map((duty, idx) => (
-                              <div
-                                key={idx}
-                                className="py-3.5 px-1 sm:px-2 flex items-start gap-3 sm:gap-3.5 hover:bg-foreground/[0.015] transition-colors"
-                              >
-                                <span className="shrink-0 flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs mt-0.5 border border-foreground/20 shadow-2xs">
-                                  {idx + 1}
-                                </span>
-                                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5">
-                                  {duty}
-                                </p>
-                              </div>
-                            ))}
+                      <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
+                        {nssDuties.map((duty, idx) => (
+                          <div
+                            key={idx}
+                            className="py-4 sm:py-4.5 px-1 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
+                          >
+                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20">
+                              {idx + 1}
+                            </span>
+                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
+                              {duty}
+                            </p>
                           </div>
-                        </div>
-
-                        {/* Right Column: Code of Conduct */}
-                        <div className="space-y-4">
-                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground pb-2 border-b border-border/40">
-                            Code of Conduct for NSS Volunteers
-                          </h3>
-                          <div className="divide-y divide-border/40 font-libre">
-                            {nssCodeOfConduct.map((item, idx) => (
-                              <div
-                                key={idx}
-                                className="py-3.5 px-1 sm:px-2 flex items-start gap-3 sm:gap-3.5 hover:bg-foreground/[0.015] transition-colors"
-                              >
-                                <span className="shrink-0 flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs mt-0.5 border border-foreground/20 shadow-2xs">
-                                  {idx + 1}
-                                </span>
-                                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5">
-                                  {item}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
+                        ))}
                       </div>
                     </div>
                   </section>
@@ -641,8 +611,38 @@ function SocialAndCommunityPortal() {
                   {/* Wave Divider A -> B */}
                   <WaveDividerAB />
 
-                  {/* Section 4 (#F3F3F2 / #18181B Canvas): Days of National Importance */}
+                  {/* Section 4 (#F3F3F2 / #18181B Canvas): Code of Conduct */}
                   <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
+                    <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+                      <div>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          Code of Conduct for NSS Volunteers
+                        </h2>
+                      </div>
+
+                      <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
+                        {nssCodeOfConduct.map((item, idx) => (
+                          <div
+                            key={idx}
+                            className="py-4 sm:py-4.5 px-1 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
+                          >
+                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20">
+                              {idx + 1}
+                            </span>
+                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
+                              {item}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Wave Divider B -> A */}
+                  <WaveDividerBA />
+
+                  {/* Section 5 (White / #121214 Canvas): Days of National Importance */}
+                  <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
@@ -699,11 +699,11 @@ function SocialAndCommunityPortal() {
                     </div>
                   </section>
 
-                  {/* Wave Divider B -> A */}
-                  <WaveDividerBA />
+                  {/* Wave Divider A -> B */}
+                  <WaveDividerAB />
 
-                  {/* Section 5 (White / #121214 Canvas): Event Reports Directory */}
-                  <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
+                  {/* Section 6 (#F3F3F2 / #18181B Canvas): Event Reports Directory */}
+                  <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
@@ -826,16 +826,21 @@ function SocialAndCommunityPortal() {
                         </h2>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 font-libre">
+                      <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
                         {yrcPrinciples.map((pr, idx) => (
                           <div
                             key={idx}
-                            className="p-5 sm:p-6 bg-white dark:bg-[#121214] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs hover:border-foreground/30 transition-colors"
+                            className="py-4.5 sm:py-5 px-1 sm:px-3 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 hover:bg-foreground/[0.015] transition-colors w-full"
                           >
-                            <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
-                              {pr.title}
-                            </h3>
-                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                            <div className="sm:w-60 shrink-0 flex items-center gap-3">
+                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20">
+                                0{idx + 1}
+                              </span>
+                              <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
+                                {pr.title}
+                              </h3>
+                            </div>
+                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1">
                               {pr.desc}
                             </p>
                           </div>
@@ -886,27 +891,40 @@ function SocialAndCommunityPortal() {
                         </h2>
                       </div>
 
-                      {/* 2-Column Architectural Feature Grid */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 pt-2">
-                        {yrcActivities.map((act, idx) => (
-                          <div
-                            key={idx}
-                            className="relative pl-5 sm:pl-6 border-l-2 border-border/80 hover:border-foreground/50 transition-colors space-y-2 group"
-                          >
-                            <div className="flex items-baseline justify-between gap-4">
-                              <h3 className="font-oswald font-black text-base sm:text-lg lg:text-xl text-foreground uppercase tracking-tight">
-                                {act.title}
-                              </h3>
-                              <span className="font-mono text-xs font-bold text-muted-foreground shrink-0">
-                                0{idx + 1}
-                              </span>
-                            </div>
-                            <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                              {act.detail}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
+                      <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                        <div className="overflow-x-auto bg-transparent">
+                          <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                              <tr>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
+                                  S.No
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap sm:w-80">
+                                  Programme Initiative
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                                  Operational Scope &amp; Community Impact
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border/40 font-libre">
+                              {yrcActivities.map((act, idx) => (
+                                <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                                  <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
+                                    0{idx + 1}
+                                  </td>
+                                  <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm whitespace-nowrap">
+                                    {act.title}
+                                  </td>
+                                  <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">
+                                    {act.detail}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </DataGridContainer>
                     </div>
                   </section>
                 </div>
@@ -981,34 +999,34 @@ function SocialAndCommunityPortal() {
                         </h2>
                       </div>
 
-                      {/* Vision & Mission 2-Column Architectural Split with Official V & M Badges */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 pt-2">
-                        <div className="flex items-start gap-4">
-                          <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-tl-lg rounded-br-lg rounded-tr-2xs rounded-bl-2xs bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
-                            V
-                          </span>
-                          <div className="space-y-1.5 flex-1">
-                            <h3 className="text-base sm:text-lg lg:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                      {/* Vision & Mission Full-Width Open Editorial Stack with Official V & M Badges */}
+                      <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
+                        <div className="py-5 sm:py-6 px-1 sm:px-3 flex flex-col md:flex-row md:items-start gap-3 md:gap-6 hover:bg-foreground/[0.015] transition-colors w-full">
+                          <div className="md:w-64 shrink-0 flex items-center gap-3">
+                            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20">
+                              V
+                            </span>
+                            <h3 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground">
                               Vision of Inclusive India
                             </h3>
-                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                              Unnat Bharat Abhiyan is inspired by the vision of transformational change in rural development processes by leveraging knowledge institutions to help build the architecture of an Inclusive India.
-                            </p>
                           </div>
+                          <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1">
+                            Unnat Bharat Abhiyan is inspired by the vision of transformational change in rural development processes by leveraging knowledge institutions to help build the architecture of an Inclusive India.
+                          </p>
                         </div>
 
-                        <div className="flex items-start gap-4">
-                          <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-tl-lg rounded-br-lg rounded-tr-2xs rounded-bl-2xs bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
-                            M
-                          </span>
-                          <div className="space-y-1.5 flex-1">
-                            <h3 className="text-base sm:text-lg lg:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                        <div className="py-5 sm:py-6 px-1 sm:px-3 flex flex-col md:flex-row md:items-start gap-3 md:gap-6 hover:bg-foreground/[0.015] transition-colors w-full">
+                          <div className="md:w-64 shrink-0 flex items-center gap-3">
+                            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20">
+                              M
+                            </span>
+                            <h3 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground">
                               Mission &amp; Community Connect
                             </h3>
-                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                              Their mission is conceptualised as a movement to enable processes that connect institutes of higher education with local communities to address the development challenges of rural India through participatory processes and appropriate technologies for accelerating sustainable growth.
-                            </p>
                           </div>
+                          <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1">
+                            Their mission is conceptualised as a movement to enable processes that connect institutes of higher education with local communities to address the development challenges of rural India through participatory processes and appropriate technologies for accelerating sustainable growth.
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -1066,21 +1084,21 @@ function SocialAndCommunityPortal() {
                         </h2>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 font-libre">
+                      <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
                         {ubaPillars.map((p, idx) => (
                           <div
                             key={idx}
-                            className="p-5 sm:p-6 bg-white dark:bg-[#121214] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs hover:border-foreground/30 transition-colors"
+                            className="py-4.5 sm:py-5 px-1 sm:px-3 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 hover:bg-foreground/[0.015] transition-colors w-full"
                           >
-                            <div className="flex items-baseline justify-between gap-3">
+                            <div className="md:w-80 shrink-0 flex items-center gap-3">
+                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20">
+                                0{idx + 1}
+                              </span>
                               <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
                                 {p.title}
                               </h3>
-                              <span className="font-mono text-xs font-bold text-muted-foreground shrink-0">
-                                0{idx + 1}
-                              </span>
                             </div>
-                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1">
                               {p.desc}
                             </p>
                           </div>
@@ -1118,42 +1136,32 @@ function SocialAndCommunityPortal() {
                         </p>
                       </div>
 
-                      {/* 3-Pillar Highlight Grid */}
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2 font-libre">
-                        {[
-                          {
-                            title: "Unity in Diversity",
-                            desc: "Strengthening the emotional and cultural bonds between citizens across disparate geographic territories.",
-                            code: "01",
-                          },
-                          {
-                            title: "Bilateral State Pairing",
-                            desc: "Structured annual institutional engagements linking institutions across paired states for academic and cultural exchange.",
-                            code: "02",
-                          },
-                          {
-                            title: "Shared Heritage & Pedagogy",
-                            desc: "Fostering language acquisition, traditional knowledge sharing, and collegiate youth assemblies.",
-                            code: "03",
-                          },
-                        ].map((p) => (
-                          <div
-                            key={p.code}
-                            className="p-5 sm:p-6 bg-background dark:bg-[#18181B] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs hover:border-foreground/30 transition-colors"
-                          >
-                            <div className="flex items-baseline justify-between gap-3">
-                              <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
-                                {p.title}
-                              </h3>
-                              <span className="font-mono text-xs font-bold text-primary shrink-0">
-                                {p.code}
-                              </span>
-                            </div>
-                            <p className="text-sm text-foreground/85 font-libre font-medium leading-relaxed">
-                              {p.desc}
-                            </p>
+                      {/* 3-Pillar Clean Editorial Highlight Grid */}
+                      <div className="pt-4 border-t border-border/40 grid grid-cols-1 sm:grid-cols-3 gap-6 font-libre">
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            Unity in Diversity
                           </div>
-                        ))}
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            Strengthening Emotional &amp; Cultural Bonds
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            Bilateral Pairing
+                          </div>
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            Structured Annual State Engagements
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            Shared Heritage
+                          </div>
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            Language, Traditions &amp; Exchange
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </section>
@@ -1176,27 +1184,27 @@ function SocialAndCommunityPortal() {
                         </p>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-libre pt-2">
-                        <div className="p-5 sm:p-6 bg-white dark:bg-[#121214] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs">
-                          <span className="text-xs font-oswald uppercase font-bold text-primary tracking-wider">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 font-libre pt-2">
+                        <div className="pl-5 border-l-4 border-primary dark:border-[#E11D48] space-y-2">
+                          <span className="text-xs font-oswald uppercase font-bold text-primary dark:text-[#E11D48] tracking-wider block">
                             Host Institution (Tamil Nadu)
                           </span>
                           <h3 className="font-oswald font-bold text-lg text-foreground uppercase">
                             Mohamed Sathak A. J. College of Engineering
                           </h3>
-                          <p className="text-sm text-muted-foreground font-libre">
+                          <p className="text-sm text-foreground/80 font-libre leading-relaxed">
                             Autonomous engineering college affiliated with Anna University, Chennai, Tamil Nadu. Representing Dravidian linguistic heritage, southern classical arts, and coastal innovation.
                           </p>
                         </div>
 
-                        <div className="p-5 sm:p-6 bg-white dark:bg-[#121214] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs">
-                          <span className="text-xs font-oswald uppercase font-bold text-primary tracking-wider">
+                        <div className="pl-5 border-l-4 border-foreground/30 space-y-2">
+                          <span className="text-xs font-oswald uppercase font-bold text-primary dark:text-[#E11D48] tracking-wider block">
                             Paired Institution (Jammu &amp; Kashmir)
                           </span>
                           <h3 className="font-oswald font-bold text-lg text-foreground uppercase">
                             SSM College of Engineering, Baramulla
                           </h3>
-                          <p className="text-sm text-muted-foreground font-libre">
+                          <p className="text-sm text-foreground/80 font-libre leading-relaxed">
                             Premier engineering institution in Baramulla, Jammu &amp; Kashmir. Representing northern cultural traditions, Kashmiri crafts, Himalayan environmental ecology, and technical collaboration.
                           </p>
                         </div>
@@ -1326,41 +1334,31 @@ function SocialAndCommunityPortal() {
                       </div>
 
                       {/* 3-Pillar Highlight Grid */}
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2 font-libre">
-                        {[
-                          {
-                            title: "Kaushal Augmentation",
-                            desc: "Targeted skill upgrades and competency development aligned with National Skills Qualifications Framework (NSQF).",
-                            code: "01",
-                          },
-                          {
-                            title: "Workforce Readiness",
-                            desc: "Direct hands-on technical training transforming technical students and school leavers into employable engineering professionals.",
-                            code: "02",
-                          },
-                          {
-                            title: "Institutional Infrastructure",
-                            desc: "Deploying world-class college laboratories, CNC machining centers, and IoT suites for public skilling missions.",
-                            code: "03",
-                          },
-                        ].map((p) => (
-                          <div
-                            key={p.code}
-                            className="p-5 sm:p-6 bg-background dark:bg-[#18181B] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs hover:border-foreground/30 transition-colors"
-                          >
-                            <div className="flex items-baseline justify-between gap-3">
-                              <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
-                                {p.title}
-                              </h3>
-                              <span className="font-mono text-xs font-bold text-primary shrink-0">
-                                {p.code}
-                              </span>
-                            </div>
-                            <p className="text-sm text-foreground/85 font-libre font-medium leading-relaxed">
-                              {p.desc}
-                            </p>
+                      <div className="pt-4 border-t border-border/40 grid grid-cols-1 sm:grid-cols-3 gap-6 font-libre">
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            Kaushal Augmentation
                           </div>
-                        ))}
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            Targeted Competency Upgrades (NSQF)
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            Workforce Readiness
+                          </div>
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            Hands-On Technical Employability
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            College Infrastructure
+                          </div>
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            Off-Hours Institutional Lab Utilization
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </section>
@@ -1410,19 +1408,21 @@ function SocialAndCommunityPortal() {
                         </p>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 pt-2 font-libre">
+                      <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
                         {karmaModels.map((m, idx) => (
                           <div
                             key={idx}
-                            className="p-5 sm:p-6 bg-background dark:bg-[#18181B] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs hover:border-foreground/30 transition-colors"
+                            className="py-5 sm:py-6 px-1 sm:px-3 flex flex-col md:flex-row md:items-start gap-3 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full"
                           >
-                            <span className="font-mono text-xs font-bold text-primary uppercase tracking-wider block">
-                              {m.modelTag}
-                            </span>
-                            <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
-                              {m.title}
-                            </h3>
-                            <p className="text-xs sm:text-sm text-foreground/80 font-libre font-medium leading-relaxed">
+                            <div className="md:w-72 shrink-0 space-y-1.5">
+                              <span className="font-oswald font-black uppercase text-xs tracking-wider px-2.5 py-1 bg-foreground/10 text-foreground rounded-tl-md rounded-br-md border border-foreground/20 inline-block">
+                                {m.modelTag}
+                              </span>
+                              <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
+                                {m.title}
+                              </h3>
+                            </div>
+                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1">
                               {m.desc}
                             </p>
                           </div>
