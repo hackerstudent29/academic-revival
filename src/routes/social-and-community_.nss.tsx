@@ -11,6 +11,7 @@ export const socialCommunityTabs: SubNavTab[] = [
   { id: "yrc", label: "Youth Red Cross (YRC)" },
   { id: "uba", label: "Unnat Bharat Abhiyan (UBA)" },
   { id: "ebsb", label: "EBSB Initiative" },
+  { id: "karma", label: "AICTE KARMA" },
 ];
 
 export const Route = createFileRoute("/social-and-community_/nss")({

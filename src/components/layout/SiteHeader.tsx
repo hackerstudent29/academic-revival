@@ -154,6 +154,7 @@ const nav: NavItem[] = [
           { label: "Youth Red Cross (YRC)", to: "/social-and-community/yrc" },
           { label: "Unnat Bharat Abhiyan (UBA)", to: "/social-and-community/uba" },
           { label: "EBSB Initiative", to: "/social-and-community/ebsb" },
+          { label: "AICTE KARMA Scheme", to: "/social-and-community/karma" },
         ],
       },
       {

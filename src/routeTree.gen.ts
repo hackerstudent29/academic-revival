@@ -22,6 +22,7 @@ import { Route as CurriculumAndSyllabusRouteImport } from './routes/curriculum-a
 import { Route as EbsbRouteImport } from './routes/ebsb'
 import { Route as HostelRouteImport } from './routes/hostel'
 import { Route as IncubationRouteImport } from './routes/incubation'
+import { Route as KarmaRouteImport } from './routes/karma'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as NaacRouteImport } from './routes/naac'
 import { Route as NirfRouteImport } from './routes/nirf'
@@ -60,6 +61,7 @@ import { Route as ResearchPatentsRouteImport } from './routes/research_.patents'
 import { Route as ResearchPublicationsRouteImport } from './routes/research_.publications'
 import { Route as ResearchStartupEcosystemRouteImport } from './routes/research_.startup-ecosystem'
 import { Route as SocialAndCommunityEbsbRouteImport } from './routes/social-and-community_.ebsb'
+import { Route as SocialAndCommunityKarmaRouteImport } from './routes/social-and-community_.karma'
 import { Route as SocialAndCommunityNssRouteImport } from './routes/social-and-community_.nss'
 import { Route as SocialAndCommunityUbaRouteImport } from './routes/social-and-community_.uba'
 import { Route as SocialAndCommunityYrcRouteImport } from './routes/social-and-community_.yrc'
@@ -135,6 +137,11 @@ const HostelRoute = HostelRouteImport.update({
 const IncubationRoute = IncubationRouteImport.update({
   id: '/incubation',
   path: '/incubation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KarmaRoute = KarmaRouteImport.update({
+  id: '/karma',
+  path: '/karma',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LibraryRoute = LibraryRouteImport.update({
@@ -328,6 +335,11 @@ const SocialAndCommunityEbsbRoute = SocialAndCommunityEbsbRouteImport.update({
   path: '/social-and-community/ebsb',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SocialAndCommunityKarmaRoute = SocialAndCommunityKarmaRouteImport.update({
+  id: '/social-and-community_/karma',
+  path: '/social-and-community/karma',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SocialAndCommunityNssRoute = SocialAndCommunityNssRouteImport.update({
   id: '/social-and-community_/nss',
   path: '/social-and-community/nss',
@@ -403,6 +415,7 @@ export interface FileRoutesByFullPath {
   '/ebsb': typeof EbsbRoute
   '/hostel': typeof HostelRoute
   '/incubation': typeof IncubationRoute
+  '/karma': typeof KarmaRoute
   '/library': typeof LibraryRoute
   '/naac': typeof NaacRouteWithChildren
   '/nirf': typeof NirfRoute
@@ -439,6 +452,7 @@ export interface FileRoutesByFullPath {
   '/research/publications': typeof ResearchPublicationsRoute
   '/research/startup-ecosystem': typeof ResearchStartupEcosystemRoute
   '/social-and-community/ebsb': typeof SocialAndCommunityEbsbRoute
+  '/social-and-community/karma': typeof SocialAndCommunityKarmaRoute
   '/social-and-community/nss': typeof SocialAndCommunityNssRoute
   '/social-and-community/uba': typeof SocialAndCommunityUbaRoute
   '/social-and-community/yrc': typeof SocialAndCommunityYrcRoute
@@ -467,6 +481,7 @@ export interface FileRoutesByTo {
   '/ebsb': typeof EbsbRoute
   '/hostel': typeof HostelRoute
   '/incubation': typeof IncubationRoute
+  '/karma': typeof KarmaRoute
   '/library': typeof LibraryRoute
   '/nirf': typeof NirfRoute
   '/nss': typeof NssRoute
@@ -502,6 +517,7 @@ export interface FileRoutesByTo {
   '/research/publications': typeof ResearchPublicationsRoute
   '/research/startup-ecosystem': typeof ResearchStartupEcosystemRoute
   '/social-and-community/ebsb': typeof SocialAndCommunityEbsbRoute
+  '/social-and-community/karma': typeof SocialAndCommunityKarmaRoute
   '/social-and-community/nss': typeof SocialAndCommunityNssRoute
   '/social-and-community/uba': typeof SocialAndCommunityUbaRoute
   '/social-and-community/yrc': typeof SocialAndCommunityYrcRoute
@@ -531,6 +547,7 @@ export interface FileRoutesById {
   '/ebsb': typeof EbsbRoute
   '/hostel': typeof HostelRoute
   '/incubation': typeof IncubationRoute
+  '/karma': typeof KarmaRoute
   '/library': typeof LibraryRoute
   '/naac': typeof NaacRouteWithChildren
   '/nirf': typeof NirfRoute
@@ -567,6 +584,7 @@ export interface FileRoutesById {
   '/research_/publications': typeof ResearchPublicationsRoute
   '/research_/startup-ecosystem': typeof ResearchStartupEcosystemRoute
   '/social-and-community_/ebsb': typeof SocialAndCommunityEbsbRoute
+  '/social-and-community_/karma': typeof SocialAndCommunityKarmaRoute
   '/social-and-community_/nss': typeof SocialAndCommunityNssRoute
   '/social-and-community_/uba': typeof SocialAndCommunityUbaRoute
   '/social-and-community_/yrc': typeof SocialAndCommunityYrcRoute
@@ -597,6 +615,7 @@ export interface FileRouteTypes {
     | '/ebsb'
     | '/hostel'
     | '/incubation'
+    | '/karma'
     | '/library'
     | '/naac'
     | '/nirf'
@@ -633,6 +652,7 @@ export interface FileRouteTypes {
     | '/research/publications'
     | '/research/startup-ecosystem'
     | '/social-and-community/ebsb'
+    | '/social-and-community/karma'
     | '/social-and-community/nss'
     | '/social-and-community/uba'
     | '/social-and-community/yrc'
@@ -661,6 +681,7 @@ export interface FileRouteTypes {
     | '/ebsb'
     | '/hostel'
     | '/incubation'
+    | '/karma'
     | '/library'
     | '/nirf'
     | '/nss'
@@ -696,6 +717,7 @@ export interface FileRouteTypes {
     | '/research/publications'
     | '/research/startup-ecosystem'
     | '/social-and-community/ebsb'
+    | '/social-and-community/karma'
     | '/social-and-community/nss'
     | '/social-and-community/uba'
     | '/social-and-community/yrc'
@@ -724,6 +746,7 @@ export interface FileRouteTypes {
     | '/ebsb'
     | '/hostel'
     | '/incubation'
+    | '/karma'
     | '/library'
     | '/naac'
     | '/nirf'
@@ -760,6 +783,7 @@ export interface FileRouteTypes {
     | '/research_/publications'
     | '/research_/startup-ecosystem'
     | '/social-and-community_/ebsb'
+    | '/social-and-community_/karma'
     | '/social-and-community_/nss'
     | '/social-and-community_/uba'
     | '/social-and-community_/yrc'
@@ -789,6 +813,7 @@ export interface RootRouteChildren {
   EbsbRoute: typeof EbsbRoute
   HostelRoute: typeof HostelRoute
   IncubationRoute: typeof IncubationRoute
+  KarmaRoute: typeof KarmaRoute
   LibraryRoute: typeof LibraryRoute
   NaacRoute: typeof NaacRouteWithChildren
   NirfRoute: typeof NirfRoute
@@ -824,6 +849,7 @@ export interface RootRouteChildren {
   ResearchPublicationsRoute: typeof ResearchPublicationsRoute
   ResearchStartupEcosystemRoute: typeof ResearchStartupEcosystemRoute
   SocialAndCommunityEbsbRoute: typeof SocialAndCommunityEbsbRoute
+  SocialAndCommunityKarmaRoute: typeof SocialAndCommunityKarmaRoute
   SocialAndCommunityNssRoute: typeof SocialAndCommunityNssRoute
   SocialAndCommunityUbaRoute: typeof SocialAndCommunityUbaRoute
   SocialAndCommunityYrcRoute: typeof SocialAndCommunityYrcRoute
@@ -929,6 +955,13 @@ declare module '@tanstack/react-router' {
       path: '/incubation'
       fullPath: '/incubation'
       preLoaderRoute: typeof IncubationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/karma': {
+      id: '/karma'
+      path: '/karma'
+      fullPath: '/karma'
+      preLoaderRoute: typeof KarmaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/library': {
@@ -1197,6 +1230,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SocialAndCommunityEbsbRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/social-and-community_/karma': {
+      id: '/social-and-community_/karma'
+      path: '/social-and-community/karma'
+      fullPath: '/social-and-community/karma'
+      preLoaderRoute: typeof SocialAndCommunityKarmaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/social-and-community_/nss': {
       id: '/social-and-community_/nss'
       path: '/social-and-community/nss'
@@ -1303,6 +1343,7 @@ const rootRouteChildren: RootRouteChildren = {
   EbsbRoute: EbsbRoute,
   HostelRoute: HostelRoute,
   IncubationRoute: IncubationRoute,
+  KarmaRoute: KarmaRoute,
   LibraryRoute: LibraryRoute,
   NaacRoute: NaacRouteWithChildren,
   NirfRoute: NirfRoute,
@@ -1338,6 +1379,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResearchPublicationsRoute: ResearchPublicationsRoute,
   ResearchStartupEcosystemRoute: ResearchStartupEcosystemRoute,
   SocialAndCommunityEbsbRoute: SocialAndCommunityEbsbRoute,
+  SocialAndCommunityKarmaRoute: SocialAndCommunityKarmaRoute,
   SocialAndCommunityNssRoute: SocialAndCommunityNssRoute,
   SocialAndCommunityUbaRoute: SocialAndCommunityUbaRoute,
   SocialAndCommunityYrcRoute: SocialAndCommunityYrcRoute,
