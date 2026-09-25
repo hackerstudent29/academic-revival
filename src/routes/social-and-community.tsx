@@ -157,22 +157,18 @@ const yrcObjectives = [
 const yrcActivities = [
   {
     title: "First-Aid & Emergency Response Training",
-    category: "Life Safety",
     detail: "Comprehensive hands-on First-Aid and emergency preparedness training delivered to student volunteers.",
   },
   {
     title: "Voluntary Blood Donation Drives",
-    category: "Community Health",
     detail: "Organizing periodic voluntary blood donation camps in collaboration with certified government and charitable blood banks.",
   },
   {
     title: "Hygiene, Sanitation & Health Awareness",
-    category: "Public Awareness",
     detail: "Conduction of public hygiene workshops, sanitation drives, and health monitoring programs across neighboring areas.",
   },
   {
     title: "Humanitarian Relief & Community Support",
-    category: "Social Relief",
     detail: "Extending volunteer aid, essential provisions, and dedicated social welfare services to underprivileged communities.",
   },
 ];
@@ -202,14 +198,15 @@ const ubaPillars = [
 ];
 
 const ubaBasicNeeds = [
-  { need: "Food & Agriculture", focus: "Sustainable farming, soil fertility conservation and organic practices" },
-  { need: "Clean Water & Sanitation", focus: "Groundwater recharge, water testing, filtration and village hygiene" },
-  { need: "Renewable Energy", focus: "Solar street lighting, energy audits and clean domestic cookstoves" },
-  { need: "Livelihood & Skills", focus: "Artisan tool modernization, SHG capacity building and youth vocations" },
-  { need: "Healthcare & Wellness", focus: "Preventive health screening, mobile clinics and telemedicine support" },
-  { need: "Eco-Friendly Shelter", focus: "Low-cost vernacular materials, thermal comfort and rural civil planning" },
-  { need: "Transportation & Connectivity", focus: "All-weather village roads, mobility planning and digital infrastructure" },
-  { need: "Digital & School Education", focus: "Computer literacy, smart classrooms and STEM mentorship for rural schools" },
+  { need: "Food", focus: "Local agricultural sustainability, nutritional security, and organic soil practices" },
+  { need: "Clothing", focus: "Rural handloom revival, artisanal capacity, and local fiber production" },
+  { need: "Shelter", focus: "Low-cost vernacular materials, eco-friendly construction, and rural civil planning" },
+  { need: "Sanitation", focus: "Decentralized waste management, clean village drainage, and hygiene facilities" },
+  { need: "Health Care", focus: "Community health awareness, preventive wellness, and primary medical support" },
+  { need: "Energy", focus: "Decentralized solar systems, biomass energy, and village renewable micro-grids" },
+  { need: "Livelihood", focus: "Village entrepreneurship, artisanal tool modernization, and local vocations" },
+  { need: "Transportation", focus: "All-weather connectivity, low-carbon mobility, and village access corridors" },
+  { need: "Education", focus: "Nai Talim (basic education), practical skill development, and rural youth mentorship" },
 ];
 
 // EBSB DATA
@@ -241,88 +238,79 @@ const ebsbProgrammes = [
 
 // KARMA DATA
 const karmaObjectives = [
-  {
-    title: "Global Skills Capital & Certified Workforce",
-    desc: "Strategically planned skill initiatives to create a skilled and certified workforce, who not only contribute towards the growth of India but also drive the country into becoming the global skills capital.",
-  },
-  {
-    title: "Off-Hour Higher Education Infrastructure Utilization",
-    desc: "Encourage institutions for making the best use of available infrastructure of higher education system during off hours for skill training by re-aligning the existing infrastructure for the skill courses specially, training AIDS, syllabus, curriculum etc. as per NSQF aligned Qualifications.",
-  },
-  {
-    title: "Inclusive Eligibility Framework",
-    desc: "This scheme is applicable to the candidate who have passed at least 10th standard / ITIs.",
-  },
-  {
-    title: "Demand-Driven Domain Training",
-    desc: "The training under the Scheme shall be, any domain-specific demand-driven NSQF aligned Qualifications (job roles/ National Occupational Standards (NOS)) or any customized skill training course that can help in candidate's employability or self-employment/entrepreneurship.",
-  },
+  "Strategically planned skill initiatives to create skilled and certified workforce, who not only contribute towards the growth of India but also drive the country into becoming the global skills capital.",
+  "Encourage the institutions for making the best use of available infrastructure of higher education system during off hours for skill training by re-aligning the existing infrastructure for the skill courses specially, training AIDS, syllabus, curriculum etc. as per NSQF aligned Qualifications.",
+  "This scheme is applicable to the candidate who have passed at least 10th standard/ ITIs.",
+  "The training under the Scheme shall be, any domain-specific demand-led skill training activity preferably in core engineering sectors leading to employment.",
 ];
 
 const karmaModels = [
   {
-    title: "Model 1: School Dropouts & Foundational Trades",
-    desc: "Targeted skill training for candidates who have passed at least 10th standard or ITIs. Focuses on core vocational disciplines, technical maintenance, and self-employment capability.",
+    modelTag: "Model 1",
+    title: "Targeting School Dropouts",
+    desc: "Targeting School Dropouts after class 10th pass (long back and recent).",
   },
   {
-    title: "Model 2: Advanced Level Domain Courses",
-    desc: "Tailored for technical students pursuing higher education (Semesters 4–7) to build specialized, industry-deployable expertise in cutting-edge emerging technologies.",
+    modelTag: "Model 2",
+    title: "Advance Level Skilling of Students",
+    desc: "Targeting Advance level Skilling of students already studying in AICTE approved Technical institutions. A program for the Skill up-gradation of present technical students will be introduced for making them industry-ready where advance skilling courses will be offered during 4th - 7th semester for making them industry ready. Assessment and other criteria’s will be similar to KARMA.",
   },
   {
-    title: "Model 3: Flexible Modular Skilling",
-    desc: "Adaptive modular skill tracks formulated to upgrade existing workforce capabilities and align with customized industrial requirements.",
+    modelTag: "Model 3",
+    title: "Integrating School Education with Higher Education",
+    desc: "Integrating School Education with Higher Education for skilling students. Education needs to shift from corrective to connective, transactional to relational. Henceforth, to establish a connect between HEIs and schools, AICTE is suggesting its institutions to start once a week Skill based training for the nearby school students in a “Hub and Spoke” Model.",
   },
 ];
 
 const karmaCourses = [
   {
     sNo: 1,
-    courseTitle: "AI - Machine Learning Developer",
-    model: "Model 2 (Advance Level)",
+    courseTitle: "AI - Machine learning Developer",
+    model: "Model 2",
     targetAudience: "Technical Students (Sem 4–7)",
-    status: "In Process / Approved",
+    status: "In Process",
   },
   {
     sNo: 2,
-    courseTitle: "Refrigeration and Air Conditioning Technician",
-    model: "Model 2 (Advance Level)",
+    courseTitle: "Refrigeration And Air Conditioning Technician",
+    model: "Model 2",
     targetAudience: "Technical Students (Sem 4–7)",
-    status: "In Process / Approved",
+    status: "In Process",
   },
   {
     sNo: 3,
     courseTitle: "Additive Manufacturing Technician (3D Printing) (CTS)",
-    model: "Model 2 (Advance Level)",
+    model: "Model 2",
     targetAudience: "Technical Students (Sem 4–7)",
-    status: "In Process / Approved",
+    status: "In Process",
   },
   {
     sNo: 4,
-    courseTitle: "Certificate Course in Embedded System Design using ARM / Cortex Microcontroller",
-    model: "Model 2 (Advance Level)",
+    courseTitle: "Certificate Course in Embedded System Design using ARM/ Cortex Microcontroller",
+    model: "Model 2",
     targetAudience: "Technical Students (Sem 4–7)",
-    status: "In Process / Approved",
+    status: "In Process",
   },
   {
     sNo: 5,
     courseTitle: "Architectural Drafting and Basic 3D Design with Autodesk Revit (MES)",
-    model: "Model 2 (Advance Level)",
+    model: "Model 2",
     targetAudience: "Technical Students (Sem 4–7)",
-    status: "In Process / Approved",
+    status: "In Process",
   },
   {
     sNo: 6,
     courseTitle: "Computer Hardware Network Maintenance",
-    model: "Model 1 (School Dropouts)",
-    targetAudience: "Class 10th Pass / ITI Candidates (30 Intake)",
-    status: "Approved by AICTE",
+    model: "Model 1",
+    targetAudience: "Class 10th Pass / ITIs (30 Intake)",
+    status: "Approved",
   },
   {
     sNo: 7,
-    courseTitle: "Refrigeration and Air Conditioning Technician",
-    model: "Model 1 (School Dropouts)",
-    targetAudience: "Class 10th Pass / ITI Candidates (30 Intake)",
-    status: "Approved by AICTE",
+    courseTitle: "Refrigeration And Air Conditioning Technician",
+    model: "Model 1",
+    targetAudience: "Class 10th Pass / ITIs (30 Intake)",
+    status: "Approved",
   },
 ];
 
@@ -330,14 +318,14 @@ const karmaApprovalDocs = [
   {
     sNo: 1,
     details: "Approval Letter – Model 1",
-    category: "AICTE Approval Mandate",
+    category: "AICTE Sanction Letter",
     weblink: "https://facilities.aicte-india.org/KARMA/letter_r_karma_model1.php?app_id=MS05NzU2MzUx&model=model1",
     linkText: "View Model 1 Letter",
   },
   {
     sNo: 2,
     details: "Approval Letter – Model 2",
-    category: "AICTE Approval Mandate",
+    category: "AICTE Sanction Letter",
     weblink: "https://facilities.aicte-india.org/KARMA/letter_r_karma_model2.php?app_id=MS05NzU2MzUx&model=model2",
     linkText: "View Model 2 Letter",
   },
@@ -520,9 +508,9 @@ function SocialAndCommunityPortal() {
                           {nssObjectives.map((obj, idx) => (
                             <div
                               key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-primary/[0.03] transition-colors"
+                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
                             >
-                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
+                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
                                 {idx + 1}
                               </span>
                               <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
@@ -542,9 +530,9 @@ function SocialAndCommunityPortal() {
                           {nssDuties.map((duty, idx) => (
                             <div
                               key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-primary/[0.03] transition-colors"
+                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
                             >
-                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
+                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
                                 {idx + 1}
                               </span>
                               <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
@@ -564,9 +552,9 @@ function SocialAndCommunityPortal() {
                           {nssCodeOfConduct.map((item, idx) => (
                             <div
                               key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-primary/[0.03] transition-colors"
+                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
                             >
-                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
+                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
                                 {idx + 1}
                               </span>
                               <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
@@ -632,9 +620,9 @@ function SocialAndCommunityPortal() {
                                     <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/80">
                                       {day.commemoration || "—"}
                                     </td>
-                                    <td className="py-3.5 px-4 text-right font-mono font-semibold text-primary text-xs whitespace-nowrap">
+                                    <td className="py-3.5 px-4 text-right font-mono font-semibold text-foreground text-xs whitespace-nowrap">
                                       <div className="inline-flex items-center gap-1.5 justify-end">
-                                        <Calendar className="w-3.5 h-3.5 text-primary" />
+                                        <Calendar className="w-3.5 h-3.5 text-muted-foreground" />
                                         <span>{day.date}</span>
                                       </div>
                                     </td>
@@ -679,9 +667,9 @@ function SocialAndCommunityPortal() {
                                     <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
                                       {evt.name}
                                     </td>
-                                    <td className="py-3.5 px-4 font-mono font-semibold text-primary text-xs whitespace-nowrap">
+                                    <td className="py-3.5 px-4 font-mono font-semibold text-foreground text-xs whitespace-nowrap">
                                       <div className="inline-flex items-center gap-1.5">
-                                        <Calendar className="w-3.5 h-3.5 text-primary" />
+                                        <Calendar className="w-3.5 h-3.5 text-muted-foreground" />
                                         {evt.date}
                                       </div>
                                     </td>
@@ -736,7 +724,7 @@ function SocialAndCommunityPortal() {
                               key={idx}
                               className="py-3.5 sm:py-4 px-1 sm:px-2 flex flex-col gap-1 hover:bg-foreground/[0.015] transition-colors"
                             >
-                              <h4 className="font-oswald font-bold text-base sm:text-lg text-primary uppercase tracking-tight">
+                              <h4 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
                                 {pr.title}
                               </h4>
                               <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
@@ -756,9 +744,9 @@ function SocialAndCommunityPortal() {
                           {yrcObjectives.map((obj, idx) => (
                             <div
                               key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-primary/[0.03] transition-colors"
+                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
                             >
-                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
+                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
                                 {idx + 1}
                               </span>
                               <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
@@ -783,25 +771,24 @@ function SocialAndCommunityPortal() {
                         </h2>
                       </div>
 
-                      <div className="divide-y divide-border/40 font-libre">
+                      {/* 2-Column Architectural Feature Grid (No Badges, No Cards) */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 pt-2">
                         {yrcActivities.map((act, idx) => (
                           <div
                             key={idx}
-                            className="py-4 sm:py-5 px-1 sm:px-2 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 hover:bg-foreground/[0.02] transition-colors"
+                            className="relative pl-5 sm:pl-6 border-l-2 border-border/80 hover:border-foreground/50 transition-colors space-y-2 group"
                           >
-                            <div className="space-y-1 flex-1">
-                              <div className="flex flex-wrap items-center gap-2.5">
-                                <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
-                                  {act.title}
-                                </h3>
-                                <span className="text-[11px] font-bold font-oswald uppercase tracking-wider px-2 py-0.5 rounded-tl-md rounded-br-md rounded-tr-2xs rounded-bl-2xs bg-primary/10 text-primary border border-primary/20">
-                                  {act.category}
-                                </span>
-                              </div>
-                              <p className="w-full text-sm sm:text-base text-foreground/85 font-libre font-medium leading-relaxed pt-1">
-                                {act.detail}
-                              </p>
+                            <div className="flex items-baseline justify-between gap-4">
+                              <h3 className="font-oswald font-black text-base sm:text-lg lg:text-xl text-foreground uppercase tracking-tight">
+                                {act.title}
+                              </h3>
+                              <span className="font-mono text-xs font-bold text-muted-foreground shrink-0">
+                                0{idx + 1}
+                              </span>
                             </div>
+                            <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                              {act.detail}
+                            </p>
                           </div>
                         ))}
                       </div>
@@ -815,7 +802,7 @@ function SocialAndCommunityPortal() {
               {/* ================================================================= */}
               {activeSection === "uba" && (
                 <div className="w-full">
-                  {/* Section A (White / #121214 Canvas): Foundation & Transformational Pillars */}
+                  {/* Section A (White / #121214 Canvas): Gandhian Foundations, Vision & Mission */}
                   <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
@@ -827,47 +814,44 @@ function SocialAndCommunityPortal() {
                       {/* Full-Length Editorial Academic Narrative */}
                       <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
                         <p>
-                          Unnat Bharat Abhiyan is inspired by the vision of transformational change in rural development processes by leveraging knowledge institutions to help build the architecture of an Inclusive India.
+                          As foreseen by Gandhi Ji in his seminal work, &apos;Hind Swaraj&apos;, the western developmental paradigm, based on centralized technologies and urbanization, has given rise to serious problems like increasing inequity (leading to crime and violence), and climate change due to rapid ecological degradation.
                         </p>
                         <p>
-                          Their vision is to create a vibrant relationship between society and an inclusive academic system, with the latter providing the knowledge and practice for emerging professions and to foster the new field of &apos;Rural Development&apos;. It also aims to identify the basic development challenges of rural India and to find suitable solutions for them.
+                          To ameliorate these problems, it is necessary to promote development of rural areas in tune with Gandhian vision of self-sufficient &apos;village republics&apos;, based on local resources and using decentralized, eco-friendly technologies so that the basic needs of food, clothing, shelter, sanitation, health care, energy, livelihood, transportation, and education are locally met.
                         </p>
                         <p>
-                          The conceptualization of Unnat Bharat Abhiyan started with the initiative of a group of dedicated faculty members of Indian Institute of Technology (IIT) Delhi working for long in the area of rural development and appropriate technology. The concept was nurtured through wide consultation with the representatives of a number of technical institutions, Rural Technology Action Group (RuTAG) coordinators, voluntary organizations and government agencies, actively involved in rural development during a National workshop held at IIT Delhi in September, 2014. The program was formally launched by the Ministry of Human Resource Development (MHRD) in presence of The President of India on 11th November, 2014.
+                          There are huge developmental disconnects between the rural and urban. Increasing urbanization is neither sustainable nor desirable.
                         </p>
                       </div>
 
-                      {/* Subsection: Gandhian Village Republics */}
-                      <div className="space-y-3 pt-2">
-                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-                          Vision of Gandhian Village Republics
-                        </h3>
-                        <div className="w-full border-l-4 border-primary pl-4 sm:pl-6 py-3.5 sm:py-4 bg-foreground/[0.02] dark:bg-white/[0.02] rounded-r-lg">
-                          <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                            The vision of Unnat Bharat Abhiyan is basically inspired by the vision of Mahatma Gandhi for rural development in &apos;Hind Swaraj&apos;. It emphasizes the development of local resource-based, decentralized, and eco-friendly technologies to meet the basic needs of rural areas such as food, clothing, shelter, sanitation, healthcare, energy, livelihood, transportation, and education. It also emphasizes the importance of basic education (Nai Talim) and self-sufficiency of village republics.
-                          </p>
+                      {/* Vision & Mission 2-Column Architectural Split with Official V & M Badges */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 pt-2">
+                        <div className="flex items-start gap-4">
+                          <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-tl-lg rounded-br-lg rounded-tr-2xs rounded-bl-2xs bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                            V
+                          </span>
+                          <div className="space-y-1.5 flex-1">
+                            <h3 className="text-base sm:text-lg lg:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                              Vision of Inclusive India
+                            </h3>
+                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                              Unnat Bharat Abhiyan is inspired by the vision of transformational change in rural development processes by leveraging knowledge institutions to help build the architecture of an Inclusive India.
+                            </p>
+                          </div>
                         </div>
-                      </div>
 
-                      {/* Subsection: Transformational Pillars (Clean Sections, No 01/02 Badges) */}
-                      <div className="space-y-4 pt-4">
-                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-                          Transformational Pillars
-                        </h3>
-                        <div className="divide-y divide-border/40 font-libre">
-                          {ubaPillars.map((pillar, idx) => (
-                            <div
-                              key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-2 flex flex-col gap-1 hover:bg-foreground/[0.015] transition-colors"
-                            >
-                              <h4 className="font-oswald font-bold text-base sm:text-lg text-primary uppercase tracking-tight">
-                                {pillar.title}
-                              </h4>
-                              <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                                {pillar.desc}
-                              </p>
-                            </div>
-                          ))}
+                        <div className="flex items-start gap-4">
+                          <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-tl-lg rounded-br-lg rounded-tr-2xs rounded-bl-2xs bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                            M
+                          </span>
+                          <div className="space-y-1.5 flex-1">
+                            <h3 className="text-base sm:text-lg lg:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                              Mission &amp; Community Connect
+                            </h3>
+                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                              Their mission is conceptualised as a movement to enable processes that connect institutes of higher education with local communities to address the development challenges of rural India through participatory processes and appropriate technologies for accelerating sustainable growth.
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -876,49 +860,40 @@ function SocialAndCommunityPortal() {
                   {/* Wave Divider A -> B */}
                   <WaveDividerAB />
 
-                  {/* Section B (#F3F3F2 / #18181B Canvas): Basic Needs */}
+                  {/* Section B (#F3F3F2 / #18181B Canvas): 9 Locally Met Basic Needs */}
                   <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                          Basic Needs &amp; Rural Development Domains
+                          Locally Met Basic Needs for Self-Sufficient Village Republics
                         </h2>
                       </div>
 
-                      <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
-                        <div className="overflow-x-auto bg-transparent">
-                          <table className="w-full text-left border-collapse min-w-[600px] text-xs sm:text-sm">
-                            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
-                              <tr>
-                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
-                                  S.No
-                                </th>
-                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider w-1/3">
-                                  Basic Need Domain
-                                </th>
-                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
-                                  Action &amp; Development Focus
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody className="divide-y divide-border/40 font-libre">
-                              {ubaBasicNeeds.map((item, idx) => (
-                                <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
-                                  <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                                    {String(idx + 1).padStart(2, "0")}
-                                  </td>
-                                  <td className="py-3.5 px-4 font-oswald font-bold uppercase text-primary text-sm whitespace-nowrap">
-                                    {item.need}
-                                  </td>
-                                  <td className="py-3.5 px-4 text-sm text-foreground font-libre font-medium leading-relaxed">
-                                    {item.focus}
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </DataGridContainer>
+                      <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                        To build self-sufficient village republics, the Gandhian paradigm emphasizes deploying local resource-based, decentralized, and eco-friendly technologies so that the nine basic needs of rural communities are locally met:
+                      </p>
+
+                      {/* 9 Basic Needs: Readiness Pattern with Neutral Foreground Typography */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2 font-libre">
+                        {ubaBasicNeeds.map((item, idx) => (
+                          <div
+                            key={idx}
+                            className="flex items-start gap-3.5 py-3.5 border-b border-border/40 hover:bg-foreground/[0.015] transition-colors"
+                          >
+                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                              {idx + 1}
+                            </span>
+                            <div className="space-y-1 flex-1">
+                              <h3 className="font-oswald font-bold text-sm sm:text-base text-foreground uppercase tracking-tight">
+                                {item.need}
+                              </h3>
+                              <p className="text-xs sm:text-sm text-foreground/80 font-libre font-medium leading-relaxed">
+                                {item.focus}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </section>
                 </div>
@@ -972,9 +947,9 @@ function SocialAndCommunityPortal() {
                           {ebsbObjectives.map((obj, idx) => (
                             <div
                               key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-primary/[0.03] transition-colors"
+                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
                             >
-                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
+                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
                                 {idx + 1}
                               </span>
                               <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
@@ -1030,9 +1005,9 @@ function SocialAndCommunityPortal() {
                                   <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
                                     {prg.title}
                                   </td>
-                                  <td className="py-3.5 px-4 font-mono font-semibold text-primary text-xs whitespace-nowrap">
+                                  <td className="py-3.5 px-4 font-mono font-semibold text-foreground text-xs whitespace-nowrap">
                                     <div className="inline-flex items-center gap-1.5">
-                                      <Calendar className="w-3.5 h-3.5 text-primary" />
+                                      <Calendar className="w-3.5 h-3.5 text-muted-foreground" />
                                       {prg.dates}
                                     </div>
                                   </td>
@@ -1078,7 +1053,7 @@ function SocialAndCommunityPortal() {
                         </p>
                       </div>
 
-                      {/* Subsection: Objectives of KARMA (Clean Sections, No 01/02 Badges) */}
+                      {/* Subsection: Objectives of KARMA */}
                       <div className="space-y-4 pt-2">
                         <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
                           Objectives of KARMA
@@ -1087,37 +1062,42 @@ function SocialAndCommunityPortal() {
                           {karmaObjectives.map((obj, idx) => (
                             <div
                               key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-2 flex flex-col gap-1 hover:bg-foreground/[0.015] transition-colors"
+                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
                             >
-                              <h4 className="font-oswald font-bold text-base sm:text-lg text-primary uppercase tracking-tight">
-                                {obj.title}
-                              </h4>
-                              <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                                {obj.desc}
+                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                                {idx + 1}
+                              </span>
+                              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
+                                {obj}
                               </p>
                             </div>
                           ))}
                         </div>
                       </div>
 
-                      {/* Subsection: Three Skilling Models Under KARMA (Clean Sections, No 01/02 Badges) */}
+                      {/* Subsection: Three Skilling Models Under KARMA */}
                       <div className="space-y-4 pt-4">
-                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-                          Three Skilling Models Under KARMA
-                        </h3>
-                        <p className="w-full text-sm sm:text-base text-foreground/85 font-libre leading-relaxed">
-                          AICTE has proposed three Models for Skilling of In-school students/ school dropouts, students pursuing Technical Education:
-                        </p>
-                        <div className="divide-y divide-border/40 font-libre">
+                        <div className="space-y-1">
+                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                            Three Skilling Models Under KARMA
+                          </h3>
+                          <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                            AICTE has proposed three models for skilling in-school students, school dropouts, and students pursuing technical education:
+                          </p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 pt-2 font-libre">
                           {karmaModels.map((m, idx) => (
                             <div
                               key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-2 flex flex-col gap-1 hover:bg-foreground/[0.015] transition-colors"
+                              className="border-l-2 border-border/80 hover:border-foreground/40 pl-4 sm:pl-5 py-2 transition-colors space-y-2"
                             >
-                              <h4 className="font-oswald font-bold text-base sm:text-lg text-primary uppercase tracking-tight">
+                              <span className="font-mono text-xs font-bold text-muted-foreground uppercase tracking-wider block">
+                                {m.modelTag}
+                              </span>
+                              <h4 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
                                 {m.title}
                               </h4>
-                              <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                              <p className="text-xs sm:text-sm text-foreground/80 font-libre font-medium leading-relaxed">
                                 {m.desc}
                               </p>
                             </div>
@@ -1141,7 +1121,7 @@ function SocialAndCommunityPortal() {
 
                       <div className="w-full space-y-3 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
                         <p>
-                          The Mohamed Sathak A J College of Engineering was approved by AICTE to conduct 5 courses in Model 2 with an approved intake in: 1) AI -Machine learning Developer, 2) Refrigeration and Air Conditioning Technician, 3) Additive Manufacturing Technician (3D Printing), 4) Certificate Course in Embedded System Design using ARM/ Cortex Microcontroller and 5) Architectural Drafting and Basic 3D Design with Autodesk Revit (MES).
+                          Mohamed Sathak A J College of Engineering was approved by AICTE to conduct 5 courses in Model 2 with an approved intake in: 1) AI - Machine learning Developer, 2) Refrigeration and Air Conditioning Technician, 3) Additive Manufacturing Technician (3D Printing), 4) Certificate Course in Embedded System Design using ARM/ Cortex Microcontroller and 5) Architectural Drafting and Basic 3D Design with Autodesk Revit (MES).
                         </p>
                         <p>
                           In Model 1 the Institute was approved by AICTE to conduct 2 courses with an approved intake of 30 students namely: 1) Computer Hardware Network Maintenance and 2) Refrigeration And Air Conditioning Technician with 30 students intake.
@@ -1187,14 +1167,14 @@ function SocialAndCommunityPortal() {
                                     <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
                                       {c.courseTitle}
                                     </td>
-                                    <td className="py-3.5 px-4 font-oswald font-bold uppercase text-primary text-xs whitespace-nowrap">
+                                    <td className="py-3.5 px-4 font-libre font-medium text-foreground text-xs sm:text-sm whitespace-nowrap">
                                       {c.model}
                                     </td>
                                     <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/90">
                                       {c.targetAudience}
                                     </td>
                                     <td className="py-3.5 px-4 text-right whitespace-nowrap">
-                                      <span className="inline-block px-2.5 py-0.5 rounded-tl-md rounded-br-md rounded-tr-2xs rounded-bl-2xs bg-primary/10 text-primary border border-primary/20 text-xs font-oswald font-bold uppercase tracking-wider">
+                                      <span className="inline-block px-2.5 py-0.5 rounded-tl-md rounded-br-md rounded-tr-2xs rounded-bl-2xs bg-foreground/5 text-foreground border border-border/60 text-xs font-oswald font-bold uppercase tracking-wider">
                                         {c.status}
                                       </span>
                                     </td>
