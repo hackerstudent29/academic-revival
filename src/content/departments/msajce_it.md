@@ -98,6 +98,12 @@ Students gain hands-on proficiency in modern programming paradigms, open-source 
 
 ### Specialized Laboratories & Computing Infrastructure
 
+![IT Department Computer Laboratory](/images/departments/it_1.jpg)
+*IT Department Computer Laboratory & Student Workstations*
+
+![Apple iMac Computing Center](/images/departments/it_2.jpg)
+*Apple iMac High-Performance Computing Laboratory*
+
 1. **C & Data Structures Programming Laboratory**
    * **Course Code:** CS8261 / CS3351
    * **Specs & Tools:** High-performance Intel Core i7 workstations, GCC/G++ Compiler suites, Linux Ubuntu environments.

@@ -141,17 +141,28 @@ export function HomePage() {
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {[
-                { src: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=400&h=300&q=80", label: "Research" },
-                { src: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=400&h=300&q=80", label: "Heritage" },
-                { src: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&h=300&q=80", label: "Affiliation" },
-                { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=400&h=300&q=80", label: "Placements" },
-                { src: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=400&h=300&q=80", label: "Campus Life" },
+                { src: "/images/placement/03interviewroom.jpg", fallback: "/images/eligibility_hero.jpg", label: "Placements" },
+                { src: "/images/placement/05classroom.jpg", fallback: "/images/eligibility_hero.jpg", label: "Training" },
+                { src: "/images/placement/06LAB.jpg", fallback: "/images/eligibility_hero.jpg", label: "Labs" },
+                { src: "/images/hero_dsc6402.jpg", fallback: "/DSC06402.JPG", label: "Research" },
+                { src: "/images/hero_dsc6410.jpg", fallback: "/DSC06410.JPG", label: "Heritage" },
+                { src: "/images/hero_dsc6419.jpg", fallback: "/DSC06419.JPG", label: "Campus Life" },
               ].map((item, idx) => (
                 <div
                   key={item.label}
                   className={`relative h-[200px] w-[75vw] max-w-[280px] shrink-0 snap-center overflow-hidden rounded-md ${idx === 0 ? '' : ''}`}
                 >
-                  <img src={item.src} alt={item.label} loading="lazy" className="h-full w-full object-cover" />
+                  <img
+                    src={item.src}
+                    alt={item.label}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                    onError={(e) => {
+                      if (item.fallback) {
+                        (e.target as HTMLImageElement).src = item.fallback;
+                      }
+                    }}
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <span className="absolute bottom-4 left-4 text-sm font-bold font-oswald uppercase tracking-widest text-white">
                     {item.label}
