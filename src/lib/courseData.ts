@@ -123,7 +123,7 @@ export const allCourses: Course[] = [
     name: "Computer Science & Engineering", shortName: "CSE", slug: "computer-science-and-engineering", 
     intake: 60, govtQuota: 30, managementQuota: 30, level: "Undergraduate", department: "Computing", 
     description: "Learn the fundamentals of software development, algorithms, and system design.", 
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/departments/it_2.jpg",
     details: { 
       activities: {
         chapters: [
@@ -285,7 +285,7 @@ export const allCourses: Course[] = [
     name: "Information Technology", shortName: "IT", slug: "information-technology", 
     intake: 60, govtQuota: 30, managementQuota: 30, level: "Undergraduate", department: "Computing", 
     description: "Focus on network administration, database management, and enterprise software.", 
-    image: "https://images.unsplash.com/photo-1498084393753-b411b2d26b34?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/departments/it_1.jpg",
     details: { 
       activities: {
         chapters: [

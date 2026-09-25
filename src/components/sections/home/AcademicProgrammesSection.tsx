@@ -53,7 +53,8 @@ const degreeLevels = [
   {
     id: "ug",
     title: "UG Programmes",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80&auto=format&fit=crop",
+    image: "/images/departments/it_1.jpg",
+    fallback: "/images/departments/it_1.jpg",
     description: "Industry-aligned B.E., B.Tech & B.Arch degrees in AI, Data Science, Cyber Security, CSE, ECE & Mechanical.",
     depts: [
       "Civil Engineering",
@@ -77,7 +78,8 @@ const degreeLevels = [
   {
     id: "pg",
     title: "PG Programmes",
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80&auto=format&fit=crop",
+    image: "/images/departments/it_2.jpg",
+    fallback: "/images/departments/it_2.jpg",
     description: "Advanced Master of Engineering and Architecture programs tailored for technical leadership & research.",
     depts: [
       "M.E. Computer Science & Engg",
@@ -90,7 +92,8 @@ const degreeLevels = [
   {
     id: "phd",
     title: "Doctorate (Ph.D)",
-    image: "https://images.unsplash.com/photo-1507668077129-56e32842fceb?w=800&q=80&auto=format&fit=crop",
+    image: "/images/placement/CNCLab.jpg",
+    fallback: "/images/placement/CNCLab.jpg",
     description: "Anna University recognized research center advancing doctoral research in Mechanical Engineering.",
     depts: [
       "Mechanical Engineering (Ph.D)",
@@ -156,6 +159,11 @@ export function AcademicProgrammesSection() {
                       alt={lvl.title}
                       loading="lazy"
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        if (lvl.fallback) {
+                          (e.target as HTMLImageElement).src = lvl.fallback;
+                        }
+                      }}
                     />
                   </div>
 
