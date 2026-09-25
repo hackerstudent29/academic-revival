@@ -1,10 +1,12 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { SecondarySubNav } from "@/components/layout/SecondarySubNav";
+import { DataGridContainer } from "@/components/ui/data-grid-table";
+import { ExternalLink } from "lucide-react";
 import { socialCommunityTabs } from "./social-and-community_.nss";
 
 const title = "Ek Bharat Shreshtha Bharat (EBSB) | Social & Community | MSAJCE";
 const description =
-  "Official Ek Bharat Shreshtha Bharat (EBSB) initiative at Mohamed Sathak A.J. College of Engineering. Celebrating Indian cultural integration, paired-state linguistic exchanges, heritage arts, and national unity.";
+  "Official Ek Bharat Shreshtha Bharat (EBSB) initiative at Mohamed Sathak A.J. College of Engineering. Celebrating national unity in diversity through state-pairing cultural exchanges between Tamil Nadu and Jammu & Kashmir.";
 
 export const Route = createFileRoute("/social-and-community_/ebsb")({
   head: () => ({
@@ -40,6 +42,65 @@ function WaveDividerAB() {
   );
 }
 
+interface EBSBProgram {
+  sNo: number;
+  activity: string;
+  partnerInstitution: string;
+  weblink: string;
+  linkText: string;
+}
+
+const ebsbPrograms: EBSBProgram[] = [
+  {
+    sNo: 1,
+    activity:
+      "Cultural Exchange Program Under Ek Bharath Shreshtha Bharath & Azadi Ka Amrit Mahotsav",
+    partnerInstitution:
+      "SSM College of Engineering, Parihaspora, Pattan, Baramulla, Jammu & Kashmir",
+    weblink:
+      "https://ekbharat.gov.in/activitycompleted/statepair_activity?statepair=Tamil+Nadu+%3a++Jammu-Kashmir+and+Ladakh&page=3",
+    linkText: "National Portal",
+  },
+  {
+    sNo: 2,
+    activity:
+      "Winter Iconic destination-Gulmarg Kashmir & Traditional Art of Kashmir (Carpet Weaving)",
+    partnerInstitution:
+      "SSM College of Engineering, Parihaspora, Pattan, Baramulla, Jammu & Kashmir",
+    weblink:
+      "https://drive.google.com/file/d/1-YxlhVjgN0SWfHJ3OcTBjrmvaadGgn5w/view?usp=share_link",
+    linkText: "View Documentation",
+  },
+];
+
+const ebsbObjectives = [
+  {
+    code: "O1",
+    title: "Celebrate Unity in Diversity",
+    desc: "To celebrate the idea of India as a nation wherein diverse linguistic, cultural and religious threads are held together into a composite national identity, strengthening the traditionally existing emotional bonds between the people of different regions.",
+  },
+  {
+    code: "O2",
+    title: "Promote National Integration",
+    desc: "To foster the spirit of national integration through a sustained and structured cultural connect between denizens of different regions across paired States and Union Territories.",
+  },
+  {
+    code: "O3",
+    title: "Showcase Rich Heritage & Traditions",
+    desc: "To showcase the rich heritage, customs, traditions, language, music, tourism, handicrafts, and cuisine of paired States, enabling student engineers to appreciate India's cultural richness and develop a shared sense of common identity.",
+  },
+  {
+    code: "O4",
+    title: "Establish Long-Term Institutional Engagements",
+    desc: "To create an environment which promotes long-term engagements between paired educational institutions, encouraging academic exchanges, joint youth symposiums, and cultural dialogues.",
+  },
+  {
+    code: "O5",
+    title: "Promote Mutual Learning & Best Practices",
+    desc: "To build an environment that encourages mutual learning between States by sharing experiences, educational innovations, and technical best practices across state borders.",
+  },
+];
+
 function EBSBPage() {
   const navigate = useNavigate();
 
@@ -50,56 +111,6 @@ function EBSBPage() {
     }
     navigate({ to: `/social-and-community/${tabId}` });
   };
-
-  const ebsbObjectives = [
-    {
-      code: "E1",
-      title: "Celebrate Cultural Unity in Diversity",
-      desc: "Highlight the rich heritage, traditions, and customs of paired Indian states to foster deep emotional bonding and national harmony.",
-    },
-    {
-      code: "E2",
-      title: "Linguistic Exchange & Bhasha Sangam",
-      desc: "Promote reciprocal language learning initiatives, encouraging students to master essential phrases, vocabulary, and literary expressions of paired states.",
-    },
-    {
-      code: "E3",
-      title: "Traditions, Music & Performing Arts",
-      desc: "Provide immersive showcases of indigenous music, folk dance forms, culinary traditions, and handicrafts across diverse Indian regions.",
-    },
-    {
-      code: "E4",
-      title: "Youth Inter-State Exchange & Dialogue",
-      desc: "Facilitate peer learning symposiums, youth dialogues, and virtual cultural connect programs with partner state educational institutions.",
-    },
-  ];
-
-  const ebsbActivities = [
-    {
-      title: "Bhasha Sangam Language Learning Festivals",
-      category: "Linguistics",
-      detail:
-        "Daily interactive language sessions introducing student engineers to 22 scheduled Indian languages, conversational greetings, and paired-state dialects.",
-    },
-    {
-      title: "Inter-State Cultural Festivals & Food Fairs",
-      category: "Heritage",
-      detail:
-        "Celebration of harvest festivals, traditional culinary exhibitions, ethnic attire displays, and classical dance performances representing paired state regions.",
-    },
-    {
-      title: "National Integration Pledge & Literary Contests",
-      category: "National Unity",
-      detail:
-        "Annual Rashtriya Ekta Diwas celebrations, essay and quiz competitions highlighting the life and contributions of Sardar Vallabhbhai Patel and freedom stalwarts.",
-    },
-    {
-      title: "Virtual Heritage Tours & Art Showcases",
-      category: "Arts & Tourism",
-      detail:
-        "Interactive virtual explorations of UNESCO heritage monuments, indigenous crafts, and historical landmarks of paired states across India.",
-    },
-  ];
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
@@ -144,18 +155,42 @@ function EBSBPage() {
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              Celebrating Cultural Heritage &amp; National Unity
+              About Ek Bharat Shreshtha Bharat
             </h2>
           </div>
 
-          <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-            The Ek Bharat Shreshtha Bharat (EBSB) initiative at Mohamed Sathak A. J. College of Engineering fosters sustained cultural connections and mutual understanding across Indian states. Conceived to celebrate the diverse fabric of India, the club engages student engineers through linguistic exchange, cultural showcases, folk traditions, and collaborative inter-state youth forums.
-          </p>
+          {/* Full-Length Editorial Text Layout */}
+          <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+            <p>
+              Ek Bharat Shreshtha Bharat is an initiative launched by the Government of India to enhance unity in diversity of our nation India. EBSB was launched by Prime Minister Shri Narendra Modi during the Rashtriya Ekta Divas held on 31st October, 2015, to commemorate the birth anniversary of Sardar Vallabhbhai Patel to establish a sustained and structured cultural connect between denizens of different regions of India.
+            </p>
+            <p>
+              India is a unique nation, whose fabric has been woven by diverse linguistic, cultural and religious threads, held together into a composite national identity by a rich history of cultural evolution.
+            </p>
+            <p>
+              Ek Bharat Shreshtha Bharat programme aims to enhance interaction &amp; promote mutual understanding between people of different states/UTs through the concept of state/UT pairing. The states carry out activities to promote a sustained and structured cultural connect in the areas of language learning, culture, traditions &amp; music, tourism &amp; cuisine, sports and sharing of best practices, etc. Tamilnadu is paired with Jammu-Kashmir.
+            </p>
+          </div>
 
-          {/* Core Objectives List */}
+          {/* Institutional State Pairing Banner */}
+          <div className="w-full p-4 sm:p-6 bg-foreground/[0.02] dark:bg-white/[0.02] border-l-4 border-primary border-t border-r border-b border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <span className="text-xs font-bold font-oswald uppercase tracking-widest text-primary">
+                National State Pairing Mandate
+              </span>
+              <span className="text-xs font-mono font-bold text-muted-foreground">
+                Tamil Nadu ⇄ Jammu &amp; Kashmir and Ladakh
+              </span>
+            </div>
+            <p className="w-full text-xs sm:text-sm text-foreground font-libre leading-relaxed">
+              <strong className="font-semibold text-foreground">Partner Institutional Framework:</strong> Mohamed Sathak A. J. College of Engineering, Chennai has conducted collaborative programmes with <strong className="font-semibold text-foreground">SSM College of Engineering, Parihaspora, Pattan, Baramulla, Jammu &amp; Kashmir</strong> under the Ek Bharat Shreshtha Bharat initiative.
+            </p>
+          </div>
+
+          {/* Strategic Objectives */}
           <div className="space-y-3 pt-2">
             <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-              Core Strategic Objectives
+              Objectives of the Programme
             </h3>
             <div className="divide-y divide-border/40 font-libre">
               {ebsbObjectives.map((obj) => (
@@ -185,41 +220,81 @@ function EBSBPage() {
       <WaveDividerAB />
 
       {/* ========================================================================= */}
-      {/* 3. SECTION B: Secondary Canvas (#F3F3F2 / #18181B) — Cultural Programs    */}
+      {/* 3. SECTION B: Secondary Canvas (#F3F3F2 / #18181B) — Conducted Activities */}
       {/* ========================================================================= */}
       <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-          <div>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              Cultural Exchange Programs &amp; Initiatives
-            </h2>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                Programmes Conducted Under EBSB
+              </h2>
+            </div>
+            <span className="font-mono text-xs font-bold text-muted-foreground">
+              Showing {ebsbPrograms.length} Completed Programmes
+            </span>
           </div>
 
-          <div className="divide-y divide-border/40 font-libre">
-            {ebsbActivities.map((act, idx) => (
-              <div
-                key={idx}
-                className="py-4 sm:py-5 px-1 sm:px-2 flex items-start gap-4 hover:bg-foreground/[0.02] transition-colors"
-              >
-                <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
-                  {String(idx + 1).padStart(2, "0")}
-                </span>
-                <div className="space-y-1.5 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
-                      {act.title}
-                    </h3>
-                    <span className="text-[11px] font-bold font-oswald uppercase tracking-wider px-2 py-0.5 rounded-tl-md rounded-br-md rounded-tr-2xs rounded-bl-2xs bg-primary/10 text-primary border border-primary/20">
-                      {act.category}
-                    </span>
-                  </div>
-                  <p className="w-full text-xs sm:text-sm text-foreground/80 font-libre leading-relaxed">
-                    {act.detail}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <p className="w-full text-xs sm:text-sm text-foreground/90 font-libre font-medium leading-relaxed">
+            Mohamed Sathak A J College of Engineering, Chennai has conducted 2 programmes with SSM College of Engineering, Parihaspora, Pattan, Baramulla, JK under EBSB.
+          </p>
+
+          {/* Publications Standard DataGrid Table */}
+          <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+            <div className="overflow-x-auto bg-transparent">
+              <table className="w-full text-left border-collapse min-w-[700px] text-xs sm:text-sm">
+                <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                  <tr>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-20 text-center">
+                      S.No.
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                      Activity
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                      Partner Institution
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-right w-44">
+                      Weblink
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/40 font-libre">
+                  {ebsbPrograms.map((prog) => (
+                    <tr
+                      key={prog.sNo}
+                      className="hover:bg-foreground/[0.02] transition-colors"
+                    >
+                      <td className="py-4 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
+                        {String(prog.sNo).padStart(2, "0")}
+                      </td>
+                      <td className="py-4 px-4">
+                        <p className="font-libre text-xs sm:text-sm text-foreground font-semibold leading-relaxed">
+                          {prog.activity}
+                        </p>
+                      </td>
+                      <td className="py-4 px-4">
+                        <p className="font-libre text-xs text-foreground/80 leading-relaxed">
+                          {prog.partnerInstitution}
+                        </p>
+                      </td>
+                      <td className="py-4 px-4 text-right whitespace-nowrap">
+                        <a
+                          href={prog.weblink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold font-oswald uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-primary text-white hover:bg-primary/90 transition-colors shadow-2xs"
+                        >
+                          <span>{prog.linkText}</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </DataGridContainer>
         </div>
       </section>
     </main>
