@@ -30,6 +30,44 @@ import { RedirectButton } from "@/components/ui/redirect-button";
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
 
+function WaveDividerAB() {
+  return (
+    <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+      <svg
+        viewBox="0 0 1440 72"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+          className="fill-[#F3F3F2] dark:fill-[#18181B]"
+        />
+      </svg>
+    </div>
+  );
+}
+
+function WaveDividerBA() {
+  return (
+    <div className="w-full overflow-hidden leading-none select-none bg-[#F3F3F2] dark:bg-[#18181B]">
+      <svg
+        viewBox="0 0 1440 72"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+          className="fill-white dark:fill-[#121214]"
+        />
+      </svg>
+    </div>
+  );
+}
+
 const title = "MSAJCE Alumni Association — Official Portal & Global Network";
 const description =
   "Official Alumni Association of Mohamed Sathak A. J. College of Engineering (Reg. No: SRG/Chengalpattu/16/2021). Reconnecting 15,000+ engineering alumni across 25+ countries.";
@@ -1694,12 +1732,16 @@ function AlumniPage() {
         {/* TAB 2: OFFICE BEARERS */}
         {activeTab === "office-bearers" && (
           <div>
-            <div className="py-12 sm:py-16 md:py-20 bg-white dark:bg-[#121214]">
+            {/* Section 1 (White / #121214 Canvas): Council Roster Table */}
+            <div className="py-12 sm:py-16 md:py-20 bg-white dark:bg-[#121214] transition-colors">
               <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="space-y-4 w-full">
                   <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                     Office Bearers Council Roster
                   </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    Official governing council of Mohamed Sathak A. J. College of Engineering Alumni Association (Reg. No: SRG/Chengalpattu/16/2021) elected to oversee student mentoring, institutional relations, and global chapter development.
+                  </p>
                 </div>
 
                 {/* Search & Tenure Year Dropdown Toolbar */}
@@ -1752,41 +1794,41 @@ function AlumniPage() {
                           </tr>
                         ) : (
                           paginatedBearers.map((b) => (
-                          <tr key={b.name + b.role} className="hover:bg-foreground/[0.02] transition-colors">
-                            <td className="py-3.5 px-4 font-libre text-xs text-muted-foreground whitespace-nowrap">
-                              {b.sNo}
-                            </td>
-                            <td className="py-2.5 px-4">
-                              <div className="w-10 h-10 overflow-hidden border border-border/60 bg-muted shrink-0 rounded-xs">
-                                {b.photo ? (
-                                  <img
-                                    key={b.name}
-                                    src={b.photo}
-                                    alt={b.name}
-                                    className="w-full h-full object-cover"
-                                    onError={(e) => {
-                                      (e.target as HTMLImageElement).src = "/images/favicon.png";
-                                    }}
-                                  />
-                                ) : (
-                                  <div className="w-full h-full flex items-center justify-center bg-primary/10 text-primary font-oswald font-bold text-xs">
-                                    {b.name.charAt(0)}
-                                  </div>
-                                )}
-                              </div>
-                            </td>
-                            <td className="py-3.5 px-4 font-bold font-oswald uppercase text-foreground text-sm sm:text-base">
-                              {b.name}
-                            </td>
-                            <td className="py-3.5 px-4 font-oswald font-bold uppercase text-primary text-sm">
-                              {b.role} <span className="text-xs font-normal text-muted-foreground font-libre capitalize">({b.designation})</span>
-                            </td>
-                            <td className="py-3.5 px-4 text-right whitespace-nowrap">
-                              <span className="px-2.5 py-1 bg-foreground/5 text-foreground font-libre text-[11px] font-semibold uppercase border border-border/40 inline-block rounded-tl-sm rounded-br-sm rounded-tr-none rounded-bl-none">
-                                {b.category}
-                              </span>
-                            </td>
-                          </tr>
+                            <tr key={b.name + b.role} className="hover:bg-foreground/[0.02] transition-colors">
+                              <td className="py-3.5 px-4 font-libre text-xs text-muted-foreground whitespace-nowrap">
+                                {b.sNo}
+                              </td>
+                              <td className="py-2.5 px-4">
+                                <div className="w-10 h-10 overflow-hidden border border-border/60 bg-muted shrink-0 rounded-xs">
+                                  {b.photo ? (
+                                    <img
+                                      key={b.name}
+                                      src={b.photo}
+                                      alt={b.name}
+                                      className="w-full h-full object-cover"
+                                      onError={(e) => {
+                                        (e.target as HTMLImageElement).src = "/images/favicon.png";
+                                      }}
+                                    />
+                                  ) : (
+                                    <div className="w-full h-full flex items-center justify-center bg-primary/10 text-primary font-oswald font-bold text-xs">
+                                      {b.name.charAt(0)}
+                                    </div>
+                                  )}
+                                </div>
+                              </td>
+                              <td className="py-3.5 px-4 font-bold font-oswald uppercase text-foreground text-sm sm:text-base">
+                                {b.name}
+                              </td>
+                              <td className="py-3.5 px-4 font-oswald font-bold uppercase text-primary text-sm">
+                                {b.role} <span className="text-xs font-normal text-muted-foreground font-libre capitalize">({b.designation})</span>
+                              </td>
+                              <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                                <span className="px-2.5 py-1 bg-foreground/5 text-foreground font-libre text-[11px] font-semibold uppercase border border-border/40 inline-block rounded-tl-sm rounded-br-sm rounded-tr-none rounded-bl-none">
+                                  {b.category}
+                                </span>
+                              </td>
+                            </tr>
                           ))
                         )}
                       </tbody>
@@ -1807,33 +1849,141 @@ function AlumniPage() {
             </div>
 
             {/* Wave Divider A → B */}
-            <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
-              <svg
-                viewBox="0 0 1440 72"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
-                  className="fill-[#F3F3F2] dark:fill-[#18181B]"
-                />
-              </svg>
-            </div>
+            <WaveDividerAB />
 
-            {/* Section B: Executive Committee Members */}
-            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B]">
-              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-6">
-                <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase text-foreground">
-                  Executive Committee Members ({selectedYear})
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 divide-y sm:divide-y-0 divide-border/30">
-                  {executiveMembers.map((m) => (
-                    <div key={m} className="pt-2 sm:pt-0 text-xs sm:text-sm font-medium text-foreground font-libre">
-                      {m}
+            {/* Section 2 (#F3F3F2 / #18181B Canvas): Executive Committee */}
+            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Executive Committee Members ({selectedYear})
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    The Executive Committee oversees the strategic execution of alumni mentoring, campus engagement, and student career readiness programs across all engineering faculties during the elected tenure.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-libre">
+                  {executiveMembers.map((m, idx) => (
+                    <div
+                      key={m}
+                      className="p-4 bg-white dark:bg-[#121214] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-1 shadow-2xs hover:border-foreground/30 transition-colors"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-xs font-bold text-primary">
+                          #{String(idx + 1).padStart(2, "0")}
+                        </span>
+                        <span className="px-2 py-0.5 text-[10px] font-oswald uppercase tracking-wider bg-foreground/5 text-foreground/80 border border-border/40 rounded-tl-sm rounded-br-sm">
+                          Executive
+                        </span>
+                      </div>
+                      <div className="text-xs sm:text-sm font-bold text-foreground font-oswald uppercase pt-1">
+                        {m}
+                      </div>
+                      <div className="text-[11px] text-muted-foreground font-libre">
+                        Tenure {selectedYear}
+                      </div>
                     </div>
                   ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Wave Divider B → A */}
+            <WaveDividerBA />
+
+            {/* Section 3 (White / #121214 Canvas): Constitutional Duties */}
+            <div className="py-12 sm:py-16 md:py-20 bg-white dark:bg-[#121214] transition-colors">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Constitutional Duties &amp; Portfolio Responsibilities
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    Key operational domains and statutory mandates established under the official alumni association bylaws in accordance with the Tamil Nadu Societies Registration Act, 1975.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-libre">
+                  {[
+                    {
+                      role: "Presidential & Vice Presidential Stewardship",
+                      desc: "Strategic guidance, presiding over Annual General Body meetings, representing alumni interests at Academic Council forums, and approving strategic institutional collaborations.",
+                      code: "DIR-01",
+                    },
+                    {
+                      role: "Secretariat & Operational Administration",
+                      desc: "Maintaining the statutory register of members, issuing notices of general assemblies, recording official minutes, managing digital correspondence, and organizing annual homecomings.",
+                      code: "DIR-02",
+                    },
+                    {
+                      role: "Treasury & Endowment Audit Oversight",
+                      desc: "Managing the official association bank account, overseeing scholarship fund disbursements, publishing audited annual financial statements, and ensuring statutory compliance.",
+                      code: "DIR-03",
+                    },
+                    {
+                      role: "Academic Liaison & Student Career Mentoring",
+                      desc: "Organizing industry guest lectures, facilitating corporate campus recruitments, securing internships, reviewing curriculum in Board of Studies meetings, and evaluating student innovations.",
+                      code: "DIR-04",
+                    },
+                  ].map((item) => (
+                    <div
+                      key={item.code}
+                      className="p-5 sm:p-6 bg-background dark:bg-[#18181B] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs hover:border-foreground/30 transition-colors"
+                    >
+                      <div className="flex items-baseline justify-between gap-3">
+                        <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
+                          {item.role}
+                        </h3>
+                        <span className="font-mono text-xs font-bold text-primary shrink-0">
+                          {item.code}
+                        </span>
+                      </div>
+                      <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Wave Divider A → B */}
+            <WaveDividerAB />
+
+            {/* Section 4 (#F3F3F2 / #18181B Canvas): Leadership Transition & Secretariat */}
+            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Leadership Transition &amp; Secretariat Enrollment
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    The Office Bearers Council meets quarterly to review ongoing student mentorship initiatives, evaluate scholarship allocations, and expand international regional chapters. All engineering graduates are encouraged to connect with the secretariat.
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-border/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full">
+                  <div className="space-y-0.5">
+                    <h4 className="text-sm sm:text-base font-bold font-oswald uppercase text-foreground">
+                      Join the Governing Network
+                    </h4>
+                    <p className="text-xs text-muted-foreground font-libre">
+                      Register as an active alumni representative or coordinate departmental reunions.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <RedirectButton
+                      href="https://enrollonline.co.in/Registration/Apply/MSAJCE"
+                      label="Register in Alumni Council"
+                      className="px-5 py-2.5"
+                    />
+                    <RedirectButton
+                      href="mailto:alumni@msajce-edu.in"
+                      label="Contact Secretariat"
+                      className="px-5 py-2.5"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -2014,34 +2164,27 @@ function AlumniPage() {
             </div>
 
             {/* Wave Divider A → B */}
-            <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
-              <svg
-                viewBox="0 0 1440 72"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
-                  className="fill-[#F3F3F2] dark:fill-[#18181B]"
-                />
-              </svg>
-            </div>
+            <WaveDividerAB />
 
-            {/* Section B: Core Activities Highlights */}
-            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B]">
+            {/* Section 2 (#F3F3F2 / #18181B Canvas): Flagship Alumni Pillars */}
+            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
               <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                  Flagship Alumni Pillars &amp; Industry Interaction
-                </h3>
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Flagship Alumni Pillars &amp; Industry Interaction
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    Four foundational pillars driving structured alumni engagement across undergraduate faculties, providing students with direct access to modern industrial practices.
+                  </p>
+                </div>
+
                 <div className="divide-y divide-border/40 border-y border-border/40 font-libre">
                   {associationActivities.map((act) => (
                     <div key={act.title} className="py-5 space-y-1">
                       <div className="flex items-center justify-between">
-                        <h4 className="text-base sm:text-lg font-bold font-oswald uppercase text-foreground">
+                        <h3 className="text-base sm:text-lg font-bold font-oswald uppercase text-foreground">
                           {act.title}
-                        </h4>
+                        </h3>
                         <span className="text-xs font-oswald font-bold uppercase text-primary">
                           {act.frequency}
                         </span>
@@ -2051,6 +2194,105 @@ function AlumniPage() {
                       </p>
                     </div>
                   ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Wave Divider B → A */}
+            <WaveDividerBA />
+
+            {/* Section 3 (White / #121214 Canvas): Mentorship & Career Readiness */}
+            <div className="py-12 sm:py-16 md:py-20 bg-white dark:bg-[#121214] transition-colors">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Student Mentorship &amp; Industry Readiness Channels
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    Senior alumni across global tech leaders, research labs, and startups provide hands-on coaching, technical interview drills, and career roadmapping.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-libre">
+                  {[
+                    {
+                      title: "Technical Stack Readiness & Cloud Workshops",
+                      desc: "Hands-on weekend bootcamps led by senior engineering alumni covering Docker, Kubernetes, AWS architecture, full-stack React/Next.js, and generative AI engineering workflows.",
+                      code: "MNT-01",
+                    },
+                    {
+                      title: "Corporate Mock Interviews & Portfolio Reviews",
+                      desc: "Simulated technical interview panels and resume debugging clinics conducted prior to campus placement drives to build confidence and polish problem-solving articulation.",
+                      code: "MNT-02",
+                    },
+                    {
+                      title: "Global Higher Education & Research Advisory",
+                      desc: "Alumni pursuing MS, M.Tech, and Ph.D. degrees in the US, UK, Germany, and Australia mentor undergraduates through GRE, IELTS, university shortlisting, and SOP drafting.",
+                      code: "MNT-03",
+                    },
+                    {
+                      title: "Startup Incubation & Capstone Product Mentoring",
+                      desc: "Alumni startup founders evaluate final-year engineering projects, assisting student teams in patent filings, MVP validation, and venture seed grant applications.",
+                      code: "MNT-04",
+                    },
+                  ].map((ch) => (
+                    <div
+                      key={ch.code}
+                      className="p-5 sm:p-6 bg-background dark:bg-[#18181B] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs hover:border-foreground/30 transition-colors"
+                    >
+                      <div className="flex items-baseline justify-between gap-3">
+                        <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
+                          {ch.title}
+                        </h3>
+                        <span className="font-mono text-xs font-bold text-primary shrink-0">
+                          {ch.code}
+                        </span>
+                      </div>
+                      <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                        {ch.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Wave Divider A → B */}
+            <WaveDividerAB />
+
+            {/* Section 4 (#F3F3F2 / #18181B Canvas): Archival & Collaboration */}
+            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Departmental Interaction Archival &amp; Collaboration
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    Every engineering department at MSAJCE maintains an accredited interaction ledger documenting alumni lectures, technical webinars, and placement contributions for institutional NAAC and NBA compliances.
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-border/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full">
+                  <div className="space-y-0.5">
+                    <h4 className="text-sm sm:text-base font-bold font-oswald uppercase text-foreground">
+                      Propose an Alumni Session
+                    </h4>
+                    <p className="text-xs text-muted-foreground font-libre">
+                      Share your industry expertise through a technical webinar or student mentoring panel.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <RedirectButton
+                      href="https://enrollonline.co.in/Registration/Apply/MSAJCE"
+                      label="Propose a Guest Lecture"
+                      className="px-5 py-2.5"
+                    />
+                    <RedirectButton
+                      href="https://www.msajce-edu.in/images/alumni/AlumnusStrength-SocialMedia.pdf"
+                      label="Download Activity Summary"
+                      className="px-5 py-2.5"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -2198,27 +2440,20 @@ function AlumniPage() {
             </div>
 
             {/* Wave Divider A → B */}
-            <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
-              <svg
-                viewBox="0 0 1440 72"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
-                  className="fill-[#F3F3F2] dark:fill-[#18181B]"
-                />
-              </svg>
-            </div>
+            <WaveDividerAB />
 
-            {/* Section B: Global Industry Sectors & Alumni Leadership */}
-            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B]">
+            {/* Section 2 (#F3F3F2 / #18181B Canvas): Global Industry Sectors */}
+            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
               <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                  Alumni Leadership Across Key Enterprise Sectors
-                </h3>
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Alumni Leadership Across Key Enterprise Sectors
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    Graduates of MSAJCE hold distinguished leadership positions across Fortune 500 multinationals, deep-tech research organizations, and foundational infrastructure projects worldwide.
+                  </p>
+                </div>
+
                 <div className="divide-y divide-border/40 border-y border-border/40 font-libre">
                   {[
                     { sector: "Enterprise Cloud & Software Engineering", count: "5,400+ Alumni", companies: "Google • Microsoft • Amazon • Cisco • Oracle • IBM" },
@@ -2229,9 +2464,9 @@ function AlumniPage() {
                   ].map((sec) => (
                     <div key={sec.sector} className="py-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
                       <div className="space-y-1">
-                        <h4 className="text-base sm:text-lg font-bold font-oswald uppercase text-foreground">
+                        <h3 className="text-base sm:text-lg font-bold font-oswald uppercase text-foreground">
                           {sec.sector}
-                        </h4>
+                        </h3>
                         <p className="text-xs sm:text-sm font-libre text-muted-foreground">
                           {sec.companies}
                         </p>
@@ -2241,6 +2476,102 @@ function AlumniPage() {
                       </span>
                     </div>
                   ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Wave Divider B → A */}
+            <WaveDividerBA />
+
+            {/* Section 3 (White / #121214 Canvas): Entrepreneurial Ecosystem */}
+            <div className="py-12 sm:py-16 md:py-20 bg-white dark:bg-[#121214] transition-colors">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Entrepreneurial Ventures &amp; Startup Ecosystem
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    A vibrant community of alumni entrepreneurs driving technological innovation, job creation, and campus startup incubation across domestic and global markets.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-libre">
+                  {[
+                    {
+                      title: "Venture Incubation & High-Impact Startups",
+                      desc: "Over 45+ registered enterprises founded by MSAJCE alumni operating across enterprise SaaS, AI automation, construction technology, and industrial cybersecurity.",
+                      tag: "45+ Startups",
+                    },
+                    {
+                      title: "Direct Talent Acquisition & Pre-Placement",
+                      desc: "Alumni-founded firms offer exclusive campus hiring tracks, technical apprenticeships, and summer software residencies specifically tailored for MSAJCE engineering students.",
+                      tag: "Direct Hiring",
+                    },
+                    {
+                      title: "Innovation Patents & Prototype Commercialization",
+                      desc: "Experienced alumni CTOs mentor student inventors, reviewing provisional patent drafts and guiding hardware/software prototypes toward market readiness.",
+                      tag: "R&D Mentoring",
+                    },
+                  ].map((p) => (
+                    <div
+                      key={p.title}
+                      className="p-5 sm:p-6 bg-background dark:bg-[#18181B] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs hover:border-foreground/30 transition-colors"
+                    >
+                      <div className="flex items-baseline justify-between gap-3">
+                        <h3 className="font-oswald font-bold text-base text-foreground uppercase tracking-tight">
+                          {p.title}
+                        </h3>
+                      </div>
+                      <p className="text-xs sm:text-sm text-foreground/85 font-libre leading-relaxed">
+                        {p.desc}
+                      </p>
+                      <div className="pt-2">
+                        <span className="px-2.5 py-1 bg-primary/10 text-primary font-oswald font-bold text-xs uppercase tracking-wider rounded-tl-sm rounded-br-sm inline-block">
+                          {p.tag}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Wave Divider A → B */}
+            <WaveDividerAB />
+
+            {/* Section 4 (#F3F3F2 / #18181B Canvas): Global Network Enrollment */}
+            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Global Alumni Network Directory Enrollment
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    Reconnect with classmates, professors, and over 15,000+ engineering alumni across 25+ nations. Register or update your professional coordinates to be featured in the official directory.
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-border/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full">
+                  <div className="space-y-0.5">
+                    <h4 className="text-sm sm:text-base font-bold font-oswald uppercase text-foreground">
+                      Update Professional Profile
+                    </h4>
+                    <p className="text-xs text-muted-foreground font-libre">
+                      Keep your designation, organization, and country updated for alumni chapter invitations.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <RedirectButton
+                      href="https://enrollonline.co.in/Registration/Apply/MSAJCE"
+                      label="Update Directory Profile"
+                      className="px-5 py-2.5"
+                    />
+                    <RedirectButton
+                      href="mailto:alumni@msajce-edu.in"
+                      label="Nominate an Alumnus"
+                      className="px-5 py-2.5"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -2387,34 +2718,27 @@ function AlumniPage() {
             </div>
 
             {/* Wave Divider A → B */}
-            <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
-              <svg
-                viewBox="0 0 1440 72"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
-                  className="fill-[#F3F3F2] dark:fill-[#18181B]"
-                />
-              </svg>
-            </div>
+            <WaveDividerAB />
 
-            {/* Section B: Scholarship Categories */}
-            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B]">
+            {/* Section 2 (#F3F3F2 / #18181B Canvas): Scholarship Categories */}
+            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
               <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                  Alumni Scholarship Endowment Categories
-                </h3>
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Alumni Scholarship Endowment Categories
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    Four targeted endowment categories ensuring financial inclusivity, rewarding academic merit, and assisting undergraduate scholars facing sudden socioeconomic hardships.
+                  </p>
+                </div>
+
                 <div className="divide-y divide-border/40 border-y border-border/40 font-libre">
                   {scholarshipTiers.map((tier) => (
                     <div key={tier.title} className="py-5 space-y-1">
                       <div className="flex items-center justify-between">
-                        <h4 className="text-base sm:text-lg font-bold font-oswald uppercase text-foreground">
+                        <h3 className="text-base sm:text-lg font-bold font-oswald uppercase text-foreground">
                           {tier.title}
-                        </h4>
+                        </h3>
                         <span className="text-sm font-oswald font-black text-primary">
                           {tier.amount}
                         </span>
@@ -2424,6 +2748,105 @@ function AlumniPage() {
                       </p>
                     </div>
                   ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Wave Divider B → A */}
+            <WaveDividerBA />
+
+            {/* Section 3 (White / #121214 Canvas): Governance & Selection Protocol */}
+            <div className="py-12 sm:py-16 md:py-20 bg-white dark:bg-[#121214] transition-colors">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Governance, Eligibility &amp; Selection Protocol
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    Endowment grants are disbursed through a transparent four-stage institutional screening protocol governed jointly by the Alumni Scholarship Board and college academic leadership.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-libre">
+                  {[
+                    {
+                      title: "Academic Diligence & Semester Performance",
+                      desc: "Undergraduates must maintain consistent academic standing with a minimum 7.5 CGPA and zero active arrears in university semester examinations.",
+                      code: "CRIT-01",
+                    },
+                    {
+                      title: "Verified Family Income & Socioeconomic Need",
+                      desc: "Applicants submit government-verified family income certificates and parental occupation records evaluated by the institutional social screening committee.",
+                      code: "CRIT-02",
+                    },
+                    {
+                      title: "Departmental Faculty Endorsement",
+                      desc: "Confidential recommendations from the Head of Department and Class Advisor assessing student conduct, laboratory discipline, and technical dedication.",
+                      code: "CRIT-03",
+                    },
+                    {
+                      title: "Direct Academic Ledger Crediting",
+                      desc: "Approved scholarships are credited directly toward the student's institutional tuition fee account with transparent electronic receipt generation.",
+                      code: "CRIT-04",
+                    },
+                  ].map((crit) => (
+                    <div
+                      key={crit.code}
+                      className="p-5 sm:p-6 bg-background dark:bg-[#18181B] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs hover:border-foreground/30 transition-colors"
+                    >
+                      <div className="flex items-baseline justify-between gap-3">
+                        <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
+                          {crit.title}
+                        </h3>
+                        <span className="font-mono text-xs font-bold text-primary shrink-0">
+                          {crit.code}
+                        </span>
+                      </div>
+                      <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                        {crit.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Wave Divider A → B */}
+            <WaveDividerAB />
+
+            {/* Section 4 (#F3F3F2 / #18181B Canvas): Named Endowments & Contribution */}
+            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Support the Alumni Endowment Fund
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    Alumni individuals, graduation batches, or corporate employers can establish named scholarship endowments or contribute directly to the revolving student financial aid corpus.
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-border/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full">
+                  <div className="space-y-0.5">
+                    <h4 className="text-sm sm:text-base font-bold font-oswald uppercase text-foreground">
+                      Contribute to Student Financial Aid
+                    </h4>
+                    <p className="text-xs text-muted-foreground font-libre">
+                      100% of your contributions go directly toward student tuition relief and innovation grants.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <RedirectButton
+                      href="https://www.feepayr.com/"
+                      label="Contribute via FeePayr"
+                      className="px-5 py-2.5"
+                    />
+                    <RedirectButton
+                      href="mailto:alumni@msajce-edu.in"
+                      label="Establish Named Endowment"
+                      className="px-5 py-2.5"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -2488,29 +2911,21 @@ function AlumniPage() {
             </div>
 
             {/* Wave Divider A → B */}
-            <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
-              <svg
-                viewBox="0 0 1440 72"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
-                  className="fill-[#F3F3F2] dark:fill-[#18181B]"
-                />
-              </svg>
-            </div>
+            <WaveDividerAB />
 
-            {/* Section B: Alumni Video Testimonials & Media */}
-            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B]">
+            {/* Section 2 (#F3F3F2 / #18181B Canvas): Alumni Video Testimonials */}
+            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
               <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                  Alumni Video Feedback &amp; Testimonials
-                </h3>
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Alumni Video Feedback &amp; Testimonials
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    Hear directly from our engineering graduates as they share memories, faculty mentorship experiences, corporate milestones, and advice for current students.
+                  </p>
+                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-libre">
                   {[
                     { title: "Alumni Testimonial — Industry Career Insights", videoId: "AxvzRz-jycU", author: "MSAJCE Graduate" },
                     { title: "Alumni Feedback — Academic Experience & Placement Support", videoId: "CjYcjDT_aJM", author: "MSAJCE Alumnus" },
@@ -2532,19 +2947,32 @@ function AlumniPage() {
                           allowFullScreen
                         />
                       </div>
-                      <h4 className="text-xs sm:text-sm font-bold font-oswald uppercase text-foreground leading-snug">
+                      <h3 className="text-xs sm:text-sm font-bold font-oswald uppercase text-foreground leading-snug">
                         {vid.title}
-                      </h4>
+                      </h3>
                     </div>
                   ))}
                 </div>
+              </div>
+            </div>
 
-                {/* 2021 Reunion Banner */}
-                <div className="pt-8 space-y-3">
-                  <h4 className="text-base font-bold font-oswald uppercase text-foreground">
-                    Alumni Meet 2021 (2005, 2006 &amp; 2007 Batches)
-                  </h4>
-                  <div className="overflow-hidden border border-border/60 bg-black aspect-[21/9] min-h-[200px] rounded-md">
+            {/* Wave Divider B → A */}
+            <WaveDividerBA />
+
+            {/* Section 3 (White / #121214 Canvas): Milestone Reunions */}
+            <div className="py-12 sm:py-16 md:py-20 bg-white dark:bg-[#121214] transition-colors">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Historical Homecoming Assemblies
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    Archival spotlight on Alumni Meet 2021 celebrating the pioneer batches of 2005, 2006, and 2007. Graduates gathered on campus to commemorate 15 years of professional achievement and honor veteran faculty members.
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="overflow-hidden border border-border/60 bg-black aspect-[21/9] min-h-[220px] rounded-md">
                     <img
                       key="alumni-meet-2021"
                       src="https://www.msajce-edu.in/images/alumni/AlumniMeet2021.jpg"
@@ -2553,6 +2981,50 @@ function AlumniPage() {
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = "/images/alumni_section.jpg";
                       }}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-muted-foreground font-libre pt-1">
+                    <span>Grand Auditorium Assembly • Batches 2005, 2006 &amp; 2007</span>
+                    <span className="font-oswald uppercase tracking-wider font-bold text-foreground">Archival Edition</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Wave Divider A → B */}
+            <WaveDividerAB />
+
+            {/* Section 4 (#F3F3F2 / #18181B Canvas): Organize Your Batch Reunion */}
+            <div className="py-12 sm:py-16 md:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+              <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-16 space-y-8">
+                <div className="space-y-4 w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    Organize Your Batch Reunion
+                  </h2>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+                    Returning to campus is a cherished milestone. The Alumni Relations Cell coordinates comprehensive campus logistics for decennial, silver jubilee, and batch-specific reunion gatherings on campus.
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-border/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full">
+                  <div className="space-y-0.5">
+                    <h4 className="text-sm sm:text-base font-bold font-oswald uppercase text-foreground">
+                      Plan a Campus Homecoming
+                    </h4>
+                    <p className="text-xs text-muted-foreground font-libre">
+                      Our team coordinates auditorium bookings, faculty invitations, photography, and refreshments.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <RedirectButton
+                      href="mailto:alumni@msajce-edu.in"
+                      label="Request Batch Reunion"
+                      className="px-5 py-2.5"
+                    />
+                    <RedirectButton
+                      href="https://photos.app.goo.gl/Qg5EabymfsW948G37"
+                      label="Browse Reunion Archive"
+                      className="px-5 py-2.5"
                     />
                   </div>
                 </div>

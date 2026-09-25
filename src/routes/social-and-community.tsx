@@ -63,6 +63,25 @@ function WaveDividerAB() {
   );
 }
 
+function WaveDividerBA() {
+  return (
+    <div className="w-full overflow-hidden leading-none select-none bg-[#F3F3F2] dark:bg-[#18181B]">
+      <svg
+        viewBox="0 0 1440 72"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+          className="fill-white dark:fill-[#121214]"
+        />
+      </svg>
+    </div>
+  );
+}
+
 // -------------------------------------------------------------
 // DATA ARRAYS (Authentic User-Provided Content ONLY)
 // -------------------------------------------------------------
@@ -480,7 +499,7 @@ function SocialAndCommunityPortal() {
               {/* ================================================================= */}
               {activeSection === "nss" && (
                 <div className="w-full">
-                  {/* Section A (White / #121214 Canvas): Overview & Core Principles */}
+                  {/* Section 1 (White / #121214 Canvas): Overview & Narrative */}
                   <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
@@ -499,69 +518,31 @@ function SocialAndCommunityPortal() {
                         </p>
                       </div>
 
-                      {/* Subsection: Objectives of NSS */}
-                      <div className="space-y-4 pt-2">
-                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-                          Objectives of NSS
-                        </h3>
-                        <div className="divide-y divide-border/40 font-libre">
-                          {nssObjectives.map((obj, idx) => (
-                            <div
-                              key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
-                            >
-                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
-                                {idx + 1}
-                              </span>
-                              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
-                                {obj}
-                              </p>
-                            </div>
-                          ))}
+                      {/* 3-Pillar Highlight Grid */}
+                      <div className="pt-4 border-t border-border/40 grid grid-cols-1 sm:grid-cols-3 gap-6 font-libre">
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            100+ Active Members
+                          </div>
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            1st &amp; 2nd Year Volunteers
+                          </div>
                         </div>
-                      </div>
-
-                      {/* Subsection: Duties of NSS Volunteers */}
-                      <div className="space-y-4 pt-4">
-                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-                          Duties of NSS Volunteers
-                        </h3>
-                        <div className="divide-y divide-border/40 font-libre">
-                          {nssDuties.map((duty, idx) => (
-                            <div
-                              key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
-                            >
-                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
-                                {idx + 1}
-                              </span>
-                              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
-                                {duty}
-                              </p>
-                            </div>
-                          ))}
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            Established 2001
+                          </div>
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            Institute-Level Service Legacy
+                          </div>
                         </div>
-                      </div>
-
-                      {/* Subsection: Code of Conduct for NSS Volunteers */}
-                      <div className="space-y-4 pt-4">
-                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-                          Code of Conduct for NSS Volunteers
-                        </h3>
-                        <div className="divide-y divide-border/40 font-libre">
-                          {nssCodeOfConduct.map((item, idx) => (
-                            <div
-                              key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
-                            >
-                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
-                                {idx + 1}
-                              </span>
-                              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
-                                {item}
-                              </p>
-                            </div>
-                          ))}
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            Selfless Service
+                          </div>
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            Personality Development Focus
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -570,123 +551,213 @@ function SocialAndCommunityPortal() {
                   {/* Wave Divider A -> B */}
                   <WaveDividerAB />
 
-                  {/* Section B (#F3F3F2 / #18181B Canvas): Events & Activity Reports */}
+                  {/* Section 2 (#F3F3F2 / #18181B Canvas): Objectives of NSS */}
                   <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                          Events Organized on Days of National Importance
+                          Objectives of National Service Scheme
                         </h2>
                       </div>
 
-                      {/* Observances Table (DataGrid Standard) */}
-                      <div className="space-y-3">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-                            Observed National Days
-                          </h3>
-                          <span className="font-mono text-xs font-bold text-muted-foreground">
-                            8 Annual Observances
-                          </span>
-                        </div>
-                        <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
-                          <div className="overflow-x-auto bg-transparent">
-                            <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
-                              <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
-                                <tr>
-                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
-                                    S.No
-                                  </th>
-                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
-                                    Day of National Importance
-                                  </th>
-                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
-                                    Commemoration / Significance
-                                  </th>
-                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-right w-44">
-                                    Date of Observance
-                                  </th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-border/40 font-libre">
-                                {nationalDays.map((day, idx) => (
-                                  <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
-                                    <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                                      {String(idx + 1).padStart(2, "0")}
-                                    </td>
-                                    <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
-                                      {day.name}
-                                    </td>
-                                    <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/80">
-                                      {day.commemoration || "—"}
-                                    </td>
-                                    <td className="py-3.5 px-4 text-right font-mono font-semibold text-foreground text-xs whitespace-nowrap">
-                                      <div className="inline-flex items-center gap-1.5 justify-end">
-                                        <Calendar className="w-3.5 h-3.5 text-muted-foreground" />
-                                        <span>{day.date}</span>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
+                      <div className="divide-y divide-border/40 font-libre">
+                        {nssObjectives.map((obj, idx) => (
+                          <div
+                            key={idx}
+                            className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
+                          >
+                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                              {idx + 1}
+                            </span>
+                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
+                              {obj}
+                            </p>
                           </div>
-                        </DataGridContainer>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Wave Divider B -> A */}
+                  <WaveDividerBA />
+
+                  {/* Section 3 (White / #121214 Canvas): Duties & Code of Conduct */}
+                  <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
+                    <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-8">
+                      <div>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          Volunteer Duties &amp; Code of Conduct
+                        </h2>
                       </div>
 
-                      {/* Official DataGrid Table Standard for Event Reports */}
-                      <div className="space-y-3 pt-4">
-                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-                          NSS Event Reports Directory
-                        </h3>
-                        <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
-                          <div className="overflow-x-auto bg-transparent">
-                            <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
-                              <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
-                                <tr>
-                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
-                                    S.No
-                                  </th>
-                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
-                                    Name of the Event
-                                  </th>
-                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-36">
-                                    Date
-                                  </th>
-                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-right w-44">
-                                    Action
-                                  </th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-border/40 font-libre">
-                                {nssEvents.map((evt) => (
-                                  <tr key={evt.sNo} className="hover:bg-foreground/[0.02] transition-colors">
-                                    <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                                      {String(evt.sNo).padStart(2, "0")}
-                                    </td>
-                                    <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
-                                      {evt.name}
-                                    </td>
-                                    <td className="py-3.5 px-4 font-mono font-semibold text-foreground text-xs whitespace-nowrap">
-                                      <div className="inline-flex items-center gap-1.5">
-                                        <Calendar className="w-3.5 h-3.5 text-muted-foreground" />
-                                        {evt.date}
-                                      </div>
-                                    </td>
-                                    <td className="py-3.5 px-4 text-right whitespace-nowrap">
-                                      <RedirectButton
-                                        href={evt.pdfUrl}
-                                        label="View Report"
-                                        icon={<FileText className="w-3.5 h-3.5" />}
-                                      />
-                                    </td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                        {/* Left Column: Duties */}
+                        <div className="space-y-4">
+                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground pb-2 border-b border-border/40">
+                            Duties of NSS Volunteers
+                          </h3>
+                          <div className="divide-y divide-border/40 font-libre">
+                            {nssDuties.map((duty, idx) => (
+                              <div
+                                key={idx}
+                                className="py-3.5 px-1 sm:px-2 flex items-start gap-3 sm:gap-3.5 hover:bg-foreground/[0.015] transition-colors"
+                              >
+                                <span className="shrink-0 flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs mt-0.5 border border-foreground/20 shadow-2xs">
+                                  {idx + 1}
+                                </span>
+                                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5">
+                                  {duty}
+                                </p>
+                              </div>
+                            ))}
                           </div>
-                        </DataGridContainer>
+                        </div>
+
+                        {/* Right Column: Code of Conduct */}
+                        <div className="space-y-4">
+                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground pb-2 border-b border-border/40">
+                            Code of Conduct for NSS Volunteers
+                          </h3>
+                          <div className="divide-y divide-border/40 font-libre">
+                            {nssCodeOfConduct.map((item, idx) => (
+                              <div
+                                key={idx}
+                                className="py-3.5 px-1 sm:px-2 flex items-start gap-3 sm:gap-3.5 hover:bg-foreground/[0.015] transition-colors"
+                              >
+                                <span className="shrink-0 flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs mt-0.5 border border-foreground/20 shadow-2xs">
+                                  {idx + 1}
+                                </span>
+                                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5">
+                                  {item}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       </div>
+                    </div>
+                  </section>
+
+                  {/* Wave Divider A -> B */}
+                  <WaveDividerAB />
+
+                  {/* Section 4 (#F3F3F2 / #18181B Canvas): Days of National Importance */}
+                  <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
+                    <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          Events Organized on Days of National Importance
+                        </h2>
+                        <span className="font-mono text-xs font-bold text-muted-foreground uppercase">
+                          8 Annual Observances
+                        </span>
+                      </div>
+
+                      <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                        <div className="overflow-x-auto bg-transparent">
+                          <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                              <tr>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
+                                  S.No
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                                  Day of National Importance
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                                  Commemoration / Significance
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-right w-44">
+                                  Date of Observance
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border/40 font-libre">
+                              {nationalDays.map((day, idx) => (
+                                <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                                  <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
+                                    {String(idx + 1).padStart(2, "0")}
+                                  </td>
+                                  <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
+                                    {day.name}
+                                  </td>
+                                  <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/80">
+                                    {day.commemoration || "—"}
+                                  </td>
+                                  <td className="py-3.5 px-4 text-right font-mono font-semibold text-foreground text-xs whitespace-nowrap">
+                                    <div className="inline-flex items-center gap-1.5 justify-end">
+                                      <Calendar className="w-3.5 h-3.5 text-muted-foreground" />
+                                      <span>{day.date}</span>
+                                    </div>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </DataGridContainer>
+                    </div>
+                  </section>
+
+                  {/* Wave Divider B -> A */}
+                  <WaveDividerBA />
+
+                  {/* Section 5 (White / #121214 Canvas): Event Reports Directory */}
+                  <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
+                    <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+                      <div>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          NSS Event Reports Directory
+                        </h2>
+                      </div>
+
+                      <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                        <div className="overflow-x-auto bg-transparent">
+                          <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                            <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                              <tr>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
+                                  S.No
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                                  Name of the Event
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-36">
+                                  Date
+                                </th>
+                                <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-right w-44">
+                                  Action
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border/40 font-libre">
+                              {nssEvents.map((evt) => (
+                                <tr key={evt.sNo} className="hover:bg-foreground/[0.02] transition-colors">
+                                  <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
+                                    {String(evt.sNo).padStart(2, "0")}
+                                  </td>
+                                  <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
+                                    {evt.name}
+                                  </td>
+                                  <td className="py-3.5 px-4 font-mono font-semibold text-foreground text-xs whitespace-nowrap">
+                                    <div className="inline-flex items-center gap-1.5">
+                                      <Calendar className="w-3.5 h-3.5 text-muted-foreground" />
+                                      {evt.date}
+                                    </div>
+                                  </td>
+                                  <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                                    <RedirectButton
+                                      href={evt.pdfUrl}
+                                      label="View Report"
+                                      icon={<FileText className="w-3.5 h-3.5" />}
+                                    />
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </DataGridContainer>
                     </div>
                   </section>
                 </div>
@@ -697,7 +768,7 @@ function SocialAndCommunityPortal() {
               {/* ================================================================= */}
               {activeSection === "yrc" && (
                 <div className="w-full">
-                  {/* Section A (White / #121214 Canvas): Overview & Core Principles */}
+                  {/* Section 1 (White / #121214 Canvas): Overview & Narrative */}
                   <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
@@ -713,47 +784,31 @@ function SocialAndCommunityPortal() {
                         </p>
                       </div>
 
-                      {/* Core Principles of Youth Red Cross (Sections Design, No 01/02 Badges) */}
-                      <div className="space-y-4 pt-2">
-                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-                          Core Principles of Youth Red Cross
-                        </h3>
-                        <div className="divide-y divide-border/40 font-libre">
-                          {yrcPrinciples.map((pr, idx) => (
-                            <div
-                              key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-2 flex flex-col gap-1 hover:bg-foreground/[0.015] transition-colors"
-                            >
-                              <h4 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
-                                {pr.title}
-                              </h4>
-                              <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                                {pr.desc}
-                              </p>
-                            </div>
-                          ))}
+                      {/* 3-Pillar Highlight Grid */}
+                      <div className="pt-4 border-t border-border/40 grid grid-cols-1 sm:grid-cols-3 gap-6 font-libre">
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            100+ Active Members
+                          </div>
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            Trained Student Volunteers
+                          </div>
                         </div>
-                      </div>
-
-                      {/* Objectives of Youth Red Cross */}
-                      <div className="space-y-4 pt-4">
-                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-                          Objectives of Youth Red Cross
-                        </h3>
-                        <div className="divide-y divide-border/40 font-libre">
-                          {yrcObjectives.map((obj, idx) => (
-                            <div
-                              key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
-                            >
-                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
-                                {idx + 1}
-                              </span>
-                              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
-                                {obj}
-                              </p>
-                            </div>
-                          ))}
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            Established 2014
+                          </div>
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            Over a Decade of Humanitarian Service
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            Indian Red Cross
+                          </div>
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            Mother Constituent Body
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -762,7 +817,67 @@ function SocialAndCommunityPortal() {
                   {/* Wave Divider A -> B */}
                   <WaveDividerAB />
 
-                  {/* Section B (#F3F3F2 / #18181B Canvas): Student-Led Programmes */}
+                  {/* Section 2 (#F3F3F2 / #18181B Canvas): Core Principles */}
+                  <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
+                    <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+                      <div>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          Core Principles of Youth Red Cross
+                        </h2>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 font-libre">
+                        {yrcPrinciples.map((pr, idx) => (
+                          <div
+                            key={idx}
+                            className="p-5 sm:p-6 bg-white dark:bg-[#121214] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs hover:border-foreground/30 transition-colors"
+                          >
+                            <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
+                              {pr.title}
+                            </h3>
+                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                              {pr.desc}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Wave Divider B -> A */}
+                  <WaveDividerBA />
+
+                  {/* Section 3 (White / #121214 Canvas): Objectives */}
+                  <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
+                    <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+                      <div>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          Objectives of Youth Red Cross
+                        </h2>
+                      </div>
+
+                      <div className="divide-y divide-border/40 font-libre">
+                        {yrcObjectives.map((obj, idx) => (
+                          <div
+                            key={idx}
+                            className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
+                          >
+                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                              {idx + 1}
+                            </span>
+                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
+                              {obj}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Wave Divider A -> B */}
+                  <WaveDividerAB />
+
+                  {/* Section 4 (#F3F3F2 / #18181B Canvas): Student-Led Programmes */}
                   <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
@@ -771,7 +886,7 @@ function SocialAndCommunityPortal() {
                         </h2>
                       </div>
 
-                      {/* 2-Column Architectural Feature Grid (No Badges, No Cards) */}
+                      {/* 2-Column Architectural Feature Grid */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 pt-2">
                         {yrcActivities.map((act, idx) => (
                           <div
@@ -802,7 +917,7 @@ function SocialAndCommunityPortal() {
               {/* ================================================================= */}
               {activeSection === "uba" && (
                 <div className="w-full">
-                  {/* Section A (White / #121214 Canvas): Gandhian Foundations, Vision & Mission */}
+                  {/* Section 1 (White / #121214 Canvas): Gandhian Foundations & Narrative */}
                   <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
@@ -822,6 +937,48 @@ function SocialAndCommunityPortal() {
                         <p>
                           There are huge developmental disconnects between the rural and urban. Increasing urbanization is neither sustainable nor desirable.
                         </p>
+                      </div>
+
+                      {/* 3-Pillar Highlight Grid */}
+                      <div className="pt-4 border-t border-border/40 grid grid-cols-1 sm:grid-cols-3 gap-6 font-libre">
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            Village Republics
+                          </div>
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            Gandhian Vision
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            Inclusive India
+                          </div>
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            Participatory Transformation
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <div className="font-oswald font-black text-2xl sm:text-3xl text-foreground tracking-tight">
+                            Appropriate Tech
+                          </div>
+                          <div className="text-xs sm:text-sm text-foreground/80 font-medium">
+                            Decentralized &amp; Sustainable
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Wave Divider A -> B */}
+                  <WaveDividerAB />
+
+                  {/* Section 2 (#F3F3F2 / #18181B Canvas): Vision & Mission */}
+                  <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
+                    <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+                      <div>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          Vision &amp; Mission of Unnat Bharat Abhiyan
+                        </h2>
                       </div>
 
                       {/* Vision & Mission 2-Column Architectural Split with Official V & M Badges */}
@@ -857,11 +1014,11 @@ function SocialAndCommunityPortal() {
                     </div>
                   </section>
 
-                  {/* Wave Divider A -> B */}
-                  <WaveDividerAB />
+                  {/* Wave Divider B -> A */}
+                  <WaveDividerBA />
 
-                  {/* Section B (#F3F3F2 / #18181B Canvas): 9 Locally Met Basic Needs */}
-                  <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
+                  {/* Section 3 (White / #121214 Canvas): 9 Locally Met Basic Needs */}
+                  <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
@@ -896,6 +1053,41 @@ function SocialAndCommunityPortal() {
                       </div>
                     </div>
                   </section>
+
+                  {/* Wave Divider A -> B */}
+                  <WaveDividerAB />
+
+                  {/* Section 4 (#F3F3F2 / #18181B Canvas): Strategic Pillars */}
+                  <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
+                    <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+                      <div>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          Strategic Pillars of Rural Transformation
+                        </h2>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 font-libre">
+                        {ubaPillars.map((p, idx) => (
+                          <div
+                            key={idx}
+                            className="p-5 sm:p-6 bg-white dark:bg-[#121214] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs hover:border-foreground/30 transition-colors"
+                          >
+                            <div className="flex items-baseline justify-between gap-3">
+                              <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
+                                {p.title}
+                              </h3>
+                              <span className="font-mono text-xs font-bold text-muted-foreground shrink-0">
+                                0{idx + 1}
+                              </span>
+                            </div>
+                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                              {p.desc}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
                 </div>
               )}
 
@@ -904,7 +1096,7 @@ function SocialAndCommunityPortal() {
               {/* ================================================================= */}
               {activeSection === "ebsb" && (
                 <div className="w-full">
-                  {/* Section A (White / #121214 Canvas): Mandate, Objectives & State Pairing */}
+                  {/* Section 1 (White / #121214 Canvas): Mandate & National Vision */}
                   <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
@@ -926,38 +1118,42 @@ function SocialAndCommunityPortal() {
                         </p>
                       </div>
 
-                      {/* Subsection: EBSB at MSAJCE */}
-                      <div className="space-y-3 pt-2">
-                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-                          EBSB at MSAJCE — Institutional Pairing
-                        </h3>
-                        <div className="w-full border-l-4 border-primary pl-4 sm:pl-6 py-3.5 sm:py-4 bg-foreground/[0.02] dark:bg-white/[0.02] rounded-r-lg">
-                          <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                            As part of the Ek Bharat Shreshtha Bharat (EBSB) initiative, Mohamed Sathak A. J. College of Engineering (MSAJCE), representing Tamil Nadu, has been paired with SSM College of Engineering, Baramulla, Jammu &amp; Kashmir. Through this partnership, students from both institutions engage in mutual cultural exchange programmes, academic collaborations, and language learning activities, strengthening national integration and cross-state unity.
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Subsection: Objectives of EBSB */}
-                      <div className="space-y-4 pt-4">
-                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-                          Key Objectives of EBSB
-                        </h3>
-                        <div className="divide-y divide-border/40 font-libre">
-                          {ebsbObjectives.map((obj, idx) => (
-                            <div
-                              key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
-                            >
-                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
-                                {idx + 1}
+                      {/* 3-Pillar Highlight Grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2 font-libre">
+                        {[
+                          {
+                            title: "Unity in Diversity",
+                            desc: "Strengthening the emotional and cultural bonds between citizens across disparate geographic territories.",
+                            code: "01",
+                          },
+                          {
+                            title: "Bilateral State Pairing",
+                            desc: "Structured annual institutional engagements linking institutions across paired states for academic and cultural exchange.",
+                            code: "02",
+                          },
+                          {
+                            title: "Shared Heritage & Pedagogy",
+                            desc: "Fostering language acquisition, traditional knowledge sharing, and collegiate youth assemblies.",
+                            code: "03",
+                          },
+                        ].map((p) => (
+                          <div
+                            key={p.code}
+                            className="p-5 sm:p-6 bg-background dark:bg-[#18181B] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs hover:border-foreground/30 transition-colors"
+                          >
+                            <div className="flex items-baseline justify-between gap-3">
+                              <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
+                                {p.title}
+                              </h3>
+                              <span className="font-mono text-xs font-bold text-primary shrink-0">
+                                {p.code}
                               </span>
-                              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
-                                {obj}
-                              </p>
                             </div>
-                          ))}
-                        </div>
+                            <p className="text-sm text-foreground/85 font-libre font-medium leading-relaxed">
+                              {p.desc}
+                            </p>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </section>
@@ -965,7 +1161,83 @@ function SocialAndCommunityPortal() {
                   {/* Wave Divider A -> B */}
                   <WaveDividerAB />
 
-                  {/* Section B (#F3F3F2 / #18181B Canvas): Conducted Programmes Table */}
+                  {/* Section 2 (#F3F3F2 / #18181B Canvas): Institutional Pairing at MSAJCE */}
+                  <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
+                    <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+                      <div>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          Institutional Pairing at MSAJCE
+                        </h2>
+                      </div>
+
+                      <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                        <p>
+                          As part of the Ek Bharat Shreshtha Bharat (EBSB) initiative, Mohamed Sathak A. J. College of Engineering (MSAJCE), representing Tamil Nadu, has been paired with SSM College of Engineering, Baramulla, Jammu &amp; Kashmir. Through this partnership, students from both institutions engage in mutual cultural exchange programmes, academic collaborations, and language learning activities, strengthening national integration and cross-state unity.
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-libre pt-2">
+                        <div className="p-5 sm:p-6 bg-white dark:bg-[#121214] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs">
+                          <span className="text-xs font-oswald uppercase font-bold text-primary tracking-wider">
+                            Host Institution (Tamil Nadu)
+                          </span>
+                          <h3 className="font-oswald font-bold text-lg text-foreground uppercase">
+                            Mohamed Sathak A. J. College of Engineering
+                          </h3>
+                          <p className="text-sm text-muted-foreground font-libre">
+                            Autonomous engineering college affiliated with Anna University, Chennai, Tamil Nadu. Representing Dravidian linguistic heritage, southern classical arts, and coastal innovation.
+                          </p>
+                        </div>
+
+                        <div className="p-5 sm:p-6 bg-white dark:bg-[#121214] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs">
+                          <span className="text-xs font-oswald uppercase font-bold text-primary tracking-wider">
+                            Paired Institution (Jammu &amp; Kashmir)
+                          </span>
+                          <h3 className="font-oswald font-bold text-lg text-foreground uppercase">
+                            SSM College of Engineering, Baramulla
+                          </h3>
+                          <p className="text-sm text-muted-foreground font-libre">
+                            Premier engineering institution in Baramulla, Jammu &amp; Kashmir. Representing northern cultural traditions, Kashmiri crafts, Himalayan environmental ecology, and technical collaboration.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Wave Divider B -> A */}
+                  <WaveDividerBA />
+
+                  {/* Section 3 (White / #121214 Canvas): Key Objectives */}
+                  <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
+                    <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+                      <div>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          Key Objectives of EBSB
+                        </h2>
+                      </div>
+
+                      <div className="divide-y divide-border/40 font-libre">
+                        {ebsbObjectives.map((obj, idx) => (
+                          <div
+                            key={idx}
+                            className="py-4 sm:py-5 px-1 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors"
+                          >
+                            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                              {idx + 1}
+                            </span>
+                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-1">
+                              {obj}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Wave Divider A -> B */}
+                  <WaveDividerAB />
+
+                  {/* Section 4 (#F3F3F2 / #18181B Canvas): Conducted Programmes Table */}
                   <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
@@ -1037,7 +1309,7 @@ function SocialAndCommunityPortal() {
               {/* ================================================================= */}
               {activeSection === "karma" && (
                 <div className="w-full">
-                  {/* Section A (White / #121214 Canvas): Mandate, Objectives & Skilling Models */}
+                  {/* Section 1 (White / #121214 Canvas): Mandate & Academic Narrative */}
                   <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
@@ -1053,56 +1325,42 @@ function SocialAndCommunityPortal() {
                         </p>
                       </div>
 
-                      {/* Subsection: Objectives of KARMA */}
-                      <div className="space-y-4 pt-2">
-                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-                          Objectives of KARMA
-                        </h3>
-                        <div className="divide-y divide-border/40 font-libre">
-                          {karmaObjectives.map((obj, idx) => (
-                            <div
-                              key={idx}
-                              className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
-                            >
-                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
-                                {idx + 1}
+                      {/* 3-Pillar Highlight Grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2 font-libre">
+                        {[
+                          {
+                            title: "Kaushal Augmentation",
+                            desc: "Targeted skill upgrades and competency development aligned with National Skills Qualifications Framework (NSQF).",
+                            code: "01",
+                          },
+                          {
+                            title: "Workforce Readiness",
+                            desc: "Direct hands-on technical training transforming technical students and school leavers into employable engineering professionals.",
+                            code: "02",
+                          },
+                          {
+                            title: "Institutional Infrastructure",
+                            desc: "Deploying world-class college laboratories, CNC machining centers, and IoT suites for public skilling missions.",
+                            code: "03",
+                          },
+                        ].map((p) => (
+                          <div
+                            key={p.code}
+                            className="p-5 sm:p-6 bg-background dark:bg-[#18181B] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs hover:border-foreground/30 transition-colors"
+                          >
+                            <div className="flex items-baseline justify-between gap-3">
+                              <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
+                                {p.title}
+                              </h3>
+                              <span className="font-mono text-xs font-bold text-primary shrink-0">
+                                {p.code}
                               </span>
-                              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
-                                {obj}
-                              </p>
                             </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Subsection: Three Skilling Models Under KARMA */}
-                      <div className="space-y-4 pt-4">
-                        <div className="space-y-1">
-                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-                            Three Skilling Models Under KARMA
-                          </h3>
-                          <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                            AICTE has proposed three models for skilling in-school students, school dropouts, and students pursuing technical education:
-                          </p>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 pt-2 font-libre">
-                          {karmaModels.map((m, idx) => (
-                            <div
-                              key={idx}
-                              className="border-l-2 border-border/80 hover:border-foreground/40 pl-4 sm:pl-5 py-2 transition-colors space-y-2"
-                            >
-                              <span className="font-mono text-xs font-bold text-muted-foreground uppercase tracking-wider block">
-                                {m.modelTag}
-                              </span>
-                              <h4 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
-                                {m.title}
-                              </h4>
-                              <p className="text-xs sm:text-sm text-foreground/80 font-libre font-medium leading-relaxed">
-                                {m.desc}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
+                            <p className="text-sm text-foreground/85 font-libre font-medium leading-relaxed">
+                              {p.desc}
+                            </p>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </section>
@@ -1110,7 +1368,73 @@ function SocialAndCommunityPortal() {
                   {/* Wave Divider A -> B */}
                   <WaveDividerAB />
 
-                  {/* Section B (#F3F3F2 / #18181B Canvas): Approved Courses & Sanctions */}
+                  {/* Section 2 (#F3F3F2 / #18181B Canvas): Objectives of KARMA */}
+                  <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
+                    <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+                      <div>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          Objectives of KARMA Scheme
+                        </h2>
+                      </div>
+
+                      <div className="divide-y divide-border/40 font-libre">
+                        {karmaObjectives.map((obj, idx) => (
+                          <div
+                            key={idx}
+                            className="py-4 sm:py-5 px-1 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors"
+                          >
+                            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                              {idx + 1}
+                            </span>
+                            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-1">
+                              {obj}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Wave Divider B -> A */}
+                  <WaveDividerBA />
+
+                  {/* Section 3 (White / #121214 Canvas): Three Skilling Models */}
+                  <section className="w-full bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
+                    <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+                      <div className="space-y-2">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          Three Skilling Models Under KARMA
+                        </h2>
+                        <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                          AICTE has proposed three models for skilling in-school students, school dropouts, and students pursuing technical education:
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 pt-2 font-libre">
+                        {karmaModels.map((m, idx) => (
+                          <div
+                            key={idx}
+                            className="p-5 sm:p-6 bg-background dark:bg-[#18181B] border border-border/60 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs space-y-2 shadow-2xs hover:border-foreground/30 transition-colors"
+                          >
+                            <span className="font-mono text-xs font-bold text-primary uppercase tracking-wider block">
+                              {m.modelTag}
+                            </span>
+                            <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
+                              {m.title}
+                            </h3>
+                            <p className="text-xs sm:text-sm text-foreground/80 font-libre font-medium leading-relaxed">
+                              {m.desc}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Wave Divider A -> B */}
+                  <WaveDividerAB />
+
+                  {/* Section 4 (#F3F3F2 / #18181B Canvas): Approved Courses & Sanctions */}
                   <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
