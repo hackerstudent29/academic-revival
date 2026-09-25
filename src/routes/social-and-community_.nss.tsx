@@ -1,10 +1,11 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { SecondarySubNav, type SubNavTab } from "@/components/layout/SecondarySubNav";
-import { HeartHandshake, Users, Award, Calendar, CheckCircle2 } from "lucide-react";
+import { DataGridContainer } from "@/components/ui/data-grid-table";
+import { FileText, ExternalLink } from "lucide-react";
 
 const title = "National Service Scheme (NSS) | Social & Community | MSAJCE";
 const description =
-  "Official National Service Scheme (NSS) unit at Mohamed Sathak A.J. College of Engineering. Empowering student volunteers through community development, health drives, village outreach, and social welfare.";
+  "Official National Service Scheme (NSS) unit at Mohamed Sathak A.J. College of Engineering. Established in 2001 to promote selfless service, personality development through community outreach, and social welfare in and around Chennai.";
 
 export const socialCommunityTabs: SubNavTab[] = [
   { id: "nss", label: "National Service Scheme (NSS)" },
@@ -48,6 +49,129 @@ function WaveDividerAB() {
   );
 }
 
+interface NSSEvent {
+  sNo: number;
+  activity: string;
+  date: string;
+  reportUrl: string;
+}
+
+const nssEvents: NSSEvent[] = [
+  {
+    sNo: 1,
+    activity: "Tobacco Awareness Rally",
+    date: "26.06.2023",
+    reportUrl: "https://www.msajce-edu.in/uploads/nss/01TobaccoAwareness.pdf",
+  },
+  {
+    sNo: 2,
+    activity: "Eye Screening Camp",
+    date: "26.06.2023",
+    reportUrl: "https://www.msajce-edu.in/uploads/nss/02EyeScreening.pdf",
+  },
+  {
+    sNo: 3,
+    activity: "International Yoga Day",
+    date: "21.06.2023",
+    reportUrl: "https://www.msajce-edu.in/uploads/nss/03YogaDay.pdf",
+  },
+  {
+    sNo: 4,
+    activity: "Motivational Speech",
+    date: "09.06.2023",
+    reportUrl: "https://www.msajce-edu.in/uploads/nss/04MotivationalSpeech.pdf",
+  },
+  {
+    sNo: 5,
+    activity: "Cancer Awareness Rally",
+    date: "31.05.2023",
+    reportUrl: "https://www.msajce-edu.in/uploads/nss/05CancerAwareness.pdf",
+  },
+  {
+    sNo: 6,
+    activity: "Blood Donation Camp",
+    date: "17.05.2023",
+    reportUrl: "https://www.msajce-edu.in/uploads/nss/06BloodDonation.pdf",
+  },
+  {
+    sNo: 7,
+    activity: "Kavalan SOS App Awareness Program",
+    date: "20.04.2023",
+    reportUrl: "https://www.msajce-edu.in/uploads/nss/07KavalanSOS.pdf",
+  },
+  {
+    sNo: 8,
+    activity: "Financial Education Program of NCFE",
+    date: "16.03.2023",
+    reportUrl: "https://www.msajce-edu.in/uploads/nss/08NCFE.pdf",
+  },
+  {
+    sNo: 9,
+    activity: "Drug Awareness Program for School Students",
+    date: "10.02.2023",
+    reportUrl: "https://www.msajce-edu.in/uploads/nss/09DrugAwareness.pdf",
+  },
+  {
+    sNo: 10,
+    activity: "Voters Day Awareness Program",
+    date: "25.01.2023",
+    reportUrl: "https://www.msajce-edu.in/uploads/nss/10VotersDay.pdf",
+  },
+  {
+    sNo: 11,
+    activity: "Dental Health Awareness Camp",
+    date: "11.01.2023",
+    reportUrl: "https://www.msajce-edu.in/uploads/nss/11DentalHealth.pdf",
+  },
+  {
+    sNo: 12,
+    activity: "Driving License Awareness Camp",
+    date: "12.12.2022 & 13.12.2022",
+    reportUrl: "https://www.msajce-edu.in/uploads/nss/12DrivingLicense.pdf",
+  },
+];
+
+const nssObjectives = [
+  { code: "O1", desc: "To work for / among the people" },
+  { code: "O2", desc: "To enhance the knowledge of themselves and the community" },
+  { code: "O3", desc: "To apply their study to practical use in justifying at least some of the difficulties" },
+  { code: "O4", desc: "To gain skill in the exercise of democratic leadership" },
+  { code: "O5", desc: "To gain skills in program development to enable them for self-employment" },
+  { code: "O6", desc: "To bridge the gap between the educated and the uneducated masses" },
+  { code: "O7", desc: "To promote the will to serve the weaker section of the community" },
+];
+
+const nssDuties = [
+  { code: "D1", desc: "To establish relationship with the society" },
+  { code: "D2", desc: "To identify needs, problems and resources of the community and relate his learning experience towards finding solutions to the problems identified" },
+  { code: "D3", desc: "Plan programs and execute them" },
+  { code: "D4", desc: "Record the activities systematically and assess the progress periodically" },
+];
+
+const nssCodeOfConduct = [
+  { code: "C1", desc: "All volunteers should work under the guidance of a group leader nominated by the program officer" },
+  { code: "C2", desc: "All volunteers should make themselves worthy of the confidence and cooperation of the group / community leadership" },
+  { code: "C3", desc: "Volunteers should scrupulously avoid entering into any controversial issues" },
+  { code: "C4", desc: "Volunteers should keep day-to-day record of their activities / experience" },
+  { code: "C5", desc: "It is obligatory on the part of every volunteer to wear the NSS BADGE while on work" },
+];
+
+const nationalDays = [
+  "National Youth Day",
+  "Independence Day & Republic Day",
+  "Road Safety Week",
+  "Orphanage visit",
+  "Polio drops programmes",
+  "Annual Special Camp",
+  "Swachh Bharat Programmes",
+  "Orientation & Inauguration of Regular Activities",
+  "Blood Donation Camps, Eye Check-up & Dental Camps",
+  "Tree Plantation Programs",
+  "Motivation Program for School Students",
+  "Voters / Election Awareness Camp",
+  "Flood Relief Camp",
+];
+
 function NSSPage() {
   const navigate = useNavigate();
 
@@ -58,56 +182,6 @@ function NSSPage() {
     }
     navigate({ to: `/social-and-community/${tabId}` });
   };
-
-  const nssObjectives = [
-    {
-      code: "O1",
-      title: "Community Consciousness",
-      desc: "Understand the community in which they work and identify the needs and problems of the rural and urban public.",
-    },
-    {
-      code: "O2",
-      title: "Problem Solving Competence",
-      desc: "Develop among themselves a sense of social and civic responsibility and utilize their technical knowledge in finding practical solutions.",
-    },
-    {
-      code: "O3",
-      title: "Democratic Leadership",
-      desc: "Acquire leadership qualities and democratic attitudes through collaborative community engagement and selfless volunteerism.",
-    },
-    {
-      code: "O4",
-      title: "Disaster Preparedness & Emergency Aid",
-      desc: "Develop capacity to meet emergencies and natural disasters with organized volunteer mobilization and life-saving relief measures.",
-    },
-  ];
-
-  const flagshipActivities = [
-    {
-      title: "Annual Special Rural Camping",
-      category: "Village Immersion",
-      detail:
-        "7-day residential village immersion camp in adopted rural Panchayats focusing on health sanitation, solar electrification guidance, and literacy awareness.",
-    },
-    {
-      title: "Voluntary Mega Blood Donation Drives",
-      category: "Healthcare",
-      detail:
-        "Organized in joint collaboration with the Government General Hospital and Tamil Nadu Blood Transfusion Council, collecting over 300+ units annually.",
-    },
-    {
-      title: "Mega Tree Plantation & Green Campus Drives",
-      category: "Environment",
-      detail:
-        "Afforestation drives across the OMR IT Corridor and adopted village clusters contributing to local bio-diversity conservation and clean green surroundings.",
-    },
-    {
-      title: "Digital Literacy & Cyber Hygiene Campaigns",
-      category: "Education",
-      detail:
-        "Conducting hands-on computer workshops and cybersecurity awareness sessions for government school students and rural self-help groups (SHGs).",
-    },
-  ];
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
@@ -152,36 +226,81 @@ function NSSPage() {
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              Motto: Not Me But You
+              Personality Development Through Community Service
             </h2>
           </div>
 
-          <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-            The National Service Scheme (NSS) unit at Mohamed Sathak A. J. College of Engineering provides a structured platform for student engineers to immerse themselves in humanitarian service, rural community development, and nation-building initiatives. Rooted in the core philosophy of democratic living and selfless volunteerism, the unit bridges technical classroom learning with real-world societal upliftment.
-          </p>
+          {/* Full-Length Editorial Text Layout */}
+          <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+            <p>
+              With the goal to uphold the need of selfless service and to encourage the spirit of social service to &quot;Serve the downtrodden in the society&quot; and &quot;Personality Development through Community Service&quot; among the young students, Mohamed Sathak AJ College of Engineering (MSAJCE), Chennai, established National Service Scheme (NSS) at institute level in the year 2001. Presently, NSS unit of MSAJCE has over 100 active members from various disciplines of 1st year and 2nd year, working rigorously for the betterment of society in and around Chennai.
+            </p>
+            <p>
+              Our NSS unit has carried out blood donation camps, Awareness programmes on &apos;Health and Hygiene&apos;, Consumer Rights, Environmental Protection, AIDS awareness programme etc.
+            </p>
+          </div>
 
           {/* Core Objectives List */}
           <div className="space-y-3 pt-2">
             <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-              Core Objectives
+              Objectives of NSS
             </h3>
             <div className="divide-y divide-border/40 font-libre">
               {nssObjectives.map((obj) => (
                 <div
                   key={obj.code}
-                  className="py-3.5 sm:py-4 px-1 sm:px-2 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
+                  className="py-3 sm:py-3.5 px-1 sm:px-2 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
                 >
                   <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
                     {obj.code}
                   </span>
-                  <div className="space-y-1 flex-1">
-                    <h4 className="font-oswald font-bold text-sm sm:text-base text-foreground uppercase tracking-tight">
-                      {obj.title}
-                    </h4>
-                    <p className="w-full text-xs sm:text-sm text-foreground/80 font-libre leading-relaxed">
-                      {obj.desc}
-                    </p>
-                  </div>
+                  <p className="w-full text-xs sm:text-sm text-foreground font-libre leading-relaxed pt-1">
+                    {obj.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Duties of NSS Volunteers */}
+          <div className="space-y-3 pt-4">
+            <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+              Duties of NSS Volunteers
+            </h3>
+            <div className="divide-y divide-border/40 font-libre">
+              {nssDuties.map((duty) => (
+                <div
+                  key={duty.code}
+                  className="py-3 sm:py-3.5 px-1 sm:px-2 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
+                >
+                  <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
+                    {duty.code}
+                  </span>
+                  <p className="w-full text-xs sm:text-sm text-foreground font-libre leading-relaxed pt-1">
+                    {duty.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Code of Conduct */}
+          <div className="space-y-3 pt-4">
+            <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+              Code of Conduct for NSS Volunteers
+            </h3>
+            <div className="divide-y divide-border/40 font-libre">
+              {nssCodeOfConduct.map((item) => (
+                <div
+                  key={item.code}
+                  className="py-3 sm:py-3.5 px-1 sm:px-2 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
+                >
+                  <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                    {item.code}
+                  </span>
+                  <p className="w-full text-xs sm:text-sm text-foreground font-libre leading-relaxed pt-1">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -193,41 +312,94 @@ function NSSPage() {
       <WaveDividerAB />
 
       {/* ========================================================================= */}
-      {/* 3. SECTION B: Secondary Canvas (#F3F3F2 / #18181B) — Flagship Initiatives */}
+      {/* 3. SECTION B: Secondary Canvas (#F3F3F2 / #18181B) — Events & Reports     */}
       {/* ========================================================================= */}
       <section className="w-full bg-[#F3F3F2] dark:bg-[#18181B] py-8 sm:py-12 md:py-14 transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              Flagship Initiatives &amp; Community Impact
+              Events Organized on Days of National Importance
             </h2>
           </div>
 
-          <div className="divide-y divide-border/40 font-libre">
-            {flagshipActivities.map((act, idx) => (
-              <div
+          {/* Observances Badges List */}
+          <div className="flex flex-wrap gap-2.5">
+            {nationalDays.map((day, idx) => (
+              <span
                 key={idx}
-                className="py-4 sm:py-5 px-1 sm:px-2 flex items-start gap-4 hover:bg-foreground/[0.02] transition-colors"
+                className="px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider font-oswald rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-stone-300 dark:border-neutral-700 bg-white dark:bg-[#121214] text-foreground shadow-2xs"
               >
-                <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
-                  {String(idx + 1).padStart(2, "0")}
-                </span>
-                <div className="space-y-1.5 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
-                      {act.title}
-                    </h3>
-                    <span className="text-[11px] font-bold font-oswald uppercase tracking-wider px-2 py-0.5 rounded-tl-md rounded-br-md rounded-tr-2xs rounded-bl-2xs bg-primary/10 text-primary border border-primary/20">
-                      {act.category}
-                    </span>
-                  </div>
-                  <p className="w-full text-xs sm:text-sm text-foreground/80 font-libre leading-relaxed">
-                    {act.detail}
-                  </p>
-                </div>
-              </div>
+                {day}
+              </span>
             ))}
           </div>
+
+          {/* NSS Events Table Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4">
+            <div>
+              <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                NSS Activities &amp; Documentation Reports
+              </h3>
+            </div>
+            <span className="font-mono text-xs font-bold text-muted-foreground">
+              Showing {nssEvents.length} Official Events
+            </span>
+          </div>
+
+          {/* Publications Standard DataGrid Table */}
+          <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+            <div className="overflow-x-auto bg-transparent">
+              <table className="w-full text-left border-collapse min-w-[700px] text-xs sm:text-sm">
+                <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                  <tr>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
+                      S.No
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                      Name of the Activity
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-44">
+                      Date
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-right w-36">
+                      Report
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/40 font-libre">
+                  {nssEvents.map((event) => (
+                    <tr
+                      key={event.sNo}
+                      className="hover:bg-foreground/[0.02] transition-colors"
+                    >
+                      <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
+                        {String(event.sNo).padStart(2, "0")}
+                      </td>
+                      <td className="py-3.5 px-4">
+                        <p className="font-libre text-xs sm:text-sm text-foreground font-semibold leading-relaxed">
+                          {event.activity}
+                        </p>
+                      </td>
+                      <td className="py-3.5 px-4 whitespace-nowrap font-mono text-xs text-foreground/80">
+                        {event.date}
+                      </td>
+                      <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                        <a
+                          href={event.reportUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold font-oswald uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-primary text-white hover:bg-primary/90 transition-colors shadow-2xs"
+                        >
+                          <FileText className="w-3.5 h-3.5" />
+                          <span>View</span>
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </DataGridContainer>
         </div>
       </section>
     </main>
