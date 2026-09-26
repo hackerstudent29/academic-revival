@@ -653,7 +653,7 @@ function ClubsAndSocietiesPage() {
             {/* ========================================================================= */}
             {/* SECTION 1: Canvas A (White / #121214) — Overview & Mission                 */}
             {/* ========================================================================= */}
-            <section className="pt-4 sm:pt-6 md:pt-7 pb-5 sm:pb-6 md:pb-7 bg-white dark:bg-[#121214] transition-colors">
+            <section className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-6 sm:pb-8 md:pb-10 bg-white dark:bg-[#121214] transition-colors">
               <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
                   {activeClub.name} Overview
@@ -679,9 +679,9 @@ function ClubsAndSocietiesPage() {
             {/* ========================================================================= */}
             {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — Objectives                       */}
             {/* ========================================================================= */}
-            <section className="py-5 sm:py-6 md:py-7 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+            <section className="py-6 sm:py-8 md:py-10 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
               <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-4 sm:mb-6">
                   Objectives
                 </h2>
 
@@ -689,9 +689,9 @@ function ClubsAndSocietiesPage() {
                   {activeClub.objectives.map((obj, idx) => (
                     <div
                       key={idx}
-                      className="py-3 sm:py-3.5 px-1 sm:px-3 flex items-start gap-3 sm:gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
+                      className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3 sm:gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
                     >
-                      <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 mt-0.5 shadow-2xs">
+                      <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                         {idx + 1}
                       </span>
                       <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5">

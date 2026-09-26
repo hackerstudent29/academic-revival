@@ -165,7 +165,7 @@ function StudentHubPage() {
         {/* ========================================================================= */}
         {/* 3. SECTION 1: Canvas A (White / #121214) — Campus Amenities & Facilities   */}
         {/* ========================================================================= */}
-        <section className="py-5 sm:py-7 md:py-8 bg-white dark:bg-[#121214] transition-colors">
+        <section className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-6 sm:pb-8 md:pb-10 bg-white dark:bg-[#121214] transition-colors">
           <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
               Campus Amenities &amp; Facilities
@@ -358,7 +358,7 @@ function StudentHubPage() {
                   className="py-3.5 sm:py-4 px-1 sm:px-3 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full"
                 >
                   <div className="md:w-80 shrink-0 flex items-center gap-3">
-                    <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
+                    <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
                       {idx + 1}
                     </span>
                     <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">

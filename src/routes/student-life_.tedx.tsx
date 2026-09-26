@@ -224,7 +224,7 @@ function TedxPage() {
       {/* ========================================================================= */}
       {/* SECTION 1: Canvas A (White / #121214) — Chapter Overview & Pillars        */}
       {/* ========================================================================= */}
-      <section className="py-5 sm:py-7 md:py-8 bg-white dark:bg-[#121214] transition-colors">
+      <section className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-6 sm:pb-8 md:pb-10 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
             TEDxMSAJCE CHAPTER OVERVIEW
