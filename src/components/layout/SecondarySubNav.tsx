@@ -56,7 +56,38 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
   }, []);
 
   const handleTabClick = (tabId: string) => {
+    if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
+    
+    setIsTabSwitching(true);
+    
+    // Automatically hide header when going to a sub-tab, show when going to overview/first tab
+    if (tabId === "overview" || tabId === tabs[0]?.id) {
+      setHeaderHidden(false);
+    } else {
+      setHeaderHidden(true);
+    }
+
     onSelectTab(tabId);
+
+    switchTimerRef.current = setTimeout(() => {
+      setIsTabSwitching(false);
+    }, 650);
+  };
+
+  const handleTitleClickInternal = () => {
+    if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
+    setIsTabSwitching(true);
+    setHeaderHidden(false);
+    
+    if (onTitleClick) {
+      onTitleClick();
+    } else {
+      onSelectTab(tabs[0]?.id || "overview");
+    }
+
+    switchTimerRef.current = setTimeout(() => {
+      setIsTabSwitching(false);
+    }, 650);
   };
 
   return (
@@ -72,7 +103,7 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
         
         {/* Department / Division Title Header */}
         <div 
-          onClick={onTitleClick}
+          onClick={handleTitleClickInternal}
           className="text-xs sm:text-sm md:text-base lg:text-lg font-black font-oswald uppercase text-primary tracking-tight leading-none shrink-0 select-none transition-all truncate max-w-[55%] md:max-w-none cursor-pointer hover:opacity-85"
         >
           {title}
@@ -138,7 +169,7 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
                   {tab.label}
                   {isActive && (
                     <motion.span
-                      layoutId="activeSecondarySubNavIndicator"
+                      layoutId={`activeSubNav_${title.replace(/\s+/g, '_')}`}
                       className="absolute -bottom-1 left-0 right-0 h-[2.5px] bg-primary rounded-full"
                       transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />

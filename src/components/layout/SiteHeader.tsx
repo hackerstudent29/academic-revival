@@ -286,7 +286,6 @@ export function SiteHeader() {
 
   const { scrollY } = useScroll();
   const location = useLocation();
-  const isHome = location.pathname === "/";
 
   const lastScrollY = useRef(0);
 
@@ -297,20 +296,15 @@ export function SiteHeader() {
       setHeaderScrolled(scrolled);
     }
     
+    // While switching tabs via secondary nav, freeze header auto-hide/show during programmatic scroll
+    if (isTabSwitching) {
+      lastScrollY.current = latest;
+      return;
+    }
+    
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const minScroll = isMobile ? 35 : 50;
     const delta = isMobile ? 4 : 8;
-
-    // While switching tabs via secondary nav, keep main header hidden during programmatic scroll
-    if (isTabSwitching) {
-      if (Math.abs(latest - lastScrollY.current) > 30) {
-        setIsTabSwitching(false);
-      } else {
-        setHeaderHidden(true);
-        lastScrollY.current = latest;
-        return;
-      }
-    }
 
     // Near the top of the page, always show main header
     if (latest < minScroll) {

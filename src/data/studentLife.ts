@@ -71,8 +71,10 @@ export interface IeteCounselor {
   sno: number;
   role: string;
   name: string;
-  department: string;
-  institution: string;
+  schoolCode?: string;
+  branchCode?: string;
+  department?: string;
+  institution?: string;
   codeInfo?: string;
 }
 
@@ -653,22 +655,21 @@ export const professionalSocieties: ProfessionalSociety[] = [
     shortName: "IETE",
     code: "IETE-ISF-MSAJCE",
     category: "Electronics & Telecommunication Engineering",
-    tagline: "IETE Students Forum (ISF) · Established 16/08/2017",
+    tagline: "IETE Students Forum (ISF)",
     establishedDate: "16/08/2017",
-    description: "The Institution of Electronics and Telecommunication Engineers (IETE) is one of the leading Professional Societies in India for Electronics and Communication Engineers. Our institution has established an IETE Students Forum in the year - 16 /08/2017 -. Our student branches have 100 active members. This Forum organizes Guest lectures, Seminars, Workshops, and conferences for the benefit of student members to exchange ideas and information on the topics of their interest like curriculum, employment opportunities, higher educational opportunities, emerging trends, new developments etc. The student members are also facilitated towards technical visits, practical training, and project work in R&D laboratories and Industries. These activities encourage team work, event management and develop the spirit of self-reliance among the student members. Our student members have also actively participated and won prizes in various technical events conducted by other institutions. IETE student members have the privilege to attend IETE technical programs in India at reduced registration fees.",
+    description: "The Institution of Electronics and Telecommunication Engineers (IETE) is one of the leading Professional Societies in India for Electronics and Communication Engineers. Our institution has established an IETE Students Forum in the year - 16 /08/2017 -. Our student branches have -100 active members. This Forum organizes Guest lectures, Seminars, Workshops, and conferences for the benefit of student members to exchange ideas and information on the topics of their interest like curriculum, employment opportunities, higher educational opportunities, emerging trends, new developments etc. The student members are also facilitated towards technical visits, practical training, and project work in R&D laboratories and Industries. These activities encourage team work, event management and develop the spirit of self-reliance among the student members. Our student members have also actively participated and won prizes in various technical events conducted by other institutions. IETE student members have the privilege to attend IETE technical programs in India at reduced registration fees",
     objectives: [
-      "Improving the standard of education across Electronics & Communication Engineering disciplines.",
-      "Train the students in the emerging area to meet the new opportunities in semiconductor, telecommunications, and IoT sectors.",
-      "Encouraging outside-the-classroom studies / practical work / seminars etc. to foster technical excellence.",
-      "Better employment of the students on completion of their courses through practical domain skill-sets.",
-      "Substantial increase of IETE membership and its nationwide distributions across academic engineering institutions."
+      "Improving the standard of education",
+      "Train the students in the emerging area to meet the new opportunities",
+      "Encouraging outside-the-classroom studies / practical work / seminars etc",
+      "Better employment of the students on completion of their courses",
+      "Substantial increase of IETE membership and its nationwide distributions"
     ],
     membershipBenefits: [
-      "Priority for publishing their papers in Journal of Education.",
-      "Can also subscribe for other publications such as IETE Journal of Research and IETE Technical Review (available online).",
-      "ISF students are welcome to attend IETE technical programs in India at reduced registration fees.",
-      "ISF member will be issued with an official recognized Identity Card.",
-      "Facilitation towards industrial technical visits, practical training, and project work in R&D laboratories and industries."
+      "Priority for publishing their papers in Journal of Education",
+      "Can also subscribe for other publications such as IETE Journal of Research and IETE. Technical Review (available online)",
+      "ISF students are welcome to attend IETE technical programs in India at reduced registration fees",
+      "ISF member will be issued with an Identity Card"
     ],
     ietePublications: [
       "IETE Journal of Education",
@@ -680,17 +681,15 @@ export const professionalSocieties: ProfessionalSociety[] = [
         sno: 1,
         role: "Branch Counselor 1",
         name: "Dr. I. Manju",
-        department: "Department of ECE",
-        institution: "Mohamed Sathak AJ College of Engineering",
-        codeInfo: "School Code / Branch Code: ISF-MSAJCE"
+        schoolCode: "—",
+        branchCode: "—"
       },
       {
         sno: 2,
         role: "Branch Counselor 2",
         name: "Mrs. S. Anusuya",
-        department: "Department of ECE",
-        institution: "Mohamed Sathak AJ College of Engineering",
-        codeInfo: "School Code / Branch Code: ISF-MSAJCE"
+        schoolCode: "—",
+        branchCode: "—"
       }
     ],
     ieteActivities: [
@@ -705,7 +704,7 @@ export const professionalSocieties: ProfessionalSociety[] = [
       {
         sno: 2,
         eventName: "Cyber Physical Systems and its Applications using LABVIEW",
-        resourcePerson: "Mr. K. Prakash, M.E. Application Engineer, Optithought",
+        resourcePerson: "Mr. K. Prakash , M.E.Application Engineer, Optithought",
         date: "24/06/20",
         targetAudience: "100",
         participants: "77"
@@ -721,7 +720,7 @@ export const professionalSocieties: ProfessionalSociety[] = [
       {
         sno: 4,
         eventName: "Embedded & IOT Boot Camp",
-        resourcePerson: "Day 1 - Dr. A.L. Vallikannu, Associate Professor, HITS, Chennai | Day 2 - Dr. Athif shah, Founder Managing Director, ABE semiconductor Designs, Chennai | Day 3 - Mr. M. Prabakaran (Alumni), Senior Software Architect in Caterpillar",
+        resourcePerson: "Day 1 - Dr.A.L. Vallikannu, Associate Professor, HITS, Chennai\nDay 2 - Dr.Athif shah, Founder Managing Director , ABE semiconductor Designs, Chennai\nDay 3 - Mr. M. Prabakaran (Alumni) Senior Software Architect in Caterpillar",
         date: "27/05/20 to 29/05/20",
         targetAudience: "75",
         participants: "120"
@@ -729,7 +728,7 @@ export const professionalSocieties: ProfessionalSociety[] = [
       {
         sno: 5,
         eventName: "Scope of Electronics Engineer in Various Domain",
-        resourcePerson: "Mr. Sankaralingam Principal Engineer, Valeo & Mrs. Suganya - Jasmine Infotech",
+        resourcePerson: "Mr.Sankaralingam Principal Engineer, Valeo & Mrs.Suganya-Jasmine Infotech",
         date: "30/01/2019",
         targetAudience: "63",
         participants: "70"
@@ -737,46 +736,41 @@ export const professionalSocieties: ProfessionalSociety[] = [
       {
         sno: 6,
         eventName: "Inter Department TECHNICAL QUIZ",
-        resourcePerson: "Coordinator: Mr. M.L. Syed Ali | Convenor: Dr. E. Dhiravidachelvi",
+        resourcePerson: "Coordinator:Mr. M.L. Syed Ali Convenor: Dr. E. Dhiravidachelvi",
         date: "12/02/20",
-        targetAudience: "Won prizes (3 batches)",
+        targetAudience: "Won prizes 3 batches",
         participants: "200"
       },
       {
         sno: 7,
         eventName: "IETE- TECHNICAL & NON TECHNICAL CONNEXIONS",
-        resourcePerson: "Coordinator: Ms. E. Jayanthi | Convenor: Dr. E. Dhiravidachelvi",
+        resourcePerson: "Coordinator: Ms. E. Jayanthi Convenor: Dr . E. Dhiravidachelvi",
         date: "01/09/2018",
-        targetAudience: "Won prizes (3 batches)",
+        targetAudience: "Won prizes 3 batches",
         participants: "300"
       },
       {
         sno: 8,
         eventName: "PROJECT EXPO",
-        resourcePerson: "Coordinator: Ms. I.S. Suganthi | Convenor: Dr. E. Dhiravidachelvi",
-        date: "23/03/2018",
-        targetAudience: "Won prizes (3 batches)",
+        resourcePerson: "Coordinator: Ms. I.S. Suganthi Convenor: Dr . E. Dhiravidachelvi",
+        date: "23/03/ 2018",
+        targetAudience: "Won prizes 3 batches",
         participants: "70"
       },
       {
         sno: 9,
         eventName: "Seminar on Recent Trends in Optical Fibre Communication",
-        resourcePerson: "Dr A. Sadagopan, Asst. General Manager (Rtd) BSNL, IETE Professor",
-        date: "16/08/2017",
+        resourcePerson: "Dr A.Sadagopan , Asst.General Manager (Rtd) BSNL, IETE Professor",
+        date: "16 /08/2017",
         targetAudience: "97",
         participants: "120"
       }
     ],
-    flagshipEvents: [
-      "Embedded & IOT Boot Camp",
-      "PROJECT EXPO & Technical Connexions",
-      "Inter Department Technical Quiz",
-      "Signal and Power Integrity in Semiconductor Industry"
-    ],
+    flagshipEvents: [],
     logoOrIcon: "Cpu",
-    studentChairs: "Branch Counselor 1: Dr. I. Manju (ECE) | Branch Counselor 2: Mrs. S. Anusuya (ECE)",
+    studentChairs: "Branch Counselor 1: Dr. I. Manju | Branch Counselor 2: Mrs. S. Anusuya",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
-    membersCount: "100 Active Members"
+    membersCount: "-100 Active Members"
   },
   {
     id: "sae",

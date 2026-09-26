@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { SecondarySubNav } from "@/components/layout/SecondarySubNav";
+import { useHeader } from "@/context/HeaderContext";
 import { OverviewSection } from "@/components/sections/placement/OverviewSection";
 import { RecruitersSection } from "@/components/sections/placement/RecruitersSection";
 import { TrainingSection } from "@/components/sections/placement/TrainingSection";
@@ -55,6 +56,9 @@ const PLACEMENT_TABS = [
 
 function Placements() {
   const { tab } = Route.useSearch();
+  const navigate = useNavigate();
+  const { setHeaderHidden } = useHeader();
+
   const [activeSection, setActiveSection] = useState<string>(() => {
     if (tab === "internships") return "training";
     if (tab === "journey" || tab === "committee") return "pathways";
@@ -64,14 +68,13 @@ function Placements() {
 
   useEffect(() => {
     if (tab) {
-      if (tab === "internships") {
-        setActiveSection("training");
-      } else if (tab === "journey" || tab === "committee") {
-        setActiveSection("pathways");
-      } else if (tab === "placements" || tab === "placement") {
-        setActiveSection("recruiters");
-      } else if (PLACEMENT_TABS.some((t) => t.id === tab) && tab !== activeSection) {
-        setActiveSection(tab);
+      let resolved = tab;
+      if (tab === "internships") resolved = "training";
+      else if (tab === "journey" || tab === "committee") resolved = "pathways";
+      else if (tab === "placements" || tab === "placement") resolved = "recruiters";
+      
+      if (PLACEMENT_TABS.some((t) => t.id === resolved) && resolved !== activeSection) {
+        setActiveSection(resolved);
       }
     }
   }, [tab]);
@@ -93,10 +96,10 @@ function Placements() {
   const scrollToContent = () => {
     const el = document.getElementById("placement-main-content");
     if (el) {
-      const headerOffset = typeof window !== "undefined" && window.innerWidth < 768 ? 44 : 52;
+      const subNavHeight = typeof window !== "undefined" && window.innerWidth < 768 ? 40 : 46;
       const elementTop = el.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({
-        top: Math.max(0, elementTop - headerOffset),
+        top: Math.max(0, elementTop - subNavHeight),
         behavior: "smooth",
       });
     }
@@ -104,17 +107,22 @@ function Placements() {
 
   const handleSelectSection = (sectionId: string) => {
     setActiveSection(sectionId);
+    navigate({ search: { tab: sectionId === "overview" ? undefined : sectionId }, replace: true });
+    
     if (sectionId === "overview") {
+      setHeaderHidden(false);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       setTimeout(() => {
         scrollToContent();
-      }, 40);
+      }, 30);
     }
   };
 
   const handleTitleClick = () => {
+    setHeaderHidden(false);
     setActiveSection("overview");
+    navigate({ search: { tab: undefined }, replace: true });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
