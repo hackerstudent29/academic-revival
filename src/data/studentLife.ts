@@ -537,10 +537,10 @@ export const professionalSocieties: ProfessionalSociety[] = [
     category: "Computer Science & IT",
     tagline: "The CSI Vision: “IT for Masses”",
     visionMotto: "IT for Masses",
-    region: "Region – VII (Tamil Nadu, Pondicherry, Andaman and Nicobar, Kerala, Lakshadweep)",
+    region: "Tamil Nadu, Pondicherry, Andaman and Nicobar, Kerala, Lakshadweep.",
     chapter: "Kanchipuram Chapter",
-    history: "Keeping in mind the interest of the IT professionals & computer users, CSI works towards making the profession as area of choice amongst all sections of the society. To fulfill this objective, the CSI regularly organizes conferences, conventions, lectures, projects, awards. At the same time it also ensures that regular training and skill updating are organized for the IT professionals. Education Directorate, CSI helps physically challenged citizens by providing training 'Punarjani'. CSI also works towards a global approach, by seeking out alliances with organizations overseas who may be willing to come forward and participate in such activities. CSI also helps governments in formulating IT strategy & planning.",
-    description: "Being closely associated with students, the Society has developed a well-established network across the country. The activities conducted for the students associated with the Society include lecture meetings, seminars, conferences, training programs, programming contests and industrial visits to installations. CSI has a strong Educational Directorate which undertakes activities related to Certification of professionals related to the latest technologies. Its recent initiative of distance education in the Business Domain areas offers technology enabled learning supported by personal counseling & expert advice. In an ever changing environment, CSI offers professional counseling being a great need of the hour. It is done by being in close contact with its young members through various events, conferences, symposia to name a few.",
+    history: "Keeping in mind the interest of the IT professionals & computer users CSI works towards making the profession as area of choice amongst all sections of the society. To fulfill this objective, the CSI regularly organizes conferences, conventions, lectures, projects, awards. At the same time it also ensures that regular training and skill updating are organized for the IT professionals. Education Directorate, CSI helps physically challenged citizens by providing training 'Punarjani'. CSI also works towards a global approach, by seeking out alliances with organizations overseas who may be willing to come forward and participate in such activities. CSI also helps governments in formulating IT strategy & planning",
+    description: "Being closely associated with students, the Society has developed a well-established network across the country. The activities conducted for the students associated with the Society include lecture meetings, seminars, conferences, training programs, programming contests and industrial visits to installations. CSI has a strong Educational Directorate which undertakes activities related to Certification of professionals related to the latest technologies. It's recent initiative of distance education in the Business Domain areas offers technology enabled learning supported by personal counseling & expert advice. In an ever changing environment, CSI offers professional counseling being a great need of the hour. It is done by being in close contact with its young members through various events, conferences, symposia to name a few.",
     awards: [
       "Our College Received Best Supporting College award (SBC) from CSI Kancheepuram Chapter",
       "Our faculty Mr. D. Weslin Received Active participant award (SBC) from CSI Kancheepuram Chapter"
@@ -567,11 +567,11 @@ export const professionalSocieties: ProfessionalSociety[] = [
     ],
     officeBearers: [
       { position: "President", name: "Yogesh R", department: "IT", batch: "2022-2026" },
-      { position: "Vice President", name: "Saqlin Mustaq M", department: "AI&DS", batch: "2023-2027" },
+      { position: "Vice president", name: "Saqlin Mustaq M", department: "AI&DS", batch: "2023-2027" },
       { position: "Secretary", name: "Abu Jabar Mubarak", department: "CS&BS", batch: "2022-2026" },
       { position: "Joint Secretary", name: "Hanuram PR", department: "CSE", batch: "2023-2027" },
       { position: "Joint Secretary", name: "Shivam Vishwakarma", department: "CSE", batch: "2023-2027" },
-      { position: "Treasurer", name: "Navadharshan", department: "CSCS", batch: "2023-2027" },
+      { position: "Treassurer", name: "Navadharshan", department: "CSCS", batch: "2023-2027" },
       { position: "Executive Member", name: "Akram Bilal", department: "AI&DS", batch: "2022-2026" },
       { position: "Executive Member", name: "Zeenath Nisha", department: "IT", batch: "2023-2027" }
     ],
@@ -579,47 +579,47 @@ export const professionalSocieties: ProfessionalSociety[] = [
       {
         sno: 1,
         name: "CSI Inaugural Function",
-        resourcePerson: "Dr. Murugan, President CSI Kancheepuram Chapter & Principal, Valliammai College of Engineering",
+        resourcePerson: "Dr.Murugan, President CSI Kancheepuram Chapter, Principal, Valliammai College of Engineering",
         date: "28.02.23",
         participants: "200",
-        coordinators: "Mrs. Viswajaa.S (AP/IT), Mr. Pandiyan.G (AP/CSE)",
+        coordinators: "Mrs.Viswajaa.S, AP/IT, Mr.Pandiyan.G, AP/CSE",
         reportUrl: "https://www.msajce-edu.in/uploads/csi/CSI-inauguralReport.pdf"
       },
       {
         sno: 2,
-        name: "Guest Lecture - Voice Over IP",
-        resourcePerson: "Mr. Anbazhagan A T, Technical Lead, Cognizant",
+        name: "Guest Lecture-voice over IP",
+        resourcePerson: "Mr.Anbazhagan A T, Technical Lead, Cognizant.",
         date: "22.03.23",
         participants: "100",
-        coordinators: "Mrs. Gayathiri (AP/CSE), Mrs. Aiswarya M.S (AP/IT)",
+        coordinators: "Mrs.Gayathiri, AP/CSE, Mrs.Aiswarya M.S, AP/IT",
         reportUrl: "https://www.msajce-edu.in/uploads/csi/CSI-GL-VoiceOverIP.pdf"
       },
       {
         sno: 3,
-        name: "Guest Lecture - Digital Marketing",
+        name: "Guest lecture-Digital Marketing",
         resourcePerson: "Mr. J. Mohammed Afroze, Digital CEO, Chennai",
         date: "17.03.23",
         participants: "110",
-        coordinators: "Mr. Rajasekar R (AP/CSE), Mrs. Aysha Surfeen.M.A (AP/IT)",
+        coordinators: "Mr. Rajasekar R, AP/CSE, Mrs.Aysha Surfeen.M.A , AP/IT",
         reportUrl: "https://www.msajce-edu.in/uploads/csi/CSI-GL-DigitalMarketing.pdf"
       },
       {
         sno: 4,
-        name: "Interactive Session - Innovation & Invention in AI Technology",
-        resourcePerson: "Ms. Anisha Udhayakumar, AI Evangelist, Intel Corporation",
+        name: "Interactive Session Innovation & Invention in AI Technology",
+        resourcePerson: "Ms.Anisha Udhayakumar, AI Evangelist, Intel Corporation",
         date: "10.03.23",
         participants: "100",
-        coordinators: "Mr. Vigneshwaran (TPO), Mr. Hamer Shield J M",
+        coordinators: "Mr.Vigneshwaran, TPO, Mr.Hamer Shield.J M",
         reportUrl: "https://www.msajce-edu.in/uploads/csi/CSI-InteractiveSession-AI-TECH.pdf"
       },
       {
         sno: 5,
-        name: "Benefits of CSI Membership",
-        resourcePerson: "Dr. M. Senthil Kumar, Secretary, CSI Kancheepuram Chapter",
+        name: "Benefits of CSI membership",
+        resourcePerson: "Dr.M.Senthil Kumar, Secretary, CSI Kancheepuram Chapter",
         date: "20.02.20",
         participants: "200",
-        coordinators: "Mrs. S. Kayalvizhi, Mrs. Bapitha Rani",
-        reportUrl: "https://www.msajce-edu.in/uploads/csi/CSI-Benefits-Report.pdf"
+        coordinators: "Mrs.S.Kayalvizhi, Mrs.Bapitha Rani",
+        reportUrl: "https://www.msajce-edu.in/uploads/csi/.pdf"
       }
     ],
     objectives: [
