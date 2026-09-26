@@ -114,8 +114,7 @@ export function Reveal({
       viewport={{ once, amount }}
       transition={{ delay }}
       className={`will-change-transform transform-gpu ${overlay ? "" : className ?? ""}`}
-      style={{ backfaceVisibility: "hidden" }}
-      {...(overlay ? { style: { display: "block", backfaceVisibility: "hidden" } } : {})}
+      style={overlay ? { display: "block", backfaceVisibility: "hidden" } : { backfaceVisibility: "hidden" }}
     >
       {children}
     </MotionTag>
