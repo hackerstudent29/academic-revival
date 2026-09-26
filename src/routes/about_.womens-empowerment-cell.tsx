@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
-import { AboutSubNav } from "@/components/layout/AboutSubNav";
+import { Heart, Award, Sparkles } from "lucide-react";
 
 const title = "Women's Empowerment Cell — M.S.A.J. College of Engineering, Chennai";
 const description =
-  "Official Women's Empowerment Cell (WEC) committee members, coordinators, and contact details at Mohamed Sathak A.J. College of Engineering.";
+  "Official Women's Empowerment Cell (WEC) committee members, coordinators, objectives, and contact details at Mohamed Sathak A.J. College of Engineering.";
 
 export const Route = createFileRoute("/about_/womens-empowerment-cell")({
   head: () => ({
@@ -87,9 +87,6 @@ const cellMembers: CellMember[] = [
 export function WomensEmpowermentCellPage() {
   return (
     <main className="bg-white dark:bg-[#121214] text-foreground font-libre antialiased selection:bg-primary selection:text-white min-h-screen pt-0 md:pt-1">
-      {/* Sticky Secondary About Sub-Nav */}
-      <AboutSubNav />
-
       {/* ========================================================================= */}
       {/* 1. HERO BANNER: Title Docked Flush with Hero Section End                  */}
       {/* ========================================================================= */}
@@ -116,13 +113,78 @@ export function WomensEmpowermentCellPage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. MAIN SECTION: Committee Member Table                                   */}
+      {/* 2. SECTION A: Institutional Overview & Objectives                         */}
       {/* ========================================================================= */}
       <section className="py-10 sm:py-14 md:py-18 lg:py-20 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          <div className="mb-10 w-full">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-4">
+              Institutional Overview &amp; Gender Equity Mandate
+            </h2>
+            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full mb-4">
+              The Women's Empowerment Cell (WEC) at Mohamed Sathak A.J. College of Engineering is dedicated to nurturing an equitable, inspiring, and secure institutional climate for female students, scholars, and staff members. Operating in accordance with Anna University and UGC gender equity mandates, the cell champions gender sensitization, leadership development, professional mentorship, and health awareness across all engineering streams. Through interactive symposia, legal literacy workshops, and entrepreneurial support, WEC empowers female engineers to excel in technical domains while safeguarding their rights, dignity, and personal growth.
+            </p>
+          </div>
+
+          {/* Core Objectives */}
+          <div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-6 sm:mb-8">
+              Objectives &amp; Key Initiatives
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                <Award className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">Leadership &amp; Technical Growth</h3>
+                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
+                  Organizing skill development sessions, technical workshops, and career mentoring to accelerate women leadership in STEM.
+                </p>
+              </div>
+
+              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                <Heart className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">Health &amp; Wellness Advocacy</h3>
+                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
+                  Hosting health screening camps, mental wellness seminars, and personal hygiene awareness drives led by medical experts.
+                </p>
+              </div>
+
+              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                <Sparkles className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">Rights &amp; Legal Literacy</h3>
+                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
+                  Conducting awareness campaigns on statutory rights, gender sensitization, POSH guidelines, and personal safety.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Wave Divider A -> B */}
+      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-[#F3F3F2] dark:fill-[#18181B]"
+          />
+        </svg>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 3. SECTION B: Committee Member Table                                      */}
+      {/* ========================================================================= */}
+      <section className="py-10 sm:py-14 md:py-18 lg:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           <div className="mb-6">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              Women's Empowerment Cell
+              Women's Empowerment Cell Members
             </h2>
           </div>
 

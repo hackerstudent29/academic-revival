@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
-import { AboutSubNav } from "@/components/layout/AboutSubNav";
+import { BookOpen, Award, Compass } from "lucide-react";
 
 const title = "Academic Advisory Committee — M.S.A.J. College of Engineering, Chennai";
 const description =
-  "Official Academic Advisory Committee members, curriculum governance, and academic leadership at Mohamed Sathak A.J. College of Engineering.";
+  "Official Academic Advisory Committee members, curriculum governance, objectives, and academic leadership at Mohamed Sathak A.J. College of Engineering.";
 
 export const Route = createFileRoute("/about_/academic-advisory-committee")({
   head: () => ({
@@ -135,9 +135,6 @@ const advisoryMembers: AdvisoryMember[] = [
 export function AcademicAdvisoryCommitteePage() {
   return (
     <main className="bg-white dark:bg-[#121214] text-foreground font-libre antialiased selection:bg-primary selection:text-white min-h-screen pt-0 md:pt-1">
-      {/* Sticky Secondary About Sub-Nav */}
-      <AboutSubNav />
-
       {/* ========================================================================= */}
       {/* 1. HERO BANNER: Title Docked Flush with Hero Section End                  */}
       {/* ========================================================================= */}
@@ -164,9 +161,74 @@ export function AcademicAdvisoryCommitteePage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. MAIN SECTION: Advisory Board Table                                     */}
+      {/* 2. SECTION A: Institutional Overview & Core Objectives                    */}
       {/* ========================================================================= */}
       <section className="py-10 sm:py-14 md:py-18 lg:py-20 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          <div className="mb-10 w-full">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-4">
+              Institutional Overview &amp; Governance Mandate
+            </h2>
+            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full mb-4">
+              The Academic Advisory Committee at Mohamed Sathak A.J. College of Engineering serves as the apex academic governing council responsible for maintaining pedagogical standards, curriculum enrichment, and outcome-based education (OBE) frameworks. Comprising distinguished academic leaders, industrial experts, renowned research supervisors, and internal department heads, the committee reviews teaching-learning methodologies, value-added skill courses, and research initiatives aligned with Anna University and NBA benchmarks. By facilitating industry-academia integration and emerging technology adoption, the board ensures that graduates possess competitive technical mastery and holistic professional competence.
+            </p>
+          </div>
+
+          {/* Objectives */}
+          <div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-6 sm:mb-8">
+              Objectives &amp; Academic Governance Directives
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                <BookOpen className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">Curriculum &amp; OBE Enrichment</h3>
+                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
+                  Evaluating academic calendars, course delivery strategies, continuous internal assessments, and Outcome-Based Education (OBE) attainment metrics.
+                </p>
+              </div>
+
+              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                <Compass className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">Industry-Academia Synergy</h3>
+                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
+                  Integrating industrial advisory feedback into value-added courses, industrial visits, expert guest lectures, and MoUs.
+                </p>
+              </div>
+
+              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                <Award className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">Research &amp; Innovation Focus</h3>
+                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
+                  Promoting faculty research publications, student project funding (TNSCST/MSME), patent filings, and doctoral research guidance.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Wave Divider A -> B */}
+      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-[#F3F3F2] dark:fill-[#18181B]"
+          />
+        </svg>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 3. SECTION B: Advisory Board Table                                        */}
+      {/* ========================================================================= */}
+      <section className="py-10 sm:py-14 md:py-18 lg:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           <div className="mb-8">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">

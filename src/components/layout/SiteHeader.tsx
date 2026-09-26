@@ -34,7 +34,6 @@ const nav: NavItem[] = [
       {
         title: "Welfare committees",
         links: [
-          { label: "Committees & Cells", to: "/about/committees" },
           { label: "Grievance Cell", to: "/about/grievance-cell" },
           { label: "Academic Advisory Committee", to: "/about/academic-advisory-committee" },
           { label: "Anti-Ragging Committee", to: "/about/anti-ragging-committee" },
