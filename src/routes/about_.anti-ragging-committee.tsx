@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
+import { RedirectButton } from "@/components/ui/redirect-button";
 import { ShieldCheck, AlertTriangle, PhoneCall } from "lucide-react";
 
 const title = "Anti-Ragging Committee & Squad — M.S.A.J. College of Engineering, Chennai";
@@ -336,6 +337,20 @@ export function AntiRaggingCommitteePage() {
                 </table>
               </div>
             </DataGridContainer>
+
+            {/* Ocean Wave Redirect Buttons */}
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <RedirectButton
+                href="https://antiragging.in"
+                label="National Anti-Ragging Portal"
+                waveColor="#9E2339"
+              />
+              <RedirectButton
+                href="mailto:antiragging@msajce-edu.in"
+                label="Email Anti-Ragging Helpline"
+                waveColor="#9E2339"
+              />
+            </div>
           </div>
         </div>
       </section>

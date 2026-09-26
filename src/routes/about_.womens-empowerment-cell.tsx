@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
+import { RedirectButton } from "@/components/ui/redirect-button";
 
 const title = "Women's Empowerment Cell — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -232,6 +233,20 @@ export function WomensEmpowermentCellPage() {
               </table>
             </div>
           </DataGridContainer>
+
+          {/* Ocean Wave Redirect Buttons */}
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <RedirectButton
+              href="mailto:sh.sudha@msajce-edu.in"
+              label="Contact Cell Coordinator"
+              waveColor="#9E2339"
+            />
+            <RedirectButton
+              to="/about/overview"
+              label="View Gender Equity Policy"
+              waveColor="#9E2339"
+            />
+          </div>
         </div>
       </section>
     </main>

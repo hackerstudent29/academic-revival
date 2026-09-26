@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
+import { RedirectButton } from "@/components/ui/redirect-button";
 
 const title = "Academic Advisory Committee — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -274,6 +275,20 @@ export function AcademicAdvisoryCommitteePage() {
               </table>
             </div>
           </DataGridContainer>
+
+          {/* Ocean Wave Redirect Buttons */}
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <RedirectButton
+              to="/curriculum"
+              label="Explore Curriculum & Syllabi"
+              waveColor="#9E2339"
+            />
+            <RedirectButton
+              to="/programmes"
+              label="View All Academic Programmes"
+              waveColor="#9E2339"
+            />
+          </div>
         </div>
       </section>
     </main>

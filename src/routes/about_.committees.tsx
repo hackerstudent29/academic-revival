@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
+import { RedirectButton } from "@/components/ui/redirect-button";
 import { ArrowUpRight, ShieldCheck, Users, BookOpen, HeartHandshake, Award } from "lucide-react";
 
 const title = "Committees & Cells — M.S.A.J. College of Engineering, Chennai";
@@ -169,12 +170,11 @@ export function CommitteesOverviewPage() {
                         </a>
                       </td>
                       <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-right whitespace-nowrap">
-                        <Link
+                        <RedirectButton
                           to={item.link}
-                          className="inline-flex items-center gap-1 font-oswald font-bold uppercase text-primary hover:underline text-xs tracking-wider"
-                        >
-                          Explore <ArrowUpRight size={14} />
-                        </Link>
+                          label="Explore Committee"
+                          waveColor="#9E2339"
+                        />
                       </td>
                     </tr>
                   ))}

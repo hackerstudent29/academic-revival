@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Phone, Mail, ExternalLink, Info } from "lucide-react";
+import { RedirectButton } from "@/components/ui/redirect-button";
 
 const title = "Admission Procedure — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -115,13 +116,11 @@ export function AdmissionsProcedurePage() {
                   Have questions about community cutoffs or entry requirements before applying?
                 </p>
               </div>
-              <Link
+              <RedirectButton
                 to="/admissions/eligibility"
-                className="shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-primary text-white font-oswald font-bold text-xs uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors"
-              >
-                <span>Check Eligibility</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
+                label="Check Eligibility"
+                waveColor="#9E2339"
+              />
             </div>
           </div>
 
@@ -152,15 +151,11 @@ export function AdmissionsProcedurePage() {
                   </div>
 
                   <div className="shrink-0 pt-2 md:pt-0 pl-11 md:pl-0">
-                    <a
+                    <RedirectButton
                       href={item.href}
-                      target={item.isExternal ? "_blank" : undefined}
-                      rel={item.isExternal ? "noopener noreferrer" : undefined}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-foreground text-background font-oswald font-bold text-xs sm:text-sm uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary hover:text-white transition-colors"
-                    >
-                      <span>{item.actionText}</span>
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
+                      label={item.actionText}
+                      waveColor="#9E2339"
+                    />
                   </div>
                 </div>
               ))}
@@ -228,25 +223,16 @@ export function AdmissionsProcedurePage() {
 
           {/* Action Bar */}
           <div className="flex flex-col sm:flex-row items-center gap-4">
-            <a
+            <RedirectButton
               href="https://msajce-edu.in/admission_form.php"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-primary text-white font-oswald font-bold text-sm uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors"
-            >
-              <span>Apply Online Now</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
-
-            <a
+              label="Apply Online Now"
+              waveColor="#9E2339"
+            />
+            <RedirectButton
               href="https://msajce-edu.in/feepayment.php"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-foreground text-background font-oswald font-bold text-sm uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-foreground/90 transition-colors"
-            >
-              <span>Pay Fees Online</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
+              label="Pay Fees Online"
+              waveColor="#9E2339"
+            />
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Search, GraduationCap, FileText, Award, ArrowUpRight, Phone, Mail } from "lucide-react";
+import { Search, GraduationCap, FileText, Award, ArrowUpRight } from "lucide-react";
+import { RedirectButton } from "@/components/ui/redirect-button";
 import { allCourses } from "@/lib/courseData";
 
 const title = "Admissions 2026-2027 — M.S.A.J. College of Engineering, Chennai";
@@ -113,9 +114,12 @@ export function AdmissionsHubPage() {
                   </p>
                 </div>
               </div>
-              <div className="shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background font-oswald font-bold text-xs uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs group-hover:bg-primary group-hover:text-white transition-colors">
-                <span>View Criteria</span>
-                <ArrowUpRight className="w-4 h-4" />
+              <div className="shrink-0">
+                <RedirectButton
+                  to="/admissions/eligibility"
+                  label="View Criteria"
+                  waveColor="#9E2339"
+                />
               </div>
             </Link>
 
@@ -136,9 +140,12 @@ export function AdmissionsHubPage() {
                   </p>
                 </div>
               </div>
-              <div className="shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background font-oswald font-bold text-xs uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs group-hover:bg-primary group-hover:text-white transition-colors">
-                <span>View Procedure</span>
-                <ArrowUpRight className="w-4 h-4" />
+              <div className="shrink-0">
+                <RedirectButton
+                  to="/admissions/procedure"
+                  label="View Procedure"
+                  waveColor="#9E2339"
+                />
               </div>
             </Link>
 
@@ -159,9 +166,12 @@ export function AdmissionsHubPage() {
                   </p>
                 </div>
               </div>
-              <div className="shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background font-oswald font-bold text-xs uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs group-hover:bg-primary group-hover:text-white transition-colors">
-                <span>View Scholarships</span>
-                <ArrowUpRight className="w-4 h-4" />
+              <div className="shrink-0">
+                <RedirectButton
+                  to="/admissions/scholarships"
+                  label="View Scholarships"
+                  waveColor="#9E2339"
+                />
               </div>
             </Link>
           </div>
@@ -176,15 +186,11 @@ export function AdmissionsHubPage() {
                 Call +91 99400 04500 / 044-2747 0024 or email admission@msajce-edu.in
               </p>
             </div>
-            <a
+            <RedirectButton
               href="https://msajce-edu.in/admission_form.php"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-oswald font-bold text-sm uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors"
-            >
-              <span>Enquire / Apply Online</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
+              label="Enquire / Apply Online"
+              waveColor="#9E2339"
+            />
           </div>
         </div>
       </section>

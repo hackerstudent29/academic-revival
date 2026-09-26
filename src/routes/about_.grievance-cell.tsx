@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Mail } from "lucide-react";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
+import { RedirectButton } from "@/components/ui/redirect-button";
 
 const title = "Complaints / Grievance Redressal / Disciplinary / Vishaka Committee / POSH Cell — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -277,6 +278,20 @@ export function GrievanceCellPage() {
               </table>
             </div>
           </DataGridContainer>
+
+          {/* Ocean Wave Redirect Buttons */}
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <RedirectButton
+              href="mailto:grievance@msajce-edu.in"
+              label="Submit Grievance Complaint Email"
+              waveColor="#9E2339"
+            />
+            <RedirectButton
+              to="/about/overview"
+              label="View Institutional Code of Conduct"
+              waveColor="#9E2339"
+            />
+          </div>
         </div>
       </section>
     </main>
