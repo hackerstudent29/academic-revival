@@ -294,34 +294,9 @@ export function SiteHeader() {
       setHeaderScrolled(scrolled);
     }
     
-    // While switching tabs via secondary nav, freeze header auto-hide/show during programmatic scroll
-    if (isTabSwitching) {
-      lastScrollY.current = latest;
-      return;
-    }
-    
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    const minScroll = isMobile ? 35 : 50;
-    const delta = isMobile ? 4 : 8;
-
-    // Near the top of the page, always show main header
-    if (latest < minScroll) {
+    // Always keep header visible and fixed when scrolling
+    if (isHeaderHidden) {
       setHeaderHidden(false);
-      lastScrollY.current = latest;
-      return;
-    }
-
-    // Scroll Down -> Hide Header
-    if (latest > lastScrollY.current + delta) {
-      if (!moreOpen && !active) {
-        setHeaderHidden(true);
-      }
-      lastScrollY.current = latest;
-    } 
-    // Scroll Up -> Automatically reveal Header!
-    else if (latest < lastScrollY.current - delta) {
-      setHeaderHidden(false);
-      lastScrollY.current = latest;
     }
   });
 

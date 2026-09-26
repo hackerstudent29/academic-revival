@@ -59,13 +59,7 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
     if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
     
     setIsTabSwitching(true);
-    
-    // Automatically hide header when going to a sub-tab, show when going to overview/first tab
-    if (tabId === "overview" || tabId === tabs[0]?.id) {
-      setHeaderHidden(false);
-    } else {
-      setHeaderHidden(true);
-    }
+    setHeaderHidden(false);
 
     onSelectTab(tabId);
 
@@ -95,9 +89,7 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
       style={{
         transition: 'top 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1)'
       }}
-      className={`sticky z-40 w-full bg-background/85 dark:bg-[#121214]/85 backdrop-blur-xl border-t border-b border-border/80 dark:border-white/10 shadow-xs ${
-        !isHeaderHidden ? "top-[58px] md:top-[70px]" : "top-0 md:top-0"
-      } ${className}`}
+      className={`sticky z-40 w-full bg-background/85 dark:bg-[#121214]/85 backdrop-blur-xl border-t border-b border-border/80 dark:border-white/10 shadow-xs top-[58px] md:top-[70px] ${className}`}
     >
       <div className="relative max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 py-1.5 sm:py-2 min-h-[38px] md:min-h-[44px] flex items-center justify-between gap-3">
         

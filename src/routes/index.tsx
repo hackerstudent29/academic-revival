@@ -97,7 +97,7 @@ export function HomePage() {
         {/* ========================================================================= */}
         {/* 1. MSAJCE SIGNATURE MOBILE HERO SECTION (< lg screens)                   */}
         {/* ========================================================================= */}
-        <div className="block lg:hidden relative w-full bg-background text-foreground overflow-hidden py-5 px-4 sm:px-6 flex flex-col gap-5">
+        <div className="block lg:hidden relative w-full bg-background text-foreground overflow-hidden py-4 px-4 sm:px-6 flex flex-col gap-4">
           
           {/* A. TOP: Sliding Image Showcase (Left to Right Horizontal Touch Carousel) */}
           <div className="w-full space-y-1.5">
@@ -133,30 +133,14 @@ export function HomePage() {
             </div>
           </div>
 
-          {/* B. BELOW: PC Left-Side Content Style */}
-          <div className="flex flex-col gap-4 pt-1">
-            <div className="pl-1">
-              <DynamicText />
-            </div>
-            
-            <div className="pl-1 py-1 flex items-center justify-start min-h-[40px]">
-              <img
-                src="/logos/college-name-only-logo.png"
-                alt="Mohamed Sathak A.J. College of Engineering"
-                className="w-[94%] max-w-[360px] h-auto object-contain object-left"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "/logos/college%20name%20only%20logo.PNG";
-                }}
-              />
-            </div>
-
-            {/* 5 Hero Links — Standard PC View Editorial List Style */}
-            <Stagger gap={0.05} delay={0.1} className="mt-2 border-t border-foreground/12">
+          {/* B. BELOW: 5 Hero Links (PC Editorial List Style, Clean Alignment) */}
+          <div className="flex flex-col pt-1">
+            <Stagger gap={0.05} delay={0.1} className="border-t border-foreground/12">
               {heroLinks.map((item) => (
                 <StaggerItem key={item.to} variant="mask">
                   <Link
                     to={item.to}
-                    className="group flex items-center justify-between border-b border-foreground/12 py-4 text-[13px] sm:text-sm font-bold font-oswald uppercase tracking-[0.12em] text-foreground/80 transition-colors hover:text-primary active:text-primary pl-1 pr-2"
+                    className="group flex items-center justify-between border-b border-foreground/12 py-3.5 sm:py-4 text-[13px] sm:text-sm font-bold font-oswald uppercase tracking-[0.12em] text-foreground/80 transition-colors hover:text-primary active:text-primary pl-1 pr-2"
                   >
                     <span className="transition-transform duration-300 ease-out group-hover:translate-x-1.5">
                       {item.label}

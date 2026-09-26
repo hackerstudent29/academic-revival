@@ -125,11 +125,7 @@ function IQAC() {
 
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
-    if (tabId === "overview") {
-      setHeaderHidden(false);
-    } else {
-      setHeaderHidden(true);
-    }
+    setHeaderHidden(false);
 
     setTimeout(() => {
       const el = document.getElementById("iqac-main-content");

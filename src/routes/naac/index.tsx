@@ -137,11 +137,7 @@ function NaacPortal() {
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
     setActiveCriterion(null);
-    if (tabId === "overview") {
-      setHeaderHidden(false);
-    } else {
-      setHeaderHidden(true);
-    }
+    setHeaderHidden(false);
 
     setTimeout(() => {
       const el = document.getElementById("naac-tab-content");
