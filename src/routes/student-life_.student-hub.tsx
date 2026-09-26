@@ -192,10 +192,6 @@ function StudentHubPage() {
 
                   {/* Amenity Narrative & Details */}
                   <div className="lg:col-span-7 space-y-3">
-                    <span className="text-xs font-bold font-oswald uppercase tracking-wider px-2.5 py-0.5 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary/10 border border-primary/20 text-primary inline-block">
-                      {amenity.category}
-                    </span>
-
                     <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
                       {amenity.title}
                     </h3>
@@ -331,7 +327,7 @@ function StudentHubPage() {
                           {wing.jurisdiction}
                         </td>
                         <td className="py-3.5 px-4 font-libre text-xs sm:text-sm whitespace-nowrap">
-                          <span className="px-2.5 py-0.5 bg-primary/10 border border-primary/20 text-primary font-oswald uppercase text-xs font-bold rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                          <span className="font-oswald uppercase text-xs font-bold text-primary">
                             {wing.frequency}
                           </span>
                         </td>

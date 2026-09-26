@@ -186,7 +186,7 @@ function ProfessionalSocietiesPage() {
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border/40 pb-3">
                   <div className="space-y-1">
-                    <span className="text-xs font-bold font-oswald uppercase tracking-wider px-2.5 py-0.5 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary/10 border border-primary/20 text-primary inline-block">
+                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary block">
                       Chapter Code: {activeSociety.code}
                     </span>
                     <h3 className="text-xl sm:text-2xl font-bold font-oswald uppercase tracking-tight text-foreground">

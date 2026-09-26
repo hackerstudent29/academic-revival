@@ -30,7 +30,6 @@ export interface ClubCommitteeMember {
 export interface ClubDetailedData {
   id: string;
   name: string;
-  badge: string;
   overview: string;
   mission: string;
   objectives: string[];
@@ -41,7 +40,6 @@ export const clubsDetailedData: ClubDetailedData[] = [
   {
     id: "sports-club",
     name: "Sports Club",
-    badge: "Athletics & Physical Education",
     overview:
       "The Sports Club maintains records of sports and games events attended by students within the college, within Anna University, and outside at the regional, state, and national levels along with their achievements and awards. The club submits annual reports on sports events, oversees budget allocations, and conducts student sporting events, honoring winners with medals and trophies. All kinds of indoor and outdoor sports tournaments take place under the guidance of this club.",
     mission:
@@ -103,7 +101,6 @@ export const clubsDetailedData: ClubDetailedData[] = [
   {
     id: "fine-arts-club",
     name: "Fine Arts Club (Envista Club / Artful Aesthetics)",
-    badge: "Cultural & Visual Arts",
     overview:
       "Mohamed Sathak A.J. College of Engineering has established the Envista Fine Arts Club (Artful Aesthetics) to encourage the budding talent of our students. The club serves as a vibrant platform for students to express their thoughts, feelings, and creativity through visual and performing art forms from two dimensions to three dimensions, keeping students culturally active and creatively enriched throughout the academic year.",
     mission:
@@ -166,7 +163,6 @@ export const clubsDetailedData: ClubDetailedData[] = [
   {
     id: "science-club",
     name: "Science Club",
-    badge: "Applied Sciences & Research",
     overview:
       "The Science Club was established with an aim to invite eminent scientists and researchers who share their knowledge with students and inspire them to acquire scientific acumen. Divided into three specialized sections—Physics, Chemistry, and General Applied Science—the club is open to all students across all engineering departments to arouse curiosity in learning science and applying it to daily engineering problems.",
     mission:
@@ -229,7 +225,6 @@ export const clubsDetailedData: ClubDetailedData[] = [
   {
     id: "tamil-mandram",
     name: "தமிழ் மன்றம் (Tamil Mandram)",
-    badge: "மொழி மற்றும் பண்பாட்டுப் பிரிவு",
     overview:
       "தமிழுக்கு என்றும் அழிவில்லை. அழிவில்லாத உயர்தனிச் செம்மொழித் தமிழிற்காக இளந்தமிழ்ச் செல்வங்களிடத்தில் மட்டுமின்றி இச்சமுதாயத்திலும் ஓர் அற்புத மாற்றத்தை உருவாக்கும் நோக்கில் முகமது சதக் ஏ.ஜே. பொறியியல் கல்லூரியில் தமிழ் மன்றம் செயல்படுகிறது. நம் முன்னோர்கள் வாழ்ந்து, வழிபட்டு, வென்று விட்டுச்சென்ற வரலாற்று அடையாளங்களை மீட்டுருவாக்கம் செய்து, தமிழ் மொழியின் புகழை உலகெங்கும் கொண்டு செல்வதே இத்தமிழ் மன்றத்தின் தலையாய பணியாகும்.",
     mission:
@@ -290,7 +285,6 @@ export const clubsDetailedData: ClubDetailedData[] = [
   {
     id: "coding-club",
     name: "Coding Club",
-    badge: "Software Engineering & Algorithms",
     overview:
       "Programming abilities are crucial tools that can be applied to and integrated into a variety of disciplines and domains in today's climate of rapid technological change. The MSAJCE Coding Club fosters a highly collaborative peer network where students master computer programming, data structures, open-source software development, and algorithmic problem-solving.",
     mission:
@@ -353,7 +347,6 @@ export const clubsDetailedData: ClubDetailedData[] = [
   {
     id: "robotic-club",
     name: "Robotic Club",
-    badge: "Robotics, Embedded Systems & IoT",
     overview:
       "The Robotic Club brings together students interested in learning about, designing, and fabricating advanced robotics. Multi-disciplinary teams of students collaborate to design and construct autonomous and radio-controlled robots that compete against rival teams in obstacle navigation, combat trials, and speed challenges in state and national robotics tournaments.",
     mission:
@@ -415,7 +408,6 @@ export const clubsDetailedData: ClubDetailedData[] = [
   {
     id: "energy-eco-club",
     name: "Energy & Eco Club",
-    badge: "Green Energy & Environmental Sustainability",
     overview:
       "The Energy & Eco Club combines energy conservation awareness with comprehensive environmental protection. The Energy wing raises awareness about responsible and sustainable energy use, fossil fuel conservation, and renewable technologies. The Eco wing holds that nature imparts life lessons in its own steady ways and empowers young engineers to share responsibility for protecting environmental health, biodiversity, and planetary sustainability.",
     mission:
@@ -477,7 +469,6 @@ export const clubsDetailedData: ClubDetailedData[] = [
   {
     id: "photography-club",
     name: "Photography Club",
-    badge: "Visual Storytelling & Digital Media",
     overview:
       "The Photography Club provides students and faculty a creative venue for exploring and appreciating visual storytelling through photography, short filmmaking, and screenwriting. Beyond simply operating a camera, members comprehend what constitutes a successful photograph—from composition to creative lighting—while learning advanced digital post-production software for personal and institutional publication.",
     mission:
@@ -682,12 +673,6 @@ function ClubsAndSocietiesPage() {
             {/* ========================================================================= */}
             <section className="py-5 sm:py-7 md:py-8 bg-white dark:bg-[#121214] transition-colors">
               <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-bold font-oswald uppercase tracking-wider px-2.5 py-0.5 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary/10 border border-primary/20 text-primary inline-block">
-                    {activeClub.badge}
-                  </span>
-                </div>
-
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
                   {activeClub.name} Overview
                 </h2>
@@ -695,7 +680,7 @@ function ClubsAndSocietiesPage() {
                   {activeClub.overview}
                 </p>
 
-                <div className="mt-6 pt-5 border-t border-border/40">
+                <div className="mt-6 sm:mt-8">
                   <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-3 sm:mb-4">
                     Mission &amp; Vision
                   </h3>
@@ -760,7 +745,7 @@ function ClubsAndSocietiesPage() {
                             Name of Member
                           </th>
                           <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[180px]">
-                            Designation / Role
+                            Role / Position
                           </th>
                           <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[200px]">
                             Department / Year
@@ -780,7 +765,7 @@ function ClubsAndSocietiesPage() {
                               {member.name}
                             </td>
                             <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
-                              <span className="px-2.5 py-0.5 bg-primary/10 border border-primary/20 text-primary font-oswald uppercase text-xs font-bold rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                              <span className="font-oswald font-bold uppercase text-xs text-primary">
                                 {member.role}
                               </span>
                             </td>
