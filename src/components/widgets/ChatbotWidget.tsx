@@ -126,35 +126,48 @@ export const ChatbotWidget: FC<ChatbotWidgetProps> = ({
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-24 right-4 sm:right-8 md:right-10 w-[360px] sm:w-[430px] md:w-[460px] h-[640px] max-h-[calc(100vh-120px)] bg-card border border-border dark:border-white/15 rounded-2xl shadow-2xl flex flex-col overflow-hidden z-[1000000] backdrop-blur-xl"
+            initial={{ opacity: 0, scale: 0.82, y: 28 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.82, y: 28 }}
+            transition={{
+              type: "spring",
+              stiffness: 380,
+              damping: 28,
+              mass: 0.8,
+            }}
+            style={{ transformOrigin: "bottom right" }}
+            className="fixed bottom-24 right-4 sm:right-8 md:right-10 w-[360px] sm:w-[430px] md:w-[460px] h-[640px] max-h-[calc(100vh-120px)] bg-card border border-border dark:border-white/15 rounded-2xl shadow-2xl flex flex-col overflow-hidden z-[1000000] backdrop-blur-xl will-change-transform"
           >
-            {/* Embedded Iframe */}
+            {/* Embedded Iframe Container */}
             <div className="relative w-full h-full bg-background overflow-hidden flex-1">
-              {isLoading && (
-                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-background/95 backdrop-blur-md text-foreground">
-                  <div className="relative flex items-center justify-center p-4 rounded-2xl bg-primary/10 border border-primary/20 text-primary">
-                    <EyeTracking
-                      eyeSize={36}
-                      gap={10}
-                      variant={isDark ? "cyber" : "cartoon"}
-                      irisColor={isDark ? "#00d4ff" : "#9E2339"}
-                      irisColorSecondary={isDark ? "#9E2339" : "#E11D48"}
-                      scleraColor={isDark ? "#0a0a1a" : "#FFFFFF"}
-                      pupilColor={isDark ? "#001122" : "#0F172A"}
-                      pupilRange={0.75}
-                      reactivePupil={true}
-                    />
-                    <Sparkles className="w-4 h-4 text-amber-400 absolute -top-1 -right-1 animate-spin" />
-                  </div>
-                  <span className="text-xs font-oswald font-bold uppercase tracking-wider text-muted-foreground">
-                    Connecting to Lorin AI...
-                  </span>
-                </div>
-              )}
+              <AnimatePresence>
+                {isLoading && (
+                  <motion.div
+                    initial={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-background/95 backdrop-blur-md text-foreground"
+                  >
+                    <div className="relative flex items-center justify-center p-4 rounded-2xl bg-primary/10 border border-primary/20 text-primary">
+                      <EyeTracking
+                        eyeSize={36}
+                        gap={10}
+                        variant={isDark ? "cyber" : "cartoon"}
+                        irisColor={isDark ? "#00d4ff" : "#9E2339"}
+                        irisColorSecondary={isDark ? "#9E2339" : "#E11D48"}
+                        scleraColor={isDark ? "#0a0a1a" : "#FFFFFF"}
+                        pupilColor={isDark ? "#001122" : "#0F172A"}
+                        pupilRange={0.75}
+                        reactivePupil={true}
+                      />
+                      <Sparkles className="w-4 h-4 text-amber-400 absolute -top-1 -right-1 animate-spin" />
+                    </div>
+                    <span className="text-xs font-oswald font-bold uppercase tracking-wider text-muted-foreground">
+                      Connecting to Lorin AI...
+                    </span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               <iframe
                 key={iframeKey}
@@ -196,34 +209,76 @@ export const ChatbotWidget: FC<ChatbotWidgetProps> = ({
           </div>
         )}
 
-        {/* Peeking EyeTracking Button that Tracks Cursor and Pops Up on Hover */}
-        <button
+        {/* Interactive Bot Toggle Button (Peeking Mascot when closed, Bot-like Closing Visor when open) */}
+        <motion.button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
-          className="relative block focus:outline-none transition-transform duration-300 ease-out transform translate-y-3.5 sm:translate-y-4 group-hover:translate-y-0 group-hover:scale-105 cursor-pointer"
+          whileHover={{ y: -3, scale: 1.05 }}
+          whileTap={{ scale: 0.92 }}
+          transition={{ type: "spring", stiffness: 450, damping: 22 }}
+          className="relative block focus:outline-none cursor-pointer"
           aria-label={isOpen ? "Close Lorin AI Assistant" : "Open Lorin AI Assistant"}
         >
-          {isOpen ? (
-            <div className="mb-2 p-2.5 rounded-full bg-[#9E2339] text-white shadow-xl hover:bg-[#80182c] transition-colors">
-              <X className="w-6 h-6 stroke-[2.5]" />
-            </div>
-          ) : (
-            <div className="relative px-3.5 pt-2 pb-5 rounded-t-2xl bg-gradient-to-b from-white via-slate-50 to-slate-100 dark:from-[#1E1E24] dark:via-[#18181B] dark:to-[#0F0F12] border-t-2 border-x-2 border-[#9E2339]/40 dark:border-[#E11D48]/50 shadow-[0_-6px_22px_rgba(158,35,57,0.18)] dark:shadow-[0_-6px_25px_rgba(0,0,0,0.6)] backdrop-blur-md flex items-center justify-center transition-colors">
-              <EyeTracking
-                eyeSize={28}
-                gap={8}
-                variant={isDark ? "cyber" : "cartoon"}
-                irisColor={isDark ? "#00d4ff" : "#9E2339"}
-                irisColorSecondary={isDark ? "#9E2339" : "#E11D48"}
-                scleraColor={isDark ? "#0a0a1a" : "#FFFFFF"}
-                pupilColor={isDark ? "#001122" : "#0F172A"}
-                pupilRange={0.75}
-                reactivePupil={true}
-                blinkInterval={3500}
-              />
-            </div>
-          )}
-        </button>
+          <AnimatePresence mode="wait" initial={false}>
+            {isOpen ? (
+              <motion.div
+                key="bot-close-mode"
+                initial={{ opacity: 0, scale: 0.75, y: 8 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.75, y: 8 }}
+                transition={{ type: "spring", stiffness: 400, damping: 24 }}
+                className="relative px-3.5 pt-2 pb-4 rounded-t-2xl bg-gradient-to-b from-[#9E2339] via-[#861E30] to-[#671422] dark:from-[#E11D48] dark:via-[#BE123C] dark:to-[#9F1239] border-t-2 border-x-2 border-white/30 dark:border-white/25 shadow-[0_-6px_22px_rgba(158,35,57,0.35)] dark:shadow-[0_-6px_25px_rgba(0,0,0,0.7)] backdrop-blur-md flex flex-col items-center justify-center select-none"
+              >
+                {/* Bot Antenna / Online Pulse & Close Label */}
+                <div className="flex items-center gap-1.5 mb-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse shadow-[0_0_8px_rgba(110,231,183,0.9)]" />
+                  <span className="text-[9px] font-oswald font-black uppercase tracking-wider text-white/95 leading-none">
+                    CLOSE
+                  </span>
+                </div>
+
+                {/* Cyber Robot Visor with Resting Eyes + Central Close 'X' */}
+                <div className="relative flex items-center justify-center gap-1.5 px-2 py-1 rounded-xl bg-black/30 border border-white/20 text-white shadow-inner">
+                  {/* Left Robot Eye (Resting squint) */}
+                  <span className="w-1 h-2.5 rounded-full bg-white/45" />
+                  {/* Animated Rotating Close Cross */}
+                  <motion.div
+                    initial={{ rotate: -90, scale: 0.6 }}
+                    animate={{ rotate: 0, scale: 1 }}
+                    exit={{ rotate: 90, scale: 0.6 }}
+                    transition={{ type: "spring", stiffness: 450, damping: 22 }}
+                  >
+                    <X className="w-4 h-4 stroke-[3] text-white" />
+                  </motion.div>
+                  {/* Right Robot Eye (Resting squint) */}
+                  <span className="w-1 h-2.5 rounded-full bg-white/45" />
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="bot-idle-mode"
+                initial={{ opacity: 0, scale: 0.75, y: 8 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.75, y: 8 }}
+                transition={{ type: "spring", stiffness: 400, damping: 24 }}
+                className="relative px-3.5 pt-2 pb-5 rounded-t-2xl bg-gradient-to-b from-white via-slate-50 to-slate-100 dark:from-[#1E1E24] dark:via-[#18181B] dark:to-[#0F0F12] border-t-2 border-x-2 border-[#9E2339]/40 dark:border-[#E11D48]/50 shadow-[0_-6px_22px_rgba(158,35,57,0.18)] dark:shadow-[0_-6px_25px_rgba(0,0,0,0.6)] backdrop-blur-md flex items-center justify-center transition-colors"
+              >
+                <EyeTracking
+                  eyeSize={28}
+                  gap={8}
+                  variant={isDark ? "cyber" : "cartoon"}
+                  irisColor={isDark ? "#00d4ff" : "#9E2339"}
+                  irisColorSecondary={isDark ? "#9E2339" : "#E11D48"}
+                  scleraColor={isDark ? "#0a0a1a" : "#FFFFFF"}
+                  pupilColor={isDark ? "#001122" : "#0F172A"}
+                  pupilRange={0.75}
+                  reactivePupil={true}
+                  blinkInterval={3500}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.button>
       </div>
     </div>
   );

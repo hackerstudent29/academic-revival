@@ -22,45 +22,30 @@ const socials = [
   { label: "YouTube", href: "https://youtube.com", Icon: Youtube },
 ];
 
-export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean } = {}) {
+export function SiteFooter({ revealed: _externalRevealed }: { revealed?: boolean } = {}) {
   const footerRef = useRef<HTMLElement>(null);
-  const [internalRevealed, setInternalRevealed] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  const isRevealed = externalRevealed !== undefined ? externalRevealed : internalRevealed;
-
-  // Track scroll position to reveal Scroll-to-Top arrow button and trigger Footer layer reveal
+  // Track scroll position to reveal Scroll-to-Top arrow button
   useEffect(() => {
     let ticking = false;
 
-    const checkScrollAndReveal = () => {
+    const checkScroll = () => {
       const scrollY = window.scrollY || window.pageYOffset;
-      const scrollHeight = document.documentElement.scrollHeight;
-      const innerHeight = window.innerHeight;
-      const footerH = footerRef.current?.offsetHeight || 600;
-
       setShowScrollTop(scrollY > 280);
-
-      // Distance from viewport bottom to document bottom
-      const distanceToBottom = scrollHeight - (scrollY + innerHeight);
-      
-      // Footer layer is "opened" when user pulls up the curtain past 80% of footer height
-      const opened = distanceToBottom < footerH * 0.85 || scrollHeight <= innerHeight + 100;
-      setInternalRevealed(opened);
-
       ticking = false;
     };
 
     const handleScrollOrResize = () => {
       if (!ticking) {
-        window.requestAnimationFrame(checkScrollAndReveal);
+        window.requestAnimationFrame(checkScroll);
         ticking = true;
       }
     };
 
     window.addEventListener("scroll", handleScrollOrResize, { passive: true });
-    window.addEventListener("resize", handleScrollOrResize);
-    checkScrollAndReveal();
+    window.addEventListener("resize", handleScrollOrResize, { passive: true });
+    checkScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScrollOrResize);
@@ -111,57 +96,35 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
     };
   }, []);
 
-  const APPLE_EASE = [0.22, 1, 0.36, 1] as const;
+  const FAST_EASE = [0.16, 1, 0.3, 1] as const;
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.09,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
+  // Lightweight, hardware-accelerated variants per component (strictly NO laggy blur filters)
   const columnVariants = {
-    hidden: { opacity: 0, y: 26, filter: "blur(5px)" },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: {
-        duration: 0.55,
-        ease: APPLE_EASE,
-      },
-    },
-  };
-
-  const bottomBarVariants = {
-    hidden: { opacity: 0, y: 18 },
-    visible: {
+    hidden: { opacity: 0, y: 16 },
+    visible: (customIndex: number = 0) => ({
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.55,
-        delay: 0.35,
-        ease: APPLE_EASE,
+        duration: 0.45,
+        delay: customIndex * 0.08,
+        ease: FAST_EASE,
       },
-    },
+    }),
   };
 
   return (
     <>
       <footer
         ref={footerRef}
-        className="relative w-full min-h-[85vh] lg:min-h-[92vh] flex flex-col justify-between overflow-hidden bg-[#18181B] dark:bg-[#121214] text-[#CCCCCC] border-t border-white/10 dark:border-white/5 pointer-events-auto msajce-page-blur"
+        className="relative w-full min-h-[85vh] lg:min-h-[92vh] flex flex-col justify-between overflow-hidden bg-[#18181B] dark:bg-[#121214] text-[#CCCCCC] border-t border-white/10 dark:border-white/5 pointer-events-auto"
       >
-        {/* ── 1. Architectural Campus Outline Ambient Background (Smooth reveal animation) ── */}
+        {/* ── 1. Architectural Campus Outline Ambient Background (Smooth GPU Fade) ── */}
         <motion.div
-          initial={{ opacity: 0, y: 35, scale: 0.98 }}
-          animate={isRevealed ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 35, scale: 0.98 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none absolute inset-0 z-0 flex items-end justify-center select-none overflow-hidden"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="pointer-events-none absolute inset-0 z-0 flex items-end justify-center select-none overflow-hidden will-change-[opacity]"
           aria-hidden="true"
         >
           {/* Mobile View Outline Logo */}
@@ -188,15 +151,17 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,0,0,0.55)_0%,transparent_75%)] pointer-events-none" />
         </motion.div>
 
-        {/* ── Main Grid (Staggered content reveal whenever footer opens) ── */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isRevealed ? "visible" : "hidden"}
-          className="relative z-10 mx-auto w-full max-w-[1440px] grid grid-cols-12 gap-8 px-4 sm:px-6 md:px-8 xl:px-12 py-12 md:py-16 lg:py-20"
-        >
+        {/* ── Main Grid (Lightweight Staggered Component Animations) ── */}
+        <div className="relative z-10 mx-auto w-full max-w-[1440px] grid grid-cols-12 gap-8 px-4 sm:px-6 md:px-8 xl:px-12 py-12 md:py-16 lg:py-20">
           {/* ── Col 1: Brand & Contact Info ── */}
-          <motion.div variants={columnVariants} className="col-span-12 lg:col-span-4">
+          <motion.div
+            custom={0}
+            variants={columnVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="col-span-12 lg:col-span-4 will-change-transform"
+          >
             <Link to="/" className="inline-block group focus:outline-none" aria-label="MSAJCE Home">
               <svg
                 className="h-16 sm:h-20 md:h-22 lg:h-24 w-auto text-white transition-transform duration-300 group-hover:scale-[1.01] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
@@ -294,7 +259,14 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
           </motion.div>
 
           {/* ── Section 1: Governance ── */}
-          <motion.div variants={columnVariants} className="col-span-6 sm:col-span-3 lg:col-span-2">
+          <motion.div
+            custom={1}
+            variants={columnVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="col-span-6 sm:col-span-3 lg:col-span-2 will-change-transform"
+          >
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               Governance
             </h3>
@@ -322,7 +294,14 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
           </motion.div>
 
           {/* ── Section 2: Quick Links ── */}
-          <motion.div variants={columnVariants} className="col-span-6 sm:col-span-3 lg:col-span-2">
+          <motion.div
+            custom={2}
+            variants={columnVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="col-span-6 sm:col-span-3 lg:col-span-2 will-change-transform"
+          >
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               Quick Links
             </h3>
@@ -351,7 +330,14 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
           </motion.div>
 
           {/* ── Section 3: Admissions ── */}
-          <motion.div variants={columnVariants} className="col-span-6 sm:col-span-3 lg:col-span-2">
+          <motion.div
+            custom={3}
+            variants={columnVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="col-span-6 sm:col-span-3 lg:col-span-2 will-change-transform"
+          >
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               Admissions
             </h3>
@@ -381,7 +367,14 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
           </motion.div>
 
           {/* ── Section 4: Institutional Documents ── */}
-          <motion.div variants={columnVariants} className="col-span-6 sm:col-span-3 lg:col-span-2">
+          <motion.div
+            custom={4}
+            variants={columnVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="col-span-6 sm:col-span-3 lg:col-span-2 will-change-transform"
+          >
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               Documents &amp; Reports
             </h3>
@@ -409,14 +402,15 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
               ))}
             </ul>
           </motion.div>
-        </motion.div>
+        </div>
 
         {/* ── Bottom Bar ── */}
         <motion.div
-          variants={bottomBarVariants}
-          initial="hidden"
-          animate={isRevealed ? "visible" : "hidden"}
-          className="relative z-10 mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.45, delay: 0.38, ease: FAST_EASE }}
+          className="relative z-10 mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12 will-change-transform"
         >
           <div className="h-px w-full bg-white/10 dark:bg-white/10" />
 
@@ -484,7 +478,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
             initial={{ opacity: 0, scale: 0.7, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.7, y: 15 }}
-            transition={{ duration: 0.25, ease: APPLE_EASE }}
+            transition={{ duration: 0.25, ease: FAST_EASE }}
             className="fixed bottom-26 sm:bottom-28 right-7 sm:right-11 md:right-13 z-[99990] flex items-center justify-center pointer-events-auto"
           >
             <motion.button
