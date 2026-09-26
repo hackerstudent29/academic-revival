@@ -107,51 +107,39 @@ export function HomePage() {
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {[
-                { src: "/images/hero_dsc6410.jpg", fallback: "/DSC06410.JPG", tag: "Heritage", title: "25+ Years of Excellence", desc: "Established in 2001 in Chennai OMR" },
-                { src: "/images/placement/03interviewroom.jpg", fallback: "/images/eligibility_hero.jpg", tag: "Placements", title: "90%+ Placement Record", desc: "TCS, Zoho, Cognizant & Infosys" },
-                { src: "/images/placement/06LAB.jpg", fallback: "/images/eligibility_hero.jpg", tag: "Research", title: "AICTE IDEA Labs", desc: "Advanced CNC & Robotics Facilities" },
-                { src: "/images/placement/05classroom.jpg", fallback: "/images/eligibility_hero.jpg", tag: "Training", title: "Career Training Suites", desc: "Aptitude & Soft Skill Preparation" },
-                { src: "/images/hero_dsc6419.jpg", fallback: "/DSC06419.JPG", tag: "Campus Life", title: "Vibrant Student Community", desc: "Modern Campus Infrastructure" },
-              ].map((item) => (
+                { src: "/images/hero_dsc6410.jpg", fallback: "/DSC06410.JPG", alt: "25+ Years of Excellence" },
+                { src: "/images/placement/03interviewroom.jpg", fallback: "/images/eligibility_hero.jpg", alt: "Placements" },
+                { src: "/images/placement/06LAB.jpg", fallback: "/images/eligibility_hero.jpg", alt: "Research" },
+                { src: "/images/placement/05classroom.jpg", fallback: "/images/eligibility_hero.jpg", alt: "Training" },
+                { src: "/images/hero_dsc6419.jpg", fallback: "/DSC06419.JPG", alt: "Campus Life" },
+              ].map((item, idx) => (
                 <div
-                  key={item.tag}
-                  className="relative h-[200px] sm:h-[220px] w-[85vw] max-w-[310px] shrink-0 snap-center overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-border bg-white dark:bg-[#121214] shadow-lg"
+                  key={idx}
+                  className="relative h-[200px] sm:h-[220px] w-[85vw] max-w-[320px] shrink-0 snap-center overflow-hidden rounded-md border border-border bg-white dark:bg-[#121214] shadow-xs"
                 >
                   <img
                     src={item.src}
-                    alt={item.title}
+                    alt={item.alt}
                     loading="lazy"
-                    className="h-full w-full object-cover brightness-[0.8]"
+                    className="h-full w-full object-cover"
                     onError={(e) => {
                       if (item.fallback) {
                         (e.target as HTMLImageElement).src = item.fallback;
                       }
                     }}
                   />
-                  {/* Signature Maroon Red Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#671422]/95 via-black/40 to-transparent p-4 flex flex-col justify-end">
-                    <span className="inline-flex self-start rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary px-2.5 py-0.5 text-[9.5px] font-black uppercase tracking-wider text-white font-oswald shadow-xs mb-1">
-                      {item.tag}
-                    </span>
-                    <h3 className="text-base font-bold font-oswald uppercase text-white leading-tight drop-shadow-md">
-                      {item.title}
-                    </h3>
-                    <p className="text-[11px] font-libre text-white/90 font-medium leading-tight mt-0.5">
-                      {item.desc}
-                    </p>
-                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* B. BELOW: Left-Side Content (DynamicText, College Logo & Hero Links) */}
+          {/* B. BELOW: PC Left-Side Content Style */}
           <div className="flex flex-col gap-4 pt-1">
             <div className="pl-1">
               <DynamicText />
             </div>
             
-            <div className="pl-1 py-0.5 flex items-center justify-start min-h-[40px]">
+            <div className="pl-1 py-1 flex items-center justify-start min-h-[40px]">
               <img
                 src="/logos/college-name-only-logo.png"
                 alt="Mohamed Sathak A.J. College of Engineering"
@@ -162,46 +150,27 @@ export function HomePage() {
               />
             </div>
 
-            <p className="text-xs sm:text-sm font-libre text-muted-foreground font-medium leading-relaxed pl-1">
-              Explore MSAJCE academic programmes — UG, PG and research pathways on Chennai's OMR Siruseri IT Corridor.
-            </p>
-
-            {/* Liquid Ocean Wave Mobile Navigation Buttons List */}
-            <div className="flex flex-col gap-2 pt-1 border-t border-foreground/12">
+            {/* 5 Hero Links — Standard PC View Editorial List Style */}
+            <Stagger gap={0.05} delay={0.1} className="mt-2 border-t border-foreground/12">
               {heroLinks.map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  search={{} as any}
-                  className="group relative overflow-hidden flex items-center justify-between border border-stone-300 dark:border-neutral-700 bg-stone-200/90 dark:bg-neutral-800 px-4 py-3 text-xs font-bold uppercase tracking-wider text-foreground dark:text-white font-oswald shadow-xs transition-colors rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs w-full"
-                >
-                  {/* Liquid Ocean Wave Fill Overlay */}
-                  <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                    <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                      {/* Ocean Wave Crest SVG (Primary) */}
-                      <span className="absolute -top-3.5 left-0 w-[200%] h-4 pointer-events-none block">
-                        <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                          <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,-20 1200,40 L1200,120 L0,120 Z" />
-                        </svg>
-                      </span>
-                      {/* Secondary Depth Layer Wave */}
-                      <span className="absolute -top-4 left-0 w-[200%] h-5 opacity-40 pointer-events-none block">
-                        <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                          <path d="M0,30 C200,-30 400,90 600,10 C800,-40 1000,70 1200,20 L1200,120 L0,120 Z" />
-                        </svg>
-                      </span>
+                <StaggerItem key={item.to} variant="mask">
+                  <Link
+                    to={item.to}
+                    className="group flex items-center justify-between border-b border-foreground/12 py-4 text-[13px] sm:text-sm font-bold font-oswald uppercase tracking-[0.12em] text-foreground/80 transition-colors hover:text-primary active:text-primary pl-1 pr-2"
+                  >
+                    <span className="transition-transform duration-300 ease-out group-hover:translate-x-1.5">
+                      {item.label}
                     </span>
-                  </span>
-
-                  <span className="relative z-10 flex items-center gap-1.5 text-foreground dark:text-white group-hover:text-white transition-colors duration-300">
-                    {item.label}
-                  </span>
-                  <span className="relative z-10 text-primary group-hover:text-white transition-colors duration-300 font-black">
-                    &raquo;
-                  </span>
-                </Link>
+                    <span
+                      aria-hidden
+                      className="text-lg text-primary transition-transform duration-300 ease-out group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
+                  </Link>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
 
         </div>
