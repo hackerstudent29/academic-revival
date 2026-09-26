@@ -22,18 +22,50 @@ const socials = [
   { label: "YouTube", href: "https://youtube.com", Icon: Youtube },
 ];
 
-export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
+export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean } = {}) {
   const footerRef = useRef<HTMLElement>(null);
+  const [internalRevealed, setInternalRevealed] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Track scroll position to reveal Scroll-to-Top arrow button
+  const isRevealed = externalRevealed !== undefined ? externalRevealed : internalRevealed;
+
+  // Track scroll position to reveal Scroll-to-Top arrow button and trigger Footer layer reveal
   useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 280);
+    let ticking = false;
+
+    const checkScrollAndReveal = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const innerHeight = window.innerHeight;
+      const footerH = footerRef.current?.offsetHeight || 600;
+
+      setShowScrollTop(scrollY > 280);
+
+      // Distance from viewport bottom to document bottom
+      const distanceToBottom = scrollHeight - (scrollY + innerHeight);
+      
+      // Footer layer is "opened" when user pulls up the curtain past 80% of footer height
+      const opened = distanceToBottom < footerH * 0.85 || scrollHeight <= innerHeight + 100;
+      setInternalRevealed(opened);
+
+      ticking = false;
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const handleScrollOrResize = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(checkScrollAndReveal);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScrollOrResize, { passive: true });
+    window.addEventListener("resize", handleScrollOrResize);
+    checkScrollAndReveal();
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollOrResize);
+      window.removeEventListener("resize", handleScrollOrResize);
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -79,14 +111,54 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
     };
   }, []);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.09,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const columnVariants = {
+    hidden: { opacity: 0, y: 26, filter: "blur(5px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.55,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const bottomBarVariants = {
+    hidden: { opacity: 0, y: 18 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.55,
+        delay: 0.35,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
   return (
     <>
       <footer
         ref={footerRef}
         className="relative w-full min-h-[85vh] lg:min-h-[92vh] flex flex-col justify-between overflow-hidden bg-[#18181B] dark:bg-[#121214] text-[#CCCCCC] border-t border-white/10 dark:border-white/5 pointer-events-auto msajce-page-blur"
       >
-        {/* ── 1. Architectural Campus Outline Ambient Background ── */}
-        <div
+        {/* ── 1. Architectural Campus Outline Ambient Background (Smooth reveal animation) ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 35, scale: 0.98 }}
+          animate={isRevealed ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 35, scale: 0.98 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="pointer-events-none absolute inset-0 z-0 flex items-end justify-center select-none overflow-hidden"
           aria-hidden="true"
         >
@@ -112,12 +184,17 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
           <div className="absolute inset-0 bg-gradient-to-b from-[#18181B] via-[#18181B]/75 to-transparent sm:from-[#18181B]/95 sm:via-[#18181B]/45 sm:to-transparent dark:from-[#121214] dark:via-[#121214]/75 dark:to-transparent sm:dark:from-[#121214]/95 sm:dark:via-[#121214]/45 sm:dark:to-transparent pointer-events-none" />
           {/* Radial vignette to give extra crisp contrast directly behind the link columns */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,0,0,0.55)_0%,transparent_75%)] pointer-events-none" />
-        </div>
+        </motion.div>
 
-        {/* ── Main Grid ── */}
-        <div className="relative z-10 mx-auto w-full max-w-[1440px] grid grid-cols-12 gap-8 px-4 sm:px-6 md:px-8 xl:px-12 py-12 md:py-16 lg:py-20">
+        {/* ── Main Grid (Staggered content reveal whenever footer opens) ── */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isRevealed ? "visible" : "hidden"}
+          className="relative z-10 mx-auto w-full max-w-[1440px] grid grid-cols-12 gap-8 px-4 sm:px-6 md:px-8 xl:px-12 py-12 md:py-16 lg:py-20"
+        >
           {/* ── Col 1: Brand & Contact Info ── */}
-          <div className="col-span-12 lg:col-span-4">
+          <motion.div variants={columnVariants} className="col-span-12 lg:col-span-4">
             <Link to="/" className="inline-block group focus:outline-none" aria-label="MSAJCE Home">
               <svg
                 className="h-16 sm:h-20 md:h-22 lg:h-24 w-auto text-white transition-transform duration-300 group-hover:scale-[1.01] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
@@ -212,10 +289,10 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
                 <span>admissions@msajce.edu.in</span>
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* ── Section 1: Governance ── */}
-          <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+          <motion.div variants={columnVariants} className="col-span-6 sm:col-span-3 lg:col-span-2">
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               Governance
             </h3>
@@ -240,10 +317,10 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* ── Section 2: Quick Links ── */}
-          <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+          <motion.div variants={columnVariants} className="col-span-6 sm:col-span-3 lg:col-span-2">
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               Quick Links
             </h3>
@@ -269,10 +346,10 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* ── Section 3: Admissions ── */}
-          <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+          <motion.div variants={columnVariants} className="col-span-6 sm:col-span-3 lg:col-span-2">
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               Admissions
             </h3>
@@ -299,10 +376,10 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* ── Section 4: Institutional Documents ── */}
-          <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+          <motion.div variants={columnVariants} className="col-span-6 sm:col-span-3 lg:col-span-2">
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               Documents &amp; Reports
             </h3>
@@ -329,11 +406,16 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* ── Bottom Bar ── */}
-        <div className="relative z-10 mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+        <motion.div
+          variants={bottomBarVariants}
+          initial="hidden"
+          animate={isRevealed ? "visible" : "hidden"}
+          className="relative z-10 mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12"
+        >
           <div className="h-px w-full bg-white/10 dark:bg-white/10" />
 
           <div className="flex w-full flex-col items-center justify-between gap-6 py-6 sm:flex-row md:py-8">
@@ -390,7 +472,7 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
               <p className="text-white shrink-0 text-center sm:text-right">&copy; {new Date().getFullYear()} MSAJCE. All rights reserved.</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </footer>
 
       {/* ── Scroll-to-Top Floating Arrow Button (Round shape & Glassmorphism slightly above Chatbot Widget) ── */}
