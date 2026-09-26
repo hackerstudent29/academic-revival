@@ -148,7 +148,7 @@ function RootComponent() {
         <ScrollToTop />
         <RefreshSnapIndicator />
         <StickySocialBar />
-        <ChatbotWidget />
+        <ChatbotWidget botUrl="https://nvidia-powered-rag.vercel.app" />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <div className="bg-background text-foreground max-w-full w-full min-h-screen flex flex-col">
           <div 

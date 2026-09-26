@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
@@ -12,14 +12,16 @@ import {
   Video,
   ChevronLeft,
   ChevronRight,
-  ArrowRight,
   RotateCcw,
+  CheckCircle2,
 } from "lucide-react";
+import { StudentLifeSubNav } from "@/components/layout/StudentLifeSubNav";
+import { DataGridContainer } from "@/components/ui/data-grid-table";
 import { tedxVideos, type TedxVideo } from "@/data/tedxVideos";
 
-const title = "Our TEDx Chapter | TEDxMSAJCE | Student Life | MSAJCE";
+const title = "Our TEDx Chapter | TEDxMSAJCE | Campus Life | MSAJCE";
 const description =
-  "Official TEDxMSAJCE talks database at Mohamed Sathak A.J. College of Engineering. Browse 54 independently organized TEDx talks by innovators, researchers, and global thought leaders.";
+  "Official TEDxMSAJCE talks archive at Mohamed Sathak A.J. College of Engineering. Discover 54 independently organized TEDx talks featuring pioneering researchers, industry visionaries, and social innovators.";
 
 export const Route = createFileRoute("/student-life_/tedx")({
   head: () => ({
@@ -32,18 +34,116 @@ export const Route = createFileRoute("/student-life_/tedx")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: TedxDatabasePage,
+  component: TedxPage,
 });
 
-const PAGE_SIZE_OPTIONS = [12, 24, 54] as const;
+const PAGE_SIZE_OPTIONS = [10, 25, 54] as const;
 
-function TedxDatabasePage() {
-  const navigate = useNavigate();
+const chapterHighlights = [
+  {
+    title: "Official TED University Charter",
+    desc: "Operated under formal independent license granted by TED Conferences LLC, adhering to strict global production, curation, and licensing protocols.",
+  },
+  {
+    title: "54 Documented Keynote Addresses",
+    desc: "A comprehensive digital archive of ideas across deep tech, medical engineering, architectural design, ethical computing, and civic entrepreneurship.",
+  },
+  {
+    title: "Global Open-Access Broadcasting",
+    desc: "Every recorded presentation is published directly to TED's official international YouTube channel and global media catalog, reaching millions worldwide.",
+  },
+  {
+    title: "Student-Led Curatorial Committee",
+    desc: "Completely conceived, curated, organized, and executed by MSAJCE undergraduate student leaders and faculty mentors.",
+  },
+];
 
+const thematicPillars = [
+  {
+    pillar: "01",
+    name: "Frontier Technologies & Intelligent Systems",
+    desc: "Exploring machine intelligence, autonomous robotics, quantum computing fundamentals, ethical algorithm design, and digital privacy paradigms shaping our technological landscape.",
+  },
+  {
+    pillar: "02",
+    name: "Sustainable Engineering & Resilient Habitat",
+    desc: "Focusing on renewable energy transitions, circular manufacturing economies, ecological infrastructure development, clean water technologies, and urban resilience.",
+  },
+  {
+    pillar: "03",
+    name: "Social Innovation & Human Ingenuity",
+    desc: "Highlighting transformative grassroots leadership, community-centric healthcare solutions, accessible education models, and novel social enterprise frameworks.",
+  },
+  {
+    pillar: "04",
+    name: "Design Synthesis & Creative Expression",
+    desc: "Investigating the intersection of creative arts, functional architectural design, human-centered UX design, narrative media, and interdisciplinary craftsmanship.",
+  },
+];
+
+const curationGuidelines = [
+  {
+    rule: "Non-Commercial Neutrality",
+    desc: "Presenters are strictly forbidden from pitching products, engaging in corporate promotion, fundraising, or political campaigning on the TEDx stage.",
+  },
+  {
+    rule: "Factual & Scientific Accuracy",
+    desc: "All scientific assertions, engineering models, and data citations undergo stringent factual verification and curatorial review prior to live delivery.",
+  },
+  {
+    rule: "Original Ideas Worth Spreading",
+    desc: "Talks must present fresh perspectives, original research, or novel frameworks rather than recycled motivational or general textbook lectures.",
+  },
+  {
+    rule: "Universal Open Accessibility",
+    desc: "MSAJCE ensures zero commercial barriers to viewing, distributing high-resolution recordings with synchronized accessibility subtitles globally.",
+  },
+];
+
+/* Organic Alternating Wave Dividers */
+function WaveDividerAB() {
+  return (
+    <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+      <svg
+        viewBox="0 0 1440 72"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+          className="fill-[#F3F3F2] dark:fill-[#18181B]"
+        />
+      </svg>
+    </div>
+  );
+}
+
+function WaveDividerBA() {
+  return (
+    <div className="w-full overflow-hidden leading-none select-none bg-[#F3F3F2] dark:bg-[#18181B]">
+      <svg
+        viewBox="0 0 1440 72"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+          className="fill-white dark:fill-[#121214]"
+        />
+      </svg>
+    </div>
+  );
+}
+
+function TedxPage() {
   // Search & Filter state
   const [searchQuery, setSearchQuery] = useState("");
-  const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
-  const [pageSize, setPageSize] = useState<number>(12);
+  const [viewMode, setViewMode] = useState<"table" | "grid">("table");
+  const [pageSize, setPageSize] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   // Active inline video & Modal theater state
@@ -95,8 +195,11 @@ function TedxDatabasePage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
+      {/* Unified Secondary SubNav across Campus Life */}
+      <StudentLifeSubNav />
+
       {/* ========================================================================= */}
-      {/* 1. HERO BANNER: Vision & Mission Style Minimal Flush Docked Title         */}
+      {/* HERO BANNER: Vision & Mission Style Minimal Flush Docked Title            */}
       {/* ========================================================================= */}
       <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
         {/* Hero Background Image */}
@@ -109,87 +212,88 @@ function TedxDatabasePage() {
               (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
             }}
           />
-          {/* Subtle gradient overlay for depth and title legibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
         </div>
 
         {/* Title Container: Docked Flush at Bottom of Hero */}
-        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
-          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
-            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
-              Our TEDx Chapter
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-3.5 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
+          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full border-t border-r border-border dark:border-white/15">
+            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none whitespace-nowrap">
+              OUR TEDX CHAPTER
             </h1>
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. SECTION 1: Canvas A (White / #121214) — Chapter Introduction           */}
+      {/* SECTION 1: Canvas A (White / #121214) — Chapter Overview & Pillars        */}
       {/* ========================================================================= */}
-      <section className="py-8 sm:py-10 md:py-12 bg-white dark:bg-[#121214] transition-colors">
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+      <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-8 sm:space-y-10">
           <div className="w-full space-y-3">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              TEDx MSAJCE Overview
+              TEDxMSAJCE CHAPTER OVERVIEW
             </h2>
-            <p className="text-sm sm:text-base md:text-lg text-foreground font-libre font-medium leading-relaxed w-full text-justify [text-align:justify] [text-justify:inter-word]">
-              TEDxMSAJCE is an independently organized event under official license from TED. Hosted at Mohamed Sathak A.J.&nbsp;College of Engineering, it provides a prestigious platform where pioneering researchers, technological visionaries, creative artists, and social changemakers converge to spark deep discussion and inspire transformative ideas.
+            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
+              TEDxMSAJCE operates as an independently organized TED program hosted under official charter at Mohamed Sathak A.J. College of Engineering. Driven by the mission of propagating "Ideas Worth Spreading," our chapter unites scientific researchers, industry pioneers, environmental conservationists, and student innovators on a singular stage to spark cross-disciplinary dialogue and cultivate visionary solutions for contemporary societal challenges.
             </p>
+          </div>
+
+          {/* Chapter Distinctives (Cardless Open Editorial List) */}
+          <div className="space-y-4">
+            <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+              CHAPTER HIGHLIGHTS & INSTITUTIONAL REACH
+            </h3>
+            <div className="w-full divide-y divide-border/40 border-y border-border/40 font-libre">
+              {chapterHighlights.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="py-4 sm:py-5 flex flex-col md:flex-row md:items-start justify-between gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors"
+                >
+                  <div className="md:w-1/3 shrink-0 flex items-start gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                    <span className="font-oswald font-black uppercase text-sm sm:text-base text-foreground tracking-wide">
+                      {item.title}
+                    </span>
+                  </div>
+                  <div className="md:w-2/3">
+                    <p className="text-xs sm:text-sm text-foreground/85 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ========================================================================= */}
-      {/* WAVE DIVIDER 1: Canvas A (White / #121214) -> Canvas B (#F3F3F2 / #18181B) */}
-      {/* ========================================================================= */}
-      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
-        <svg
-          viewBox="0 0 1440 72"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-6 sm:h-10 md:h-14 lg:h-20 block preserve-3d"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
-            className="fill-[#F3F3F2] dark:fill-[#18181B]"
-          />
-        </svg>
-      </div>
+      {/* Wave Divider 1: Canvas A (White / #121214) -> Canvas B (#F3F3F2 / #18181B) */}
+      <WaveDividerAB />
 
       {/* ========================================================================= */}
-      {/* 3. SECTION 2: Canvas B (#F3F3F2 / #18181B) — TALKS DATABASE               */}
+      {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — TALKS & SESSIONS ARCHIVE       */}
       {/* ========================================================================= */}
       <section
         id="tedx-database-archive"
-        className="py-10 sm:py-14 md:py-16 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors"
+        className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors"
       >
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-          {/* Section Header */}
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+          {/* Header & Controls */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                TEDx Talks &amp; Sessions Archive
+                OFFICIAL TALKS &amp; SESSIONS DIRECTORY
               </h2>
+              <p className="text-xs sm:text-sm text-foreground/80 font-libre mt-1">
+                Browse our complete repository of 54 peer-reviewed TEDx keynotes and collegiate lectures.
+              </p>
             </div>
 
             {/* View Mode & Page Size Controls */}
             <div className="flex flex-wrap items-center gap-2 sm:gap-3 shrink-0">
-              {/* Grid / Table Toggle */}
-              <div className="inline-flex rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-stone-300 dark:border-neutral-700 bg-white/80 dark:bg-[#121214]/80 p-0.5">
-                <button
-                  type="button"
-                  onClick={() => setViewMode("grid")}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-oswald font-bold uppercase tracking-wider rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs transition-colors cursor-pointer ${
-                    viewMode === "grid"
-                      ? "bg-primary text-white"
-                      : "text-foreground/70 hover:text-foreground"
-                  }`}
-                  aria-label="Grid View"
-                >
-                  <Grid className="w-3.5 h-3.5" />
-                  <span>Grid</span>
-                </button>
+              {/* Table / Grid Toggle */}
+              <div className="inline-flex rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-stone-300 dark:border-neutral-700 bg-white/90 dark:bg-[#121214]/90 p-0.5">
                 <button
                   type="button"
                   onClick={() => setViewMode("table")}
@@ -203,10 +307,23 @@ function TedxDatabasePage() {
                   <List className="w-3.5 h-3.5" />
                   <span>Table</span>
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode("grid")}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-oswald font-bold uppercase tracking-wider rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs transition-colors cursor-pointer ${
+                    viewMode === "grid"
+                      ? "bg-primary text-white"
+                      : "text-foreground/70 hover:text-foreground"
+                  }`}
+                  aria-label="Grid View"
+                >
+                  <Grid className="w-3.5 h-3.5" />
+                  <span>Grid</span>
+                </button>
               </div>
 
               {/* Per Page Selector */}
-              <div className="inline-flex items-center gap-1.5 bg-white/80 dark:bg-[#121214]/80 border border-stone-300 dark:border-neutral-700 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs px-2.5 py-1 text-xs font-oswald font-bold text-foreground">
+              <div className="inline-flex items-center gap-1.5 bg-white/90 dark:bg-[#121214]/90 border border-stone-300 dark:border-neutral-700 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs px-2.5 py-1 text-xs font-oswald font-bold text-foreground">
                 <span className="text-muted-foreground uppercase">Show:</span>
                 {PAGE_SIZE_OPTIONS.map((size) => (
                   <button
@@ -231,8 +348,8 @@ function TedxDatabasePage() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by talk title, speaker name, or talk number (e.g., Empathy, AI, S.No)..."
-              className="w-full pl-10 pr-10 py-3 bg-white dark:bg-[#121214] border border-stone-300 dark:border-neutral-700 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs text-sm font-libre text-foreground placeholder:text-muted-foreground focus:outline-hidden focus:border-primary transition-colors"
+              placeholder="Search by talk title, speaker name, or talk number (e.g., Empathy, Robotics, AI, #01)..."
+              className="w-full pl-10 pr-10 py-3 bg-white dark:bg-[#121214] border border-stone-300 dark:border-neutral-700 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs text-xs sm:text-sm font-libre text-foreground placeholder:text-muted-foreground focus:outline-hidden focus:border-primary transition-colors"
             />
             {searchQuery && (
               <button
@@ -246,8 +363,8 @@ function TedxDatabasePage() {
             )}
           </div>
 
-          {/* Result Count Indicator */}
-          <div className="flex items-center justify-between text-xs font-libre text-muted-foreground pt-1">
+          {/* Results Summary */}
+          <div className="flex items-center justify-between text-xs font-libre text-muted-foreground pt-0.5">
             <span>
               Showing{" "}
               <strong className="text-foreground font-semibold">
@@ -274,19 +391,92 @@ function TedxDatabasePage() {
             )}
           </div>
 
-          {/* 3A. GRID VIEW: Minimal & Viewable Video Cards */}
+          {/* 1. TABLE VIEW: Standard DataGrid Container */}
+          {viewMode === "table" && (
+            <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+              <div className="overflow-x-auto bg-transparent">
+                <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                  <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                    <tr>
+                      <th className="py-3 px-4 w-16 text-center font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                        #
+                      </th>
+                      <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                        Talk Title
+                      </th>
+                      <th className="py-3 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                        Keynote Speaker
+                      </th>
+                      <th className="py-3 px-4 text-right font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                        Watch / YouTube
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border/40 font-libre">
+                    {paginatedVideos.map((video) => (
+                      <tr
+                        key={video.id}
+                        className="hover:bg-foreground/[0.02] transition-colors"
+                      >
+                        <td className="py-3 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
+                          #{String(video.sno).padStart(2, "0")}
+                        </td>
+                        <td className="py-3 px-4 font-medium text-foreground">
+                          <span className="font-oswald uppercase font-black text-xs sm:text-sm text-foreground block">
+                            "{video.title}"
+                          </span>
+                          <span className="text-[11px] text-muted-foreground font-libre line-clamp-1">
+                            {video.rawTitle}
+                          </span>
+                        </td>
+                        <td className="py-3 px-4 whitespace-nowrap">
+                          <span className="font-oswald uppercase font-bold text-xs text-primary tracking-wide">
+                            {video.speaker}
+                          </span>
+                        </td>
+                        <td className="py-3 px-4 text-right whitespace-nowrap">
+                          <div className="inline-flex items-center justify-end gap-2">
+                            <button
+                              type="button"
+                              onClick={() => setModalVideo(video)}
+                              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary text-white hover:bg-[#861E30] transition-colors text-xs font-oswald font-bold uppercase tracking-wider cursor-pointer"
+                            >
+                              <Play className="w-3 h-3 fill-white" />
+                              <span>Play</span>
+                            </button>
+                            <a
+                              href={video.watchUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-oswald uppercase font-bold text-muted-foreground hover:text-primary transition-colors border border-stone-300 dark:border-neutral-700 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs"
+                              title="Open on YouTube"
+                            >
+                              <span>YouTube</span>
+                              <ArrowUpRight className="w-3.5 h-3.5" />
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </DataGridContainer>
+          )}
+
+          {/* 2. GRID VIEW: Cardless Open Media Directory */}
           {viewMode === "grid" && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {paginatedVideos.map((video) => {
                 const isPlaying = playingVideoId === video.id;
 
                 return (
                   <div
                     key={video.id}
-                    className="flex flex-col justify-between space-y-2.5 group"
+                    className="flex flex-col justify-between space-y-3 pb-2 border-b border-border/40"
                   >
                     {/* Media Area (16:9 Aspect Ratio) */}
-                    <div className="aspect-video relative bg-black/10 dark:bg-black/40 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden shadow-xs">
+                    <div className="aspect-video relative bg-black/10 dark:bg-black/40 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden">
                       {isPlaying ? (
                         <div className="relative w-full h-full">
                           <iframe
@@ -314,17 +504,14 @@ function TedxDatabasePage() {
                             loading="lazy"
                             className="w-full h-full object-cover object-center select-none"
                             onError={(e) => {
-                              // Fallback thumbnail if HQdefault fails
                               (e.target as HTMLImageElement).src = `https://img.youtube.com/vi/${video.id}/0.jpg`;
                             }}
                           />
-
                           {/* S.No Badge */}
                           <span className="absolute top-2 left-2 bg-black/80 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded-xs">
                             #{String(video.sno).padStart(2, "0")}
                           </span>
-
-                          {/* Center Play Button Overlay */}
+                          {/* Center Play Button */}
                           <button
                             type="button"
                             onClick={() => setPlayingVideoId(video.id)}
@@ -338,23 +525,19 @@ function TedxDatabasePage() {
                       )}
                     </div>
 
-                    {/* Metadata & Editorial Content (Directly on canvas, no white card) */}
-                    <div className="flex-1 flex flex-col justify-between space-y-2 pt-0.5">
+                    {/* Editorial Content Directly on Canvas */}
+                    <div className="flex-1 flex flex-col justify-between space-y-2">
                       <div>
-                        {/* Speaker Name */}
                         <div className="flex items-center gap-1.5 text-xs font-bold font-oswald uppercase text-primary tracking-wide">
                           <Mic className="w-3.5 h-3.5 shrink-0" />
-                          <span className="line-clamp-1">{video.speaker}</span>
+                          <span className="truncate">{video.speaker}</span>
                         </div>
-
-                        {/* Talk Title */}
                         <h3 className="mt-1 text-sm sm:text-base font-black font-oswald uppercase text-foreground leading-snug line-clamp-2">
                           "{video.title}"
                         </h3>
                       </div>
 
-                      {/* Action Row */}
-                      <div className="pt-2 border-t border-stone-300/60 dark:border-neutral-700/60 flex items-center justify-between gap-2">
+                      <div className="pt-2 flex items-center justify-between gap-2 border-t border-border/30">
                         <button
                           type="button"
                           onClick={() => {
@@ -367,25 +550,22 @@ function TedxDatabasePage() {
                           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-tl-lg rounded-br-lg rounded-tr-xs rounded-bl-xs bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary hover:text-white transition-colors text-xs font-oswald font-bold uppercase tracking-wider cursor-pointer"
                         >
                           <Video className="w-3.5 h-3.5" />
-                          <span>{isPlaying ? "Close Player" : "Watch Talk"}</span>
+                          <span>{isPlaying ? "Close Player" : "Watch"}</span>
                         </button>
 
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2">
                           <button
                             type="button"
                             onClick={() => setModalVideo(video)}
-                            className="text-xs font-oswald uppercase tracking-wider text-muted-foreground hover:text-foreground cursor-pointer font-bold"
-                            title="Open Theater View"
+                            className="text-xs font-oswald uppercase tracking-wider text-muted-foreground hover:text-foreground cursor-pointer font-bold px-2 py-1"
                           >
                             Theater
                           </button>
-
                           <a
                             href={video.watchUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs font-oswald uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors font-bold"
-                            title="Open on YouTube"
+                            className="inline-flex items-center gap-1 text-xs font-oswald uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors font-bold px-2 py-1"
                           >
                             <span>YouTube</span>
                             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -399,69 +579,10 @@ function TedxDatabasePage() {
             </div>
           )}
 
-          {/* 3B. TABLE VIEW: Clean, Minimal Editorial List */}
-          {viewMode === "table" && (
-            <div className="overflow-x-auto border border-stone-300/80 dark:border-neutral-700/80 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-              <table className="w-full text-left border-collapse text-xs sm:text-sm">
-                <thead>
-                  <tr className="border-b border-stone-300 dark:border-neutral-700 bg-stone-100/70 dark:bg-[#18181B]/70 font-oswald font-bold uppercase tracking-wider text-foreground">
-                    <th className="py-3 px-4 w-14 text-center">#</th>
-                    <th className="py-3 px-4">Talk Title</th>
-                    <th className="py-3 px-4">Speaker</th>
-                    <th className="py-3 px-4 text-right">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-stone-200 dark:divide-neutral-800 font-libre">
-                  {paginatedVideos.map((video) => (
-                    <tr
-                      key={video.id}
-                      className="hover:bg-stone-50 dark:hover:bg-[#18181B]/50 transition-colors"
-                    >
-                      <td className="py-3 px-4 text-center font-mono font-bold text-muted-foreground text-xs">
-                        {String(video.sno).padStart(2, "0")}
-                      </td>
-                      <td className="py-3 px-4 font-medium text-foreground">
-                        <div className="font-oswald uppercase font-black text-sm tracking-tight text-foreground">
-                          "{video.title}"
-                        </div>
-                      </td>
-                      <td className="py-3 px-4">
-                        <span className="font-oswald uppercase font-bold text-xs text-primary tracking-wide">
-                          {video.speaker}
-                        </span>
-                      </td>
-                      <td className="py-3 px-4 text-right">
-                        <div className="inline-flex items-center justify-end gap-2">
-                          <button
-                            type="button"
-                            onClick={() => setModalVideo(video)}
-                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary text-white hover:bg-[#861E30] transition-colors text-xs font-oswald font-bold uppercase tracking-wider cursor-pointer"
-                          >
-                            <Play className="w-3 h-3 fill-white" />
-                            <span>Play</span>
-                          </button>
-                          <a
-                            href={video.watchUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-0.5 px-2 py-1 text-xs font-oswald uppercase font-bold text-muted-foreground hover:text-foreground"
-                            title="Open on YouTube"
-                          >
-                            <ArrowUpRight className="w-3.5 h-3.5" />
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-
           {/* Empty State */}
           {totalItems === 0 && (
-            <div className="py-12 text-center space-y-3 border border-dashed border-stone-300 dark:border-neutral-700 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6">
-              <p className="text-base font-libre text-muted-foreground">
+            <div className="py-12 text-center space-y-3 border border-dashed border-stone-300 dark:border-neutral-700 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs p-6 bg-white/50 dark:bg-[#121214]/50">
+              <p className="text-sm sm:text-base font-libre text-muted-foreground">
                 No TEDx talks found matching "<strong>{searchQuery}</strong>".
               </p>
               <button
@@ -524,84 +645,90 @@ function TedxDatabasePage() {
         </div>
       </section>
 
-      {/* ========================================================================= */}
-      {/* WAVE DIVIDER 2: Canvas B (#F3F3F2 / #18181B) -> Canvas A (White / #121214) */}
-      {/* ========================================================================= */}
-      <div className="w-full overflow-hidden leading-none select-none bg-[#F3F3F2] dark:bg-[#18181B]">
-        <svg
-          viewBox="0 0 1440 72"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-6 sm:h-10 md:h-14 lg:h-20 block preserve-3d"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
-            className="fill-white dark:fill-[#121214]"
-          />
-        </svg>
-      </div>
+      {/* Wave Divider 2: Canvas B (#F3F3F2 / #18181B) -> Canvas A (White / #121214) */}
+      <WaveDividerBA />
 
       {/* ========================================================================= */}
-      {/* 4. SECTION 3: Canvas A (White / #121214) — GUIDELINES & NAVIGATION         */}
+      {/* SECTION 3: Canvas A (White / #121214) — Thematic Pillars                  */}
       {/* ========================================================================= */}
-      <section className="py-10 sm:py-14 md:py-16 bg-white dark:bg-[#121214] transition-colors">
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12 space-y-8">
-          <div className="border-b border-border/60 pb-3">
+      <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+          <div className="w-full space-y-2">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              TEDx Community Guidelines &amp; Licensing
+              THEMATIC PILLARS &amp; CURATORIAL FOCUS
             </h2>
+            <p className="text-xs sm:text-sm text-foreground/80 font-libre">
+              Every edition of TEDxMSAJCE is curated around four cross-disciplinary inquiry tracks bridging technological breakthroughs with human purpose.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-1">
-              <h3 className="text-base font-bold font-oswald uppercase text-foreground">
-                Non-Commercial &amp; Independent
-              </h3>
-              <p className="text-xs sm:text-sm text-foreground/80 font-libre leading-relaxed">
-                TEDx events are completely non-partisan and non-commercial. Speakers share original ideas worth spreading without promotional, political, or commercial agendas.
-              </p>
-            </div>
+          <div className="w-full divide-y divide-border/40 border-y border-border/40 font-libre">
+            {thematicPillars.map((item, idx) => (
+              <div
+                key={idx}
+                className="py-4 sm:py-5 flex flex-col md:flex-row md:items-start justify-between gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors"
+              >
+                <div className="md:w-1/3 shrink-0 flex items-start gap-3">
+                  <span className="font-mono text-xs font-bold text-primary px-2 py-0.5 bg-primary/10 rounded-xs">
+                    {item.pillar}
+                  </span>
+                  <span className="font-oswald font-black uppercase text-sm sm:text-base text-foreground tracking-wide">
+                    {item.name}
+                  </span>
+                </div>
+                <div className="md:w-2/3">
+                  <p className="text-xs sm:text-sm text-foreground/85 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className="space-y-1">
-              <h3 className="text-base font-bold font-oswald uppercase text-foreground">
-                Official YouTube Distribution
-              </h3>
-              <p className="text-xs sm:text-sm text-foreground/80 font-libre leading-relaxed">
-                All recorded talks are processed and published to the official TEDx global archives and YouTube channel, ensuring worldwide visibility for every presentation.
-              </p>
-            </div>
+      {/* Wave Divider 3: Canvas A (White / #121214) -> Canvas B (#F3F3F2 / #18181B) */}
+      <WaveDividerAB />
+
+      {/* ========================================================================= */}
+      {/* SECTION 4: Canvas B (#F3F3F2 / #18181B) — Code of Conduct & Ethics        */}
+      {/* ========================================================================= */}
+      <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+          <div className="w-full space-y-2">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              CURATION PROTOCOLS &amp; TEDX CODE OF ETHICS
+            </h2>
+            <p className="text-xs sm:text-sm text-foreground/80 font-libre">
+              All organizers, curatorial teams, and invited speakers strictly abide by international TED guidelines to uphold intellectual objectivity and scientific integrity.
+            </p>
           </div>
 
-          {/* Action Buttons */}
-          <div className="pt-4 flex flex-wrap items-center justify-between gap-4">
-            <button
-              type="button"
-              onClick={() => navigate({ to: "/student-life/clubs-and-societies" })}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-stone-300 dark:border-neutral-700 bg-stone-100 dark:bg-neutral-800 text-foreground hover:border-primary transition-colors text-xs font-oswald font-bold uppercase tracking-wider cursor-pointer"
-            >
-              <span>Clubs &amp; Societies</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-
-            <button
-              type="button"
-              onClick={() => navigate({ to: "/student-life/student-hub" })}
-              className="relative group overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-stone-200 dark:bg-neutral-800 text-foreground dark:text-white border border-stone-300 dark:border-neutral-700 px-6 py-3 font-bold font-oswald text-xs uppercase tracking-wider shrink-0 cursor-pointer"
-            >
-              <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
-                Return to Student Hub <ArrowRight className="w-4 h-4" />
-              </span>
-              <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-              </span>
-            </button>
+          <div className="w-full divide-y divide-border/40 border-y border-border/40 font-libre">
+            {curationGuidelines.map((item, idx) => (
+              <div
+                key={idx}
+                className="py-4 sm:py-5 flex flex-col md:flex-row md:items-start justify-between gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors"
+              >
+                <div className="md:w-1/3 shrink-0 flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <span className="font-oswald font-black uppercase text-sm sm:text-base text-foreground tracking-wide">
+                    {item.rule}
+                  </span>
+                </div>
+                <div className="md:w-2/3">
+                  <p className="text-xs sm:text-sm text-foreground/85 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 5. MODAL THEATER PLAYER (Full-Width Focused Video Modal)                  */}
+      {/* MODAL THEATER PLAYER (Responsive Modal Video Player)                      */}
       {/* ========================================================================= */}
       <AnimatePresence>
         {modalVideo && (
@@ -626,7 +753,7 @@ function TedxDatabasePage() {
                   <span className="text-[10px] font-mono font-bold text-primary uppercase">
                     Talk #{String(modalVideo.sno).padStart(2, "0")} • TEDxMSAJCE
                   </span>
-                  <h4 className="text-sm sm:text-base font-black font-oswald uppercase text-foreground truncate">
+                  <h4 className="text-xs sm:text-sm md:text-base font-black font-oswald uppercase text-foreground truncate">
                     "{modalVideo.title}"
                   </h4>
                 </div>
@@ -652,7 +779,7 @@ function TedxDatabasePage() {
               </div>
 
               {/* Modal Footer */}
-              <div className="p-4 bg-white dark:bg-[#121214] border-t border-stone-200 dark:border-neutral-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+              <div className="p-3 sm:p-4 bg-white dark:bg-[#121214] border-t border-stone-200 dark:border-neutral-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                 <div>
                   <span className="font-oswald uppercase font-bold text-primary text-xs">
                     Speaker: {modalVideo.speaker}

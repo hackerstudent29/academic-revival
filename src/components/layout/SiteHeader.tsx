@@ -433,8 +433,13 @@ export function SiteHeader() {
           </div>
 
           <nav className="hidden items-center gap-2 lg:gap-2.5 xl:gap-5 2xl:gap-7 lg:flex" aria-label="Main navigation">
-            {nav.map((item) =>
-              item.cols ? (
+            {nav.map((item) => {
+              const isRouteActive = item.to 
+                ? (location.pathname === item.to || (item.to !== "/" && location.pathname.startsWith(item.to)))
+                : (item.cols ? item.cols.some(col => col.links.some(l => l.to && (location.pathname === l.to || (l.to !== "/" && location.pathname.startsWith(l.to))))) : false);
+              const isActive = active === item.id || isRouteActive;
+
+              return item.cols ? (
                 <button
                   key={item.id}
                   type="button"
@@ -442,13 +447,13 @@ export function SiteHeader() {
                   onClick={() => setActive((c) => (c === item.id ? null : item.id))}
                   aria-expanded={active === item.id}
                   className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.03em] xl:tracking-[0.04em] font-oswald transition-colors duration-200 ${
-                    active === item.id ? "text-primary" : "text-foreground hover:text-primary"
+                    isActive ? "text-primary" : "text-foreground hover:text-primary"
                   }`}
                 >
                   {item.label}
                   <span
                     className={`absolute -bottom-0.5 left-0 h-[2px] bg-primary transition-all duration-300 ${
-                      active === item.id ? "w-full" : "w-0"
+                      isActive ? "w-full" : "w-0"
                     }`}
                   />
                 </button>
@@ -457,14 +462,19 @@ export function SiteHeader() {
                   key={item.id}
                   to={item.to}
                   onMouseEnter={() => setActive(null)}
-                  className="relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.03em] xl:tracking-[0.04em] font-oswald text-foreground transition-colors duration-200 hover:text-primary"
-                  activeProps={{ className: "text-primary font-bold" }}
+                  className={`relative py-2 whitespace-nowrap text-[11px] xl:text-[13px] font-bold uppercase tracking-[0.03em] xl:tracking-[0.04em] font-oswald transition-colors duration-200 hover:text-primary ${
+                    isActive ? "text-primary" : "text-foreground"
+                  }`}
                 >
                   {item.label}
-                  <span className="absolute -bottom-0.5 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+                  <span
+                    className={`absolute -bottom-0.5 left-0 h-[2px] bg-primary transition-all duration-300 ${
+                      isActive ? "w-full" : "w-0"
+                    }`}
+                  />
                 </Link>
-              )
-            )}
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-3">
