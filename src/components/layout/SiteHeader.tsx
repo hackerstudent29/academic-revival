@@ -59,6 +59,7 @@ const nav: NavItem[] = [
       {
         title: "Explore Admissions",
         links: [
+          { label: "Admissions", to: "/admissions" },
           { label: "Programmes Offered", to: "/programmes-offered" },
           { label: "B.E. / B.Tech Admissions", to: "/admissions", search: { level: "Undergraduate" } },
           { label: "M.E. Admissions", to: "/admissions", search: { level: "Postgraduate" } },
@@ -89,10 +90,10 @@ const nav: NavItem[] = [
       {
         title: "Departments",
         links: [
+          { label: "All Departments", to: "/programmes" },
           { label: "Undergraduate Departments", to: "/programmes", search: { level: "Undergraduate" } },
           { label: "Postgraduate Departments", to: "/programmes", search: { level: "Postgraduate" } },
-          { label: "Doctoral Studies", to: "/programmes", search: { level: "Research (Ph.D)" } },
-          { label: "All Departments", to: "/programmes" },
+          { label: "Doctoral Studies (Ph.D)", to: "/programmes", search: { level: "Research (Ph.D)" } },
         ],
       },
       {
