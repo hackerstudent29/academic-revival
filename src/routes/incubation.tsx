@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Mail,
-  Plus,
-} from "lucide-react";
+import { Mail, Plus } from "lucide-react";
 import { SecondarySubNav } from "@/components/layout/SecondarySubNav";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
 import { cn } from "@/lib/utils";
@@ -42,62 +39,81 @@ function SiifContent() {
       transition={{ duration: 0.45, ease: smoothEase }}
       className="w-full"
     >
-      {/* SECTION 1: Canvas A (White / #121214) — Foundation Objectives (Generous Top Breathing Room) */}
-      <section className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-6 sm:pb-8 md:pb-10 bg-white dark:bg-[#121214] transition-colors">
-        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-5 sm:space-y-7">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-            OVERVIEW
-          </h2>
+      {/* SECTION 1: Canvas A (White / #121214) — Overview & Objectives */}
+      <section className="pt-8 sm:pt-12 md:pt-14 pb-8 sm:pb-12 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+          <div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              OVERVIEW
+            </h2>
+          </div>
 
-          {/* Single Column Editorial List with Circular Badges */}
-          <div className="space-y-3 sm:space-y-4">
-            {/* Object A */}
-            <div className="p-3 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
-              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
-                A
-              </span>
-              <div className="space-y-1 flex-1">
-                <h3 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground">
-                  Prototype &amp; Product Incubation
-                </h3>
-                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                  To promote commerce, science, education and research by helping, establishing and incubating startups, individuals, teams with innovative ideas to make prototypes and to convert them into Products.
-                </p>
+          {/* Rich Professional Institutional Overview Narrative */}
+          <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+            <p className="w-full">
+              The Sathak Innovation and Incubation Foundation (SIIF) serves as the flagship startup incubator at Mohamed Sathak A.J. College of Engineering. Founded to empower visionary student innovators, researchers, and faculty entrepreneurs, SIIF bridges the gap between academic research and commercial market success.
+            </p>
+            <p className="w-full">
+              By offering state-of-the-art prototype development suites, dedicated seed funding pathways, and active mentorship from global technology leaders, the foundation cultivates a thriving culture of high-impact technology ventures across Chennai's OMR IT corridor.
+            </p>
+          </div>
+
+          {/* Subheading for Foundation Objectives */}
+          <div className="pt-4 border-t border-border/40 space-y-4">
+            <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+              FOUNDATION OBJECTIVES
+            </h3>
+
+            {/* Single Column Editorial List with Circular Badges */}
+            <div className="space-y-3 sm:space-y-4">
+              {/* Object A */}
+              <div className="p-3.5 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
+                <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
+                  A
+                </span>
+                <div className="space-y-1 flex-1">
+                  <h4 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground">
+                    Prototype &amp; Product Incubation
+                  </h4>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                    To promote commerce, science, education and research by helping, establishing and incubating startups, individuals, teams with innovative ideas to make prototypes and to convert them into Products.
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* Object B */}
-            <div className="p-3 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
-              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
-                B
-              </span>
-              <div className="space-y-1 flex-1">
-                <h3 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground">
-                  Cross-Disciplinary Innovation Culture
-                </h3>
-                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                  To promote a culture of innovation driven entrepreneurship in the fields of science, engineering, technology, commerce, agriculture, health care, medicine, pharmacy, education, arts, sports and other various fields.
-                </p>
+              {/* Object B */}
+              <div className="p-3.5 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
+                <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
+                  B
+                </span>
+                <div className="space-y-1 flex-1">
+                  <h4 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground">
+                    Cross-Disciplinary Innovation Culture
+                  </h4>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                    To promote a culture of innovation driven entrepreneurship in the fields of science, engineering, technology, commerce, agriculture, health care, medicine, pharmacy, education, arts, sports and other various fields.
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* Object C */}
-            <div className="p-3 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
-              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
-                C
-              </span>
-              <div className="space-y-1 flex-1">
-                <h3 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground">
-                  Advanced Infrastructure &amp; Global Collaboration
-                </h3>
-                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                  To establish, help establish and or manage infrastructure, laboratories, to make and test prototypes/products, pilot plant production facilities, software development facilities, training and human resource development centre, propogate new scientific and technologies development and innovation from idea stage to full scale commercial production or any part of this chain. For the above purposes to assist, co-operate or collaborates with any establishment, laboratory, technology business incubators centre, organisation or institution in India or abroad.
-                </p>
+              {/* Object C */}
+              <div className="p-3.5 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
+                <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
+                  C
+                </span>
+                <div className="space-y-1 flex-1">
+                  <h4 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground">
+                    Advanced Infrastructure &amp; Global Collaboration
+                  </h4>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                    To establish, help establish and or manage infrastructure, laboratories, to make and test prototypes/products, pilot plant production facilities, software development facilities, training and human resource development centre, propogate new scientific and technologies development and innovation from idea stage to full scale commercial production or any part of this chain. For the above purposes to assist, co-operate or collaborates with any establishment, laboratory, technology business incubators centre, organisation or institution in India or abroad.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Two Images Showcase (Clean 2-Column Grid) */}
+          {/* Two Images Showcase */}
           <div className="w-full pt-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
               <div className="relative rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden shadow-md bg-muted aspect-[16/10] max-h-[300px]">
@@ -142,51 +158,50 @@ function SiifContent() {
       </div>
 
       {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — Programs and Initiatives */}
-      <section className="py-6 sm:py-8 md:py-10 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+      <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
             PROGRAMS AND INITIATIVES
           </h2>
 
-          {/* Clean Open Editorial Matrix: Pure Typography, Generous Spacing, No Card Boxes */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7 lg:gap-8">
             {[
               {
-                idx: "01",
+                idx: "1",
                 title: "Incubation Services",
                 desc: "Typically include 5000 sqft. physical office space, several 100, 400, 700 seater halls for conducting events in Entrepreneurship, infrastructure, and shared resources for startups.",
               },
               {
-                idx: "02",
+                idx: "2",
                 title: "Funding Opportunities",
                 desc: "Funding opportunities to startups through grants, seed funding, or connections to potential investors.",
               },
               {
-                idx: "03",
+                idx: "3",
                 title: "Mentorship Programs",
                 desc: "Mentorship programs where experienced professionals and industry experts provide guidance and support to entrepreneurs and startups.",
               },
               {
-                idx: "04",
+                idx: "4",
                 title: "Investor Network",
                 desc: "Access to a network of investors, venture capitalists, and angel investors who are interested in supporting innovative ideas and startups.",
               },
               {
-                idx: "05",
+                idx: "5",
                 title: "Events & Workshops",
                 desc: "Organizes events, workshops, and training programs to foster innovation, entrepreneurial skills, and knowledge sharing.",
               },
               {
-                idx: "06",
+                idx: "6",
                 title: "Strategic Partnerships",
                 desc: "Facilitates partnerships with academic institutions, industry bodies, and government agencies to create synergies and opportunities for startups.",
               },
             ].map((item) => (
               <div
                 key={item.idx}
-                className="group space-y-2 p-3 sm:p-4 rounded-xl hover:bg-foreground/[0.02] transition-colors"
+                className="group space-y-2 p-3.5 sm:p-4 rounded-xl hover:bg-foreground/[0.02] transition-colors"
               >
-                <div className="font-oswald font-black text-3xl sm:text-4xl text-primary/30 group-hover:text-primary transition-colors leading-none select-none">
+                <div className="font-oswald font-black text-3xl sm:text-4xl text-primary/40 group-hover:text-primary transition-colors leading-none select-none">
                   {item.idx}
                 </div>
                 <h3 className="text-base sm:text-lg font-bold font-oswald uppercase text-foreground group-hover:text-primary transition-colors tracking-tight">
@@ -218,12 +233,12 @@ function SiifContent() {
       </div>
 
       {/* SECTION 3: Canvas A (White / #121214) — Incubation Lead */}
-      <section className="py-6 sm:py-8 md:py-10 bg-white dark:bg-[#121214] transition-colors pb-12 sm:pb-16">
-        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-4 sm:space-y-5">
+      <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-4 sm:space-y-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
             INCUBATION LEAD
           </h2>
-          <div className="border-l-4 border-primary pl-4 sm:pl-6 space-y-2.5 py-1">
+          <div className="border-l-4 border-primary pl-4 sm:pl-6 space-y-3 py-1">
             <div>
               <h3 className="text-2xl sm:text-3xl font-black font-oswald uppercase text-foreground tracking-tight">
                 Akshita K
@@ -266,8 +281,8 @@ function NispContent() {
       transition={{ duration: 0.45, ease: smoothEase }}
       className="w-full"
     >
-      {/* SECTION 1: Canvas A (White / #121214) — Vision & Mission (Generous Top Breathing Room) */}
-      <section className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-6 sm:pb-8 md:pb-10 bg-white dark:bg-[#121214] transition-colors">
+      {/* SECTION 1: Canvas A (White / #121214) — Overview & Vision/Mission */}
+      <section className="pt-8 sm:pt-12 md:pt-14 pb-8 sm:pb-12 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
@@ -275,13 +290,24 @@ function NispContent() {
             </h2>
           </div>
 
-          <div className="space-y-5 sm:space-y-6">
+          {/* Rich Professional Institutional Overview Narrative */}
+          <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+            <p className="w-full">
+              The National Innovation and Startup Policy (NISP) framework at Mohamed Sathak A.J. College of Engineering provides a structured roadmap for students and faculty to actively engage in technology commercialization, intellectual property creation, and startup founding. Built in strict alignment with Ministry of Education guidelines, NISP enables pre-incubation support, academic credit flexibility for startup work, and transparent licensing mechanisms.
+            </p>
+            <p className="w-full">
+              Through robust institutional governance and cross-industry collaboration, NISP strengthens the national economic landscape by nurturing student enterprise, protecting patent ownership, and facilitating technology transfer from academic laboratories to global markets.
+            </p>
+          </div>
+
+          {/* Subheading for Vision & Mission */}
+          <div className="pt-4 border-t border-border/40 space-y-5 sm:space-y-6">
             {/* Vision */}
             <div className="space-y-2.5">
               <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
                 Vision
               </h3>
-              <div className="p-3 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
+              <div className="p-3.5 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
                 <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                   V
                 </span>
@@ -296,7 +322,7 @@ function NispContent() {
               <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
                 Mission
               </h3>
-              <div className="p-3 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
+              <div className="p-3.5 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
                 <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                   M1
                 </span>
@@ -325,8 +351,8 @@ function NispContent() {
         </svg>
       </div>
 
-      {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — Objectives (Single Column) */}
-      <section className="py-6 sm:py-8 md:py-10 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+      {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — Objectives */}
+      <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-7 sm:space-y-8">
           {/* Short Term */}
           <div className="space-y-3.5">
@@ -396,8 +422,8 @@ function NispContent() {
         </svg>
       </div>
 
-      {/* SECTION 3: Canvas A (White / #121214) — Strategic Partnership & Thrust Areas (Single Column) */}
-      <section className="py-6 sm:py-8 md:py-10 bg-white dark:bg-[#121214] transition-colors">
+      {/* SECTION 3: Canvas A (White / #121214) — Strategic Partnership & Thrust Areas */}
+      <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-7 sm:space-y-8">
           {/* Strategic Partnership */}
           <div className="space-y-3.5">
@@ -418,7 +444,7 @@ function NispContent() {
             </div>
           </div>
 
-          {/* Thrust Areas Table Component */}
+          {/* Thrust Areas Table */}
           <div className="space-y-3.5 pt-2">
             <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-primary">
               THRUST AREAS
@@ -480,8 +506,8 @@ function NispContent() {
         </svg>
       </div>
 
-      {/* SECTION 4: Canvas B (#F3F3F2 / #18181B) — Committee Members (Clean Pure Text Position, No Badges) */}
-      <section className="py-6 sm:py-8 md:py-10 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+      {/* SECTION 4: Canvas B (#F3F3F2 / #18181B) — Committee Members */}
+      <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-4 sm:space-y-5">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
             COMMITTEE MEMBERS
@@ -553,8 +579,8 @@ function NispContent() {
         </svg>
       </div>
 
-      {/* SECTION 5: Canvas A (White / #121214) — KPI Monitor & Evaluation (+ Symbol & Smooth Height Reveal) */}
-      <section className="py-6 sm:py-8 md:py-10 bg-white dark:bg-[#121214] transition-colors">
+      {/* SECTION 5: Canvas A (White / #121214) — KPI Monitor & Evaluation */}
+      <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-4 sm:space-y-5">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
             KPI MONITOR &amp; EVALUATION
@@ -701,8 +727,8 @@ function NispContent() {
         </svg>
       </div>
 
-      {/* SECTION 6: Canvas B (#F3F3F2 / #18181B) — Tentative Plan for Next 5 Years (Clean Pure Text Frequency, No Badges) */}
-      <section className="py-6 sm:py-8 md:py-10 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors pb-12 sm:pb-16">
+      {/* SECTION 6: Canvas B (#F3F3F2 / #18181B) — Tentative Plan for Next 5 Years */}
+      <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-4 sm:space-y-5">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
             TENTATIVE PLAN FOR THE NEXT 5 YEARS
@@ -780,54 +806,66 @@ function EdcContent() {
       transition={{ duration: 0.45, ease: smoothEase }}
       className="w-full"
     >
-      {/* SECTION 1: Canvas A (White / #121214) — Roles & Responsibilities (Generous Top Breathing Room) */}
-      <section className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-6 sm:pb-8 md:pb-10 bg-white dark:bg-[#121214] transition-colors">
-        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-5 sm:space-y-7">
+      {/* SECTION 1: Canvas A (White / #121214) — Overview & Roles/Responsibilities */}
+      <section className="pt-8 sm:pt-12 md:pt-14 pb-8 sm:pb-12 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               OVERVIEW
             </h2>
-            <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mt-1.5">
+          </div>
+
+          {/* Rich Professional Institutional Overview Narrative */}
+          <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+            <p className="w-full">
+              The Entrepreneurship Development Cell (EDC) at Mohamed Sathak A.J. College of Engineering is dedicated to inspiring, nurturing, and guiding aspiring student entrepreneurs across all engineering branches. By organizing bootcamps, hackathons, leadership masterclasses, and direct interactions with successful founders, EDC instills business acumen and creative problem-solving capabilities.
+            </p>
+            <p className="w-full">
+              The cell acts as a vital campus catalyst, encouraging students to transform engineering concepts into viable commercial products while building strong corporate linkages with industrial bodies, venture capitalists, and regional startup hubs.
+            </p>
+          </div>
+
+          {/* Subheading for Roles & Responsibilities */}
+          <div className="pt-4 border-t border-border/40 space-y-4">
+            <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
               ROLES AND RESPONSIBILITIES
             </h3>
-          </div>
 
-          {/* Single Column Editorial List with Circular Badges */}
-          <div className="space-y-3 sm:space-y-4">
-            {[
-              {
-                num: "1",
-                title: "Entrepreneurship Programs & Engagement",
-                text: "Encourage the students to become entrepreneurs by organizing entrepreneurship development programs and make them to participate in the activities organized by the external agencies.",
-              },
-              {
-                num: "2",
-                title: "Startup Training & Mentorship",
-                text: "Organize the training for Startup / Incubator and arrange the mentoring to proceed further.",
-              },
-              {
-                num: "3",
-                title: "SIIF Strategic Coordination",
-                text: "Coordinate with Strategy partner of Sathak Innovation Incubation Cell (SIIF) and execute various Activity.",
-              },
-            ].map((role) => (
-              <div key={role.num} className="p-3 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
-                <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
-                  {role.num}
-                </span>
-                <div className="space-y-1 flex-1">
-                  <h4 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground">
-                    {role.title}
-                  </h4>
-                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                    {role.text}
-                  </p>
+            {/* Single Column Editorial List with Circular Badges */}
+            <div className="space-y-3 sm:space-y-4">
+              {[
+                {
+                  num: "1",
+                  title: "Entrepreneurship Programs & Engagement",
+                  text: "Encourage the students to become entrepreneurs by organizing entrepreneurship development programs and make them to participate in the activities organized by the external agencies.",
+                },
+                {
+                  num: "2",
+                  title: "Startup Training & Mentorship",
+                  text: "Organize the training for Startup / Incubator and arrange the mentoring to proceed further.",
+                },
+                {
+                  num: "3",
+                  title: "SIIF Strategic Coordination",
+                  text: "Coordinate with Strategy partner of Sathak Innovation Incubation Cell (SIIF) and execute various Activity.",
+                },
+              ].map((role) => (
+                <div key={role.num} className="p-3.5 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
+                  <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
+                    {role.num}
+                  </span>
+                  <div className="space-y-1 flex-1">
+                    <h4 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground">
+                      {role.title}
+                    </h4>
+                    <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                      {role.text}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-
-          {/* End of Roles and Responsibilities */}
         </div>
       </section>
 
@@ -848,7 +886,7 @@ function EdcContent() {
       </div>
 
       {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — Core Members */}
-      <section className="py-6 sm:py-8 md:py-10 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors pb-12 sm:pb-16">
+      <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-4 sm:space-y-5">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
             CORE MEMBERS
@@ -917,20 +955,18 @@ function IicContent() {
       transition={{ duration: 0.45, ease: smoothEase }}
       className="w-full"
     >
-      {/* SECTION 1: Canvas A (White / #121214) — Council Introduction (Overview Style, Full Width with Container Paddings) */}
-      <section className="pt-8 sm:pt-12 md:pt-14 pb-6 sm:pb-8 md:pb-10 bg-white dark:bg-[#121214] transition-colors">
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-7">
-          <div className="border-b border-border/80 pb-3 sm:pb-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                OVERVIEW
-              </h2>
-            </div>
+      {/* SECTION 1: Canvas A (White / #121214) — Council Introduction */}
+      <section className="pt-8 sm:pt-12 md:pt-14 pb-8 sm:pb-12 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+          <div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+              OVERVIEW
+            </h2>
           </div>
 
-          <div className="w-full space-y-4 sm:space-y-5 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+          <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
             <p className="w-full">
-              Institution Innovation Council (IIC-MSAJCE) had been constituted in our college as per the guidelines of the Ministry of Human Resource Development Innovation Cell (MIC).
+              Institution Innovation Council (IIC-MSAJCE) was established in our college in accordance with the mandates of the Ministry of Education's Innovation Cell (MIC), Government of India. The council acts as the central engine for fostering systematic innovation, design thinking, and intellectual property creation among engineering students.
             </p>
             <div className="w-full border-l-4 border-primary pl-4 sm:pl-6 py-3 sm:py-3.5 bg-foreground/[0.02] dark:bg-white/[0.02] rounded-r-lg">
               <p className="text-foreground/90 font-libre font-medium leading-relaxed">
@@ -941,8 +977,6 @@ function IicContent() {
               MIC has envisioned encouraging creation of 'Institution's Innovation Council (IICs)' across selected HEIs. A network of these IICs will be established to promote innovation in the Institution through multitudinous modes leading to an innovation promotion eco-system in the campuses.
             </p>
           </div>
-
-          {/* End of IIC Introduction */}
         </div>
       </section>
 
@@ -963,7 +997,7 @@ function IicContent() {
       </div>
 
       {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — Major Focus of IIC */}
-      <section className="py-6 sm:py-8 md:py-10 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+      <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
             MAJOR FOCUS OF IIC
@@ -978,9 +1012,9 @@ function IicContent() {
             ].map((item) => (
               <div
                 key={item.idx}
-                className="group space-y-2 p-3 sm:p-4 rounded-xl hover:bg-foreground/[0.02] transition-colors"
+                className="group space-y-2 p-3.5 sm:p-4 rounded-xl hover:bg-foreground/[0.02] transition-colors"
               >
-                <div className="font-oswald font-black text-3xl sm:text-4xl text-primary/30 group-hover:text-primary transition-colors leading-none select-none">
+                <div className="font-oswald font-black text-3xl sm:text-4xl text-primary/40 group-hover:text-primary transition-colors leading-none select-none">
                   {item.idx}
                 </div>
                 <h4 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground group-hover:text-primary transition-colors">
@@ -1011,8 +1045,8 @@ function IicContent() {
         </svg>
       </div>
 
-      {/* SECTION 3: Canvas A (White / #121214) — Functions of IIC (Single Column) */}
-      <section className="py-6 sm:py-8 md:py-10 bg-white dark:bg-[#121214] transition-colors">
+      {/* SECTION 3: Canvas A (White / #121214) — Functions of IIC */}
+      <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-4 sm:space-y-6">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
             FUNCTIONS OF IIC
@@ -1055,15 +1089,15 @@ function IicContent() {
         </svg>
       </div>
 
-      {/* SECTION 4: Canvas B (#F3F3F2 / #18181B) — Vision & Mission (Single Column) */}
-      <section className="py-6 sm:py-8 md:py-10 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+      {/* SECTION 4: Canvas B (#F3F3F2 / #18181B) — Vision & Mission */}
+      <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           {/* Vision */}
           <div className="space-y-2.5">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
               Vision
             </h3>
-            <div className="p-3 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
+            <div className="p-3.5 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
               <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                 V
               </span>
@@ -1084,7 +1118,7 @@ function IicContent() {
                 { badge: "M2", text: "Inculcate critical thinking, ethics, lifelong learning and creativity needed for industry and society" },
                 { badge: "M3", text: "Cultivate the students with all-round competencies, for career, higher education and self-employability" },
               ].map((m) => (
-                <div key={m.badge} className="p-3 sm:p-4 flex gap-3.5 sm:gap-4 items-start hover:bg-foreground/[0.015] transition-colors">
+                <div key={m.badge} className="p-3.5 sm:p-4 flex gap-3.5 sm:gap-4 items-start hover:bg-foreground/[0.015] transition-colors">
                   <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                     {m.badge}
                   </span>
@@ -1114,8 +1148,8 @@ function IicContent() {
         </svg>
       </div>
 
-      {/* SECTION 5: Canvas A (White / #121214) — IIC Certificates (Open Gallery) */}
-      <section className="py-6 sm:py-8 md:py-10 bg-white dark:bg-[#121214] transition-colors pb-12 sm:pb-16">
+      {/* SECTION 5: Canvas A (White / #121214) — IIC Certificates */}
+      <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
             IIC CERTIFICATES
@@ -1229,7 +1263,7 @@ export function IncubationPage() {
 
       <div className="flex-1 pt-0 md:pt-1">
         {/* ================================================================= */}
-        {/* 1. HERO BANNER: Standard MSAJCE Hero (Title Docked Flush at Bottom)*/}
+        {/* HERO BANNER: Standard MSAJCE Hero (Title Docked Flush at Bottom) */}
         {/* ================================================================= */}
         <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[260px] sm:min-h-[320px] md:min-h-[380px] flex flex-col justify-end">
           <div className="absolute inset-0 z-0">
@@ -1255,7 +1289,7 @@ export function IncubationPage() {
           </div>
         </section>
 
-        {/* Tab Content Target Anchor (Auto-scrolled on tab click) */}
+        {/* Tab Content Target Anchor */}
         <div id="incubation-main-content" className="scroll-mt-32">
           {/* Dynamic Tab Views */}
           <AnimatePresence mode="wait">
