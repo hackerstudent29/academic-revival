@@ -4,7 +4,7 @@ title: Institutional Overview, Vision, Mission, Leadership & Governance
 category: About Institution
 institution: Mohamed Sathak A.J. College of Engineering (MSAJCE)
 location: IT Highway (OMR), Egattur, Chennai - 603103, Tamil Nadu, India
-tnea_code: 3460
+tnea_code: 1301
 established: 2001
 affiliation: Anna University, Chennai
 approvals: AICTE, New Delhi
@@ -21,7 +21,7 @@ target_queries:
 # Mohamed Sathak A.J. College of Engineering — Institutional Overview & Governance
 
 ## 1. Executive Summary & History
-Mohamed Sathak A.J. College of Engineering (MSAJCE) was established in 2001 under the aegis of the Mohamed Sathak Trust (founded in 1973). Situated along the premier Information Technology Corridor (OMR, Egattur, Chennai - 603103), MSAJCE is a premier self-financing engineering institution approved by the All India Council for Technical Education (AICTE), New Delhi, and affiliated with Anna University, Chennai. The institution holds TNEA Counseling Code **3460**.
+Mohamed Sathak A.J. College of Engineering (MSAJCE) was established in 2001 under the aegis of the Mohamed Sathak Trust (founded in 1973). Situated along the premier Information Technology Corridor (OMR, Egattur, Chennai - 603103), MSAJCE is a premier self-financing engineering institution approved by the All India Council for Technical Education (AICTE), New Delhi, and affiliated with Anna University, Chennai. The institution holds TNEA Counseling Code **1301**.
 
 Spanning over 70 acres of serene campus, MSAJCE offers 10+ Undergraduate B.E./B.Tech degree programmes, Postgraduate M.E., MBA, and MCA programmes, equipped with state-of-the-art research laboratories, incubation centers, digital central library, and comprehensive residential hostels.
 

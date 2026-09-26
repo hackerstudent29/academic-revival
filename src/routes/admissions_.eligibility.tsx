@@ -120,7 +120,7 @@ export function AdmissionsEligibilityPage() {
           {/* Overview */}
           <div className="mb-10 w-full">
             <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 text-primary font-oswald font-bold text-xs uppercase tracking-wider mb-3">
-              TNEA Counseling Code: 3460
+              TNEA Counseling Code: 1301
             </div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-4">
               Academic Eligibility &amp; Community Cut-off Criteria

@@ -104,7 +104,7 @@ export function AdmissionsProcedurePage() {
               Institutional Overview &amp; Admission Guidelines
             </h2>
             <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full mb-4">
-              Admissions to undergraduate B.E. / B.Tech and postgraduate M.E., MBA, and MCA degree programmes at Mohamed Sathak A.J. College of Engineering are conducted transparently through Tamil Nadu Engineering Admissions (TNEA Counseling Code <strong>3460</strong>) single-window counseling and Consortium Management Quota seats. Candidates must review their academic eligibility, obtain their cut-off marks verification, and follow our streamlined 3-step admission process to secure enrollment.
+              Admissions to undergraduate B.E. / B.Tech and postgraduate M.E., MBA, and MCA degree programmes at Mohamed Sathak A.J. College of Engineering are conducted transparently through Tamil Nadu Engineering Admissions (TNEA Counseling Code <strong>1301</strong>) single-window counseling and Consortium Management Quota seats. Candidates must review their academic eligibility, obtain their cut-off marks verification, and follow our streamlined 3-step admission process to secure enrollment.
             </p>
 
             {/* Open Editorial Quick Link (No Box Cards) */}

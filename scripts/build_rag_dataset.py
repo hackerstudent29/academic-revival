@@ -24,7 +24,7 @@ title: Institutional Overview, Vision, Mission, Leadership & Governance
 category: About Institution
 institution: Mohamed Sathak A.J. College of Engineering (MSAJCE)
 location: IT Highway (OMR), Egattur, Chennai - 603103, Tamil Nadu, India
-tnea_code: 3460
+tnea_code: 1301
 established: 2001
 affiliation: Anna University, Chennai
 approvals: AICTE, New Delhi
@@ -41,7 +41,7 @@ target_queries:
 # Mohamed Sathak A.J. College of Engineering — Institutional Overview & Governance
 
 ## 1. Executive Summary & History
-Mohamed Sathak A.J. College of Engineering (MSAJCE) was established in 2001 under the aegis of the Mohamed Sathak Trust (founded in 1973). Situated along the premier Information Technology Corridor (OMR, Egattur, Chennai - 603103), MSAJCE is a premier self-financing engineering institution approved by the All India Council for Technical Education (AICTE), New Delhi, and affiliated with Anna University, Chennai. The institution holds TNEA Counseling Code **3460**.
+Mohamed Sathak A.J. College of Engineering (MSAJCE) was established in 2001 under the aegis of the Mohamed Sathak Trust (founded in 1973). Situated along the premier Information Technology Corridor (OMR, Egattur, Chennai - 603103), MSAJCE is a premier self-financing engineering institution approved by the All India Council for Technical Education (AICTE), New Delhi, and affiliated with Anna University, Chennai. The institution holds TNEA Counseling Code **1301**.
 
 Spanning over 70 acres of serene campus, MSAJCE offers 10+ Undergraduate B.E./B.Tech degree programmes, Postgraduate M.E., MBA, and MCA programmes, equipped with state-of-the-art research laboratories, incubation centers, digital central library, and comprehensive residential hostels.
 
@@ -159,7 +159,7 @@ document_id: MSAJCE-RAG-03
 title: Admissions Procedure, Eligibility Criteria, Cutoffs & Scholarships
 category: Admissions
 institution: Mohamed Sathak A.J. College of Engineering (MSAJCE)
-tnea_counseling_code: 3460
+tnea_counseling_code: 1301
 admissions_helpline: "+91 44 2747 0023 / +91 99400 04500"
 official_email: admissions@msajce-edu.in
 target_queries:
@@ -177,7 +177,7 @@ target_queries:
 
 ## 1. Admission Modes & TNEA Counseling Code
 - **Institutional Name**: Mohamed Sathak A.J. College of Engineering, Egattur, Chennai
-- **TNEA Counseling Code**: **3460**
+- **TNEA Counseling Code**: **1301**
 - **Admission Modes**:
   1. **Government Quota**: Allocated through Tamil Nadu Engineering Admissions (TNEA) single-window counseling based on HSC (10+2) cut-off marks.
   2. **Management Quota**: Merit-based admission administered through Consortium of Self-Financing Professional Colleges in Tamil Nadu.

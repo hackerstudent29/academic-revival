@@ -3,7 +3,7 @@ document_id: MSAJCE-RAG-03
 title: Admissions Procedure, Eligibility Criteria, Cutoffs & Scholarships
 category: Admissions
 institution: Mohamed Sathak A.J. College of Engineering (MSAJCE)
-tnea_counseling_code: 3460
+tnea_counseling_code: 1301
 admissions_helpline: "+91 44 2747 0023 / +91 99400 04500"
 official_email: admissions@msajce-edu.in
 target_queries:
@@ -21,7 +21,7 @@ target_queries:
 
 ## 1. Admission Modes & TNEA Counseling Code
 - **Institutional Name**: Mohamed Sathak A.J. College of Engineering, Egattur, Chennai
-- **TNEA Counseling Code**: **3460**
+- **TNEA Counseling Code**: **1301**
 - **Admission Modes**:
   1. **Government Quota**: Allocated through Tamil Nadu Engineering Admissions (TNEA) single-window counseling based on HSC (10+2) cut-off marks.
   2. **Management Quota**: Merit-based admission administered through Consortium of Self-Financing Professional Colleges in Tamil Nadu.

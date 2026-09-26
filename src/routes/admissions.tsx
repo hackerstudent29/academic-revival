@@ -5,7 +5,7 @@ import { allCourses } from "@/lib/courseData";
 
 const title = "Admissions 2026-2027 — M.S.A.J. College of Engineering, Chennai";
 const description =
-  "Official admissions portal, TNEA Counseling Code 3460, eligibility criteria, application procedure, scholarships, and degree course catalogue at MSAJCE.";
+  "Official admissions portal, TNEA Counseling Code 1301, eligibility criteria, application procedure, scholarships, and degree course catalogue at MSAJCE.";
 
 export const Route = createFileRoute("/admissions")({
   validateSearch: (search: Record<string, unknown>) => {
@@ -84,13 +84,13 @@ export function AdmissionsHubPage() {
           {/* Overview */}
           <div className="mb-10 w-full">
             <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 text-primary font-oswald font-bold text-xs uppercase tracking-wider mb-3">
-              TNEA Counseling Code: 3460
+              TNEA Counseling Code: 1301
             </div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-4">
               Institutional Overview &amp; Admission Pathways
             </h2>
             <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full mb-4">
-              Mohamed Sathak A.J. College of Engineering (TNEA Counseling Code <strong>3460</strong>) offers premier B.E. / B.Tech degree programmes, Postgraduate M.E., MBA, and MCA courses. Admissions are offered via Tamil Nadu State single-window counseling and Consortium Management Quota seats. Explore key admission pathways, check community cutoffs, download prospectuses, or submit an enquiry below.
+              Mohamed Sathak A.J. College of Engineering (TNEA Counseling Code <strong>1301</strong>) offers premier B.E. / B.Tech degree programmes, Postgraduate M.E., MBA, and MCA courses. Admissions are offered via Tamil Nadu State single-window counseling and Consortium Management Quota seats. Explore key admission pathways, check community cutoffs, download prospectuses, or submit an enquiry below.
             </p>
           </div>
 
