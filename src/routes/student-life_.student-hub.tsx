@@ -256,17 +256,17 @@ function StudentHubPage() {
                   <tbody className="divide-y divide-border/40 font-libre">
                     {campusWelfareServices.map((service) => (
                       <tr key={service.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                        <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                          {String(service.sno).padStart(2, "0")}
+                        <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                          {service.sno}
                         </td>
-                        <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm whitespace-nowrap">
+                        <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground whitespace-nowrap">
                           {service.title}
                         </td>
                         <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/80 whitespace-nowrap">
                           {service.category}
                         </td>
                         <td className="py-3.5 px-4 font-libre text-xs sm:text-sm whitespace-nowrap">
-                          <span className="px-2.5 py-0.5 bg-primary/10 border border-primary/20 text-primary font-oswald uppercase text-xs font-bold rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
+                          <span className="px-2.5 py-0.5 bg-primary/10 border border-primary/20 text-primary font-libre text-xs font-semibold rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs">
                             {service.tag}
                           </span>
                         </td>
@@ -317,19 +317,17 @@ function StudentHubPage() {
                   <tbody className="divide-y divide-border/40 font-libre">
                     {studentCouncilWings.map((wing) => (
                       <tr key={wing.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                        <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                          {String(wing.sno).padStart(2, "0")}
+                        <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                          {wing.sno}
                         </td>
-                        <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm whitespace-nowrap">
+                        <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground whitespace-nowrap">
                           {wing.wing}
                         </td>
                         <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground leading-relaxed">
                           {wing.jurisdiction}
                         </td>
-                        <td className="py-3.5 px-4 font-libre text-xs sm:text-sm whitespace-nowrap">
-                          <span className="font-oswald uppercase text-xs font-bold text-primary">
-                            {wing.frequency}
-                          </span>
+                        <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-primary font-medium whitespace-nowrap">
+                          {wing.frequency}
                         </td>
                       </tr>
                     ))}
@@ -360,8 +358,8 @@ function StudentHubPage() {
                   className="py-3.5 sm:py-4 px-1 sm:px-3 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full"
                 >
                   <div className="md:w-80 shrink-0 flex items-center gap-3">
-                    <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20">
-                      0{idx + 1}
+                    <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
+                      {idx + 1}
                     </span>
                     <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
                       {item.title}

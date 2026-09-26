@@ -653,7 +653,7 @@ function ClubsAndSocietiesPage() {
             {/* ========================================================================= */}
             {/* SECTION 1: Canvas A (White / #121214) — Overview & Mission                 */}
             {/* ========================================================================= */}
-            <section className="pt-6 sm:pt-8 md:pt-10 pb-5 sm:pb-7 md:pb-8 bg-white dark:bg-[#121214] transition-colors">
+            <section className="pt-4 sm:pt-6 md:pt-7 pb-5 sm:pb-6 md:pb-7 bg-white dark:bg-[#121214] transition-colors">
               <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
                   {activeClub.name} Overview
@@ -662,9 +662,9 @@ function ClubsAndSocietiesPage() {
                   {activeClub.overview}
                 </p>
 
-                <div className="mt-6 sm:mt-8">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
-                    Mission &amp; Vision
+                <div className="mt-5 sm:mt-6">
+                  <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-2 sm:mb-3">
+                    Mission
                   </h3>
                   <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
                     {activeClub.mission}
@@ -677,22 +677,22 @@ function ClubsAndSocietiesPage() {
             <WaveDividerAB />
 
             {/* ========================================================================= */}
-            {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — Key Objectives                  */}
+            {/* SECTION 2: Canvas B (#F3F3F2 / #18181B) — Objectives                       */}
             {/* ========================================================================= */}
-            <section className="py-5 sm:py-7 md:py-8 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+            <section className="py-5 sm:py-6 md:py-7 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
               <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
-                  Key Objectives
+                  Objectives
                 </h2>
 
                 <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
                   {activeClub.objectives.map((obj, idx) => (
                     <div
                       key={idx}
-                      className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3 sm:gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
+                      className="py-3 sm:py-3.5 px-1 sm:px-3 flex items-start gap-3 sm:gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
                     >
-                      <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20 mt-0.5">
-                        {String(idx + 1).padStart(2, "0")}
+                      <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 mt-0.5 shadow-2xs">
+                        {idx + 1}
                       </span>
                       <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5">
                         {obj}
@@ -709,10 +709,10 @@ function ClubsAndSocietiesPage() {
             {/* ========================================================================= */}
             {/* SECTION 3: Canvas A (White / #121214) — Committee Members Table (At Bottom) */}
             {/* ========================================================================= */}
-            <section className="py-5 sm:py-7 md:py-8 bg-white dark:bg-[#121214] transition-colors">
+            <section className="py-5 sm:py-6 md:py-7 bg-white dark:bg-[#121214] transition-colors">
               <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
-                  Committee Members &amp; Office Bearers
+                  Committee Members
                 </h2>
 
                 <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
@@ -740,19 +740,19 @@ function ClubsAndSocietiesPage() {
                       <tbody className="divide-y divide-border/40 font-libre">
                         {activeClub.committeeMembers.map((member) => (
                           <tr key={member.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                            <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                              {String(member.sno).padStart(2, "0")}
+                            <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                              {member.sno}
                             </td>
-                            <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm whitespace-nowrap">
+                            <td className="py-3.5 px-4 font-libre font-medium text-xs sm:text-sm text-foreground whitespace-nowrap">
                               {member.name}
                             </td>
                             <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
                               {member.department}
                             </td>
-                            <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                            <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/80 whitespace-nowrap">
                               {member.year}
                             </td>
-                            <td className="py-3.5 px-4 font-oswald font-bold uppercase text-xs text-primary whitespace-nowrap">
+                            <td className="py-3.5 px-4 font-libre font-medium text-xs sm:text-sm text-foreground whitespace-nowrap">
                               {member.role}
                             </td>
                           </tr>

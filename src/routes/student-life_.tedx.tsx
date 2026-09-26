@@ -399,11 +399,11 @@ function TedxPage() {
                         key={video.id}
                         className="hover:bg-foreground/[0.02] transition-colors"
                       >
-                        <td className="py-3 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                          #{String(video.sno).padStart(2, "0")}
+                        <td className="py-3 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                          #{video.sno}
                         </td>
                         <td className="py-3 px-4 font-medium text-foreground">
-                          <span className="font-oswald uppercase font-black text-xs sm:text-sm text-foreground block">
+                          <span className="font-libre font-bold text-xs sm:text-sm text-foreground block">
                             "{video.title}"
                           </span>
                           <span className="text-[11px] text-muted-foreground font-libre line-clamp-1">
@@ -411,7 +411,7 @@ function TedxPage() {
                           </span>
                         </td>
                         <td className="py-3 px-4 whitespace-nowrap">
-                          <span className="font-oswald uppercase font-bold text-xs text-primary tracking-wide">
+                          <span className="font-libre font-semibold text-xs sm:text-sm text-primary tracking-wide">
                             {video.speaker}
                           </span>
                         </td>
@@ -645,7 +645,7 @@ function TedxPage() {
                 className="py-4 sm:py-5 flex flex-col md:flex-row md:items-start justify-between gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors"
               >
                 <div className="md:w-1/3 shrink-0 flex items-start gap-3">
-                  <span className="font-mono text-xs font-bold text-primary px-2 py-0.5 bg-primary/10 rounded-xs">
+                  <span className="font-oswald text-xs font-bold text-primary px-2 py-0.5 bg-primary/10 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs border border-primary/20">
                     {item.pillar}
                   </span>
                   <span className="font-oswald font-black uppercase text-sm sm:text-base text-foreground tracking-wide">

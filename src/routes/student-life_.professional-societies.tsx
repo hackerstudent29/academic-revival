@@ -186,15 +186,15 @@ function ProfessionalSocietiesPage() {
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border/40 pb-3">
                   <div className="space-y-1">
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary block">
+                    <span className="text-xs font-libre font-bold uppercase tracking-wider text-primary block">
                       Chapter Code: {activeSociety.code}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                    <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
                       {activeSociety.name}
                     </h3>
                   </div>
                   {activeSociety.establishedDate && (
-                    <span className="font-mono text-xs sm:text-sm font-bold text-muted-foreground">
+                    <span className="font-libre text-xs sm:text-sm font-semibold text-muted-foreground">
                       Est. {activeSociety.establishedDate}
                     </span>
                   )}
@@ -220,13 +220,13 @@ function ProfessionalSocietiesPage() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {activeSociety.nominationAuthorities.map((auth, idx) => (
                           <div key={idx} className="p-3.5 border-l-2 border-primary bg-foreground/[0.02] space-y-1">
-                            <span className="font-oswald font-bold uppercase text-foreground text-sm block">
+                            <span className="font-libre font-bold text-foreground text-sm block">
                               {auth.name}
                             </span>
                             <span className="text-xs text-muted-foreground font-libre block">
                               {auth.designation}
                             </span>
-                            <div className="flex flex-wrap gap-x-4 gap-y-1 pt-1 text-xs font-mono text-foreground/80">
+                            <div className="flex flex-wrap gap-x-4 gap-y-1 pt-1 text-xs font-libre text-foreground/80">
                               <span>Tel: {auth.phone}</span>
                               <span>Email: {auth.email}</span>
                             </div>
@@ -281,19 +281,19 @@ function ProfessionalSocietiesPage() {
                     {activeSociety.officeBearers && activeSociety.officeBearers.length > 0 &&
                       activeSociety.officeBearers.map((bearer, idx) => (
                         <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                            {String(idx + 1).padStart(2, "0")}
+                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                            {idx + 1}
                           </td>
-                          <td className="py-3.5 px-4 font-oswald font-bold uppercase text-primary text-xs sm:text-sm whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-libre font-medium text-xs sm:text-sm text-primary whitespace-nowrap">
                             {bearer.position}
                           </td>
-                          <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
+                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
                             {bearer.name}
                           </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/85 whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
                             {bearer.department}
                           </td>
-                          <td className="py-3.5 px-4 text-right font-mono font-medium text-foreground text-xs whitespace-nowrap">
+                          <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
                             {bearer.batch}
                           </td>
                         </tr>
@@ -303,19 +303,19 @@ function ProfessionalSocietiesPage() {
                     {activeSociety.ieteCounselors && activeSociety.ieteCounselors.length > 0 &&
                       activeSociety.ieteCounselors.map((c, idx) => (
                         <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                            {String(c.sno).padStart(2, "0")}
+                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                            {c.sno}
                           </td>
-                          <td className="py-3.5 px-4 font-oswald font-bold uppercase text-primary text-xs sm:text-sm whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-libre font-medium text-xs sm:text-sm text-primary whitespace-nowrap">
                             {c.role}
                           </td>
-                          <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
+                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
                             {c.name}
                           </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/85 whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
                             {c.department}
                           </td>
-                          <td className="py-3.5 px-4 text-right font-mono font-medium text-foreground text-xs whitespace-nowrap">
+                          <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
                             {c.codeInfo || "Faculty / Executive"}
                           </td>
                         </tr>
@@ -325,19 +325,19 @@ function ProfessionalSocietiesPage() {
                     {activeSociety.saeOfficeBearers && activeSociety.saeOfficeBearers.length > 0 &&
                       activeSociety.saeOfficeBearers.map((s, idx) => (
                         <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                            {String(s.sno).padStart(2, "0")}
+                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                            {s.sno}
                           </td>
-                          <td className="py-3.5 px-4 font-oswald font-bold uppercase text-primary text-xs sm:text-sm whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-libre font-medium text-xs sm:text-sm text-primary whitespace-nowrap">
                             {s.position}
                           </td>
-                          <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
+                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
                             {s.name}
                           </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/85 whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
                             {s.department}
                           </td>
-                          <td className="py-3.5 px-4 text-right font-mono font-medium text-foreground text-xs whitespace-nowrap">
+                          <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
                             {s.roleCategory}
                           </td>
                         </tr>
@@ -347,19 +347,19 @@ function ProfessionalSocietiesPage() {
                     {activeSociety.ishraeOfficeBearers && activeSociety.ishraeOfficeBearers.length > 0 &&
                       activeSociety.ishraeOfficeBearers.map((ish, idx) => (
                         <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                            {String(ish.sno).padStart(2, "0")}
+                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                            {ish.sno}
                           </td>
-                          <td className="py-3.5 px-4 font-oswald font-bold uppercase text-primary text-xs sm:text-sm whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-libre font-medium text-xs sm:text-sm text-primary whitespace-nowrap">
                             {ish.position}
                           </td>
-                          <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
+                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
                             {ish.name}
                           </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/85 whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
                             {ish.department}
                           </td>
-                          <td className="py-3.5 px-4 text-right font-mono font-medium text-foreground text-xs whitespace-nowrap">
+                          <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
                             {ish.roleCategory}
                           </td>
                         </tr>
@@ -411,19 +411,19 @@ function ProfessionalSocietiesPage() {
                     {activeSociety.activitiesList && activeSociety.activitiesList.length > 0 &&
                       activeSociety.activitiesList.map((act) => (
                         <tr key={act.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                            {String(act.sno).padStart(2, "0")}
+                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                            {act.sno}
                           </td>
-                          <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
+                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
                             {act.name}
                           </td>
-                          <td className="py-3.5 px-4 font-mono font-semibold text-foreground text-xs whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
                             {act.date}
                           </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/85 leading-relaxed">
+                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground leading-relaxed">
                             {act.resourcePerson}
                           </td>
-                          <td className="py-3.5 px-4 text-right font-mono font-semibold text-foreground text-xs whitespace-nowrap">
+                          <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
                             {act.participants}
                           </td>
                         </tr>
@@ -433,19 +433,19 @@ function ProfessionalSocietiesPage() {
                     {activeSociety.ieteActivities && activeSociety.ieteActivities.length > 0 &&
                       activeSociety.ieteActivities.map((ia) => (
                         <tr key={ia.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                            {String(ia.sno).padStart(2, "0")}
+                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                            {ia.sno}
                           </td>
-                          <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
+                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
                             {ia.eventName}
                           </td>
-                          <td className="py-3.5 px-4 font-mono font-semibold text-foreground text-xs whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
                             {ia.date}
                           </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/85 leading-relaxed">
+                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground leading-relaxed">
                             {ia.resourcePerson}
                           </td>
-                          <td className="py-3.5 px-4 text-right font-mono font-semibold text-foreground text-xs whitespace-nowrap">
+                          <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
                             {ia.participants}
                           </td>
                         </tr>
@@ -455,19 +455,19 @@ function ProfessionalSocietiesPage() {
                     {activeSociety.saeActivities && activeSociety.saeActivities.length > 0 &&
                       activeSociety.saeActivities.map((sa) => (
                         <tr key={sa.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                            {String(sa.sno).padStart(2, "0")}
+                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                            {sa.sno}
                           </td>
-                          <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
+                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
                             {sa.eventTitle}
                           </td>
-                          <td className="py-3.5 px-4 font-mono font-semibold text-foreground text-xs whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
                             {sa.date}
                           </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/85 leading-relaxed">
+                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground leading-relaxed">
                             {sa.typeOfEvent}
                           </td>
-                          <td className="py-3.5 px-4 text-right font-mono font-semibold text-foreground text-xs whitespace-nowrap">
+                          <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
                             Active Chapter
                           </td>
                         </tr>
@@ -477,19 +477,19 @@ function ProfessionalSocietiesPage() {
                     {activeSociety.ishraeActivities && activeSociety.ishraeActivities.length > 0 &&
                       activeSociety.ishraeActivities.map((ishAct) => (
                         <tr key={ishAct.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                            {String(ishAct.sno).padStart(2, "0")}
+                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                            {ishAct.sno}
                           </td>
-                          <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm">
+                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
                             {ishAct.activityTitle}
                           </td>
-                          <td className="py-3.5 px-4 font-mono font-semibold text-foreground text-xs whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
                             Annual Cycle
                           </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/85 leading-relaxed">
+                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground leading-relaxed">
                             {ishAct.keyMandate}
                           </td>
-                          <td className="py-3.5 px-4 text-right font-mono font-semibold text-foreground text-xs whitespace-nowrap">
+                          <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
                             Student Delegates
                           </td>
                         </tr>
@@ -521,8 +521,8 @@ function ProfessionalSocietiesPage() {
                   className="py-3.5 sm:py-4 px-1 sm:px-3 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full"
                 >
                   <div className="md:w-80 shrink-0 flex items-center gap-3">
-                    <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20">
-                      0{idx + 1}
+                    <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
+                      {idx + 1}
                     </span>
                     <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
                       {item.title}
