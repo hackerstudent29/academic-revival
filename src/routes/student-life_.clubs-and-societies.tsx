@@ -598,7 +598,7 @@ function ClubsAndSocietiesPage() {
   };
 
   const activeClub: ClubDetailedData = useMemo(() => {
-    return clubsDetailedData.find((c) => c.id === selectedClubId) || clubsDetailedData[0];
+    return (clubsDetailedData.find((c) => c.id === selectedClubId) || clubsDetailedData[0])!;
   }, [selectedClubId]);
 
   return (

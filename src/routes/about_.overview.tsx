@@ -494,6 +494,7 @@ export function InstitutionOverviewPage() {
                   <li key={idx}>
                     <Link
                       to="/programmes-offered"
+                      search={{}}
                       className="flex items-center justify-between min-h-[44px] py-3 sm:py-3.5 px-2 sm:px-3 hover:bg-primary/[0.04] group transition-colors"
                     >
                       <span className="font-libre text-sm sm:text-base font-medium text-foreground/90 group-hover:text-primary group-hover:font-semibold transition-colors pr-2">

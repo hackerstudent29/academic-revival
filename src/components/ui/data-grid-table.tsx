@@ -236,11 +236,12 @@ function DataGridContainer({
   children,
   className,
   border = true,
+  ...props
 }: {
   children: ReactNode;
   className?: string;
   border?: boolean;
-}) {
+} & React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       data-slot="data-grid"
@@ -249,6 +250,7 @@ function DataGridContainer({
         border && 'border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs',
         className,
       )}
+      {...props}
     >
       {children}
     </div>

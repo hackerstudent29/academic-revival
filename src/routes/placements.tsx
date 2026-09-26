@@ -107,7 +107,7 @@ function Placements() {
 
   const handleSelectSection = (sectionId: string) => {
     setActiveSection(sectionId);
-    navigate({ search: { tab: sectionId === "overview" ? undefined : sectionId }, replace: true });
+    navigate({ search: { tab: sectionId === "overview" ? undefined : sectionId } as any, replace: true });
     
     if (sectionId === "overview") {
       setHeaderHidden(false);
@@ -122,7 +122,7 @@ function Placements() {
   const handleTitleClick = () => {
     setHeaderHidden(false);
     setActiveSection("overview");
-    navigate({ search: { tab: undefined }, replace: true });
+    navigate({ search: { tab: undefined } as any, replace: true });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 

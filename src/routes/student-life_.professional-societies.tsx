@@ -104,7 +104,7 @@ function ProfessionalSocietiesPage() {
   };
 
   const activeSociety: ProfessionalSociety = useMemo(() => {
-    return professionalSocieties.find((s) => s.id === selectedSocietyId) || professionalSocieties[0];
+    return (professionalSocieties.find((s) => s.id === selectedSocietyId) || professionalSocieties[0])!;
   }, [selectedSocietyId]);
 
   return (
