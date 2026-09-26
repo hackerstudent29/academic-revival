@@ -43,7 +43,7 @@ function WaveDividerAB() {
         viewBox="0 0 1440 72"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+        className="w-full h-5 sm:h-7 md:h-9 block preserve-3d"
         preserveAspectRatio="none"
       >
         <path
@@ -62,7 +62,7 @@ function WaveDividerBA() {
         viewBox="0 0 1440 72"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+        className="w-full h-5 sm:h-7 md:h-9 block preserve-3d"
         preserveAspectRatio="none"
       >
         <path
@@ -168,17 +168,11 @@ function ProfessionalSocietiesPage() {
         {/* ========================================================================= */}
         {/* 3. SECTION 1: Canvas A (White / #121214) — Technical Chapters Spotlight   */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                Technical Chapters Overview &amp; Charters
-              </h2>
-            </div>
-
-            <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-              At Mohamed Sathak A.J. College of Engineering, collegiate professional chapters connect students directly with industry bodies and international standards. Through active chapters of CSI, IETE, SAEINDIA, and ISHRAE, students access certified technical training, peer-reviewed engineering papers, and national project competitions.
-            </p>
+        <section className="py-5 sm:py-7 md:py-8 bg-white dark:bg-[#121214] transition-colors">
+          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+              Technical Chapters Overview &amp; Charters
+            </h2>
 
             {/* Active Chapter Detailed Spotlight (Cardless Open Layout) */}
             <AnimatePresence mode="wait">
@@ -253,17 +247,11 @@ function ProfessionalSocietiesPage() {
         {/* ========================================================================= */}
         {/* 4. SECTION 2: Canvas B (#F3F3F2 / #18181B) — Executive Office Bearers      */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                Executive Committee &amp; Office Bearers
-              </h2>
-            </div>
-
-            <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-              The student chapter executive committee oversees technical operations, student memberships, event logistics, and institutional liaison under designated faculty advisorship.
-            </p>
+        <section className="py-5 sm:py-7 md:py-8 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+              Executive Committee &amp; Office Bearers
+            </h2>
 
             {/* Official Publications DataGrid Table for Office Bearers */}
             <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
@@ -389,17 +377,11 @@ function ProfessionalSocietiesPage() {
         {/* ========================================================================= */}
         {/* 5. SECTION 3: Canvas A (White / #121214) — Technical Events & Activities  */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                Technical Activities, Symposiums &amp; Workshops
-              </h2>
-            </div>
-
-            <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-              Official catalog of hands-on technical workshops, national symposiums, hackathons, and guest lectures hosted under the active chapter banner.
-            </p>
+        <section className="py-5 sm:py-7 md:py-8 bg-white dark:bg-[#121214] transition-colors">
+          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+              Technical Activities, Symposiums &amp; Workshops
+            </h2>
 
             {/* Official Publications DataGrid Table for Activities */}
             <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
@@ -525,24 +507,18 @@ function ProfessionalSocietiesPage() {
         {/* ========================================================================= */}
         {/* 6. SECTION 4: Canvas B (#F3F3F2 / #18181B) — Membership Privileges        */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                Professional Membership Privileges &amp; Industry Pathways
-              </h2>
-            </div>
-
-            <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-              Enrolling in collegiate professional chapters provides engineering students with competitive industry credentials, research exposure, and global networking:
-            </p>
+        <section className="py-5 sm:py-7 md:py-8 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+              Professional Membership Privileges &amp; Industry Pathways
+            </h2>
 
             {/* Clean Open Editorial List */}
             <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
               {membershipPrivileges.map((item, idx) => (
                 <div
                   key={idx}
-                  className="py-4.5 sm:py-5 px-1 sm:px-3 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full"
+                  className="py-3.5 sm:py-4 px-1 sm:px-3 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full"
                 >
                   <div className="md:w-80 shrink-0 flex items-center gap-3">
                     <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20">

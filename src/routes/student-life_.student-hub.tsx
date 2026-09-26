@@ -85,7 +85,7 @@ function WaveDividerAB() {
         viewBox="0 0 1440 72"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+        className="w-full h-5 sm:h-7 md:h-9 block preserve-3d"
         preserveAspectRatio="none"
       >
         <path
@@ -104,7 +104,7 @@ function WaveDividerBA() {
         viewBox="0 0 1440 72"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+        className="w-full h-5 sm:h-7 md:h-9 block preserve-3d"
         preserveAspectRatio="none"
       >
         <path
@@ -165,17 +165,11 @@ function StudentHubPage() {
         {/* ========================================================================= */}
         {/* 3. SECTION 1: Canvas A (White / #121214) — Campus Amenities & Facilities   */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                Campus Amenities &amp; Facilities
-              </h2>
-            </div>
-
-            <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-              The Student Hub serves as the central anchor for extracurricular vitality, recreation, fitness, dining, and residential welfare across Mohamed Sathak A.J. College of Engineering.
-            </p>
+        <section className="py-5 sm:py-7 md:py-8 bg-white dark:bg-[#121214] transition-colors">
+          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+              Campus Amenities &amp; Facilities
+            </h2>
 
             {/* Editorial Amenities Showcase: Clean divider lines, flat static media, zero cards */}
             <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
@@ -234,17 +228,11 @@ function StudentHubPage() {
         {/* ========================================================================= */}
         {/* 4. SECTION 2: Canvas B (#F3F3F2 / #18181B) — Welfare & Health Services     */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                Campus Welfare &amp; Health Services
-              </h2>
-            </div>
-
-            <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-              Essential healthcare, mental wellness counseling, and academic reprographic facilities accessible to all enrolled students and resident scholars on campus.
-            </p>
+        <section className="py-5 sm:py-7 md:py-8 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+              Campus Welfare &amp; Health Services
+            </h2>
 
             {/* Official Publications DataGrid Table */}
             <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
@@ -304,17 +292,11 @@ function StudentHubPage() {
         {/* ========================================================================= */}
         {/* 5. SECTION 3: Canvas A (White / #121214) — Student Council & Governance   */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                Student Council &amp; Governance
-              </h2>
-            </div>
-
-            <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-              The Student Council serves as the liaison between the student body and college administration, facilitating communication, addressing student welfare, and organizing co-curricular initiatives.
-            </p>
+        <section className="py-5 sm:py-7 md:py-8 bg-white dark:bg-[#121214] transition-colors">
+          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+              Student Council &amp; Governance
+            </h2>
 
             {/* Official Publications DataGrid Table */}
             <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
@@ -368,24 +350,18 @@ function StudentHubPage() {
         {/* ========================================================================= */}
         {/* 6. SECTION 4: Canvas B (#F3F3F2 / #18181B) — Living Guidelines & Conduct   */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                Campus Living Guidelines &amp; Code of Conduct
-              </h2>
-            </div>
-
-            <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-              To nurture a vibrant, respectful, and safe collegiate environment, all students and campus residents abide by our foundational community standards:
-            </p>
+        <section className="py-5 sm:py-7 md:py-8 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+              Campus Living Guidelines &amp; Code of Conduct
+            </h2>
 
             {/* Clean Open Editorial List */}
             <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
               {campusLivingGuidelines.map((item, idx) => (
                 <div
                   key={idx}
-                  className="py-4.5 sm:py-5 px-1 sm:px-3 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full"
+                  className="py-3.5 sm:py-4 px-1 sm:px-3 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full"
                 >
                   <div className="md:w-80 shrink-0 flex items-center gap-3">
                     <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20">

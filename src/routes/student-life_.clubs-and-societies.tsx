@@ -126,7 +126,7 @@ function WaveDividerAB() {
         viewBox="0 0 1440 72"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+        className="w-full h-5 sm:h-7 md:h-9 block preserve-3d"
         preserveAspectRatio="none"
       >
         <path
@@ -145,7 +145,7 @@ function WaveDividerBA() {
         viewBox="0 0 1440 72"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+        className="w-full h-5 sm:h-7 md:h-9 block preserve-3d"
         preserveAspectRatio="none"
       >
         <path
@@ -251,17 +251,11 @@ function ClubsAndSocietiesPage() {
         {/* ========================================================================= */}
         {/* 3. SECTION 1: Canvas A (White / #121214) — Clubs Ecosystem & Spotlight    */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                Student Clubs Ecosystem Overview
-              </h2>
-            </div>
-
-            <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-              At Mohamed Sathak A.J. College of Engineering, student clubs form the vibrant pulse of campus life. With 8 specialized bodies spanning competitive athletics, creative arts, applied sciences, regional literature, competitive programming, robotics, environmental sustainability, and visual storytelling, every student finds an active forum to lead and collaborate.
-            </p>
+        <section className="py-5 sm:py-7 md:py-8 bg-white dark:bg-[#121214] transition-colors">
+          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+              Student Clubs Ecosystem Overview
+            </h2>
 
             {/* Active Club Detailed Spotlight (Cardless Open Layout) */}
             <AnimatePresence mode="wait">
@@ -455,17 +449,11 @@ function ClubsAndSocietiesPage() {
         {/* ========================================================================= */}
         {/* 4. SECTION 2: Canvas B (#F3F3F2 / #18181B) — Activities Directory Table   */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                Annual Club Activities &amp; Events Directory
-              </h2>
-            </div>
-
-            <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-              Comprehensive catalog of regular co-curricular fixtures, competitive tournaments, cultural festivals, and technical symposiums conducted annually across all active student bodies.
-            </p>
+        <section className="py-5 sm:py-7 md:py-8 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+              Annual Club Activities &amp; Events Directory
+            </h2>
 
             {/* Official Publications DataGrid Table */}
             <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
@@ -523,24 +511,18 @@ function ClubsAndSocietiesPage() {
         {/* ========================================================================= */}
         {/* 5. SECTION 3: Canvas A (White / #121214) — Leadership & Code of Engagement */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                Leadership Structure &amp; Code of Engagement
-              </h2>
-            </div>
-
-            <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-              All student clubs operate under democratic student leadership guided by designated faculty coordinators, ensuring accountability, inclusivity, and high-impact extracurricular execution.
-            </p>
+        <section className="py-5 sm:py-7 md:py-8 bg-white dark:bg-[#121214] transition-colors">
+          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+              Leadership Structure &amp; Code of Engagement
+            </h2>
 
             {/* Clean Open Editorial List */}
             <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
               {clubGovernancePillars.map((item, idx) => (
                 <div
                   key={idx}
-                  className="py-4.5 sm:py-5 px-1 sm:px-3 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full"
+                  className="py-3.5 sm:py-4 px-1 sm:px-3 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full"
                 >
                   <div className="md:w-80 shrink-0 flex items-center gap-3">
                     <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20">
@@ -565,24 +547,18 @@ function ClubsAndSocietiesPage() {
         {/* ========================================================================= */}
         {/* 6. SECTION 4: Canvas B (#F3F3F2 / #18181B) — Enrollment & Merit Honors     */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-            <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                Membership Enrollment &amp; Merit Recognition
-              </h2>
-            </div>
-
-            <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-              How students enroll in official student bodies, acquire experiential co-curricular credits, and receive institutional honors upon graduation.
-            </p>
+        <section className="py-5 sm:py-7 md:py-8 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+              Membership Enrollment &amp; Merit Recognition
+            </h2>
 
             {/* Clean Open Editorial List */}
             <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
               {membershipProtocols.map((item, idx) => (
                 <div
                   key={idx}
-                  className="py-4.5 sm:py-5 px-1 sm:px-3 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full"
+                  className="py-3.5 sm:py-4 px-1 sm:px-3 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full"
                 >
                   <div className="md:w-80 shrink-0 flex items-center gap-3">
                     <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20">

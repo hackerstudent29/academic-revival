@@ -107,7 +107,7 @@ function WaveDividerAB() {
         viewBox="0 0 1440 72"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+        className="w-full h-5 sm:h-7 md:h-9 block preserve-3d"
         preserveAspectRatio="none"
       >
         <path
@@ -126,7 +126,7 @@ function WaveDividerBA() {
         viewBox="0 0 1440 72"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+        className="w-full h-5 sm:h-7 md:h-9 block preserve-3d"
         preserveAspectRatio="none"
       >
         <path
@@ -224,42 +224,30 @@ function TedxPage() {
       {/* ========================================================================= */}
       {/* SECTION 1: Canvas A (White / #121214) — Chapter Overview & Pillars        */}
       {/* ========================================================================= */}
-      <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
-        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-8 sm:space-y-10">
-          <div className="w-full space-y-3">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              TEDxMSAJCE CHAPTER OVERVIEW
-            </h2>
-            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
-              TEDxMSAJCE operates as an independently organized TED program hosted under official charter at Mohamed Sathak A.J. College of Engineering. Driven by the mission of propagating "Ideas Worth Spreading," our chapter unites scientific researchers, industry pioneers, environmental conservationists, and student innovators on a singular stage to spark cross-disciplinary dialogue and cultivate visionary solutions for contemporary societal challenges.
-            </p>
-          </div>
-
-          {/* Chapter Distinctives (Cardless Open Editorial List) */}
-          <div className="space-y-4">
-            <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
-              CHAPTER HIGHLIGHTS & INSTITUTIONAL REACH
-            </h3>
-            <div className="w-full divide-y divide-border/40 border-y border-border/40 font-libre">
-              {chapterHighlights.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="py-4 sm:py-5 flex flex-col md:flex-row md:items-start justify-between gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors"
-                >
-                  <div className="md:w-1/3 shrink-0 flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                    <span className="font-oswald font-black uppercase text-sm sm:text-base text-foreground tracking-wide">
-                      {item.title}
-                    </span>
-                  </div>
-                  <div className="md:w-2/3">
-                    <p className="text-xs sm:text-sm text-foreground/85 leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
+      <section className="py-5 sm:py-7 md:py-8 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+            TEDxMSAJCE CHAPTER OVERVIEW
+          </h2>
+          <div className="w-full divide-y divide-border/40 border-y border-border/40 font-libre">
+            {chapterHighlights.map((item, idx) => (
+              <div
+                key={idx}
+                className="py-4 sm:py-5 flex flex-col md:flex-row md:items-start justify-between gap-2 md:gap-8 hover:bg-foreground/[0.015] transition-colors"
+              >
+                <div className="md:w-1/3 shrink-0 flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <span className="font-oswald font-black uppercase text-sm sm:text-base text-foreground tracking-wide">
+                    {item.title}
+                  </span>
                 </div>
-              ))}
-            </div>
+                <div className="md:w-2/3">
+                  <p className="text-xs sm:text-sm text-foreground/85 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -272,18 +260,15 @@ function TedxPage() {
       {/* ========================================================================= */}
       <section
         id="tedx-database-archive"
-        className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors"
+        className="py-5 sm:py-7 md:py-8 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors"
       >
-        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-4 sm:space-y-5">
           {/* Header & Controls */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3">
             <div>
               <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
                 OFFICIAL TALKS &amp; SESSIONS DIRECTORY
               </h2>
-              <p className="text-xs sm:text-sm text-foreground/80 font-libre mt-1">
-                Browse our complete repository of 54 peer-reviewed TEDx keynotes and collegiate lectures.
-              </p>
             </div>
 
             {/* View Mode & Page Size Controls */}
@@ -647,16 +632,11 @@ function TedxPage() {
       {/* ========================================================================= */}
       {/* SECTION 3: Canvas A (White / #121214) — Thematic Pillars                  */}
       {/* ========================================================================= */}
-      <section className="py-8 sm:py-12 md:py-14 bg-white dark:bg-[#121214] transition-colors">
-        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-          <div className="w-full space-y-2">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              THEMATIC PILLARS &amp; CURATORIAL FOCUS
-            </h2>
-            <p className="text-xs sm:text-sm text-foreground/80 font-libre">
-              Every edition of TEDxMSAJCE is curated around four cross-disciplinary inquiry tracks bridging technological breakthroughs with human purpose.
-            </p>
-          </div>
+      <section className="py-5 sm:py-7 md:py-8 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+            THEMATIC PILLARS &amp; CURATORIAL FOCUS
+          </h2>
 
           <div className="w-full divide-y divide-border/40 border-y border-border/40 font-libre">
             {thematicPillars.map((item, idx) => (
@@ -689,16 +669,11 @@ function TedxPage() {
       {/* ========================================================================= */}
       {/* SECTION 4: Canvas B (#F3F3F2 / #18181B) — Code of Conduct & Ethics        */}
       {/* ========================================================================= */}
-      <section className="py-8 sm:py-12 md:py-14 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
-        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
-          <div className="w-full space-y-2">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              CURATION PROTOCOLS &amp; TEDX CODE OF ETHICS
-            </h2>
-            <p className="text-xs sm:text-sm text-foreground/80 font-libre">
-              All organizers, curatorial teams, and invited speakers strictly abide by international TED guidelines to uphold intellectual objectivity and scientific integrity.
-            </p>
-          </div>
+      <section className="py-5 sm:py-7 md:py-8 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
+            CURATION PROTOCOLS &amp; TEDX CODE OF ETHICS
+          </h2>
 
           <div className="w-full divide-y divide-border/40 border-y border-border/40 font-libre">
             {curationGuidelines.map((item, idx) => (
