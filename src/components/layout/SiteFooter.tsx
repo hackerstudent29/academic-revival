@@ -25,11 +25,14 @@ const socials = [
 export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean } = {}) {
   const footerRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const bottomBarRef = useRef<HTMLDivElement>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [bgRevealed, setBgRevealed] = useState(false);
+  const [bottomBarRevealed, setBottomBarRevealed] = useState(false);
   const [contentRevealed, setContentRevealed] = useState(false);
 
   const effectiveBgRevealed = externalRevealed !== undefined ? externalRevealed : bgRevealed;
+  const effectiveBottomBarRevealed = externalRevealed !== undefined ? externalRevealed : bottomBarRevealed;
   const effectiveContentRevealed = externalRevealed !== undefined ? externalRevealed : contentRevealed;
 
   // Track scroll position to reveal Scroll-to-Top arrow button and Footer Content
@@ -42,6 +45,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
 
       const footerEl = footerRef.current;
       const contentEl = contentRef.current;
+      const bottomBarEl = bottomBarRef.current;
       const canvasEl = document.querySelector(".site-main-canvas") as HTMLElement | null;
 
       if (footerEl) {
@@ -51,6 +55,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
         // If the document has very little scroll space, reveal immediately
         if (totalHeight <= viewportHeight + 100) {
           setBgRevealed(true);
+          setBottomBarRevealed(true);
           setContentRevealed(true);
           ticking = false;
           return;
@@ -61,13 +66,28 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
           const contentRect = contentEl.getBoundingClientRect();
 
           // 1. Ambient background outline begins fading in as the curtain opens
-          const isBgOpen = canvasRect.bottom <= viewportHeight - 40;
+          const isBgOpen = canvasRect.bottom <= viewportHeight - 30;
           setBgRevealed(isBgOpen);
 
-          // 2. Content & Text animate ONLY when the top section of the footer is actually uncovered!
-          // When the canvas bottom edge lifts above the top of the content grid (+ small buffer)
-          const contentOpenThreshold = contentRect.top + 60;
-          const contentCloseThreshold = contentRect.top + 110;
+          // 2. Bottom Bar (Social icons & Copyright):
+          // Renders with animation as soon as the half screen uncovers the bottom bar
+          if (bottomBarEl) {
+            const bottomBarRect = bottomBarEl.getBoundingClientRect();
+            const isBottomOpen = canvasRect.bottom <= bottomBarRect.top + 60;
+            const isBottomClose = canvasRect.bottom > bottomBarRect.top + 110;
+            setBottomBarRevealed((prev) => {
+              if (isBottomOpen && !prev) return true;
+              if (isBottomClose && prev) return false;
+              return prev;
+            });
+          } else {
+            setBottomBarRevealed(isBgOpen);
+          }
+
+          // 3. Top Section (Brand Logo, Headings & Navigation Columns):
+          // Unrevealed section stays hidden until the canvas uncovers it!
+          const contentOpenThreshold = contentRect.top + 100;
+          const contentCloseThreshold = contentRect.top + 160;
 
           setContentRevealed((prev) => {
             if (canvasRect.bottom <= contentOpenThreshold && !prev) return true;
@@ -79,6 +99,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
           const footerHeight = footerEl.offsetHeight || 600;
           const remainingScroll = totalHeight - viewportHeight - scrollY;
           setBgRevealed(remainingScroll < footerHeight - 40);
+          setBottomBarRevealed(remainingScroll < footerHeight - 40);
           setContentRevealed(remainingScroll <= 140);
         }
       }
@@ -454,14 +475,15 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
 
         {/* ── Bottom Bar ── */}
         <motion.div
+          ref={bottomBarRef}
           initial="hidden"
-          animate={effectiveContentRevealed ? "visible" : "hidden"}
+          animate={effectiveBottomBarRevealed ? "visible" : "hidden"}
           variants={{
             hidden: { opacity: 0, y: 14, transition: { duration: 0.15 } },
             visible: {
               opacity: 1,
               y: 0,
-              transition: { duration: 0.45, delay: 0.35, ease: FAST_EASE },
+              transition: { duration: 0.45, delay: 0.1, ease: FAST_EASE },
             },
           }}
           className="relative z-10 mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12 will-change-transform"
