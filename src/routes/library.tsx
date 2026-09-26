@@ -544,7 +544,7 @@ function CentralLibraryPage() {
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                          CENTRAL LIBRARY & LEARNING CENTRE
+                          OVERVIEW
                         </h2>
                       </div>
 
@@ -670,7 +670,7 @@ function CentralLibraryPage() {
                       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                         <div>
                           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                            COLLECTIONS & STACK HOLDINGS
+                            OVERVIEW
                           </h2>
                         </div>
 
@@ -819,7 +819,7 @@ function CentralLibraryPage() {
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6">
                       <div>
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                          DIGITAL LIBRARY & SCHOLARLY GATEWAYS
+                          OVERVIEW
                         </h2>
                       </div>
 
@@ -952,7 +952,7 @@ function CentralLibraryPage() {
                       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                         <div>
                           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                            LIBRARY SERVICES & CIRCULATION
+                            OVERVIEW
                           </h2>
                         </div>
                         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-oswald uppercase tracking-wider text-muted-foreground">

@@ -61,7 +61,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({ onNavigate }) 
       <section className="pt-8 sm:pt-12 md:pt-14 pb-10 sm:pb-14 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-            FROM CAMPUS TO CAREER
+            OVERVIEW
           </h2>
 
           <div className="space-y-4 w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">

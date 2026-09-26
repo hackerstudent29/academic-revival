@@ -504,7 +504,7 @@ function SocialAndCommunityPortal() {
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                          National Service Scheme (NSS)
+                          OVERVIEW
                         </h2>
                       </div>
 
@@ -773,7 +773,7 @@ function SocialAndCommunityPortal() {
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                          Youth Red Cross (YRC)
+                          OVERVIEW
                         </h2>
                       </div>
 
@@ -940,7 +940,7 @@ function SocialAndCommunityPortal() {
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
                       <div>
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                          Unnat Bharat Abhiyan (UBA)
+                          OVERVIEW
                         </h2>
                       </div>
 

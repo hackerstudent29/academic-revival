@@ -199,7 +199,7 @@ export function HostelPage() {
                   <section className="bg-white dark:bg-[#121214] py-8 sm:py-12 md:py-14 transition-colors">
                     <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6">
                       <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                        HOSTEL FACILITIES
+                        OVERVIEW
                       </h2>
 
                       {/* Publications-Style DataGrid Table Component */}

@@ -46,7 +46,7 @@ function SiifContent() {
       <section className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-6 sm:pb-8 md:pb-10 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-5 sm:space-y-7">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-            SATHAK INNOVATION AND INCUBATION FOUNDATION
+            OVERVIEW
           </h2>
 
           {/* Single Column Editorial List with Circular Badges */}
@@ -271,7 +271,7 @@ function NispContent() {
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              NATIONAL INNOVATION AND STARTUP POLICY
+              OVERVIEW
             </h2>
           </div>
 
@@ -785,7 +785,7 @@ function EdcContent() {
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-5 sm:space-y-7">
           <div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              ENTREPRENEURSHIP DEVELOPMENT CELL
+              OVERVIEW
             </h2>
             <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mt-1.5">
               ROLES AND RESPONSIBILITIES
@@ -923,11 +923,8 @@ function IicContent() {
           <div className="border-b border-border/80 pb-3 sm:pb-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <div>
               <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                INSTITUTION INNOVATION COUNCIL
+                OVERVIEW
               </h2>
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-muted-foreground mt-1 block">
-                IIC-MSAJCE
-              </span>
             </div>
           </div>
 

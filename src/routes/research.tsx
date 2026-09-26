@@ -439,7 +439,7 @@ function UnifiedResearchPage() {
                     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
                       <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                          RESEARCH AT A GLANCE
+                          OVERVIEW
                         </h2>
                       </div>
                       <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed mb-8 sm:mb-10">
@@ -620,6 +620,11 @@ function UnifiedResearchPage() {
                   <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
                     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
                       {/* Full-Width Institutional Overview */}
+                      <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          OVERVIEW
+                        </h2>
+                      </div>
                       <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed mb-8 sm:mb-10">
                         <p>
                           Mohamed Sathak A.J. College of Engineering maintains a distinguished record of scholarly publishing, encouraging faculty members and student researchers to contribute original scientific findings to peer-reviewed international journals, conference proceedings, and academic volumes.
@@ -708,6 +713,11 @@ function UnifiedResearchPage() {
                   <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
                     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
                       {/* Full-Width Institutional Overview */}
+                      <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                          OVERVIEW
+                        </h2>
+                      </div>
                       <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed mb-8 sm:mb-10">
                         <p>
                           The Intellectual Property Rights (IPR) &amp; Patent Facilitation Cell at MSAJCE provides comprehensive institutional infrastructure for scouting, drafting, filing, and prosecuting patents, utility models, and registered copyrights arising from student and faculty research.
@@ -895,7 +905,7 @@ function UnifiedResearchPage() {
                     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
                       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8 pb-3 border-b border-border/80">
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                          INSTITUTION'S INNOVATION COUNCIL (IIC)
+                          OVERVIEW
                         </h2>
                         <div className="flex items-center gap-2.5 text-primary">
                           <div className="flex gap-1">
@@ -912,9 +922,6 @@ function UnifiedResearchPage() {
                       {/* Overview Narrative */}
                       <div className="space-y-6 w-full">
                         <div>
-                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-2">
-                            Overview
-                          </h3>
                           <div className="w-full space-y-4 text-sm sm:text-base font-libre font-medium text-foreground leading-relaxed">
                             <p>
                               Established under the direct directives of the Ministry of Education (MoE) Innovation Cell (MIC), Government of India, the Institution's Innovation Council (IIC-MSAJCE) systematically fosters an active ecosystem of innovation, pre-incubation, hackathons, and technology entrepreneurship across campus.
@@ -1062,9 +1069,11 @@ function UnifiedResearchPage() {
                   <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
                     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12 space-y-8">
                       <div>
-                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-4 pb-2 border-b border-border/80">
-                          NATIONAL INNOVATION &amp; STARTUP POLICY (NISP)
-                        </h2>
+                        <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
+                          <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                            OVERVIEW
+                          </h2>
+                        </div>
                         <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
                           <p>
                             Guided by the National Innovation and Start-up Policy (NISP) framework of the Ministry of Education, Mohamed Sathak A.J. College of Engineering has established an integrated startup ecosystem designed to cultivate student-led enterprise development and technology commercialization.

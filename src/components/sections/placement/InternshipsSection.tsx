@@ -66,7 +66,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
       <section className="pt-8 sm:pt-12 md:pt-14 pb-8 sm:pb-12 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-6 sm:space-y-8">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-            INTERNSHIP OVERVIEW &amp; FRAMEWORK
+            OVERVIEW
           </h2>
 
           <div className="space-y-4 w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
