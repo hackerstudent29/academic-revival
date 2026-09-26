@@ -110,7 +110,7 @@ export function AcademicProgrammesSection() {
     <section
       ref={sectionRef}
       id="academic-programmes"
-      className="relative w-full bg-page-bg py-14 lg:py-20 text-foreground overflow-hidden"
+      className="relative w-full bg-page-bg py-14 lg:py-20 text-foreground overflow-hidden section-content-visibility"
     >
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-16">
         

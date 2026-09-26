@@ -43,7 +43,7 @@ export function NewsAndEventsSection() {
   if (!currentMainArticle) return null;
 
   return (
-    <section ref={sectionRef} className="relative bg-background py-12 md:py-16 overflow-hidden" id="news">
+    <section ref={sectionRef} className="relative bg-background py-12 md:py-16 overflow-hidden section-content-visibility" id="news">
       <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 md:px-12">
         {/* Section Header */}
         <div className="mb-6">

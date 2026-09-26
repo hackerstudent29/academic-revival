@@ -353,7 +353,18 @@ button:disabled,
   height: 0 !important;
 }
 
-/* Editorial motion utilities */
+/* Editorial motion utilities & GPU Performance */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.section-content-visibility {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 600px;
+}
+
 @keyframes msajce-marquee {
   from { transform: translate3d(0, 0, 0); }
   to { transform: translate3d(-100%, 0, 0); }
@@ -364,6 +375,7 @@ button:disabled,
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   will-change: transform;
+  transform: translateZ(0);
 }
 
 @keyframes msajce-marquee-vertical {
@@ -376,6 +388,7 @@ button:disabled,
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   will-change: transform;
+  transform: translateZ(0);
 }
 
 .msajce-marquee-vertical:hover {
@@ -383,14 +396,15 @@ button:disabled,
 }
 
 @keyframes msajce-reel {
-  from { transform: translateY(0); }
-  to { transform: translateY(-50%); }
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, -50%, 0); }
 }
 
 .msajce-reel {
   animation: msajce-reel 45s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
-
 
 @media (prefers-reduced-motion: reduce) {
   .msajce-reel,

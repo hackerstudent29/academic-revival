@@ -39,48 +39,48 @@ export type RevealVariant =
 
 const variantMap: Record<RevealVariant, Variants> = {
   rise: {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 32 },
     show: { opacity: 1, y: 0, transition: SPRING_SOFT },
   },
   blur: {
-    hidden: { opacity: 0, y: 24, filter: "blur(12px)" },
+    hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
     show: {
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
-      transition: { duration: 0.9, ease: EASE_EDITORIAL },
+      transition: { duration: 0.7, ease: EASE_EDITORIAL },
     },
   },
   mask: {
-    hidden: { opacity: 0, y: "110%" },
-    show: { opacity: 1, y: "0%", transition: { duration: 0.95, ease: EASE_EDITORIAL } },
+    hidden: { opacity: 0, y: "100%" },
+    show: { opacity: 1, y: "0%", transition: { duration: 0.75, ease: EASE_EDITORIAL } },
   },
   clip: {
     hidden: { clipPath: "inset(0 100% 0 0)", opacity: 0.4 },
     show: {
       clipPath: "inset(0 0% 0 0)",
       opacity: 1,
-      transition: { duration: 1.05, ease: EASE_EDITORIAL },
+      transition: { duration: 0.85, ease: EASE_EDITORIAL },
     },
   },
   scale: {
-    hidden: { opacity: 0, scale: 0.9 },
+    hidden: { opacity: 0, scale: 0.95 },
     show: { opacity: 1, scale: 1, transition: SPRING_BOUNCY },
   },
   "slide-left": {
-    hidden: { opacity: 0, x: 64 },
+    hidden: { opacity: 0, x: 48 },
     show: { opacity: 1, x: 0, transition: SPRING_SOFT },
   },
   "slide-right": {
-    hidden: { opacity: 0, x: -64 },
+    hidden: { opacity: 0, x: -48 },
     show: { opacity: 1, x: 0, transition: SPRING_SOFT },
   },
   tilt: {
-    hidden: { opacity: 0, y: 56, rotateX: 14, transformPerspective: 900 },
+    hidden: { opacity: 0, y: 40, rotateX: 10, transformPerspective: 900 },
     show: { opacity: 1, y: 0, rotateX: 0, transition: SPRING_SOFT },
   },
   unfold: {
-    hidden: { opacity: 0, scaleY: 0.7, originY: 0 },
+    hidden: { opacity: 0, scaleY: 0.8, originY: 0 },
     show: { opacity: 1, scaleY: 1, transition: SPRING_SOFT },
   },
 };
@@ -92,7 +92,7 @@ export function Reveal({
   className,
   as = "div",
   once = true,
-  amount = 0.25,
+  amount = 0.1,
 }: {
   children: ReactNode;
   variant?: RevealVariant;
@@ -113,8 +113,9 @@ export function Reveal({
       whileInView="show"
       viewport={{ once, amount }}
       transition={{ delay }}
-      className={overlay ? undefined : className}
-      {...(overlay ? { style: { display: "block" } } : {})}
+      className={`will-change-transform transform-gpu ${overlay ? "" : className ?? ""}`}
+      style={{ backfaceVisibility: "hidden" }}
+      {...(overlay ? { style: { display: "block", backfaceVisibility: "hidden" } } : {})}
     >
       {children}
     </MotionTag>
@@ -131,7 +132,7 @@ export function Stagger({
   className,
   gap = 0.08,
   delay = 0,
-  amount = 0.2,
+  amount = 0.1,
 }: {
   children: ReactNode;
   className?: string;
@@ -145,7 +146,8 @@ export function Stagger({
       whileInView="show"
       viewport={{ once: true, amount }}
       variants={{ hidden: {}, show: { transition: { staggerChildren: gap, delayChildren: delay } } }}
-      className={className}
+      className={`will-change-transform transform-gpu ${className ?? ""}`}
+      style={{ backfaceVisibility: "hidden" }}
     >
       {children}
     </motion.div>
@@ -162,7 +164,11 @@ export function StaggerItem({
   variant?: RevealVariant;
 }) {
   return (
-    <motion.div variants={variantMap[variant]} className={className}>
+    <motion.div
+      variants={variantMap[variant]}
+      className={`will-change-transform transform-gpu ${className ?? ""}`}
+      style={{ backfaceVisibility: "hidden" }}
+    >
       {children}
     </motion.div>
   );
@@ -186,18 +192,20 @@ export function SplitText({
     <motion.span
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.4 }}
+      viewport={{ once: true, amount: 0.1 }}
       variants={{ hidden: {}, show: { transition: { staggerChildren: 0.055, delayChildren: delay } } }}
-      className={className}
+      className={`will-change-transform transform-gpu ${className ?? ""}`}
+      style={{ backfaceVisibility: "hidden" }}
     >
       {words.map((w, i) => (
         <span key={`${w}-${i}`} className="inline-block overflow-hidden align-bottom">
           <motion.span
             variants={{
-              hidden: { y: "110%", opacity: 0 },
-              show: { y: "0%", opacity: 1, transition: { duration: 0.8, ease: EASE_EDITORIAL } },
+              hidden: { y: "100%", opacity: 0 },
+              show: { y: "0%", opacity: 1, transition: { duration: 0.7, ease: EASE_EDITORIAL } },
             }}
-            className={`inline-block ${wordClassName ?? ""}`}
+            className={`inline-block will-change-transform transform-gpu ${wordClassName ?? ""}`}
+            style={{ backfaceVisibility: "hidden" }}
           >
             {w}
             {i < words.length - 1 ? "\u00A0" : ""}

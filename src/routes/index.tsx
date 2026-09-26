@@ -83,10 +83,11 @@ export function HomePage() {
 
   return (
     <motion.main 
-      className="relative z-0"
+      className="relative z-0 transform-gpu will-change-transform"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      style={{ backfaceVisibility: "hidden", transform: "translateZ(0)" }}
     >
       <section
         className="relative min-h-[calc(100svh-53px)] h-auto lg:h-[calc(100svh-65px)] overflow-x-hidden lg:overflow-hidden bg-background flex flex-col"
