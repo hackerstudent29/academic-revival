@@ -10,9 +10,9 @@ const description =
   "Explore official CSI, IETE, SAEINDIA, and ISHRAE professional chapters at Mohamed Sathak A.J. College of Engineering. Industry standards, technical symposiums, hackathons, and certifications.";
 
 const societyNavTabs = [
-  { id: "csi", label: "CSI (Computer Society)" },
-  { id: "iete", label: "IETE (Electronics & Telecom)" },
-  { id: "sae", label: "SAEINDIA (Mobility & Auto)" },
+  { id: "csi", label: "Computer Society of India (CSI)" },
+  { id: "iete", label: "Institution of Electronics and Telecommunication Engineers (IETE)" },
+  { id: "sae", label: "SAEINDIA (Mobility & Automotive)" },
   { id: "ishrae", label: "ISHRAE (HVAC & Thermal)" },
 ];
 
