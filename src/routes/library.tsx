@@ -1165,7 +1165,7 @@ function CentralLibraryPage() {
                               {overdueFineSlabs.map((slab, idx) => (
                                 <tr key={slab.slab} className="hover:bg-foreground/[0.02] transition-colors">
                                   <td className="py-3.5 px-4 font-mono font-bold text-primary text-xs">
-                                    Tier 0{idx + 1}
+                                    Tier {idx + 1}
                                   </td>
                                   <td className="py-3.5 px-4 font-bold font-oswald text-foreground text-sm uppercase">
                                     {slab.slab}

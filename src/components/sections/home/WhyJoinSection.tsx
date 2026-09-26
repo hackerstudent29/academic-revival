@@ -106,7 +106,7 @@ export function WhyJoinSection() {
                 <Reveal key={item.id} variant="slide-right" delay={idx * 0.05} className="w-full animate-fade-in">
                   <div className="group flex items-start gap-5 w-full text-left">
                     <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full font-black text-[11px] bg-primary/10 text-primary font-oswald mt-0.5">
-                      0{idx + 1}
+                      {idx + 1}
                     </div>
                     <span className="text-sm md:text-[15px] font-medium font-libre text-foreground leading-relaxed">
                       {item.title}

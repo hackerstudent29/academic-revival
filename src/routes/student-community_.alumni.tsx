@@ -1571,7 +1571,7 @@ function AlumniPage() {
                   {registeredObjectives.map((obj, idx) => (
                     <div key={idx} className="py-4.5 flex items-start gap-4 sm:gap-6">
                       <span className="font-oswald font-black text-sm sm:text-base text-primary shrink-0 mt-0.5">
-                        0{idx + 1}
+                        {idx + 1}
                       </span>
                       <p className="text-sm sm:text-base text-foreground font-medium leading-relaxed">
                         {obj}

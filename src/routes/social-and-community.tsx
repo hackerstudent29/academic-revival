@@ -566,7 +566,7 @@ function SocialAndCommunityPortal() {
                             key={idx}
                             className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
                           >
-                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                               {idx + 1}
                             </span>
                             <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
@@ -596,7 +596,7 @@ function SocialAndCommunityPortal() {
                             key={idx}
                             className="py-4 sm:py-4.5 px-1 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
                           >
-                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20">
+                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20">
                               {idx + 1}
                             </span>
                             <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
@@ -626,7 +626,7 @@ function SocialAndCommunityPortal() {
                             key={idx}
                             className="py-4 sm:py-4.5 px-1 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
                           >
-                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20">
+                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20">
                               {idx + 1}
                             </span>
                             <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
@@ -833,8 +833,8 @@ function SocialAndCommunityPortal() {
                             className="py-4.5 sm:py-5 px-1 sm:px-3 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 hover:bg-foreground/[0.015] transition-colors w-full"
                           >
                             <div className="sm:w-60 shrink-0 flex items-center gap-3">
-                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20">
-                                0{idx + 1}
+                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20">
+                                {idx + 1}
                               </span>
                               <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
                                 {pr.title}
@@ -867,7 +867,7 @@ function SocialAndCommunityPortal() {
                             key={idx}
                             className="py-3.5 sm:py-4 px-1 sm:px-3 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors"
                           >
-                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                               {idx + 1}
                             </span>
                             <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
@@ -911,7 +911,7 @@ function SocialAndCommunityPortal() {
                               {yrcActivities.map((act, idx) => (
                                 <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
                                   <td className="py-3.5 px-4 text-center font-mono font-bold text-muted-foreground text-xs whitespace-nowrap">
-                                    0{idx + 1}
+                                    {idx + 1}
                                   </td>
                                   <td className="py-3.5 px-4 font-oswald font-bold uppercase text-foreground text-sm whitespace-nowrap">
                                     {act.title}
@@ -1003,7 +1003,7 @@ function SocialAndCommunityPortal() {
                       <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
                         <div className="py-5 sm:py-6 px-1 sm:px-3 flex flex-col md:flex-row md:items-start gap-3 md:gap-6 hover:bg-foreground/[0.015] transition-colors w-full">
                           <div className="md:w-64 shrink-0 flex items-center gap-3">
-                            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20">
+                            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20">
                               V
                             </span>
                             <h3 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground">
@@ -1017,7 +1017,7 @@ function SocialAndCommunityPortal() {
 
                         <div className="py-5 sm:py-6 px-1 sm:px-3 flex flex-col md:flex-row md:items-start gap-3 md:gap-6 hover:bg-foreground/[0.015] transition-colors w-full">
                           <div className="md:w-64 shrink-0 flex items-center gap-3">
-                            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20">
+                            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20">
                               M
                             </span>
                             <h3 className="text-base sm:text-lg font-bold font-oswald uppercase tracking-tight text-foreground">
@@ -1055,7 +1055,7 @@ function SocialAndCommunityPortal() {
                             key={idx}
                             className="flex items-start gap-3.5 py-3.5 border-b border-border/40 hover:bg-foreground/[0.015] transition-colors"
                           >
-                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                            <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                               {idx + 1}
                             </span>
                             <div className="space-y-1 flex-1">
@@ -1091,8 +1091,8 @@ function SocialAndCommunityPortal() {
                             className="py-4.5 sm:py-5 px-1 sm:px-3 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 hover:bg-foreground/[0.015] transition-colors w-full"
                           >
                             <div className="md:w-80 shrink-0 flex items-center gap-3">
-                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm border border-foreground/20">
-                                0{idx + 1}
+                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20">
+                                {idx + 1}
                               </span>
                               <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">
                                 {p.title}
@@ -1202,7 +1202,7 @@ function SocialAndCommunityPortal() {
 
                         <div className="py-5 sm:py-6 px-1 sm:px-3 flex flex-col md:flex-row md:items-start gap-3 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full">
                           <div className="md:w-72 shrink-0 space-y-1">
-                            <span className="font-oswald font-black uppercase text-xs tracking-wider px-2.5 py-1 bg-foreground/10 text-foreground rounded-tl-md rounded-br-md border border-foreground/20 inline-block">
+                            <span className="font-oswald font-black uppercase text-xs tracking-wider px-2.5 py-1 bg-primary/10 text-primary rounded-tl-md rounded-br-md border border-primary/20 inline-block">
                               Paired Institution · Jammu &amp; Kashmir
                             </span>
                             <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight pt-1">
@@ -1235,7 +1235,7 @@ function SocialAndCommunityPortal() {
                             key={idx}
                             className="py-4 sm:py-5 px-1 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors"
                           >
-                            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                               {idx + 1}
                             </span>
                             <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-1">
@@ -1386,7 +1386,7 @@ function SocialAndCommunityPortal() {
                             key={idx}
                             className="py-4 sm:py-5 px-1 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors"
                           >
-                            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                               {idx + 1}
                             </span>
                             <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-1">
@@ -1420,7 +1420,7 @@ function SocialAndCommunityPortal() {
                             className="py-5 sm:py-6 px-1 sm:px-3 flex flex-col md:flex-row md:items-start gap-3 md:gap-8 hover:bg-foreground/[0.015] transition-colors w-full"
                           >
                             <div className="md:w-72 shrink-0 space-y-1.5">
-                              <span className="font-oswald font-black uppercase text-xs tracking-wider px-2.5 py-1 bg-foreground/10 text-foreground rounded-tl-md rounded-br-md border border-foreground/20 inline-block">
+                              <span className="font-oswald font-black uppercase text-xs tracking-wider px-2.5 py-1 bg-primary/10 text-primary rounded-tl-md rounded-br-md border border-primary/20 inline-block">
                                 {m.modelTag}
                               </span>
                               <h3 className="font-oswald font-bold text-base sm:text-lg text-foreground uppercase tracking-tight">

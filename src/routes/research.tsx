@@ -476,8 +476,8 @@ function UnifiedResearchPage() {
                       <div className="space-y-3">
                         {objectivesList.map((obj, idx) => (
                           <div key={idx} className="flex items-center gap-3 sm:gap-4 py-2.5 sm:py-3 border-b border-border/40">
-                            <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-xs shrink-0">
-                              {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
+                            <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 border border-primary/20 text-primary font-oswald font-black flex items-center justify-center text-xs shrink-0">
+                              {idx + 1}
                             </span>
                             <p className="text-xs sm:text-sm md:text-base text-foreground font-libre font-medium truncate sm:whitespace-normal">
                               {obj}
@@ -893,8 +893,8 @@ function UnifiedResearchPage() {
                           <div className="space-y-3">
                             {iicOverviewPoints.map((item, idx) => (
                               <div key={idx} className="flex items-center gap-3 sm:gap-4 py-2.5 sm:py-3 border-b border-border/40">
-                                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-xs shrink-0">
-                                  0{idx + 1}
+                                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 border border-primary/20 text-primary font-oswald font-black flex items-center justify-center text-xs shrink-0">
+                                  {idx + 1}
                                 </span>
                                 <p className="text-xs sm:text-sm md:text-base text-foreground font-libre font-medium truncate sm:whitespace-normal">
                                   <span className="font-bold text-foreground">{item.title}:</span> {item.desc}
@@ -1029,7 +1029,7 @@ function UnifiedResearchPage() {
                         {/* Vision */}
                         <div className="space-y-2 sm:space-y-2.5">
                           <div className="flex items-center gap-3">
-                            <span className="w-8 h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-xs shrink-0">
+                            <span className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 text-primary font-oswald font-black flex items-center justify-center text-xs shrink-0">
                               V
                             </span>
                             <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
@@ -1044,7 +1044,7 @@ function UnifiedResearchPage() {
                         {/* Mission */}
                         <div className="space-y-2 sm:space-y-2.5">
                           <div className="flex items-center gap-3">
-                            <span className="w-8 h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-xs shrink-0">
+                            <span className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 text-primary font-oswald font-black flex items-center justify-center text-xs shrink-0">
                               M
                             </span>
                             <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
@@ -1079,7 +1079,7 @@ function UnifiedResearchPage() {
                           <div className="space-y-3">
                             {shortTermObjectives.map((obj, i) => (
                               <div key={i} className="flex items-center gap-3 sm:gap-4 py-2.5 sm:py-3 border-b border-border/40">
-                                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-[11px] shrink-0">
+                                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 border border-primary/20 text-primary font-oswald font-black flex items-center justify-center text-[11px] shrink-0">
                                   S{i + 1}
                                 </span>
                                 <p className="text-xs sm:text-sm md:text-base text-foreground font-libre font-medium truncate sm:whitespace-normal">
@@ -1098,7 +1098,7 @@ function UnifiedResearchPage() {
                           <div className="space-y-3">
                             {longTermObjectives.map((obj, i) => (
                               <div key={i} className="flex items-center gap-3 sm:gap-4 py-2.5 sm:py-3 border-b border-border/40">
-                                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-[11px] shrink-0">
+                                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 border border-primary/20 text-primary font-oswald font-black flex items-center justify-center text-[11px] shrink-0">
                                   L{i + 1}
                                 </span>
                                 <p className="text-xs sm:text-sm md:text-base text-foreground font-libre font-medium truncate sm:whitespace-normal">
@@ -1126,8 +1126,8 @@ function UnifiedResearchPage() {
                       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {thrustAreas.map((area, idx) => (
                           <div key={idx} className="pb-4 border-b border-border/60 flex flex-col justify-between">
-                            <span className="w-8 h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-xs mb-3 shrink-0">
-                              0{idx + 1}
+                            <span className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 text-primary font-oswald font-black flex items-center justify-center text-xs mb-3 shrink-0">
+                              {idx + 1}
                             </span>
                             <p className="text-sm font-libre font-medium text-foreground leading-relaxed">
                               {area}

@@ -65,7 +65,7 @@ export function VisionMissionPage() {
               Vision
             </h2>
             <div className="py-3.5 sm:py-4 px-2 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors">
-              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                 V
               </span>
               <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
@@ -109,7 +109,7 @@ export function VisionMissionPage() {
                   key={idx}
                   className="py-3.5 sm:py-4 px-2 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors"
                 >
-                  <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                  <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                     M{idx + 1}
                   </span>
                   <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
@@ -148,7 +148,7 @@ export function VisionMissionPage() {
               Quality Policy
             </h2>
             <div className="py-3.5 sm:py-4 px-2 sm:px-3 flex items-start gap-4 hover:bg-foreground/[0.015] transition-colors">
-              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                 QP
               </span>
               <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">

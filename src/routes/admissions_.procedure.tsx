@@ -22,7 +22,7 @@ export const Route = createFileRoute("/admissions_/procedure")({
 
 const procedureSteps = [
   {
-    step: "01",
+    step: "1",
     title: "Download Prospectus & Review Guidelines",
     description: "Review comprehensive degree programmes, department specializations, intake capacity, and eligibility criteria in the official MSAJCE Admission Brochure.",
     actionText: "Download Prospectus PDF",
@@ -30,7 +30,7 @@ const procedureSteps = [
     isExternal: true,
   },
   {
-    step: "02",
+    step: "2",
     title: "Complete Online Application Form",
     description: "Fill in your personal, academic, and contact details via the official online admission portal. Upload required certificates for verification.",
     actionText: "Access Application Portal",
@@ -38,7 +38,7 @@ const procedureSteps = [
     isExternal: true,
   },
   {
-    step: "03",
+    step: "3",
     title: "Complete Fee Payment & Seat Confirmation",
     description: "Pay the required registration or semester tuition fee through the secure online payment portal to finalize your seat reservation.",
     actionText: "Pay Fees Online",

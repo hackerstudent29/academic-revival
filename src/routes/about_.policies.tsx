@@ -21,47 +21,47 @@ export const Route = createFileRoute("/about_/policies")({
 
 const policiesList = [
   {
-    id: "01",
+    id: "1",
     title: "E-Governance Policy",
     pdfUrl: "https://www.msajce-edu.in/images/msajcepolicies/e-governance-policy.pdf",
   },
   {
-    id: "02",
+    id: "2",
     title: "Feedback Policy",
     pdfUrl: "https://www.msajce-edu.in/images/msajcepolicies/feeback-policy.pdf",
   },
   {
-    id: "03",
+    id: "3",
     title: "HR Policy",
     pdfUrl: "https://www.msajce-edu.in/images/msajcepolicies/hr-policy.pdf",
   },
   {
-    id: "04",
+    id: "4",
     title: "Performance Appraisal Policy",
     pdfUrl: "https://www.msajce-edu.in/images/msajcepolicies/performance-appraisal-policy.pdf",
   },
   {
-    id: "05",
+    id: "5",
     title: "Research Policy",
     pdfUrl: "https://www.msajce-edu.in/images/msajcepolicies/research-policy.pdf",
   },
   {
-    id: "06",
+    id: "6",
     title: "Roles and Responsibility",
     pdfUrl: "https://www.msajce-edu.in/images/msajcepolicies/roles-and-responsibility.pdf",
   },
   {
-    id: "07",
+    id: "7",
     title: "Scholarship Policy",
     pdfUrl: "https://www.msajce-edu.in/images/msajcepolicies/scholarship-policy.pdf",
   },
   {
-    id: "08",
+    id: "8",
     title: "Slow Learner & Advanced Learner Policy",
     pdfUrl: "https://www.msajce-edu.in/images/msajcepolicies/SL&AL-policy.pdf",
   },
   {
-    id: "09",
+    id: "9",
     title: "ANTI RAGGING POLICY",
     pdfUrl: "https://www.msajce-edu.in/images/msajcepolicies/anti-ragging-policy.pdf",
   },

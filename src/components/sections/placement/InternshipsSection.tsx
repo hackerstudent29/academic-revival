@@ -81,25 +81,25 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
             {[
               {
-                num: '01',
+                num: '1',
                 metric: '100% Eligible Students',
                 title: 'Summer & Winter Internships',
                 desc: 'Structured industrial internships during semester breaks across core engineering and modern digital sectors.',
               },
               {
-                num: '02',
+                num: '2',
                 metric: 'Faculty & Industry Mentors',
                 title: 'Dedicated Mentorship',
                 desc: 'Direct 1-on-1 guidance from corporate project leaders and departmental faculty coordinators.',
               },
               {
-                num: '03',
+                num: '3',
                 metric: 'Competitive Stipends',
                 title: 'Stipend Opportunities',
                 desc: 'Monthly stipend support provided to student interns during full-semester and corporate industry tracks.',
               },
               {
-                num: '04',
+                num: '4',
                 metric: '65+ Corporate MoUs',
                 title: 'Live Capstone Projects',
                 desc: 'Enterprise-sponsored final year projects solving active industrial and engineering production challenges.',
@@ -107,7 +107,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = () => {
             ].map((item) => (
               <div key={item.num} className="space-y-2 py-1">
                 <div className="flex items-center gap-3">
-                  <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs border border-foreground/20">
+                  <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs border border-primary/20">
                     {item.num}
                   </span>
                   <span className="text-[10px] font-black font-oswald uppercase text-primary tracking-wider">

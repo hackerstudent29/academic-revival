@@ -1299,7 +1299,7 @@ function CoursePage() {
       if (missionMatch) {
         return (
           <li className="flex items-start gap-3 sm:gap-4 mb-3 list-none -ml-4 sm:-ml-5" {...props}>
-            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs mt-0.5 border border-foreground/20">
+            <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs mt-0.5 border border-primary/20">
               {missionMatch[1]}
             </span>
             <span className="text-foreground font-libre font-medium leading-relaxed text-sm sm:text-base break-words pt-1">{missionMatch[2]}</span>
@@ -1549,7 +1549,7 @@ function CoursePage() {
                           Vision
                         </h3>
                         <div className="flex items-start gap-4 py-1">
-                          <span className="w-8 h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-xs shrink-0">
+                          <span className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 text-primary font-oswald font-black flex items-center justify-center text-xs shrink-0">
                             V
                           </span>
                           <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed pt-1">
@@ -1566,7 +1566,7 @@ function CoursePage() {
                         <div className="space-y-3">
                           {overviewData.missions.map((m, idx) => (
                             <div key={idx} className="flex items-start gap-4 py-1">
-                              <span className="w-8 h-8 rounded-full bg-foreground/10 border border-foreground/20 text-foreground font-oswald font-black flex items-center justify-center text-xs shrink-0">
+                              <span className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 text-primary font-oswald font-black flex items-center justify-center text-xs shrink-0">
                                 M{idx + 1}
                               </span>
                               <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed pt-1">

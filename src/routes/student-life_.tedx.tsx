@@ -59,22 +59,22 @@ const chapterHighlights = [
 
 const thematicPillars = [
   {
-    pillar: "01",
+    pillar: "1",
     name: "Frontier Technologies & Intelligent Systems",
     desc: "Exploring machine intelligence, autonomous robotics, quantum computing fundamentals, ethical algorithm design, and digital privacy paradigms shaping our technological landscape.",
   },
   {
-    pillar: "02",
+    pillar: "2",
     name: "Sustainable Engineering & Resilient Habitat",
     desc: "Focusing on renewable energy transitions, circular manufacturing economies, ecological infrastructure development, clean water technologies, and urban resilience.",
   },
   {
-    pillar: "03",
+    pillar: "3",
     name: "Social Innovation & Human Ingenuity",
     desc: "Highlighting transformative grassroots leadership, community-centric healthcare solutions, accessible education models, and novel social enterprise frameworks.",
   },
   {
-    pillar: "04",
+    pillar: "4",
     name: "Design Synthesis & Creative Expression",
     desc: "Investigating the intersection of creative arts, functional architectural design, human-centered UX design, narrative media, and interdisciplinary craftsmanship.",
   },

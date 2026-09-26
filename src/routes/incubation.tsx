@@ -53,7 +53,7 @@ function SiifContent() {
           <div className="space-y-3 sm:space-y-4">
             {/* Object A */}
             <div className="p-3 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
-              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                 A
               </span>
               <div className="space-y-1 flex-1">
@@ -68,7 +68,7 @@ function SiifContent() {
 
             {/* Object B */}
             <div className="p-3 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
-              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                 B
               </span>
               <div className="space-y-1 flex-1">
@@ -83,7 +83,7 @@ function SiifContent() {
 
             {/* Object C */}
             <div className="p-3 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
-              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                 C
               </span>
               <div className="space-y-1 flex-1">
@@ -282,7 +282,7 @@ function NispContent() {
                 Vision
               </h3>
               <div className="p-3 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
-                <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                   V
                 </span>
                 <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
@@ -297,7 +297,7 @@ function NispContent() {
                 Mission
               </h3>
               <div className="p-3 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
-                <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                   M1
                 </span>
                 <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
@@ -342,8 +342,8 @@ function NispContent() {
                 "Strengthen institute industry interaction cell activity and effectively use the outcomes for achieving the mission.",
               ].map((obj, i) => (
                 <div key={i} className="p-2.5 sm:p-3 flex gap-3.5 items-start hover:bg-foreground/[0.015] transition-colors">
-                  <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-bold text-xs mt-0.5 border border-foreground/20">
-                    {String(i + 1).padStart(2, "0")}
+                  <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-bold text-xs mt-0.5 border border-primary/20">
+                    {i + 1}
                   </span>
                   <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed pt-0.5 sm:pt-1">
                     {obj}
@@ -367,8 +367,8 @@ function NispContent() {
                 "Spread awareness to students and faculty regarding IPR related activities.",
               ].map((obj, i) => (
                 <div key={i} className="p-2.5 sm:p-3 flex gap-3.5 items-start hover:bg-foreground/[0.015] transition-colors">
-                  <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-bold text-xs mt-0.5 border border-foreground/20">
-                    {String(i + 1).padStart(2, "0")}
+                  <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-bold text-xs mt-0.5 border border-primary/20">
+                    {i + 1}
                   </span>
                   <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed pt-0.5 sm:pt-1">
                     {obj}
@@ -812,7 +812,7 @@ function EdcContent() {
               },
             ].map((role) => (
               <div key={role.num} className="p-3 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
-                <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                   {role.num}
                 </span>
                 <div className="space-y-1 flex-1">
@@ -882,7 +882,7 @@ function EdcContent() {
                   ].map((member, idx) => (
                     <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
                       <td className="px-4 py-3.5 font-oswald font-bold text-primary text-sm whitespace-nowrap text-center align-middle w-16">
-                        {String(idx + 1).padStart(2, "0")}
+                        {idx + 1}
                       </td>
                       <td className="px-4 py-3.5 font-libre font-bold text-foreground text-sm whitespace-nowrap align-middle">
                         {member.name}
@@ -973,11 +973,11 @@ function IicContent() {
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7 lg:gap-8">
             {[
-              { idx: "01", title: "Local Innovation Ecosystem", desc: "Create a vibrant local innovation ecosystem within the campus." },
-              { idx: "02", title: "Start-up Support Mechanism", desc: "Build a robust start-up supporting mechanism in Higher Education Institutions." },
-              { idx: "03", title: "Atal Ranking Preparation", desc: "Prepare institute for Atal Ranking of Institutions on Innovation Achievements Framework." },
-              { idx: "04", title: "Idea Pre-incubation", desc: "Establish Functional Ecosystem for Scouting Ideas and Pre-incubation of Ideas." },
-              { idx: "05", title: "Cognitive Ability", desc: "Develop better Cognitive Ability for Technology Students through innovation challenges." },
+              { idx: "1", title: "Local Innovation Ecosystem", desc: "Create a vibrant local innovation ecosystem within the campus." },
+              { idx: "2", title: "Start-up Support Mechanism", desc: "Build a robust start-up supporting mechanism in Higher Education Institutions." },
+              { idx: "3", title: "Atal Ranking Preparation", desc: "Prepare institute for Atal Ranking of Institutions on Innovation Achievements Framework." },
+              { idx: "4", title: "Idea Pre-incubation", desc: "Establish Functional Ecosystem for Scouting Ideas and Pre-incubation of Ideas." },
+              { idx: "5", title: "Cognitive Ability", desc: "Develop better Cognitive Ability for Technology Students through innovation challenges." },
             ].map((item) => (
               <div
                 key={item.idx}
@@ -1030,8 +1030,8 @@ function IicContent() {
               "Organize Hackathons, idea competition, mini-challenges etc. with the involvement of industries",
             ].map((fn, i) => (
               <div key={i} className="p-2.5 sm:p-3 flex gap-3.5 items-start hover:bg-foreground/[0.015] transition-colors">
-                <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-foreground/10 text-foreground font-oswald font-bold text-xs mt-0.5 border border-foreground/20">
-                  {String(i + 1).padStart(2, "0")}
+                <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-bold text-xs mt-0.5 border border-primary/20">
+                  {i + 1}
                 </span>
                 <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed pt-0.5 sm:pt-1">
                   {fn}
@@ -1067,7 +1067,7 @@ function IicContent() {
               Vision
             </h3>
             <div className="p-3 sm:p-4 flex items-start gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors">
-              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+              <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                 V
               </span>
               <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
@@ -1088,7 +1088,7 @@ function IicContent() {
                 { badge: "M3", text: "Cultivate the students with all-round competencies, for career, higher education and self-employability" },
               ].map((m) => (
                 <div key={m.badge} className="p-3 sm:p-4 flex gap-3.5 sm:gap-4 items-start hover:bg-foreground/[0.015] transition-colors">
-                  <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground/10 text-foreground font-oswald font-black text-xs sm:text-sm mt-0.5 border border-foreground/20 shadow-2xs">
+                  <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm mt-0.5 border border-primary/20 shadow-2xs">
                     {m.badge}
                   </span>
                   <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed flex-1 pt-0.5 sm:pt-1">
