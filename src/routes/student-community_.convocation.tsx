@@ -9,6 +9,7 @@ import {
   Camera,
   ShieldCheck,
 } from "lucide-react";
+import { RedirectButton } from "@/components/ui/redirect-button";
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
 const cubicEase = [0.76, 0, 0.24, 1] as const;
@@ -478,16 +479,11 @@ function ConvocationPage() {
                 </div>
 
                 <div className="shrink-0 pt-2 md:pt-0">
-                  <a
+                  <RedirectButton
                     href={gd.photosUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-primary/40 hover:border-primary bg-background text-xs font-bold font-oswald uppercase tracking-wider text-primary hover:bg-primary hover:text-white transition-all duration-200 shadow-xs"
-                  >
-                    <Camera className="w-3.5 h-3.5" />
-                    Official Photo Album
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
+                    label="Official Photo Album"
+                    icon={<Camera className="w-3.5 h-3.5" />}
+                  />
                 </div>
               </motion.div>
             ))}

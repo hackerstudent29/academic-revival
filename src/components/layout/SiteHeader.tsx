@@ -140,19 +140,20 @@ const nav: NavItem[] = [
       {
         title: "Student Life",
         links: [
-          { label: "Student Hub", to: "/campus-life", hash: "facilities" },
-          { label: "Clubs & Societies", to: "/campus-life", hash: "facilities" },
-          { label: "Professional Societies", to: "/campus-life", hash: "tech-centres" },
-          { label: "Our TEDx Chapter", to: "/campus-life" },
+          { label: "Student Hub", to: "/student-life/student-hub" },
+          { label: "Clubs & Societies", to: "/student-life/clubs-and-societies" },
+          { label: "Professional Societies", to: "/student-life/professional-societies" },
+          { label: "Our TEDx Chapter", to: "/student-life/tedx" },
         ],
       },
       {
         title: "Social & Community",
         links: [
-          { label: "National Service Scheme (NSS)", to: "/campus-life", hash: "facilities" },
-          { label: "Youth Red Cross (YRC)", to: "/campus-life", hash: "facilities" },
-          { label: "Unnat Bharat Abhiyan (UBA)", to: "/campus-life", hash: "facilities" },
-          { label: "EBSB Initiative", to: "/campus-life" },
+          { label: "National Service Scheme (NSS)", to: "/social-and-community", search: { tab: "nss" } },
+          { label: "Youth Red Cross (YRC)", to: "/social-and-community", search: { tab: "yrc" } },
+          { label: "Unnat Bharat Abhiyan (UBA)", to: "/social-and-community", search: { tab: "uba" } },
+          { label: "EBSB Initiative", to: "/social-and-community", search: { tab: "ebsb" } },
+          { label: "AICTE KARMA", to: "/social-and-community", search: { tab: "karma" } },
         ],
       },
       {

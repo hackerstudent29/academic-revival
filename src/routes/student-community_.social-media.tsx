@@ -12,6 +12,7 @@ import {
   Check,
   Search,
 } from "lucide-react";
+import { RedirectButton } from "@/components/ui/redirect-button";
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
 const cubicEase = [0.76, 0, 0.24, 1] as const;
@@ -393,15 +394,10 @@ function SocialMediaDirectoryPage() {
                   <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-sm bg-primary/10 text-primary font-bold">
                     {ch.badge}
                   </span>
-                  <a
+                  <RedirectButton
                     href={ch.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold font-oswald uppercase tracking-wider text-primary hover:text-primary/80 transition-colors"
-                  >
-                    Visit Channel
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
+                    label="Visit Channel"
+                  />
                 </div>
               </motion.div>
             ))}

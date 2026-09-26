@@ -33,6 +33,8 @@ import {
 import { cn } from '@/lib/utils';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
+import { SearchBar } from '@/components/ui/search-bar';
+import { TablePagination, type TablePaginationProps } from '@/components/ui/table-pagination';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
@@ -1300,4 +1302,8 @@ export {
   DataGridColumnHeader,
   DataGridColumnFilter,
   DataGridColumnVisibility,
+  SearchBar,
+  SearchBar as DataGridSearchBar,
+  TablePagination,
+  type TablePaginationProps,
 };

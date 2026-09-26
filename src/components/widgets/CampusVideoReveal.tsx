@@ -30,10 +30,10 @@ export function CampusVideoReveal() {
   return (
     <section ref={sectionRef} className="relative w-full z-0 pointer-events-none">
       <div className="absolute left-0 right-0 h-[300vh] -top-[100vh] -z-10">
-        <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
+        <div className="sticky top-0 h-screen w-full overflow-hidden bg-black flex items-center justify-center">
           <video
             ref={videoRef}
-            className="absolute inset-0 w-full h-full object-cover scale-[1.35] origin-center transition-transform duration-500"
+            className="w-full h-full min-h-screen min-w-full object-cover mx-auto"
             autoPlay
             muted
             loop
