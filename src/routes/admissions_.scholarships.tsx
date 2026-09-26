@@ -1,12 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Magnetic, Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { motion } from "framer-motion";
-import { KeyDriversAccordion } from "@/components/widgets/KeyDriversAccordion";
-import { Download, ArrowRight, Info } from "lucide-react";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { createFileRoute } from "@tanstack/react-router";
+import { DataGridContainer } from "@/components/ui/data-grid-table";
+import { Award, CheckCircle2 } from "lucide-react";
 
-const title = "Scholarship Programmes — MSAJCE";
-const description = "AICTE, MHRD, and Ministry-funded scholarship schemes for B.E./B.Tech students at Mohamed Sathak AJ College of Engineering — eligibility, amount, and quota.";
+const title = "Scholarship Programmes — M.S.A.J. College of Engineering, Chennai";
+const description =
+  "Official AICTE, State Government, Central Government, and Mohamed Sathak Trust scholarship schemes for B.E./B.Tech students at MSAJCE.";
 
 export const Route = createFileRoute("/admissions_/scholarships")({
   head: () => ({
@@ -22,247 +20,252 @@ export const Route = createFileRoute("/admissions_/scholarships")({
   component: ScholarshipsPage,
 });
 
-const scholarshipMatrix = [
+interface ScholarshipItem {
+  sno: number;
+  scheme: string;
+  category: string;
+  eligibility: string;
+  agency: string;
+  amount: string;
+  quota: string;
+}
+
+const scholarshipMatrix: ScholarshipItem[] = [
   {
+    sno: 1,
     scheme: "Pragati Scholarship Scheme",
-    tag: "Girl Students",
+    category: "Girl Students in STEM",
     eligibility: "Max 2 girl children per family; annual family income < ₹8,00,000",
-    agency: "AICTE",
+    agency: "AICTE, New Delhi",
     amount: "₹50,000 / year",
-    quota: "800 slots",
+    quota: "800 Designated TN Slots",
   },
   {
+    sno: 2,
     scheme: "Saksham Scholarship Scheme",
-    tag: "Specially-Abled",
+    category: "Specially-Abled Students",
     eligibility: "Disability level ≥ 40%; annual family income < ₹8,00,000",
-    agency: "AICTE",
+    agency: "AICTE, New Delhi",
     amount: "₹50,000 / year",
     quota: "All Eligible Candidates",
   },
   {
-    scheme: "Merit-cum-Means Scholarship",
-    tag: "Minority Community",
+    sno: 3,
+    scheme: "Merit-cum-Means Minority Scholarship",
+    category: "Minority Communities",
     eligibility: "Minimum 50% marks in final exam; annual family income < ₹2,50,000",
     agency: "Ministry of Minority Affairs",
-    amount: "₹20,000/yr tuition + ₹12,000/yr (hostellers) or ₹6,000/yr (day scholars)",
+    amount: "₹20,000/yr tuition + Maintenance",
     quota: "1,075 (Muslim) · 1,173 (Christian)",
   },
   {
-    scheme: "Central Sector Scheme",
-    tag: "Merit + Low Income",
-    eligibility: "Minimum 80% marks in final exam; annual family income < ₹8,00,000",
-    agency: "MHRD",
+    sno: 4,
+    scheme: "Central Sector Scheme for Higher Education",
+    category: "Merit + Low Income",
+    eligibility: "Minimum 80% marks in 12th Board; annual family income < ₹8,00,000",
+    agency: "MHRD, Govt. of India",
     amount: "₹10,000 / year",
-    quota: "4,883 slots",
+    quota: "4,883 TN Slots",
   },
   {
+    sno: 5,
     scheme: "Wards of Beedi / Mine / Cine Workers",
-    tag: "Labour Welfare",
-    eligibility: "Ward of registered Beedi/Mine/Cine worker; family income < ₹10,000/month",
-    agency: "Ministry of Labour & Employment",
+    category: "Labour Welfare",
+    eligibility: "Ward of registered Beedi/Mine/Cine worker; income < ₹10,000/month",
+    agency: "Ministry of Labour",
     amount: "₹15,000 / year",
     quota: "All Eligible Candidates",
   },
+  {
+    sno: 6,
+    scheme: "TN First Graduate Tuition Concession",
+    category: "First Generation Learners",
+    eligibility: "First graduate in family admitted through TNEA single-window counseling",
+    agency: "Government of Tamil Nadu",
+    amount: "₹25,000 / year Tuition Waiver",
+    quota: "All TNEA Eligible Candidates",
+  },
+  {
+    sno: 7,
+    scheme: "Post-Matric SC / ST / Converted Christian",
+    category: "SC / ST / SCA",
+    eligibility: "SC/ST/SCA students; annual family income < ₹2,50,000",
+    agency: "Adidravidar Welfare Dept.",
+    amount: "100% Tuition Fee Waiver",
+    quota: "All Eligible Candidates",
+  },
+  {
+    sno: 8,
+    scheme: "Mohamed Sathak Trust Merit Concession",
+    category: "Academic & Sports Excellence",
+    eligibility: "High PCM cutoff (>90%) or State/National level sports medalists",
+    agency: "Mohamed Sathak Trust",
+    amount: "Institutional Fee Concession",
+    quota: "Trust Earmarked Quota",
+  },
 ];
 
-const scholarshipDetails = [
-  {
-    title: "A. Pragati Scholarship Scheme (AICTE)",
-    body: "For female students admitted to 1st year B.E./B.Tech or 2nd year Lateral Entry. Restricted to a maximum of two girl children per family. Combined annual family income from all sources must be less than ₹8.00 Lakhs. Benefit: ₹50,000 per annum, paid directly for tuition fee, college fees, computer purchase, books, and equipment. 800 designated slots for Tamil Nadu state candidates.",
-  },
-  {
-    title: "B. Saksham Scholarship Scheme (AICTE)",
-    body: "For differently-abled students advancing into technical degree courses. Requires a valid disability certificate indicating 40% or higher disability level. Combined annual family income must be under ₹8.00 Lakhs. Benefit: ₹50,000 per annum. Open to all eligible candidates, no capping on total scholarships awarded.",
-  },
-  {
-    title: "C. Merit-cum-Means Scholarship",
-    body: "For economically weak meritorious students from notified Minority Communities (Muslims, Christians, Sikhs, Buddhists, Jains, Parsis). Requires minimum 50% aggregate marks in the final qualifying examination and annual family income not exceeding ₹2.50 Lakhs. Course fee component up to ₹20,000 per annum (or actual fee, whichever is lower). Maintenance allowance: hostellers ₹1,200/month (₹12,000/year for 10 months), day scholars ₹600/month (₹6,000/year for 10 months). 1,075 slots for Muslim candidates and 1,173 slots for Christian candidates in Tamil Nadu.",
-  },
-  {
-    title: "D. Central Sector Scheme",
-    body: "For meritorious students from low-income families pursuing higher education. Requires above 80th percentile (minimum 80% aggregate) in the relevant stream of Class XII board examination, and annual family income under ₹8.00 Lakhs. Benefit: ₹10,000 per annum at UG level for 3 years. 4,883 slots earmarked for Tamil Nadu state board/counselling quotas.",
-  },
-  {
-    title: "E. Wards of Beedi / Mine / Cine Workers",
-    body: "For wards of registered workers in Beedi manufacturing, Mining, or Cine sectors. Parents must possess a valid Identity Card issued by the Labour Welfare Organisation. Total monthly family income must not exceed ₹10,000. Benefit: ₹15,000 per annum, direct benefit transfer. Open to all eligible candidates fulfilling scheme criteria.",
-  },
+const detailedSchemes = [
+  "A. AICTE Pragati Scholarship for Girl Students: Grants ₹50,000 per annum for tuition fees, computer purchase, and books for female candidates admitted to 1st year B.E./B.Tech or 2nd year Lateral Entry.",
+  "B. AICTE Saksham Scholarship for Specially-Abled Students: Provides ₹50,000 per annum for differently-abled scholars with qualifying disability level of 40% or higher.",
+  "C. Merit-cum-Means Minority Scholarship: Offers up to ₹20,000 per annum tuition assistance plus maintenance allowances for Muslim, Christian, Jain, and Sikh minority students.",
+  "D. Central Sector Scheme of Scholarships: Provides ₹10,000 per annum for top 20th percentile scorers in 10+2 Higher Secondary Board Examinations.",
+  "E. Tamil Nadu First Graduate Concession: Grants full ₹25,000 per annum tuition fee waiver for first-generation higher education learners admitted via TNEA counseling.",
+  "F. Post-Matric SC/ST/SCA Welfare Scholarship: 100% tuition fee reimbursement for SC/ST students whose annual family income is under ₹2.50 Lakhs per annum.",
+  "G. Mohamed Sathak Trust Merit & Sports Concession: Special institutional financial concessions awarded for academic rank holders (>90% PCM) and sports champions.",
 ];
 
-function ScholarshipsHero() {
+export function ScholarshipsPage() {
   return (
-    <section className="relative w-full overflow-hidden h-auto lg:h-[75vh] flex flex-col lg:block">
-      {/* Desktop Image */}
-      <motion.div 
-        initial={{ width: "100%" }}
-        animate={{ width: "60%" }}
-        transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
-        className="absolute inset-y-0 right-0 z-10 hidden lg:block pointer-events-none"
-      >
-        <img 
-          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2000&auto=format&fit=crop" 
-          alt="Students learning and securing scholarships" 
-          className="w-full h-full object-cover object-center"
-        />
-      </motion.div>
-
-      {/* Accent sliding block (The Blue Edge) */}
-      <motion.div 
-        initial={{ width: "0%" }}
-        animate={{ width: "51%" }}
-        transition={{ duration: 1.2, delay: 0.05, ease: [0.76, 0, 0.24, 1] }}
-        className="absolute inset-y-0 left-0 bg-primary z-20 hidden lg:block shadow-2xl"
-        style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
-      />
-
-      {/* Sliding Background from Left with Diagonal Edge */}
-      <motion.div 
-        initial={{ width: "0%" }}
-        animate={{ width: "50%" }}
-        transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
-        className="absolute inset-y-0 left-0 bg-page-bg z-30 hidden lg:block"
-        style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
-      />
-
-      {/* Mobile Image */}
-      <div className="w-full h-[300px] relative lg:hidden block z-10">
-        <img 
-          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2000&auto=format&fit=crop" 
-          alt="Students learning and securing scholarships" 
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-page-bg to-transparent z-10 pointer-events-none" />
-      </div>
-
-      {/* Text Content */}
-      <div className="w-full lg:w-[48%] px-6 py-12 md:py-16 lg:px-10 xl:px-12 flex flex-col justify-center z-40 relative lg:absolute lg:inset-y-0 lg:left-0 h-full bg-page-bg lg:bg-transparent">
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="inline-flex items-center gap-2 mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-[9px] font-bold tracking-widest uppercase text-primary">Eligibility & Scholarships</span>
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.05] tracking-tight text-primary mb-5 text-balance">
-            Scholarship <br/>
-            Programmes
-          </h1>
-          
-          <p className="text-sm md:text-base font-medium text-muted-foreground leading-relaxed max-w-md">
-            Government and institutional financial assistance. Explore AICTE, MHRD, and Ministry-funded schemes for eligible students at MSAJCE.
-          </p>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-function ScholarshipsPage() {
-  return (
-    <main className="bg-page-bg text-foreground min-h-screen">
-      <ScholarshipsHero />
-
-      {/* Trust Badge Strip */}
-      <div className="border-b border-border bg-card/60">
-        <div className="mx-auto max-w-[1440px] px-6 py-4 md:px-12 flex justify-end">
-          <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground">TNEA Counselling Code: 1301</span>
-        </div>
-      </div>
-
-      <section className="mx-auto max-w-[1200px] px-6 py-24 md:px-12 md:py-32">
-        <Reveal variant="rise" once={true}>
-          <p className="text-base text-muted-foreground leading-relaxed max-w-[80ch] mb-16">
-            MSAJCE students can access AICTE, Ministry of Minority Affairs, MHRD, and Ministry of Labour scholarship schemes based on category, income, and academic eligibility.
-          </p>
-        </Reveal>
-
-        <div className="flex flex-col border-t border-border mt-8 mb-20">
-          <div className="hidden lg:flex px-4 py-3 bg-muted text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-            <div className="w-[25%]">Scheme Name</div>
-            <div className="w-[35%]">Eligibility</div>
-            <div className="w-[15%]">Funding Agency</div>
-            <div className="w-[15%]">Amount</div>
-            <div className="w-[10%]">TN Quota</div>
-          </div>
-          <Stagger gap={0.1}>
-            {scholarshipMatrix.map((row) => (
-              <StaggerItem key={row.scheme}>
-                <div className="flex flex-col lg:flex-row px-4 py-6 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group gap-4 lg:gap-0">
-                  <div className="w-full lg:w-[25%] flex flex-col items-start justify-center pr-4">
-                    <span className="font-bold text-foreground text-sm tracking-wide group-hover:text-primary transition-colors">{row.scheme}</span>
-                    <span className="mt-2 inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-widest text-primary align-middle">
-                      {row.tag}
-                    </span>
-                  </div>
-                  <div className="w-full lg:w-[35%] text-muted-foreground text-sm leading-relaxed flex items-center pr-4">{row.eligibility}</div>
-                  <div className="w-full lg:w-[15%] text-muted-foreground text-sm flex items-center pr-4">
-                    <span className="lg:hidden text-[10px] font-bold uppercase tracking-widest text-muted-foreground mr-2">Agency:</span>
-                    {row.agency}
-                  </div>
-                  <div className="w-full lg:w-[15%] font-medium text-foreground text-base flex items-center pr-4">
-                    <span className="lg:hidden text-[10px] font-bold uppercase tracking-widest text-muted-foreground mr-2">Amount:</span>
-                    {row.amount}
-                  </div>
-                  <div className="w-full lg:w-[10%] text-muted-foreground text-sm flex items-center">
-                    <span className="lg:hidden text-[10px] font-bold uppercase tracking-widest text-muted-foreground mr-2">TN Quota:</span>
-                    {row.quota}
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
+    <main className="bg-white dark:bg-[#121214] text-foreground font-libre antialiased selection:bg-primary selection:text-white min-h-screen pt-0 md:pt-1">
+      {/* ========================================================================= */}
+      {/* 1. HERO BANNER: Title Docked Flush with Hero Section End                  */}
+      {/* ========================================================================= */}
+      <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/procedure_hero.jpg"
+            alt="Scholarship Programmes MSAJCE"
+            className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none rounded-none"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
         </div>
 
-        <Reveal variant="mask" once={true}>
-          <div className="mb-16">
-            <h2 className="text-[8vw] font-black uppercase leading-[0.95] tracking-tighter text-foreground md:text-[4vw] mb-4">
-              Scheme Details
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
+          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
+              Scholarship Programmes
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 2. SECTION A: Institutional Overview & Official Scholarship Matrix        */}
+      {/* ========================================================================= */}
+      <section className="py-10 sm:py-14 md:py-18 lg:py-20 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          {/* Overview */}
+          <div className="mb-10 w-full">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-4">
+              Institutional Overview &amp; Financial Support
             </h2>
-            <KeyDriversAccordion 
-              drivers={scholarshipDetails.map(d => ({ title: d.title, description: d.body }))} 
-            />
+            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full mb-4">
+              Mohamed Sathak A.J. College of Engineering facilitates comprehensive financial assistance schemes funded by AICTE, Ministry of Education, State Government Welfare Departments, and Mohamed Sathak Trust. We ensure that meritorious, deserving, minority, and economically challenged students receive tuition fee concessions, maintenance stipends, and full fee waivers to pursue higher engineering education without financial barriers.
+            </p>
           </div>
-        </Reveal>
 
-        {/* Note block */}
-        <Reveal variant="rise" once={true}>
-          <div className="flex flex-col md:flex-row items-start justify-between gap-6 py-8 border-y border-border">
-            <div className="flex items-start gap-4">
-              <Info className="h-6 w-6 text-primary shrink-0 mt-0.5" />
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-[80ch]">
-                Scholarship eligibility depends on category, income, and academic performance. Verify current-year income limits and required documents with the Admission Helpdesk before applying.
-              </p>
-            </div>
-          </div>
-        </Reveal>
+          {/* Official Publications Standard DataGrid Table */}
+          <div className="mb-8">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-6">
+              Government &amp; Institutional Scholarship Matrix
+            </h2>
 
-        {/* Closing CTA row */}
-        <Reveal variant="rise" once={true}>
-          <div className="mt-16 flex flex-col sm:flex-row items-center gap-6 border-t border-border pt-12">
-            <Magnetic>
-              <a 
-                href="/uploads/admission/College-Prospectus.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex w-full sm:w-auto items-center justify-between gap-4 bg-primary px-8 py-5 text-sm font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:opacity-90"
-              >
-                <span>Download Brochure</span>
-                <Download className="h-4 w-4" />
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <Link 
-                to="/contact"
-                className="group flex w-full sm:w-auto items-center justify-between gap-4 border border-foreground/20 bg-background px-8 py-5 text-sm font-bold uppercase tracking-widest text-foreground transition-all hover:bg-foreground hover:text-background"
-              >
-                <span>Enquire Now</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Magnetic>
+            <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+              <div className="overflow-x-auto bg-transparent">
+                <table className="w-full text-left border-collapse min-w-[750px] text-xs sm:text-sm">
+                  <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                    <tr>
+                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-14">
+                        S.No
+                      </th>
+                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                        Scholarship Scheme
+                      </th>
+                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                        Target Category
+                      </th>
+                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                        Eligibility Criteria
+                      </th>
+                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                        Sanctioning Agency
+                      </th>
+                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                        Financial Benefit
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border/40 font-libre">
+                    {scholarshipMatrix.map((item) => (
+                      <tr key={item.sno} className="hover:bg-foreground/[0.02] transition-colors">
+                        <td className="py-3.5 px-4 font-oswald font-bold text-primary text-xs sm:text-sm whitespace-nowrap">
+                          {item.sno}
+                        </td>
+                        <td className="py-3.5 px-4 font-libre font-bold text-foreground text-xs sm:text-sm">
+                          {item.scheme}
+                        </td>
+                        <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">
+                          {item.category}
+                        </td>
+                        <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">
+                          {item.eligibility}
+                        </td>
+                        <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
+                          {item.agency}
+                        </td>
+                        <td className="py-3.5 px-4 font-libre font-bold text-xs sm:text-sm text-primary whitespace-nowrap">
+                          {item.amount}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </DataGridContainer>
           </div>
-        </Reveal>
+        </div>
+      </section>
+
+      {/* Wave Divider A -> B */}
+      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-[#F3F3F2] dark:fill-[#18181B]"
+          />
+        </svg>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 3. SECTION B: Points Layout — Detailed Scheme Guidelines                 */}
+      {/* ========================================================================= */}
+      <section className="py-10 sm:py-14 md:py-18 lg:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          <div className="mb-8">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-2">
+              Detailed Scheme Breakdown &amp; Directives
+            </h2>
+            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed max-w-3xl">
+              Application procedures, document verification steps, and disbursement terms for all eligible government and trust financial assistance schemes.
+            </p>
+          </div>
+
+          <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
+            {detailedSchemes.map((schemeText, idx) => (
+              <div
+                key={idx}
+                className="py-3.5 sm:py-4 px-2 sm:px-4 flex items-center gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
+              >
+                <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
+                  {idx + 1}
+                </span>
+                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                  {schemeText}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
     </main>
   );

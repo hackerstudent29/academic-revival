@@ -1,10 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Magnetic, Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { motion } from "framer-motion";
-import { ArrowUpRight, Phone, Mail, Info } from "lucide-react";
+import { ArrowUpRight, Phone, Mail, FileText, ExternalLink, Info } from "lucide-react";
 
-const title = "Admission Procedure — MSAJCE";
-const description = "Steps to apply, pay fees, and confirm your seat at Mohamed Sathak AJ College of Engineering.";
+const title = "Admission Procedure — M.S.A.J. College of Engineering, Chennai";
+const description =
+  "Official 3-step admission procedure, online application form, fee payment portal, and brochure downloads for Mohamed Sathak A.J. College of Engineering.";
 
 export const Route = createFileRoute("/admissions_/procedure")({
   head: () => ({
@@ -21,212 +20,225 @@ export const Route = createFileRoute("/admissions_/procedure")({
 });
 
 const procedureSteps = [
-  { index: "01", title: "Download Brochure", body: "Review programmes, intake, and eligibility in the Admission Brochure & Guidelines 2026-2027.", href: "/uploads/admission/College-Prospectus.pdf" },
-  { index: "02", title: "Apply Online", body: "Complete the online application form with your academic and personal details.", href: "https://msajce-edu.in/admission_form.php" },
-  { index: "03", title: "Pay Fee & Confirm", body: "Complete online fee payment to confirm your seat.", href: "https://msajce-edu.in/feepayment.php" },
+  {
+    step: "01",
+    title: "Download Prospectus & Review Guidelines",
+    description: "Review comprehensive degree programmes, department specializations, intake capacity, and eligibility criteria in the official MSAJCE Admission Brochure.",
+    actionText: "Download Prospectus PDF",
+    href: "/uploads/admission/College-Prospectus.pdf",
+    isExternal: true,
+  },
+  {
+    step: "02",
+    title: "Complete Online Application Form",
+    description: "Fill in your personal, academic, and contact details via the official online admission portal. Upload required certificates for verification.",
+    actionText: "Access Application Portal",
+    href: "https://msajce-edu.in/admission_form.php",
+    isExternal: true,
+  },
+  {
+    step: "03",
+    title: "Complete Fee Payment & Seat Confirmation",
+    description: "Pay the required registration or semester tuition fee through the secure online payment portal to finalize your seat reservation.",
+    actionText: "Pay Fees Online",
+    href: "https://msajce-edu.in/feepayment.php",
+    isExternal: true,
+  },
 ];
 
-function ProcedureHero() {
+export function AdmissionsProcedurePage() {
   return (
-    <section className="relative w-full overflow-hidden h-auto lg:h-[75vh] flex flex-col lg:block">
-      
-      {/* Desktop Image */}
-      <motion.div 
-        initial={{ width: "100%" }}
-        animate={{ width: "60%" }}
-        transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
-        className="absolute inset-y-0 right-0 z-10 hidden lg:block pointer-events-none"
-      >
-        <img 
-          src="/images/procedure_hero.jpg" 
-          alt="Students going through admission procedure" 
-          className="w-full h-full object-cover object-center"
-        />
-      </motion.div>
+    <main className="bg-white dark:bg-[#121214] text-foreground font-libre antialiased selection:bg-primary selection:text-white min-h-screen pt-0 md:pt-1">
+      {/* ========================================================================= */}
+      {/* 1. HERO BANNER: Title Docked Flush with Hero Section End                  */}
+      {/* ========================================================================= */}
+      <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/procedure_hero.jpg"
+            alt="Admission Procedure MSAJCE"
+            className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none rounded-none"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
+        </div>
 
-      {/* Accent sliding block (The Blue Edge) */}
-      <motion.div 
-        initial={{ width: "0%" }}
-        animate={{ width: "51%" }}
-        transition={{ duration: 1.2, delay: 0.05, ease: [0.76, 0, 0.24, 1] }}
-        className="absolute inset-y-0 left-0 bg-primary z-20 hidden lg:block shadow-2xl"
-        style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
-      />
-
-      {/* Sliding Background from Left with Diagonal Edge */}
-      <motion.div 
-        initial={{ width: "0%" }}
-        animate={{ width: "50%" }}
-        transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
-        className="absolute inset-y-0 left-0 bg-page-bg z-30 hidden lg:block"
-        style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
-      />
-
-      {/* Mobile Image */}
-      <div className="w-full h-[300px] relative lg:hidden block z-10">
-        <img 
-          src="/images/procedure_hero.jpg" 
-          alt="Students going through admission procedure" 
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-page-bg to-transparent z-10 pointer-events-none" />
-      </div>
-
-      {/* Text Content */}
-      <div className="w-full lg:w-[48%] px-6 py-12 md:py-16 lg:px-10 xl:px-12 flex flex-col justify-center z-40 relative lg:absolute lg:inset-y-0 lg:left-0 h-full bg-page-bg lg:bg-transparent">
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="inline-flex items-center gap-2 mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-[9px] font-bold tracking-widest uppercase text-primary">Explore Admissions</span>
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
+          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
+              Admission Procedure
+            </h1>
           </div>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.05] tracking-tight text-primary mb-5 text-balance">
-            Admission <br/>
-            Procedure
-          </h1>
-          
-          <p className="text-sm md:text-base font-medium text-muted-foreground leading-relaxed max-w-md">
-            Three steps to secure your seat. Download the brochure, apply online, and complete your fee payment to confirm admission at Mohamed Sathak AJ College of Engineering.
-          </p>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
+        </div>
+      </section>
 
-function AdmissionsProcedurePage() {
-  return (
-    <main className="bg-page-bg text-foreground min-h-screen">
-      <ProcedureHero />
+      {/* ========================================================================= */}
+      {/* 2. SECTION A: Institutional Overview & 3-Step Procedure                   */}
+      {/* ========================================================================= */}
+      <section className="py-10 sm:py-14 md:py-18 lg:py-20 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          {/* Institutional Overview */}
+          <div className="mb-10 w-full">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-4">
+              Institutional Overview &amp; Admission Guidelines
+            </h2>
+            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full mb-4">
+              Admissions to undergraduate B.E. / B.Tech and postgraduate M.E., MBA, and MCA degree programmes at Mohamed Sathak A.J. College of Engineering are conducted transparently through Tamil Nadu Engineering Admissions (TNEA Counseling Code <strong>3460</strong>) single-window counseling and Consortium Management Quota seats. Candidates must review their academic eligibility, obtain their cut-off marks verification, and follow our streamlined 3-step admission process to secure enrollment.
+            </p>
 
-      <section className="mx-auto max-w-[1200px] px-6 py-24 md:px-12 md:py-32">
-        {/* Before you apply note */}
-        <Reveal variant="rise" once={true}>
-          <div className="mb-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 py-8 border-y border-border">
-            <div className="flex flex-col gap-2">
-              <h3 className="text-lg md:text-xl font-black uppercase tracking-tight text-foreground flex items-center gap-2">
-                <Info className="h-5 w-5 shrink-0 text-primary" />
-                Before you apply
-              </h3>
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-[65ch]">
-                Admission requirements differ by entry route — first-year HSC admission, lateral entry into second year, postgraduate (M.E.), or Ph.D. Check your eligibility first.
-              </p>
-            </div>
-            <Magnetic>
-              <Link 
+            {/* Eligibility Quick Banner */}
+            <div className="mt-6 p-4 sm:p-5 border border-border/80 bg-[#F3F3F2] dark:bg-[#18181B] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <Info className="w-5 h-5 text-primary shrink-0" />
+                <p className="text-xs sm:text-sm text-foreground font-libre font-medium">
+                  Have questions about community cutoffs or entry requirements before applying?
+                </p>
+              </div>
+              <Link
                 to="/admissions/eligibility"
-                className="group flex w-full md:w-auto shrink-0 items-center justify-between gap-4 border border-foreground/20 px-6 py-4 text-sm font-bold uppercase tracking-widest text-foreground transition-all hover:bg-foreground hover:text-background"
+                className="shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-primary text-white font-oswald font-bold text-xs uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors"
               >
-                <span>View Admission Eligibility</span>
-                <ArrowUpRight className="h-4 w-4" />
+                <span>Check Eligibility</span>
+                <ArrowUpRight className="w-4 h-4" />
               </Link>
-            </Magnetic>
-          </div>
-        </Reveal>
-
-        <Stagger gap={0.09} className="flex flex-col gap-0 border-t border-border">
-          {procedureSteps.map((step) => (
-            <StaggerItem key={step.index}>
-              <a 
-                href={step.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative flex flex-col md:flex-row md:items-center justify-between gap-8 border-b border-border py-12 md:py-16 transition-all hover:bg-foreground/[0.02] px-4 md:px-8 -mx-4 md:-mx-8"
-              >
-                {/* Large Background Numeral */}
-                <div className="absolute left-6 md:left-8 top-1/2 -translate-y-1/2 text-[15vw] md:text-[8vw] font-black leading-none text-foreground/5 transition-colors group-hover:text-foreground/10 select-none z-0">
-                  {step.index}
-                </div>
-
-                <div className="relative z-10 flex flex-col gap-4 max-w-2xl mt-8 md:mt-0 md:ml-32 lg:ml-48">
-                  <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-foreground">
-                    {step.title}
-                  </h3>
-                  <p className="text-base leading-relaxed text-muted-foreground">
-                    {step.body}
-                  </p>
-                </div>
-
-                <div className="relative z-10 shrink-0 flex items-center gap-4 mt-6 md:mt-0">
-                  <span className="text-xs font-bold uppercase tracking-widest text-primary md:opacity-0 md:-translate-x-4 transition-all group-hover:opacity-100 group-hover:translate-x-0">Proceed</span>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-foreground/20 bg-background transition-colors group-hover:bg-primary group-hover:border-primary">
-                    <ArrowUpRight className="h-5 w-5 text-foreground transition-colors group-hover:text-primary-foreground" />
-                  </div>
-                </div>
-              </a>
-            </StaggerItem>
-          ))}
-        </Stagger>
-
-        {/* Helpdesk / contact block */}
-        <Reveal variant="rise" once={true}>
-          <div className="mt-24 grid md:grid-cols-2 gap-12 pt-12">
-            <div>
-              <h3 className="text-3xl font-black uppercase tracking-tight text-foreground mb-4">Need Help?</h3>
-              <p className="text-base text-muted-foreground leading-relaxed max-w-[40ch]">
-                Our admissions team is here to assist you. Contact us for any questions about the application process, eligibility, or fee payment.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-8">
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Phone className="h-4 w-4" />
-                  </div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-foreground">Phone</h4>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <a href="tel:+919940004500" className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors">+91 99400 04500</a>
-                  <a href="tel:04427470024" className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors">044-2747 0024</a>
-                </div>
-              </div>
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Mail className="h-4 w-4" />
-                  </div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-foreground">Email</h4>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <a href="mailto:msajce.office@gmail.com" className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors break-words">msajce.office@gmail.com</a>
-                  <a href="mailto:admission@msajce-edu.in" className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors break-words">admission@msajce-edu.in</a>
-                </div>
-              </div>
             </div>
           </div>
-        </Reveal>
 
-        {/* Closing CTA row */}
-        <Reveal variant="rise" once={true}>
-          <div className="mt-16 flex flex-col sm:flex-row items-center gap-6 pt-12 border-t border-border">
-            <Magnetic>
-              <a 
-                href="https://msajce-edu.in/admission_form.php"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex w-full sm:w-auto items-center justify-between gap-4 bg-primary px-8 py-5 text-sm font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:opacity-90"
-              >
-                <span>Apply Online</span>
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a 
-                href="https://msajce-edu.in/feepayment.php"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex w-full sm:w-auto items-center justify-between gap-4 border border-foreground/20 bg-background px-8 py-5 text-sm font-bold uppercase tracking-widest text-foreground transition-colors hover:bg-foreground hover:text-background"
-              >
-                <span>Pay Fee</span>
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </a>
-            </Magnetic>
+          {/* Points Layout: 3-Step Procedure */}
+          <div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-6 sm:mb-8">
+              3-Step Admission Process
+            </h2>
+
+            <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
+              {procedureSteps.map((item) => (
+                <div
+                  key={item.step}
+                  className="py-5 sm:py-6 px-2 sm:px-4 flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 hover:bg-foreground/[0.015] transition-colors w-full"
+                >
+                  <div className="flex items-start gap-3.5 sm:gap-4 flex-1">
+                    <span className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/10 text-primary font-oswald font-black text-sm sm:text-base border border-primary/20 shadow-2xs">
+                      {item.step}
+                    </span>
+                    <div>
+                      <h3 className="text-base sm:text-lg font-bold font-oswald uppercase text-foreground mb-1">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="shrink-0 pt-2 md:pt-0 pl-11 md:pl-0">
+                    <a
+                      href={item.href}
+                      target={item.isExternal ? "_blank" : undefined}
+                      rel={item.isExternal ? "noopener noreferrer" : undefined}
+                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-foreground text-background font-oswald font-bold text-xs sm:text-sm uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary hover:text-white transition-colors"
+                    >
+                      <span>{item.actionText}</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </Reveal>
+        </div>
+      </section>
+
+      {/* Wave Divider A -> B */}
+      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-[#F3F3F2] dark:fill-[#18181B]"
+          />
+        </svg>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 3. SECTION B: Admissions Helpdesk & Contact Information                   */}
+      {/* ========================================================================= */}
+      <section className="py-10 sm:py-14 md:py-18 lg:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          <div className="mb-8">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-2">
+              Admissions Helpdesk &amp; Support
+            </h2>
+            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed max-w-3xl">
+              Our dedicated admissions team is available to assist you with eligibility verification, application submission, document requirements, and fee structures.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-10">
+            {/* Phone Helpdesk */}
+            <div className="p-6 border border-border/80 bg-white dark:bg-[#121214] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold font-oswald uppercase text-foreground">
+                  Phone Helpdesk
+                </h3>
+              </div>
+              <div className="space-y-2 font-libre text-sm sm:text-base text-foreground">
+                <p><span className="font-semibold text-primary">Mobile Helpline:</span> +91 99400 04500</p>
+                <p><span className="font-semibold text-primary">Landline Office:</span> 044-2747 0024 / 044-2747 0023</p>
+                <p><span className="font-semibold text-primary">Transport / Hostels:</span> +91 98408 86992</p>
+              </div>
+            </div>
+
+            {/* Email Contact */}
+            <div className="p-6 border border-border/80 bg-white dark:bg-[#121214] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold font-oswald uppercase text-foreground">
+                  Official Email Inquiries
+                </h3>
+              </div>
+              <div className="space-y-2 font-libre text-sm sm:text-base text-foreground">
+                <p><span className="font-semibold text-primary">Admissions Email:</span> admission@msajce-edu.in</p>
+                <p><span className="font-semibold text-primary">Administrative Office:</span> msajce.office@gmail.com</p>
+                <p><span className="font-semibold text-primary">Principal Office:</span> principal@msajce-edu.in</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Action Bar */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 border-t border-border/40">
+            <a
+              href="https://msajce-edu.in/admission_form.php"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-primary text-white font-oswald font-bold text-sm uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary/90 transition-colors"
+            >
+              <span>Apply Online Now</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+
+            <a
+              href="https://msajce-edu.in/feepayment.php"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-foreground text-background font-oswald font-bold text-sm uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-foreground/90 transition-colors"
+            >
+              <span>Pay Fees Online</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
       </section>
     </main>
   );

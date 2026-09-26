@@ -1,12 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Magnetic, Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { motion } from "framer-motion";
-import { Download, ArrowRight, Info, Plus } from "lucide-react";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { DataGridContainer } from "@/components/ui/data-grid-table";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 
-const title = "Admission Eligibility — MSAJCE";
-const description = "UG, PG, and Ph.D. eligibility criteria, community-wise cutoff marks, and entry pathways at Mohamed Sathak AJ College of Engineering.";
+const title = "Admission Eligibility — M.S.A.J. College of Engineering, Chennai";
+const description =
+  "Official UG, PG, and Ph.D. eligibility criteria, community-wise cut-off marks, and document verification guidelines at Mohamed Sathak A.J. College of Engineering.";
 
 export const Route = createFileRoute("/admissions_/eligibility")({
   head: () => ({
@@ -19,398 +18,408 @@ export const Route = createFileRoute("/admissions_/eligibility")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: AdmissionsEligibility,
+  component: AdmissionsEligibilityPage,
 });
 
 const hscAcademicCutoffs = [
-  { community: "General Category (OC)", percent: "45.00%", subjects: "Mathematics, Physics & Chemistry" },
-  { community: "Backward Class (including Backward Class Muslim)", percent: "40.00%", subjects: "Mathematics, Physics & Chemistry" },
-  { community: "Most Backward Class (MBC & DNC)", percent: "40.00%", subjects: "Mathematics, Physics & Chemistry" },
-  { community: "Scheduled Caste / SCA / ST", percent: "40.00%", subjects: "Mathematics, Physics & Chemistry" },
+  { community: "General Category (OC)", percent: "45.00%", subjects: "Mathematics, Physics & Chemistry (PCM)" },
+  { community: "Backward Class (including BCM)", percent: "40.00%", subjects: "Mathematics, Physics & Chemistry (PCM)" },
+  { community: "Most Backward Class (MBC & DNC)", percent: "40.00%", subjects: "Mathematics, Physics & Chemistry (PCM)" },
+  { community: "Scheduled Caste / SCA / ST", percent: "40.00%", subjects: "Mathematics, Physics & Chemistry (PCM)" },
 ];
 
 const hscVocationalCutoffs = [
   { community: "General Category (OC)", percent: "45.00%", subjects: "Vocational Theory, Practicals & Related Subjects" },
-  { community: "Backward Class (including Backward Class Muslim)", percent: "40.00%", subjects: "Vocational Theory, Practicals & Related Subjects" },
+  { community: "Backward Class (including BCM)", percent: "40.00%", subjects: "Vocational Theory, Practicals & Related Subjects" },
   { community: "Most Backward Class (MBC & DNC)", percent: "40.00%", subjects: "Vocational Theory, Practicals & Related Subjects" },
   { community: "Scheduled Caste / SCA / ST", percent: "40.00%", subjects: "Vocational Theory, Practicals & Related Subjects" },
 ];
 
 const lateralEntryCutoffs = [
-  { community: "General Category (OC)", percent: "55.00%", criteria: "Aggregate in qualifying Diploma / B.Sc." },
-  { community: "Backward Class (inc. BCM)", percent: "50.00%", criteria: "Aggregate in qualifying Diploma / B.Sc." },
-  { community: "Most Backward Class (MBC & DNC)", percent: "45.00%", criteria: "Aggregate in qualifying Diploma / B.Sc." },
-  { community: "Scheduled Caste / SCA / ST", percent: "Pass Mark", criteria: "Mere Pass in qualifying Diploma / B.Sc. exam" },
+  { community: "General Category (OC)", percent: "45.00%", criteria: "Aggregate in qualifying Diploma / B.Sc." },
+  { community: "Backward Class (including BCM)", percent: "40.00%", criteria: "Aggregate in qualifying Diploma / B.Sc." },
+  { community: "Most Backward Class (MBC & DNC)", percent: "40.00%", criteria: "Aggregate in qualifying Diploma / B.Sc." },
+  { community: "Scheduled Caste / SCA / ST", percent: "40.00%", criteria: "Aggregate in qualifying Diploma / B.Sc." },
 ];
 
 const pgEligibility = [
   {
-    dept: "M.E. Computer Science and Engineering",
+    programme: "M.E. Computer Science and Engineering",
     duration: "2 Years",
     intake: "18 Seats",
-    entryDegrees: [
-      "B.E. / B.Tech. in CSE, IT, EEE, ECE, I&C, E&I, Electronics, or Instrumentation",
-      "M.C.A. (10+2+3+3 pattern)",
-      "M.Sc. 5-year Integrated (IT / CSE / Software Engineering)",
-    ],
+    entryDegree: "B.E. / B.Tech. in CSE, IT, EEE, ECE, or M.C.A. / M.Sc. (CSE/IT)",
   },
   {
-    dept: "M.E. Structural Engineering",
+    programme: "M.E. Structural Engineering",
     duration: "2 Years",
     intake: "18 Seats",
-    entryDegrees: ["B.E. Degree in Civil Engineering"],
+    entryDegree: "B.E. Degree in Civil Engineering",
+  },
+  {
+    programme: "Master of Business Administration (MBA)",
+    duration: "2 Years",
+    intake: "60 Seats",
+    entryDegree: "Any recognized Bachelor's Degree (10+2+3/4 pattern) with 50% aggregate (45% for SC/ST)",
+  },
+  {
+    programme: "Master of Computer Applications (MCA)",
+    duration: "2 Years",
+    intake: "60 Seats",
+    entryDegree: "BCA / B.Sc. (CS/IT) or Bachelor's Degree with Mathematics at 10+2 or Graduation level",
   },
 ];
 
-const phdCutoffs = [
-  { category: "General Category", requirement: "Minimum 55% marks or CGPA 5.5 (10-point scale) in qualifying PG degree" },
-  { category: "Relaxed Category (SC / ST / Differently-Abled)", requirement: "Minimum 50% marks or CGPA 5.0 (10-point scale) in qualifying PG degree" },
+const documentChecklist = [
+  "1. TNEA / TANCET / CEETA-PG Allotment Order and Fee Payment Receipts.",
+  "2. 10th Standard (SSLC) Original Mark Sheet.",
+  "3. 11th Standard Original Mark Sheet.",
+  "4. 12th Standard (HSC) Original Mark Sheet or Consolidated Diploma Mark Sheets.",
+  "5. Transfer Certificate (TC) and Conduct Certificate from previous institution.",
+  "6. Permanent Community Certificate (Card/E-Certificate for BC/BCM/MBC/SC/SCA/ST).",
+  "7. Nativity Certificate (if applicable for outstation/other state candidates).",
+  "8. First Graduate Certificate & Joint Declaration (if claiming First Graduate Fee Concession).",
+  "9. Income Certificate issued by Revenue Department (for Post-Matric Scholarship candidates).",
+  "10. Aadhar Card copy, Migration Certificate (for CBSE/ICSE), and Passport Size Photographs (6 copies).",
 ];
 
-const phdDirectEntryConditions = [
-  "Minimum 15 years of R&D Experience in National Research Laboratories / PSUs.",
-  "Proven research credentials with 3 publications in peer-reviewed impact factor journals OR 2 approved international patents registered within the last 5 years.",
-];
-
-function EligibilityHero() {
-  return (
-    <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/eligibility_hero.jpg"
-          alt="Admission Eligibility MSAJCE"
-          className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none rounded-none"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
-        <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
-          <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
-            Admission Eligibility
-          </h1>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function AdmissionsEligibility() {
-  const [activeFilter, setActiveFilter] = useState<string>("ug");
+export function AdmissionsEligibilityPage() {
+  const [activeTab, setActiveTab] = useState<"ug" | "lateral" | "pg" | "documents">("ug");
 
   return (
-    <main className="bg-page-bg text-foreground min-h-screen">
-      <EligibilityHero />
-      
-      {/* Trust Badge Strip Equivalent: TNEA Code */}
-      <div className="border-b border-border bg-card/60">
-        <div className="mx-auto max-w-[1440px] px-6 py-4 md:px-12 flex justify-end">
-          <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground">TNEA Counselling Code: 1301</span>
-        </div>
-      </div>
-
-      <section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 md:py-16 font-sans">
-        
-        {/* Title Block matching Programmes Offered catalogue */}
-        <div className="mb-8 border-b border-border pb-6">
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary block mb-2 font-mono">
-            ADMISSIONS & CRITERIA
-          </span>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-foreground">
-            ADMISSION ELIGIBILITY
-          </h2>
-          <p className="mt-2 text-sm sm:text-base text-muted-foreground max-w-3xl">
-            Select a study level below to explore qualification requirements, community cutoff marks, and entry criteria.
-          </p>
+    <main className="bg-white dark:bg-[#121214] text-foreground font-libre antialiased selection:bg-primary selection:text-white min-h-screen pt-0 md:pt-1">
+      {/* ========================================================================= */}
+      {/* 1. HERO BANNER: Title Docked Flush with Hero Section End                  */}
+      {/* ========================================================================= */}
+      <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/procedure_hero.jpg"
+            alt="Admission Eligibility MSAJCE"
+            className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none rounded-none"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
         </div>
 
-        {/* ── EVENLY SPACED LEVEL BUTTONS BAR ── */}
-        <div className="mb-12 border-b border-border pb-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-            <button 
-              onClick={() => setActiveFilter("ug")}
-              className={`w-full px-4 py-3 border flex items-center justify-center gap-2 text-xs md:text-sm font-bold transition-colors cursor-pointer uppercase tracking-wider ${
-                activeFilter === "ug" ? "bg-foreground text-background border-foreground shadow-xs" : "border-border/80 bg-card/50 text-muted-foreground hover:border-foreground hover:text-foreground"
-              }`}
-            >
-              Undergraduate Programmes <Plus size={16} />
-            </button>
-
-            <button 
-              onClick={() => setActiveFilter("lateral")}
-              className={`w-full px-4 py-3 border flex items-center justify-center gap-2 text-xs md:text-sm font-bold transition-colors cursor-pointer uppercase tracking-wider ${
-                activeFilter === "lateral" ? "bg-foreground text-background border-foreground shadow-xs" : "border-border/80 bg-card/50 text-muted-foreground hover:border-foreground hover:text-foreground"
-              }`}
-            >
-              Direct 2nd Year (Lateral) <Plus size={16} />
-            </button>
-
-            <button 
-              onClick={() => setActiveFilter("pg")}
-              className={`w-full px-4 py-3 border flex items-center justify-center gap-2 text-xs md:text-sm font-bold transition-colors cursor-pointer uppercase tracking-wider ${
-                activeFilter === "pg" ? "bg-foreground text-background border-foreground shadow-xs" : "border-border/80 bg-card/50 text-muted-foreground hover:border-foreground hover:text-foreground"
-              }`}
-            >
-              Postgraduate Programmes <Plus size={16} />
-            </button>
-
-            <button 
-              onClick={() => setActiveFilter("phd")}
-              className={`w-full px-4 py-3 border flex items-center justify-center gap-2 text-xs md:text-sm font-bold transition-colors cursor-pointer uppercase tracking-wider ${
-                activeFilter === "phd" ? "bg-foreground text-background border-foreground shadow-xs" : "border-border/80 bg-card/50 text-muted-foreground hover:border-foreground hover:text-foreground"
-              }`}
-            >
-              Doctoral Studies (Ph.D.) <Plus size={16} />
-            </button>
+        <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
+          <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
+            <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
+              Admission Eligibility
+            </h1>
           </div>
         </div>
+      </section>
 
-        {/* ── CONTENT MATRIX (Matching Scholarships & Catalogue Table Layout) ── */}
-        <Reveal variant="rise" once={true}>
-          <div className="space-y-16">
+      {/* ========================================================================= */}
+      {/* 2. SECTION A: Institutional Overview & Cutoff Tables                      */}
+      {/* ========================================================================= */}
+      <section className="py-10 sm:py-14 md:py-18 lg:py-20 bg-white dark:bg-[#121214] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          {/* Overview */}
+          <div className="mb-10 w-full">
+            <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 text-primary font-oswald font-bold text-xs uppercase tracking-wider mb-3">
+              TNEA Counseling Code: 3460
+            </div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-4">
+              Academic Eligibility &amp; Community Cut-off Criteria
+            </h2>
+            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full mb-4">
+              Candidate eligibility at Mohamed Sathak A.J. College of Engineering is governed by Anna University regulations, AICTE norms, and Tamil Nadu State Directorate of Technical Education (DOTE) mandates. Review the category-wise cut-off percentage requirements across Higher Secondary academic streams, vocational streams, diploma lateral entry, and postgraduate degrees below.
+            </p>
+          </div>
 
-            {/* 1. UNDERGRADUATE SECTION */}
-            {activeFilter === "ug" && (
-              <div className="space-y-12">
-                
-                {/* HSC Academic */}
-                <div className="space-y-6">
-                  <h3 className="text-2xl font-black uppercase tracking-tight text-foreground">HSC Academic Pathway</h3>
-                  <p className="text-base text-muted-foreground leading-relaxed max-w-[80ch]">
-                    Candidates must have passed 10+2 / HSC (Academic) or its equivalent examination with Physics, Chemistry, and Mathematics.
-                  </p>
-                  
-                  <div className="flex flex-col border-t border-border mt-6">
-                    <div className="hidden md:flex px-4 py-3 bg-muted/60 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                      <div className="w-[40%]">Community / Category</div>
-                      <div className="w-[40%]">Required Subject Combination</div>
-                      <div className="w-[20%] text-right">Minimum Average PCM %</div>
-                    </div>
-                    <Stagger gap={0.08}>
-                      {hscAcademicCutoffs.map((row) => (
-                        <StaggerItem key={row.community}>
-                          <div className="flex flex-col md:flex-row px-4 py-5 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group gap-2 md:gap-0 items-baseline">
-                            <div className="w-full md:w-[40%] font-bold text-foreground text-sm tracking-wide">{row.community}</div>
-                            <div className="w-full md:w-[40%] text-muted-foreground text-sm">{row.subjects}</div>
-                            <div className="w-full md:w-[20%] md:text-right font-medium text-foreground text-lg font-mono">{row.percent}</div>
-                          </div>
-                        </StaggerItem>
-                      ))}
-                    </Stagger>
-                  </div>
-                </div>
+          {/* Filter Bar */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+            <button
+              onClick={() => setActiveTab("ug")}
+              className={`px-4 py-3 border text-xs sm:text-sm font-oswald font-bold uppercase tracking-wider transition-colors rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs cursor-pointer ${
+                activeTab === "ug"
+                  ? "bg-primary text-white border-primary shadow-xs"
+                  : "bg-white dark:bg-[#18181B] border-border/80 text-foreground hover:border-primary"
+              }`}
+            >
+              1st Year B.E. / B.Tech
+            </button>
+            <button
+              onClick={() => setActiveTab("lateral")}
+              className={`px-4 py-3 border text-xs sm:text-sm font-oswald font-bold uppercase tracking-wider transition-colors rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs cursor-pointer ${
+                activeTab === "lateral"
+                  ? "bg-primary text-white border-primary shadow-xs"
+                  : "bg-white dark:bg-[#18181B] border-border/80 text-foreground hover:border-primary"
+              }`}
+            >
+              Lateral Entry (2nd Year)
+            </button>
+            <button
+              onClick={() => setActiveTab("pg")}
+              className={`px-4 py-3 border text-xs sm:text-sm font-oswald font-bold uppercase tracking-wider transition-colors rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs cursor-pointer ${
+                activeTab === "pg"
+                  ? "bg-primary text-white border-primary shadow-xs"
+                  : "bg-white dark:bg-[#18181B] border-border/80 text-foreground hover:border-primary"
+              }`}
+            >
+              Postgraduate (M.E./MBA/MCA)
+            </button>
+            <button
+              onClick={() => setActiveTab("documents")}
+              className={`px-4 py-3 border text-xs sm:text-sm font-oswald font-bold uppercase tracking-wider transition-colors rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs cursor-pointer ${
+                activeTab === "documents"
+                  ? "bg-primary text-white border-primary shadow-xs"
+                  : "bg-white dark:bg-[#18181B] border-border/80 text-foreground hover:border-primary"
+              }`}
+            >
+              Verification Documents
+            </button>
+          </div>
 
-                {/* HSC Vocational */}
-                <div className="space-y-6 pt-4">
-                  <h3 className="text-2xl font-black uppercase tracking-tight text-foreground">HSC Vocational Pathway</h3>
-                  <p className="text-base text-muted-foreground leading-relaxed max-w-[80ch]">
-                    Pass in any one HSC (Vocational) subject with one related engineering subject (Mathematics, Physics, or Chemistry).
-                  </p>
-                  
-                  <div className="flex flex-col border-t border-border mt-6">
-                    <div className="hidden md:flex px-4 py-3 bg-muted/60 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                      <div className="w-[40%]">Community / Category</div>
-                      <div className="w-[40%]">Evaluation Pattern</div>
-                      <div className="w-[20%] text-right">Minimum Average %</div>
-                    </div>
-                    <Stagger gap={0.08}>
-                      {hscVocationalCutoffs.map((row) => (
-                        <StaggerItem key={row.community}>
-                          <div className="flex flex-col md:flex-row px-4 py-5 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group gap-2 md:gap-0 items-baseline">
-                            <div className="w-full md:w-[40%] font-bold text-foreground text-sm tracking-wide">{row.community}</div>
-                            <div className="w-full md:w-[40%] text-muted-foreground text-sm">{row.subjects}</div>
-                            <div className="w-full md:w-[20%] md:text-right font-medium text-foreground text-lg font-mono">{row.percent}</div>
-                          </div>
-                        </StaggerItem>
-                      ))}
-                    </Stagger>
-                  </div>
-                </div>
-
-              </div>
-            )}
-
-            {/* 2. LATERAL ENTRY SECTION */}
-            {activeFilter === "lateral" && (
-              <div className="space-y-8 pt-4">
-                <h3 className="text-2xl font-black uppercase tracking-tight text-foreground">Direct Second Year (Lateral Entry)</h3>
-                
-                <div className="grid md:grid-cols-2 gap-12 pt-2">
-                  <div className="flex flex-col">
-                    <h4 className="font-bold text-lg mb-4 text-foreground uppercase tracking-tight">Option A — Diploma Candidates</h4>
-                    <p className="text-base text-muted-foreground leading-relaxed">
-                      Pass in Diploma in appropriate branch of Engineering / Technology from the State Board of Technical Education and Training, Tamil Nadu, or equivalent.
-                    </p>
-                  </div>
-                  <div className="flex flex-col">
-                    <h4 className="font-bold text-lg mb-4 text-foreground uppercase tracking-tight">Option B — B.Sc. Candidates</h4>
-                    <p className="text-base text-muted-foreground leading-relaxed mb-6">
-                      Pass in a recognized B.Sc. Degree of minimum 3 years duration under the 10+2+3 pattern with core Mathematics at the degree level.
-                    </p>
-                    <Alert variant="destructive" className="mt-auto border-none bg-destructive/5 rounded-sm p-4">
-                      <Info className="h-4 w-4" />
-                      <AlertDescription className="ml-2 font-medium text-xs uppercase tracking-wider">Non-B.Sc. degree holders are not eligible.</AlertDescription>
-                    </Alert>
-                  </div>
-                </div>
-
-                <div className="flex flex-col border-t border-border mt-6">
-                  <div className="hidden md:flex px-4 py-3 bg-muted/60 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                    <div className="w-[40%]">Community / Category</div>
-                    <div className="w-[40%]">Qualifying Criteria</div>
-                    <div className="w-[20%] text-right">Minimum Cutoff %</div>
-                  </div>
-                  <Stagger gap={0.08}>
-                    {lateralEntryCutoffs.map((row) => (
-                      <StaggerItem key={row.community}>
-                        <div className="flex flex-col md:flex-row px-4 py-5 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group gap-2 md:gap-0 items-baseline">
-                          <div className="w-full md:w-[40%] font-bold text-foreground text-sm tracking-wide">{row.community}</div>
-                          <div className="w-full md:w-[40%] text-muted-foreground text-sm">{row.criteria}</div>
-                          <div className="w-full md:w-[20%] md:text-right font-medium text-foreground text-lg font-mono">{row.percent}</div>
-                        </div>
-                      </StaggerItem>
-                    ))}
-                  </Stagger>
-                </div>
-                <p className="text-xs text-muted-foreground max-w-4xl leading-relaxed mt-2">
-                  * As per G.O. (Ms.) No.263, Higher Education (J2) Dept (30.6.2008) & Govt Letter No.5464/J1/2011-1 (4.7.2011). For grade-based certificates, actual percentage marks must be produced.
-                </p>
-              </div>
-            )}
-
-            {/* 3. POSTGRADUATE SECTION */}
-            {activeFilter === "pg" && (
-              <div className="space-y-8 pt-4">
-                <h3 className="text-2xl font-black uppercase tracking-tight text-foreground">Postgraduate (M.E.) Programmes</h3>
-                <p className="text-base text-muted-foreground leading-relaxed max-w-[80ch]">
-                  Postgraduate engineering admissions are conducted under Anna University & Tamil Nadu Government norms via entrance examinations and qualifying degree scores.
-                </p>
-
-                <div className="grid md:grid-cols-2 gap-12 pt-2">
-                  {pgEligibility.map(dept => (
-                    <div key={dept.dept} className="flex flex-col py-6 border-t border-border">
-                      <h4 className="font-black text-xl uppercase tracking-tight text-foreground mb-2">{dept.dept}</h4>
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-6">Duration: {dept.duration} // Intake: {dept.intake}</p>
-                      <h5 className="text-sm font-bold text-foreground mb-4">Eligible Entry Degrees:</h5>
-                      <ul className="list-disc pl-5 space-y-3 text-base text-muted-foreground marker:text-foreground/30">
-                        {dept.entryDegrees.map((degree, idx) => (
-                          <li key={idx} className="leading-relaxed">{degree}</li>
+          {/* Content Tables Based on Tab */}
+          {activeTab === "ug" && (
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase text-foreground mb-4">
+                  HSC Academic Stream — Minimum PCM Cut-off Percentage
+                </h3>
+                <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                  <div className="overflow-x-auto bg-transparent">
+                    <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                      <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                        <tr>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                            Community / Category
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                            Minimum Aggregate Marks in PCM
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                            Mandatory Qualifying Subjects
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-border/40 font-libre">
+                        {hscAcademicCutoffs.map((item, idx) => (
+                          <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                            <td className="py-3.5 px-4 font-libre font-bold text-foreground">
+                              {item.community}
+                            </td>
+                            <td className="py-3.5 px-4 font-oswald font-bold text-primary">
+                              {item.percent}
+                            </td>
+                            <td className="py-3.5 px-4 font-libre text-foreground">
+                              {item.subjects}
+                            </td>
+                          </tr>
                         ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="border-t border-border pt-6">
-                  <h4 className="font-bold text-lg text-foreground mb-3">TANCET / CEETA-PG / GATE Selection Process</h4>
-                  <p className="text-base text-muted-foreground leading-relaxed max-w-[80ch]">
-                    Admission through Tamil Nadu Common Entrance Test (TANCET / CEETA-PG) conducted by Anna University, or a valid GATE score. Standard government reservation norms apply to qualifying degree aggregate scores.
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {/* 4. DOCTORAL SECTION */}
-            {activeFilter === "phd" && (
-              <div className="space-y-8 pt-4">
-                <div className="flex items-center gap-4">
-                  <h3 className="text-2xl font-black uppercase tracking-tight text-foreground">Doctoral Studies (Ph.D.)</h3>
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary bg-primary/10 px-3 py-1">MECHANICAL ENGINEERING</span>
-                </div>
-
-                <div className="space-y-4">
-                  <h4 className="font-black text-xl uppercase tracking-tight text-foreground">Academic Qualifications</h4>
-                  <ul className="list-disc pl-5 space-y-3 text-base text-muted-foreground marker:text-primary max-w-[80ch]">
-                    <li className="leading-relaxed"><strong className="text-foreground font-medium">Primary requirement:</strong> Master's Degree (M.E. / M.Tech. / M.S. by Research) in the relevant branch of Engineering or Technology, recognized by Anna University.</li>
-                    <li className="leading-relaxed"><strong className="text-foreground font-medium">Pattern requirement:</strong> sequential qualifications — 10th → HSC → UG → PG.</li>
-                  </ul>
-                </div>
-
-                <div className="space-y-4 pt-4 border-t border-border/50">
-                  <h4 className="font-black text-xl uppercase tracking-tight text-foreground">Minimum Performance Requirements</h4>
-                  <div className="flex flex-col border-t border-border mt-4">
-                    <div className="hidden md:flex px-4 py-3 bg-muted/60 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                      <div className="w-1/3">Category</div>
-                      <div className="w-2/3">Requirement</div>
-                    </div>
-                    <Stagger gap={0.08}>
-                      {phdCutoffs.map((row) => (
-                        <StaggerItem key={row.category}>
-                          <div className="flex flex-col md:flex-row px-4 py-6 border-b border-border/50 hover:bg-foreground/[0.02] transition-colors group">
-                            <div className="w-full md:w-1/3 font-bold text-foreground text-sm tracking-wide pr-4">{row.category}</div>
-                            <div className="w-full md:w-2/3 font-medium text-muted-foreground text-base leading-relaxed">{row.requirement}</div>
-                          </div>
-                        </StaggerItem>
-                      ))}
-                    </Stagger>
+                      </tbody>
+                    </table>
                   </div>
-                </div>
-
-                <div className="space-y-4 pt-4 border-t border-border/50">
-                  <h4 className="font-black text-xl uppercase tracking-tight text-foreground">Direct B.E. Entry Track <span className="text-muted-foreground font-medium lowercase text-base">(Alternate Professional Track)</span></h4>
-                  <p className="text-base text-foreground font-medium leading-relaxed max-w-[80ch]">
-                    Candidates holding a Bachelor's Degree in Engineering/Technology can directly register subject to:
-                  </p>
-                  <ul className="list-decimal pl-5 space-y-3 text-base text-muted-foreground marker:font-bold marker:text-foreground max-w-[80ch]">
-                    {phdDirectEntryConditions.map((cond, idx) => (
-                      <li key={idx} className="leading-relaxed pl-2">{cond}</li>
-                    ))}
-                  </ul>
-                </div>
+                </DataGridContainer>
               </div>
-            )}
 
-          </div>
-        </Reveal>
-
-        {/* Programmes reference list */}
-        <Reveal variant="rise" once={true}>
-          <div className="mt-24 pt-12 border-t border-border">
-            <h4 className="text-sm font-black uppercase tracking-widest text-foreground mb-8">Related Programmes</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
-              <div className="flex flex-col border-t border-border/50 divide-y divide-border/50">
-                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes" search={{ level: "Undergraduate" }}>B.Tech Artificial Intelligence and Data Science</Link></div>
-                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes" search={{ level: "Undergraduate" }}>B.E. Computer Science & Engineering</Link></div>
-                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes" search={{ level: "Undergraduate" }}>B.E. Civil Engineering</Link></div>
-              </div>
-              <div className="flex flex-col border-t border-border/50 divide-y divide-border/50">
-                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes" search={{ level: "Postgraduate" }}>M.E. Computer Science & Engineering</Link></div>
-                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors"><Link to="/programmes" search={{ level: "Postgraduate" }}>M.E. Structural Engineering</Link></div>
-                <div className="py-3 text-sm text-foreground hover:text-primary transition-colors">Ph.D Research Programmes</div>
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase text-foreground mb-4">
+                  HSC Vocational Stream — Minimum Cut-off Percentage
+                </h3>
+                <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                  <div className="overflow-x-auto bg-transparent">
+                    <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                      <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                        <tr>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                            Community / Category
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                            Minimum Aggregate Marks
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                            Qualifying Subjects
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-border/40 font-libre">
+                        {hscVocationalCutoffs.map((item, idx) => (
+                          <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                            <td className="py-3.5 px-4 font-libre font-bold text-foreground">
+                              {item.community}
+                            </td>
+                            <td className="py-3.5 px-4 font-oswald font-bold text-primary">
+                              {item.percent}
+                            </td>
+                            <td className="py-3.5 px-4 font-libre text-foreground">
+                              {item.subjects}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </DataGridContainer>
               </div>
             </div>
-          </div>
-        </Reveal>
+          )}
 
-        {/* Closing CTA row */}
-        <Reveal variant="rise" once={true}>
-          <div className="mt-16 flex flex-col sm:flex-row items-center gap-6 border-t border-border pt-12">
-            <Magnetic>
-              <a 
-                href="/uploads/admission/College-Prospectus.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex w-full sm:w-auto items-center justify-between gap-4 bg-primary px-8 py-5 text-sm font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:opacity-90"
-              >
-                <span>Download Brochure</span>
-                <Download className="h-4 w-4" />
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <Link 
-                to="/programmes"
-                search={{ level: undefined }}
-                className="group flex w-full sm:w-auto items-center justify-between gap-4 border border-foreground/20 bg-background px-8 py-5 text-sm font-bold uppercase tracking-widest text-foreground transition-all hover:bg-foreground hover:text-background"
-              >
-                <span>View Programmes Offered</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Magnetic>
+          {activeTab === "lateral" && (
+            <div>
+              <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase text-foreground mb-4">
+                Direct 2nd Year Lateral Entry (Diploma &amp; B.Sc. Graduates)
+              </h3>
+              <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                <div className="overflow-x-auto bg-transparent">
+                  <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                    <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                      <tr>
+                        <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                          Community / Category
+                        </th>
+                        <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                          Minimum Aggregate Marks
+                        </th>
+                        <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                          Qualifying Diploma / Degree Criteria
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border/40 font-libre">
+                      {lateralEntryCutoffs.map((item, idx) => (
+                        <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                          <td className="py-3.5 px-4 font-libre font-bold text-foreground">
+                            {item.community}
+                          </td>
+                          <td className="py-3.5 px-4 font-oswald font-bold text-primary">
+                            {item.percent}
+                          </td>
+                          <td className="py-3.5 px-4 font-libre text-foreground">
+                            {item.criteria}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </DataGridContainer>
+            </div>
+          )}
+
+          {activeTab === "pg" && (
+            <div>
+              <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase text-foreground mb-4">
+                Postgraduate Degree Eligibility (M.E. / MBA / MCA)
+              </h3>
+              <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                <div className="overflow-x-auto bg-transparent">
+                  <table className="w-full text-left border-collapse min-w-[700px] text-xs sm:text-sm">
+                    <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                      <tr>
+                        <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                          Degree Programme
+                        </th>
+                        <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider w-24">
+                          Duration
+                        </th>
+                        <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider w-24">
+                          Intake
+                        </th>
+                        <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider">
+                          Qualifying Entry Degrees &amp; TANCET / CEETA Requirement
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border/40 font-libre">
+                      {pgEligibility.map((item, idx) => (
+                        <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                          <td className="py-3.5 px-4 font-libre font-bold text-foreground">
+                            {item.programme}
+                          </td>
+                          <td className="py-3.5 px-4 font-libre text-foreground whitespace-nowrap">
+                            {item.duration}
+                          </td>
+                          <td className="py-3.5 px-4 font-oswald font-bold text-primary whitespace-nowrap">
+                            {item.intake}
+                          </td>
+                          <td className="py-3.5 px-4 font-libre text-foreground">
+                            {item.entryDegree}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </DataGridContainer>
+            </div>
+          )}
+
+          {activeTab === "documents" && (
+            <div>
+              <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase text-foreground mb-4">
+                Required Verification Certificates Checklist
+              </h3>
+              <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
+                {documentChecklist.map((docText, idx) => (
+                  <div
+                    key={idx}
+                    className="py-3.5 sm:py-4 px-2 sm:px-4 flex items-center gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
+                  >
+                    <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
+                      {idx + 1}
+                    </span>
+                    <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                      {docText.replace(/^\d+\.\s*/, "")}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Wave Divider A -> B */}
+      <div className="w-full overflow-hidden leading-none select-none bg-white dark:bg-[#121214]">
+        <svg
+          viewBox="0 0 1440 72"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-10 sm:h-14 md:h-16 lg:h-20 block preserve-3d"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 0,28 C 360,28 420,62 720,62 C 1020,62 1100,14 1440,26 L 1440,72 L 0,72 Z"
+            className="fill-[#F3F3F2] dark:fill-[#18181B]"
+          />
+        </svg>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 3. SECTION B: Original Verification Checklist (Points Layout)             */}
+      {/* ========================================================================= */}
+      <section className="py-10 sm:py-14 md:py-18 lg:py-20 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
+          <div className="mb-8">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-2">
+              Mandatory Admission Reporting Checklist
+            </h2>
+            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed max-w-3xl">
+              All candidates admitted under TNEA counseling or Management Quota must submit the following original certificates at the time of college admission reporting.
+            </p>
           </div>
-        </Reveal>
+
+          <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
+            {documentChecklist.map((docText, idx) => (
+              <div
+                key={idx}
+                className="py-3.5 sm:py-4 px-2 sm:px-4 flex items-center gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
+              >
+                <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
+                  {idx + 1}
+                </span>
+                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                  {docText.replace(/^\d+\.\s*/, "")}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
     </main>
   );
