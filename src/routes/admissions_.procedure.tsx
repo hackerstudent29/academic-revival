@@ -28,28 +28,71 @@ const procedureSteps = [
 
 function ProcedureHero() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
-      {/* Hero Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/procedure_hero.jpg"
-          alt="Mohamed Sathak A.J. College of Engineering Campus Architecture"
-          className="w-full h-full object-cover object-center brightness-[0.75] filter contrast-105 select-none pointer-events-none rounded-none"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = "/images/accreditations_campus.jpg";
-          }}
+    <section className="relative w-full overflow-hidden h-auto lg:h-[75vh] flex flex-col lg:block">
+      
+      {/* Desktop Image */}
+      <motion.div 
+        initial={{ width: "100%" }}
+        animate={{ width: "60%" }}
+        transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
+        className="absolute inset-y-0 right-0 z-10 hidden lg:block pointer-events-none"
+      >
+        <img 
+          src="/images/procedure_hero.jpg" 
+          alt="Students going through admission procedure" 
+          className="w-full h-full object-cover object-center"
         />
-        {/* Subtle gradient overlay for depth and contrast */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
+      </motion.div>
+
+      {/* Accent sliding block (The Blue Edge) */}
+      <motion.div 
+        initial={{ width: "0%" }}
+        animate={{ width: "51%" }}
+        transition={{ duration: 1.2, delay: 0.05, ease: [0.76, 0, 0.24, 1] }}
+        className="absolute inset-y-0 left-0 bg-primary z-20 hidden lg:block shadow-2xl"
+        style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
+      />
+
+      {/* Sliding Background from Left with Diagonal Edge */}
+      <motion.div 
+        initial={{ width: "0%" }}
+        animate={{ width: "50%" }}
+        transition={{ duration: 1.2, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
+        className="absolute inset-y-0 left-0 bg-page-bg z-30 hidden lg:block"
+        style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0% 100%)" }}
+      />
+
+      {/* Mobile Image */}
+      <div className="w-full h-[300px] relative lg:hidden block z-10">
+        <img 
+          src="/images/procedure_hero.jpg" 
+          alt="Students going through admission procedure" 
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-page-bg to-transparent z-10 pointer-events-none" />
       </div>
 
-      {/* Title Container: Docked Flush at Bottom of Hero */}
-      <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 pb-0">
-        <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-5 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 shadow-2xl max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl border-t border-r border-border dark:border-white/15">
-          <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none">
-            Admission Procedure
+      {/* Text Content */}
+      <div className="w-full lg:w-[48%] px-6 py-12 md:py-16 lg:px-10 xl:px-12 flex flex-col justify-center z-40 relative lg:absolute lg:inset-y-0 lg:left-0 h-full bg-page-bg lg:bg-transparent">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="inline-flex items-center gap-2 mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <span className="text-[9px] font-bold tracking-widest uppercase text-primary">Explore Admissions</span>
+          </div>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.05] tracking-tight text-primary mb-5 text-balance">
+            Admission <br/>
+            Procedure
           </h1>
-        </div>
+          
+          <p className="text-sm md:text-base font-medium text-muted-foreground leading-relaxed max-w-md">
+            Three steps to secure your seat. Download the brochure, apply online, and complete your fee payment to confirm admission at Mohamed Sathak AJ College of Engineering.
+          </p>
+        </motion.div>
       </div>
     </section>
   );
@@ -57,12 +100,12 @@ function ProcedureHero() {
 
 function AdmissionsProcedurePage() {
   return (
-    <main className="bg-background min-h-screen">
+    <main className="bg-page-bg text-foreground min-h-screen">
       <ProcedureHero />
 
       <section className="mx-auto max-w-[1200px] px-6 py-24 md:px-12 md:py-32">
         {/* Before you apply note */}
-        <Reveal variant="rise">
+        <Reveal variant="rise" once={true}>
           <div className="mb-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 py-8 border-y border-border">
             <div className="flex flex-col gap-2">
               <h3 className="text-lg md:text-xl font-black uppercase tracking-tight text-foreground flex items-center gap-2">
@@ -120,7 +163,7 @@ function AdmissionsProcedurePage() {
         </Stagger>
 
         {/* Helpdesk / contact block */}
-        <Reveal variant="rise">
+        <Reveal variant="rise" once={true}>
           <div className="mt-24 grid md:grid-cols-2 gap-12 pt-12">
             <div>
               <h3 className="text-3xl font-black uppercase tracking-tight text-foreground mb-4">Need Help?</h3>
@@ -158,7 +201,7 @@ function AdmissionsProcedurePage() {
         </Reveal>
 
         {/* Closing CTA row */}
-        <Reveal variant="rise">
+        <Reveal variant="rise" once={true}>
           <div className="mt-16 flex flex-col sm:flex-row items-center gap-6 pt-12 border-t border-border">
             <Magnetic>
               <a 

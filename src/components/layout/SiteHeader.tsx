@@ -35,10 +35,10 @@ const nav: NavItem[] = [
         title: "Welfare committees",
         links: [
           { label: "Committees & Cells", to: "/about/committees" },
-          { label: "Grievance Cell", to: "/about/committees" },
-          { label: "Statutory Committees", to: "/about/governing-council" },
-          { label: "Anti-Ragging Committee", to: "/about/committees" },
-          { label: "Women's Empowerment Cell", to: "/about/committees" },
+          { label: "Grievance Cell", to: "/about/grievance-cell" },
+          { label: "Academic Advisory Committee", to: "/about/academic-advisory-committee" },
+          { label: "Anti-Ragging Committee", to: "/about/anti-ragging-committee" },
+          { label: "Women's Empowerment Cell", to: "/about/womens-empowerment-cell" },
         ],
       },
       {
@@ -77,7 +77,6 @@ const nav: NavItem[] = [
         title: "Apply Online",
         links: [
           { label: "Online Application", to: "/admissions", hash: "apply" },
-          { label: "Online Fee Payment", to: "/admissions", hash: "apply" },
           { label: "Enquire Now", to: "/contact" },
         ],
       },
