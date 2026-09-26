@@ -567,9 +567,9 @@ export function SiteHeader() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25 }}
             onClick={() => setMoreOpen(false)}
-            className="fixed inset-0 top-0 z-[40] bg-black/40 touch-none"
+            className="fixed inset-0 top-0 z-[99980] bg-black/60 backdrop-blur-xs touch-none"
           />
         )}
       </AnimatePresence>
@@ -581,22 +581,43 @@ export function SiteHeader() {
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
-            transition={{ duration: 0.5, ease: APPLE_EASE }}
+            transition={{ duration: 0.35, ease: APPLE_EASE }}
             style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}
             data-lenis-prevent="true"
-            className="fixed right-0 top-0 z-[45] block w-full lg:max-w-[360px] h-[100dvh] pt-[100px] lg:pt-[80px] pb-12 bg-background/80 backdrop-blur-3xl px-6 md:px-12 lg:px-8 overflow-y-auto overflow-x-hidden overscroll-contain lg:border-l border-foreground/10 shadow-2xl scrollbar-none"
+            className="fixed right-0 top-0 z-[99990] w-full sm:max-w-[420px] lg:max-w-[380px] h-[100dvh] bg-background dark:bg-[#121214] flex flex-col border-l border-border dark:border-white/10 shadow-2xl overflow-hidden"
           >
-            <div className="relative w-full min-h-full">
-              <AnimatePresence mode="wait">
-                {activePanel === "main" ? (
-                  <motion.div
-                    key="main"
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="w-full"
-                  >
+            {/* Integrated Top Header Bar */}
+            <div className="flex h-[58px] md:h-[70px] items-center justify-between px-5 md:px-7 border-b border-border dark:border-white/10 shrink-0 bg-background dark:bg-[#121214]">
+              <Link to="/" onClick={closeAll} className="flex items-center">
+                <img
+                  src="/logos/msajce-header-combined-hd.png?v=2"
+                  alt="MSAJCE Logo"
+                  className="h-8 md:h-9 w-auto max-w-[200px] object-contain"
+                />
+              </Link>
+              <button
+                type="button"
+                onClick={closeAll}
+                aria-label="Close menu"
+                className="p-2 -mr-1.5 text-foreground/80 hover:text-primary transition-colors cursor-pointer rounded-md hover:bg-foreground/5 flex items-center justify-center"
+              >
+                <X className="w-5 h-5 stroke-[2.2]" />
+              </button>
+            </div>
+
+            {/* Scrollable Content Body */}
+            <div className="flex-1 overflow-y-auto px-6 py-6 pb-12 scrollbar-none overscroll-contain">
+              <div className="relative w-full min-h-full">
+                <AnimatePresence mode="wait">
+                  {activePanel === "main" ? (
+                    <motion.div
+                      key="main"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="w-full"
+                    >
                     {/* Main Navigation Links */}
                     <div className="mb-8 font-oswald">
                       {nav.map((item) => (
@@ -715,9 +736,10 @@ export function SiteHeader() {
                 )}
               </AnimatePresence>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
     </>
   );
 }

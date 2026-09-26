@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, FC } from "react";
-import { X, Sparkles, Maximize2, RefreshCw } from "lucide-react";
+import { X, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { EyeTracking } from "@/components/ui/eye-tracking";
 
@@ -120,15 +120,6 @@ export const ChatbotWidget: FC<ChatbotWidgetProps> = ({
     ? `${cleanBaseUrl}&embed=true` 
     : `${cleanBaseUrl}/?embed=true`;
 
-  const handleFullscreen = () => {
-    window.open(cleanBaseUrl, "_blank", "noopener,noreferrer");
-  };
-
-  const handleRefresh = () => {
-    setIsLoading(true);
-    setIframeKey((prev) => prev + 1);
-  };
-
   return (
     <div className="fixed bottom-0 right-4 sm:right-8 md:right-10 z-[999999] select-none font-sans pointer-events-auto">
       {/* Open Chat Window Modal */}
@@ -141,70 +132,6 @@ export const ChatbotWidget: FC<ChatbotWidgetProps> = ({
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="fixed bottom-24 right-4 sm:right-8 md:right-10 w-[360px] sm:w-[430px] md:w-[460px] h-[640px] max-h-[calc(100vh-120px)] bg-card border border-border dark:border-white/15 rounded-2xl shadow-2xl flex flex-col overflow-hidden z-[1000000] backdrop-blur-xl"
           >
-            {/* Header Strip */}
-            <div className="bg-[#9E2339] dark:bg-[#80182c] text-white px-4 py-3 flex items-center justify-between shadow-md select-none shrink-0 border-b border-white/10">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-full overflow-hidden bg-white/10 border border-white/20 p-1 flex items-center justify-center shrink-0">
-                  <EyeTracking
-                    eyeSize={18}
-                    gap={4}
-                    variant={isDark ? "cyber" : "cartoon"}
-                    irisColor={isDark ? "#00d4ff" : "#FFFFFF"}
-                    irisColorSecondary={isDark ? "#FFFFFF" : "#F3F3F2"}
-                    scleraColor={isDark ? "#0a0a1a" : "#9E2339"}
-                    pupilColor={isDark ? "#001122" : "#1A1C1C"}
-                    pupilRange={0.75}
-                    reactivePupil={true}
-                  />
-                </div>
-                <div>
-                  <div className="flex items-center gap-1.5">
-                    <h3 className="font-oswald font-black text-sm uppercase tracking-wide leading-none">
-                      {title}
-                    </h3>
-                    <span className="text-[9px] font-mono uppercase bg-white/20 px-1 py-0.5 rounded text-white/90 leading-none">
-                      TNEA 1301
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-white/85 font-libre flex items-center gap-1.5 mt-0.5 leading-none">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    Official Campus Assistant
-                  </p>
-                </div>
-              </div>
-
-              {/* Header Action Controls */}
-              <div className="flex items-center gap-1">
-                <button
-                  type="button"
-                  onClick={handleRefresh}
-                  title="Reload Assistant"
-                  aria-label="Reload Assistant"
-                  className="p-1.5 text-white/80 hover:text-white hover:bg-white/15 rounded-lg transition-colors cursor-pointer"
-                >
-                  <RefreshCw className="w-4 h-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={handleFullscreen}
-                  title="View in Fullscreen"
-                  aria-label="View in Fullscreen"
-                  className="p-1.5 text-white/80 hover:text-white hover:bg-white/15 rounded-lg transition-colors cursor-pointer"
-                >
-                  <Maximize2 className="w-4 h-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setIsOpen(false)}
-                  title="Close Assistant"
-                  aria-label="Close Assistant"
-                  className="p-1.5 text-white/80 hover:text-white hover:bg-white/15 rounded-lg transition-colors cursor-pointer"
-                >
-                  <X className="w-4 h-4 stroke-[2.5]" />
-                </button>
-              </div>
-            </div>
-
             {/* Embedded Iframe */}
             <div className="relative w-full h-full bg-background overflow-hidden flex-1">
               {isLoading && (

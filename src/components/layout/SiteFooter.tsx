@@ -111,6 +111,8 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
     };
   }, []);
 
+  const APPLE_EASE = [0.22, 1, 0.36, 1] as const;
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -130,7 +132,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
       filter: "blur(0px)",
       transition: {
         duration: 0.55,
-        ease: [0.22, 1, 0.36, 1],
+        ease: APPLE_EASE,
       },
     },
   };
@@ -143,7 +145,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
       transition: {
         duration: 0.55,
         delay: 0.35,
-        ease: [0.22, 1, 0.36, 1],
+        ease: APPLE_EASE,
       },
     },
   };
@@ -475,23 +477,34 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
         </motion.div>
       </footer>
 
-      {/* ── Scroll-to-Top Floating Arrow Button (Round shape & Glassmorphism slightly above Chatbot Widget) ── */}
+      {/* ── Scroll-to-Top Floating Arrow Button (Small & Compact with Subtle Cue Animation) ── */}
       <AnimatePresence>
         {showScrollTop && (
-          <motion.button
-            type="button"
-            initial={{ opacity: 0, y: 16, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 16, scale: 0.8 }}
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.92 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            onClick={scrollToTop}
-            aria-label="Scroll to top"
-            className="fixed bottom-20 sm:bottom-22 right-6 sm:right-10 md:right-12 z-[99990] group flex items-center justify-center h-11 w-11 sm:h-12 sm:w-12 rounded-full backdrop-blur-xl bg-white/75 dark:bg-[#18181B]/80 text-[#9E2339] dark:text-[#E11D48] border border-white/50 dark:border-white/15 shadow-[0_8px_30px_rgb(0,0,0,0.16)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.6)] hover:bg-white/95 dark:hover:bg-[#1E1E24]/95 hover:border-primary/50 hover:shadow-[0_8px_25px_rgba(158,35,57,0.25)] transition-all duration-300 focus:outline-none cursor-pointer"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.7, y: 15 }}
+            transition={{ duration: 0.25, ease: APPLE_EASE }}
+            className="fixed bottom-26 sm:bottom-28 right-7 sm:right-11 md:right-13 z-[99990] flex items-center justify-center pointer-events-auto"
           >
-            <ChevronUp className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5] transition-transform duration-300 group-hover:-translate-y-1" />
-          </motion.button>
+            <motion.button
+              type="button"
+              animate={{ y: [0, -3.5, 0] }}
+              transition={{
+                repeat: Infinity,
+                duration: 2.2,
+                ease: "easeInOut",
+              }}
+              whileHover={{ scale: 1.15, y: -5 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={scrollToTop}
+              aria-label="Scroll to top"
+              title="Scroll to top"
+              className="group flex items-center justify-center h-8 w-8 sm:h-9 sm:w-9 rounded-full backdrop-blur-xl bg-white/80 dark:bg-[#18181B]/85 text-[#9E2339] dark:text-[#E11D48] border border-white/60 dark:border-white/20 shadow-[0_4px_16px_rgba(0,0,0,0.14)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.6)] hover:bg-white dark:hover:bg-[#202025] hover:border-primary/50 hover:shadow-[0_6px_20px_rgba(158,35,57,0.3)] transition-colors duration-200 focus:outline-none cursor-pointer"
+            >
+              <ChevronUp className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.4] text-primary transition-transform duration-300 group-hover:-translate-y-0.5" />
+            </motion.button>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
