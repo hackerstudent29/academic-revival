@@ -24,10 +24,13 @@ const socials = [
 
 export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean } = {}) {
   const footerRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [internalRevealed, setInternalRevealed] = useState(false);
+  const [bgRevealed, setBgRevealed] = useState(false);
+  const [contentRevealed, setContentRevealed] = useState(false);
 
-  const effectiveRevealed = externalRevealed !== undefined ? externalRevealed : internalRevealed;
+  const effectiveBgRevealed = externalRevealed !== undefined ? externalRevealed : bgRevealed;
+  const effectiveContentRevealed = externalRevealed !== undefined ? externalRevealed : contentRevealed;
 
   // Track scroll position to reveal Scroll-to-Top arrow button and Footer Content
   useEffect(() => {
@@ -38,25 +41,45 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
       setShowScrollTop(scrollY > 280);
 
       const footerEl = footerRef.current;
+      const contentEl = contentRef.current;
+      const canvasEl = document.querySelector(".site-main-canvas") as HTMLElement | null;
+
       if (footerEl) {
-        const footerHeight = footerEl.offsetHeight || 600;
         const totalHeight = document.documentElement.scrollHeight;
         const viewportHeight = window.innerHeight;
 
         // If the document has very little scroll space, reveal immediately
         if (totalHeight <= viewportHeight + 100) {
-          setInternalRevealed(true);
-        } else {
-          const remainingScroll = totalHeight - viewportHeight - scrollY;
-          // When the curtain begins opening (remaining scroll is less than footer height minus buffer)
-          const isOpening = remainingScroll < (footerHeight - 40);
-          const isClosing = remainingScroll > (footerHeight - 15);
+          setBgRevealed(true);
+          setContentRevealed(true);
+          ticking = false;
+          return;
+        }
 
-          setInternalRevealed((prev) => {
-            if (isOpening && !prev) return true;
-            if (isClosing && prev) return false;
+        if (canvasEl && contentEl) {
+          const canvasRect = canvasEl.getBoundingClientRect();
+          const contentRect = contentEl.getBoundingClientRect();
+
+          // 1. Ambient background outline begins fading in as the curtain opens
+          const isBgOpen = canvasRect.bottom <= viewportHeight - 40;
+          setBgRevealed(isBgOpen);
+
+          // 2. Content & Text animate ONLY when the top section of the footer is actually uncovered!
+          // When the canvas bottom edge lifts above the top of the content grid (+ small buffer)
+          const contentOpenThreshold = contentRect.top + 60;
+          const contentCloseThreshold = contentRect.top + 110;
+
+          setContentRevealed((prev) => {
+            if (canvasRect.bottom <= contentOpenThreshold && !prev) return true;
+            if (canvasRect.bottom > contentCloseThreshold && prev) return false;
             return prev;
           });
+        } else {
+          // Fallback if canvas element not found
+          const footerHeight = footerEl.offsetHeight || 600;
+          const remainingScroll = totalHeight - viewportHeight - scrollY;
+          setBgRevealed(remainingScroll < footerHeight - 40);
+          setContentRevealed(remainingScroll <= 140);
         }
       }
 
@@ -152,7 +175,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
         {/* ── 1. Architectural Campus Outline Ambient Background (Smooth GPU Fade) ── */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: effectiveRevealed ? 1 : 0 }}
+          animate={{ opacity: effectiveBgRevealed ? 1 : 0 }}
           transition={{ duration: 0.5, ease: FAST_EASE }}
           className="pointer-events-none absolute inset-0 z-0 flex items-end justify-center select-none overflow-hidden will-change-[opacity]"
           aria-hidden="true"
@@ -182,13 +205,13 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
         </motion.div>
 
         {/* ── Main Grid (Lightweight Staggered Component Animations) ── */}
-        <div className="relative z-10 mx-auto w-full max-w-[1440px] grid grid-cols-12 gap-8 px-4 sm:px-6 md:px-8 xl:px-12 py-12 md:py-16 lg:py-20">
+        <div ref={contentRef} className="relative z-10 mx-auto w-full max-w-[1440px] grid grid-cols-12 gap-8 px-4 sm:px-6 md:px-8 xl:px-12 py-12 md:py-16 lg:py-20">
           {/* ── Col 1: Brand & Contact Info ── */}
           <motion.div
             custom={0}
             variants={columnVariants}
             initial="hidden"
-            animate={effectiveRevealed ? "visible" : "hidden"}
+            animate={effectiveContentRevealed ? "visible" : "hidden"}
             className="col-span-12 lg:col-span-4 will-change-transform"
           >
             <Link to="/" className="inline-block group focus:outline-none" aria-label="MSAJCE Home">
@@ -292,7 +315,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
             custom={1}
             variants={columnVariants}
             initial="hidden"
-            animate={effectiveRevealed ? "visible" : "hidden"}
+            animate={effectiveContentRevealed ? "visible" : "hidden"}
             className="col-span-6 sm:col-span-3 lg:col-span-2 will-change-transform"
           >
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
@@ -326,7 +349,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
             custom={2}
             variants={columnVariants}
             initial="hidden"
-            animate={effectiveRevealed ? "visible" : "hidden"}
+            animate={effectiveContentRevealed ? "visible" : "hidden"}
             className="col-span-6 sm:col-span-3 lg:col-span-2 will-change-transform"
           >
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
@@ -361,7 +384,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
             custom={3}
             variants={columnVariants}
             initial="hidden"
-            animate={effectiveRevealed ? "visible" : "hidden"}
+            animate={effectiveContentRevealed ? "visible" : "hidden"}
             className="col-span-6 sm:col-span-3 lg:col-span-2 will-change-transform"
           >
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
@@ -397,7 +420,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
             custom={4}
             variants={columnVariants}
             initial="hidden"
-            animate={effectiveRevealed ? "visible" : "hidden"}
+            animate={effectiveContentRevealed ? "visible" : "hidden"}
             className="col-span-6 sm:col-span-3 lg:col-span-2 will-change-transform"
           >
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
@@ -432,7 +455,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
         {/* ── Bottom Bar ── */}
         <motion.div
           initial="hidden"
-          animate={effectiveRevealed ? "visible" : "hidden"}
+          animate={effectiveContentRevealed ? "visible" : "hidden"}
           variants={{
             hidden: { opacity: 0, y: 14, transition: { duration: 0.15 } },
             visible: {
