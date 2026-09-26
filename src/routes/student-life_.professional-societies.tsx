@@ -140,7 +140,7 @@ function ProfessionalSocietiesPage() {
         {/* ========================================================================= */}
         {/* 2. DYNAMIC HERO BANNER: Institution-Style Theme-Adaptive Banner           */}
         {/* ========================================================================= */}
-        <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+        <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[320px] sm:min-h-[360px] md:min-h-[420px] flex flex-col justify-end">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <img
@@ -156,7 +156,7 @@ function ProfessionalSocietiesPage() {
           </div>
 
           {/* Title Container: Theme-Adaptive Frame Docked Flush at Bottom */}
-          <div className="relative z-10 mx-auto max-w-[1440px] w-full px-3.5 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 md:pt-24 pb-0">
+          <div className="relative z-10 mx-auto max-w-[1440px] w-full px-3.5 sm:px-6 md:px-8 xl:px-12 pt-20 sm:pt-28 md:pt-36 pb-0">
             <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full w-auto border-t border-r border-border dark:border-white/15">
               <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none whitespace-nowrap">
                 PROFESSIONAL SOCIETIES
@@ -165,44 +165,43 @@ function ProfessionalSocietiesPage() {
           </div>
         </section>
 
-        {/* ========================================================================= */}
-        {/* 3. SECTION 1: Canvas A (White / #121214) — Technical Chapters Spotlight   */}
-        {/* ========================================================================= */}
-        <section className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-6 sm:pb-8 md:pb-10 bg-white dark:bg-[#121214] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeSociety.id}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.22 }}
-                className="space-y-6"
-              >
-                {/* Section Title */}
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                  {activeSociety.name}
-                </h2>
+        {/* Dynamic Society Content with Synchronized Tab Transition */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeSociety.id}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.18 }}
+          >
+            {/* ========================================================================= */}
+            {/* 3. SECTION 1: Canvas A (White / #121214) — Technical Chapters Spotlight   */}
+            {/* ========================================================================= */}
+            <section className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-10 sm:pb-14 md:pb-16 bg-white dark:bg-[#121214] transition-colors">
+              <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12 space-y-8 sm:space-y-10 md:space-y-12">
+                {/* Section Title and Introductory Narrative */}
+                <div className="space-y-3 sm:space-y-4">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
+                    {activeSociety.name}
+                  </h2>
+
+                  <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                    {activeSociety.id === "csi" ? (
+                      <>
+                        Keeping in mind the interest of the IT professionals &amp; computer users, CSI works towards making the profession as area of choice amongst all sections of the society under the vision &quot;IT for Masses&quot;. To fulfill this objective, the CSI regularly organizes conferences, conventions, lectures, projects, awards. At the same time it also ensures that regular training and skill updating are organized for the IT professionals. Education Directorate, CSI helps physically challenged citizens by providing training &apos;Punarjani&apos;. CSI also works towards a global approach, by seeking out alliances with organizations overseas who may be willing to come forward and participate in such activities. CSI also helps governments in formulating IT strategy &amp; planning.
+                      </>
+                    ) : (
+                      activeSociety.description
+                    )}
+                  </p>
+                </div>
 
                 {activeSociety.id === "csi" ? (
                   <>
-                    {/* History of CSI */}
-                    <div>
-                      <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-1">
-                        History of CSI
-                      </h3>
-                      <p className="font-oswald text-sm sm:text-base uppercase tracking-wide text-primary font-semibold mb-2">
-                        The CSI Vision: &quot;lT for Masses&quot;
-                      </p>
-                      <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                        {activeSociety.history}
-                      </p>
-                    </div>
-
                     {/* Region - VII */}
-                    <div>
-                      <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-1">
-                        Region – VII
+                    <div className="space-y-2 sm:space-y-3">
+                      <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                        Region – VII Jurisdiction
                       </h3>
                       <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
                         {activeSociety.region}
@@ -210,8 +209,8 @@ function ProfessionalSocietiesPage() {
                     </div>
 
                     {/* Kanchipuram Chapter */}
-                    <div>
-                      <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-1">
+                    <div className="space-y-2 sm:space-y-3">
+                      <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
                         Kanchipuram Chapter
                       </h3>
                       <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
@@ -221,15 +220,15 @@ function ProfessionalSocietiesPage() {
 
                     {/* Institutional Awards with Round Circular Badges 1, 2 */}
                     {activeSociety.awards && activeSociety.awards.length > 0 && (
-                      <div>
-                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-3">
+                      <div className="space-y-3 sm:space-y-4">
+                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
                           Chapter Awards &amp; Institutional Recognition
                         </h3>
                         <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
                           {activeSociety.awards.map((award, idx) => (
                             <div
                               key={idx}
-                              className="py-3 px-1 sm:px-3 flex items-center gap-3.5 hover:bg-foreground/[0.015] transition-colors w-full"
+                              className="py-3.5 sm:py-4 px-2 sm:px-4 flex items-center gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
                             >
                               <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
                                 {idx + 1}
@@ -245,14 +244,14 @@ function ProfessionalSocietiesPage() {
 
                     {/* DETAILS OF NOMINATION AUTHORITY - Publications DataGrid Table */}
                     {activeSociety.nominationAuthorities && activeSociety.nominationAuthorities.length > 0 && (
-                      <div className="pt-2">
-                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-3">
-                          DETAILS OF NOMINATION AUTHORITY
+                      <div className="space-y-3 sm:space-y-4">
+                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                          Details of Nomination Authority
                         </h3>
                         <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
                           <div className="overflow-x-auto bg-transparent">
                             <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
-                              <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                              <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-xs font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
                                 <tr>
                                   <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
                                     S.No
@@ -288,8 +287,8 @@ function ProfessionalSocietiesPage() {
                                         {auth.phone}
                                       </a>
                                     </td>
-                                    <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-primary whitespace-nowrap">
-                                      <a href={`mailto:${auth.email}`} className="hover:underline">
+                                    <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                      <a href={`mailto:${auth.email}`} className="text-foreground hover:text-primary transition-colors underline decoration-border/60 underline-offset-2">
                                         {auth.email}
                                       </a>
                                     </td>
@@ -304,463 +303,450 @@ function ProfessionalSocietiesPage() {
                   </>
                 ) : (
                   <>
-                    {/* General Chapter Overview for IETE, SAE, ISHRAE */}
-                    <div className="space-y-4">
-                      {activeSociety.tagline && (
-                        <p className="font-oswald text-sm sm:text-base uppercase tracking-wide text-primary font-semibold">
-                          {activeSociety.tagline}
-                        </p>
-                      )}
-
-                      <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                        {activeSociety.description}
-                      </p>
-
-                      {/* IETE Counselors Table */}
-                      {activeSociety.ieteCounselors && activeSociety.ieteCounselors.length > 0 && (
-                        <div className="pt-2">
-                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-3">
-                            DETAILS OF BRANCH COUNSELORS
-                          </h3>
-                          <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
-                            <div className="overflow-x-auto bg-transparent">
-                              <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
-                                <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
-                                  <tr>
-                                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
-                                      S.No
-                                    </th>
-                                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[180px]">
-                                      Role
-                                    </th>
-                                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[200px]">
-                                      Name
-                                    </th>
-                                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[160px]">
-                                      Department
-                                    </th>
-                                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[200px]">
-                                      Code / Institution
-                                    </th>
+                    {/* IETE Counselors Table */}
+                    {activeSociety.ieteCounselors && activeSociety.ieteCounselors.length > 0 && (
+                      <div className="space-y-3 sm:space-y-4">
+                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                          Details of Branch Counselors
+                        </h3>
+                        <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                          <div className="overflow-x-auto bg-transparent">
+                            <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                              <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-xs font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                                <tr>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
+                                    S.No
+                                  </th>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[180px]">
+                                    Role
+                                  </th>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[200px]">
+                                    Name
+                                  </th>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[160px]">
+                                    Department
+                                  </th>
+                                  <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[200px]">
+                                    Code / Institution
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-border/40 font-libre">
+                                {activeSociety.ieteCounselors.map((c, idx) => (
+                                  <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                                    <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                      {c.sno}
+                                    </td>
+                                    <td className="py-3.5 px-4 font-libre font-bold text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                      {c.role}
+                                    </td>
+                                    <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                      {c.name}
+                                    </td>
+                                    <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                      {c.department}
+                                    </td>
+                                    <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                      {c.codeInfo || c.institution}
+                                    </td>
                                   </tr>
-                                </thead>
-                                <tbody className="divide-y divide-border/40 font-libre">
-                                  {activeSociety.ieteCounselors.map((c, idx) => (
-                                    <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
-                                      <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                                        {c.sno}
-                                      </td>
-                                      <td className="py-3.5 px-4 font-libre font-bold text-xs sm:text-sm text-primary whitespace-nowrap">
-                                        {c.role}
-                                      </td>
-                                      <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground whitespace-nowrap">
-                                        {c.name}
-                                      </td>
-                                      <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
-                                        {c.department}
-                                      </td>
-                                      <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                                        {c.codeInfo || c.institution}
-                                      </td>
-                                    </tr>
-                                  ))}
-                                </tbody>
-                              </table>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </DataGridContainer>
+                      </div>
+                    )}
+
+                    {/* SAE Milestones */}
+                    {activeSociety.saeMilestones && activeSociety.saeMilestones.length > 0 && (
+                      <div className="space-y-3 sm:space-y-4 pt-2">
+                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                          SAEINDIA Chapter Milestones
+                        </h3>
+                        <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
+                          {activeSociety.saeMilestones.map((m, idx) => (
+                            <div
+                              key={idx}
+                              className="py-3.5 sm:py-4 px-2 sm:px-4 flex items-center gap-3.5 hover:bg-foreground/[0.015] transition-colors w-full"
+                            >
+                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
+                                {idx + 1}
+                              </span>
+                              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                                {m}
+                              </p>
                             </div>
-                          </DataGridContainer>
+                          ))}
                         </div>
-                      )}
+                      </div>
+                    )}
 
-                      {/* SAE Milestones */}
-                      {activeSociety.saeMilestones && activeSociety.saeMilestones.length > 0 && (
-                        <div className="pt-2">
-                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-3">
-                            SAEINDIA Chapter Milestones
-                          </h3>
-                          <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
-                            {activeSociety.saeMilestones.map((m, idx) => (
-                              <div
-                                key={idx}
-                                className="py-3 px-1 sm:px-3 flex items-center gap-3.5 hover:bg-foreground/[0.015] transition-colors w-full"
-                              >
-                                <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
-                                  {idx + 1}
-                                </span>
-                                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                                  {m}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
+                    {/* SAE Competitions */}
+                    {activeSociety.saeCompetitions && activeSociety.saeCompetitions.length > 0 && (
+                      <div className="space-y-3 sm:space-y-4 pt-2">
+                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                          National Competitions &amp; Flagship Challenges
+                        </h3>
+                        <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
+                          {activeSociety.saeCompetitions.map((comp, idx) => (
+                            <div
+                              key={idx}
+                              className="py-3.5 sm:py-4 px-2 sm:px-4 flex items-center gap-3.5 hover:bg-foreground/[0.015] transition-colors w-full"
+                            >
+                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
+                                {idx + 1}
+                              </span>
+                              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                                {comp}
+                              </p>
+                            </div>
+                          ))}
                         </div>
-                      )}
+                      </div>
+                    )}
 
-                      {/* SAE Competitions */}
-                      {activeSociety.saeCompetitions && activeSociety.saeCompetitions.length > 0 && (
-                        <div className="pt-2">
-                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-3">
-                            National Competitions &amp; Flagship Challenges
-                          </h3>
-                          <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
-                            {activeSociety.saeCompetitions.map((comp, idx) => (
-                              <div
-                                key={idx}
-                                className="py-3 px-1 sm:px-3 flex items-center gap-3.5 hover:bg-foreground/[0.015] transition-colors w-full"
-                              >
-                                <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
-                                  {idx + 1}
-                                </span>
-                                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                                  {comp}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
+                    {/* Objectives */}
+                    {activeSociety.objectives && activeSociety.objectives.length > 0 && (
+                      <div className="space-y-3 sm:space-y-4 pt-2">
+                        <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground">
+                          Chapter Objectives
+                        </h3>
+                        <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
+                          {activeSociety.objectives.map((obj, idx) => (
+                            <div
+                              key={idx}
+                              className="py-3.5 sm:py-4 px-2 sm:px-4 flex items-center gap-3.5 hover:bg-foreground/[0.015] transition-colors w-full"
+                            >
+                              <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
+                                {idx + 1}
+                              </span>
+                              <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                                {obj}
+                              </p>
+                            </div>
+                          ))}
                         </div>
-                      )}
-
-                      {/* Objectives */}
-                      {activeSociety.objectives && activeSociety.objectives.length > 0 && (
-                        <div className="pt-2">
-                          <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-3">
-                            Chapter Objectives
-                          </h3>
-                          <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
-                            {activeSociety.objectives.map((obj, idx) => (
-                              <div
-                                key={idx}
-                                className="py-3 px-1 sm:px-3 flex items-center gap-3.5 hover:bg-foreground/[0.015] transition-colors w-full"
-                              >
-                                <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
-                                  {idx + 1}
-                                </span>
-                                <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
-                                  {obj}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </>
                 )}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </section>
-
-        {/* Wave Divider A -> B */}
-        <WaveDividerAB />
-
-        {/* ========================================================================= */}
-        {/* 4. SECTION 2: Canvas B (#F3F3F2 / #18181B) — Executive Office Bearers      */}
-        {/* ========================================================================= */}
-        <section className="py-6 sm:py-8 md:py-10 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-4 sm:mb-6">
-              {activeSociety.id === "csi" ? "CSI OFFICE BEARERS" : "EXECUTIVE COMMITTEE & OFFICE BEARERS"}
-            </h2>
-
-            {/* Official Publications DataGrid Table for Office Bearers */}
-            <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
-              <div className="overflow-x-auto bg-transparent">
-                <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
-                  <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
-                    <tr>
-                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
-                        S.No
-                      </th>
-                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[180px]">
-                        Position
-                      </th>
-                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[200px]">
-                        Name
-                      </th>
-                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[140px]">
-                        Department
-                      </th>
-                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-36 text-right">
-                        Batch
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border/40 font-libre">
-                    {/* Render active chapter's office bearers */}
-                    {activeSociety.officeBearers && activeSociety.officeBearers.length > 0 &&
-                      activeSociety.officeBearers.map((bearer, idx) => (
-                        <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {idx + 1}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre font-bold text-xs sm:text-sm text-primary whitespace-nowrap">
-                            {bearer.position}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
-                            {bearer.name}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
-                            {bearer.department}
-                          </td>
-                          <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {bearer.batch}
-                          </td>
-                        </tr>
-                      ))}
-
-                    {/* IETE Counselors */}
-                    {activeSociety.id === "iete" && activeSociety.ieteCounselors && activeSociety.ieteCounselors.length > 0 &&
-                      activeSociety.ieteCounselors.map((c, idx) => (
-                        <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {c.sno}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre font-bold text-xs sm:text-sm text-primary whitespace-nowrap">
-                            {c.role}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
-                            {c.name}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
-                            {c.department}
-                          </td>
-                          <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {c.codeInfo || "Faculty Counselor"}
-                          </td>
-                        </tr>
-                      ))}
-
-                    {/* SAE Office Bearers */}
-                    {activeSociety.id === "sae" && activeSociety.saeOfficeBearers && activeSociety.saeOfficeBearers.length > 0 &&
-                      activeSociety.saeOfficeBearers.map((s, idx) => (
-                        <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {s.sno}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre font-bold text-xs sm:text-sm text-primary whitespace-nowrap">
-                            {s.position}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
-                            {s.name}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
-                            {s.department}
-                          </td>
-                          <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {s.roleCategory}
-                          </td>
-                        </tr>
-                      ))}
-
-                    {/* ISHRAE Office Bearers */}
-                    {activeSociety.id === "ishrae" && activeSociety.ishraeOfficeBearers && activeSociety.ishraeOfficeBearers.length > 0 &&
-                      activeSociety.ishraeOfficeBearers.map((ish, idx) => (
-                        <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {ish.sno}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre font-bold text-xs sm:text-sm text-primary whitespace-nowrap">
-                            {ish.position}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
-                            {ish.name}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
-                            {ish.department}
-                          </td>
-                          <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {ish.roleCategory}
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
               </div>
-            </DataGridContainer>
-          </div>
-        </section>
+            </section>
 
-        {/* Wave Divider B -> A */}
-        <WaveDividerBA />
+            {/* Wave Divider A -> B */}
+            <WaveDividerAB />
 
-        {/* ========================================================================= */}
-        {/* 5. SECTION 3: Canvas A (White / #121214) — Technical Events & Activities  */}
-        {/* ========================================================================= */}
-        <section className="py-6 sm:py-8 md:py-10 bg-white dark:bg-[#121214] transition-colors">
-          <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-4 sm:mb-6">
-              Activities
-            </h2>
+            {/* ========================================================================= */}
+            {/* 4. SECTION 2: Canvas B (#F3F3F2 / #18181B) — Executive Office Bearers      */}
+            {/* ========================================================================= */}
+            <section className="py-10 sm:py-14 md:py-16 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+              <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-5 sm:mb-6">
+                  {activeSociety.id === "csi" ? "CSI Office Bearers" : "Executive Committee & Office Bearers"}
+                </h2>
 
-            {/* Official Publications DataGrid Table for Activities */}
-            <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
-              <div className="overflow-x-auto bg-transparent">
-                <table className="w-full text-left border-collapse min-w-[760px] text-xs sm:text-sm">
-                  <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
-                    <tr>
-                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
-                        S.No
-                      </th>
-                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[200px]">
-                        Name Of the Workshop
-                      </th>
-                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[240px]">
-                        Resource Person
-                      </th>
-                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-28">
-                        Date
-                      </th>
-                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-center w-36">
-                        No. Of Participants
-                      </th>
-                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[200px]">
-                        Co-Ordinators
-                      </th>
-                      <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-center w-24">
-                        View
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border/40 font-libre">
-                    {/* CSI Activities */}
-                    {activeSociety.id === "csi" && activeSociety.activitiesList && activeSociety.activitiesList.length > 0 &&
-                      activeSociety.activitiesList.map((act) => (
-                        <tr key={act.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {act.sno}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
-                            {act.name}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground leading-relaxed">
-                            {act.resourcePerson}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {act.date}
-                          </td>
-                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
-                            {act.participants}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">
-                            {act.coordinators}
-                          </td>
-                          <td className="py-3.5 px-4 text-center font-libre whitespace-nowrap">
-                            {act.reportUrl ? (
-                              <a
-                                href={act.reportUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-oswald font-bold uppercase tracking-wider bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs border border-primary/20 shadow-2xs"
-                              >
-                                View
-                              </a>
-                            ) : (
-                              <span className="text-muted-foreground text-xs">—</span>
-                            )}
-                          </td>
+                {/* Official Publications DataGrid Table for Office Bearers */}
+                <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                  <div className="overflow-x-auto bg-transparent">
+                    <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                      <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-xs font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                        <tr>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
+                            S.No
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[180px]">
+                            Position
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[200px]">
+                            Name
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[140px]">
+                            Department
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-36 text-right">
+                            Batch
+                          </th>
                         </tr>
-                      ))}
+                      </thead>
+                      <tbody className="divide-y divide-border/40 font-libre">
+                        {/* Render active chapter's office bearers */}
+                        {activeSociety.officeBearers && activeSociety.officeBearers.length > 0 &&
+                          activeSociety.officeBearers.map((bearer, idx) => (
+                            <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                              <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {idx + 1}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                {bearer.position}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
+                                {bearer.name}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                {bearer.department}
+                              </td>
+                              <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {bearer.batch}
+                              </td>
+                            </tr>
+                          ))}
 
-                    {/* IETE Activities */}
-                    {activeSociety.id === "iete" && activeSociety.ieteActivities && activeSociety.ieteActivities.length > 0 &&
-                      activeSociety.ieteActivities.map((ia) => (
-                        <tr key={ia.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {ia.sno}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
-                            {ia.eventName}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground leading-relaxed">
-                            {ia.resourcePerson}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {ia.date}
-                          </td>
-                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
-                            {ia.participants}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground">
-                            Audience: {ia.targetAudience}
-                          </td>
-                          <td className="py-3.5 px-4 text-center font-libre text-muted-foreground text-xs whitespace-nowrap">
-                            —
-                          </td>
-                        </tr>
-                      ))}
+                        {/* IETE Counselors */}
+                        {activeSociety.id === "iete" && activeSociety.ieteCounselors && activeSociety.ieteCounselors.length > 0 &&
+                          activeSociety.ieteCounselors.map((c, idx) => (
+                            <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                              <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {c.sno}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                {c.role}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
+                                {c.name}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                {c.department}
+                              </td>
+                              <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {c.codeInfo || "Faculty Counselor"}
+                              </td>
+                            </tr>
+                          ))}
 
-                    {/* SAE Activities */}
-                    {activeSociety.id === "sae" && activeSociety.saeActivities && activeSociety.saeActivities.length > 0 &&
-                      activeSociety.saeActivities.map((sa) => (
-                        <tr key={sa.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {sa.sno}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
-                            {sa.eventTitle}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground leading-relaxed">
-                            {sa.typeOfEvent}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {sa.date}
-                          </td>
-                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
-                            Active Chapter
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">
-                            SAEINDIA Collegiate Chapter
-                          </td>
-                          <td className="py-3.5 px-4 text-center font-libre whitespace-nowrap">
-                            {sa.reportUrl ? (
-                              <a
-                                href={sa.reportUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-oswald font-bold uppercase tracking-wider bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs border border-primary/20 shadow-2xs"
-                              >
-                                View
-                              </a>
-                            ) : (
-                              <span className="text-muted-foreground text-xs">—</span>
-                            )}
-                          </td>
-                        </tr>
-                      ))}
+                        {/* SAE Office Bearers */}
+                        {activeSociety.id === "sae" && activeSociety.saeOfficeBearers && activeSociety.saeOfficeBearers.length > 0 &&
+                          activeSociety.saeOfficeBearers.map((s, idx) => (
+                            <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                              <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {s.sno}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                {s.position}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
+                                {s.name}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                {s.department}
+                              </td>
+                              <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {s.roleCategory}
+                              </td>
+                            </tr>
+                          ))}
 
-                    {/* ISHRAE Activities */}
-                    {activeSociety.id === "ishrae" && activeSociety.ishraeActivities && activeSociety.ishraeActivities.length > 0 &&
-                      activeSociety.ishraeActivities.map((ishAct) => (
-                        <tr key={ishAct.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            {ishAct.sno}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
-                            {ishAct.activityTitle}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground leading-relaxed">
-                            {ishAct.keyMandate}
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                            Annual Cycle
-                          </td>
-                          <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
-                            Student Delegates
-                          </td>
-                          <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">
-                            {ishAct.scopeAndBenefit}
-                          </td>
-                          <td className="py-3.5 px-4 text-center font-libre text-muted-foreground text-xs whitespace-nowrap">
-                            —
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
+                        {/* ISHRAE Office Bearers */}
+                        {activeSociety.id === "ishrae" && activeSociety.ishraeOfficeBearers && activeSociety.ishraeOfficeBearers.length > 0 &&
+                          activeSociety.ishraeOfficeBearers.map((ish, idx) => (
+                            <tr key={idx} className="hover:bg-foreground/[0.02] transition-colors">
+                              <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {ish.sno}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                {ish.position}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
+                                {ish.name}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                {ish.department}
+                              </td>
+                              <td className="py-3.5 px-4 text-right font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {ish.roleCategory}
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </DataGridContainer>
               </div>
-            </DataGridContainer>
-          </div>
-        </section>
+            </section>
+
+            {/* Wave Divider B -> A */}
+            <WaveDividerBA />
+
+            {/* ========================================================================= */}
+            {/* 5. SECTION 3: Canvas A (White / #121214) — Technical Events & Activities  */}
+            {/* ========================================================================= */}
+            <section className="py-10 sm:py-14 md:py-16 bg-white dark:bg-[#121214] transition-colors">
+              <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-5 sm:mb-6">
+                  Activities
+                </h2>
+
+                {/* Official Publications DataGrid Table for Activities */}
+                <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+                  <div className="overflow-x-auto bg-transparent">
+                    <table className="w-full text-left border-collapse min-w-[760px] text-xs sm:text-sm">
+                      <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-xs font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                        <tr>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
+                            S.No
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[200px]">
+                            Name Of the Workshop
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[240px]">
+                            Resource Person
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-28">
+                            Date
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-center w-36">
+                            No. Of Participants
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[200px]">
+                            Co-Ordinators
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-center w-24">
+                            View
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-border/40 font-libre">
+                        {/* CSI Activities */}
+                        {activeSociety.id === "csi" && activeSociety.activitiesList && activeSociety.activitiesList.length > 0 &&
+                          activeSociety.activitiesList.map((act) => (
+                            <tr key={act.sno} className="hover:bg-foreground/[0.02] transition-colors">
+                              <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {act.sno}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
+                                {act.name}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground leading-relaxed">
+                                {act.resourcePerson}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {act.date}
+                              </td>
+                              <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                {act.participants}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">
+                                {act.coordinators}
+                              </td>
+                              <td className="py-3.5 px-4 text-center font-libre whitespace-nowrap">
+                                {act.reportUrl ? (
+                                  <a
+                                    href={act.reportUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-oswald font-bold uppercase tracking-wider bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs border border-primary/20 shadow-2xs"
+                                  >
+                                    View
+                                  </a>
+                                ) : (
+                                  <span className="text-muted-foreground text-xs">—</span>
+                                )}
+                              </td>
+                            </tr>
+                          ))}
+
+                        {/* IETE Activities */}
+                        {activeSociety.id === "iete" && activeSociety.ieteActivities && activeSociety.ieteActivities.length > 0 &&
+                          activeSociety.ieteActivities.map((ia) => (
+                            <tr key={ia.sno} className="hover:bg-foreground/[0.02] transition-colors">
+                              <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {ia.sno}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
+                                {ia.eventName}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground leading-relaxed">
+                                {ia.resourcePerson}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {ia.date}
+                              </td>
+                              <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                {ia.participants}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground">
+                                Audience: {ia.targetAudience}
+                              </td>
+                              <td className="py-3.5 px-4 text-center font-libre text-muted-foreground text-xs whitespace-nowrap">
+                                —
+                              </td>
+                            </tr>
+                          ))}
+
+                        {/* SAE Activities */}
+                        {activeSociety.id === "sae" && activeSociety.saeActivities && activeSociety.saeActivities.length > 0 &&
+                          activeSociety.saeActivities.map((sa) => (
+                            <tr key={sa.sno} className="hover:bg-foreground/[0.02] transition-colors">
+                              <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {sa.sno}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
+                                {sa.eventTitle}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground leading-relaxed">
+                                {sa.typeOfEvent}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {sa.date}
+                              </td>
+                              <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                Active Chapter
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">
+                                SAEINDIA Collegiate Chapter
+                              </td>
+                              <td className="py-3.5 px-4 text-center font-libre whitespace-nowrap">
+                                {sa.reportUrl ? (
+                                  <a
+                                    href={sa.reportUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-oswald font-bold uppercase tracking-wider bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs border border-primary/20 shadow-2xs"
+                                  >
+                                    View
+                                  </a>
+                                ) : (
+                                  <span className="text-muted-foreground text-xs">—</span>
+                                )}
+                              </td>
+                            </tr>
+                          ))}
+
+                        {/* ISHRAE Activities */}
+                        {activeSociety.id === "ishrae" && activeSociety.ishraeActivities && activeSociety.ishraeActivities.length > 0 &&
+                          activeSociety.ishraeActivities.map((ishAct) => (
+                            <tr key={ishAct.sno} className="hover:bg-foreground/[0.02] transition-colors">
+                              <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                {ishAct.sno}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground">
+                                {ishAct.activityTitle}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground leading-relaxed">
+                                {ishAct.keyMandate}
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                                Annual Cycle
+                              </td>
+                              <td className="py-3.5 px-4 text-center font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
+                                Student Delegates
+                              </td>
+                              <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">
+                                {ishAct.scopeAndBenefit}
+                              </td>
+                              <td className="py-3.5 px-4 text-center font-libre text-muted-foreground text-xs whitespace-nowrap">
+                                —
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </DataGridContainer>
+              </div>
+            </section>
+          </motion.div>
+        </AnimatePresence>
 
         {/* Wave Divider A -> B */}
         <WaveDividerAB />
@@ -768,9 +754,9 @@ function ProfessionalSocietiesPage() {
         {/* ========================================================================= */}
         {/* 6. SECTION 4: Canvas B (#F3F3F2 / #18181B) — Membership Privileges        */}
         {/* ========================================================================= */}
-        <section className="py-6 sm:py-8 md:py-10 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
+        <section className="py-10 sm:py-14 md:py-16 bg-[#F3F3F2] dark:bg-[#18181B] transition-colors">
           <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-4 sm:mb-6">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-5 sm:mb-6">
               Professional Membership Privileges &amp; Industry Pathways
             </h2>
 
