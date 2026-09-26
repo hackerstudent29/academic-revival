@@ -37,10 +37,14 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
     const lenis = (window as any).lenis;
     if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
+      lenis.scrollTo(0, {
+        duration: 1.1,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -389,20 +393,22 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
         </div>
       </footer>
 
-      {/* ── Scroll-to-Top Floating Arrow Button (Fixed at full right outside main content) ── */}
+      {/* ── Scroll-to-Top Floating Arrow Button (Round shape & Glassmorphism slightly above Chatbot Widget) ── */}
       <AnimatePresence>
         {showScrollTop && (
           <motion.button
             type="button"
-            initial={{ opacity: 0, y: 20, scale: 0.85 }}
+            initial={{ opacity: 0, y: 16, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.85 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            exit={{ opacity: 0, y: 16, scale: 0.8 }}
+            whileHover={{ scale: 1.1, y: -2 }}
+            whileTap={{ scale: 0.92 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             onClick={scrollToTop}
             aria-label="Scroll to top"
-            className="fixed bottom-6 right-4 sm:right-6 md:right-8 z-[60] group flex items-center justify-center h-11 w-11 sm:h-12 sm:w-12 bg-[#9E2339] dark:bg-[#E11D48] text-white rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs shadow-2xl border border-white/20 hover:bg-[#861E30] dark:hover:bg-[#BE123C] transition-all duration-300 focus:outline-none cursor-pointer"
+            className="fixed bottom-20 sm:bottom-22 right-6 sm:right-10 md:right-12 z-[99990] group flex items-center justify-center h-11 w-11 sm:h-12 sm:w-12 rounded-full backdrop-blur-xl bg-white/75 dark:bg-[#18181B]/80 text-[#9E2339] dark:text-[#E11D48] border border-white/50 dark:border-white/15 shadow-[0_8px_30px_rgb(0,0,0,0.16)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.6)] hover:bg-white/95 dark:hover:bg-[#1E1E24]/95 hover:border-primary/50 hover:shadow-[0_8px_25px_rgba(158,35,57,0.25)] transition-all duration-300 focus:outline-none cursor-pointer"
           >
-            <ChevronUp className="w-5 h-5 sm:w-6 sm:h-6 text-white transition-transform duration-300 group-hover:-translate-y-0.5" />
+            <ChevronUp className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5] transition-transform duration-300 group-hover:-translate-y-1" />
           </motion.button>
         )}
       </AnimatePresence>
