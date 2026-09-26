@@ -271,7 +271,7 @@ export function AdmissionsHubPage() {
             {filteredCourses.length > 0 ? (
               filteredCourses.map((course) => (
                 <div
-                  key={course.id}
+                  key={course.slug}
                   className="py-4 px-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-foreground/[0.015] transition-colors"
                 >
                   <div>
@@ -282,13 +282,13 @@ export function AdmissionsHubPage() {
                       {course.name}
                     </h3>
                     <p className="text-xs sm:text-sm text-foreground/80 font-libre line-clamp-1 mt-0.5">
-                      {course.tagline || course.overview?.slice(0, 120)}
+                      {course.description}
                     </p>
                   </div>
                   <div className="shrink-0">
                     <Link
                       to="/programmes/$courseId"
-                      params={{ courseId: course.id }}
+                      params={{ courseId: course.slug }}
                       className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-foreground text-background font-oswald font-bold text-xs uppercase tracking-wider rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs hover:bg-primary hover:text-white transition-colors"
                     >
                       <span>Course Details</span>
