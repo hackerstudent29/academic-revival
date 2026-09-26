@@ -95,124 +95,135 @@ export function HomePage() {
         id="hero"
       >
         {/* ========================================================================= */}
-        {/* 1. BRAND NEW MOBILE-ONLY HERO SECTION (< lg screens)                      */}
+        {/* 1. MSAJCE SIGNATURE MOBILE HERO SECTION (< lg screens)                   */}
         {/* ========================================================================= */}
-        <div className="block lg:hidden relative w-full bg-[#121214] text-white overflow-hidden py-6 px-4 sm:px-6 flex flex-col justify-between">
-          {/* Ambient Background Glow & Photography Vignette */}
-          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-            <img
-              src="/images/hero_dsc6410.jpg"
-              alt="MSAJCE Campus"
-              className="w-full h-full object-cover opacity-20 filter contrast-125 select-none"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = "/images/eligibility_hero.jpg";
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#121214]/90 via-[#121214]/70 to-[#121214]" />
-            <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/25 rounded-full filter blur-3xl pointer-events-none" />
-          </div>
-
-          <div className="relative z-10 space-y-4">
-            {/* Top Badge Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-primary/20 border border-primary/40 text-primary-foreground font-oswald text-[11px] font-bold uppercase tracking-widest">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
-              <span>Engineering Excellence · Chennai OMR</span>
+        <div className="block lg:hidden relative w-full bg-background text-foreground overflow-hidden py-6 px-4 sm:px-6 flex flex-col gap-6">
+          
+          {/* Dynamic Text Category & Logo */}
+          <div className="flex flex-col gap-4">
+            <div className="pl-2">
+              <DynamicText />
             </div>
-
-            {/* Logo showcase */}
-            <div className="w-full max-w-[320px] sm:max-w-[380px] py-1">
+            <div className="pl-2 py-1 flex items-center justify-start min-h-[45px]">
               <img
                 src="/logos/college-name-only-logo.png"
                 alt="Mohamed Sathak A.J. College of Engineering"
-                className="w-full h-auto object-contain brightness-200 filter"
+                className="w-[92%] max-w-[360px] h-auto object-contain object-left"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = "/logos/college%20name%20only%20logo.PNG";
                 }}
               />
             </div>
+          </div>
 
-            <p className="text-xs sm:text-sm font-libre text-neutral-300 font-medium leading-relaxed max-w-sm">
-              Empowering future engineering leaders through industry-aligned B.E, B.Tech, M.E & Ph.D degrees on Chennai's Siruseri IT Corridor.
-            </p>
-
-            {/* Mobile Touch Carousel of Key Highlights */}
-            <div className="pt-2">
-              <div 
-                ref={stripRef}
-                className="flex snap-x snap-mandatory gap-3 overflow-x-auto scrollbar-none pb-2" 
-                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-              >
-                {[
-                  { src: "/images/placement/03interviewroom.jpg", fallback: "/images/eligibility_hero.jpg", tag: "Placements", title: "90%+ Placement Record", desc: "TCS, Zoho, Cognizant & Infosys" },
-                  { src: "/images/placement/06LAB.jpg", fallback: "/images/eligibility_hero.jpg", tag: "Research", title: "AICTE IDEA Labs", desc: "Advanced CNC & Robotics Rigs" },
-                  { src: "/images/placement/05classroom.jpg", fallback: "/images/eligibility_hero.jpg", tag: "Training", title: "Career Skill Suites", desc: "Aptitude & Technical Prep" },
-                  { src: "/images/hero_dsc6410.jpg", fallback: "/DSC06410.JPG", tag: "Heritage", title: "25+ Years Legacy", desc: "Established in 2001" },
-                ].map((item) => (
-                  <div
-                    key={item.tag}
-                    className="relative h-[170px] w-[78vw] max-w-[270px] shrink-0 snap-center overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-white/15 bg-neutral-900/90 shadow-lg"
-                  >
-                    <img
-                      src={item.src}
-                      alt={item.title}
-                      loading="lazy"
-                      className="h-full w-full object-cover brightness-[0.7]"
-                      onError={(e) => {
-                        if (item.fallback) {
-                          (e.target as HTMLImageElement).src = item.fallback;
-                        }
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-3.5 flex flex-col justify-end">
-                      <span className="inline-flex self-start rounded-xs bg-primary px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-white font-oswald mb-1">
-                        {item.tag}
-                      </span>
-                      <h3 className="text-sm font-bold font-oswald uppercase text-white leading-tight">
-                        {item.title}
-                      </h3>
-                      <p className="text-[11px] font-libre text-neutral-300 font-medium leading-tight">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Mobile CTA Buttons */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              <Link
-                to="/admissions"
-                search={{} as any}
-                className="group relative overflow-hidden inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-white px-5 py-3 text-xs font-bold uppercase tracking-widest font-oswald shadow-md rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs w-full text-center"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-1.5">
-                  Apply for Admission &raquo;
-                </span>
-              </Link>
-              <Link
-                to="/academics"
-                className="group relative overflow-hidden inline-flex items-center justify-center bg-white/10 hover:bg-white/15 border border-white/20 text-white px-5 py-3 text-xs font-bold uppercase tracking-widest font-oswald shadow-md rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs w-full text-center"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-1.5">
-                  Explore Branches &raquo;
-                </span>
-              </Link>
-            </div>
-
-            {/* Fast Nav Ribbon */}
-            <div className="flex flex-wrap items-center justify-between gap-1.5 pt-3 border-t border-white/10 text-[11px] font-bold font-oswald uppercase tracking-wider text-neutral-300">
-              <Link to="/admissions" search={{} as any} className="hover:text-primary transition-colors">Admissions</Link>
-              <span>•</span>
-              <Link to="/academics" className="hover:text-primary transition-colors">Courses</Link>
-              <span>•</span>
-              <Link to="/placements" className="hover:text-primary transition-colors">Placements</Link>
-              <span>•</span>
-              <Link to="/research" search={{} as any} className="hover:text-primary transition-colors">Research</Link>
-              <span>•</span>
-              <Link to="/contact" className="hover:text-primary transition-colors">Contact</Link>
+          {/* Hero Showcase Image Banner (Maroon Red Gradient Overlay) */}
+          <div className="relative w-full rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs overflow-hidden shadow-xl aspect-[16/9] min-h-[200px]">
+            <img
+              src="/images/hero_dsc6410.jpg"
+              alt="MSAJCE Campus Heritage"
+              className="w-full h-full object-cover select-none pointer-events-none brightness-[0.8]"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = "/images/eligibility_hero.jpg";
+              }}
+            />
+            {/* Signature Maroon Red Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#671422]/90 via-[#861E30]/40 to-transparent flex flex-col justify-end p-4">
+              <span className="inline-flex self-start rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary px-3 py-1 text-[10px] font-black uppercase tracking-[0.15em] text-white font-oswald shadow-xs mb-1.5">
+                25+ Years Legacy
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black font-oswald uppercase text-white leading-tight drop-shadow-md">
+                ENGINEERING EXCELLENCE
+              </h3>
+              <p className="text-xs font-libre text-white/90 font-medium leading-relaxed mt-0.5 line-clamp-2">
+                NBA accredited, AICTE approved pathways on Chennai's OMR Siruseri IT Corridor.
+              </p>
             </div>
           </div>
+
+          {/* Mobile Snap Carousel of Key Highlights */}
+          <div className="w-full space-y-2">
+            <h4 className="text-xs font-bold font-oswald uppercase tracking-widest text-primary pl-1">
+              Campus Showcase
+            </h4>
+            <div 
+              ref={stripRef}
+              className="flex snap-x snap-mandatory gap-3 overflow-x-auto scrollbar-none pb-2" 
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {[
+                { src: "/images/placement/03interviewroom.jpg", fallback: "/images/eligibility_hero.jpg", tag: "Placements", title: "90%+ Placement Drives", desc: "TCS, Zoho, Cognizant & Infosys" },
+                { src: "/images/placement/06LAB.jpg", fallback: "/images/eligibility_hero.jpg", tag: "Research", title: "AICTE IDEA Labs", desc: "Advanced CNC & Robotics Rigs" },
+                { src: "/images/placement/05classroom.jpg", fallback: "/images/eligibility_hero.jpg", tag: "Training", title: "Career Skill Suites", desc: "Aptitude & Technical Prep" },
+                { src: "/images/hero_dsc6419.jpg", fallback: "/DSC06419.JPG", tag: "Campus Life", title: "Vibrant Community", desc: "State-of-the-art Hostels & Sports" },
+              ].map((item) => (
+                <div
+                  key={item.tag}
+                  className="relative h-[160px] w-[78vw] max-w-[270px] shrink-0 snap-center overflow-hidden rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs border border-border bg-white dark:bg-[#121214] shadow-md"
+                >
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover brightness-[0.75]"
+                    onError={(e) => {
+                      if (item.fallback) {
+                        (e.target as HTMLImageElement).src = item.fallback;
+                      }
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-3.5 flex flex-col justify-end">
+                    <span className="inline-flex self-start rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs bg-primary px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-white font-oswald mb-1">
+                      {item.tag}
+                    </span>
+                    <h5 className="text-xs font-bold font-oswald uppercase text-white leading-tight">
+                      {item.title}
+                    </h5>
+                    <p className="text-[10.5px] font-libre text-white/80 font-medium leading-tight mt-0.5">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Liquid Ocean Wave Mobile Navigation Buttons */}
+          <div className="flex flex-col gap-2.5 pt-1">
+            {heroLinks.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                search={{} as any}
+                className="group relative overflow-hidden flex items-center justify-between border border-stone-300 dark:border-neutral-700 bg-stone-200/90 dark:bg-neutral-800 px-4 py-3 text-xs font-bold uppercase tracking-wider text-foreground dark:text-white font-oswald shadow-xs transition-colors rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs w-full"
+              >
+                {/* Liquid Ocean Wave Fill Overlay */}
+                <span className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
+                  <span className="absolute inset-x-0 top-0 h-[140%] bg-[#9E2339] translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    {/* Ocean Wave Crest SVG (Primary) */}
+                    <span className="absolute -top-3.5 left-0 w-[200%] h-4 pointer-events-none block">
+                      <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,-20 1200,40 L1200,120 L0,120 Z" />
+                      </svg>
+                    </span>
+                    {/* Secondary Depth Layer Wave */}
+                    <span className="absolute -top-4 left-0 w-[200%] h-5 opacity-40 pointer-events-none block">
+                      <svg className="w-full h-full fill-[#9E2339] animate-ocean-wave-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M0,30 C200,-30 400,90 600,10 C800,-40 1000,70 1200,20 L1200,120 L0,120 Z" />
+                      </svg>
+                    </span>
+                  </span>
+                </span>
+
+                <span className="relative z-10 flex items-center gap-1.5 text-foreground dark:text-white group-hover:text-white transition-colors duration-300">
+                  {item.label}
+                </span>
+                <span className="relative z-10 text-primary group-hover:text-white transition-colors duration-300">
+                  &raquo;
+                </span>
+              </Link>
+            ))}
+          </div>
+
         </div>
 
         {/* ========================================================================= */}
