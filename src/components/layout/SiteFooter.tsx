@@ -25,14 +25,17 @@ const socials = [
 export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean } = {}) {
   const footerRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
   const bottomBarRef = useRef<HTMLDivElement>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [bgRevealed, setBgRevealed] = useState(false);
   const [bottomBarRevealed, setBottomBarRevealed] = useState(false);
+  const [contactRevealed, setContactRevealed] = useState(false);
   const [contentRevealed, setContentRevealed] = useState(false);
 
   const effectiveBgRevealed = externalRevealed !== undefined ? externalRevealed : bgRevealed;
   const effectiveBottomBarRevealed = externalRevealed !== undefined ? externalRevealed : bottomBarRevealed;
+  const effectiveContactRevealed = externalRevealed !== undefined ? externalRevealed : contactRevealed;
   const effectiveContentRevealed = externalRevealed !== undefined ? externalRevealed : contentRevealed;
 
   // Track scroll position to reveal Scroll-to-Top arrow button and Footer Content
@@ -45,6 +48,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
 
       const footerEl = footerRef.current;
       const contentEl = contentRef.current;
+      const contactEl = contactRef.current;
       const bottomBarEl = bottomBarRef.current;
       const canvasEl = document.querySelector(".site-main-canvas") as HTMLElement | null;
 
@@ -56,6 +60,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
         if (totalHeight <= viewportHeight + 100) {
           setBgRevealed(true);
           setBottomBarRevealed(true);
+          setContactRevealed(true);
           setContentRevealed(true);
           ticking = false;
           return;
@@ -84,7 +89,27 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
             setBottomBarRevealed(isBgOpen);
           }
 
-          // 3. Top Section (Brand Logo, Headings & Navigation Columns):
+          // 3. Contact Details (Phone numbers, Gmail, Address):
+          // Renders with animation as soon as the half screen uncovers the contact details area!
+          if (contactEl) {
+            const contactRect = contactEl.getBoundingClientRect();
+            const footerHeight = footerEl.offsetHeight || 600;
+            const isContactOpen =
+              canvasRect.bottom <= contactRect.bottom + 50 ||
+              canvasRect.bottom <= viewportHeight - Math.min(260, footerHeight * 0.38);
+            const isContactClose =
+              canvasRect.bottom > contactRect.bottom + 110 &&
+              canvasRect.bottom > viewportHeight - Math.min(200, footerHeight * 0.28);
+            setContactRevealed((prev) => {
+              if (isContactOpen && !prev) return true;
+              if (isContactClose && prev) return false;
+              return prev;
+            });
+          } else {
+            setContactRevealed(isBgOpen);
+          }
+
+          // 4. Top Section (Brand Logo, Headings & Navigation Columns):
           // Unrevealed section stays hidden until the canvas uncovers it!
           const contentOpenThreshold = contentRect.top + 100;
           const contentCloseThreshold = contentRect.top + 160;
@@ -100,6 +125,7 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
           const remainingScroll = totalHeight - viewportHeight - scrollY;
           setBgRevealed(remainingScroll < footerHeight - 40);
           setBottomBarRevealed(remainingScroll < footerHeight - 40);
+          setContactRevealed(remainingScroll < footerHeight * 0.65);
           setContentRevealed(remainingScroll <= 140);
         }
       }
@@ -228,64 +254,80 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
         {/* ── Main Grid (Lightweight Staggered Component Animations) ── */}
         <div ref={contentRef} className="relative z-10 mx-auto w-full max-w-[1440px] grid grid-cols-12 gap-8 px-4 sm:px-6 md:px-8 xl:px-12 py-12 md:py-16 lg:py-20">
           {/* ── Col 1: Brand & Contact Info ── */}
-          <motion.div
-            custom={0}
-            variants={columnVariants}
-            initial="hidden"
-            animate={effectiveContentRevealed ? "visible" : "hidden"}
-            className="col-span-12 lg:col-span-4 will-change-transform"
-          >
-            <Link to="/" className="inline-block group focus:outline-none" aria-label="MSAJCE Home">
-              <svg
-                className="h-16 sm:h-20 md:h-22 lg:h-24 w-auto text-white transition-transform duration-300 group-hover:scale-[1.01] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
-                viewBox="30 20 670 190"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect x="30" y="30" width="500" height="1.5" fill="currentColor" />
-                <text
-                  x="30"
-                  y="95"
-                  fontFamily="Georgia,'Times New Roman',serif"
-                  fontWeight="700"
-                  fontSize="52"
-                  fill="currentColor"
-                  letterSpacing="4"
+          <div className="col-span-12 lg:col-span-4 flex flex-col justify-between">
+            {/* Top Brand Logo & Description */}
+            <motion.div
+              custom={0}
+              variants={columnVariants}
+              initial="hidden"
+              animate={effectiveContentRevealed ? "visible" : "hidden"}
+              className="will-change-transform"
+            >
+              <Link to="/" className="inline-block group focus:outline-none" aria-label="MSAJCE Home">
+                <svg
+                  className="h-16 sm:h-20 md:h-22 lg:h-24 w-auto text-white transition-transform duration-300 group-hover:scale-[1.01] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+                  viewBox="30 20 670 190"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  MSAJ<tspan fontSize="66">C</tspan>EA
-                </text>
-                <text
-                  x="34"
-                  y="130"
-                  fontFamily="Georgia,'Times New Roman',serif"
-                  fontWeight="400"
-                  fontSize="20"
-                  fill="currentColor"
-                  letterSpacing="6"
-                >
-                  MOHAMED SATHAK A.J. COLLEGE
-                </text>
-                <text
-                  x="120"
-                  y="160"
-                  fontFamily="Georgia,'Times New Roman',serif"
-                  fontWeight="400"
-                  fontSize="20"
-                  fill="currentColor"
-                  letterSpacing="6"
-                >
-                  OF ENGINEERING &amp; ARCHITECTURE
-                </text>
-              </svg>
-            </Link>
+                  <rect x="30" y="30" width="500" height="1.5" fill="currentColor" />
+                  <text
+                    x="30"
+                    y="95"
+                    fontFamily="Georgia,'Times New Roman',serif"
+                    fontWeight="700"
+                    fontSize="52"
+                    fill="currentColor"
+                    letterSpacing="4"
+                  >
+                    MSAJ<tspan fontSize="66">C</tspan>EA
+                  </text>
+                  <text
+                    x="34"
+                    y="130"
+                    fontFamily="Georgia,'Times New Roman',serif"
+                    fontWeight="400"
+                    fontSize="20"
+                    fill="currentColor"
+                    letterSpacing="6"
+                  >
+                    MOHAMED SATHAK A.J. COLLEGE
+                  </text>
+                  <text
+                    x="120"
+                    y="160"
+                    fontFamily="Georgia,'Times New Roman',serif"
+                    fontWeight="400"
+                    fontSize="20"
+                    fill="currentColor"
+                    letterSpacing="6"
+                  >
+                    OF ENGINEERING &amp; ARCHITECTURE
+                  </text>
+                </svg>
+              </Link>
 
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-stone-300 font-sans drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
-              An autonomous-spirited engineering campus on Chennai's OMR IT corridor. Empowering the
-              next generation of innovators with industry-aligned education, cutting-edge facilities,
-              and global perspectives.
-            </p>
+              <p className="mt-4 max-w-md text-sm leading-relaxed text-stone-300 font-sans drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+                An autonomous-spirited engineering campus on Chennai's OMR IT corridor. Empowering the
+                next generation of innovators with industry-aligned education, cutting-edge facilities,
+                and global perspectives.
+              </p>
+            </motion.div>
 
-            {/* Contact Details */}
-            <div className="mt-6 flex flex-col items-start gap-3.5 text-sm text-stone-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+            {/* Contact Details (Address, Phone, Email - Renders with animation when half-open) */}
+            <motion.div
+              ref={contactRef}
+              initial="hidden"
+              animate={effectiveContactRevealed ? "visible" : "hidden"}
+              variants={{
+                hidden: { opacity: 0, y: 16, transition: { duration: 0.15 } },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.45, delay: 0.08, ease: FAST_EASE },
+                },
+              }}
+              className="mt-6 flex flex-col items-start gap-3.5 text-sm text-stone-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)] will-change-transform"
+            >
               <a
                 href="https://maps.google.com/?q=Mohamed+Sathak+A.J.+College+of+Engineering"
                 target="_blank"
@@ -328,8 +370,8 @@ export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean 
                 />
                 <span>admissions@msajce.edu.in</span>
               </a>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
           {/* ── Section 1: Governance ── */}
           <motion.div
