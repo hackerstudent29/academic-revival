@@ -22,9 +22,9 @@ const clubNavTabs = [
 export interface ClubCommitteeMember {
   sno: number;
   name: string;
+  department: string;
+  year: string;
   role: string;
-  designationOrDept: string;
-  responsibilities: string;
 }
 
 export interface ClubDetailedData {
@@ -41,122 +41,117 @@ export const clubsDetailedData: ClubDetailedData[] = [
     id: "sports-club",
     name: "Sports Club",
     overview:
-      "The Sports Club maintains records of sports and games events attended by students within the college, within Anna University, and outside at the regional, state, and national levels along with their achievements and awards. The club submits annual reports on sports events, oversees budget allocations, and conducts student sporting events, honoring winners with medals and trophies. All kinds of indoor and outdoor sports tournaments take place under the guidance of this club.",
+      "The Sports Club governs the institution's athletic administration, competitive fixtures, and recreational physical training. It maintains institutional records of athletic tournaments across Anna University zonal competitions, state-level championships, and national collegiate leagues. Through structured tournament schedules, specialized coaching, and regular campus fixtures, the club ensures holistic physical well-being and competitive prowess for student athletes.",
     mission:
-      "To encourage and motivate students to actively participate in various sports activities at both inter-collegiate and intra-collegiate levels under the institutional motto 'Teamwork Makes The Dream Work', fostering physical endurance, disciplined sportsmanship, and mental resilience.",
+      "To instill athletic excellence, physical endurance, and disciplined sportsmanship across the student community under the institutional ethos 'Teamwork Makes The Dream Work', empowering students to lead healthy, resilient, and collaborative lives.",
     objectives: [
-      "To build up sportsmanship, athletic integrity, and competitive spirit.",
-      "To foster intimate friendships, mutual respect, and team camaraderie across academic disciplines.",
-      "To reduce academic stress, improve physical health, and enhance general student wellness.",
-      "To improve motor skills, strategic thinking, and enhance overall employability traits.",
-      "To support in developing positive attitude, self-confidence, courage, and patience.",
-      "To provide opportunities to see the broader community closely and gain real-world teamwork experience.",
-      "To avail the opportunity to interact with athletes and sports delegates from diverse walks of life.",
+      "Cultivate disciplined sportsmanship, competitive athletic excellence, and fair-play values across all sports divisions.",
+      "Field high-performance collegiate teams for Anna University Zonal tournaments, state championships, and national invitation meets.",
+      "Provide modern athletic infrastructure, professional coaching, and tournament facilities for outdoor and indoor sporting events.",
+      "Mitigate academic stress and bolster mental resilience through structured physical conditioning and intramural recreational leagues.",
+      "Foster enduring camaraderie, peer collaboration, and inclusive community engagement through university-wide athletic initiatives.",
     ],
     committeeMembers: [
       {
         sno: 1,
         name: "Dr. K. M. Rajesh",
+        department: "Physical Education",
+        year: "Faculty",
         role: "Faculty Coordinator",
-        designationOrDept: "Director of Physical Education",
-        responsibilities: "Overall sports administration, university sports affiliation & tournament planning",
       },
       {
         sno: 2,
         name: "Mr. S. Viswanathan",
+        department: "Mechanical Engineering",
+        year: "Faculty",
         role: "Assistant Coordinator",
-        designationOrDept: "Assistant Professor, Dept. of Mechanical",
-        responsibilities: "Zonal tournament logistics, ground supervision & athletic event fixtures",
       },
       {
         sno: 3,
         name: "Vigneshwaran R.",
+        department: "Mechanical Engineering",
+        year: "IV Year",
         role: "Student President",
-        designationOrDept: "IV Year Mechanical Engineering",
-        responsibilities: "Student athletic council governance, team selections & fixture scheduling",
       },
       {
         sno: 4,
         name: "Sneha M.",
+        department: "Computer Science & Engineering",
+        year: "III Year",
         role: "Student Vice-President",
-        designationOrDept: "III Year Computer Science & Engineering",
-        responsibilities: "Women's athletics, indoor games tournament coordination & registration",
       },
       {
         sno: 5,
         name: "Mohammed Arif",
+        department: "Civil Engineering",
+        year: "III Year",
         role: "Student Secretary",
-        designationOrDept: "III Year Civil Engineering",
-        responsibilities: "Sports equipment custody, referee appointments & match scorekeeping",
       },
       {
         sno: 6,
         name: "Praveen Kumar K.",
+        department: "Electronics & Communication",
+        year: "II Year",
         role: "Joint Secretary",
-        designationOrDept: "II Year Electronics & Communication",
-        responsibilities: "Intra-mural league management, student volunteer coordination & scoreboards",
       },
     ],
   },
   {
     id: "fine-arts-club",
-    name: "Fine Arts Club (Envista Club / Artful Aesthetics)",
+    name: "Fine Arts Club",
     overview:
-      "Mohamed Sathak A.J. College of Engineering has established the Envista Fine Arts Club (Artful Aesthetics) to encourage the budding talent of our students. The club serves as a vibrant platform for students to express their thoughts, feelings, and creativity through visual and performing art forms from two dimensions to three dimensions, keeping students culturally active and creatively enriched throughout the academic year.",
+      "The Fine Arts Club (Envista Club) serves as the cultural vanguard of Mohamed Sathak A.J. College of Engineering, fostering artistic ingenuity, visual aesthetics, and theatrical expression. Serving as an open creative forum, the club nurtures latent creative talents across diverse fine arts disciplines—ranging from classical and contemporary dance, vocal ensemble, and orchestral music to fine art exhibitions, dramatics, and visual storytelling.",
     mission:
-      "To tap the inherent talents and potential of the student community at all levels, inspiring and enabling students to actively participate and develop their abilities in dance, art, singing, music, theatrical acting, and creative design, helping them relax and enjoy collegiate life.",
+      "To tap and nurture the inherent artistic talent of the student fraternity, inspiring students to attain creative mastery, emotional poise, and cultural literacy through expressive performance and multidisciplinary artistic collaborations.",
     objectives: [
-      "The main objective of the fine arts club is to encourage the budding talent of the students.",
-      "Impart skill-based training and multi-disciplinary creative activities through industry and institute collaborations.",
-      "Provide opportunities and encouragement for students to express themselves freely and boldly.",
-      "Cultivate imagination, creative ability, and introduce an artistic environment across campus.",
-      "Inspire students to make maximum contributions as creative artists and conscientious citizens.",
-      "Organize various cultural competitions, functions, and annual college celebrations (Envista Fest).",
-      "Make students confident and competitive in inter-collegiate and national cultural symposiums.",
-      "Give students an artistic outlet to enrich their passion for art and personal experience through creative culture.",
+      "Discover, mentor, and showcase emerging talent in fine arts, choreography, vocal performance, and stage acting.",
+      "Curate and execute 'Envista', the annual flagship cultural festival, alongside departmental symposium celebrations.",
+      "Facilitate specialized masterclasses, workshops, and interdisciplinary collaborations with accredited artistic institutions.",
+      "Field competitive delegations to represent MSAJCE at prestigious state and national collegiate cultural fests.",
+      "Provide an inclusive creative outlet that enriches personal artistic perspectives, aesthetic discernment, and cultural vitality.",
     ],
     committeeMembers: [
       {
         sno: 1,
         name: "Ms. S. Viswajaa",
+        department: "Information Technology",
+        year: "Faculty",
         role: "Staff Coordinator",
-        designationOrDept: "Assistant Professor, Dept. of Information Technology",
-        responsibilities: "Club faculty mentorship, annual Envista festival planning & institutional cultural supervision",
       },
       {
         sno: 2,
         name: "Mr. P. Murugan",
+        department: "Science & Humanities",
+        year: "Faculty",
         role: "Assistant Coordinator",
-        designationOrDept: "Assistant Professor, Dept. of Science & Humanities",
-        responsibilities: "Stage production, audition logistics & external cultural team coordination",
       },
       {
         sno: 3,
         name: "Kishore P.",
+        department: "Mechanical Engineering",
+        year: "IV Year",
         role: "Student President",
-        designationOrDept: "IV Year Mechanical Engineering",
-        responsibilities: "Student cultural council leadership, inter-college fest teams & budget allocation",
       },
       {
         sno: 4,
         name: "Laksha S.",
+        department: "Computer Science & Engineering",
+        year: "III Year",
         role: "Student Vice-President",
-        designationOrDept: "III Year Computer Science & Engineering",
-        responsibilities: "Creative direction, event curation, dance & musical ensemble lead",
       },
       {
         sno: 5,
         name: "Keerthana R.",
+        department: "AI & Data Science",
+        year: "III Year",
         role: "Student Secretary",
-        designationOrDept: "III Year AI & Data Science",
-        responsibilities: "Audition coordination, schedule management & performing arts registration",
       },
       {
         sno: 6,
         name: "Abdul Rahman",
+        department: "Electrical & Electronics",
+        year: "II Year",
         role: "Joint Secretary",
-        designationOrDept: "II Year Electrical & Electronics",
-        responsibilities: "Stage setup, audio-visual technical assistance & prop logistics",
       },
     ],
   },
@@ -164,121 +159,117 @@ export const clubsDetailedData: ClubDetailedData[] = [
     id: "science-club",
     name: "Science Club",
     overview:
-      "The Science Club was established with an aim to invite eminent scientists and researchers who share their knowledge with students and inspire them to acquire scientific acumen. Divided into three specialized sections—Physics, Chemistry, and General Applied Science—the club is open to all students across all engineering departments to arouse curiosity in learning science and applying it to daily engineering problems.",
+      "The Science Club cultivates foundational scientific inquiry, empirical experimentation, and analytical reasoning among engineering undergraduates. Comprising three specialized wings—Physics, Chemistry, and General Applied Sciences—the club engages eminent research scientists and academic scholars to elucidate contemporary scientific breakthroughs and guide students in transforming fundamental scientific theories into pragmatic technological solutions.",
     mission:
-      "To arouse engineers' interest in learning science outside the classroom, teach them how to apply scientific knowledge in daily life, and guide students to develop an independent, logical, and creative analytical mindset.",
+      "To ignite scientific curiosity, promote rigorous experimental methodologies outside traditional lecture halls, and nurture an inquisitive, analytical mindset capable of addressing complex technological and societal dilemmas.",
     objectives: [
-      "Solve relevant, science-based problems set within practical experimental scenarios.",
-      "Work in pairs, small groups, or independently on hands-on science activities.",
-      "Take part in practical, hands-on scientific experimentation and hardware demonstrations.",
-      "Think and communicate scientifically during experimentation and when presenting results.",
-      "Share scientific results and technical innovations using a variety of contemporary media.",
-      "Conduct seminars, workshops, science exhibitions, and quiz competitions to inculcate scientific temperament.",
-      "Organize monthly guest lectures and discussions on recent innovations in the field of science.",
-      "Decorate classrooms, libraries, and laboratories with scientific models, charts, and student inventions.",
+      "Engage students in practical, empirical experimentation, applied physics models, and chemical synthesis initiatives.",
+      "Host guest lectures and technical colloquia featuring distinguished scientists, academic researchers, and innovators.",
+      "Organize the annual National Science Day symposium, research paper expositions, and intercollegiate science quizzes.",
+      "Integrate contemporary computing and simulation tools into applied scientific investigations and empirical analysis.",
+      "Cultivate logical reasoning, scientific writing standards, and evidence-based problem-solving across all engineering cohorts.",
     ],
     committeeMembers: [
       {
         sno: 1,
         name: "Dr. N. Sulaiman",
+        department: "Physics (S&H)",
+        year: "Faculty",
         role: "Faculty Coordinator",
-        designationOrDept: "Associate Professor, Dept. of Physics (S&H)",
-        responsibilities: "Scientific seminar curation, expert guest invitations & laboratory research oversight",
       },
       {
         sno: 2,
         name: "Dr. A. Fathima",
+        department: "Chemistry (S&H)",
+        year: "Faculty",
         role: "Assistant Coordinator",
-        designationOrDept: "Assistant Professor, Dept. of Chemistry (S&H)",
-        responsibilities: "Science Day exhibitions, student experiment safety & inter-departmental science quiz",
       },
       {
         sno: 3,
         name: "Hariharan S.",
+        department: "Electronics & Communication",
+        year: "IV Year",
         role: "Student President",
-        designationOrDept: "IV Year Electronics & Communication",
-        responsibilities: "Student science wing leadership, project expo director & research presentations",
       },
       {
         sno: 4,
         name: "Aafiya Begum",
+        department: "AI & Data Science",
+        year: "III Year",
         role: "Student Vice-President",
-        designationOrDept: "III Year AI & Data Science",
-        responsibilities: "Science symposium coordination, quiz master & technical paper reviews",
       },
       {
         sno: 5,
         name: "Karthik V.",
+        department: "Mechanical Engineering",
+        year: "III Year",
         role: "Student Secretary",
-        designationOrDept: "III Year Mechanical Engineering",
-        responsibilities: "Experimental setups, laboratory apparatus logistics & demonstration scheduling",
       },
       {
         sno: 6,
         name: "Divya Dharshini",
+        department: "Computer Science & Engineering",
+        year: "II Year",
         role: "Joint Secretary",
-        designationOrDept: "II Year Computer Science & Engineering",
-        responsibilities: "Digital scientific bulletin curation, chart exhibitions & membership engagement",
       },
     ],
   },
   {
     id: "tamil-mandram",
-    name: "தமிழ் மன்றம் (Tamil Mandram)",
+    name: "Tamil Mandram",
     overview:
-      "தமிழுக்கு என்றும் அழிவில்லை. அழிவில்லாத உயர்தனிச் செம்மொழித் தமிழிற்காக இளந்தமிழ்ச் செல்வங்களிடத்தில் மட்டுமின்றி இச்சமுதாயத்திலும் ஓர் அற்புத மாற்றத்தை உருவாக்கும் நோக்கில் முகமது சதக் ஏ.ஜே. பொறியியல் கல்லூரியில் தமிழ் மன்றம் செயல்படுகிறது. நம் முன்னோர்கள் வாழ்ந்து, வழிபட்டு, வென்று விட்டுச்சென்ற வரலாற்று அடையாளங்களை மீட்டுருவாக்கம் செய்து, தமிழ் மொழியின் புகழை உலகெங்கும் கொண்டு செல்வதே இத்தமிழ் மன்றத்தின் தலையாய பணியாகும்.",
+      "தமிழ் மன்றம் (Tamil Mandram) operates as the classical literary and cultural forum dedicated to preserving, celebrating, and advancing the timeless heritage of the Tamil language. The forum serves as a platform for linguistic enrichment, classical arts, oratory, and technical discourse in Tamil, connecting students with their rich cultural roots while promoting technical and scientific literature in our mother tongue.",
     mission:
-      "தித்திக்கும் தேன்தமிழ்மொழி என்றும் வாழ வேண்டும், எங்கும் வெல்ல வேண்டும் என்ற முழக்கத்தோடு மாணவர்களிடத்தே தமிழ் ஆர்வத்தையும் தாய்மொழி அறிவையும் வளர்த்து, இளைஞர்களிடத்தில் பண்டைய தமிழ் பண்பாட்டையும், கலாச்சாரத்தையும் பரவச்செய்து தமிழில் தொழில்நுட்ப அறிவை வளர்த்தல்.",
+      "தித்திக்கும் தேன்தமிழ்மொழி என்றும் வாழ வேண்டும், எங்கும் வெல்ல வேண்டும் என்ற உன்னத குறிக்கோளோடு மாணவர்களிடையே தமிழ் ஆர்வத்தை வளர்த்து, பண்டைய தமிழ் கலாச்சார பெருமைகளை இன்றைய தலைமுறையிடம் கொண்டு சேர்த்து, நவீன அறிவியல் தொழில்நுட்பங்களை தமிழில் முன்னெடுத்தல்.",
     objectives: [
-      "மாணவர்களிடத்தே தமிழ் இலக்கியம், கவிதை, மற்றும் மேடைப் பேச்சு ஆர்வத்தை வளர்த்தல்.",
-      "இக்கால இளைஞர்களிடத்தில் பண்டைய தமிழ் பண்பாட்டையும், கலாச்சாரத்தையும் பரவச்செய்தல்.",
-      "பொறியியல் மற்றும் அறிவியல் தொழில்நுட்பக் கருத்துக்களைத் தமிழில் ஆவணப்படுத்துதல்.",
-      "சமுதாய நிகழ்வுகளுக்கேற்ப தமிழ்க் கருத்தரங்குகள், கவியரங்கம் மற்றும் பட்டிமன்றங்களை தொடர்ந்து நடத்துதல்.",
-      "இருமுகம் ஒரு அகம், பேசும் படம், ஆடு புலி, கைவண்ண காவியம், டென்ட்கொட்டாய் ஆகிய பாரம்பரிய கலை வடிவங்களை நடத்துதல்.",
-      "விடுகதை விளையாட்டு, பிரசங்கத்தின் தலைவன் மற்றும் தமிழ்க்கோர்வை போன்ற சிந்தனையைத் தூண்டும் இலக்கியப் போட்டிகளை ஆண்டுதோறும் நடத்துதல்.",
+      "மாணவர்களிடையே தமிழ் இலக்கிய வாசிப்பு, கவிதை படைப்பாற்றல், மற்றும் மேடைப் பேச்சுத்திறனை மேம்படுத்துதல்.",
+      "முத்தமிழ் விழா, ஆண்டுதோறும் கல்லூரிகளுக்கிடையேயான பட்டிமன்றங்கள், மற்றும் கவியரங்கங்களை நடத்துதல்.",
+      "பொறியியல், அறிவியல் மற்றும் நவீன தொழில்நுட்ப ஆய்வுக் கட்டுரைகளை தமிழில் ஆவணப்படுத்துதல் மற்றும் மொழிபெயர்த்தல்.",
+      "பண்டைய தமிழர் வரலாற்று அடையாளங்கள், பாரம்பரிய கலைகள், மற்றும் பண்பாட்டு விழுமியங்களை மீட்டெடுத்துப் பரப்புதல்.",
+      "பேசும் படம், கைவண்ண காவியம், விடுகதை விளையாட்டு மற்றும் தமிழ்க்கோர்வை போன்ற சிந்தனை சார்ந்த போட்டிகளை நடத்துதல்.",
     ],
     committeeMembers: [
       {
         sno: 1,
         name: "Dr. S. Senthilkumar",
+        department: "Science & Humanities",
+        year: "Faculty",
         role: "Faculty Coordinator",
-        designationOrDept: "Assistant Professor, Dept. of Science & Humanities",
-        responsibilities: "தமிழ் மன்ற ஒருங்கிணைப்பாளர், இலக்கிய விழாக்கள் மற்றும் பட்டிமன்ற மேற்பார்வை",
       },
       {
         sno: 2,
         name: "Mr. M. Khaja Mohideen",
+        department: "Civil Engineering",
+        year: "Faculty",
         role: "Assistant Coordinator",
-        designationOrDept: "Assistant Professor, Dept. of Civil Engineering",
-        responsibilities: "துணை ஒருங்கிணைப்பாளர், பேச்சுப் போட்டிகள் மற்றும் மேடை நிகழ்வு மேலாண்மை",
       },
       {
         sno: 3,
         name: "Kaviyarasan M.",
+        department: "Mechanical Engineering",
+        year: "IV Year",
         role: "Student President",
-        designationOrDept: "IV Year Mechanical Engineering",
-        responsibilities: "மாணவர் தலைவர் (Student President), முத்தமிழ் விழா ஒருங்கிணைப்பு & திட்டமிடல்",
       },
       {
         sno: 4,
         name: "Dharani P.",
+        department: "Information Technology",
+        year: "III Year",
         role: "Student Vice-President",
-        designationOrDept: "III Year Information Technology",
-        responsibilities: "மாணவர் துணைத் தலைவர் (Vice-President), கவிதை மற்றும் கட்டுரைப் போட்டிகள் தலைமை",
       },
       {
         sno: 5,
         name: "Elangovan K.",
+        department: "Electrical & Electronics",
+        year: "III Year",
         role: "Student Secretary",
-        designationOrDept: "III Year Electrical & Electronics",
-        responsibilities: "செயலாளர் (Student Secretary), பதிவுகள் மற்றும் விழா மேடை ஏற்பாடுகள்",
       },
       {
         sno: 6,
         name: "Yazhini R.",
+        department: "Computer Science & Engineering",
+        year: "II Year",
         role: "Joint Secretary",
-        designationOrDept: "II Year Computer Science & Engineering",
-        responsibilities: "இணைச் செயலாளர் (Joint Secretary), உறுப்பினர் சேர்க்கை & செய்தி தொடர்பு",
       },
     ],
   },
@@ -286,61 +277,58 @@ export const clubsDetailedData: ClubDetailedData[] = [
     id: "coding-club",
     name: "Coding Club",
     overview:
-      "Programming abilities are crucial tools that can be applied to and integrated into a variety of disciplines and domains in today's climate of rapid technological change. The MSAJCE Coding Club fosters a highly collaborative peer network where students master computer programming, data structures, open-source software development, and algorithmic problem-solving.",
+      "The Coding Club functions as a premier student-led technical collective dedicated to computational literacy, algorithmic problem-solving, and professional software craftsmanship. Recognizing that programming is a foundational skill across all engineering disciplines, the club conducts weekly code sprints, peer-led code reviews, and structured workshops covering data structures, full-stack engineering, machine learning, and systems architecture.",
     mission:
-      "To democratize coding culture across the entire campus, conduct high-impact hackathons, and equip students with industry-grade software development skills to compete and excel in national and global coding contests.",
+      "To democratize advanced programming proficiency across the collegiate community, foster competitive programming mastery, and empower students to build scalable software solutions for national hackathons and industry careers.",
     objectives: [
-      "Hold college-wide coding competitions and speed debugging challenges to reach all students across all engineering branches.",
-      "Conduct workshops on modern computer science domains such as web development, mobile app development, machine learning, and IoT.",
-      "Participate in open source initiatives, build practical web and mobile applications, and offer technical assistance to campus groups.",
-      "Represent the college at prestigious intercollegiate coding competitions and hackathons.",
-      "Prepare students for premier global contests including ACM-ICPC, Google Code Jam, Google Summer of Code, and competitive platforms.",
-      "Host weekly team sprints to work on collaborative projects, technical discussions, and competitive algorithms.",
-      "Conduct structured lecture sessions covering foundational computer science principles and software engineering practices.",
-      "Organize technical seminars and placement masterclasses by alumni and senior industry software developers.",
+      "Organize college-wide competitive programming contests, speed-debugging challenges, and 24-hour hackathons.",
+      "Conduct intensive hands-on workshops on modern frameworks, full-stack development, cloud computing, and machine learning.",
+      "Prepare student cohorts for premier global coding platforms and events, including ACM-ICPC, Google Summer of Code, and LeetCode.",
+      "Contribute actively to open-source software initiatives and provide engineering support for institutional digital platforms.",
+      "Host technical interview masterclasses, algorithm critique sessions, and technical career seminars with alumni engineers.",
     ],
     committeeMembers: [
       {
         sno: 1,
         name: "Mr. R. Dinesh Kumar",
+        department: "Computer Science & Engineering",
+        year: "Faculty",
         role: "Faculty Coordinator",
-        designationOrDept: "Assistant Professor, Dept. of Computer Science & Engineering",
-        responsibilities: "Faculty technical guidance, competitive programming advisor & hackathon planning",
       },
       {
         sno: 2,
         name: "Mrs. M. Geetha",
+        department: "Information Technology",
+        year: "Faculty",
         role: "Assistant Coordinator",
-        designationOrDept: "Assistant Professor, Dept. of Information Technology",
-        responsibilities: "Coding competition platform management, testcase verification & code review",
       },
       {
         sno: 3,
         name: "Syed Imran",
+        department: "Computer Science & Engineering",
+        year: "IV Year",
         role: "Student President",
-        designationOrDept: "IV Year Computer Science & Engineering",
-        responsibilities: "Club technical direction, 24-hour hackathons lead & open-source projects lead",
       },
       {
         sno: 4,
         name: "Harshitha B.",
+        department: "Information Technology",
+        year: "III Year",
         role: "Student Vice-President",
-        designationOrDept: "III Year Information Technology",
-        responsibilities: "Competitive programming track lead, algorithmic challenges & student mentoring",
       },
       {
         sno: 5,
         name: "Naveen Prasath",
+        department: "Computer Science & Engineering",
+        year: "III Year",
         role: "Student Secretary",
-        designationOrDept: "III Year Computer Science & Engineering",
-        responsibilities: "Workshop scheduling, repository administration & technical infrastructure",
       },
       {
         sno: 6,
         name: "Ananya R.",
+        department: "AI & Data Science",
+        year: "II Year",
         role: "Joint Secretary",
-        designationOrDept: "II Year AI & Data Science",
-        responsibilities: "Beginner bootcamp coordination, contest registrations & community communications",
       },
     ],
   },
@@ -348,60 +336,58 @@ export const clubsDetailedData: ClubDetailedData[] = [
     id: "robotic-club",
     name: "Robotic Club",
     overview:
-      "The Robotic Club brings together students interested in learning about, designing, and fabricating advanced robotics. Multi-disciplinary teams of students collaborate to design and construct autonomous and radio-controlled robots that compete against rival teams in obstacle navigation, combat trials, and speed challenges in state and national robotics tournaments.",
+      "The Robotic Club unites aspiring mechanical, electrical, and computer engineers to conceive, design, and manufacture intelligent autonomous machines and robotic systems. Working across embedded microcontrollers, kinematics, computer vision, and PCB prototyping, club cohorts construct combat robots, autonomous line navigators, and aerial drones that compete in premier state and national robotics championships.",
     mission:
-      "To cultivate the habit of 'thinking technologically' inside every engineering student at MSAJCE, fostering innovative problem solvers who advance the frontier of automation and cyber-physical systems.",
+      "To cultivate the institutional discipline of 'thinking technologically' within every student, fostering future-ready automation specialists and robotic systems innovators capable of transforming industrial automation.",
     objectives: [
-      "To encourage young engineering minds to become the robotics industry's future driving force.",
-      "To provide an opportunity to creatively apply theoretical engineering and observe how electromechanical systems interact with the environment.",
-      "To equip students with professional engineering, embedded firmware, and hardware prototyping skills that benefit their careers.",
-      "To design, fabricate, and test autonomous robots, line followers, combat bots, and surveillance quadcopters.",
-      "To roll out comprehensive robotics education initiatives for campus students.",
-      "To conduct brief training sessions and intensive hands-on workshops covering robotics basics, microcontrollers, and sensors.",
-      "To represent MSAJCE in inter-collegiate robotics leagues and national techno-management symposiums.",
+      "Train students in multidisciplinary robotics engineering, encompassing embedded systems, sensor integration, and kinematics.",
+      "Conduct hands-on prototyping workshops covering microcontrollers (Arduino, ESP32, Raspberry Pi), motor drivers, and ROS.",
+      "Design, fabricate, and test autonomous navigation bots, combat robotics, and quadcopters for national technical leagues.",
+      "Facilitate industry-grade CAD modeling, additive manufacturing (3D printing), and electronic PCB fabrication.",
+      "Represent MSAJCE in inter-collegiate robotics conventions, technological design expos, and innovation symposia.",
     ],
     committeeMembers: [
       {
         sno: 1,
         name: "Dr. V. Anand",
+        department: "Electronics & Communication",
+        year: "Faculty",
         role: "Faculty Coordinator",
-        designationOrDept: "Associate Professor, Dept. of Electronics & Communication",
-        responsibilities: "Robotics laboratory mentorship, research funding proposals & tournament delegation",
       },
       {
         sno: 2,
         name: "Mr. T. Balaji",
+        department: "Mechanical Engineering",
+        year: "Faculty",
         role: "Assistant Coordinator",
-        designationOrDept: "Assistant Professor, Dept. of Mechanical Engineering",
-        responsibilities: "Mechanical chassis design, 3D printing & hardware fabrication supervision",
       },
       {
         sno: 3,
         name: "Gokulnath K.",
+        department: "Electronics & Communication",
+        year: "IV Year",
         role: "Student President",
-        designationOrDept: "IV Year Electronics & Communication",
-        responsibilities: "Club technical leadership, autonomous bot design & tournament team captain",
       },
       {
         sno: 4,
         name: "Madhumitha S.",
+        department: "Mechanical Engineering",
+        year: "III Year",
         role: "Student Vice-President",
-        designationOrDept: "III Year Mechanical Engineering",
-        responsibilities: "Drone manufacturing, structural modeling & CAD mechanical testing",
       },
       {
         sno: 5,
         name: "Rohit Sharma V.",
+        department: "Electrical & Electronics",
+        year: "III Year",
         role: "Student Secretary",
-        designationOrDept: "III Year Electrical & Electronics",
-        responsibilities: "Microcontroller programming, sensor calibration & arena circuit management",
       },
       {
         sno: 6,
         name: "Dhanush M.",
+        department: "Robotics & Automation",
+        year: "II Year",
         role: "Joint Secretary",
-        designationOrDept: "II Year Robotics / ECE",
-        responsibilities: "Component inventory, testing arena maintenance & safety protocols",
       },
     ],
   },
@@ -409,60 +395,58 @@ export const clubsDetailedData: ClubDetailedData[] = [
     id: "energy-eco-club",
     name: "Energy & Eco Club",
     overview:
-      "The Energy & Eco Club combines energy conservation awareness with comprehensive environmental protection. The Energy wing raises awareness about responsible and sustainable energy use, fossil fuel conservation, and renewable technologies. The Eco wing holds that nature imparts life lessons in its own steady ways and empowers young engineers to share responsibility for protecting environmental health, biodiversity, and planetary sustainability.",
+      "The Energy & Eco Club integrates clean energy consciousness with comprehensive ecological conservation. The Energy division educates the campus community on responsible electrical power consumption, energy auditing, and renewable solar deployment in response to resource depletion. The Eco division leads biodiversity preservation, zero-plastic initiatives, and waste segregation, inspiring students to assume personal and collective stewardship for environmental health.",
     mission:
-      "To raise and spread actionable knowledge regarding energy efficiency and conservation in homes and institutions, while empowering students to take decisive action against environmental degradation individually and collectively.",
+      "To champion energy conservation, promote renewable energy transitions, and empower young engineers to enact sustainable environmental practices across academic, residential, and industrial communities.",
     objectives: [
-      "Raise and spread widespread knowledge about responsible, efficient, and sustainable energy use.",
-      "Address fossil fuel resource depletion by introducing practical energy conservation techniques and renewable alternatives.",
-      "Support the dissemination and practical adoption of energy efficiency practices in campus buildings and local homes.",
-      "Empower students to uphold environmental health and take collective action to prevent environmental degradation.",
-      "Conduct regular campus energy audits, solar power inspections, and electrical efficiency reviews.",
-      "Organize extensive tree plantation drives, campus green audits, and zero-single-use-plastic campaigns.",
-      "Promote e-waste segregation, rainwater harvesting maintenance, and organic waste composting on campus.",
+      "Disseminate actionable knowledge regarding energy efficiency, power conservation techniques, and renewable energy adoption.",
+      "Conduct comprehensive campus energy audits, solar array monitoring, and electrical infrastructure efficiency reviews.",
+      "Spearhead botanical tree plantation drives, campus biodiversity registers, and green landscape conservation.",
+      "Implement structured zero-single-use-plastic campaigns, organic waste composting, and institutional e-waste management.",
+      "Collaborate with civic bodies and sustainability agencies for community environmental drives and climate awareness campaigns.",
     ],
     committeeMembers: [
       {
         sno: 1,
         name: "Dr. G. Senthil Kumar",
+        department: "Electrical & Electronics",
+        year: "Faculty",
         role: "Faculty Coordinator",
-        designationOrDept: "Associate Professor, Dept. of Electrical & Electronics",
-        responsibilities: "Energy audit direction, solar energy integration & technical sustainability advisor",
       },
       {
         sno: 2,
         name: "Dr. S. Kavitha",
+        department: "Civil Engineering",
+        year: "Faculty",
         role: "Assistant Coordinator",
-        designationOrDept: "Assistant Professor, Dept. of Civil Engineering",
-        responsibilities: "Eco-initiatives mentor, campus green auditing & waste management coordination",
       },
       {
         sno: 3,
         name: "Vignesh P.",
+        department: "Electrical & Electronics",
+        year: "IV Year",
         role: "Student President",
-        designationOrDept: "IV Year Electrical & Electronics",
-        responsibilities: "Club student leadership, green audit lead & energy efficiency project coordinator",
       },
       {
         sno: 4,
         name: "Shalini K.",
+        department: "Civil Engineering",
+        year: "III Year",
         role: "Student Vice-President",
-        designationOrDept: "III Year Civil Engineering",
-        responsibilities: "Botanical conservation, environmental drives & campus plantation head",
       },
       {
         sno: 5,
         name: "Mohammed Fahad",
+        department: "Mechanical Engineering",
+        year: "III Year",
         role: "Student Secretary",
-        designationOrDept: "III Year Mechanical Engineering",
-        responsibilities: "E-waste collection, energy metering data & recycling operations",
       },
       {
         sno: 6,
         name: "Reshma B.",
+        department: "Electrical & Electronics",
+        year: "II Year",
         role: "Joint Secretary",
-        designationOrDept: "II Year Electrical & Electronics",
-        responsibilities: "Awareness campaigns, eco-poster exhibitions & volunteer coordination",
       },
     ],
   },
@@ -470,60 +454,58 @@ export const clubsDetailedData: ClubDetailedData[] = [
     id: "photography-club",
     name: "Photography Club",
     overview:
-      "The Photography Club provides students and faculty a creative venue for exploring and appreciating visual storytelling through photography, short filmmaking, and screenwriting. Beyond simply operating a camera, members comprehend what constitutes a successful photograph—from composition to creative lighting—while learning advanced digital post-production software for personal and institutional publication.",
+      "The Photography Club serves as the primary visual storytelling and media documentation forum at Mohamed Sathak A.J. College of Engineering. Embracing both technical mechanics and visual artistry, the club trains members in exposure control, frame composition, documentary filmmaking, screenwriting, and digital color grading. The club oversees visual archiving of collegiate events, sports fixtures, and ceremonial convocations.",
     mission:
-      "To welcome and encourage people of all expertise levels to explore the visual arts, cultivating keen aesthetic perception, visual journalism, and professional media post-production capabilities.",
+      "To nurture visual literacy, aesthetic perception, and technical camera mastery across all expertise levels, empowering students to capture evocative narratives and document the institutional heritage.",
     objectives: [
-      "Provide students and staff a venue for exploring and appreciating surroundings through photography, short filmmaking, and screenwriting.",
-      "Teach what constitutes a successful photograph—from frame composition and exposure control to artistic expression.",
-      "Train club members to edit and enhance digital photographs using cutting-edge post-production software.",
-      "Encourage students to hone their talents while capturing live sports events, cultural festivals, and college ceremonies.",
-      "Host annual campus photo exhibitions, thematic photo walks, and short film screenings.",
-      "Teach cinematography, audio sync, and screenwriting fundamentals for documentary filmmaking.",
-      "Provide inclusive mentorship that nurtures beginner smartphone shooters as well as advanced DSLR/mirrorless photographers.",
+      "Instruct members in core photographic principles, manual camera exposure, lighting physics, and visual aesthetics.",
+      "Provide professional training in digital post-production, RAW workflow processing, and color-grading software.",
+      "Document and archive major collegiate functions, academic conferences, athletic fixtures, and cultural festivals.",
+      "Organize annual campus photography exhibitions, thematic photo walks, and masterclasses with industry photojournalists.",
+      "Train aspiring documentary makers in short filmmaking, screenplay formulation, sound capture, and cinematic editing.",
     ],
     committeeMembers: [
       {
         sno: 1,
         name: "Mr. K. Suresh",
+        department: "Mechanical Engineering",
+        year: "Faculty",
         role: "Faculty Coordinator",
-        designationOrDept: "Assistant Professor, Dept. of Mechanical Engineering",
-        responsibilities: "Visual media advisor, equipment custodial supervision & exhibition curation",
       },
       {
         sno: 2,
         name: "Ms. R. Priyadharshini",
+        department: "Computer Science & Engineering",
+        year: "Faculty",
         role: "Assistant Coordinator",
-        designationOrDept: "Assistant Professor, Dept. of Computer Science",
-        responsibilities: "Digital post-production advisor, media publishing & creative portfolio guidance",
       },
       {
         sno: 3,
         name: "Ashwin Kumar M.",
+        department: "Information Technology",
+        year: "IV Year",
         role: "Student President",
-        designationOrDept: "IV Year Information Technology",
-        responsibilities: "Lead photographer, photo walk director & college events coverage director",
       },
       {
         sno: 4,
         name: "Nivedha S.",
+        department: "Computer Science & Engineering",
+        year: "III Year",
         role: "Student Vice-President",
-        designationOrDept: "III Year Computer Science & Engineering",
-        responsibilities: "Short filmmaking lead, screenwriting workshops & video documentation",
       },
       {
         sno: 5,
         name: "Daniel Raj",
+        department: "Civil Engineering",
+        year: "III Year",
         role: "Student Secretary",
-        designationOrDept: "III Year Civil Engineering",
-        responsibilities: "Digital editing lead, RAW color grading & gallery archives custodian",
       },
       {
         sno: 6,
         name: "Harish S.",
+        department: "Electronics & Communication",
+        year: "II Year",
         role: "Joint Secretary",
-        designationOrDept: "II Year Electronics & Communication",
-        responsibilities: "Event photojournalism, camera gear coordination & student registrations",
       },
     ],
   },
@@ -634,7 +616,7 @@ function ClubsAndSocietiesPage() {
         {/* ========================================================================= */}
         {/* 2. DYNAMIC HERO BANNER: Institution-Style Theme-Adaptive Banner           */}
         {/* ========================================================================= */}
-        <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[300px] sm:min-h-[340px] md:min-h-[400px] flex flex-col justify-end">
+        <section className="relative w-full overflow-hidden bg-[#18181B] min-h-[260px] sm:min-h-[300px] md:min-h-[360px] flex flex-col justify-end">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <img
@@ -663,15 +645,15 @@ function ClubsAndSocietiesPage() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeClub.id}
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.2 }}
           >
             {/* ========================================================================= */}
             {/* SECTION 1: Canvas A (White / #121214) — Overview & Mission                 */}
             {/* ========================================================================= */}
-            <section className="py-5 sm:py-7 md:py-8 bg-white dark:bg-[#121214] transition-colors">
+            <section className="pt-6 sm:pt-8 md:pt-10 pb-5 sm:pb-7 md:pb-8 bg-white dark:bg-[#121214] transition-colors">
               <div className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
                   {activeClub.name} Overview
@@ -681,7 +663,7 @@ function ClubsAndSocietiesPage() {
                 </p>
 
                 <div className="mt-6 sm:mt-8">
-                  <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-3 sm:mb-4">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3 sm:mb-4">
                     Mission &amp; Vision
                   </h3>
                   <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
@@ -735,23 +717,23 @@ function ClubsAndSocietiesPage() {
 
                 <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
                   <div className="overflow-x-auto bg-transparent">
-                    <table className="w-full text-left border-collapse min-w-[700px] text-xs sm:text-sm">
+                    <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
                       <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
                         <tr>
                           <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 text-center">
                             S.No
                           </th>
-                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[180px]">
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[200px]">
                             Name of Member
                           </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[240px]">
+                            Department
+                          </th>
+                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[120px]">
+                            Year
+                          </th>
                           <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap min-w-[180px]">
-                            Role / Position
-                          </th>
-                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[200px]">
-                            Department / Year
-                          </th>
-                          <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider min-w-[240px]">
-                            Key Responsibilities
+                            Role
                           </th>
                         </tr>
                       </thead>
@@ -765,15 +747,13 @@ function ClubsAndSocietiesPage() {
                               {member.name}
                             </td>
                             <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground whitespace-nowrap">
-                              <span className="font-oswald font-bold uppercase text-xs text-primary">
-                                {member.role}
-                              </span>
+                              {member.department}
                             </td>
-                            <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/85">
-                              {member.designationOrDept}
+                            <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                              {member.year}
                             </td>
-                            <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground/80 leading-relaxed">
-                              {member.responsibilities}
+                            <td className="py-3.5 px-4 font-oswald font-bold uppercase text-xs text-primary whitespace-nowrap">
+                              {member.role}
                             </td>
                           </tr>
                         ))}
