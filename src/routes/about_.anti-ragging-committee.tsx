@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
+import { AboutSubNav } from "@/components/layout/AboutSubNav";
 
 const title = "Anti-Ragging Committee — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -146,6 +147,9 @@ const raggingPunishments = [
 export function AntiRaggingCommitteePage() {
   return (
     <main className="bg-white dark:bg-[#121214] text-foreground font-libre antialiased selection:bg-primary selection:text-white min-h-screen pt-0 md:pt-1">
+      {/* Sticky Secondary About Sub-Nav */}
+      <AboutSubNav />
+
       {/* ========================================================================= */}
       {/* 1. HERO BANNER: Title Docked Flush with Hero Section End                  */}
       {/* ========================================================================= */}

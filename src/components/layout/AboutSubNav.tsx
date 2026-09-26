@@ -10,7 +10,8 @@ export const aboutNavItems = [
   { label: "Leadership Messages", to: "/about/leadership" },
   { label: "Governing Council", to: "/about/governing-council" },
   { label: "Group of Institutions", to: "/about/group-institutions" },
-  { label: "Mandatory Disclosure", to: "/about/accreditations" },
+  { label: "Committees & Cells", to: "/about/committees" },
+  { label: "Institutional Policies", to: "/about/policies" },
 ];
 
 export function AboutSubNav() {

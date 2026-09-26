@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, ShieldCheck, Users, BookOpen, HeartHandshake, Award } from "lucide-react";
+import { ArrowUpRight, ShieldCheck, HeartHandshake, Award } from "lucide-react";
+import { DataGridContainer } from "@/components/ui/data-grid-table";
+import { AboutSubNav } from "@/components/layout/AboutSubNav";
 
 const title = "Committees & Cells — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -55,7 +57,7 @@ const committeeList: CommitteeOverviewItem[] = [
   },
   {
     sno: 4,
-    name: "Women's Empowerment Cell",
+    name: "Women's Empowerment Cell (WEC)",
     category: "Gender Equity & Welfare",
     convenor: "Convener - WEC",
     email: "wec@msajce.edu.in",
@@ -77,11 +79,46 @@ const committeeList: CommitteeOverviewItem[] = [
     email: "iic@msajce.edu.in",
     link: "/research",
   },
+  {
+    sno: 7,
+    name: "Equal Opportunity Cell (EOC)",
+    category: "Student Welfare & Equity",
+    convenor: "Nodal Officer - EOC",
+    email: "eoc@msajce.edu.in",
+    link: "/about/committees",
+  },
+  {
+    sno: 8,
+    name: "SC / ST Protection Cell",
+    category: "Statutory Compliance",
+    convenor: "Nodal Officer",
+    email: "scstcell@msajce.edu.in",
+    link: "/about/committees",
+  },
+  {
+    sno: 9,
+    name: "Library Advisory Committee",
+    category: "Academic Support",
+    convenor: "Librarian / Convener",
+    email: "library@msajce.edu.in",
+    link: "/library",
+  },
+  {
+    sno: 10,
+    name: "Disciplinary Committee",
+    category: "Student Conduct & Discipline",
+    convenor: "Head - Administration",
+    email: "discipline@msajce.edu.in",
+    link: "/about/committees",
+  },
 ];
 
 export function CommitteesOverviewPage() {
   return (
     <main className="bg-white dark:bg-[#121214] text-foreground font-libre antialiased selection:bg-primary selection:text-white min-h-screen pt-0 md:pt-1">
+      {/* Sticky Secondary About Sub-Nav */}
+      <AboutSubNav />
+
       {/* ========================================================================= */}
       {/* 1. HERO BANNER: Title Docked Flush with Hero Section End                  */}
       {/* ========================================================================= */}
