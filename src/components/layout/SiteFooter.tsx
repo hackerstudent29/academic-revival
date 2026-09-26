@@ -10,7 +10,6 @@ import {
   Youtube,
   ArrowUpRight,
   ChevronUp,
-  FileText,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -298,31 +297,30 @@ export function SiteFooter({ revealed }: { revealed?: boolean } = {}) {
             </ul>
           </div>
 
-          {/* ── Section 4: Downloads & PDFs ── */}
+          {/* ── Section 4: Institutional Documents ── */}
           <div className="col-span-6 sm:col-span-3 lg:col-span-2">
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-              Downloads &amp; PDFs
+              Documents &amp; Reports
             </h3>
             <ul className="space-y-3 text-sm text-stone-300 font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
               {[
-                { label: "Mandatory Disclosure", to: "/about/policies" },
-                { label: "Academic Calendar", to: "/curriculum" },
-                { label: "College Prospectus", to: "/admissions" },
-                { label: "NAAC SSR Report", to: "/naac" },
-                { label: "Anti-Ragging Policy", to: "/about/anti-ragging-committee" },
-              ].map(({ label, to }) => (
+                { to: "/about/policies", label: "Mandatory Disclosure" },
+                { to: "/curriculum", label: "Academic Calendar" },
+                { to: "/curriculum-and-syllabus", label: "Curriculum & Syllabus" },
+                { to: "/naac", label: "NAAC Accreditation" },
+                { to: "/nirf", label: "NIRF Disclosures" },
+                { to: "/about/anti-ragging-committee", label: "Anti-Ragging Guidelines" },
+              ].map(({ to, label }) => (
                 <li key={label}>
                   <Link
                     to={to}
                     className="group flex items-center justify-between hover:text-rose-400 dark:hover:text-rose-300 transition-colors py-0.5"
                   >
-                    <span className="flex items-center gap-1.5 truncate">
-                      <FileText size={13} className="text-rose-400 group-hover:text-rose-300 shrink-0" />
-                      <span className="truncate">{label}</span>
-                    </span>
-                    <span className="text-[9px] font-black font-oswald px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 group-hover:bg-rose-500/30 shrink-0 ml-1">
-                      PDF
-                    </span>
+                    <span>{label}</span>
+                    <ArrowUpRight
+                      size={14}
+                      className="opacity-0 -translate-x-1.5 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-rose-400"
+                    />
                   </Link>
                 </li>
               ))}
