@@ -91,13 +91,13 @@ export function HomePage() {
     >
       {/* ── HERO SECTION ── */}
       <section
-        className="relative min-h-[calc(100svh-53px)] h-auto lg:h-[calc(100svh-65px)] overflow-x-hidden bg-background flex flex-col"
+        className="relative h-auto lg:h-[calc(100svh-65px)] overflow-x-hidden bg-background flex flex-col"
         id="hero"
       >
         {/* ========================================================================= */}
         {/* 1. MSAJCE SIGNATURE MOBILE HERO SECTION (< lg screens)                   */}
         {/* ========================================================================= */}
-        <div className="block lg:hidden relative w-full bg-background text-foreground overflow-hidden py-4 px-4 sm:px-6 flex flex-col gap-4">
+        <div className="block lg:hidden relative w-full bg-background text-foreground overflow-hidden pt-4 pb-2 px-4 sm:px-6 flex flex-col gap-4">
           
           {/* A. TOP: Sliding Image Showcase (Left to Right Horizontal Touch Carousel) */}
           <div className="w-full space-y-1.5">
