@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { DataGridContainer } from "@/components/ui/data-grid-table";
 
 const title = "Anti-Ragging Committee — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -177,7 +178,7 @@ export function AntiRaggingCommitteePage() {
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           <div className="mb-6 w-full">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-3">
-              Anti-Ragging Policy & Mandate
+              Anti-Ragging Policy &amp; Mandate
             </h2>
             <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
               Ragging in any form is totally prohibited in and outside the campus of Mohamed Sathak AJ College of Engineering. It is the objective of every member of MSAJCE community consisting of Management, Faculty, Staff, and Students to make the College a 'Ragging Free' Institution and ensure a safe, conducive environment for freshers.
@@ -285,55 +286,57 @@ export function AntiRaggingCommitteePage() {
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
           <div className="mb-6">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-              Anti-Ragging Committee & Squad Members
+              Anti-Ragging Committee &amp; Squad Members
             </h2>
           </div>
 
-          {/* Open Transparent Data Table */}
-          <div className="w-full overflow-x-auto border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-white dark:bg-[#121214]">
-            <table className="w-full text-left border-collapse min-w-[750px]">
-              <thead>
-                <tr className="bg-foreground/[0.03] border-b border-border">
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-16 sm:w-20">
-                    S.No
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Name
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Designation
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-44">
-                    Category
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Contact Details
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {antiRaggingMembers.map((member) => (
-                  <tr key={member.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                    <td className="px-4 sm:px-6 py-4 font-oswald font-bold text-primary text-sm sm:text-base align-middle whitespace-nowrap">
-                      {member.sno}
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 font-libre font-bold text-foreground text-sm sm:text-base align-middle">
-                      {member.name}
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 font-libre font-medium text-xs sm:text-sm text-foreground align-middle">
-                      {member.designation}
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 font-libre font-semibold text-xs sm:text-sm text-foreground align-middle whitespace-nowrap">
-                      {member.category}
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 font-libre font-medium text-xs sm:text-sm text-foreground align-middle">
-                      {member.contactDetails}
-                    </td>
+          {/* Official Publications Standard DataGrid Table */}
+          <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+            <div className="overflow-x-auto bg-transparent">
+              <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                  <tr>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 sm:w-20">
+                      S.No
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                      Name
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                      Designation
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-44">
+                      Category
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                      Contact Details
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-border/40 font-libre">
+                  {antiRaggingMembers.map((member) => (
+                    <tr key={member.sno} className="hover:bg-foreground/[0.02] transition-colors">
+                      <td className="py-3.5 px-4 font-oswald font-bold text-primary text-xs sm:text-sm whitespace-nowrap">
+                        {member.sno}
+                      </td>
+                      <td className="py-3.5 px-4 font-libre font-bold text-foreground text-xs sm:text-sm">
+                        {member.name}
+                      </td>
+                      <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">
+                        {member.designation}
+                      </td>
+                      <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground whitespace-nowrap">
+                        {member.category}
+                      </td>
+                      <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">
+                        {member.contactDetails}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </DataGridContainer>
         </div>
       </section>
     </main>

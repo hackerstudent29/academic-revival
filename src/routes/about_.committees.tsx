@@ -121,64 +121,66 @@ export function CommitteesOverviewPage() {
             </p>
           </div>
 
-          {/* Open Transparent Data Table */}
-          <div className="w-full overflow-x-auto border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-white dark:bg-[#121214]">
-            <table className="w-full text-left border-collapse min-w-[800px]">
-              <thead>
-                <tr className="bg-foreground/[0.03] border-b border-border">
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-16">
-                    S.No
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Committee / Cell Name
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Category
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Convenor / Lead
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Official Contact
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 text-right">
-                    View Details
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {committeeList.map((item) => (
-                  <tr key={item.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                    <td className="px-4 sm:px-6 py-4 font-oswald font-bold text-primary text-sm sm:text-base align-middle whitespace-nowrap">
-                      {item.sno}
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 font-libre font-bold text-foreground text-sm sm:text-base align-middle">
-                      {item.name}
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 font-libre font-medium text-xs sm:text-sm text-foreground align-middle">
-                      {item.category}
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 font-libre font-normal text-xs sm:text-sm text-muted-foreground align-middle">
-                      {item.convenor}
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 font-libre font-medium text-xs sm:text-sm text-primary align-middle">
-                      <a href={`mailto:${item.email}`} className="hover:underline">
-                        {item.email}
-                      </a>
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 font-libre text-xs sm:text-sm align-middle text-right whitespace-nowrap">
-                      <Link
-                        to={item.link}
-                        className="inline-flex items-center gap-1 font-oswald font-bold uppercase text-primary hover:underline text-xs tracking-wider"
-                      >
-                        Explore <ArrowUpRight size={14} />
-                      </Link>
-                    </td>
+          {/* Official Publications Standard DataGrid Table */}
+          <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+            <div className="overflow-x-auto bg-transparent">
+              <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                  <tr>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16">
+                      S.No
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                      Committee / Cell Name
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                      Category
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                      Convenor / Lead
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                      Official Contact
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap text-right">
+                      View Details
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-border/40 font-libre">
+                  {committeeList.map((item) => (
+                    <tr key={item.sno} className="hover:bg-foreground/[0.02] transition-colors">
+                      <td className="py-3.5 px-4 font-oswald font-bold text-primary text-xs sm:text-sm whitespace-nowrap">
+                        {item.sno}
+                      </td>
+                      <td className="py-3.5 px-4 font-libre font-bold text-foreground text-xs sm:text-sm">
+                        {item.name}
+                      </td>
+                      <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">
+                        {item.category}
+                      </td>
+                      <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-muted-foreground">
+                        {item.convenor}
+                      </td>
+                      <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-primary">
+                        <a href={`mailto:${item.email}`} className="hover:underline">
+                          {item.email}
+                        </a>
+                      </td>
+                      <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-right whitespace-nowrap">
+                        <Link
+                          to={item.link}
+                          className="inline-flex items-center gap-1 font-oswald font-bold uppercase text-primary hover:underline text-xs tracking-wider"
+                        >
+                          Explore <ArrowUpRight size={14} />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </DataGridContainer>
         </div>
       </section>
 

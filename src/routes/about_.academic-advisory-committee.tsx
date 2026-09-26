@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail } from "lucide-react";
+import { DataGridContainer } from "@/components/ui/data-grid-table";
 
 const title = "Academic Advisory Committee — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -170,45 +170,47 @@ export function AcademicAdvisoryCommitteePage() {
             </h2>
           </div>
 
-          {/* Open Transparent Data Table */}
-          <div className="w-full overflow-x-auto border border-border rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs bg-white dark:bg-[#121214]">
-            <table className="w-full text-left border-collapse min-w-[750px]">
-              <thead>
-                <tr className="bg-foreground/[0.03] border-b border-border">
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-16 sm:w-20">
-                    S.No
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Name
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4">
-                    Designation & Institution / Organization
-                  </th>
-                  <th className="font-oswald font-black uppercase text-xs sm:text-sm tracking-wider text-foreground whitespace-nowrap px-4 sm:px-6 py-3.5 sm:py-4 w-44">
-                    Role
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {advisoryMembers.map((member) => (
-                  <tr key={member.sno} className="hover:bg-foreground/[0.02] transition-colors">
-                    <td className="px-4 sm:px-6 py-4 font-oswald font-bold text-primary text-sm sm:text-base align-middle whitespace-nowrap">
-                      {member.sno}
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 font-libre font-bold text-foreground text-sm sm:text-base align-middle">
-                      {member.name}
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 font-libre font-medium text-xs sm:text-sm text-foreground align-middle">
-                      {member.designation}
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 font-libre font-semibold text-xs sm:text-sm text-foreground align-middle whitespace-nowrap">
-                      {member.role}
-                    </td>
+          {/* Official Publications Standard DataGrid Table */}
+          <DataGridContainer className="bg-white dark:bg-[#121214] shadow-xs">
+            <div className="overflow-x-auto bg-transparent">
+              <table className="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
+                <thead className="bg-stone-200/90 dark:bg-neutral-800 text-foreground dark:text-neutral-100 uppercase text-[12px] font-bold font-oswald tracking-wider border-b border-stone-300 dark:border-neutral-700">
+                  <tr>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-16 sm:w-20">
+                      S.No
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                      Name
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap">
+                      Designation &amp; Institution / Organization
+                    </th>
+                    <th className="py-3.5 px-4 font-oswald font-black uppercase text-xs tracking-wider whitespace-nowrap w-44">
+                      Role
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-border/40 font-libre">
+                  {advisoryMembers.map((member) => (
+                    <tr key={member.sno} className="hover:bg-foreground/[0.02] transition-colors">
+                      <td className="py-3.5 px-4 font-oswald font-bold text-primary text-xs sm:text-sm whitespace-nowrap">
+                        {member.sno}
+                      </td>
+                      <td className="py-3.5 px-4 font-libre font-bold text-foreground text-xs sm:text-sm">
+                        {member.name}
+                      </td>
+                      <td className="py-3.5 px-4 font-libre text-xs sm:text-sm text-foreground">
+                        {member.designation}
+                      </td>
+                      <td className="py-3.5 px-4 font-libre font-semibold text-xs sm:text-sm text-foreground whitespace-nowrap">
+                        {member.role}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </DataGridContainer>
         </div>
       </section>
     </main>
