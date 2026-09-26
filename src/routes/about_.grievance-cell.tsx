@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, ShieldCheck, FileCheck, Scale } from "lucide-react";
+import { Mail } from "lucide-react";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
 
 const title = "Complaints / Grievance Redressal / Disciplinary / Vishaka Committee / POSH Cell — M.S.A.J. College of Engineering, Chennai";
@@ -120,6 +120,15 @@ const grievanceCommitteeMembers: GrievanceMember[] = [
   },
 ];
 
+const grievanceObjectives = [
+  "Conduct impartial, fair, and objective inquiries into all academic, administrative, and interpersonal complaints.",
+  "Ensure total confidentiality and safety for complainants through official email portals and physical grievance drop boxes.",
+  "Investigate complaints regarding gender discrimination or workplace harassment under the POSH & Vishaka Cell framework.",
+  "Facilitate open communication between students, parents, faculty, and institutional administration to resolve issues constructively.",
+  "Implement time-bound grievance resolution protocols with formal written reports submitted to the Principal.",
+  "Recommend institutional policy enhancements to prevent recurring grievances and maintain student well-being.",
+];
+
 export function GrievanceCellPage() {
   return (
     <main className="bg-white dark:bg-[#121214] text-foreground font-libre antialiased selection:bg-primary selection:text-white min-h-screen pt-0 md:pt-1">
@@ -162,36 +171,26 @@ export function GrievanceCellPage() {
             </p>
           </div>
 
-          {/* Objectives */}
+          {/* Points Layout: Objectives */}
           <div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-6 sm:mb-8">
               Objectives &amp; Operational Scope
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                <ShieldCheck className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">Impartial Investigation</h3>
-                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
-                  Conducting fair, unbiased, and objective inquiries into all reported academic, administrative, or environmental complaints.
-                </p>
-              </div>
-
-              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                <FileCheck className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">Confidential Reporting</h3>
-                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
-                  Protecting complainant identity and providing secure physical drop boxes alongside dedicated official email channels.
-                </p>
-              </div>
-
-              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                <Scale className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">POSH &amp; Vishaka Cell Integration</h3>
-                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
-                  Overseeing compliance with gender sensitivity statutes and the Prevention of Sexual Harassment (POSH) legal framework.
-                </p>
-              </div>
+            <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
+              {grievanceObjectives.map((obj, idx) => (
+                <div
+                  key={idx}
+                  className="py-3.5 sm:py-4 px-2 sm:px-4 flex items-center gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
+                >
+                  <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
+                    {idx + 1}
+                  </span>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                    {obj}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

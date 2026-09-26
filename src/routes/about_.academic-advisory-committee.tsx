@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
-import { BookOpen, Award, Compass } from "lucide-react";
 
 const title = "Academic Advisory Committee — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -132,6 +131,14 @@ const advisoryMembers: AdvisoryMember[] = [
   },
 ];
 
+const academicObjectives = [
+  "Evaluate academic calendars, course delivery strategies, continuous internal assessments, and Outcome-Based Education (OBE) attainment metrics.",
+  "Integrate industrial advisory feedback into value-added skill courses, industrial visits, expert guest lectures, and corporate MoUs.",
+  "Promote faculty research publications, student project funding (TNSCST/MSME), patent filings, and doctoral research guidance.",
+  "Ensure strict alignment with Anna University curriculum standards, NBA accreditation criteria, and AICTE quality directives.",
+  "Formulate strategies for modern laboratory infrastructure development and digital learning tool integration across all engineering departments.",
+];
+
 export function AcademicAdvisoryCommitteePage() {
   return (
     <main className="bg-white dark:bg-[#121214] text-foreground font-libre antialiased selection:bg-primary selection:text-white min-h-screen pt-0 md:pt-1">
@@ -174,36 +181,26 @@ export function AcademicAdvisoryCommitteePage() {
             </p>
           </div>
 
-          {/* Objectives */}
+          {/* Points Layout: Objectives */}
           <div>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-6 sm:mb-8">
               Objectives &amp; Academic Governance Directives
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                <BookOpen className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">Curriculum &amp; OBE Enrichment</h3>
-                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
-                  Evaluating academic calendars, course delivery strategies, continuous internal assessments, and Outcome-Based Education (OBE) attainment metrics.
-                </p>
-              </div>
-
-              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                <Compass className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">Industry-Academia Synergy</h3>
-                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
-                  Integrating industrial advisory feedback into value-added courses, industrial visits, expert guest lectures, and MoUs.
-                </p>
-              </div>
-
-              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                <Award className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">Research &amp; Innovation Focus</h3>
-                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
-                  Promoting faculty research publications, student project funding (TNSCST/MSME), patent filings, and doctoral research guidance.
-                </p>
-              </div>
+            <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
+              {academicObjectives.map((obj, idx) => (
+                <div
+                  key={idx}
+                  className="py-3.5 sm:py-4 px-2 sm:px-4 flex items-center gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
+                >
+                  <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
+                    {idx + 1}
+                  </span>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                    {obj}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

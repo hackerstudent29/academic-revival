@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { DataGridContainer } from "@/components/ui/data-grid-table";
 import { ArrowUpRight, ShieldCheck, Users, BookOpen, HeartHandshake, Award } from "lucide-react";
 
 const title = "Committees & Cells — M.S.A.J. College of Engineering, Chennai";

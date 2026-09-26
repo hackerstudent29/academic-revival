@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
-import { ShieldCheck, AlertTriangle, Scale, PhoneCall } from "lucide-react";
+import { ShieldCheck, AlertTriangle, PhoneCall } from "lucide-react";
 
 const title = "Anti-Ragging Committee & Squad — M.S.A.J. College of Engineering, Chennai";
 const description =
@@ -56,6 +56,15 @@ const antiRaggingSquadMembers: CommitteeMember[] = [
   { sno: 13, name: "Ms. B. S. S. Gnana Betsy B S, AP / Arch", designation: "Member" },
 ];
 
+const antiRaggingObjectives = [
+  "Enforce total zero-tolerance against ragging across all academic blocks, laboratories, hostels, sports grounds, and transport routes.",
+  "Maintain continuous anti-ragging squad patrols, surveillance, and surprise inspections in common areas, dining halls, and student residences.",
+  "Operate 24/7 confidential grievance helplines and immediate inquiry procedures upon receiving any incident representation.",
+  "Mandate statutory anti-ragging affidavits from senior students, freshers, and parents at the commencement of every academic year.",
+  "Organize comprehensive orientation sessions and sensitization workshops to build a supportive, harmonious institutional culture.",
+  "Initiate immediate statutory proceedings and police reporting (FIR) within 24 hours in case of any verified ragging violation.",
+];
+
 const raggingConstituents = [
   "Teasing, verbal abuse, or rude conduct towards freshers or fellow students.",
   "Indisciplinary activities causing hardship, annoyance, or physical and psychological harm.",
@@ -107,7 +116,7 @@ export function AntiRaggingCommitteePage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. SECTION A: Institutional Overview (4-5 lines)                          */}
+      {/* 2. SECTION A: Institutional Overview & Objectives                         */}
       {/* ========================================================================= */}
       <section className="py-10 sm:py-14 md:py-18 lg:py-20 bg-white dark:bg-[#121214] transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
@@ -120,49 +129,42 @@ export function AntiRaggingCommitteePage() {
             </p>
           </div>
 
-          {/* Institutional Objectives */}
-          <div>
+          {/* Points Layout: Institutional Objectives */}
+          <div className="mb-12">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-6 sm:mb-8">
               Objectives &amp; Core Directives
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                <ShieldCheck className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">Zero-Tolerance Mandate</h3>
-                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
-                  Enforcing absolute statutory prohibition of physical, verbal, or mental harassment across all college premises, hostels, and transport routes.
-                </p>
-              </div>
-
-              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs">
-                <AlertTriangle className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">Vigilance &amp; Patrols</h3>
-                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
-                  Conducting regular surprise inspections and continuous monitoring of common areas, dining halls, and student hostels through squad patrols.
-                </p>
-              </div>
-
-              <div className="p-6 border border-border/80 bg-white dark:bg-[#18181B] rounded-tl-xl rounded-bl-xs rounded-tr-xs shadow-2xs">
-                <PhoneCall className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-bold font-oswald uppercase text-foreground mb-2">Rapid Redressal &amp; Helpline</h3>
-                <p className="text-xs sm:text-sm text-foreground font-libre font-medium leading-relaxed">
-                  Providing 24/7 confidential reporting mechanisms, emergency helpline numbers, and immediate grievance investigation procedures.
-                </p>
-              </div>
+            <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
+              {antiRaggingObjectives.map((obj, idx) => (
+                <div
+                  key={idx}
+                  className="py-3.5 sm:py-4 px-2 sm:px-4 flex items-center gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
+                >
+                  <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
+                    {idx + 1}
+                  </span>
+                  <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                    {obj}
+                  </p>
+                </div>
+              ))}
             </div>
+          </div>
 
-            {/* What Constitutes Ragging */}
-            <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-4">
+          {/* Points Layout: What Constitutes Ragging */}
+          <div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-6 sm:mb-8">
               Acts Constituting Ragging
-            </h3>
-            <div className="divide-y divide-border/60 border-y border-border/60">
+            </h2>
+
+            <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full">
               {raggingConstituents.map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-4 sm:gap-6 py-4 transition-colors hover:bg-foreground/[0.01]"
+                  className="py-3.5 sm:py-4 px-2 sm:px-4 flex items-center gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
                 >
-                  <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-rose-100/90 dark:bg-rose-950/50 text-primary border border-primary/30 flex items-center justify-center font-oswald font-black text-xs sm:text-sm shrink-0 shadow-xs">
+                  <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
                     {idx + 1}
                   </span>
                   <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
@@ -201,13 +203,13 @@ export function AntiRaggingCommitteePage() {
               Punishments Awarded for Ragging
             </h2>
 
-            <div className="divide-y divide-border/60 border-y border-border/60 mb-6">
+            <div className="divide-y divide-border/40 border-y border-border/40 font-libre w-full mb-6">
               {raggingPunishments.map((punishment, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-4 sm:gap-6 py-4 transition-colors hover:bg-foreground/[0.01]"
+                  className="py-3.5 sm:py-4 px-2 sm:px-4 flex items-center gap-3.5 sm:gap-4 hover:bg-foreground/[0.015] transition-colors w-full"
                 >
-                  <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-rose-100/90 dark:bg-rose-950/50 text-primary border border-primary/30 flex items-center justify-center font-oswald font-black text-xs sm:text-sm shrink-0 shadow-xs">
+                  <span className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary font-oswald font-black text-xs sm:text-sm border border-primary/20 shadow-2xs">
                     {idx + 1}
                   </span>
                   <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
