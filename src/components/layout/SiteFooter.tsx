@@ -22,17 +22,44 @@ const socials = [
   { label: "YouTube", href: "https://youtube.com", Icon: Youtube },
 ];
 
-export function SiteFooter({ revealed: _externalRevealed }: { revealed?: boolean } = {}) {
+export function SiteFooter({ revealed: externalRevealed }: { revealed?: boolean } = {}) {
   const footerRef = useRef<HTMLElement>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [internalRevealed, setInternalRevealed] = useState(false);
 
-  // Track scroll position to reveal Scroll-to-Top arrow button
+  const effectiveRevealed = externalRevealed !== undefined ? externalRevealed : internalRevealed;
+
+  // Track scroll position to reveal Scroll-to-Top arrow button and Footer Content
   useEffect(() => {
     let ticking = false;
 
     const checkScroll = () => {
       const scrollY = window.scrollY || window.pageYOffset;
       setShowScrollTop(scrollY > 280);
+
+      const footerEl = footerRef.current;
+      if (footerEl) {
+        const footerHeight = footerEl.offsetHeight || 600;
+        const totalHeight = document.documentElement.scrollHeight;
+        const viewportHeight = window.innerHeight;
+
+        // If the document has very little scroll space, reveal immediately
+        if (totalHeight <= viewportHeight + 100) {
+          setInternalRevealed(true);
+        } else {
+          const remainingScroll = totalHeight - viewportHeight - scrollY;
+          // When the curtain begins opening (remaining scroll is less than footer height minus buffer)
+          const isOpening = remainingScroll < (footerHeight - 40);
+          const isClosing = remainingScroll > (footerHeight - 15);
+
+          setInternalRevealed((prev) => {
+            if (isOpening && !prev) return true;
+            if (isClosing && prev) return false;
+            return prev;
+          });
+        }
+      }
+
       ticking = false;
     };
 
@@ -100,13 +127,17 @@ export function SiteFooter({ revealed: _externalRevealed }: { revealed?: boolean
 
   // Lightweight, hardware-accelerated variants per component (strictly NO laggy blur filters)
   const columnVariants = {
-    hidden: { opacity: 0, y: 16 },
+    hidden: {
+      opacity: 0,
+      y: 18,
+      transition: { duration: 0.15 },
+    },
     visible: (customIndex: number = 0) => ({
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.45,
-        delay: customIndex * 0.08,
+        delay: customIndex * 0.07,
         ease: FAST_EASE,
       },
     }),
@@ -121,9 +152,8 @@ export function SiteFooter({ revealed: _externalRevealed }: { revealed?: boolean
         {/* ── 1. Architectural Campus Outline Ambient Background (Smooth GPU Fade) ── */}
         <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          animate={{ opacity: effectiveRevealed ? 1 : 0 }}
+          transition={{ duration: 0.5, ease: FAST_EASE }}
           className="pointer-events-none absolute inset-0 z-0 flex items-end justify-center select-none overflow-hidden will-change-[opacity]"
           aria-hidden="true"
         >
@@ -158,8 +188,7 @@ export function SiteFooter({ revealed: _externalRevealed }: { revealed?: boolean
             custom={0}
             variants={columnVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            animate={effectiveRevealed ? "visible" : "hidden"}
             className="col-span-12 lg:col-span-4 will-change-transform"
           >
             <Link to="/" className="inline-block group focus:outline-none" aria-label="MSAJCE Home">
@@ -263,8 +292,7 @@ export function SiteFooter({ revealed: _externalRevealed }: { revealed?: boolean
             custom={1}
             variants={columnVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            animate={effectiveRevealed ? "visible" : "hidden"}
             className="col-span-6 sm:col-span-3 lg:col-span-2 will-change-transform"
           >
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
@@ -298,8 +326,7 @@ export function SiteFooter({ revealed: _externalRevealed }: { revealed?: boolean
             custom={2}
             variants={columnVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            animate={effectiveRevealed ? "visible" : "hidden"}
             className="col-span-6 sm:col-span-3 lg:col-span-2 will-change-transform"
           >
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
@@ -334,8 +361,7 @@ export function SiteFooter({ revealed: _externalRevealed }: { revealed?: boolean
             custom={3}
             variants={columnVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            animate={effectiveRevealed ? "visible" : "hidden"}
             className="col-span-6 sm:col-span-3 lg:col-span-2 will-change-transform"
           >
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
@@ -371,8 +397,7 @@ export function SiteFooter({ revealed: _externalRevealed }: { revealed?: boolean
             custom={4}
             variants={columnVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            animate={effectiveRevealed ? "visible" : "hidden"}
             className="col-span-6 sm:col-span-3 lg:col-span-2 will-change-transform"
           >
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-rose-400 dark:text-rose-400 font-oswald mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
@@ -406,10 +431,16 @@ export function SiteFooter({ revealed: _externalRevealed }: { revealed?: boolean
 
         {/* ── Bottom Bar ── */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.45, delay: 0.38, ease: FAST_EASE }}
+          initial="hidden"
+          animate={effectiveRevealed ? "visible" : "hidden"}
+          variants={{
+            hidden: { opacity: 0, y: 14, transition: { duration: 0.15 } },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.45, delay: 0.35, ease: FAST_EASE },
+            },
+          }}
           className="relative z-10 mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12 will-change-transform"
         >
           <div className="h-px w-full bg-white/10 dark:bg-white/10" />
