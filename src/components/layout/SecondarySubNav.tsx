@@ -56,21 +56,6 @@ export const SecondarySubNav: React.FC<SecondarySubNavProps> = ({
   }, []);
 
   const handleTabClick = (tabId: string) => {
-    const isFirstTab = tabs.length > 0 && (tabId === tabs[0]?.id || tabId === "overview");
-    if (!isFirstTab) {
-      // Keep main header hidden and prevent upward scroll from popping open the main header/dropdown
-      setHeaderHidden(true);
-      setIsTabSwitching(true);
-      if (switchTimerRef.current) {
-        clearTimeout(switchTimerRef.current);
-      }
-      switchTimerRef.current = setTimeout(() => {
-        setIsTabSwitching(false);
-      }, 600);
-    } else {
-      setHeaderHidden(false);
-      setIsTabSwitching(false);
-    }
     onSelectTab(tabId);
   };
 
