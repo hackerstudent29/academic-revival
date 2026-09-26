@@ -15,7 +15,6 @@ import {
   RotateCcw,
   CheckCircle2,
 } from "lucide-react";
-import { StudentLifeSubNav } from "@/components/layout/StudentLifeSubNav";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
 import { tedxVideos, type TedxVideo } from "@/data/tedxVideos";
 
@@ -195,9 +194,6 @@ function TedxPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-0 md:pt-1">
-      {/* Unified Secondary SubNav across Campus Life */}
-      <StudentLifeSubNav />
-
       {/* ========================================================================= */}
       {/* HERO BANNER: Vision & Mission Style Minimal Flush Docked Title            */}
       {/* ========================================================================= */}

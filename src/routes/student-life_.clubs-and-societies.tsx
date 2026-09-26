@@ -1,8 +1,8 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, ChevronRight } from "lucide-react";
-import { StudentLifeSubNav } from "@/components/layout/StudentLifeSubNav";
+import { SecondarySubNav } from "@/components/layout/SecondarySubNav";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
 import { studentClubs, type StudentClub } from "@/data/studentLife";
 
@@ -181,6 +181,7 @@ export const Route = createFileRoute("/student-life_/clubs-and-societies")({
 });
 
 function ClubsAndSocietiesPage() {
+  const navigate = Route.useNavigate();
   const { club } = Route.useSearch();
   const [selectedClubId, setSelectedClubId] = useState<string>(() => {
     if (club && clubNavTabs.some((c) => c.id === club)) {
@@ -189,6 +190,20 @@ function ClubsAndSocietiesPage() {
     return "sports-club";
   });
 
+  useEffect(() => {
+    if (club && clubNavTabs.some((c) => c.id === club)) {
+      setSelectedClubId(club);
+    }
+  }, [club]);
+
+  const handleSelectClub = (clubId: string) => {
+    setSelectedClubId(clubId);
+    navigate({
+      search: { club: clubId },
+      replace: true,
+    });
+  };
+
   const activeClub: StudentClub = useMemo(() => {
     return studentClubs.find((c) => c.id === selectedClubId) || studentClubs[0];
   }, [selectedClubId]);
@@ -196,7 +211,13 @@ function ClubsAndSocietiesPage() {
   return (
     <main className="min-h-screen bg-white dark:bg-[#121214] text-foreground font-libre antialiased flex flex-col selection:bg-primary selection:text-white">
       {/* 1. Sticky Secondary SubNav Header */}
-      <StudentLifeSubNav />
+      <SecondarySubNav
+        title="CLUBS & SOCIETIES"
+        tabs={clubNavTabs}
+        activeTab={selectedClubId}
+        onSelectTab={handleSelectClub}
+        onTitleClick={() => handleSelectClub("sports-club")}
+      />
 
       <div className="flex-1 pt-0 md:pt-1">
         {/* ========================================================================= */}
@@ -221,7 +242,7 @@ function ClubsAndSocietiesPage() {
           <div className="relative z-10 mx-auto max-w-[1440px] w-full px-3.5 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 md:pt-24 pb-0">
             <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full w-auto border-t border-r border-border dark:border-white/15">
               <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none whitespace-nowrap">
-                Clubs &amp; Societies
+                CLUBS &amp; SOCIETIES
               </h1>
             </div>
           </div>
@@ -241,27 +262,6 @@ function ClubsAndSocietiesPage() {
             <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
               At Mohamed Sathak A.J. College of Engineering, student clubs form the vibrant pulse of campus life. With 8 specialized bodies spanning competitive athletics, creative arts, applied sciences, regional literature, competitive programming, robotics, environmental sustainability, and visual storytelling, every student finds an active forum to lead and collaborate.
             </p>
-
-            {/* In-Page Club Switcher Pills */}
-            <div className="flex flex-wrap gap-2 pt-2 border-b border-border/40 pb-4">
-              {clubNavTabs.map((t) => {
-                const isActive = t.id === selectedClubId;
-                return (
-                  <button
-                    key={t.id}
-                    type="button"
-                    onClick={() => setSelectedClubId(t.id)}
-                    className={`px-3 py-1.5 text-xs sm:text-sm font-oswald font-bold uppercase tracking-wider transition-all rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs border ${
-                      isActive
-                        ? "bg-primary text-primary-foreground border-primary shadow-xs"
-                        : "bg-foreground/5 hover:bg-foreground/10 text-foreground border-foreground/15"
-                    }`}
-                  >
-                    {t.label}
-                  </button>
-                );
-              })}
-            </div>
 
             {/* Active Club Detailed Spotlight (Cardless Open Layout) */}
             <AnimatePresence mode="wait">

@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2 } from "lucide-react";
-import { StudentLifeSubNav } from "@/components/layout/StudentLifeSubNav";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
 import { studentHubAmenities } from "@/data/studentLife";
 
@@ -133,11 +132,8 @@ export const Route = createFileRoute("/student-life_/student-hub")({
 
 function StudentHubPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-[#121214] text-foreground font-libre antialiased flex flex-col selection:bg-primary selection:text-white">
-      {/* 1. Sticky Secondary SubNav Header */}
-      <StudentLifeSubNav />
-
-      <div className="flex-1 pt-0 md:pt-1">
+    <main className="min-h-screen bg-white dark:bg-[#121214] text-foreground font-libre antialiased flex flex-col selection:bg-primary selection:text-white pt-0 md:pt-1">
+      <div className="flex-1">
         {/* ========================================================================= */}
         {/* 2. DYNAMIC HERO BANNER: Institution-Style Theme-Adaptive Banner           */}
         {/* ========================================================================= */}

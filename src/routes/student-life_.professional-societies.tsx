@@ -1,7 +1,7 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { StudentLifeSubNav } from "@/components/layout/StudentLifeSubNav";
+import { SecondarySubNav } from "@/components/layout/SecondarySubNav";
 import { DataGridContainer } from "@/components/ui/data-grid-table";
 import { professionalSocieties, type ProfessionalSociety } from "@/data/studentLife";
 
@@ -10,9 +10,9 @@ const description =
   "Explore official CSI, IETE, SAEINDIA, and ISHRAE professional chapters at Mohamed Sathak A.J. College of Engineering. Industry standards, technical symposiums, hackathons, and certifications.";
 
 const societyNavTabs = [
-  { id: "csi", label: "CSI (Computer Society of India)" },
+  { id: "csi", label: "CSI (Computer Society)" },
   { id: "iete", label: "IETE (Electronics & Telecom)" },
-  { id: "sae", label: "SAEINDIA (Mobility & Automotive)" },
+  { id: "sae", label: "SAEINDIA (Mobility & Auto)" },
   { id: "ishrae", label: "ISHRAE (HVAC & Thermal)" },
 ];
 
@@ -98,6 +98,7 @@ export const Route = createFileRoute("/student-life_/professional-societies")({
 });
 
 function ProfessionalSocietiesPage() {
+  const navigate = Route.useNavigate();
   const { society } = Route.useSearch();
   const [selectedSocietyId, setSelectedSocietyId] = useState<string>(() => {
     if (society && societyNavTabs.some((s) => s.id === society)) {
@@ -106,6 +107,20 @@ function ProfessionalSocietiesPage() {
     return "csi";
   });
 
+  useEffect(() => {
+    if (society && societyNavTabs.some((s) => s.id === society)) {
+      setSelectedSocietyId(society);
+    }
+  }, [society]);
+
+  const handleSelectSociety = (societyId: string) => {
+    setSelectedSocietyId(societyId);
+    navigate({
+      search: { society: societyId },
+      replace: true,
+    });
+  };
+
   const activeSociety: ProfessionalSociety = useMemo(() => {
     return professionalSocieties.find((s) => s.id === selectedSocietyId) || professionalSocieties[0];
   }, [selectedSocietyId]);
@@ -113,7 +128,13 @@ function ProfessionalSocietiesPage() {
   return (
     <main className="min-h-screen bg-white dark:bg-[#121214] text-foreground font-libre antialiased flex flex-col selection:bg-primary selection:text-white">
       {/* 1. Sticky Secondary SubNav Header */}
-      <StudentLifeSubNav />
+      <SecondarySubNav
+        title="PROFESSIONAL SOCIETIES"
+        tabs={societyNavTabs}
+        activeTab={selectedSocietyId}
+        onSelectTab={handleSelectSociety}
+        onTitleClick={() => handleSelectSociety("csi")}
+      />
 
       <div className="flex-1 pt-0 md:pt-1">
         {/* ========================================================================= */}
@@ -138,7 +159,7 @@ function ProfessionalSocietiesPage() {
           <div className="relative z-10 mx-auto max-w-[1440px] w-full px-3.5 sm:px-6 md:px-8 xl:px-12 pt-16 sm:pt-20 md:pt-24 pb-0">
             <div className="inline-block bg-white/95 dark:bg-[#121214]/95 backdrop-blur-md border-l-4 border-primary px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 shadow-2xl max-w-full w-auto border-t border-r border-border dark:border-white/15">
               <h1 className="font-oswald text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase text-foreground tracking-tight leading-none whitespace-nowrap">
-                Professional Societies
+                PROFESSIONAL SOCIETIES
               </h1>
             </div>
           </div>
@@ -158,27 +179,6 @@ function ProfessionalSocietiesPage() {
             <p className="w-full text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
               At Mohamed Sathak A.J. College of Engineering, collegiate professional chapters connect students directly with industry bodies and international standards. Through active chapters of CSI, IETE, SAEINDIA, and ISHRAE, students access certified technical training, peer-reviewed engineering papers, and national project competitions.
             </p>
-
-            {/* In-Page Chapter Switcher Pills */}
-            <div className="flex flex-wrap gap-2 pt-2 border-b border-border/40 pb-4">
-              {societyNavTabs.map((t) => {
-                const isActive = t.id === selectedSocietyId;
-                return (
-                  <button
-                    key={t.id}
-                    type="button"
-                    onClick={() => setSelectedSocietyId(t.id)}
-                    className={`px-3 py-1.5 text-xs sm:text-sm font-oswald font-bold uppercase tracking-wider transition-all rounded-tl-md rounded-br-md rounded-tr-xs rounded-bl-xs border ${
-                      isActive
-                        ? "bg-primary text-primary-foreground border-primary shadow-xs"
-                        : "bg-foreground/5 hover:bg-foreground/10 text-foreground border-foreground/15"
-                    }`}
-                  >
-                    {t.label}
-                  </button>
-                );
-              })}
-            </div>
 
             {/* Active Chapter Detailed Spotlight (Cardless Open Layout) */}
             <AnimatePresence mode="wait">
