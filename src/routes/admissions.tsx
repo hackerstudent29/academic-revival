@@ -220,7 +220,7 @@ export function AdmissionsHubPage() {
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-2">
               Degree Programmes Catalogue
             </h2>
-            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed max-w-3xl mb-6">
+            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full mb-6">
               Filter undergraduate and postgraduate engineering, management, and computer application degrees offered at Mohamed Sathak A.J. College of Engineering.
             </p>
 

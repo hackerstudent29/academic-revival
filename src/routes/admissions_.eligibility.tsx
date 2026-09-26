@@ -399,7 +399,7 @@ export function AdmissionsEligibilityPage() {
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-2">
               Mandatory Admission Reporting Checklist
             </h2>
-            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed max-w-3xl">
+            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
               All candidates admitted under TNEA counseling or Management Quota must submit the following original certificates at the time of college admission reporting.
             </p>
           </div>

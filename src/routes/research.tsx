@@ -442,9 +442,17 @@ function UnifiedResearchPage() {
                           RESEARCH AT A GLANCE
                         </h2>
                       </div>
-                      <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed max-w-4xl mb-8 sm:mb-10">
-                        The Research &amp; Development Cell at Mohamed Sathak A.J. College of Engineering fosters an advanced interdisciplinary ecosystem dedicated to innovation, sponsored research, intellectual property generation, and Anna University approved Ph.D. supervision.
-                      </p>
+                      <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed mb-8 sm:mb-10">
+                        <p>
+                          The Research &amp; Development (R&amp;D) Cell at Mohamed Sathak A.J. College of Engineering serves as the institutional catalyst for academic inquiry, technological advancement, and interdisciplinary innovation across all engineering and basic science departments.
+                        </p>
+                        <p>
+                          Dedicated to nurturing high-impact research, the cell supports faculty and student investigators with state-of-the-art laboratory infrastructure, competitive internal grant opportunities, and seamless coordination for external funding applications to agencies like DST, TNSCST, AICTE, UGC, and CSIR.
+                        </p>
+                        <p>
+                          With seven Anna University recognized research supervisors, over 23 patents, and 30+ authored volumes, the institution actively advances technical knowledge while empowering students to publish in indexed international journals and build scalable solutions for industrial and societal needs.
+                        </p>
+                      </div>
 
                       {/* Editorial Stats Grid */}
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:divide-x md:divide-border/80">
@@ -611,6 +619,19 @@ function UnifiedResearchPage() {
                 <div className="w-full">
                   <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
                     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      {/* Full-Width Institutional Overview */}
+                      <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed mb-8 sm:mb-10">
+                        <p>
+                          Mohamed Sathak A.J. College of Engineering maintains a distinguished record of scholarly publishing, encouraging faculty members and student researchers to contribute original scientific findings to peer-reviewed international journals, conference proceedings, and academic volumes.
+                        </p>
+                        <p>
+                          Our academic community actively authors authoritative textbooks, monographic studies, and specialized book chapters published by global academic houses including Elsevier and Springer, spanning frontier domains from machine learning and VLSI design to sustainable structural engineering.
+                        </p>
+                        <p>
+                          By enforcing rigorous peer-review standards and supporting publication in Scopus and Web of Science indexed repositories, the institution continuously elevates its research citations, knowledge dissemination, and global academic reputation.
+                        </p>
+                      </div>
+
                       <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center mb-8 pb-4 border-b border-border/80">
                         <div>
                           <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
@@ -686,6 +707,19 @@ function UnifiedResearchPage() {
                 <div className="w-full">
                   <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
                     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+                      {/* Full-Width Institutional Overview */}
+                      <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed mb-8 sm:mb-10">
+                        <p>
+                          The Intellectual Property Rights (IPR) &amp; Patent Facilitation Cell at MSAJCE provides comprehensive institutional infrastructure for scouting, drafting, filing, and prosecuting patents, utility models, and registered copyrights arising from student and faculty research.
+                        </p>
+                        <p>
+                          With 23+ published and granted patents spanning IoT disaster management, intelligent transportation systems, e-vehicle battery swapping, and advanced composite materials, the college actively translates laboratory prototypes into protected technological assets.
+                        </p>
+                        <p>
+                          Through structured IP awareness workshops, legal mentorship, and direct alignment with the Controller General of Patents, Designs &amp; Trade Marks (IP India), MSAJCE ensures seamless commercialization and intellectual protection for campus innovations.
+                        </p>
+                      </div>
+
                       <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center mb-8 pb-4 border-b border-border/80">
                         {/* Sub-tab selection */}
                         <div className="flex gap-2">
@@ -876,14 +910,22 @@ function UnifiedResearchPage() {
                       </div>
 
                       {/* Overview Narrative */}
-                      <div className="space-y-6 max-w-5xl">
+                      <div className="space-y-6 w-full">
                         <div>
                           <h3 className="text-lg sm:text-xl font-bold font-oswald uppercase tracking-tight text-foreground mb-2">
                             Overview
                           </h3>
-                          <p className="text-sm sm:text-base font-libre font-medium text-foreground leading-relaxed">
-                            Institution's Innovation Council (IIC-MSAJCE) was established under the directives of Ministry of Education (MoE) Innovation Cell (MIC), Government of India, to systematically foster the culture of innovation, research pre-incubation, hackathons, and entrepreneurship across all engineering departments. The council empowers students and faculty to transform innovative ideas into viable prototypes and impactful ventures.
-                          </p>
+                          <div className="w-full space-y-4 text-sm sm:text-base font-libre font-medium text-foreground leading-relaxed">
+                            <p>
+                              Established under the direct directives of the Ministry of Education (MoE) Innovation Cell (MIC), Government of India, the Institution's Innovation Council (IIC-MSAJCE) systematically fosters an active ecosystem of innovation, pre-incubation, hackathons, and technology entrepreneurship across campus.
+                            </p>
+                            <p>
+                              Recognized with a prestigious 4-Star Rating by the MoE Innovation Cell, the council empowers students and faculty mentors to transform creative ideas into functional prototypes and market-ready enterprise solutions through structured ideation challenges and mentorship programs.
+                            </p>
+                            <p>
+                              By driving participation in national hackathons, ARIIA rankings, and interdisciplinary design challenges, IIC-MSAJCE cultivates cognitive engineering skills, startup readiness, and sustainable economic impact for young innovators.
+                            </p>
+                          </div>
                         </div>
 
                         <div className="pt-2">
@@ -1016,16 +1058,27 @@ function UnifiedResearchPage() {
               {/* ========================================================= */}
               {tab === "startup-ecosystem" && (
                 <div className="w-full">
-                  {/* Section A: Vision & Mission */}
+                  {/* Section A: Overview & Vision Mission */}
                   <section className="bg-white dark:bg-[#121214] py-10 sm:py-14 md:py-16">
-                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
-                      <div className="mb-6 sm:mb-8 pb-3 border-b border-border/80">
-                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary">
-                          VISION &amp; MISSION
+                    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12 space-y-8">
+                      <div>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-4 pb-2 border-b border-border/80">
+                          NATIONAL INNOVATION &amp; STARTUP POLICY (NISP)
                         </h2>
+                        <div className="w-full space-y-4 text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed">
+                          <p>
+                            Guided by the National Innovation and Start-up Policy (NISP) framework of the Ministry of Education, Mohamed Sathak A.J. College of Engineering has established an integrated startup ecosystem designed to cultivate student-led enterprise development and technology commercialization.
+                          </p>
+                          <p>
+                            The NISP ecosystem provides aspiring campus founders with access to dedicated pre-incubation space, prototyping grants, legal assistance for IP registration, and direct mentorship from industry veterans, venture capitalists, and alumni entrepreneurs.
+                          </p>
+                          <p>
+                            Through structured short-term and long-term milestones, the policy reinforces an institutional culture where technical knowledge seamlessly converts into sustainable commercial ventures, patents, and job creation for the national economy.
+                          </p>
+                        </div>
                       </div>
 
-                      <div className="space-y-6 sm:space-y-8 max-w-5xl">
+                      <div className="space-y-6 sm:space-y-8 w-full pt-4 border-t border-border/40">
                         {/* Vision */}
                         <div className="space-y-2 sm:space-y-2.5">
                           <div className="flex items-center gap-3">

@@ -189,7 +189,7 @@ export function AdmissionsProcedurePage() {
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black font-oswald uppercase tracking-wide text-primary mb-2">
               Admissions Helpdesk &amp; Support
             </h2>
-            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed max-w-3xl">
+            <p className="text-sm sm:text-base text-foreground font-libre font-medium leading-relaxed w-full">
               Our dedicated admissions team is available to assist you with eligibility verification, application submission, document requirements, and fee structures.
             </p>
           </div>
