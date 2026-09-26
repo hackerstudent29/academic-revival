@@ -183,6 +183,7 @@ export function HomePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <Link
                 to="/admissions"
+                search={{} as any}
                 className="group relative overflow-hidden inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-white px-5 py-3 text-xs font-bold uppercase tracking-widest font-oswald shadow-md rounded-tl-xl rounded-br-xl rounded-tr-xs rounded-bl-xs w-full text-center"
               >
                 <span className="relative z-10 flex items-center justify-center gap-1.5">
@@ -201,13 +202,13 @@ export function HomePage() {
 
             {/* Fast Nav Ribbon */}
             <div className="flex flex-wrap items-center justify-between gap-1.5 pt-3 border-t border-white/10 text-[11px] font-bold font-oswald uppercase tracking-wider text-neutral-300">
-              <Link to="/admissions" className="hover:text-primary transition-colors">Admissions</Link>
+              <Link to="/admissions" search={{} as any} className="hover:text-primary transition-colors">Admissions</Link>
               <span>•</span>
               <Link to="/academics" className="hover:text-primary transition-colors">Courses</Link>
               <span>•</span>
               <Link to="/placements" className="hover:text-primary transition-colors">Placements</Link>
               <span>•</span>
-              <Link to="/research" className="hover:text-primary transition-colors">Research</Link>
+              <Link to="/research" search={{} as any} className="hover:text-primary transition-colors">Research</Link>
               <span>•</span>
               <Link to="/contact" className="hover:text-primary transition-colors">Contact</Link>
             </div>
